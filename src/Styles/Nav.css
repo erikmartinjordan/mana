@@ -1,0 +1,65 @@
+.Nav{
+    background: var(--darkGray);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.13);
+}
+.Nav .Wrap{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 800px;
+}
+.Nav .Title a,
+.Nav .Title-Mobile a{
+    color: white;
+    font-family: 'Gentium Book Basic', serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.Nav .Title-Mobile{
+    display: none;
+}
+.Nav .Menu{
+    align-items: center;
+    display: flex;
+}
+.Nav .Menu a{
+    color: white;
+    font-size: 12px;
+    margin: 5px;
+}
+.Nav .Menu a:last-child{
+    background: var(--blue);
+    border-radius: 5px;
+    padding: 2px 10px;
+}
+.Nav .Menu img{
+    border-radius: 50%;
+    height: 20px;
+    margin-left: 20px;
+    width: 20px;
+}
+.Nav .Search{
+    align-items: center;
+    display: flex;
+}
+.Nav .Search input{
+    background: var(--mediumGray);
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    width: 200px;
+}
+@media (max-width: 768px){
+   .Nav{
+        padding: 20px;
+    } 
+    .Nav .Title{
+        display: none;
+    }
+    .Nav .Title-Mobile{
+        display: block;
+    }
+    .Nav .Search input{
+        display: none;
+    }
+}

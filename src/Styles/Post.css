@@ -1,0 +1,81 @@
+.Header{
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+.Header h1{
+    font-size: 25px;
+    text-align: center;
+}
+.Header .Infopost{
+    text-align: center;
+}
+.Header .Infopost .i{
+    font-size: medium;
+    margin: 10px;
+}
+.Header .Infopost .i{
+    display: inline-block;
+}
+.Header .Infopost .i:hover{
+    transform: scale(1.5);
+    transition: 0.2s ease-in-out;
+}
+.Header .Infopost .i:nth-child(2){
+    cursor: default;
+}
+.Header .Infopost .i:nth-child(3),
+.Header .Infopost .i:nth-child(4){
+    cursor: pointer;
+}
+.Header .Infopost p.Date{
+    color: var(--gray);
+}
+.Content p,
+.Content h1,
+.Content h2,
+.Content h3,
+.Content h4,
+.Content h5,
+.Content h6,
+.Content ul,
+.Content ol{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 620px;
+}
+.Content h1,
+.Content h6{
+    text-align: center;
+}
+.Content h2{
+    margin-top: 100px;
+}
+.Content h6{
+    color: var(--gray);
+}
+.Content a{
+    border: 0px;
+    border-bottom: 4px solid;
+    border-image: linear-gradient(to right, rgb(0, 210, 255), rgb(58, 123, 213));
+    border-image-slice: 1;
+}
+.Content img{
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.Content pre{
+    font-size: medium;
+    margin: auto;
+    max-width: 768px;
+}
+@media (max-width:600px){
+    .Content img{
+        margin-left: 0;
+        transform: none;
+        width: 100%;
+    }
+    .Header .Infopost .i:hover{
+        transform: none;
+        transition: none;
+    }
+}

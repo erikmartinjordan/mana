@@ -1,0 +1,31 @@
+.Footer{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: url('../Assets/wave.svg');
+    background-size: cover;
+    background-position: 60%;
+    min-height: 350px;
+}
+.Footer .Wrap *{
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
+.Footer .Wrap p{
+    margin: 5px;
+}
+.Footer .Wrap span.Logo{
+    font-family: 'Gentium Book Basic', serif;
+    letter-spacing: 1px;
+}
+.Footer .Wrap a.Twitter{
+    background: var(--blue);
+    border-radius: 3px;
+    padding: 5px;
+}
+.Footer .Wrap .Footer-Menu span{
+    text-transform: uppercase;
+    margin: 5px;
+}

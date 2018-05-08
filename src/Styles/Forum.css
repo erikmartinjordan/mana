@@ -1,0 +1,148 @@
+/*******************************************************************/
+/*Front
+/*******************************************************************/
+.Forum{
+    margin: auto;
+    max-width: 800px;
+}
+.Forum ul{
+    padding: 0;
+}
+.Forum ul.Front a{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+.Forum ul.Front a:hover{
+    transition: 0.2s ease-in-out;
+    transform: scale(1.01);   
+}
+.Forum li{
+    list-style-type: none;
+}
+.Forum li.roll{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.Forum .Meta-Post{
+    align-items: center;
+    color: var(--mediumGray);
+    display: flex;
+    font-size: small;
+    justify-content: flex-end;
+}
+.Forum .Meta-Post .Likes,
+.Forum .Meta-Post .Comments,
+.Forum .Meta-Post .Views{
+    margin: 10px 10px 0px 0px;
+}
+.Forum .votes{
+    align-items: flex-end;
+    display: flex;
+    font-size: small;
+}
+.Forum .infopost{
+    align-items: center;
+    color: var(--superLightGray);
+    display: flex;
+    font-size: small;
+}
+.Forum .infopost.center{
+    display: flex;
+    justify-content: center;
+}
+.Forum img{
+    border-radius: 50%;
+    height: 25px;
+    margin-right: 10px;
+    width: 25px;
+}
+.Forum .infopost p{
+    margin: 0;
+}
+.Forum .Likes{
+    display: flex;
+    justify-content: flex-end;
+}
+.Forum .Likes .votes span{
+    cursor: pointer;   
+}
+.Forum .Likes .votes:hover{
+    transition: 0.2s ease-in-out;
+    transform: scale(1.1);   
+}
+/*******************************************************************/
+/*Detail
+/*******************************************************************/
+.Forum h2{
+    color: var(--darkGray);
+    text-align: center;
+}
+.Forum .infopost.left{
+    display: flex;
+    justify-content: space-between;
+}
+.Forum .Linkify{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    display: flex;
+    flex-direction: column;
+    font-size: medium;
+    justify-content: center;
+    margin-bottom: 50px;
+    padding: 20px;  
+}
+.Forum ul.replies{
+    margin: auto;
+    max-width: 600px;
+}
+.Forum ul.replies p{
+    margin: 0;
+}
+.Forum ul.replies .likes-comments{
+    display: flex;
+    justify-content: flex-end;
+}
+.Forum ul.replies .likes-comments .votes span{
+    cursor: pointer;   
+}
+.Forum ul.replies .likes-comments .votes:hover{
+    transition: 0.2s ease-in-out;
+    transform: scale(1.1);   
+}
+.Forum .verified{
+    color: var(--blue);
+    cursor: default;
+    margin: 5px;
+}
+.Forum .verified:hover + .tooltip{
+    display: inline-block;
+}
+.Forum .tooltip{
+    background: var(--darkGray);
+    border-radius: 5px;
+    color: white;
+    display: none;
+    font-size: small;
+    padding: 5px;
+    position: absolute;
+}
+.Forum time{
+    margin: 5px;
+}
+/*******************************************************************/
+/*Mobile
+/*******************************************************************/
+@media(max-width: 768px){
+    .Forum{
+        padding: 20px;
+    }
+} 

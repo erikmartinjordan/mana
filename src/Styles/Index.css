@@ -1,0 +1,99 @@
+html{
+    overflow-x: hidden;
+}
+*{
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    outline: none;
+}
+body {
+    background: var(--lightGray);
+    color: var(--darkGray);
+    font-size: 20px;
+    line-height: 1.75;
+    margin: 0;
+}
+#root{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+   letter-spacing: -0.075em;
+}
+h2{
+    font-size: xx-large;
+}
+p,
+li,
+ul{
+    font-family: 'Nunito', sans-serif;
+}
+a{
+    color: var(--blue);
+    text-decoration: none;
+}
+button{
+    background: transparent;
+    border: 3px solid var(--darkGray);
+    border-radius: 5px;
+    box-shadow: 4px 4px 0 0 var(--darkGray);
+    color: #30363b;
+    cursor: pointer;
+    display: block;
+    font-size: small;
+    font-weight: 400;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    width: 200px;  
+}
+button:hover{
+    box-shadow: 8px 8px 0 0 var(--darkGray);
+    transition: 0.2s ease-in-out;
+}
+button.more{
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: var(--blue);
+    display: block;
+    font-weight: 400;
+    margin: auto;
+    margin-top: 10px;
+    padding: 7px;
+    text-align: center;
+    width: 200px;
+}
+button.login,
+button.delete{
+    background: var(--blue);
+    border: none;
+    box-shadow: none;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    width: auto;
+}
+button.delete{
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+:root{
+    --blue: #1e99e6;
+    --superLightGray: #828c99;
+    --lightGray: #fafafa;
+    --mediumGray: #555;
+    --darkGray: #30363b;
+}
+::selection{
+    background: var(--blue);
+    color: white;
+}
