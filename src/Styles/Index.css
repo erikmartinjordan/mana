@@ -10,7 +10,7 @@ html{
 body {
     background: var(--superLightGray);
     color: var(--darkGray);
-    line-height: 1.75;
+    line-height: 2;
     margin: 0;
 }
 #root{
@@ -94,6 +94,7 @@ button.delete{
     --blue: #1e99e6;
     --red: #db3236;
     --pastelRed: #ff6961;
+    --textBlog: #444a4e;
 }
 ::selection{
     background: var(--blue);
