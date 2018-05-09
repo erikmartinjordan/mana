@@ -1,0 +1,124 @@
+.Temp {
+    width: 100%;
+}
+.Temp p{
+    text-align: center;
+}
+.Temp ul{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 500px;
+    padding: 20px;
+    width: 100%;
+}
+.Temp ul li{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
+.Temp ul li:hover{
+    background: var(--lightGray);
+    border-radius: 5px;
+}
+.Temp .Temp__avg{
+    align-items: flex-end;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: auto;
+}
+.Temp .Temp__avg .mes{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.Temp .Temp__avg .mes span.temp{
+    padding: 5px;
+}
+.Temp .Temp__avg .mes .tag{
+    color: var(--darkGray);
+}
+.Temp .Temp__avg #enero span.temp{
+    background: var(--pastelRed);
+    height: 240px;
+}
+.Temp .Temp__avg #febrero span.temp{
+    background: var(--pastelRed);
+    height: 260px;
+}
+.Temp .Temp__avg #marzo span.temp{
+    background: var(--pastelRed);
+    height: 280px;
+}
+.Temp .Temp__avg #abril span.temp{
+    background: var(--pastelRed);
+    height: 290px;
+}
+.Temp .Temp__avg #mayo span.temp{
+    background: var(--pastelRed);
+    height: 290px;
+}
+.Temp .Temp__avg #junio span.temp{
+    background: var(--pastelRed);
+    height: 280px;
+}
+.Temp .Temp__avg #julio span.temp{
+    background: var(--pastelRed);
+    height: 280px;
+}
+.Temp .Temp__avg #agosto span.temp{
+    background: var(--pastelRed);
+    height: 270px;
+}
+.Temp .Temp__avg #septiembre span.temp{
+    background: var(--pastelRed);
+    height: 270px;
+}
+.Temp .Temp__avg #octubre span.temp{
+    background: var(--pastelRed);
+    height: 270px;
+}
+.Temp .Temp__avg #noviembre span.temp{
+    background: var(--pastelRed);
+    height: 260px;
+}
+.Temp .Temp__avg #diciembre span.temp{
+    background: var(--pastelRed);
+    height: 240px;
+}
+.Temp .Mejor__epc{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 500px;
+    padding: 20px;
+    width: 100%;
+}
+.Temp .Mejor__epc table tr{
+    display: flex;
+    justify-content: space-between;
+}
+.Temp .Mejor__epc table tr td:nth-child(1){
+    flex: 2;
+    text-align: left;
+}
+.Temp .Mejor__epc table tr td:nth-child(2){
+    flex: 1;
+    text-align: center;
+}
+.Temp .Mejor__epc table tr td:nth-child(3){
+    flex: 2;
+    text-align: right;
+}

@@ -290,7 +290,7 @@ class Detail extends Component {
     var form =  <form onSubmit={this.handleSubmit}>
                     {this.state.alert ? <span className="alert">{this.state.alert}</span> : null}
                     <div className="title">
-                        <h2>Escribe tu respuesta.</h2>
+                        <h2>Escribe tu respuesta</h2>
                     </div>
                     <textarea onChange={this.handleReply} className="message" maxLength="280" value = {this.state.reply} ></textarea>
                     <button className="bottom">Enviar</button>

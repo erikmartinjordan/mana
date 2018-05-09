@@ -21,13 +21,13 @@ class Front extends Component {
         this.state = {
             admin: false,
             alert: null,
-            chat: "",
-            message: "",
+            chat: '',
+            message: '',
             nomore: null,
             numposts: 10,
             ready: false,
             render: false,
-            title: "",
+            title: '',
             user: null,
             write: false,
         }
@@ -47,7 +47,7 @@ class Front extends Component {
           this.setState({
               user: user 
           });
-          if(user && user.uid === "dOjpU9i6kRRhCLfYb6sfSHhvdBx2")
+          if(user && user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2')
               this.setState({
                  admin: true 
               });
@@ -94,9 +94,9 @@ class Front extends Component {
       
       var that = this;
       
-      if(this.state.message === "" || this.state.title === ""){
+      if(this.state.message === '' || this.state.title === ''){
           this.setState({
-              alert: "El título o mensaje no pueden estar vacíos."
+              alert: 'El título o mensaje no pueden estar vacíos.'
           })
       }
       else{
@@ -127,7 +127,7 @@ class Front extends Component {
                 }
                 else{
                         that.setState({
-                            alert: "Ups, solamente se permite un mensaje cada 24 horas. 😳"
+                            alert: 'Ups, solamente se permite un mensaje cada 24 horas. 😳'
                         });
                 }
 
@@ -143,7 +143,7 @@ class Front extends Component {
   /*******************************************************************/
   handleDelete = (e) => {
       
-      firebase.database().ref('posts/' + e.target.getAttribute("id")).remove();
+      firebase.database().ref('posts/' + e.target.getAttribute('id')).remove();
       e.preventDefault();
        
   }   
@@ -154,23 +154,33 @@ class Front extends Component {
   listItems = () => {
       
     var array = this.state.chat.slice(0, this.state.numposts);
-    var list = array.map( (line) =>   
-        [<Link to={"/comunidad/post/" + line.key}>
-            <li className="roll" key={line.key}>
-                {line.title}
-                <div className="infopost">
-                             <img src = {line.userPhoto}></img>
-                             <p>{line.userName}, <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
-                </div>
-                <div className = 'Meta-Post'>
-                    <Likes user={this.state.user} post={line.key}></Likes>
-                    <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
-                    <div className = 'Views'>👀 {line.views}</div>
+    var list = array.map( (line, key) =>   
+        [<Link to = {'/comunidad/post/' + line.key}>
+            <li className='roll' key = {key}>
+                
+                {key === 0 
+                ?   <div>
+                        <img className = 'Featured-Photo' src = 'https://images.unsplash.com/photo-1503933166348-a1a86c17b3a0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=625fe6fd55bfcc756490582ae368b210&auto=format&fit=crop&w=1050&q=80'></img>
+                    </div>
+                :   null
+                }
+         
+                <div className = 'roll-wrap'>
+                    {line.title}
+                    <div className = 'infopost'>
+                                 <img src = {line.userPhoto}></img>
+                                 <p>{line.userName}, <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
+                    </div>
+                    <div className = 'Meta-Post'>
+                        <Likes user={this.state.user} post={line.key}></Likes>
+                        <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
+                        <div className = 'Views'>👀 {line.views}</div>
+                    </div>
                 </div>
             </li>
         </Link>,
         <div>
-            {this.state.user && this.state.admin ? <button className="delete" id={line.key} onClick={this.handleDelete}>Eliminar</button> : null}
+            {this.state.user && this.state.admin ? <button className='delete' id={line.key} onClick={this.handleDelete}>Eliminar</button> : null}
         </div>]);
                                        
     return list;
@@ -183,11 +193,14 @@ class Front extends Component {
   newPost = () => {
     
     var form = <form onSubmit={this.handleSubmit}>
-            {this.state.alert ? <span className="alert">{this.state.alert}</span> : null}
+            {this.state.alert 
+            ? <span className='alert'>{this.state.alert}</span> 
+            : null
+            }
             <h2>Escribe tu mensaje</h2>
-            <input onChange={this.handleTitle} className="title" placeholder="Título..." maxLength="50"></input>
-            <textarea onChange={this.handleMessage} className="message" placeholder="Mensaje..." maxLength="280"></textarea>
-            <button className="bottom">Enviar</button>
+            <input onChange = {this.handleTitle} className='title' placeholder = 'Título...' maxLength = '50'></input>
+            <textarea onChange = {this.handleMessage} className = 'message' placeholder = 'Mensaje...' maxLength = '280'></textarea>
+            <button className = 'bottom'>Enviar</button>
         </form>;
 
     return form;
@@ -196,7 +209,7 @@ class Front extends Component {
   /*******************************************************************/
   //cargando
   /*******************************************************************/
-  loading = () => <div><div className="bloque-100"></div><div className="bloque-90"></div><div className="bloque-80"></div></div>
+  loading = () => <div><div className='bloque-100'></div><div className='bloque-90'></div><div className='bloque-80'></div></div>
       
   /*******************************************************************/
   //carga más publicaciones
@@ -204,23 +217,22 @@ class Front extends Component {
   showMorePosts = () => {
       var items  = this.state.numposts + 5;
       var length = this.state.chat.length;
+         
       if(items >= length) this.setState({ nomore: true });
+         
       this.setState({ numposts: items });
   }
 
-  /*******************************************************************/
-  //render
-  /*******************************************************************/
   render() {
       
       
     return (
-      <div className = "Forum">
+      <div className = 'Forum'>
         <h2>Comunidad</h2>
-        <ul className = "Front">{this.state.ready ? this.listItems() : this.loading()}</ul>
+        <ul className = 'Front'>{this.state.ready ? this.listItems() : this.loading()}</ul>
         {this.state.user                         ? this.newPost() : null}
-        {this.state.user    || !this.state.ready ? null : <button className = "bottom" onClick={this.showBanner}>Publicar</button>}
-        {this.state.nomore  || !this.state.ready ? null : <button className = "more"   onClick = {this.showMorePosts}>Ver más</button>}
+        {this.state.user    || !this.state.ready ? null : <button className = 'bottom' onClick={this.showBanner}>Publicar</button>}
+        {this.state.nomore  || !this.state.ready ? null : <button className = 'more'   onClick = {this.showMorePosts}>Ver más</button>}
         {this.state.render                       ? <Login hide={this.hideBanner}></Login> : null}
       </div>
     );

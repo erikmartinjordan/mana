@@ -4,9 +4,19 @@
 .Forum{
     margin: auto;
     max-width: 800px;
+    width: 100%;
 }
 .Forum ul{
     padding: 0;
+}
+.Forum ul .roll-wrap{
+    padding: 20px;
+}
+.Forum ul.Front a:first-child{
+    font-size: xx-large;
+    height: auto;
+    max-width: 100%;
+    overflow: hidden;
 }
 .Forum ul.Front a{
     background: white;
@@ -16,8 +26,9 @@
     flex-direction: column;
     height: 200px;
     justify-content: center;
+    margin: auto;
     margin-bottom: 10px;
-    padding: 20px;
+    max-width: 600px;
 }
 .Forum ul.Front a:hover{
     transition: 0.2s ease-in-out;
@@ -50,7 +61,7 @@
 }
 .Forum .infopost{
     align-items: center;
-    color: var(--superLightGray);
+    color: var(--lightGray);
     display: flex;
     font-size: small;
 }
@@ -63,6 +74,12 @@
     height: 25px;
     margin-right: 10px;
     width: 25px;
+}
+.Forum img.Featured-Photo{
+    border-radius: 0;
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
 }
 .Forum .infopost p{
     margin: 0;
@@ -77,6 +94,31 @@
 .Forum .Likes .votes:hover{
     transition: 0.2s ease-in-out;
     transform: scale(1.1);   
+}
+.Forum input.title{
+    border: none;
+    border-radius: 5px;
+    display: block;
+    font-size: large;
+    margin: auto;
+    margin-bottom: 20px;
+    max-width: 600px;
+    padding: 20px;
+    width: 100%;
+}
+.Forum textarea.message{
+    border: none;
+    border-radius: 5px;
+    display: block;
+    font-size: large;
+    margin: auto;
+    max-width: 600px;
+    padding: 20px;
+    width: 100%;
+}
+.Forum .User-Wrap{
+    align-items: center;
+    display: flex;
 }
 /*******************************************************************/
 /*Detail

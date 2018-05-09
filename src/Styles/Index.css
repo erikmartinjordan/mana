@@ -8,9 +8,8 @@ html{
     outline: none;
 }
 body {
-    background: var(--lightGray);
+    background: var(--superLightGray);
     color: var(--darkGray);
-    font-size: 20px;
     line-height: 1.75;
     margin: 0;
 }
@@ -27,6 +26,7 @@ h4,
 h5,
 h6{
    letter-spacing: -0.075em;
+    text-align: center;
 }
 h2{
     font-size: xx-large;
@@ -79,7 +79,7 @@ button.delete{
     box-shadow: none;
     color: white;
     font-size: 12px;
-    padding: 5px 10px;
+    padding: 3px 10px;
     width: auto;
 }
 button.delete{
@@ -87,11 +87,13 @@ button.delete{
     margin-top: 20px;
 }
 :root{
-    --blue: #1e99e6;
-    --superLightGray: #828c99;
-    --lightGray: #fafafa;
+    --superLightGray: #fafafa;
+    --lightGray: #828c99;
     --mediumGray: #555;
     --darkGray: #30363b;
+    --blue: #1e99e6;
+    --red: #db3236;
+    --pastelRed: #ff6961;
 }
 ::selection{
     background: var(--blue);

@@ -2,10 +2,6 @@
     padding-bottom: 50px;
     padding-top: 50px;
 }
-.Header h1{
-    font-size: 25px;
-    text-align: center;
-}
 .Header .Infopost{
     text-align: center;
 }
@@ -49,6 +45,7 @@
 }
 .Content h2{
     margin-top: 100px;
+    text-align: left;
 }
 .Content h6{
     color: var(--gray);

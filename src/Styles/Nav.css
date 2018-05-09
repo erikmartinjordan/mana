@@ -12,6 +12,7 @@
 .Nav .Title-Mobile a{
     color: white;
     font-family: 'Gentium Book Basic', serif;
+    font-size: 20px;
     font-weight: bold;
     letter-spacing: 1px;
 }
@@ -27,15 +28,10 @@
     font-size: 12px;
     margin: 5px;
 }
-.Nav .Menu a:last-child{
-    background: var(--blue);
-    border-radius: 5px;
-    padding: 2px 10px;
-}
 .Nav .Menu img{
     border-radius: 50%;
     height: 20px;
-    margin-left: 20px;
+    margin-left: 5px;
     width: 20px;
 }
 .Nav .Search{
@@ -48,6 +44,42 @@
     border-radius: 3px;
     padding: 5px;
     width: 200px;
+}
+.Nav .Avatar-Menu{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    color: var(--darkGray);
+    font-size: small;
+    margin-left: -100px;
+    margin-top: 5px;
+    padding: 20px; 
+    position: absolute;
+}
+.Nav .Avatar-Menu a{
+    color: var(--darkGray);
+    display: block;
+    font-size: small;
+    margin: 0;
+    margin-bottom: 5px;
+}
+.Nav .Separator{
+    background: var(--superLightGray);
+    height: 1px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 100%;
+}
+.Nav .Img-Wrap{
+    align-items: center;
+    display: flex;
+}
+.Nav .User{
+    align-items: center;
+    cursor: pointer;
+}
+.Nav .Logout{
+    color: var(--red);
 }
 @media (max-width: 768px){
    .Nav{
