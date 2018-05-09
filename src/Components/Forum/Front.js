@@ -158,7 +158,7 @@ class Front extends Component {
         [<Link to = {'/comunidad/post/' + line.key}>
             <li className='roll' key = {key}>
                 {key === 0 
-                ?   <div className = 'featured' style = {{backgroundColor: 'var(--darkGray)', height: '500px'}}><span>{line.title}</span></div>
+                ?   <div className = 'featured' style = {{height: '300px'}}><span>{line.title}</span></div>
                 :   null
                 }
                 <div className = 'roll-wrap'>
@@ -166,14 +166,16 @@ class Front extends Component {
                     ?   null
                     :   <div>{line.title}</div>
                     }
-                    <div className = 'infopost'>
-                                 <img src = {line.userPhoto}></img>
-                                 <p>{line.userName}, <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
-                    </div>
-                    <div className = 'Meta-Post'>
-                        <Likes user={this.state.user} post={line.key}></Likes>
-                        <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
-                        <div className = 'Views'>👀 {line.views}</div>
+                    <div className = 'Infopost-Meta-Post'>
+                        <div className = 'infopost'>
+                                     <img src = {line.userPhoto}></img>
+                                     <p>{line.userName}, <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
+                        </div>
+                        <div className = 'Meta-Post'>
+                            <Likes user={this.state.user} post={line.key}></Likes>
+                            <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
+                            <div className = 'Views'>✨ {line.views} visitas</div>
+                        </div>
                     </div>
                 </div>
             </li>

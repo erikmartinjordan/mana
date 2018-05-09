@@ -10,6 +10,7 @@
     padding: 0;
 }
 .Forum ul .roll-wrap{
+    font-size: x-large;
     padding: 20px;
 }
 .Forum ul.Front a:first-child{
@@ -27,12 +28,24 @@
     height: 200px;
     justify-content: center;
     margin: auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     max-width: 600px;
 }
 .Forum ul.Front a:hover{
     transition: 0.2s ease-in-out;
     transform: scale(1.01);   
+}
+.Forum ul.Front a:nth-child(2n + 1){
+    border-top: 5px solid rgb(75, 169, 250);
+}
+.Forum ul.Front a:nth-child(3n + 1){
+    border-top: 5px solid rgb(252, 181, 76);
+}
+.Forum ul.Front a:nth-child(4n + 1){
+    border-top: 5px solid #2bc397;
+}
+.Forum ul.Front a:nth-child(5n + 1){
+    border-top: 5px solid #8b65d7;
 }
 .Forum li{
     list-style-type: none;
@@ -71,9 +84,9 @@
 }
 .Forum img{
     border-radius: 50%;
-    height: 25px;
+    height: 20px;
     margin-right: 10px;
-    width: 25px;
+    width: 20px;
 }
 .Forum img.Featured-Photo{
     border-radius: 0;
@@ -127,11 +140,6 @@
 }
 .Forum .featured span{
     border: 0px;
-    border-bottom: 10px solid;
-    border-image: linear-gradient(to right, rgb(0, 210, 255), rgb(58, 123, 213));
-    border-image-slice: 1;
-    color: white;
-    margin: auto;
     text-align: center;
 }
 /*******************************************************************/

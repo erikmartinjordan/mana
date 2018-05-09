@@ -18,16 +18,17 @@ class Blog extends Component {
       let first = true;
       let year;
       let array = [];
+      var posts = [];
       
       for (var key in Data) {
           
           if(first || Data[key].date[2] !== year){
               year  = Data[key].date[2];
               first = false;
-              array.push(<h2 key = {key} className = 'Year'>{year}</h2>);
+              array.push([<h2 key = {key} className = 'Year'>{year}</h2>, <div className = 'Block'>{posts}</div>]);
           }
             
-          array.push(<article key = {key + 1}>
+          posts.push(<article key = {key + 1}>
                         <Link to = {'/' + key}>{Data[key].title}</Link>
                         <p key = {key + 2} className = 'Month'>{Data[key].date[1]}</p>
                      </article>);
