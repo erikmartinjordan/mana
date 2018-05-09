@@ -10,7 +10,7 @@
     width: 100vw;
 }
 .Login .Login-wrap{
-    background: var(--lightGray);
+    background: var(--superLightGray);
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0,0,0,.15);
     padding: 0px 20px 20px 20px;
@@ -37,4 +37,9 @@
 }
 .Login .Google-green{
     color: #3cba54;
+}
+@media (max-width: 768px){
+   .Login{
+        padding: 20px;
+    } 
 }

@@ -24,9 +24,15 @@
     font-weight: bold;
     text-align: center;
 }
+.Perfil .Datos table tbody{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 .Perfil .Datos table tr{
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 .Perfil .Datos span.Alert{
     background: var(--lightGray);

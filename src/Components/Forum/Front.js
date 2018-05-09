@@ -157,16 +157,15 @@ class Front extends Component {
     var list = array.map( (line, key) =>   
         [<Link to = {'/comunidad/post/' + line.key}>
             <li className='roll' key = {key}>
-                
                 {key === 0 
-                ?   <div>
-                        <img className = 'Featured-Photo' src = 'https://images.unsplash.com/photo-1503933166348-a1a86c17b3a0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=625fe6fd55bfcc756490582ae368b210&auto=format&fit=crop&w=1050&q=80'></img>
-                    </div>
+                ?   <div className = 'featured' style = {{backgroundColor: 'var(--darkGray)', height: '500px'}}><span>{line.title}</span></div>
                 :   null
                 }
-         
                 <div className = 'roll-wrap'>
-                    {line.title}
+                    {key === 0 
+                    ?   null
+                    :   <div>{line.title}</div>
+                    }
                     <div className = 'infopost'>
                                  <img src = {line.userPhoto}></img>
                                  <p>{line.userName}, <TimeAgo formatter={formatter} date={line.timeStamp}/></p>

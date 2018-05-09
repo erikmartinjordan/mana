@@ -1,4 +1,34 @@
 var data = {
+    'gran-canon-de-chiang-mai': {
+        'title': 'Gran Cañón de Chiang Mai: lecciones aprendidas',
+        'date': [16, 'Abril', 2016],
+        'description': 'Así he pasado el día en el Gran Cañón de Chiang Mai. Barrancos de gravilla y agua verdosa adornan este emblemático paraje de Chiang Mai.',
+    },
+    'nostalgia': {
+        'title': 'Bangkok, te echaré de menos',
+        'date': [13, 'Abril', 2016],
+        'description': 'De cómo sentí nostalgia al llegar a Chang Mai y echar de menos a una persona especial. El artículo está redactado de la manera menos afeminada posible.',
+    },
+    'familia-tailandesa': {
+        'title': '¿Cómo es un fin de semana con una familia tailandesa?',
+        'date': [4, 'Abril', 2016],
+        'description': 'Así pasé un par de días estupendos con una familia que me acogió como un miembro más del clan. Fue una bonita experiencia.',
+    },
+    'culebron': {
+        'title': 'Culebrón a la tailandesa (primera parte)',
+        'date': [27, 'Marzo', 2016],
+        'description': 'De cuando conocí a Chiang Muhu y dio comienzo el culebrón tailandés. La primera bronca entre un farang y una tailandesa. Así empezó todo.',
+    }, 
+    'coreano-lee': {
+        'title': 'El coreano Lee y su aventura gay en Couchsurfing',
+        'date': [23, 'Marzo', 2016],
+        'description': 'Lee me dejó un mensaje antes de irse por la mañana. Ojalá vuelva a coincidir con él, ha sido un auténtico placer compartir momentos con este coreano.',
+    }, 
+    'primera-semana-superada': {
+        'title': 'Primera semana superada en Tailandia',
+        'date': [21, 'Marzo', 2016],
+        'description': 'La primera semana en Bangkok ha sido una auténtica inyección de nuevas experiencias, olores, sensaciones, sabores, vistas...',
+    }, 
     'tuk-tuk': {
         'title': 'La trampa del tuk-tuk en Bangkok',
         'date': [15, 'Marzo', 2016],

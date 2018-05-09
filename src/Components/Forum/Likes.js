@@ -62,7 +62,7 @@ class Likes extends Component {
     return (
       <div className = 'Likes'>
             <div className="votes">
-                <span onClick={this.props.user ? this.handleVote : this.showBanner}>👏 {this.state.votes * -1}</span>
+                <span onClick={this.props.user ? this.handleVote : this.showBanner}>🌶 {this.state.votes * -1}</span>
             </div>
             {this.state.render ? <Login hide = {this.hideBanner}></Login> : null}
       </div>    

@@ -120,6 +120,20 @@
     align-items: center;
     display: flex;
 }
+.Forum .featured{
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+.Forum .featured span{
+    border: 0px;
+    border-bottom: 10px solid;
+    border-image: linear-gradient(to right, rgb(0, 210, 255), rgb(58, 123, 213));
+    border-image-slice: 1;
+    color: white;
+    margin: auto;
+    text-align: center;
+}
 /*******************************************************************/
 /*Detail
 /*******************************************************************/

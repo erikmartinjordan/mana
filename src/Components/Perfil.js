@@ -37,7 +37,7 @@ class Perfil extends Component {
         var presupuesto = "Mmmmmm...";
         var divisa = "";
         var viajero = "¿Lo qué?";
-        var cities = <tr><td>Aún no he creado mi ruta...</td></tr>;
+        var cities = <tr><td>Sin ruta</td></tr>;
         
         if(typeof(this.state.infoUser.presupuesto) !== 'undefined'){
             pais = this.state.infoUser.presupuesto.pais;

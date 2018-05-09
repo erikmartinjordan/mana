@@ -27,8 +27,10 @@ class Blog extends Component {
               array.push(<h2 key = {key} className = 'Year'>{year}</h2>);
           }
             
-          array.push(<article key = {key + 1}><Link to = {'/' + key}>{Data[key].title}</Link></article>, 
-                     <p key = {key + 2} className = 'Month'>{Data[key].date[1]}</p>);
+          array.push(<article key = {key + 1}>
+                        <Link to = {'/' + key}>{Data[key].title}</Link>
+                        <p key = {key + 2} className = 'Month'>{Data[key].date[1]}</p>
+                     </article>);
       }                                    
       this.setState({ archive: array });
   }

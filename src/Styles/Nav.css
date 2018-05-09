@@ -8,6 +8,9 @@
     margin: auto;
     max-width: 800px;
 }
+.Nav .Title{
+    flex: 2;
+}
 .Nav .Title a,
 .Nav .Title-Mobile a{
     color: white;
@@ -22,6 +25,8 @@
 .Nav .Menu{
     align-items: center;
     display: flex;
+    justify-content: flex-end;
+    flex: 2;
 }
 .Nav .Menu a{
     color: white;
@@ -52,22 +57,27 @@
     color: var(--darkGray);
     font-size: small;
     margin-left: -100px;
-    margin-top: 5px;
-    padding: 20px; 
+    margin-top: 10px;
     position: absolute;
+    z-index: 1;
 }
 .Nav .Avatar-Menu a{
     color: var(--darkGray);
     display: block;
     font-size: small;
     margin: 0;
-    margin-bottom: 5px;
+    padding: 5px 20px 5px 20px; 
+}
+.Nav .Avatar-Menu a:hover{
+    background: var(--darkGray);
+    color: white;
+    transition: 0.2s ease-in-out;
 }
 .Nav .Separator{
     background: var(--superLightGray);
     height: 1px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
     width: 100%;
 }
 .Nav .Img-Wrap{
@@ -80,6 +90,7 @@
 }
 .Nav .Logout{
     color: var(--red);
+    padding: 5px 20px 5px 20px; 
 }
 @media (max-width: 768px){
    .Nav{

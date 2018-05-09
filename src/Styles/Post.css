@@ -1,30 +1,45 @@
-.Header{
+.Post .Header{
     padding-bottom: 50px;
     padding-top: 50px;
 }
-.Header .Infopost{
+.Post .Header img{
+    border-radius: 50%;
+    height: 30px;
+    margin: 5px;
+    width: 30px;
+}
+.Post .Infopost{
     text-align: center;
 }
-.Header .Infopost .i{
+.Post .Infopost .i{
     font-size: medium;
     margin: 10px;
 }
-.Header .Infopost .i{
+.Post .Infopost .i{
     display: inline-block;
 }
-.Header .Infopost .i:hover{
+.Post .Infopost .i:hover{
     transform: scale(1.5);
     transition: 0.2s ease-in-out;
 }
-.Header .Infopost .i:nth-child(2){
+.Post .Infopost .i:nth-child(2){
     cursor: default;
 }
-.Header .Infopost .i:nth-child(3),
-.Header .Infopost .i:nth-child(4){
+.Post .Infopost .i:nth-child(3),
+.Post .Infopost .i:nth-child(4){
     cursor: pointer;
 }
-.Header .Infopost p.Date{
+.Post .Infopost .Author{
+    align-items: center;
     color: var(--gray);
+    display: flex;
+    font-size: x-small;
+    justify-content: center;
+    letter-spacing: 0.75px;
+    text-transform: uppercase;
+}
+.Post .Infopost .Author span{
+    margin: 5px;
 }
 .Content p,
 .Content h1,
@@ -55,12 +70,6 @@
 .Content h6{
     color: var(--gray);
 }
-.Content a{
-    border: 0px;
-    border-bottom: 4px solid;
-    border-image: linear-gradient(to right, rgb(0, 210, 255), rgb(58, 123, 213));
-    border-image-slice: 1;
-}
 .Content img{
     margin-left: 50%;
     transform: translateX(-50%);
@@ -70,7 +79,21 @@
     margin: auto;
     max-width: 768px;
 }
+.Content blockquote p{
+    color: var(--blue);
+    font-size: x-large;
+}
+.Related{
+    margin: auto;
+    max-width: 620px;
+}
+.Related h2{
+    text-align: left;
+}
 @media (max-width:600px){
+    .Post{
+        padding: 20px;
+    }
     .Content img{
         margin-left: 0;
         transform: none;

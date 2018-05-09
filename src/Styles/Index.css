@@ -79,10 +79,12 @@ button.delete{
     box-shadow: none;
     color: white;
     font-size: 12px;
+    margin: inherit;
     padding: 3px 10px;
     width: auto;
 }
 button.delete{
+    margin: auto;
     margin-bottom: 50px;
     margin-top: 20px;
 }
@@ -97,6 +99,6 @@ button.delete{
     --textBlog: #444a4e;
 }
 ::selection{
-    background: var(--blue);
+    background: var(--darkGray);
     color: white;
 }
