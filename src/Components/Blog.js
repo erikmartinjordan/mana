@@ -14,24 +14,42 @@ class Blog extends Component {
   }
     
   componentDidMount = () => {
-        
+      
       let first = true;
+      let length = Object.keys(Data).length;
       let year;
       let array = [];
-      var posts = [];
+      let posts = [];
+      let i = 0;
+      
       
       for (var key in Data) {
           
-          if(first || Data[key].date[2] !== year){
-              year  = Data[key].date[2];
+          i ++;
+          
+          if(first){
+              year = Data[key].date[2];
               first = false;
-              array.push([<h2 key = {key} className = 'Year'>{year}</h2>, <div className = 'Block'>{posts}</div>]);
           }
-            
+          
+          if(Data[key].date[2] !== year){
+                            
+              array.push([<h2 key = {key} className = 'Year'>{year}</h2>, <div className = 'Block'>{posts}</div>]);
+              year  = Data[key].date[2];
+              posts = [];
+              
+          }
+        
           posts.push(<article key = {key + 1}>
                         <Link to = {'/' + key}>{Data[key].title}</Link>
                         <p key = {key + 2} className = 'Month'>{Data[key].date[1]}</p>
                      </article>);
+                     
+          if(i === length){
+              array.push([<h2 key = {key} className = 'Year'>{year}</h2>, <div className = 'Block'>{posts}</div>]);
+          }
+                                                                                    
+                     
       }                                    
       this.setState({ archive: array });
   }
