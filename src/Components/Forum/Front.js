@@ -11,10 +11,7 @@ import Forum from '../../Styles/Forum.css';
 const formatter = buildFormatter(spanishStrings);
 
 class Front extends Component {
-    
-  /*******************************************************************/
-  //Constructor
-  /*******************************************************************/   
+       
   constructor(){
       
         super();
@@ -36,28 +33,28 @@ class Front extends Component {
   showBanner = () => this.setState({render: true}); 
   hideBanner = () => this.setState({render: false}); 
     
-  /*******************************************************************/
-  //componentDidMount -> Auth of the user, last posts and last mssg
-  /*******************************************************************/
+  //-------------------------------------------------------------
+  //
+  // Auth of user and last message
+  //
+  //------------------------------------------------------------- 
   componentDidMount = () => {
-      
-      var that = this;
-      
-      auth.onAuthStateChanged((user) => {
-          this.setState({
-              user: user 
-          });
-          if(user && user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2')
-              this.setState({
-                 admin: true 
-              });
+            
+      auth.onAuthStateChanged( user => {
+          if(user){
+              if(user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2') this.setState({ admin: true });
+              this.setState({ user: user });
+          }
+          else{
+              this.setState({ user: null});
+          }
       });
       
-      firebase.database().ref('posts/').limitToLast(100).on('value', function(snapshot) { 
+      firebase.database().ref('posts/').limitToLast(100).on('value', snapshot => { 
 
         var array = [];
 
-        snapshot.forEach(function(childSnapshot){
+        snapshot.forEach( childSnapshot => {
 
             var item = childSnapshot.val();
             item.key = childSnapshot.key;
@@ -68,65 +65,70 @@ class Front extends Component {
           
         array.reverse();
                     
-        that.setState({
+        this.setState({
             chat: array,
             ready: true
         });
 
       });
       
-  }  
-                              
-  /*******************************************************************/
-  //handleTitle
-  /*******************************************************************/
-  handleTitle = (e) => this.setState({title: e.target.value});
-                               
-  /*******************************************************************/
-  //handleMessage
-  /*******************************************************************/
-  handleMessage = (e) => this.setState({message: e.target.value});  
+  }                              
+  //-------------------------------------------------------------
+  //
+  // Handle elements
+  //
+  //-------------------------------------------------------------   
+  handleTitle = (e)       => this.setState({title:   e.target.value});
+  handleMessage = (e)     => this.setState({message: e.target.value}); 
+  handleImageChange = (e) => {
+    e.preventDefault();
+      
+    let reader = new FileReader();
+    let file = e.target.files[0];
+                                               
+    reader.onloadend = () => this.setState({ file: file, featuredImageUrl: reader.result });
+    reader.readAsDataURL(file)
+  }
     
-  /*******************************************************************/
-  //handleSubmit -> Wait 24 hours (86400000 ms) to write new message
-  /*******************************************************************/
+  //-------------------------------------------------------------
+  //
+  // handleSubmit -> Wait 24 hours (86400000 ms) to write new message
+  //
+  //-------------------------------------------------------------  
   handleSubmit = (e) => {
-      
-      var that = this;
-      
+            
       if(this.state.message === '' || this.state.title === ''){
-          this.setState({
-              alert: 'El título o mensaje no pueden estar vacíos.'
-          })
+          this.setState({ alert: 'El título o mensaje no pueden estar vacíos.' });
       }
       else{
-          firebase.database().ref('users/' + this.state.user.uid + '/posts').once('value').then(function(snapshot) {
+          firebase.database().ref('users/' + this.state.user.uid + '/posts').once('value').then( snapshot => {
 
                 var capture = snapshot.val();
 
                 if(capture == null || Date.now() - capture.timeStamp > 86400000){
            
                     firebase.database().ref('posts/').push({
-                        title: that.state.title,
-                        message: that.state.message,
+                        title: this.state.title,
+                        message: this.state.message,
+                        featuredImageUrl: this.state.featuredImageUrl,
                         timeStamp: Date.now(),
-                        userName: that.state.user.displayName,
-                        userPhoto: that.state.user.photoURL,
-                        userUid: that.state.user.uid,
+                        userName: this.state.user.displayName,
+                        userPhoto: this.state.user.photoURL,
+                        userUid: this.state.user.uid,
                         votes: 0,
                         views: 0
                     });
 
-                    firebase.database().ref('users/' + that.state.user.uid + '/posts').set({
+                    firebase.database().ref('users/' + this.state.user.uid + '/posts').set({
                         timeStamp: Date.now(),
                     });
                     
-                    that.setState({
+                    this.setState({
                         alert: null
                     })
                 }
                 else{
-                        that.setState({
+                        this.setState({
                             alert: 'Ups, solamente se permite un mensaje cada 24 horas. 😳'
                         });
                 }
@@ -138,9 +140,11 @@ class Front extends Component {
        
   }
      
-  /*******************************************************************/
-  //handleDelete -> Admin deletes post
-  /*******************************************************************/
+  //-------------------------------------------------------------
+  //
+  // admin deletes a post
+  //
+  //------------------------------------------------------------- 
   handleDelete = (e) => {
       
       firebase.database().ref('posts/' + e.target.getAttribute('id')).remove();
@@ -148,9 +152,11 @@ class Front extends Component {
        
   }   
         
-  /*******************************************************************/
-  //listItems
-  /*******************************************************************/
+  //-------------------------------------------------------------
+  //
+  // admin deletes a post
+  //
+  //------------------------------------------------------------- 
   listItems = () => {
       
     var array = this.state.chat.slice(0, this.state.numposts);
@@ -158,21 +164,23 @@ class Front extends Component {
         [<Link to = {'/comunidad/post/' + line.key}>
             <li className='roll' key = {key}>
                 {key === 0 
-                ?   <div className = 'featured' style = {{height: '300px'}}><span>{line.title}</span></div>
-                :   null
+                ? <div className = 'featured' style = {{background: 'url(' + line.featuredImageUrl + ')', backgroundSize: 'cover', height: '300px', backgroundPosition: 'center'}}>
+                        <span className = 'title'><div>{line.title}</div></span>
+                  </div>
+                : null
                 }
                 <div className = 'roll-wrap'>
                     {key === 0 
                     ?   null
-                    :   <div>{line.title}</div>
+                    :   <span>{line.title}</span>
                     }
                     <div className = 'Infopost-Meta-Post'>
                         <div className = 'infopost'>
-                                     <img src = {line.userPhoto}></img>
-                                     <p>{line.userName}, <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
+                            <img src = {line.userPhoto}></img>
+                            <p>{line.userName}, <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
                         </div>
                         <div className = 'Meta-Post'>
-                            <Likes user={this.state.user} post={line.key}></Likes>
+                            <div classname = 'Likes'><Likes user = {this.state.user} post = {line.key}></Likes></div>
                             <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
                             <div className = 'Views'>✨ {line.views} visitas</div>
                         </div>
@@ -188,18 +196,32 @@ class Front extends Component {
        
   }  
           
-  /*******************************************************************/
-  //listItems
-  /*******************************************************************/
+  //-------------------------------------------------------------
+  //
+  // form to write a new post
+  //
+  //------------------------------------------------------------- 
   newPost = () => {
     
     var form = <form onSubmit={this.handleSubmit}>
-            {this.state.alert 
+            { this.state.alert 
             ? <span className='alert'>{this.state.alert}</span> 
             : null
             }
             <h2>Escribe tu mensaje</h2>
-            <input onChange = {this.handleTitle} className='title' placeholder = 'Título...' maxLength = '50'></input>
+            <div className = 'Upload'>
+                <input type = 'file' onChange = {this.handleImageChange} />
+                { this.state.featuredImageUrl
+                ? <div className = 'Image' style = {{
+                        backgroundImage: 'url(' + this.state.featuredImageUrl + ')', 
+                        backgroundSize: 'cover', 
+                        backgroundPosition: 'center'}}>
+                  </div> 
+                : null
+                }
+                <button>Subir foto</button> 
+            </div>
+            <input    onChange = {this.handleTitle} className='title' placeholder = 'Título...' maxLength = '50'></input>
             <textarea onChange = {this.handleMessage} className = 'message' placeholder = 'Mensaje...' maxLength = '280'></textarea>
             <button className = 'bottom'>Enviar</button>
         </form>;
@@ -207,14 +229,18 @@ class Front extends Component {
     return form;
   }    
       
-  /*******************************************************************/
-  //cargando
-  /*******************************************************************/
+  //-------------------------------------------------------------
+  //
+  // loading blocks, fancy effect
+  //
+  //------------------------------------------------------------- 
   loading = () => <div><div className='bloque-100'></div><div className='bloque-90'></div><div className='bloque-80'></div></div>
       
-  /*******************************************************************/
-  //carga más publicaciones
-  /*******************************************************************/   
+  //-------------------------------------------------------------
+  //
+  // show more posts
+  //
+  //-------------------------------------------------------------    
   showMorePosts = () => {
       var items  = this.state.numposts + 5;
       var length = this.state.chat.length;
@@ -225,16 +251,21 @@ class Front extends Component {
   }
 
   render() {
+         
+    console.log(this.state.user);
       
       
     return (
       <div className = 'Forum'>
-        <h2>Comunidad</h2>
-        <ul className = 'Front'>{this.state.ready ? this.listItems() : this.loading()}</ul>
-        {this.state.user                         ? this.newPost() : null}
-        {this.state.user    || !this.state.ready ? null : <button className = 'bottom' onClick={this.showBanner}>Publicar</button>}
-        {this.state.nomore  || !this.state.ready ? null : <button className = 'more'   onClick = {this.showMorePosts}>Ver más</button>}
-        {this.state.render                       ? <Login hide={this.hideBanner}></Login> : null}
+         
+        {this.state.user ? this.newPost() : null}
+
+        <ul className = 'Front'>
+            {this.state.ready ? this.listItems() : this.loading()}
+        </ul>
+
+        {this.state.nomore || !this.state.ready ? null : <button className = 'more' onClick = {this.showMorePosts}>Ver más</button>}
+        {this.state.render ? <Login hide={this.hideBanner}></Login> : null}
       </div>
     );
   }

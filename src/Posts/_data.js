@@ -1,4 +1,14 @@
 var data = {
+    'vivir-en-chiang-mai': {
+        'title': '¿Por qué vivir en Chiang Mai puede no ser tan buena idea?',
+        'date': [22, 'Abril', 2016],
+        'description': 'Quieres vivir en Chiang Mai, todo el mundo te explica lo maravilloso que es vivir allí. Pero... ¿de verdad es cómo te cuentan? A mí me pareció una ciudad...',
+    },
+    'aventura-motera-hasta-doi-inthanon': {
+        'title': 'Aventura motera hasta Doi Inthanon',
+        'date': [19, 'Abril', 2016],
+        'description': 'Hace unos días alquilé una motillo para moverme por el centro de Chiang Mai. Visitar Doi Inthanon a lomos de un vehículo de dos ruedas es toda una gesta...',
+    },
     'gran-canon-de-chiang-mai': {
         'title': 'Gran Cañón de Chiang Mai: lecciones aprendidas',
         'date': [16, 'Abril', 2016],

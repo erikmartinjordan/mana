@@ -6,18 +6,32 @@
     max-width: 800px;
     width: 100%;
 }
+.Forum .Image{
+    border-radius: 5px;
+    height: 300px;
+    margin-bottom: 10px;
+    width: 100%;
+}
 .Forum ul{
     padding: 0;
 }
 .Forum ul .roll-wrap{
+    display: flex;
+    flex-direction: column;
     font-size: x-large;
-    padding: 20px;
+    height: 100%;
+    justify-content: space-between;
+    padding: 40px 20px 20px 20px;
 }
 .Forum ul.Front a:first-child{
+    color: white;
     font-size: xx-large;
     height: auto;
     max-width: 100%;
     overflow: hidden;
+}
+.Forum ul.Front a:first-child span.title{
+    font-weight: bold;
 }
 .Forum ul.Front a{
     background: white;
@@ -35,24 +49,13 @@
     transition: 0.2s ease-in-out;
     transform: scale(1.01);   
 }
-.Forum ul.Front a:nth-child(2n + 1){
-    border-top: 5px solid rgb(75, 169, 250);
-}
-.Forum ul.Front a:nth-child(3n + 1){
-    border-top: 5px solid rgb(252, 181, 76);
-}
-.Forum ul.Front a:nth-child(4n + 1){
-    border-top: 5px solid #2bc397;
-}
-.Forum ul.Front a:nth-child(5n + 1){
-    border-top: 5px solid #8b65d7;
-}
 .Forum li{
     list-style-type: none;
 }
 .Forum li.roll{
     display: flex;
     flex-direction: column;
+    height: 100%;
     justify-content: center;
 }
 .Forum .Meta-Post{
@@ -65,7 +68,7 @@
 .Forum .Meta-Post .Likes,
 .Forum .Meta-Post .Comments,
 .Forum .Meta-Post .Views{
-    margin: 10px 10px 0px 0px;
+    margin-right: 10px;
 }
 .Forum .votes{
     align-items: flex-end;
@@ -108,6 +111,39 @@
     transition: 0.2s ease-in-out;
     transform: scale(1.1);   
 }
+.Forum .Upload{
+    align-items: flex-end;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-size: medium;
+    font-weight: 700;
+    justify-content: center;
+    margin: auto;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.Forum .Upload button{
+    background: var(--blue);
+    border: none;
+    box-shadow: none;
+    color: white;
+    margin-bottom: 10px;
+    width: auto;
+}
+.Forum input[type="file"] {
+    cursor: pointer;
+    left: 0;
+    margin: 0;
+    font-size: 20px;
+    height: 100%;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
 .Forum input.title{
     border: none;
     border-radius: 5px;
@@ -124,6 +160,7 @@
     border-radius: 5px;
     display: block;
     font-size: large;
+    height: 300px;
     margin: auto;
     max-width: 600px;
     padding: 20px;
@@ -139,8 +176,22 @@
     width: 100%;
 }
 .Forum .featured span{
+    align-items: center;
+    background: rgba(1, 1, 1, 0.4);
     border: 0px;
+    display: flex;
+    height: 100%;
+    justify-content: center;
     text-align: center;
+    width: 100%;
+}
+.Forum .featured span:hover{
+    background: rgba(1, 1, 1, 0.1);
+    transition: 0.2s ease-in-out;
+}
+.Forum .Infopost-Meta-Post{
+    display: flex;
+    justify-content: space-between;
 }
 /*******************************************************************/
 /*Detail
