@@ -1,4 +1,69 @@
 var data = {
+    'tailandia-en-familia': {
+        'title': 'Tailandia en familia',
+        'date': [19, 'Agosto', 2016],
+        'description': 'Así fue la experiencia de viajar en familia por Tailandia: Bangkok, Surat Thani y Phuket fue la ruta a seguir. Una aventura cargada de emoción y de...',
+    }, 
+    'rod-fai': {
+        'title': 'Rod Fai Night Market, mercado nocturno en Bangkok',
+        'date': [31, 'Julio', 2016],
+        'description': 'El mercado nocturno Rod Fai es una alternativa al famoso JJ Green. Menos transitado, tailandeses a tutiplén, artículos vintage y artesanía molona...',
+    }, 
+    'luang-prabang': {
+        'title': 'Luang Prabang: la terraza, el agua fría y el Mekong',
+        'date': [24, 'Julio', 2016],
+        'description': 'Luang Prabang es una joya del Sudeste Asiático. Una ciudad hija de un francés y una laosiana. La mezcla perfecta entre Europa y Asia...',
+    }, 
+    'kuang-si': {
+        'title': 'Mmmmm, cascadas de Kuang Si',
+        'date': [18, 'Julio', 2016],
+        'description': 'Las cataratas de Kuang Si son geniales. Es uno de esos sitios turísticos que, aunque parezca mentira, no decepcionan. Su precio es asequible, cuestan...',
+    }, 
+    'laos': {
+        'title': 'Laos tiene la peor relación calidad-precio del Sudeste Asiático',
+        'date': [13, 'Julio', 2016],
+        'description': 'Laos me deja una sensación agridulce en el cuerpo. Dulce porque es un país precioso. Agria por la calidad de sus servicios.',
+    }, 
+    'lejos-de-casa': {
+        'title': 'Lejos de casa, nostalgia y soledad...',
+        'date': [9, 'Julio', 2016],
+        'description': 'Estar lejos de casa, de la familia, de los amigos... A veces todo se hace cuesta arriba, uno se siente solo y nostálgico. Una reflexión de alguien que está lejos de casa.',
+    },    
+    'vientian': {
+        'title': 'Robado en Vientián',
+        'date': [6, 'Julio', 2016],
+        'description': 'La ciudad de Vientián me ha decepcionado enormemente y, encima, me han robado las gafas de sol. Manda hüevos. Todo me sale a pedir de boca últimamente.',
+    },
+    'ko-samui': {
+        'title': 'Vivir en Ko Samui con piscina y gimnasio',
+        'date': [14, 'Junio', 2016],
+        'description': 'Residir en Ko Samui con un presupuesto ajustado es posible. Si no quieres saber cómo habitar en un paraíso por 350 bahts al día, mejor no leas esto.',
+    },
+    'parar': {
+        'title': 'Parar, sentarse, levantar la cabeza y mirar',
+        'date': [31, 'Mayo', 2016],
+        'description': 'A veces, uno se encuentra moviéndose deprisa y corriendo sin saber por qué. Darse cuenta del ajetreo, parar, sentarse, levantar la cabeza y mirar...',
+    },
+    'virus-estomacal-tailandia': {
+        'title': 'Vomitando en Tailandia',
+        'date': [9, 'Mayo', 2016],
+        'description': 'Cómo superé un virus estomacal en Tailandia. Encontrándome como el culo, pensando que tenía malaria y acabando en un hospital de mala muerte en Pai.',
+    },
+    'fluid-swimming-pool-pai': {
+        'title': 'Fluid Swimming Pool en Pai',
+        'date': [3, 'Mayo', 2016],
+        'description': '¿Qué tiene Fluid Swimming Pool que tanto gusta a todos aquellos que la visitan? Su airecillo tropical en medio del ambiente selvático de Pai...',
+    },
+    'monticha': {
+        'title': 'La historia de Monticha',
+        'date': [1, 'Mayo', 2016],
+        'description': 'Monticha es una chica tailandesa que conocí en el hostal de Bangkok. Nació en el 90, adora salir de fiesta y los batidos de setas.',
+    },
+    'pai': {
+        'title': 'Pai es un paraíso hippie',
+        'date': [25, 'Abril', 2016],
+        'description': 'Pai es un paraíso hippie: buenas vibraciones, buen karma, un algo especial, no sé cómo explicarlo. De momento, es la ciudad que más me gusta de Tailandia.',
+    },
     'vivir-en-chiang-mai': {
         'title': '¿Por qué vivir en Chiang Mai puede no ser tan buena idea?',
         'date': [22, 'Abril', 2016],

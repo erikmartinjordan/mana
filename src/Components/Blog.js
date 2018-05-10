@@ -58,6 +58,9 @@ class Blog extends Component {
                                                     
     return (
       <div className = 'Blog'>
+            <h2>Blog</h2>
+            <div style = {{textAlign: 'center'}}>El archivo contiene una colección de {Object.keys(Data).length} artículos. </div>
+            <div style = {{textAlign: 'center'}}>Puedes comentar a través del <Link to = '/'>foro</Link>. ☕</div>
             {this.state.archive ? this.state.archive : null}
       </div>
     );
