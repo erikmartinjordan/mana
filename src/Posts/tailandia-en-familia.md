@@ -1,6 +1,5 @@
 ![Tailandia en Familia](https://lh3.googleusercontent.com/K51Y9TVWUQGWYWJ4l3VWKy_52uWH9x6kxDrfI03NuMBrXmzBucBEPVrVeFFy4cj9yynDzkYpC__QT9SB-KFy2uAY5PTc5hV1g2xJ-oT-_GzWSSwrNUjBgOa2CMkuvFsQuTgtMQUPHRAb7IM_VU2QSHjTnpMDd9yZWXD9vaIYZK5jOatYNKUrTW8SiBGuWrohoiNIxCqzSZc0W9zynGDSYX08kABT6r3ohvZYKTgfOPyPWqRWWjnABuAvdt27Q5uSYoQ3dy8QWtlBiIvbII5SRm7QGmO_zF_FrpQhaHoipX0Pktjzb4f6neppYcHgB_zXw3XNaD5rmr5DDEJyxsLYyjqqxBcUFNdeTS_hsuBuE9Y8BB_N4X1OzjhUGQuedlWvBjtkbymdm8bCc2JKKRbOuhmI5z9wdjUKxMQzfv7NiJSN1V-QMMPclA4UI3xHoTJ9FD6_xZa8_MQq8DViKkKwzJXnbdR8prr-5O9WA5X73GVZvdYZBiYrOW0Z7dQrRuzZj-yQSI72L1n7G4rgSLPBGQ21KVRoHbNvcxDFt188Zuyg1E8z_gl4a5Z2ScgduQDSwsDazD8aQ9d28zl1D8VRGZs5LR0FuLT3i8YujSICYRIkfep_I5NbXcjCI1RZbSD4QN_vH2_LwEr5D2bZ-S0jPOXEa5Cds3hYqEqYaiLefpIKSz0=w800-no)
-
-###### La familia con los chubasqueros budistas
+*La familia con los chubasqueros budistas*
 
 Durante estas dos semanas en familia, ha habido casi de todo. No sé ni como empezar a construir. Ha habido cambios de última hora e improvisaciones. Me encantan. Aunque tengo que reconocer, que en esta ocasión no han sido tan divertidas. Mis decisiones podían afectar no solamente a mí, sino al resto de la familia. De hecho, tuve un momento de bloqueo en una de esas improvisaciones que me costó un par de noches de dormir fatal. Mi cerebro sacaba humo, como decía mi padre.
 

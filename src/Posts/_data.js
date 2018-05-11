@@ -1,4 +1,24 @@
 var data = {
+    'ayutthaya': {
+        'title': 'Visitar Ayutthaya en un día y por menos de 400 bahts',
+        'date': [5, 'Noviembre', 2016],
+        'description': 'Visitar Ayutthaya en un día por tu cuenta es posible. Además, te saldrá más barato que con una agencia. Aquí te muestro una pequeña guía de cómo hacerlo.',
+    },
+    'extender-visado-tailandia': {
+        'title': 'Cómo extender el visado de 30 días en Tailandia',
+        'date': [28, 'Octubre', 2016],
+        'description': 'Extender el visado en Tailandia tiene un coste de 1.900 bahts –unos 50 euros al cambio–. Déjame que te explique paso a paso cómo extender tu visado.',
+    },
+    'best-beef-bangkok': {
+        'title': 'Best Beef Bangkok: buffet libre',
+        'date': [14, 'Octubre', 2016],
+        'description': 'Best Beef Bangkok es un buffet para salir rodando cuando uno está hasta los cojones de comer platos con arroz en el fabuloso país de la sonrisa.',
+    },
+    'a-space-me': {
+        'title': 'A Space Me, alquilar un apartamento en Bangkok',
+        'date': [4, 'Octubre', 2016],
+        'description': 'De camino a A Space Me, teníamos el contrato medio firmado ya. La comunidad la habíamos visto previamente en vídeo y pintaba genial.',
+    },
     'tailandia-en-familia': {
         'title': 'Tailandia en familia',
         'date': [19, 'Agosto', 2016],
