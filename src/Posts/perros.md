@@ -1,0 +1,37 @@
+![Perro asiático](https://lh3.googleusercontent.com/oIE3uxh1FRT_yJ4UeAgJMPj8EbstONKBFc7rlbrbyMaOMZS6nRpo5UOGfnAfR-Wtji9EBxFlG_3lj8GYVft6MxyIsnCK8BtcAnIVWuCboPWlz_IjM0v0miVL21R74L78_i4wXR2YWt5Yq1lehqbJndMcCppwfREZD5QdKICa5NxcBoncNDe-xMFs1tGMmVoPo3UrTqOS4guc20LPDO1xjGo4SMlXnehbLMpFiOgy1wUFdegXq9DGqgGNL_PemQ5wy7oILspL3sUeW6hWa48nfQ4oGkHeI1Uwld74NVGHXAjv-fpG-aT43Z7UzaS9lCriL3sV_uFUJhHgvkDRXfXF4OdZZRnkW-5RrHP4U9HJOVo9yrI_DdCv1CuVUIGpIdGPYg8UBmvss78Fj1IN93c1TC1JuW2RCbnauCv_YIG-LCGAX1TVPf6_CIrdDpc0SMMf1MeltIujg_33NK17BMPy8eScaMoVcyV_PAxpkoh1DEKFmKNBLlQOhkOF0or4jPCx9l3ZSHc5AFCwnP6ngw6xOWeh3IAZQiMJW8J8EUtVvWHXmLfl8U6yvgYq3Unw60rB2703_PkKaohhEyYywACi9IZ9TD7U_si6hZ2Ce2jaT8bgkUHvig=w800-no)
+*Perro asiático descansando en la verja de su casa*
+
+Me llama la atención que en Tailandia no saquen a pasear a sus mascotas. Es difícil ver a un perro atado por el cuello deambulando por la calle.
+
+Tampoco tropezarás con un truño de la buena suerte de camino al supermercado. La primera cuestión que me vino a la cabeza al percatarme de tal situación, fue: si es que acaso aquí no se estilan los animales de compañía.
+
+O si es que los perros no han llegado todavía al país de la sonrisa.
+
+## «Haberlos, haylos»
+
+Nada más lejos de la realidad. Como diría un gallego acerca de las meigas: «haberlas, haylas». Pues con los perros sucede algo similar en Tailandia: «haberlos, haylos». No obstante, el mejor amigo del hombre vive bajo unas normas diferentes a las europeas. El caso es que, sí he visto a gente —la mayoría chicas— con canes de pequeño tamaño metidos en su bolso. Evitando así, que el animal pose sus peludas patas sobre el suelo.
+
+Suele ser gente con cierto poder adquisitivo y con carencias estéticas. Y es que el perro suele ir vestido de la forma más hortera posible, y pone cara de circunstancias ante la mirada atónita de los ahí presentes. A mí, siempre me ha dado cierto reparo aquellos que visten a sus mascotas. Me resulta una filia difícil de comprender. O un intento de humanizar a las criaturas, que con tanta elegancia pasean su desnudez.
+
+Aunque los amigos de cuatro patas con correa al cuello sean inexistentes, lo que sí abundan son los perros callejeros. De los que prefieren pasear sin encorbatarse. Sin ir más lejos, al lado de casa, hay un descampado donde vive una manada de estos chuchos libres. Por la mañana, son perros inofensivos que descansan bajo la sombra de los coches. Duermen con la lengua fuera sin hacerse notar. Por la noche, funcionan como un clan de dudosa calaña, formando corrillos e intimidando a todos aquellos que osen hacer el más mínimo ruido.
+
+## La mafia canina
+
+Un día, volvía del supermercado por la noche tan tranquilamente,  cuando —sin darme cuenta— debí provocar algún tipo de sonido. Entonces, fui víctima del comportamiento agresivo por parte de uno de los camaradas del clan. Aquel chucho de oído afinado, cruzó la valla que separa el descampado de la calle, y me intimidó como jamás lo había hecho antes un perro. Su ladrido radiaba un enorme ansia de aniquilación. Sin compasión. Al llegar a casa: sano, salvo y tembloroso, comprendí que había invadido su territorio. Yo me había establecido en la zona después de toda esa manada. Por tanto, era un intruso. Así pues, si ellos demandaban silencio por la noche, había que respetarles y concederles tal ruego.
+
+![Mafia canina en Bangkok](https://lh3.googleusercontent.com/kCOZg6uXQx3XjVkmSo-CY-9vEBAwT7UDegM8QmxxLCunOmSGwImJTqYFNgh84iiSmRlZ3LX_qkejXknmnSrg3rSIgtg4N3LmytqK6u_v0ea_0D24AU-Ljp7XlESs6bLhvjsSj8wlOZ7RNx5btGCFz0Qbv8Gvzu20HpFJub_BpdLJmJ2KZ-f5MIMVi0zJCTZncinwtt6PkHYOWxNOP1HmyDWrEqYJ_DBREEbvUaNO9IExykKiZhIEfwJXUS_0PXq0Lc-1IjtBp573f8OJg3p0W7w6CJgBe_t9XvWDiMsVKpfRc04EConDuKHfbKzgh_4hDBpl9v98m4J7dmETQCjjdELivukn09MjQ7t_wyrzDzElm_B6a0kwe1SeTfsXAEb7XGRgI69kKY7j79l9dyklw1RW-NpvqpWrf-gdoVTGQg8tkWKeEyN5SztRwx9UUE1Q6p52M0kEsARWlpy_DygAOItQmJ_qZiWZxtxpjlJpPm3aUtEdMvFee8PQVc4GTVaYMqO0drZjK73anSjYK7-ZY3R_SuaYBp1hAZRW7wWJrkyECbBxHWzNMItpvl4YmHvrHdY-WGhF8aetS0UQZDxn3dXpveZBDpsD3EGT_m7WUwj-n6hhhQ=w800-no)
+*Mafia canina controlando el supermercado*
+
+Después pensé en mi perra Luna —Tiqui para los amigos—. Ella también sufre esa especie de bipolaridad canina. Por la mañana es un perro amable con su círculo de amistades. Pero por la noche se vuelve un perro hosco, arisco, intratable. Protege el cesto donde duerme como si le fuese la vida en ello. Y sus gruñidos hacia aquel que se aproxime, desatan la mayor de las cóleras caninas. Imagino que si supiese hablar, nos contaría que no puede evitarlo. Que es un rasgo instintivo, que ella intenta controlarse, pero no hay manera… Que está intentando mejorar ese comportamiento, pero que le resulta tan difícil como a un fumador dejar el tabaco.
+
+## La fidelidad camina sobre cuatro patas y menea el rabo
+
+A pesar de las pequeñas taras caninas, hay algo impepinable: un perro no falla. La lealtad es el rasgo que les diferencia de los gatos. Pues estos últimos, a pesar de ser más elegantes, suelen ser más interesados. Un gato es exigente por naturaleza. Quiere agua limpia y la quiere ya. Quiere que le abras la puerta y no parará de maullar hasta conseguirlo. Te quiere cuando le interesa. En el momento que no le aportas nada, pasa olímpicamente de tu cara. Por el contrario, un perro es conformista. Que no hay agua limpia, pues a joderse y a meter el morro en turbio. Que la puerta está cerrada, la rasco un poco y si no me haces caso, me pongo a esperar echando una cabezadita.
+
+Un perro es transparente. No tiene segundas intenciones: que mueve el rabo, pues está contento. Si gruñe, te está avisando. Ladra, se ha mosqueado. Saca la lengua fuera, tiene calor. Da vueltas sobre sí mismo, está contentísimo porque va a recibir un premio. Mete el rabo entre las piernas, no quiere saber nada de ti o está triste. Orejas hacia atrás, cuidado que no se fía ni un pelo de lo que va a pasar. Se arrastra como una alfombra al saludarte, se rinde ante ti. Si esprinta de aquí para allá aleatoriamente, como si se hubiese vuelto loco, entonces es que está extremadamente feliz.
+
+A un perro no le hace falta firmar ningún contrato de permanencia, porque sabe que en el momento que le acojas, será tu compañero de por vida. Será fiel porque así lo lleva escrito en sus genes. Sin importarle tu condición: guapo o feo, rico o pobre, listo o tonto... Le da exactamente igual. Por todo ello, siempre he recelado de aquellos que dicen que no les gustan los perros. Los que no son compatibles con los seres más leales del mundo, no pueden ser gente de fiar.
+
+![Perro tumbado sobre bolsa de hielo](https://lh3.googleusercontent.com/xbjWE6M9XPzgN1XiASy8PiZD9V4UodJ85cqMwUFH8ARSSSHEl-KQBOlcB288RAaPqq5X1SpCpRRNTqvhQAFVlkYQ-NFGL6nUdfQomFgvhd0gGvKsqFHkRmzxdM_sSqoeidx4jJE-59zTYjPyGlLRAghlaXYL_j8cYtWX2BK_4c85-lL3vtXwYSHS8OH-h_-k6pB1nEGq2p3REdl0HMcVHH2C_1xW9Nx4dz9z9Op-i5NzAx36sV8mSvex50DG_gkUhDyueGfPKjTiTTvZkAnu-lO6yTGVFM1-2LFH26hRWedScLw90NA7MHdKtFo__EOqtJwKebp4BFeA7PPbbK17pjdRNn1nv18cj77292Ji1xOzBk2oXHZPk0WiXXAIHwwRUeJJ1a_t50tE-69Q81DjiZqAOZtl-h0oc-lY9uTgtMwDLvcKW6SnuA88QXqeUP78Ot3l_JSw9eBvuQ9z9m2q8BmHL1M9110twz2NbAeS2-tmjsiwCAOFE06IKp7X61jhul8M_ye1yROxqAyGJCFiBSksRpD6HYH43JSyn8eC1jeR4NcRST-53peapffCKw1FaVMSNlMxBEIwejll2rMlrAhZp4yKpGkZk_qx0SRlDwWG6MvVJw=w800-no)
+*Perro soportando el calor del sudeste asiático: tumbado sobre bolsa de hielo*
+ 

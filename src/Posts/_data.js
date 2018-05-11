@@ -1,4 +1,34 @@
 var data = {
+    'chatuchak': {
+        'title': 'Así es el mercado de Chatuchak',
+        'date': [3, 'Diciembre', 2016],
+        'description': 'El mercado de Chatuchak es de visita obligada cuando uno viene a la capital tailandesa. Bangkok perdería un trozo de su alma sin esta atracción.',
+    },
+    'entrada-y-salida-de-tailandia': {
+        'title': '¿Se puede salir de Tailandia y volver a entrar en un mismo día?',
+        'date': [30, 'Noviembre', 2016],
+        'description': 'El experimento consiste en irse a un país fronterizo para renovar el visado y volver en una única jornada, obteniendo así, 30 días adicionales en Tailandia.',
+    },
+    'perros': {
+        'title': 'Perros tailandeses',
+        'date': [27, 'Noviembre', 2016],
+        'description': 'No veo perros con correa en ninguna parte de Tailandia. ¿Acaso los animales de compañía no han llegado al país de la sonrisa?',
+    },
+    'restaurante-bangkok': {
+        'title': 'Un restaurante en Bangkok bueno, bonito y barato',
+        'date': [21, 'Noviembre', 2016],
+        'description': 'Koyama es un restaurante con barbacoas, en un local climatizado y libre de humos. Carnes y mariscos jugosos. Salsas deliciosas. Manjares infinitos.',
+    },
+    'loy-krathong': {
+        'title': 'Días especiales en Tailandia: Loy Krathong',
+        'date': [18, 'Noviembre', 2016],
+        'description': 'Loy Krathong es el día de los farolillos y de los buenos propósitos para el año nuevo. Coge una uña (o un mechón de pelo) y envíalo al agua con una velita.',
+    },
+    'rito-templo-budista': {
+        'title': 'Ritual a seguir en un templo budista',
+        'date': [11, 'Noviembre', 2016],
+        'description': 'Ir a los templos a hacer algún tipo de ofrenda es común en Tailandia. A lo largo de estos meses, he aprendido el ritual a seguir. Te lo cuento (si quieres).',
+    },
     'ayutthaya': {
         'title': 'Visitar Ayutthaya en un día y por menos de 400 bahts',
         'date': [5, 'Noviembre', 2016],
