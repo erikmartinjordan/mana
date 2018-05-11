@@ -250,18 +250,15 @@ class Front extends Component {
       this.setState({ numposts: items });
   }
 
-  render() {
-         
-    console.log(this.state.user);
-      
+  render() {      
       
     return (
       <div className = 'Forum'>
-        <h2>Foro</h2>
+        <h2>¡<em>Sawasdee krub</em>!</h2>
         
         {this.state.user 
         ? this.newPost() 
-        : <div style = {{textAlign: 'center'}}>¡<em>Sawasdee krub</em>! Accede para comentar, votar o responder. 🙏 🤗</div>
+        : <div style = {{textAlign: 'center'}}>Esto es una comunidad de Tailandia. Accede para comentar, votar o responder. 🙏 🤗</div>
         }
 
         <ul className = 'Front'>
