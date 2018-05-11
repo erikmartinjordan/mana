@@ -51,7 +51,7 @@ class Nav extends Component {
                                 <Link to = '/divisas'>Divisas</Link> 
                                 <Link to = '/calculadora'>Calculadora</Link>
                                 <div className = 'Separator'></div>
-                                <div onClick = {this.signOut} className = 'Logout'>Cerrar sesión</div>
+                                <Link to = '/'><div onClick = {this.signOut} className = 'Logout'>Cerrar sesión</div></Link>
                               </div>
                             : null}
                       </div>

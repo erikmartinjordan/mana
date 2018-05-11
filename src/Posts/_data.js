@@ -1,4 +1,39 @@
 var data = {
+    'samut-prakan': {
+        'title': 'Un paseo en bicicleta por Samut Prakan',
+        'date': [22, 'Enero', 2017],
+        'description': 'Encontrar un hueco para el simple desplazarse, sin ningún otro objetivo que el propio movimiento. Dirigirse a ninguna parte. Pedalear sin destino.',
+    },
+    'ko-samet': {
+        'title': 'Ko Samet en un fin de semana',
+        'date': [13, 'Enero', 2017],
+        'description': 'Ko Samet es una pequeña isla que flota a un poca distancia de la capital tailandesa. Llegar desde Bangkok a esta isla tailandesa es baratísimo...',
+    },
+    'desprenderse': {
+        'title': 'Desprenderse de lo innecesario',
+        'date': [9, 'Enero', 2017],
+        'description': 'Desprenderse, depurarse, simplificar o minimizar... Sobre legañas en los ojos, apego y cangrejos con caparazón. Soltar lastre y ese tipo de cosas.',
+    },
+    'mai-pen-rai': {
+        'title': 'Mai pen rai: significado y filosofía',
+        'date': [21, 'Diciembre', 2016],
+        'description': 'Mientras ellas se levantaban del suelo, escuchaba repetidamente: «mai pen rai...». Esta expresión me la guardé en el bolsillo en el momento que la aprendí.',
+    },
+    'coste-vida-bangkok': {
+        'title': '¿Cuál es el coste de vida en Bangkok?',
+        'date': [18, 'Diciembre', 2016],
+        'description': 'Antes de venir a Tailandia, me preguntaba cuánto costaría vivir en Bangkok. Tras casi 1 año en esta ciudad, presento un resumen con todos mis gastos.',
+    },
+    'ko-chang': {
+        'title': 'Qué hacer en Ko Chang en un fin de semana',
+        'date': [12, 'Diciembre', 2016],
+        'description': 'La isla del elefante es preciosa, está poco explotada por el turismo y es cercana a Bangkok. Bonitas playas y buena comida a precios asequibles.',
+    },
+    'boda-tailandesa': {
+        'title': 'Cómo es una boda tailandesa',
+        'date': [6, 'Diciembre', 2016],
+        'description': 'Puppea y Heart se casan: monjes budistas, ritos tradicionales, comida en el suelo, trajes rosas, whisky y música a tope. ¿Cómo es un bodorrio en Tailandia?',
+    },
     'chatuchak': {
         'title': 'Así es el mercado de Chatuchak',
         'date': [3, 'Diciembre', 2016],

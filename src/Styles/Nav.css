@@ -58,6 +58,7 @@
     font-size: small;
     margin-left: -100px;
     margin-top: 10px;
+    overflow: hidden;
     position: absolute;
     z-index: 1;
 }
@@ -90,7 +91,6 @@
 }
 .Nav .Logout{
     color: var(--red);
-    padding: 5px 20px 5px 20px; 
 }
 @media (max-width: 768px){
    .Nav{
