@@ -15,12 +15,12 @@ class Login extends Component {
     return (
         <div className = 'Login'>
             <div className = 'Login-wrap'>
-                <h2>¡Hola!</h2>
-                <p>Necesitas identificarte si quieres votar, publicar o responder:</p>
+                <h2>¡Oh, genial!</h2>
+                <p>Estás a punto de acceder a la aplicación, ahora debes iniciar sesión con una cuenta de Gmail para continuar. Podrás: </p>
                 <ul>
-                    <li>No publicaremos en tu nombre.</li>
-                    <li>No te enviaremos <em>mails</em>.</li>
-                    <li>No utilizaremos tus datos.</li>
+                    <li>📌 Publicar entradas en la comunidad.</li>
+                    <li>🎉 Comentar otras publicaciones.</li>
+                    <li>🤖 Utilizar la <em>app</em>.</li>
                 </ul>
                 <button className = 'bottom' onClick = {this.login}>Accede con
                     <span> </span>
@@ -32,6 +32,7 @@ class Login extends Component {
                     <span className = 'Google-red'>e</span>
                 </button>
                 <button className = 'more'   onClick={this.close}> Volver</button>
+                <div className = 'info'>No publicaré en tu nombre, ni te enviaré <em>mails</em>, ni utilizaré tus datos.</div>
             </div>
         </div>  
     );

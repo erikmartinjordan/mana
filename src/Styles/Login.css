@@ -23,6 +23,9 @@
 .Login .Login-wrap ul{
     font-size: medium;
 }
+.Login .Login-wrap ul{
+    list-style: none;
+}
 .Login .Login-wrap button.more{
     justify-content: flex-end;
 }
@@ -37,6 +40,11 @@
 }
 .Login .Google-green{
     color: #3cba54;
+}
+.Login .info{
+    font-size: small;
+    margin-top: 20px;
+    text-align: center;
 }
 @media (max-width: 768px){
    .Login{

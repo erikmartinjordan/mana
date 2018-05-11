@@ -254,11 +254,13 @@ class Front extends Component {
       
     return (
       <div className = 'Forum'>
-        <h2>¡<em>Sawasdee krub</em>!</h2>
+        <h2>Sawasdee krub</h2>
         
         {this.state.user 
         ? this.newPost() 
-        : <div style = {{textAlign: 'center'}}>Esto es una comunidad de Tailandia. Accede para comentar, votar o responder. 🙏 🤗</div>
+        : <div style = {{textAlign: 'center'}}>
+            <div>Accede para comentar, votar o responder. 🙏 🤗</div>
+          </div>
         }
 
         <ul className = 'Front'>
