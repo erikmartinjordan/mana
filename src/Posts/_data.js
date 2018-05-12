@@ -1,6 +1,56 @@
 var data = {
+    'dejar-todo-y-viajar': {
+        'title': 'Lecciones después de viajar solo',
+        'date': [13, 'Marzo', 2017],
+        'description': 'Se cumple 1 año después de dejarlo todo y viajar por el Sudeste Asiático. Durante este tiempo, he aprendido 9 lecciones que podrían servirte a ti también.',
+    },
+    'dream-world-bangkok': {
+        'title': 'Dream World Bangkok: volviendo a ser un renacuajo',
+        'date': [9, 'Marzo', 2017],
+        'description': 'Dream World tiene todo lo necesario para pasar un día en familia: atracciones, jardines, estanques, comida y helados.',
+    },
+    'viajar': {
+        'title': 'Todo empieza con un viaje',
+        'date': [6, 'Marzo', 2017],
+        'description': 'No sé cómo resumir el artículo. Lo único que se me ocurre es hacerte una recomendación: viaja tanto como puedas.',
+    },
+    'islas-tailandia': {
+        'title': 'Tres islas paradisíacas de Tailandia cerca de Bangkok',
+        'date': [2, 'Marzo', 2017],
+        'description': 'Después de varios meses viviendo en Bangkok, he descubierto tres islas tailandesas cercanas a la capital que están realmente bien.',
+    },
+    'altibajos': {
+        'title': 'La montaña rusa de dejarlo todo e irse',
+        'date': [27, 'Febrero', 2017],
+        'description': '¿Cuándo fue la última vez que compraste un billete para una montaña rusa? Agitado y expectante, con la ilusión de un niño, con ganas de dejarlo todo e irte.',
+    },  
+    'hua-hin': {
+        'title': 'Hua Hin, ese gran descubrimiento',
+        'date': [23, 'Febrero', 2017],
+        'description': 'Hua Hin se ha convertido en una ciudad sorpresa de Tailandia. Sin esperar mucho de ella, ha hecho que dos días se hayan quedado cortos en esta ciudad.',
+    },
+    'descubrimientos-tailandeses': {
+        'title': 'Características curiosas de Tailandia',
+        'date': [16, 'Febrero', 2017],
+        'description': 'Tailandia es una caja de sorpresas. El país está repleto de detalles encantadores. ¿Cuál de estos diez curiosos descubrimientos te llevarías a tu ciudad?',
+    },
+    'kanchanaburi': {
+        'title': 'Kanchanaburi, el puente sobre el río Kwai y trenes de mier...',
+        'date': [9, 'Febrero', 2017],
+        'description': 'Si tuviese que volvier a viajar a Kanchanaburi desde Bangkok, sin lugar a duda, no volvería a hacerlo en tren. Es muchísimo mejor evitarlo y viajar...',
+    },
+    'verdades-tailandia': {
+        'title': 'Verdades que nadie cuenta sobre Tailandia',
+        'date': [6, 'Febrero', 2017],
+        'description': 'Muchos viajeros vienen a Tailandia con ganas de conocer un paraíso, pero hay verdades que las guías de viaje no cuentan. Todo país tiene su cara B.',
+    },
+    'dejarlo-todo-e-irse': {
+        'title': 'Dejarlo todo e irte bien lejos, donde nadie te encuentre',
+        'date': [31, 'Enero', 2017],
+        'description': 'La idea de dejarlo todo e irte sobrevuela tu cabeza como un mosquito que está a punto de picarte. A mí también me sucedió hace tiempo...',
+    },
     'samut-prakan': {
-        'title': 'Un paseo en bicicleta por Samut Prakan',
+        'title': 'Samut Prakan y una bici',
         'date': [22, 'Enero', 2017],
         'description': 'Encontrar un hueco para el simple desplazarse, sin ningún otro objetivo que el propio movimiento. Dirigirse a ninguna parte. Pedalear sin destino.',
     },
@@ -20,9 +70,9 @@ var data = {
         'description': 'Mientras ellas se levantaban del suelo, escuchaba repetidamente: «mai pen rai...». Esta expresión me la guardé en el bolsillo en el momento que la aprendí.',
     },
     'coste-vida-bangkok': {
-        'title': '¿Cuál es el coste de vida en Bangkok?',
+        'title': 'Vivir en Bangkok es barato',
         'date': [18, 'Diciembre', 2016],
-        'description': 'Antes de venir a Tailandia, me preguntaba cuánto costaría vivir en Bangkok. Tras casi 1 año en esta ciudad, presento un resumen con todos mis gastos.',
+        'description': 'Antes de venir a Tailandia, me preguntaba cuánto costaría vivir en Bangkok. Tras casi 1 año en esta ciudad, ya tengo la respuesta.',
     },
     'ko-chang': {
         'title': 'Qué hacer en Ko Chang en un fin de semana',
@@ -35,7 +85,7 @@ var data = {
         'description': 'Puppea y Heart se casan: monjes budistas, ritos tradicionales, comida en el suelo, trajes rosas, whisky y música a tope. ¿Cómo es un bodorrio en Tailandia?',
     },
     'chatuchak': {
-        'title': 'Así es el mercado de Chatuchak',
+        'title': 'En Chatuchak se preparan paellas',
         'date': [3, 'Diciembre', 2016],
         'description': 'El mercado de Chatuchak es de visita obligada cuando uno viene a la capital tailandesa. Bangkok perdería un trozo de su alma sin esta atracción.',
     },
@@ -45,7 +95,7 @@ var data = {
         'description': 'El experimento consiste en irse a un país fronterizo para renovar el visado y volver en una única jornada, obteniendo así, 30 días adicionales en Tailandia.',
     },
     'perros': {
-        'title': 'Perros tailandeses',
+        'title': 'Mafia canina',
         'date': [27, 'Noviembre', 2016],
         'description': 'No veo perros con correa en ninguna parte de Tailandia. ¿Acaso los animales de compañía no han llegado al país de la sonrisa?',
     },
@@ -140,7 +190,7 @@ var data = {
         'description': '¿Qué tiene Fluid Swimming Pool que tanto gusta a todos aquellos que la visitan? Su airecillo tropical en medio del ambiente selvático de Pai...',
     },
     'monticha': {
-        'title': 'La historia de Monticha',
+        'title': 'Monticha y los batidos de setas',
         'date': [1, 'Mayo', 2016],
         'description': 'Monticha es una chica tailandesa que conocí en el hostal de Bangkok. Nació en el 90, adora salir de fiesta y los batidos de setas.',
     },
