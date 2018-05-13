@@ -1,4 +1,34 @@
 var data = {
+    'kuala-lumpur': {
+        'title': 'Cosillas sobre Kuala Lumpur',
+        'date': [1, 'Mayo', 2017],
+        'description': 'Apuntes imprescindibles para todo aquel que visite la capital malaya; qué ver y qué hacer, cómo moverse por la ciudad, dónde comer...',
+    },
+    'visado-tailandes-desde-malasia': {
+        'title': 'Visado tailandés desde Malasia',
+        'date': [28, 'Abril', 2017],
+        'description': 'Desde la ciudad de Kuala Lumpur, se permite a los ciudadanos extranjeros solicitar el visado de turista para Tailandia. El coste es de 150 ringgits...',
+    },
+    'taxi-bangkok': {
+        'title': '¿Cuánto cuesta un taxi en Bangkok?',
+        'date': [14, 'Abril', 2017],
+        'description': 'Aquí tienes el coste de un taxi en Bangkok según la distancia a recorrer. Recuerda pedir siempre que activen el taxímetro, en caso contrario, no te subas en el taxi.',
+    },
+    'pattaya': {
+        'title': 'Pattaya: la ciudad del vicio',
+        'date': [5, 'Abril', 2017],
+        'description': 'Letreros luminosos por doquier, chicas cortas de falda con el ombligo al aire ofreciendo copichuelas, vendedores de comida extravagantes, transexuales ofreciendo entradas para un cabaret, combates de muay thai en mitad de los bares, lugares de masaje cada cuatro pasos —literalmente—, una tailandesa semidesnuda...',
+    },
+    'ko-lan': {
+        'title': 'Ko Lan: una isla paradisíaca cerca de Bangkok',
+        'date': [30, 'Marzo', 2017],
+        'description': 'Análisis y guía rápida de la isla de Ko Lan: un pequeño paraíso a poca distancia de la capital tailandesa. Coral, agua turquesa, relax y...',
+    },
+    'vacunas-tailandia': {
+        'title': '¿Hace falta vacunarse para ir a Tailandia?',
+        'date': [16, 'Marzo', 2017],
+        'description': 'La pregunta del millón: ¿Hace falta vacunarse para ir a Tailandia? Unos han ido al país de la sonrisa sin pincharse y empujan al resto de los mortales a...',
+    },
     'dejar-todo-y-viajar': {
         'title': 'Lecciones después de viajar solo',
         'date': [13, 'Marzo', 2017],
@@ -70,7 +100,7 @@ var data = {
         'description': 'Mientras ellas se levantaban del suelo, escuchaba repetidamente: «mai pen rai...». Esta expresión me la guardé en el bolsillo en el momento que la aprendí.',
     },
     'coste-vida-bangkok': {
-        'title': 'Vivir en Bangkok es barato',
+        'title': 'Vivir en Bangkok',
         'date': [18, 'Diciembre', 2016],
         'description': 'Antes de venir a Tailandia, me preguntaba cuánto costaría vivir en Bangkok. Tras casi 1 año en esta ciudad, ya tengo la respuesta.',
     },

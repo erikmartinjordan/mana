@@ -91,7 +91,7 @@ class Post extends Component {
         
   }
 
-  render() {     
+  render() {
     return (
       <div className = 'Post'>
             {!this.state.error ? 
@@ -109,7 +109,7 @@ class Post extends Component {
                     </div>
                 </div>,
                 <div className = 'Content'>
-                    {this.state.text ? <ReactMarkdown source = {this.state.text} renderers = {{link : props => <a href={props.href} target = '_blank' rel = 'noindex noreferrer noopener'>{props.children}</a>}}/> : null}
+                    {this.state.text ? <ReactMarkdown source = {this.state.text} escapeHtml = {false} renderers = {{link : props => <a href={props.href} target = '_blank' rel = 'noindex noreferrer noopener'>{props.children}</a>}}/> : null}
                 </div>,
                 <div className = 'Infopost'>
                     <div></div>

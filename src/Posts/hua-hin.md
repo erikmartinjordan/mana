@@ -68,7 +68,7 @@ El billete de tren cuesta 44 bahts si se compra en la estación de Hua Lamphong.
 También se puede ir en minibús desde Victory Monument por 180 bahts. Esta opción es preferible por su agilidad, en tres horas uno se ventila el trayecto y además, va fresquito gracias al aire acondicionado.
 
 ![Estación de tren de Hua Lamphong en Bangkok](https://lh3.googleusercontent.com/vmIgpDWCA_-b9Tnikt7P55qWGz1eMesHBOOCzp4vmCZQkkV99mveAtbKBo4n9phk29Da2OkxPEpmgd03cGcwRaticqg7w2ixJbjU1n75gUdVXenCW-oizo97NhPxW6Vq0xtDbvjMSfvEgT2sf6giJVIWtx79vrGsrhLgG2BKSRilZ4ZT2o1DxNtni6BnwbORg3FYKmQbfRV29NYcZjIrfvVra6TniLiwdKY3cZ_eMODd1q_8zgWhUtHiB_gbJxL0OAzZoB7ovdLlwtEnKAiYYW5eUBHAcSWUe6k6aR1zW-CWYgpYCpGzjrJKw91goAJxGd6PI951EPZb1J5oD6WuAbQz4HTs6YvKGsgteX0GeCprXrgMRSJZ1lmmf-h3J1ucqzn8vmyy2E4waJZvVEAuzovFMl-CEHoudVnYJjClzRDj83SwXCaAMhNOZxWpAzRJXfPHBOZUyYo2_gaVnrcQrUGlqEkvL3tNXED7fl_iwN1klSa_t8-rk1c-FUbB8oXX_Rj9MSpLbVBUGmA3m83uDo6NHcYBFwgSrQqwyyfamK97gfapdBeLEkvw8YHaUY0ynZG8fawHe4OeYclVL522ctTnZ8SfILYcGNcFBzNB2ceA-ZFiW5xSYf6ibY9K2emmUaiM4ziOyJITHPogIXDu5gfBa0W55DyZHjNtwxzyC4I=w800-no)
-Estación de tren de Hua Lamphong, en Bangkok.
+*Estación de tren de Hua Lamphong, en Bangkok*
 
 ## Es una ciudad con hospital y centro comercial
 
