@@ -55,7 +55,7 @@ class Post extends Component {
           firebase.database().ref('articles/' + this.props.match.params.string + '/views/').transaction( value => value + 1 );
           
           //5. Add title and meta description
-          document.title = title + ' - Erik Martín Jordán'; 
+          document.title = title + ' - Nomoresheet'; 
           document.querySelector('meta[name="description"]').content = description; 
           
           //6. Look for related posts

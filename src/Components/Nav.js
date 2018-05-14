@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link }    from 'react-router-dom';
 import firebase, {auth} from './Firebase.js';
 import Login from './Login';
+import Search from './Search';
 import '../Styles/Nav.css';
 
 class Nav extends Component {
@@ -31,9 +32,7 @@ class Nav extends Component {
             <div className = 'Title-Mobile'>
                 <Link to = '/'>Nms</Link>
             </div>
-            <div className = 'Search'>
-                <input placeholder = 'Buscar...'></input>
-            </div>
+            <Search></Search>
             <div className = 'Menu'>
                 <Link to = '/'>Comunidad</Link>
                 <Link to = '/blog'>Artículos</Link>

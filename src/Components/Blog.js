@@ -52,6 +52,11 @@ class Blog extends Component {
                      
       }                                    
       this.setState({ archive: array });
+      
+      
+      //Metas and titles
+      document.title = 'Blog - Nomoresheet'; 
+      document.querySelector('meta[name="description"]').content = 'En la actualidad, el blog contiene' + {length} + ' artículos...'; 
   }
             
   render() {        

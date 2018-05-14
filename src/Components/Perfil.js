@@ -24,6 +24,9 @@ class Perfil extends Component {
 
               });
           });
+      
+          document.title = 'Perfil – Nomoresheet'; 
+          document.querySelector('meta[name="description"]').content = 'Este es tu perfil en Nomoresheet...'; 
   }
     
   render() {

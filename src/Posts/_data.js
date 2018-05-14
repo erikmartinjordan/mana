@@ -1,4 +1,54 @@
 var data = {
+    'ascensores': {
+        'title': '¿A qué piso vas? Follemos',
+        'date': [12, 'Junio', 2017],
+        'description': 'Que en los ascensores sucedan fenómenos extraños, es un hecho que no debería sorprender a nadie. Sería un experimento interesante colocar cámaras...',
+    },
+    'resiliencia': {
+        'title': 'Resiliencia en jarabe: serán dos cucharaditas',
+        'date': [8, 'Junio', 2017],
+        'description': 'El otro día comprendí el significado de la palabra resiliencia. Fue en una playa tailandesa, mientras pensaba en lo poco que me queda ya aquí.',
+    },
+    'sacar-dinero-tailandia': {
+        'title': 'Sacar dinero en Tailandia, ¿cuál es la mejor opción?',
+        'date': [5, 'Junio', 2017],
+        'description': 'Bancos, cajeros o casas de cambio. Con este experimento he comprobado cuál es la mejor opción a la hora de sacar dinero en Tailandia. El resultado es...',
+    },
+    'ropa-tailandia': {
+        'title': '¿Qué ropa llevar a Tailandia?',
+        'date': [28, 'Mayo', 2017],
+        'description': 'El clima en Tailandia es cálido durante todo el año, por lo que hay que venir con ropa de verano. En el norte de Tailandia puede hacer falta algún jersey o chaqueta fina durante la época de lluvias pero, en líneas generales, estas son las recomendaciones de vestimenta...',
+    },
+    'wat-arun': {
+        'title': 'Wat Arun sigue en obras interminables...',
+        'date': [22, 'Mayo', 2017],
+        'description': 'Wat Arun sigue en obras y tiene pintar de ir para largo. No sé durante cuánto tiempo los andamios decorarán este templo de Bangkok.',
+    },
+    'vecinos': {
+        'title': 'El vecino que nunca saludaba',
+        'date': [18, 'Mayo', 2017],
+        'description': 'Cuando coincido en las puertas del ascensor con otros vecinos, siempre me ha parecido deseable que haya un saludo de por medio en ese primer contacto...',
+    },
+    'pad-kra-pao': {
+        'title': 'Pad kra pao, ese plato picantón de la cocina tailandesa',
+        'date': [15, 'Mayo', 2017],
+        'description': 'La primera vez que comí este plato, me ardió la boca, el esófago y el estómago. A partes iguales. Después de digerir esa mezcla de arroz, chile...',
+    },
+    'farang': {
+        'title': 'Qué significa ser un farang',
+        'date': [11, 'Mayo', 2017],
+        'description': 'Así etiquetan los tailandeses a la gente de piel blanca que viene de lejos. Es un término templado. A medio camino entre el descalificativo y el agasajo...',
+    },
+    'clima-tailandia': {
+        'title': 'Mejor época para viajar a Tailandia',
+        'date': [8, 'Mayo', 2017],
+        'description': 'El clima tailandés se divide en tres estaciones: templada, calurosa y lluviosa. Lo ideal es viajar a Tailandia durante la época templada.',
+    },
+    'vater-sudeste-asiatico': {
+        'title': 'La limpieza de ojal en el Sudeste Asiático',
+        'date': [4, 'Mayo', 2017],
+        'description': 'Un día, dejé de utilizar papel de váter en el Sudeste Asiático. Fue por pura necesidad, el día que cociné un pastel de chocolate y me di cuenta de que...',
+    },
     'kuala-lumpur': {
         'title': 'Cosillas sobre Kuala Lumpur',
         'date': [1, 'Mayo', 2017],

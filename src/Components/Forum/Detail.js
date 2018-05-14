@@ -292,7 +292,7 @@ class Detail extends Component {
                     <div className="title">
                         <h2>Escribe tu respuesta</h2>
                     </div>
-                    <textarea onChange={this.handleReply} className="message" maxLength="280" value = {this.state.reply} ></textarea>
+                    <textarea onChange={this.handleReply} className="message" maxLength="560" value = {this.state.reply} ></textarea>
                     <button className="bottom">Enviar</button>
                 </form>;
             
@@ -306,7 +306,7 @@ class Detail extends Component {
 
   render() {
       
-    this.state.title    ? document.title = this.state.title + " - Nomoresheet" : null; 
+    this.state.title    ? document.title = this.state.title + ' - Nomoresheet' : null; 
     this.state.message  ? document.querySelector('meta[name="description"]').content = this.state.message : null; 
                         
     return (

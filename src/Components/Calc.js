@@ -32,6 +32,9 @@ class Calc extends Component {
        .catch( err => {throw err} );
       
         auth.onAuthStateChanged( user => this.setState({ user: user }) );
+      
+        document.title = 'Calculadora – Nomoresheet'; 
+        document.querySelector('meta[name="description"]').content = 'Calcula tu presupuesto al viajar a Tailandia'; 
   }
    
   handlePais     = (e) => this.setState({ pais: e.target.value });

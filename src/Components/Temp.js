@@ -20,6 +20,9 @@ class Temp extends Component {
        .then(  res => res.json() )
        .then(  out => this.setState({ div: out }) )
        .catch( err => {throw err} );
+      
+       document.title = 'Temperatura – Nomoresheet'; 
+       document.querySelector('meta[name="description"]').content = 'Consulta la temperatura al viajar a Tailandia'; 
   }
     
   render() {

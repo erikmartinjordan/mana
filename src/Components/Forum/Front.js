@@ -72,6 +72,9 @@ class Front extends Component {
 
       });
       
+    document.title = 'Nomoresheet'; 
+    document.querySelector('meta[name="description"]').content = 'Comunidad de Tailandia'; 
+      
   }                              
   //-------------------------------------------------------------
   //
@@ -222,7 +225,7 @@ class Front extends Component {
                 <button>Subir foto</button> 
             </div>
             <input    onChange = {this.handleTitle} className='title' placeholder = 'Título...' maxLength = '50'></input>
-            <textarea onChange = {this.handleMessage} className = 'message' placeholder = 'Mensaje...' maxLength = '280'></textarea>
+            <textarea onChange = {this.handleMessage} className = 'message' placeholder = 'Mensaje...' maxLength = '560'></textarea>
             <button className = 'bottom'>Enviar</button>
         </form>;
 
