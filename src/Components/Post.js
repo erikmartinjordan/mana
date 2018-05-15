@@ -24,12 +24,16 @@ class Post extends Component {
       auth.onAuthStateChanged( user => this.setState({ user: user }) );
                   
       try{
-          //1. Get .md post
+          // Get .md post
           const readmePath = require('../Posts/' + this.props.match.params.string + '.md'); 
-            
-          fetch(readmePath).then(response => response.text()).then(text => this.setState({text: text}) );
           
-          //2. Get info from Json
+          // Fecth response and load Instagram and Twitter scripts
+          fetch(readmePath).then(response => response.text()).then(text => this.setState({text: text}) ).then( () => {
+              window.instgrm.Embeds.process();
+              window.twttr.widgets.load();
+          });
+          
+          // Get info from Json
           let title         = Data[this.props.match.params.string].title;
           let date          = Data[this.props.match.params.string].date;
           let description   = Data[this.props.match.params.string].description;
@@ -40,7 +44,7 @@ class Post extends Component {
               description: description 
           });
           
-          //3. Get infro from Views and Likes
+          // Get infro from Views and Likes
           firebase.database().ref('articles/' + this.props.match.params.string).on('value', snapshot => {
                 if(snapshot.val()){
                     this.setState({ 
@@ -51,18 +55,19 @@ class Post extends Component {
                 }
           })
           
-          //4. Update counters 
+          // Update counters 
           firebase.database().ref('articles/' + this.props.match.params.string + '/views/').transaction( value => value + 1 );
           
-          //5. Add title and meta description
+          // Add title and meta description
           document.title = title + ' - Nomoresheet'; 
           document.querySelector('meta[name="description"]').content = description; 
           
-          //6. Look for related posts
+          // Look for related posts
           this.relatedContent();
+          
       }
       catch(e){
-          //md content doesn't exist
+          // Md content doesn't exist
           this.setState({ error: true });
       }  
       
@@ -92,6 +97,7 @@ class Post extends Component {
   }
 
   render() {
+          
     return (
       <div className = 'Post'>
             {!this.state.error ? 
