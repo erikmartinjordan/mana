@@ -1,0 +1,81 @@
+.Ruta{
+   width: 100%;
+}
+.Ruta-box{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+    padding: 20px;
+    width: 100%;
+}
+.Ruta .react-datepicker-wrapper{
+    width: 100%;
+}
+.Ruta .react-datepicker__input-container{
+    width: 100%;
+}
+.Ruta .react-datepicker__input-container input,
+.Ruta input{
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 50px;
+    font-size: medium;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+}
+.Ruta table{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+    padding: 20px;
+    width: 100%;
+}
+.Ruta p.alert{
+    background: var(--lightGray);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+.Ruta tr.Total{
+    font-weight: bold;
+}
+.Ruta .Recorrido .Num{
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    display: inline-flex;
+    font-size: small;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+}
+.Ruta tr.Recorrido,
+.Ruta tr.Total{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+.Ruta tr.Recorrido:nth-child(4n + 1) .Num{
+    background: var(--pastelPurple);
+}
+.Ruta tr.Recorrido:nth-child(4n + 2) .Num{
+    background: var(--pastelRed);
+}
+.Ruta tr.Recorrido:nth-child(4n + 3) .Num{
+    background: var(--pastelGreen);
+}
+.Ruta tr.Recorrido:nth-child(4n + 4) .Num{
+    background: var(--pastelYellow);
+}

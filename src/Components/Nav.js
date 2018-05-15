@@ -11,20 +11,24 @@ class Nav extends Component {
       super();
       this.state = {
           avatarMenu: false,
-          render: false
+          invisible: false,
+          render: false,
+          show: true
       }
   }
     
   componentDidMount     = () => auth.onAuthStateChanged( user => this.setState({ user: user }) );
   showBanner            = () => this.setState({ render: true }); 
   hideBanner            = () => this.setState({ render: false }); 
-  showHideAvatarMenu    = () => this.setState({ avatarMenu: !this.state.avatarMenu });
+  showAvatarMenu        = () => this.setState({ avatarMenu: true, invisible: true });
   signOut               = () => auth.signOut().then( this.setState({ user: null }) );
+  hideSearch            = () => this.setState({ avatarMenu: false, invisible: false });
     
   render() { 
             
     return (
       <div className = 'Nav'>
+        { this.state.invisible ? <div onClick = {this.hideSearch} className = 'Invisible'></div> : null}
         <div className = 'Wrap'>
             <div className = 'Title'>
                 <Link to = '/'>Nomoresheet</Link>
@@ -38,7 +42,7 @@ class Nav extends Component {
                 <Link to = '/blog'>Artículos</Link>
                 { !this.state.user 
                     ? <button onClick = {this.showBanner} className = 'login'>Entrar</button>
-                    : <div className = 'User' onClick = {this.showHideAvatarMenu} >
+                    : <div className = 'User' onClick = {this.showAvatarMenu} >
                             <div className = 'Img-Wrap'>
                                 <img src = {this.state.user.photoURL}></img>
                             </div>
@@ -46,6 +50,7 @@ class Nav extends Component {
                             ? <div className = 'Avatar-Menu'>
                                 <Link to = '/perfil'>Perfil</Link>
                                 <div className = 'Separator'></div>
+                                <Link to = '/ruta'>Ruta</Link>
                                 <Link to = '/temperatura'>Clima</Link>
                                 <Link to = '/divisas'>Divisas</Link> 
                                 <Link to = '/calculadora'>Calculadora</Link>

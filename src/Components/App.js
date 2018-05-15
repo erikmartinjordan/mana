@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactGA              from 'react-ga';
 import { Switch, Route }    from 'react-router-dom';
+import Ruta                 from './Ruta';
 import Perfil               from './Perfil';
 import Calc                 from './Calc';
 import Temp                 from './Temp';
@@ -28,6 +29,7 @@ class App extends Component {
         <Switch  key = 'B'>
             <Route exact path = '/'                    component = {Forum}/>
             <Route exact path = '/perfil'              component = {Perfil}/>
+            <Route exact path = '/ruta'                component = {Ruta}/>
             <Route exact path = '/calculadora'         component = {Calc}/>
             <Route exact path = '/divisas'             component = {Divisas}/>
             <Route exact path = '/temperatura'         component = {Temp}/>

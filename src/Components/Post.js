@@ -29,8 +29,8 @@ class Post extends Component {
           
           // Fecth response and load Instagram and Twitter scripts
           fetch(readmePath).then(response => response.text()).then(text => this.setState({text: text}) ).then( () => {
-              window.instgrm.Embeds.process();
-              window.twttr.widgets.load();
+              if(window.instgrm) window.instgrm.Embeds.process();
+              if(window.twttr) window.twttr.widgets.load();
           });
           
           // Get info from Json

@@ -92,6 +92,13 @@
 .Nav .Logout{
     color: var(--red);
 }
+.Nav .Invisible{
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
 @media (max-width: 768px){
    .Nav{
         padding: 20px;

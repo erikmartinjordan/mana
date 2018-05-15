@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import firebase, { auth } from './Firebase.js';
+import Login from './Login.js';
 import '../Styles/Temp.css';
 
 class Temp extends Component {
@@ -6,24 +8,38 @@ class Temp extends Component {
   constructor(){
       super();
       this.state = {
-          div: null
+          div: null,
+          render: true
       }
   }
     
   componentDidMount = () => {
       
-      let url = 'https://api.openweathermap.org/data/2.5/group?id=1609350,1153671,1151254,1153269,1605279,1150533,1611110,1152633,1150515&units=metric&APPID=95f2daf49b6c746f198f91ee0d30adeb';
+      document.title = 'Temperatura – Nomoresheet'; 
+      document.querySelector('meta[name="description"]').content = 'Consulta la temperatura al viajar a Tailandia';
       
-      fetch( url, {
-          method: 'GET'
-       })
-       .then(  res => res.json() )
-       .then(  out => this.setState({ div: out }) )
-       .catch( err => {throw err} );
-      
-       document.title = 'Temperatura – Nomoresheet'; 
-       document.querySelector('meta[name="description"]').content = 'Consulta la temperatura al viajar a Tailandia'; 
+      auth.onAuthStateChanged( user => {
+          
+          if(user){
+              this.setState({ 
+                  render: false,
+                  user: user 
+              });
+              
+              let url = 'https://api.openweathermap.org/data/2.5/group?id=1609350,1153671,1151254,1153269,1605279,1150533,1611110,1152633,1150515&units=metric&APPID=95f2daf49b6c746f198f91ee0d30adeb';
+
+              fetch( url, {
+                  method: 'GET'
+               })
+               .then(  res => res.json() )
+               .then(  out => this.setState({ div: out }) )
+               .catch( err => {throw err} ); 
+          }
+      });
   }
+  
+  showBanner = () => this.setState({ render: true }); 
+  hideBanner = () => this.setState({ render: false });
     
   render() {
       
@@ -65,7 +81,7 @@ class Temp extends Component {
     }
           
     return (
-      <div className = 'Temp'>
+      [<div className = 'Temp'>
         <h2>Temperatura actual</h2>
         <p>Los datos de temperatura se actualizan cada pocos minutos:</p>
         <ul>
@@ -96,7 +112,10 @@ class Temp extends Component {
                 </tbody>
             </table>
         </div>
-      </div>
+      </div>,
+      <div>
+        {this.state.render ? <Login hide={this.hideBanner}></Login> : null}
+      </div>]
     );
   }
 }

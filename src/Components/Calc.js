@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase, { auth } from './Firebase.js';
+import Login from './Login.js';
 import '../Styles/Calc.css';
 
 class Calc extends Component {
@@ -12,6 +13,7 @@ class Calc extends Component {
           enviado: null,
           pais: "España",
           personas: 1,
+          render: true,
           resultado: null,
           res: [],
           tours: 0,
@@ -22,21 +24,31 @@ class Calc extends Component {
     
   componentDidMount = () => {
       
-      let url = 'https://sheets.googleapis.com/v4/spreadsheets/1fn-LJUxVf7PtOleh1SFKe_Zn9_w23qcjKANDtnEhx0s/values/B4:F14?key=AIzaSyBskBxfwAw63g-e7BPHODVTAaH-1Ni67Eg';
+      document.title = 'Calculadora – Nomoresheet'; 
+      document.querySelector('meta[name="description"]').content = 'Calcula tu presupuesto al viajar a Tailandia'; 
       
-      fetch( url, {
-          method: 'GET'
-       })
-       .then(  res => res.json() )
-       .then(  out => this.setState({ div: out }) )
-       .catch( err => {throw err} );
+      auth.onAuthStateChanged( user => {
+          
+          if(user){
+              this.setState({ 
+                  render: false,
+                  user: user 
+              });
+              
+              let url = 'https://sheets.googleapis.com/v4/spreadsheets/1fn-LJUxVf7PtOleh1SFKe_Zn9_w23qcjKANDtnEhx0s/values/B4:F14?key=AIzaSyBskBxfwAw63g-e7BPHODVTAaH-1Ni67Eg';
       
-        auth.onAuthStateChanged( user => this.setState({ user: user }) );
-      
-        document.title = 'Calculadora – Nomoresheet'; 
-        document.querySelector('meta[name="description"]').content = 'Calcula tu presupuesto al viajar a Tailandia'; 
+              fetch( url, {method: 'GET'})
+               .then(  res => res.json() )
+               .then(  out => this.setState({ div: out }) )
+               .catch( err => {throw err} );
+          }
+
+      });
+       
   }
    
+  showBanner     = ()  => this.setState({ render: true }); 
+  hideBanner     = ()  => this.setState({ render: false });
   handlePais     = (e) => this.setState({ pais: e.target.value });
   handlePersonas = (e) => this.setState({ personas: e.target.value }); 
   handleViajero  = (e) => this.setState({ viajero: e.target.value }); 
@@ -95,7 +107,7 @@ class Calc extends Component {
     
   render() {      
     return (
-      <div className = "Calc">
+      [<div className = "Calc">
         { !this.state.enviado ? 
         <div>
             <h2>Calcula tu presupuesto antes de viajar a Tailandia</h2>
@@ -216,7 +228,10 @@ class Calc extends Component {
                 </table>
             </div>
         </div>}
-    </div>
+    </div>,
+    <div>
+        {this.state.render ? <Login hide={this.hideBanner}></Login> : null}
+    </div>]
     );
   }
 }
