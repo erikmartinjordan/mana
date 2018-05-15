@@ -109,7 +109,7 @@ class Post extends Component {
                             <span>Erik Martín Jordán,</span>
                             <span>{this.state.date  ? [' ' + this.state.date[1],' ',this.state.date[2]]  : null}</span>
                         </p>
-                        <div className = 'i'>👀 {this.state.views ? this.state.views : null}</div>
+                        <div className = 'i'>👀 {this.state.views ? parseInt(this.state.views).toLocaleString('es') : null}</div>
                         <div className = 'i' onClick = {this.state.user ? this.handleLikes : this.showBanner}>👏 {this.state.likes ? this.state.likes : null}</div>
                         <div className = 'i' onClick = {this.state.user ? this.handleSuperLikes : this.showBanner}>🎉 {this.state.superlikes ? this.state.superlikes : null}</div>
                     </div>
@@ -119,7 +119,7 @@ class Post extends Component {
                 </div>,
                 <div className = 'Infopost'>
                     <div></div>
-                    <div className = 'i'>👀 {this.state.views ? this.state.views : null}</div>
+                    <div className = 'i'>👀 {this.state.views ? parseInt(this.state.views).toLocaleString('es') : null}</div>
                     <div className = 'i' onClick = {this.state.user ? this.handleLikes : this.showBanner}>👏 {this.state.likes ? this.state.likes : null}</div>
                     <div className = 'i' onClick = {this.state.user ? this.handleSuperLikes : this.showBanner}>🎉 {this.state.superlikes ? this.state.superlikes : null}</div>
                 </div>,
