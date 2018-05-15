@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactGA              from 'react-ga';
 import { Switch, Route }    from 'react-router-dom';
 import Perfil               from './Perfil';
 import Calc                 from './Calc';
@@ -12,7 +13,13 @@ import Blog                 from './Blog';
 import Nav                  from './Nav';
 import Footer               from './Footer';
 
+ReactGA.initialize('UA-87406650-1');
+
 class App extends Component {
+    
+  componentDidMount  = () => ReactGA.pageview(window.location.pathname + window.location.search);
+  componentDidUpdate = () => ReactGA.pageview(window.location.pathname + window.location.search);
+
   render() {    
     return (
         [<Switch key = 'A'>

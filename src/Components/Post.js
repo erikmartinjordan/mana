@@ -69,7 +69,7 @@ class Post extends Component {
 
   }
   
-  componentDidUpdate    = () =>  Prism.highlightAll();
+  componentDidUpdate    = () => Prism.highlightAll();
   showBanner            = () => this.setState({render: true}); 
   hideBanner            = () => this.setState({render: false}); 
   handleLikes           = () => firebase.database().ref('articles/' + this.props.match.params.string + '/likes/').transaction( value => value + 1 );

@@ -1,4 +1,94 @@
 var data = {
+    'compras-bangkok': {
+        'title': '¿Comprar en Bangkok? Sí, deberías',
+        'date': [20, 'Abril', 2018],
+        'description': 'Comprar en el país de la sonrisa es un placer: enormes centros comerciales, puestecillos que ocupan las aceras, mercados nocturnos. En Bangkok hay opciones para todos los gustos. He aquí un recopilatorio de lo que uno se encuentra cuando sale a rascar la Visa en la capital thai.',
+    },
+    'ha': {
+        'title': 'Tailandia, el país del 55555',
+        'date': [11, 'Abril', 2018],
+        'description': 'Además del país de la sonrisa, Tailandia es también el país de las supersticiones: si cantas cuando tu pareja está comiendo, le estás echando años encima. Si le regalas un reloj, no tendréis tiempo de estar juntos. Si silbas por la noche, estás atrayendo a los fantasmas.',
+    },
+    'jai-yen-yen': {
+        'title': 'Jai yen yen',
+        'date': [20, 'Marzo', 2018],
+        'description': 'En Tailandia tienen una expresión cuando los farangs nos ponemos nerviosos por tener que esperar. Chiang Muhu la utiliza a menudo cuando me pongo nervioso por algo que va más lento de lo normal: «jai yen yen, farang».',
+    },
+    'comida-tailandesa': {
+        'title': 'A la rica cocina tailandesa',
+        'date': [5, 'Marzo', 2018],
+        'description': 'Últimamente a Chiang Muhu le ha dado por publicar sus recetas en Instagram. Como me va contando lo que cocina, estoy aprendiendo sobre el menú diario de los tailandeses. Y he descubierto algo sorprendente: en Tailandia hay vida más allá del pad thai.',
+    },
+    'habemus-forum': {
+        'title': 'Habemus forum',
+        'date': [7, 'Febrero', 2018],
+        'description': 'Hace un tiempo creé con mis propios dedacos un foro programado desde cero en JavaScript (React + Firebase). Es lo que tiene ser un puto freak. ¿Un foro? ¿Pero eso no es más antiguo que cagar sentado? Sí, pero es diferente a toda esa morralla de foros escritos en PHP que siguen en pie.',
+    },
+    'birras': {
+        'title': 'Unas birras en casa de Vaisent',
+        'date': [25, 'Enero', 2018],
+        'description': 'Quedo en casa de mi amigo Vaisent para tomar unas birras: —He comprado claritas porque sé que eres un poco nenaza —me dice. —Gracias, tío. En Alemania era el moñas de las Radler (cerveza con limón). Me dijeron que al volver de Kaiserslautern mi paladar se habría acostumbrado al sabor de la cerveza. Pero...',
+    },
+    'frugalidad': {
+        'title': 'Vida sencilla y frugalidad',
+        'date': [9, 'Enero', 2018],
+        'description': 'En el Sudeste Asiático aprendí a manejar un presupuesto mensual de seiscientos euros. Me di cuenta de que podía vivir con algo menos del salario mínimo interprofesional español. Sin lujos pero sin carencias; llevando una vida sencilla y frugal.',
+    },
+    'visado-tailandia': {
+        'title': 'Visado Tailandia 2018: precio, duración y opciones',
+        'date': [1, 'Enero', 2018],
+        'description': 'Todo lo que necesitas saber sobre el visado para Tailandia en 2018. De manera resumida y detallada. Precio, duración de la estancia y tipos de visado.',
+    },
+    'muay': {
+        'title': 'Vello púbico tailandés',
+        'date': [5, 'Diciembre', 2017],
+        'description': 'Chiang Muhu habla de Lookme, una de sus mejores amigas ladyboy. De su padre militar, de la vida en el cuartel y de cómo Lookme...',
+    },
+    'precios-tailandia': {
+        'title': 'Aquí tiene su precio especial por ser farang',
+        'date': [14, 'Noviembre', 2017],
+        'description': 'Imagínate que estás de vacaciones en Tailandia. Oh, sí. Eres un farang que sabe disfrutar de la vida: playas paradisíacas, cervecita Chang bien fría...',
+    },
+    'largo-plazo': {
+        'title': 'El largo plazo siempre llega',
+        'date': [7, 'Noviembre', 2017],
+        'description': 'Estamos viviendo una época de grandes cambios. Un tipo con un portátil y una camiseta de tirantes puede estar desarrollando software desde Cancún.',
+    },
+    'culebron-segunda-parte': {
+        'title': 'Culebrón a la tailandesa (segunda parte)',
+        'date': [17, 'Octubre', 2017],
+        'description': 'No es tan fácil para una familia tailandesa aceptar a un miembro farang. Aquí va la segunda parte del culebrón a la tailandesa.',
+    },
+    'distancia': {
+        'title': 'Relaciones dos punto cero',
+        'date': [3, 'Octubre', 2017],
+        'description': 'Sobre relaciones a distancia en la era dos punto cero. De cómo se ha pasado del puño y letra a los dos tics de WhatsApp. Dedicado a los adictos al móvil.',
+    },
+    'viajar-solo': {
+        'title': 'Viajar solo no es tan divertido como lo pintan',
+        'date': [24, 'Julio', 2017],
+        'description': 'Quedé con mi amigo Vaisent para tomar algo. Mientras hablábamos de cómo nos iba la vida, me dijo: «Tío, a mí, viajar solo no me pareció tan divertido».',
+    },
+    'hamburguesa': {
+        'title': 'Una hamburguesa y una hora de tiempo',
+        'date': [17, 'Julio', 2017],
+        'description': 'Ella es cajera, buena y adorable. Cuando llega a casa, le duelen las piernas de estar diez horas de pie. Un día me dijo que podíamos comer algo por ahí.',
+    },
+    'volver': {
+        'title': 'Volver a casa: game over, insert coins...',
+        'date': [29, 'Junio', 2017],
+        'description': 'Se acabó. Hasta aquí he llegado. Han sido 11.227,92 euros y 470 días lejos de la Ciudad Condal. Un año y medio respirando el mismo oxígeno contaminado...',
+    },
+    'ultimos-dias-tailandia': {
+        'title': 'Los últimos no sé qués',
+        'date': [26, 'Junio', 2017],
+        'description': 'Cuando uno va a volver de un largo viaje, aprecia todas esos últimos instantes antes de regresar: la última cena, el último beso, el último polvo...',
+    },
+    'alquilar-moto-tailandia': {
+        'title': 'Oh, alquilar una moto en Tailandia...',
+        'date': [22, 'Junio', 2017],
+        'description': 'Tantas historias se cuentan acerca de los alquileres de motos en Tailandia. Que si dejar el pasaporte en la tienda como fianza es tan peligroso como...',
+    },
     'ascensores': {
         'title': '¿A qué piso vas? Follemos',
         'date': [12, 'Junio', 2017],
