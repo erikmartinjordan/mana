@@ -167,7 +167,7 @@ class Front extends Component {
         [<Link to = {'/comunidad/post/' + line.key}>
             <li className='roll' key = {key}>
                 {key === 0 
-                ? <div className = 'featured' style = {{background: 'url(' + line.featuredImageUrl + ')', backgroundSize: 'cover', height: '300px', backgroundPosition: 'center'}}>
+                ? <div className = 'featured' style = {{background: 'url(' + line.featuredImageUrl + ')', backgroundSize: 'cover', height: '300px', backgroundPosition: 'bottom'}}>
                         <span className = 'title'><div>{line.title}</div></span>
                   </div>
                 : null
