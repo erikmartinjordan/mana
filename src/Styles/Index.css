@@ -25,7 +25,8 @@ h3,
 h4,
 h5,
 h6{
-   letter-spacing: -0.075em;
+    letter-spacing: -0.075em;
+    line-height: 1.5;
     text-align: center;
 }
 h2{
