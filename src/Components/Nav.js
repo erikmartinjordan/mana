@@ -10,8 +10,8 @@ class Nav extends Component {
   constructor(){
       super();
       this.state = {
-          avatarMenu: false,
           invisible: false,
+          menu: false,
           render: false,
           show: true
       }
@@ -20,15 +20,13 @@ class Nav extends Component {
   componentDidMount     = () => auth.onAuthStateChanged( user => this.setState({ user: user }) );
   showBanner            = () => this.setState({ render: true }); 
   hideBanner            = () => this.setState({ render: false }); 
-  showAvatarMenu        = () => this.setState({ avatarMenu: true, invisible: true });
+  showMenu              = () => this.setState({ menu: true });
+  hideMenu              = () => this.setState({ menu: false });
   signOut               = () => auth.signOut().then( this.setState({ user: null }) );
-  hideSearch            = () => this.setState({ avatarMenu: false, invisible: false });
     
-  render() { 
-            
+  render() {       
     return (
       <div className = 'Nav'>
-        { this.state.invisible ? <div onClick = {this.hideSearch} className = 'Invisible'></div> : null}
         <div className = 'Wrap'>
             <div className = 'Title'>
                 <Link to = '/'>Nomoresheet</Link>
@@ -42,11 +40,11 @@ class Nav extends Component {
                 <Link to = '/blog'>Artículos</Link>
                 { !this.state.user 
                     ? <button onClick = {this.showBanner} className = 'login'>Entrar</button>
-                    : <div className = 'User' onClick = {this.showAvatarMenu} >
+                    : <div className = 'User' onClick = {this.showMenu} >
                             <div className = 'Img-Wrap'>
                                 <img src = {this.state.user.photoURL}></img>
                             </div>
-                            { this.state.avatarMenu
+                            { this.state.menu
                             ? <div className = 'Avatar-Menu'>
                                 <Link to = '/perfil'>Perfil</Link>
                                 <div className = 'Separator'></div>
@@ -63,6 +61,7 @@ class Nav extends Component {
             </div>
         </div>
         {this.state.render ? <Login hide = {this.hideBanner}></Login> : null}
+        {this.state.menu   ? <div onClick = {this.hideMenu} className = 'Invisible'></div> : null}
       </div>
     );
   }
