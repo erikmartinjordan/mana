@@ -32,8 +32,12 @@ class Footer extends Component {
       icon = icon[Math.floor(Math.random() * icon.length)];
       
       this.setState({ message: day + ' ' + icon});
+      
+      window.twemoji.parse(document.getElementById('root'));
             
   }
+  
+  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'));
     
   render() {       
     return (

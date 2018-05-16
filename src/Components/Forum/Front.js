@@ -75,7 +75,10 @@ class Front extends Component {
     document.title = 'Nomoresheet'; 
     document.querySelector('meta[name="description"]').content = 'Comunidad de Tailandia'; 
       
-  }                              
+    window.twemoji.parse(document.getElementById('root'));
+      
+  }
+  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'));
   //-------------------------------------------------------------
   //
   // Handle elements

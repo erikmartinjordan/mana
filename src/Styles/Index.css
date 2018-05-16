@@ -89,6 +89,12 @@ button.delete{
     margin-bottom: 50px;
     margin-top: 20px;
 }
+img.emoji {
+   height: 1em;
+   width: 1em;
+   margin: 0 .05em 0 .1em;
+   vertical-align: -0.1em;
+}
 :root{
     --superLightGray: #fafafa;
     --lightGray: #828c99;

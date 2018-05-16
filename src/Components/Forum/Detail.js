@@ -114,8 +114,12 @@ class Detail extends Component {
       //load verified badges
       //--------------------------------------------------------------/ 
       firebase.database().ref('users/').once('value').then( snapshot => this.setState({verified: snapshot.val()}) );
+      
+      window.twemoji.parse(document.getElementById('root'));
                 
   }  
+  
+  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'));
                                   
   /*******************************************************************/
   //handleReply

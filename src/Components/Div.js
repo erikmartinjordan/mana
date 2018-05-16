@@ -33,7 +33,11 @@ class Div extends Component {
                .catch( err => {throw err} );
            }
        });
+      
+       window.twemoji.parse(document.getElementById('root'));
   }
+  
+  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'));
   
   showBanner = () => this.setState({ render: true }); 
   hideBanner = () => this.setState({ render: false });

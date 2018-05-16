@@ -3,6 +3,9 @@ import {auth, provider} from './Firebase.js';
 import '../Styles/Login.css';
 
 class Login extends Component {  
+    
+  componentDidMount  = () => window.twemoji.parse(document.getElementById('root'));
+  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'));
 
   login = () => {
       auth.signInWithPopup(provider).then( result => this.setState({write: true, user: result.user}) ); 

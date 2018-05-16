@@ -63,6 +63,8 @@ class Post extends Component {
           // Look for related posts
           this.relatedContent();
           
+          window.twemoji.parse(document.getElementById('root'));
+          
       }
       catch(e){
           // Md content doesn't exist
@@ -71,6 +73,8 @@ class Post extends Component {
       
 
   }
+  
+  componentDidUpdate    = () => window.twemoji.parse(document.getElementById('root'));
   
   showBanner            = () => this.setState({render: true}); 
   hideBanner            = () => this.setState({render: false}); 
