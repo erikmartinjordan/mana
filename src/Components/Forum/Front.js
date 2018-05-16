@@ -6,7 +6,7 @@ import spanishStrings from 'react-timeago/lib/language-strings/es';
 import TimeAgo from 'react-timeago';
 import Likes from './Likes.js';
 import Login from '../Login.js';
-import Forum from '../../Styles/Forum.css';
+import '../../Styles/Forum.css';
 
 const formatter = buildFormatter(spanishStrings);
 
