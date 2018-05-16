@@ -4,8 +4,6 @@ import firebase, { auth } from './Firebase';
 import Default from './Default';
 import Login from './Login';
 import Data from '../Posts/_data';
-import Prism from 'prismjs';
-import 'prismjs/themes/prism-tomorrow.css';
 import '../Styles/Post.css';
 
 class Post extends Component {
@@ -74,7 +72,6 @@ class Post extends Component {
 
   }
   
-  componentDidUpdate    = () => Prism.highlightAll();
   showBanner            = () => this.setState({render: true}); 
   hideBanner            = () => this.setState({render: false}); 
   handleLikes           = () => firebase.database().ref('articles/' + this.props.match.params.string + '/likes/').transaction( value => value + 1 );

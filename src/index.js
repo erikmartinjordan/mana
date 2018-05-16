@@ -4,4 +4,4 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './Components/App';
 import './Styles/Index.css';
 
-ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
+ReactDOM.render( <BrowserRouter><App /></BrowserRouter>, document.getElementById('root') );
