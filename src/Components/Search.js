@@ -8,8 +8,7 @@ class Search extends Component {
       super();
       this.state = {
           invisible: false,
-          result: [],
-          show: true
+          result: []
       }
   }
       
@@ -37,15 +36,15 @@ class Search extends Component {
   }
   
   displayInvisible = () => this.setState({ invisible: true });
-  hideSearch = () => this.setState({ invisible: false, show: false });
+  hideInvisible    = () => this.setState({ invisible: false });
  
   render() {            
     return (
       <div className = 'Search'>
-            { this.state.invisible ? <div onClick = {this.hideSearch} className = 'Invisible'></div> : null}
+            { this.state.invisible ? <div onClick = {this.hideInvisible} className = 'Invisible'></div> : null}
             <div className = 'Search-Wrap'>
                 <input onClick = {this.displayInvisible} onChange = {this.handleSearch} placeholder = 'Buscar...'></input>
-                    { this.state.result.length > 0  && this.state.show
+                    { this.state.result.length > 0  && this.state.invisible
                     ? <div className = 'Results'><ul>{this.state.result}</ul></div>
                     : null
                     }
