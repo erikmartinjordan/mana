@@ -106,7 +106,7 @@ class Post extends Component {
                     <h1>{this.state.title ? this.state.title : null}</h1>
                     <div className = 'Infopost'>
                         <p className = 'Author'>
-                            <img src = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg'></img>
+                            <img id = 'Erik' src = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg'></img>
                             <span>Erik Martín Jordán,</span>
                             <span>{this.state.date  ? [' ' + this.state.date[1],' ',this.state.date[2]]  : null}</span>
                         </p>
