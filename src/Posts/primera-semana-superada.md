@@ -1,8 +1,7 @@
 La primera semana ha sido una auténtica inyección de nuevas experiencias, olores, sensaciones, sabores, vistas... Un cambio de escenario bestia, todavía me hallo en periodo de adaptación. Voy a intentar desgranar el día a día de un pobre desgraciado como un servidor.
 
 ![Khaosan por la noche](https://lh3.googleusercontent.com/ZnhuKxvEghYnoTsjqWu73OY4wEOguuBcwQ3Vkc_E2KbcgTGY-2ICl5yku1HJAjCO0URGT9N0zvGp3p2px5c9lUNtsAKWL8yD2Cy-jKy0yjxqYB-TIiemykK-cnS5_vNOknvW8AI0uUrtdbO-Ql9LVXrwZngRFxhjFcP1z9WjuHRYLh6xC0Tutrweej8Vq8XJgg9xh5eiOoIULt8BJ5au9faxV509-9dDX05ISDK_4eORo2ArziAwjkWC7NGNnC-UthTWB3o09vCNTrzPeG0YSujUkROajiQFSRvwDEptbmDENJRrjmIiqKa6GBD0Kz04XUePRZ3ZpVnJlNh-e_Z0QMpkUn2Mtj6tv4DMy66YBOMfG8m7BT9MDGyHyiSneo5sZfWKBVu_j_0E7cOUZAMPf7Jgmk3fx5XoHcm3qLBp4M96QmafNy-0lUytOQrNOKIqqY0Hr1DIvylttdqVq3x7VqEbytF_F9oyol64O8Gfz-JQ2UsgKsERr4nkoZCZeOZGbm7XEeU-P7Q-e3rZFuW3vQyNEEuhB01MerbNRKDA_9j_qHr2ooc0b-LzYkAuRIb_Oj78QAZHVxucXg5y5ze7-3HFLmvW5_vEuA8-0-VI10SpjaOolZkkS5VXIt7osAOS2_OzoT6-t5TuDnEAgZQRdWzqy9s2zv3pf0JoVPNf1vNnMdM=w800-no)
-
-###### Así es la zona de Khaosan por la noche.
+*Así es la zona de Khaosan por la noche*
 
 ## El alojamiento
 

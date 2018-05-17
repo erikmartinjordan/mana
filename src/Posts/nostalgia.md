@@ -1,5 +1,5 @@
 ![Cartel de bienvenida a Chiang Mai](https://lh3.googleusercontent.com/mW6mXmYldj9wJe_RPkBKls5kqoAmG6F860VYTT7F16pCLC2k8oA3mM9xPbJ_RK4kapm5TMjjL3vID3jMJInhJZINHdtXk7eM3MUKlMxIt4V4vFbS2VrN_cGy-_2ngP90vffpjtsC2vtAdFgTWnfuUi6K9KbFmezU7q9VbqeMsJPFkuDROjb8Gm9kTCnN59jsbdJBlzLLwfe4Yb3Ts_i1NvjkfXJf3FS7In0jOxU_Q2jVcuaOAZTTH1XTIBnNij6D1_j7KJgfv5F_cVhnRigOL0Qik8Pi-odye567r4MkUXqyccFDbZ-0JjKdS7dmNuk67us8pXvlCJcnqPHoydfvMfugx2ZuqQjDJg66oEU0lRDeRY6ZJQivSP_vPbErnRrI_XrdtAfpRFjynZ4bPYmza1U1TDhvbmoRIfWYtdQM8zvecENcUdktW4kC_KjTON641-LsiEyWWa2jDHbax-E3FIo4g1RtnEtOYguGGTwC7vtQU6ywF1Br0CgCj_hr5udl2RGW6jODiDRu61OozXByn4kPTPZPMido7uYlB5_37k21P2muDgLtTXEBoFb6-ewS7IZKDyjdibbQcx2LO0CPas8CfdkguhmUpjQdtcLdqEfGwBkVCeu57xs4e0cDEOJMGbH-hZkJ-RktPKKPlMxUnlpBIuyWOPWb7x2hStiZ40rkum0=w800-no)
-###### Cartel de bienvenida a Chiang Mai
+*Cartel de bienvenida a Chiang Mai*
 
 Ya he llegado a Chiang Mai después de un viaje de más de doce horas en tren, en el que he estado durmiendo toda la noche. Así que el viaje se me ha hecho corto. No obstante, ahora mismo tengo una sensación agridulce. Dulce por haber cambiado de ciudad y tener ganas de conocer nuevos lugares. Agria por [haberme despedido de Chiang Muhu](https://nomoresheet.es/culebron).
 

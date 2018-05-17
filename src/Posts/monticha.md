@@ -1,6 +1,6 @@
 
 ![Monticha](https://lh3.googleusercontent.com/KLEnj9sSP8DbCSBf-5teXcY5VhWvLCBZlpNOAcRoFssz-7XUPII0H2Fst2AFQOkG3ENw_yZb-HuA0ig7_rlhXdqovW_dQjNiNJW8kFBcrbfqGRyK9OCbwdQIub5iBA3EdZMEk1OCumzxt5qd-KHB3dufXM9nLUGvHnx8aiyNECa6yduS7U2nmoCLRNI-1gD6gmx_LvQGxXSOkLa7m5E1-WWp8GU5KmQKq2_BQhT7ABjqvW7hl4B0pNhnkp2sSttMe8_NobdOnkP_7yzly1nhMfzVmfuSOo8_OJ9O3zlmwnKj2VtjdsYNbOdsINWwctyGo_Kmwd4Bl587qgx2auSH--GtoDiXbQkBBOeZMKe41Z1NgxuP8jb6Drqne_YmDa8jvYSVYgQf-dzZH9dGhvzIhyIVfY-vBictoLOhpBhInGOoWtlt2buHMmTXk-AB7uTUQc75FBbYEAvMPzZapoIu1ZjFU6NRyFvOqQR3jM-271i4kVrubVgsQw3mw9ylOze1gNuLFiBEQ-lQOOtr2snvfNCYyTw6zjCwqFL47muixBpPH0J2vv_knBYwt36AbIRlv5cCex14ZjUvTq5sDz-5l_tW0PwGghjhTVxHNIjrdZd9ytdKZMBiSYSOlWmP6GOOBDRyYpuLISLXnXO42OP2eJZwK1IhScm2NLtn=w800-no)
-###### Monticha en Pai
+*Monticha en Pai*
 
 Monticha es una chica tailandesa que conocí en el hostal de Bangkok. Tiene la misma edad que yo y, casualmente, también nació en octubre. Nos llevamos pocos días, aunque ella al principio se pensaba que un servidor tenía treinta años. Cómo me jode eso. En fin... En el hostal de Bangkok era difícil encontrarse con ella porque salía todos los días de fiesta, sin excepción, y llegaba a altas horas de la madrugada. Es una chica extrovertida, siempre la verás hablando con alguien o iniciando una conversación preguntando aquello de: Where are you from?
 

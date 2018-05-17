@@ -1,5 +1,5 @@
 ![El río Pai](https://lh3.googleusercontent.com/7dO5-GLFCSELvpxFy69E2BqQDVk1BUkzOaNSOwUcYP4P3hnzRNJChcy_xdgb0MYaEDMI0Dr_XwHep-YaSxT5mpAbOmcubKGOnziTi9T4WzDyD65RZLynplkkzU7wQuSuljWUQbVIEqASMmj1pTlDcpIWxVJo42WtFFmwaEs-71CchfwU9v0gElF1YbPYrivHgeV-d9s_sjl8yX-dm_JlvtyEv09L82gwnV4c02jPYJ9fpWmWrjbqR-GQNhIkJN3hOVoqQNwVKXiiViUsggZOZxBgbhkZBHhb03xWZ5iIYD8X1ODEMgyHFHNGGMLg5qcxpZPe-aeetokwPfCju1QA9LB5tQPjrl3xCSQNyeGd4GvDhqLWn5Rw9DAsRcRYSJ1Zfail9JrJMKpk0CrxfmqVpviqe93EMZm265uBypKTdyUZNmSV6HMBYdGWfZxYoyzO9iQgi2Yu4wjSe7wMMiVg5XqczTIM1M-A5yPlvcBoAIEJEleyELQT_CFk7nkwTup6Bx2B3fuW7Wg0euam3oahSTutCOyU_RMQusOit-CximORYgyRMrIVKdzzLc4kdeJjeSxIzK61i8-qWtTKi1mZ-Hc1E6Cl-YqXGWGhSOLM2ctu3M3maUyncASntvSWW8LIWYV3HeSbnmMZMUkABbnuXnNuG1xkxQntGJGiKqdiKZAy4oY=w800-no)
-###### El río Pai
+*El río Pai*
 
 Ayer viajé desde Chiang Mai a Pai en un viaje que duró cerca de tres horas y recorriendo una travesía cargada de curvas. Nada más llegar a Pai, una ciudad que vive enfrascada entre montañas, tuve sensaciones diferentes a las que tuve al pisar Chiang Mai.
 
@@ -22,7 +22,7 @@ Hablé con la recepcionista del complejo hotelero. Le pregunté si disponían d
 
 
 ![Pai Country Hut](https://lh3.googleusercontent.com/EJVBlXqT8PL6Y1yxI63gybZ-C_2GfRKNZ0htOGrP2-BOU1WzyIwxByXZGmXp_Qh4VblISrTw1ac7HmvCTo_iZ-ktoOGxelrL-EiVZvO98iPekg-4MQX9C69jQVlofjBXQlDWOo1i3F-qLJBvIPtASXg63hajtjBzQIVwG9Zb3Voq9KnqVC5sWObRf3TajMN68riXk0is7pFU4T84IB60eqE74bNDYCRfwlKzFS4ifUG7_9MWjbzXQuYD4RoHYtKlj5fSCwOJNUMuBni7L11e1C6rmShW0U6HNp4446_oBAxDudiExK8kUta8CKe_Dev20fekXnhPXPdD4ff95RCZgbW8cvPcmGzvsPfDnm3JsP8salSxavjoYE9PZpIIDgjSX75E8EPYnBn-57Q9PwTH_TL8CXLC_sIVcL3iRLTBWzbOIRwoLqeUvioptswVAwFjWLqcs19YZw1djm_yXMSRK1puZX7cqiS1cdfiSAVk6Nc_HsWIhHvSpkNy3uLJAt782OQJH6h11-WPFL3oyzCzUhFmm1Zryh-uwZUdj8uc_wmkv_Imxhs2doS0ZKXjGF4txFdn0Q-YuuX2vj4SWJEgNGgbsp2yl5-kyvelnmgn6-w5MLJ41QlqsBE4_LBwirEsdwly6LPW4pg5KmlKia4hDJww55Fev8sdSpGHvt857rDdNps=w800)
-###### Pai Country Hut
+*Pai Country Hut*
 
 Tuve la intuición de que el interior de la casita no me decepcionaría. Y así fue. La casita tiene un porche a modo de terracita con una mesita y una hamaca. El porche da a un jardín compartido con el resto de casitas. En el interior, hay una cama de matrimonio protegida por una mosquitera y un espacioso cuarto de baño en un nivel inferior, bajando tres escalones. A mí me cautivó desde el minuto uno. Era justo lo que estaba buscando. Lástima que no tenga piscina porque entonces ya sería el lugar perfecto.
 

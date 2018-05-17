@@ -1,6 +1,6 @@
 
 ![Cafetería AIS C.A.M.P. en Chiang Mai](https://lh3.googleusercontent.com/cFl6v3vD2JcwTRQUTpYZ0kRDPWptvtu6RLon-NdaJE-kc7C2wTBBzQFIPrPyLYmPqVAYo4DtqbZ_9kAyEI4hr0puP8cEP1FMFCuwPFgjUiz9xcDH82NLoXe3bHQZxvhiE8ql6tBxvNFy2LgMUBXtjANnncnVLfC8qiR0dUxP8Y0n3-a80_IrNnikHMAqQa1QFgyo41aN9JAwf8pIeJfeVkep3Wu2Or5ak_Ny_lSlTGm1jU9VTYALNd0FWPn1pWqYM1WDG3CbdXKDFItTQu7mJu1earhjw1jsRM6wAkIXh1BRdMwL_zggEDgrTek419z9kQmhIhOCEk9DLfpEG2x-NE2S5IzliZ-oik7vlcQcL4grz6Eta4KSqhXU9G1sZI-cnqqxsDJEqQ-n0MdImJaIMNYjdXnxS3_vWAWbXVVCQI0I0XrrjSusbaerGdqUUAKypt3BruLzn5tlctwD6OaR7voGdHzuy9cCJDGBnaBgiP-YVofhAFHjg9H9o45F9hLugyssOhwauyBiZXjnzCZH4jTcxOoJHIZc1Xyc8wVC_jFB9ZNrJa3WXJLfymJhJQmOIgFv5TkKHCQvFS-rRnm4OpvQ9vSEE_ZE7RfKU9H-YRzaSMib4GvJeFO_tIl1r1TtYw3La49oye_TGYGZAIUbXnNR6ZaCihIwJA=w800-no)
-###### Cafetería AIS C.A.M.P.
+*Cafetería AIS C.A.M.P.*
 
 Todo el mundo explica que hay que vivir una temporada en Chiang Mai. Que es la cuna de los nómadas digitales y tal. Pero, ¿de verdad es todo como cuentan por ahí?
 
@@ -58,7 +58,7 @@ Se puede comer barato en todas ellas y son tranquilas. Se pueden aprovechar las 
 ### Falta de transporte público
 
 ![Cartel de un templo budista](https://lh3.googleusercontent.com/m2hVptYMa52jCg17s4pprnYRi8t4OMnQyGddZpjgUbim56QqBDNtPpnU9yzlOmdpiWdu2FOuMK-1KbLtcddjjgNhWb4J8FyXtEN5lSVHS--UTl30_7T07xGs7Vw2bEVYLOLwUhA5bd-EYAR4BUDENK3DbwXX4hT0fpJZnLh14Uuo0zvuySEz5Wqv0pZSs9Xtpv_KZ-jk7HELs2I8ln8rckIvCK1xwuAMRvXdCYyQLYLX5Bs5MupWt2OLmOnq7q7DmlMv3X2QOTaDx_3LyGD8QfC0ST8oH7nZrnBHhADyF9P5lCHQtC7lpM8mei8qNvX7XUs0bAprGGD0QDHel_Vu_3xHxsh0X8L666TA8VR7gUwQ88bUNitUFWUE3Z0Dp6sYHFnBM8iFKCa2fuHffdkdQn9mUE_48yTyctQomVdObjAGCwoOZrPqOqaoN0kXHf6U7FVvOxokEo7hEKCMUp3AwPffkJhBV0ZxHXaJfrOaj-xJBNcCWYMBsqks6UR6M190Xvc-y-xvoZzvT4YqKh30pEnts3l9LsqUCSxyyaXY27IYh-r0Sgpd4u7Ivu8fAHBfDUPSV-QT8SBydem91A7Q6fdzrS1BJS6FZsGdU_rZ-2zWdsng5liT3zi1aZEBYrcOxffXt4l72q0txi98If6yzrpaJIOMRYZWXFmHEvpKI_M=w800-no)
-###### Cartel de un templo budista: si no hay nada que te guste, te tiene que gustar lo que ya tienes.
+*Cartel de un templo budista: si no hay nada que te guste, te tiene que gustar lo que ya tienes*
 
 Una de las cosas que he echado en falta es el transporte público. Aunque por aquí circulan los camiones rojos que actúan como sucedáneo de los buses —songthaew—, no son iguales que los autobuses normales y corrientes. O que el BTS o MRT de Bangkok.
 

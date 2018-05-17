@@ -1,12 +1,11 @@
-
 ![Barca vacía en Penang](https://lh3.googleusercontent.com/ChEOU5P0x-IBeVIFLyP2AifMeWs2kQmtfKKSpNJs_8Hh8AN4-EeWiX_siRDdmFo60YsUbNHIkkRM6Dm1irRn1LSBepyYrmELVhZVJm8rOGOA8YIe_abH2j08m-MpuLIhkgaRLSw6wpqYdRYiHQ2tKwOtLMFkD07yywv3syxFWpqi1XbCs8MABDPj5NooOVFLVX5_t8Tm78HtenhoHeLrx1IZBXqbtetHWrq0jXaP55SKLc0yWPYTdhl34fk1aw7WhjmNtKKK6WitkrHtCKeo1sMMI3QXuaHSbAqNDWcbD-JhZkNNWPhpFe8dqvJPDWqHN2j2ljC1lsnN7_znQkPF8VBZWH9hEDyubHtirFmdOqF9yxr9jDAXRz7TbzqV-IEu0o6urz6CtMY8_SeqxTof94xBNjcFzuz0zkpGa3IOFRGeP0TNkZ9v_DNrshCqRFIIGi4pIVZmljEJSmncsVDTkDyUATCFHwnJV2Q49Y_crNTRbWRmOQvIWQjnzGQSQxb_BdsD14TxqrBjh3Bu6tumpep5HhXYKPmUeukkpgfpHoSXCmZ4NbOi5RvPLWrrf8pkrxQ4ubvjQNdGaSyTZZL6KIgmO3TV-04n9_czMfhKgXf__4DxngucsleeA5EXjW566EqqxH3NBCDQ_-o4TMookPbOAwgry3KqlH5l=w800-no)
-###### Barca vacía en el mar de Penang
+*Barca vacía en el mar de Penang*
 
 Estar lejos de casa, de la familia y de los amigos... A veces, todo se hace cuesta arriba. Uno se siente solo y empieza a echar de menos.
 
 Oh no, la nostalgia ya está aquí.
 
-## Nostalgia
+## Nostalgia
 
 Nostalgia es ese instante en el que todos permanecen callados dentro de un vehículo y empieza a sonar aquella canción melancólica. Nostalgia es apoyar la cabeza contra el cristal y quedarse hipnotizado por el paisaje, pensando en todos los momentos vividos. Nostalgia es echar de menos, es querer volver.
 

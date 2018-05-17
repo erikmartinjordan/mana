@@ -1,6 +1,5 @@
 ![Piscina de Pai](https://lh3.googleusercontent.com/GCvME_pOfSxZPjMGkPATfBA09wjKm8c5T_pWSt97m4QYH7jIBeu9aRPQtXAIeJ_tHSz9iof-YMpDCVSR55opsTSbjN0n8K67EXlLvtHYILtg0l08Tfo_nyAGfxhPag-eLk4la8qey-iFioHo72MVqlEzyHc3QEJykD_HgqOf3kTVM6uY4rLJKNNjWQQCIOHDsd84F9IZU01lyx0MGVRJH4KV4Zl6WJaNGtn_MzML7TQfv9iivmO8_qHtDjo5c4CvpBcJ2zhJAc4A85JWK35dwmAhBmPmXbrT4wFRDvnz_kbTW-CKJ9DpDbjbJBufCW_KAbCw5u9JfK1xO6aT2aFaKqSLFt-31yFSkGGImRVMOMcbDPGyiAvuhJNz1WIcGg5NXYTZldFr61-3A8HxZMxOLgdcJXWxwJIATPTPWvcsNBAhoxeDgxVzi_xvD22pWmYNrRkeotZAZ3ecBisIRaxT-Jiw5qq6n-Lv4DxZVI-5EF-VQyY0r3MSU2FTlasEpV65VToDDVEgMqdsXV7ZGn7xO7gmL46uvJgzQgzQTHakeElBvWvi2G7UqBzv-ekEE9bAfVoa-0GjaI1MZdu_cGWfIxX9NSid2cHQ4jzqfMPYioAsV4z03HKY2NvByj7sOhidPKbD2oR1cplNiiqfcaA_MEk23wtnehjHxz8KlIca823ahAQ=w800-no)
-
-###### Así luce la piscina de Pai
+*Así luce la piscina de Pai*
 
 Hoy le quiero dedicar la entrada a un fantástico lugar en Pai: Fluid Swimming Pool. La única y mejor piscina que tiene esta pequeña ciudad al norte de Tailandia.
 
@@ -8,7 +7,7 @@ Pero... ¿por qué mola tanto este sitio de Pai?
 
 Voy a analizarlo. Sonrisa de oreja a oreja.
 
-## ¿Cuánto cuesta la entrada a Pai Fluid Swimming Pool?
+## ¿Cuánto cuesta la entrada a Pai Fluid Swimming Pool?
 
 Por 60 bahts puedes pasar prácticamente todo el día fresquito, hasta que cierran el chiringuito a eso de las 18:00.
 

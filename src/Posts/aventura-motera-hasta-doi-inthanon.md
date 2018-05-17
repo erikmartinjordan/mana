@@ -5,7 +5,7 @@ Lo bueno es que además de sufragar el calor, la moto me da libertad de movimien
 Ayer me lié la manta a la cabeza y decidí ir más allá: visité el parque nacional de Doi Inthanon en moto, a unos 60 km de la ciudad de Chiang Mai.
 
 ![Moto Doi Inthanon](https://lh3.googleusercontent.com/keNnsJPzF9tz8XpErEpFFZ6xYRuIVaKOl2S7mVd2mFA8CwRPn2_fbUuElCj2oIrUuDpWgQV7sx8YcCorj59-fptYGXkMbu4iKnFCtYRupk-zfvNGvLkQVzbg--E2jcHUIFcU4xL_PsGK1hAzEkICVlLOuAFvZzbmK3hpi4QVmokJ3L-OkZzw1r8HrUvH8SO77CMSFR90JmEp7GqR-FGg0cQIemTeM6WXbBs-dBAIvhKNirbXrOwaLrQc77r3Qdhkm08useoSKrEdea0crWqc84COaJho0w1pzxAO0Y6gN8JZ6JQXB2Wtp0j2S19hli-5EwwlNWIzqqVhhr59Kogoxk4JkgfEJsNJ_V5b6__2scs2OBdInaZmsKFmMch3n6ns8rX9xlLJxvPSk9mALOX74-vf_eYfEytsLTCDPpI3F4XTE5KvsZmgOXJqyyB8pixnIzQwoXWBIgM9GvTdI4OtSpI-_toK-8Uq4WYxQUM-MTuXczm04jwxnBC-LvI05_Bm7u39eO9ogIREcGQ_MHaFD07-c5Az-XQEX6n_1T0lKzsFbugHc4beZfOmSKtsQQajCY_rNE0Qzo9HoaWB78IG-WLomQQyNnu02nxiP_XiJGrEt0PoxfdbSH1CzPd2gbEHSweradJEaeNyuKLYsoyvCtmu9zmskbOSS_QNMhGh_khk78E=w800-no)
-###### La motillo que alquilé para visitar Doi Inthanon
+*La motillo que alquilé para visitar Doi Inthanon*
 
 ## ¿Cómo llegar a Doi Inthanon en moto?
 
@@ -26,7 +26,7 @@ Sudando y en ayunas salí del hostal, con el gusano en la tripa recordándome qu
 ## ¿Cuánto cuesta la entrada al parque?
 
 ![Cascadas Doi Inthanon](https://lh3.googleusercontent.com/5bcT2s_cY6L0__51-yq2udJI-7XlDxBJIg8I6vk4u_rUHepRe6lmWXZM0z0H8zovTakTLr1WbScrSRnnGVGwMVkgmhVc4Ve35bLXp0as-V0fqW45Z_kiy9DHGjGpx_N-H10VZiLE_qebRhQceSuOAoqZM-TzQVn0-lbQlGn6HjPYts6m3scWNzZxak7n9XgpAn6XFkF4sXglnook7kEYkglo8HqrCc-A3XnzWlVe8SBYvkZn76SeZeSHJpv-sZ8_cwdfvM9ogwqOE5idQD8tBhSJiIYUJZ8or1F_ESUVanzmIFVHN-PwjR0_LBBqhlwhPOnBmP0yvTGX28rzPirMK-bAcESMQwUq9nyHvK0J0ukOBo_WRI4KxRFCXV4HyTymGk_mTk04Njs_1XaZyLnYaN8sqhw86Tmb-2p3gcxECjTz03A9oJFLvUUUrnnyGEukkPK1gO53RK-mwu8PPi5pOkpvM5ucWl3zkxXayGYgH47HVCNfENh_tXh3YL6y7zcTYEjL8myDmsTIUOa2UqRAMyOh_gqHToDjEVa0GD4eiq-7KDivVAdM87wdCrAbyGwQrQzzdjt_sVJOpYRoGbX1INmyxDpw1JFcAs4kq6j1f1RE_t04prLU-sIORzR8VG4z0Dy9nVdf0JuwkOOlWHkdQJA960436FcpZ20A52VZqoGPcfs=w800-no)
-###### Cascadas del parque Doi Inthanon y tailandés pegándose un baño
+*Cascadas del parque Doi Inthanon y tailandés pegándose un baño*
 
 Al llegar a Doi Inthanon me quité los sudorosos pantalones largos y la camisa, y me puse el bañador junto a una camiseta de manga corta. Pagué los 300 bahts que cuesta la entrada para extranjeros y entré en la primera de las cascadas: Mae Klang Waterfall.
 

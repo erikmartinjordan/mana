@@ -5,8 +5,7 @@ Como un pichón, he mordido el anzuelo y me han pescado como al más tonto de l
 Ojalá no te suceda lo mismo que a mí. O si ya es demasiado tarde, me gustaría compartir esa sensación de bobo que le invade a uno con este pequeño embuste.
 
 ![Tuk-tuk en Bangkok](https://lh3.googleusercontent.com/cGEXLG7HXcDfrAPPzsimCwUjylqQKUpx8WagSJ7bwGShPaMryGU5Q7n_qTR_SMzvmbTu2uBf8HwWNOz9wH60hwaYWruqEtXBl2Bx4PuiuXLC7-yp-p8fcWe6NFv6kAy928psP5VpuQQ14Ma5RQ29no1I-IKKM1xeTeXLK4e6hPqFJtrS1XwPaMDdSaq9nNKxi0HjO9JcbQZci0vBUEzTvTK9I-82WkMPe6YHPMnvNctw2RgYQtNYLvBJMC2QMNpdsfW_bqj3-1JaolBMkXamlA3VsA28WMmCJGhScX0C2XsxM-0rKXvPuRRj1ZRE3pRJPdLbFZmv4Wf9Ot8fb5_uegLcvDSVEnMC6gPei0GYUGVB7Qm_J8lPtls9wE7Ds9tOVX529gJnbGHgnS_Zg7T0nyBQJIAwION9p4xXarJHygopqvpbkjVisxAgk2VGa_cKE8JJ36Fu4t95QKlc7Agg4-os0H7p7_EJAcQjdqCcGtVa6UQopYu0Qv14ZvD9IOyAaJ-s32XNxAiYuhLUNvB7DslqyLi11HqgSF8T13kGBiqjqXnjRln2TbUMFpGixyytgJ195oyJualx4dZXbIUnD7ZjBjS6XMpRq3rqA_3VhS_0qtmd8NyGqPl25LGRBQ0uDV1ZzAtHOAR37rSNK0KHFqcRLuMXpHJeMiyfxQA9KfucX1w=w364-h477-no)
-
-###### Así es un tuk-tuk.
+*Así es un tuk-tuk*
 
 ## ¿Cómo empieza el engaño del tuk-tuk?
 

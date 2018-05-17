@@ -6,9 +6,9 @@ Y es que a pesar de que las cascadas de Erawan se encuentran en la provincia de 
 
 
 ![Cascadas de Erawan](https://lh3.googleusercontent.com/DXs1KcFgEWDfc5JqRcioriQzi43CMSWYt9jENh8CeTGgoPXyBLrE94HIIoTEme4i4blTPFwoNo3MwiC-C84u7G2qdPn5Uonhwp3czy0tVtokFbYMC-Wtq3jiopcRVsML2nqxX99pNgzqAaGcMaVJmSETMdf6ewqZILjET-u4SkW6pXyg728Ex97UCLLxHI4iRpxW2FO1_BagoNql_ntvQ61phuFo4RsvW4eyiEf-VA_bWm-czW6WWspEtgYw7l8XEh_zaTZpOriNwRrUOeTlJ94TY7-kUhm64b68SwmgAbD5BeFxwKmfoWmUSjOj6VvIvKJUmXM5K2qH5Ku-FD_ZtqtjuL0x1vjHjYUJTeS_IHic_uY_3hy5gGDMZmvna2OmF54Ed2ArQ49kyezWaQyS1-ceI89UT07b_t5TNVfDItMzzvr_VXMTM5zmZheDKzPW024ToKNID2-0FE5Yx-H74PaBK0WH1SqwOQA7iZ2H2bf4E7MfG1zd77q0IaYjDfOLCkZg2THjmKdOqFlBSxPz3uvw5RmcIctzlVNmVNPZviOZUIZCRN1600B-S-OjMbuDbTeuzZ3K2aHv22WLvnwEuQATB4BuEz29WaAYUdg4GpQ19J8Gt7_qWJwiUZL9oF5RsYt9XffkFKrOfb_D-VnuTpYjms3MSi5Cj7EImpIKYxXdYA0=w800-no)
-###### Cascadas de Erawan
+*Cascadas de Erawan*
 
-## La casa de Suphanburi
+## La casa de Suphanburi
 
 Da la casualidad, de que el novio de la mejor amiga de Chiang Muhu tiene una casa en Suphanburi, una provincia cercana a las cascadas de Erawan.
 
@@ -39,8 +39,7 @@ Bueno, fuera coñas. Gracias a estos momentos de endurecimiento, aprecio mil vec
 ## La bondad de la familia tailandesa
 
 ![Familia tailandesa](https://lh3.googleusercontent.com/5jARLWisepRkTnrSTnPtOlRfB9MAHSdVElxy0tYswPcJLc9V5yxpD87zPidj6N-e-zSj9c0fpTtE6w93BaSxA13BicoG44C6ALpeXa4XhNLL1J7aOUezVEp-hJzPy60-38rQ4BsSLXXtWAfdFsaiz7iDmG3BpPEq9MjVWaLMtB3sbQWiKixA-mXNegJs3Bo6Z0yztCcq42Y4kvfuuHbuTIosMLDwC9DOeIWx3NUW6urLvcjppNOXZlEhfs0Oa27fHeLdNgTqr4wwnX4MSSfwjyuoy2hv9w8ml5gKQGCXCCpFjLZcTh2mNyV3K3ZFBmDHdRcrBl6unsFV39GflAOh5QTULMPsGKm88pWsMuvVQW3WEjASzjNz1GPphGKRCWCXz9MrszoMiL7HmC7U898udDrTdAuZV3JeNstbENRFDbVhP_Fwws3iYL0FFopglNmhVYkWt3vltdAxTAkIhN9pzZWY1B0vKm_VUAUstsjbCFIy1GqI97C40qaimJZ2lXvbcWf5hPDrMXaKVVss-nzwT6DMyRsiV0g6pi2P4PdPpQygVNgO1Jo8CdPEotwmqAhl6Wkk9Z1NN4bbo4W3DqWKp3xKOvxDycFcw0D27EvumPKQbbfGzbwLokCw17Av2xFMGWno1jsvOXhgcAWYvu_jm4cG68tTtm9QP75SkAar9g3egkc=w800-no)
-
-###### Toda la familia en las cascadas de Erawan
+*Toda la familia en las cascadas de Erawan*
 
 Al día siguiente de la llegada a Suphanburi tocó madrugar. Al despertarnos, la familia del chico nos había preparado el desayuno. Volví a flipar. ¡El desayuno era igual que la cena!
 

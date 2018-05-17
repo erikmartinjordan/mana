@@ -1,6 +1,5 @@
-![Casa de madera en Laos](https://lh3.googleusercontent.com/pnZVKXaRxkVQOBb1DnBfUZN0uP33Tpwjab2J5ee2Zojo7DKAgEwhyelbCRC-RM_FfTOUfSsKiD775p6jMWV4CMHKz1X8s1K8LQyCMyinwduI_50kw2crA1NKBGDwJQE-cNTjQjHJwfijPxxaVmx0d4QCAUXqMXvh6dtCM9ugrB-VOADN_xoBd6MuzKUZA786f7WgAsx4g1j-EoB-eEF-GmrsWUM-xQRKMAFPmRKw_uFHrp9DN5xx8h0iZPwnQful-y7RKaVoOupZAC6CfwC2xHZ_LixWzrJQ7aVhSnJIArl-pKmsB_x7b4AOyL0CY5wY_UlUo7u7Jk0HQoBdVL1xfjkacJTLEz5TKyEGnDBRH-N8k9SQiD8638MKRyIan4G3mqoDhgSrsEJvhqVmwoKygAczTxWNsUt7qSPocFoEEgBvmDmoY1haTsJXjFPZJZreqLxZfXqX395CNYta3oKu3g0jBPPoaB-yUrFY01BuNTpCF1nvC615Z7cvsKMpqNlCgtThkswKLE-eAw4nxC2G1Dg8WYABInFnZx9y0oHjOu_AJIjQHlnsknp7Fg2C2fpoOURtvE11Fqpc0fkbF2niK5N6L5maQo8dJE3Ir3jX28tDpwkxeszBme9bd5TMHfiaLNrSLiD5PpHRzbbsP-DXyjkCdyu7PwXXUS8IuVfE5xWxD3Q=w800-n)
-
-###### Casa de madera en Laos
+![Casa de madera en Laos](https://lh3.googleusercontent.com/pnZVKXaRxkVQOBb1DnBfUZN0uP33Tpwjab2J5ee2Zojo7DKAgEwhyelbCRC-RM_FfTOUfSsKiD775p6jMWV4CMHKz1X8s1K8LQyCMyinwduI_50kw2crA1NKBGDwJQE-cNTjQjHJwfijPxxaVmx0d4QCAUXqMXvh6dtCM9ugrB-VOADN_xoBd6MuzKUZA786f7WgAsx4g1j-EoB-eEF-GmrsWUM-xQRKMAFPmRKw_uFHrp9DN5xx8h0iZPwnQful-y7RKaVoOupZAC6CfwC2xHZ_LixWzrJQ7aVhSnJIArl-pKmsB_x7b4AOyL0CY5wY_UlUo7u7Jk0HQoBdVL1xfjkacJTLEz5TKyEGnDBRH-N8k9SQiD8638MKRyIan4G3mqoDhgSrsEJvhqVmwoKygAczTxWNsUt7qSPocFoEEgBvmDmoY1haTsJXjFPZJZreqLxZfXqX395CNYta3oKu3g0jBPPoaB-yUrFY01BuNTpCF1nvC615Z7cvsKMpqNlCgtThkswKLE-eAw4nxC2G1Dg8WYABInFnZx9y0oHjOu_AJIjQHlnsknp7Fg2C2fpoOURtvE11Fqpc0fkbF2niK5N6L5maQo8dJE3Ir3jX28tDpwkxeszBme9bd5TMHfiaLNrSLiD5PpHRzbbsP-DXyjkCdyu7PwXXUS8IuVfE5xWxD3Q=w800)
+*Casa de madera en Laos*
 
 Esta mañana, a eso de las diez y media apartaba la mosquitera de mi cama y dirigía mi mirada a través de la puerta de la habitación. Nublado. Otra vez. Maldita temporada de lluvias. Lo bueno, los precios de los alojamientos.
 
@@ -77,6 +76,3 @@ La recepcionista tiene razón. Es cierto que en Laos todo es importado. Esto sig
 Y además, la calidad de los servicios es malísima comparada con Tailandia o Malasia (ya ni hablemos de Europa). La comida es mala. Las carreteras son penosas. Los hostales son lamentables. Quizá haya tenido mala suerte y haya encadenado una mala racha de hostales, restaurantes, lavanderías (en Laos ha sido el único sitio donde, al hacer la colada, me han entregado la ropa en una bolsa de basura, teñida de otros colores, agujereada y, para colmo, he tenido que identificar mis prendas entre la ropa de otros clientes...).
 
 En fin... Laos es un país precioso, con parajes naturales impresionantes. No lo niego. Sin embargo, la impresión general que me estoy llevando estos días es parecida a la que dicta un grafiti que vi en Vang Vieng: «Turistas, volved a casa».
-
-
-Grafiti que encontré en Vang Vieng.

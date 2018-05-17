@@ -37,7 +37,7 @@ Es el acabose. Quedan pocas fuerzas. Te apetece pasar más tiempo con esa chica 
 
 *Spoiler*: Vuelves a casa.
 
-##Lo divertido sucede al recordar
+## Lo divertido sucede al recordar
 
 Siempre le digo a Vaisent que las aventuras tienen su gracia en el momento que se recuerdan. Cuando estuvimos de Erasmus en Kaiserslautern, nada tenía de emocionante mientras lo vivíamos en directo.
 
