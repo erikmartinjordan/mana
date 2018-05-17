@@ -37,3 +37,8 @@
 .Perfil .Datos span.Alert{
     background: var(--lightGray);
 }
+@media (max-width: 768px){
+   .Perfil{
+        padding: 20px;
+    }
+}

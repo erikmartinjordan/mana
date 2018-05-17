@@ -22,9 +22,16 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 @media (max-width: 768px){
    .Blog{
         padding: 20px;
-    } 
+    }
+    .Blog article{
+        flex-direction: column;
+    }
+    .Blog article a{
+        text-align: center;
+    }
 }

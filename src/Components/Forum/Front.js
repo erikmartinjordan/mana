@@ -17,13 +17,14 @@ class Front extends Component {
         super();
         this.state = {
             admin: false,
-            alert: null,
+            alert: '',
             chat: '',
             message: '',
             nomore: null,
             numposts: 10,
             ready: false,
             render: false,
+            send: false,
             title: '',
             user: null,
             write: false,
@@ -129,9 +130,14 @@ class Front extends Component {
                         timeStamp: Date.now(),
                     });
                     
+                    // Remove current alerts
                     this.setState({
-                        alert: null
-                    })
+                        alert: null,
+                        send: true
+                    });
+                    
+                    // Notification off after 5 secs 
+                    setTimeout( () => this.setState({ send: false}), 2000 );
                 }
                 else{
                         this.setState({
@@ -160,7 +166,7 @@ class Front extends Component {
         
   //-------------------------------------------------------------
   //
-  // admin deletes a post
+  // list of items
   //
   //------------------------------------------------------------- 
   listItems = () => {
@@ -267,6 +273,13 @@ class Front extends Component {
         : <div style = {{textAlign: 'center'}}>
             <div>Accede para comentar, votar o responder. 🙏 🤗</div>
           </div>
+        }
+         
+        { this.state.send === true 
+        ? <div className = 'Send'>
+            <span>👍 Enviado</span>
+          </div> 
+        : null 
         }
 
         <ul className = 'Front'>

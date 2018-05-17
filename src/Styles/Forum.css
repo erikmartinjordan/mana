@@ -199,6 +199,31 @@
 .Forum .roll-wrap span{
     line-height: 1.5;
 }
+.Forum span.alert{
+    background: var(--darkGray);
+    border-radius: 5px;
+    color: white;
+    display: block;
+    margin: auto;
+    padding: 10px;
+}
+.Forum .Send{
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+}
+.Forum .Send span{
+    background: var(--darkGray);
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+}
 /*******************************************************************/
 /*Detail
 /*******************************************************************/

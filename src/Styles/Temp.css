@@ -122,3 +122,15 @@
     flex: 2;
     text-align: right;
 }
+@media (max-width: 768px){
+   .Temp{
+        padding: 20px;
+    }
+    .Temp .Temp__avg{
+        font-size: xx-small;
+        overflow-x: scroll;
+    }
+    .Temp .Mejor__epc{
+        font-size: small;
+    }
+}

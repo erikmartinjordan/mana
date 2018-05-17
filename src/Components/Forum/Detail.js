@@ -315,12 +315,21 @@ class Detail extends Component {
                         
     return (
       <div className = 'Forum'>
-        {this.state.send === true ? <span className = "send">Enviado</span> : null }
+        
+        { this.state.send === true 
+        ? <div className = 'Send'>
+            <span>👍 Enviado</span>
+          </div> 
+        : null 
+        }
+        
         {this.listTitle()}   
         {this.listContent()}
+            
         <ul className="replies">
             {this.state.ready ? this.listItems() : "Cargando..."}
         </ul>
+            
         {this.state.user && !this.state.empty ?  this.newReply() : null}                               
         {this.state.user || !this.state.ready ||this.state.empty ? null: <button className="bottom" onClick={this.showBanner}>Responder</button>}
          

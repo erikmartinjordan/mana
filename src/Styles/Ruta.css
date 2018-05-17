@@ -79,3 +79,8 @@
 .Ruta tr.Recorrido:nth-child(4n + 4) .Num{
     background: var(--pastelYellow);
 }
+@media (max-width: 768px){
+   .Ruta{
+        padding: 20px;
+    }
+}

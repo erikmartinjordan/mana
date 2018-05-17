@@ -26,3 +26,8 @@
     background: var(--lightGray);
     border-radius: 5px;
 }
+@media (max-width: 768px){
+   .Divisa{
+        padding: 20px;
+    }
+}
