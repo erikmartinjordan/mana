@@ -22,7 +22,6 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
 }
 @media (max-width: 768px){
    .Blog{
@@ -30,6 +29,7 @@
     }
     .Blog article{
         flex-direction: column;
+        margin-bottom: 10px;
     }
     .Blog article a{
         text-align: center;
