@@ -91,7 +91,7 @@ class Post extends Component {
       array = Object.keys(Data);
       random = Math.floor(Math.random() * (array.length - 3));
       slice = array.slice(random, random + 3);
-      res = slice.map( value => <div><a href = {value}>{Data[value].title}</a></div> );
+      res = slice.map( value => <div><a href = {'/' + value}>{Data[value].title}</a></div> );
                       
       this.setState({ relatedContent: res });
         
