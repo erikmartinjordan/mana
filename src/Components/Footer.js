@@ -43,7 +43,7 @@ class Footer extends Component {
     return (
       <div className = 'Footer'>
         <div className = 'Wrap'>
-            <p>© 2015 — {this.state.year}, <span className = 'Logo'>Nomoresheet</span> por <a href = 'https://twitter.com/ErikMarJor' className = 'Twitter'>@ErikMarJor</a></p>
+            <p>2015 — {this.state.year}, <span className = 'Logo'>Nomoresheet</span> por <a href = 'https://twitter.com/ErikMarJor' className = 'Twitter'>@ErikMarJor</a></p>
             <p>Que tengas un buen {this.state.message}</p>
         </div>
       </div>
