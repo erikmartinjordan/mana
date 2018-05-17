@@ -173,6 +173,9 @@
     margin: auto;
     max-width: 600px;
 }
+.Forum .Emoji-Grid{
+    min-height: 32px;
+}
 .Forum .User-Wrap{
     align-items: center;
     display: flex;

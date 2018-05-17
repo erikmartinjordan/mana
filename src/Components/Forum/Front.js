@@ -87,7 +87,7 @@ class Front extends Component {
   //
   //-------------------------------------------------------------   
   handleTitle = (e)       => this.setState({ title:   e.target.value});
-  handleMessage = (text)  => {this.setState({ message: text}); console.log(text); }
+  handleMessage = (text)  => this.setState({ message: text});
   handleImageChange = (e) => {
     e.preventDefault();
       

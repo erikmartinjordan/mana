@@ -45,12 +45,10 @@ class EmojiTextarea extends Component {
       this.props.handleChange(text);        
   }
   handleEmoji = (e) => {
-      
-      e.stopPropagation();
-      let text = this.state.comment + e.target.id;      
+            
+      let text = this.state.comment + e.currentTarget.id;      
       this.setState({ comment: text });
       this.props.handleChange(text);
-      
   }
     
   render() {                      
@@ -59,12 +57,9 @@ class EmojiTextarea extends Component {
       <div className='Emoji-Textarea'>
         <textarea onChange = {this.handleText} value = {this.state.comment} placeholder = 'Mensaje...' maxLength = '560' ></textarea>
         <div className = 'Emoji'>
-            { this.state.showEmojis
-            ? <div className = 'Emoji-Grid'> 
-                {this.state.emojis} 
-              </div>
-            : null
-            }
+            <div className = 'Emoji-Grid'> 
+                { this.state.showEmojis  ? this.state.emojis : null }
+            </div>
         </div>
       </div>
     );
