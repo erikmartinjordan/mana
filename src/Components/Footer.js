@@ -33,11 +33,11 @@ class Footer extends Component {
       
       this.setState({ message: day + ' ' + icon});
       
-      window.twemoji.parse(document.getElementById('root'));
+      window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
             
   }
   
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'));
+  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
     
   render() {       
     return (

@@ -58,10 +58,10 @@ class Blog extends Component {
       document.title = 'Blog - Nomoresheet'; 
       document.querySelector('meta[name="description"]').content = 'En la actualidad, el blog contiene' + {length} + ' artículos...'; 
       
-      window.twemoji.parse(document.getElementById('root'));
+      window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
   }
   
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'));
+  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
             
   render() {        
                                                     

@@ -6,6 +6,7 @@ import spanishStrings from 'react-timeago/lib/language-strings/es';
 import TimeAgo from 'react-timeago';
 import Likes from './Likes.js';
 import Login from '../Login.js';
+import EmojiTextarea from './EmojiTextarea';
 import '../../Styles/Forum.css';
 
 const formatter = buildFormatter(spanishStrings);
@@ -76,17 +77,17 @@ class Front extends Component {
     document.title = 'Nomoresheet'; 
     document.querySelector('meta[name="description"]').content = 'Comunidad de Tailandia'; 
       
-    window.twemoji.parse(document.getElementById('root'));
+    window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
       
   }
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'));
+  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
   //-------------------------------------------------------------
   //
   // Handle elements
   //
   //-------------------------------------------------------------   
-  handleTitle = (e)       => this.setState({title:   e.target.value});
-  handleMessage = (e)     => this.setState({message: e.target.value}); 
+  handleTitle = (e)       => this.setState({ title:   e.target.value});
+  handleMessage = (text)  => this.setState({ message: text});
   handleImageChange = (e) => {
     e.preventDefault();
       
@@ -175,16 +176,16 @@ class Front extends Component {
     var list = array.map( (line, key) =>   
         [<Link to = {'/comunidad/post/' + line.key}>
             <li className='roll' key = {key}>
-                {key === 0 
+                { key === 0 
                 ? <div className = 'featured' style = {{background: 'url(' + line.featuredImageUrl + ')', backgroundSize: 'cover', height: '300px', backgroundPosition: 'bottom'}}>
                         <span className = 'title'><div>{line.title}</div></span>
                   </div>
                 : null
                 }
                 <div className = 'roll-wrap'>
-                    {key === 0 
-                    ?   null
-                    :   <span>{line.title}</span>
+                    { key === 0 
+                    ? null
+                    : <span>{line.title}</span>
                     }
                     <div className = 'Infopost-Meta-Post'>
                         <div className = 'infopost'>
@@ -233,8 +234,9 @@ class Front extends Component {
                 }
                 <button>Subir foto</button> 
             </div>
-            <input    onChange = {this.handleTitle} className='title' placeholder = 'Título...' maxLength = '50'></input>
-            <textarea onChange = {this.handleMessage} className = 'message' placeholder = 'Mensaje...' maxLength = '560'></textarea>
+            <input onChange = {this.handleTitle} className='title' placeholder = 'Título...' maxLength = '50'></input>
+            <EmojiTextarea handleChange = {this.handleMessage} ></EmojiTextarea>
+         
             <button className = 'bottom'>Enviar</button>
         </form>;
 

@@ -45,11 +45,11 @@ class Calc extends Component {
 
       });
       
-      window.twemoji.parse(document.getElementById('root'));
+      window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
        
   }
   
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'));
+  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
    
   showBanner     = ()  => this.setState({ render: true }); 
   hideBanner     = ()  => this.setState({ render: false });

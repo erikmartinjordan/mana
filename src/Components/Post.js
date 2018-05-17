@@ -63,7 +63,7 @@ class Post extends Component {
           // Look for related posts
           this.relatedContent();
           
-          window.twemoji.parse(document.getElementById('root'));
+          window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
           
       }
       catch(e){
@@ -74,7 +74,7 @@ class Post extends Component {
 
   }
   
-  componentDidUpdate    = () => window.twemoji.parse(document.getElementById('root'));
+  componentDidUpdate    = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
   
   showBanner            = () => this.setState({render: true}); 
   hideBanner            = () => this.setState({render: false}); 

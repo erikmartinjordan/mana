@@ -4,8 +4,8 @@ import '../Styles/Login.css';
 
 class Login extends Component {  
     
-  componentDidMount  = () => window.twemoji.parse(document.getElementById('root'));
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'));
+  componentDidMount  = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
+  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
 
   login = () => {
       auth.signInWithPopup(provider).then( result => this.setState({write: true, user: result.user}) ); 

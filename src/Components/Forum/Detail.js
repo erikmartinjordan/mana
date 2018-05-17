@@ -115,11 +115,11 @@ class Detail extends Component {
       //--------------------------------------------------------------/ 
       firebase.database().ref('users/').once('value').then( snapshot => this.setState({verified: snapshot.val()}) );
       
-      window.twemoji.parse(document.getElementById('root'));
+      window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
                 
   }  
   
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'));
+  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
                                   
   /*******************************************************************/
   //handleReply

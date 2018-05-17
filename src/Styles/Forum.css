@@ -147,7 +147,7 @@
     top: 0;
     width: 100%;
 }
-.Forum input.title{
+.Forum input{
     border: none;
     border-radius: 5px;
     display: block;
@@ -158,7 +158,7 @@
     padding: 20px;
     width: 100%;
 }
-.Forum textarea.message{
+.Forum textarea{
     border: none;
     border-radius: 5px;
     display: block;
@@ -168,6 +168,10 @@
     max-width: 600px;
     padding: 20px;
     width: 100%;
+}
+.Forum .Emoji{
+    margin: auto;
+    max-width: 600px;
 }
 .Forum .User-Wrap{
     align-items: center;

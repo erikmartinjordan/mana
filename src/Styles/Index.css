@@ -90,6 +90,7 @@ button.delete{
     margin-top: 20px;
 }
 img.emoji {
+   border-radius: 0!important;
    height: 1em!important;
    width: 1em!important;
    margin: 0 .05em 0 .1em!important;
