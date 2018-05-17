@@ -27,10 +27,13 @@ class EmojiTextarea extends Component {
           let emojis__texting = Emojis.filter( emoji => ( emoji.tags_ES.indexOf(last__word) !== -1 ));
           
           // Get all emojis
-          let emojis = emojis__texting.map( (value, key) => <span key = {key} id = {value.symbol} onClick = {this.handleEmoji}>{value.symbol}</span> );   
+          let emojis = emojis__texting.map( (value, key) => <span key = {key} id = {value.symbol} onClick = {this.handleEmoji}>{value.symbol}</span> ); 
+                                           
+          // Filter first 10 emojis
+          let split__emojis = emojis.slice(0, 10); 
           
           this.setState({ 
-            emojis: emojis
+            emojis: split__emojis
           }); 
           
       }
@@ -43,7 +46,8 @@ class EmojiTextarea extends Component {
   }
   handleEmoji = (e) => {
       
-      let text = this.state.comment + e.target.id;
+      e.stopPropagation();
+      let text = this.state.comment + e.target.id;      
       this.setState({ comment: text });
       this.props.handleChange(text);
       
@@ -55,9 +59,12 @@ class EmojiTextarea extends Component {
       <div className='Emoji-Textarea'>
         <textarea onChange = {this.handleText} value = {this.state.comment} placeholder = 'Mensaje...' maxLength = '560' ></textarea>
         <div className = 'Emoji'>
-            <div className = 'Emoji-Grid'> 
+            { this.state.showEmojis
+            ? <div className = 'Emoji-Grid'> 
                 {this.state.emojis} 
-            </div>
+              </div>
+            : null
+            }
         </div>
       </div>
     );

@@ -8,6 +8,7 @@ import Linkify from 'react-linkify';
 import Likes from './Likes.js';
 import LikesComments from './LikesComments.js';
 import Login from '../Login.js';
+import EmojiTextarea from './EmojiTextarea';
 
 const formatter = buildFormatter(spanishStrings);
 
@@ -124,7 +125,7 @@ class Detail extends Component {
   /*******************************************************************/
   //handleReply
   /*******************************************************************/
-  handleReply = (e) => this.setState({reply: e.target.value});
+  handleReply = (text)  => this.setState({ reply: text});
     
   /*******************************************************************/
   //handleSubmit
@@ -296,7 +297,7 @@ class Detail extends Component {
                     <div className="title">
                         <h2>Escribe tu respuesta</h2>
                     </div>
-                    <textarea onChange={this.handleReply} className="message" maxLength="560" value = {this.state.reply} ></textarea>
+                    <EmojiTextarea handleChange = {this.handleReply} ></EmojiTextarea>
                     <button className="bottom">Enviar</button>
                 </form>;
             

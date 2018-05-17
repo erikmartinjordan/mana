@@ -87,7 +87,7 @@ class Front extends Component {
   //
   //-------------------------------------------------------------   
   handleTitle = (e)       => this.setState({ title:   e.target.value});
-  handleMessage = (text)  => this.setState({ message: text});
+  handleMessage = (text)  => {this.setState({ message: text}); console.log(text); }
   handleImageChange = (e) => {
     e.preventDefault();
       
@@ -193,7 +193,7 @@ class Front extends Component {
                             <p>{line.userName}, <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
                         </div>
                         <div className = 'Meta-Post'>
-                            <div classname = 'Likes'><Likes user = {this.state.user} post = {line.key}></Likes></div>
+                            <div className = 'Likes'><Likes user = {this.state.user} post = {line.key}></Likes></div>
                             <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
                             <div className = 'Views'>✨ {line.views} visitas</div>
                         </div>
