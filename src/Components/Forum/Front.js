@@ -248,7 +248,18 @@ class Front extends Component {
   // loading blocks, fancy effect
   //
   //------------------------------------------------------------- 
-  loading = () => <div><div className='bloque-100'></div><div className='bloque-90'></div><div className='bloque-80'></div></div>
+  loading = () =>{ return <div>
+                            <div className = 'loading' style = {{background: 'gray'}}></div>
+                            <div className = 'loading' style = {{background: 'gray'}}></div>
+                            <div className = 'loading' style = {{background: 'gray'}}></div>
+                            <div className = 'loading' style = {{background: 'gray'}}></div>
+                            <div className = 'loading' style = {{background: 'gray'}}></div>
+                            <div className = 'loading' style = {{background: 'gray'}}></div>
+                            <div className = 'loading' style = {{background: 'gray'}}></div>
+                            <div className = 'loading' style = {{background: 'gray'}}></div>
+                            <div className = 'loading' style = {{background: 'gray'}}></div>
+                            <div className = 'loading' style = {{background: 'gray'}}></div>
+                          </div> }
       
   //-------------------------------------------------------------
   //

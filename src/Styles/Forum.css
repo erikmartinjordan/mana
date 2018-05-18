@@ -231,6 +231,18 @@
     color: white;
     padding: 10px 20px;
 }
+.Forum .loading{
+    border-radius: 5px;
+    height: 300px;
+    margin: auto;
+    margin-bottom: 10px;
+    max-width: 600px;
+}
+.Forum .loading:first-child{
+    height: 400px;
+    max-width: 100%;
+    width: 100%;
+}
 /*******************************************************************/
 /*Detail
 /*******************************************************************/
