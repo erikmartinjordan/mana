@@ -83,7 +83,7 @@ Le he dicho que, por favor, me llevase al siguiente sitio de la visita y entonce
 
 La supuesta oficina de turismo era un lugar totalmente decadente con una política agresiva de venta.
 
-## ¿Cómo termina la historia?
+## ¿Cómo termina la historia?
 
 Después de salir de ahí, lo del conductor del tuk-tuk ha sido de traca. Ha hablado tres segundos en tailandés con la mujer que me había atendido, por lo que yo no me he enterado absolutamente de nada. Después de este otro momentazo, el tipo, aún más arisco, me comenta que tiene que recoger el tique de la gasolina que le paga el gobierno y que me deja en una tienda de trajes mientras hace el recado.
 
