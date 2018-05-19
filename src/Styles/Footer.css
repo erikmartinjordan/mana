@@ -18,7 +18,7 @@
 }
 .Footer .Wrap span.Logo{
     font-family: 'Gentium Book Basic', serif;
-    letter-spacing: 1px;
+    letter-spacing: 0.05em;
 }
 .Footer .Wrap a.Twitter{
     background: var(--blue);

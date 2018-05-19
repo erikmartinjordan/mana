@@ -17,7 +17,7 @@
     font-family: 'Gentium Book Basic', serif;
     font-size: 20px;
     font-weight: bold;
-    letter-spacing: 1px;
+    letter-spacing: 0.05em;
 }
 .Nav .Title-Mobile{
     display: none;
@@ -40,6 +40,10 @@
     width: 20px;
 }
 .Nav .Search{
+    align-items: center;
+    display: flex;
+}
+.Nav .Search-Wrap {
     align-items: center;
     display: flex;
 }
