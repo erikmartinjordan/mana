@@ -43,14 +43,11 @@
     align-items: center;
     display: flex;
 }
-.Nav .Search-Wrap {
-    align-items: center;
-    display: flex;
-}
 .Nav .Search input{
     background: var(--mediumGray);
     border: none;
     border-radius: 3px;
+    display: block;
     padding: 5px;
     width: 200px;
 }
