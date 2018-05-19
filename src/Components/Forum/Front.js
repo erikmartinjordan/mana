@@ -114,11 +114,29 @@ class Front extends Component {
                 var capture = snapshot.val();
 
                 if(capture == null || Date.now() - capture.timeStamp > 86400000){
-           
+                    
+                    // Background array urls
+                    var featured;
+                    var backg = [
+                                'https://images.unsplash.com/photo-1503933166348-a1a86c17b3a0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=625fe6fd55bfcc756490582ae368b210&auto=format&fit=crop&w=1050&q=80',
+                                'https://images.unsplash.com/photo-1523613002-bbcd22be7f02?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=31e5b6b81b6491708f6d2285ec50a1b8&auto=format&fit=crop&w=1052&q=80',
+                                'https://images.unsplash.com/5/car.jpg?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1a5f9075c6bb28fb3c7c44441adf930b&auto=format&fit=crop&w=1492&q=80',
+                                'https://images.unsplash.com/reserve/fPuLkQNXRUKI6HQ2cMPf_IMG_4761.jpg?ixlib=rb-0.3.5&s=35b25e46cf680e8f398f5a3b9e5deb8f&auto=format&fit=crop&w=1050&q=80',
+                                'https://images.unsplash.com/photo-1490077476659-095159692ab5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b66d15c291f8357f5206cc0ba9dc46ba&auto=format&fit=crop&w=1033&q=80',
+                                'https://images.unsplash.com/photo-1421284621639-884f4129b61d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3ecb7eef4f8b6d99797f28808f331659&auto=format&fit=crop&w=1050&q=80',
+                                'https://images.unsplash.com/photo-1514862461281-d9a41da4180e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=57c5863290b075514cd7a57d4f96ef47&auto=format&fit=crop&w=1051&q=80'
+                    ];
+                    
+                    // Random background if user didn't post anything
+                    this.state.featuredImageUrl 
+                    ? featured = this.state.featuredImageUrl 
+                    : featured = backg[Math.floor(Math.random() * (backg.length))];
+                    
+                    // Post to database
                     firebase.database().ref('posts/').push({
                         title: this.state.title,
                         message: this.state.message,
-                        featuredImageUrl: this.state.featuredImageUrl,
+                        featuredImageUrl: featured,
                         timeStamp: Date.now(),
                         userName: this.state.user.displayName,
                         userPhoto: this.state.user.photoURL,
@@ -171,14 +189,24 @@ class Front extends Component {
   //
   //------------------------------------------------------------- 
   listItems = () => {
-      
+    
+    // Number of messages depending on user's choice  
     var array = this.state.chat.slice(0, this.state.numposts);
+    
+    // Enumerate list of posts  
     var list = array.map( (line, key) =>   
         [<Link to = {'/comunidad/post/' + line.key}>
             <li className='roll' key = {key}>
                 { key === 0 
-                ? <div className = 'featured' style = {{background: 'url(' + line.featuredImageUrl + ')', backgroundSize: 'cover', height: '500px', backgroundPosition: 'center'}}>
-                        <span className = 'title'><div>{line.title}</div></span>
+                ? <div  className = 'featured' 
+                        style = {{ background: 'url(' + ( line.featuredImageUrl ) + ')', 
+                                   backgroundSize: 'cover', 
+                                   height: '500px', 
+                                   backgroundPosition: 'center'
+                                }}>
+                        <span className = 'title'>
+                            <div>{line.title}</div>
+                        </span>
                   </div>
                 : null
                 }
