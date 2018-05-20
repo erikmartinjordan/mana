@@ -3,7 +3,6 @@
 
 El clima tailandés se comporta en algunos momentos como un ángel modosito y, en otros, se transforma en el más cruel de los demonios. La clave está en encontrar esos meses de tregua en el horno de Siam. ¿Y cuándo sucede eso?
 
-hola
 <table>
 <tbody>
 <tr>
