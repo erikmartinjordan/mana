@@ -58,6 +58,7 @@
 }
 .Content table{
     display: table;
+    width: 100%;
 }
 .Content p{
     font-size: 18px;
