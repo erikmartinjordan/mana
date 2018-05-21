@@ -17,7 +17,7 @@ class Likes extends Component {
     
   componentDidMount = () => {
             
-        firebase.database().ref('posts/' + this.props.post).on('value', (snapshot) => { 
+        firebase.database().ref('posts/' + this.props.post).on('value', snapshot => { 
 
             var capture = snapshot.val();            
             
@@ -32,7 +32,7 @@ class Likes extends Component {
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
   }
   
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
+  componentDidUpdate = () => { window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} ); }
 
   showBanner = () => this.setState({render: true}); 
   hideBanner = () => this.setState({render: false});

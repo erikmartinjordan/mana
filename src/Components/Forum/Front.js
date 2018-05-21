@@ -26,6 +26,7 @@ class Front extends Component {
             ready: false,
             render: false,
             send: false,
+            sort: 'nuevo',
             title: '',
             user: null,
             write: false,
@@ -199,10 +200,9 @@ class Front extends Component {
             <li className='roll' key = {key}>
                 { key === 0 
                 ? <div  className = 'featured' 
-                        style = {{ background: 'url(' + ( line.featuredImageUrl ) + ')', 
+                        style = {{ background: 'url(' + line.featuredImageUrl + ') no-repeat center', 
                                    backgroundSize: 'cover', 
                                    height: '500px', 
-                                   backgroundPosition: 'center'
                                 }}>
                         <span className = 'title'>
                             <div>{line.title}</div>
@@ -221,7 +221,7 @@ class Front extends Component {
                             <p>{line.userName}, <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
                         </div>
                         <div className = 'Meta-Post'>
-                            <div className = 'Likes'><Likes user = {this.state.user} post = {line.key}></Likes></div>
+                            <div className = 'Likes'>🌶️ {line.votes * -1}</div>
                             <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
                             <div className = 'Views'>✨ {line.views} visitas</div>
                         </div>
@@ -302,18 +302,52 @@ class Front extends Component {
          
       this.setState({ numposts: items });
   }
+      
+  //-------------------------------------------------------------
+  //
+  // order by newest, comments and views
+  //
+  //-------------------------------------------------------------    
+  orderBy = (type) => {
+         
+         let sorted;
+                          
+         if(type === 'nuevo')       sorted = this.state.chat.sort( (a, b) => b.timeStamp - a.timeStamp );
+         if(type === 'picante')     sorted = this.state.chat.sort( (a, b) => a.votes - b.votes );
+         if(type === 'comentarios') sorted = this.state.chat.sort( (a, b) => {
+                  
+            if(a.replies  && b.replies)   return Object.keys(b.replies).length - Object.keys(a.replies).length;
+            if(!a.replies && b.replies)   return 1;
+            if(a.replies  && !b.replies)  return -1;
+            if(!a.replies && !b.replies)  return 0;
+         
+         });
+                  
+         this.setState({ 
+            chat: sorted,
+            sort: type
+         });
 
+  }
+         
   render() {      
       
     return (
       <div className = 'Forum'>
         <h2>Sawasdee krub</h2>
         
+        { this.state.chat !== ''
+        ? <div className = 'OrderBy'>
+                <div onClick = {() => this.orderBy('nuevo')}       className = {this.state.sort === 'nuevo'       ? 'Selected' : null}>Nuevo 🔥</div>
+                <div onClick = {() => this.orderBy('picante')}     className = {this.state.sort === 'picante'     ? 'Selected' : null}>Picante 🌶</div>
+                <div onClick = {() => this.orderBy('comentarios')} className = {this.state.sort === 'comentarios' ? 'Selected' : null}>Comentarios 💬</div>
+          </div>
+        : null
+        }
+        
         {this.state.user 
         ? this.newPost() 
-        : <div style = {{textAlign: 'center'}}>
-            <div>Accede para comentar, votar o responder. 🙏 🤗</div>
-          </div>
+        : null
         }
          
         { this.state.send === true 
