@@ -15,7 +15,7 @@
 .Blog .Block{
     background: white;
     border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
     padding: 20px;
 } 
 .Blog article{

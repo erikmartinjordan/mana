@@ -97,11 +97,11 @@ img.emoji {
    vertical-align: -0.1em!important;
 }
 :root{
-    --superLightGray: #fafafa;
+    --superLightGray: #f4f8fb;
     --lightGray: #828c99;
     --mediumGray: #555;
     --darkGray: #30363b;
-    --lightBlue: #e8f4fc;
+    --lightBlue: #d2eafa;
     --blue: #1e99e6;
     --red: #db3236;
     --pastelRed: #ff6961;

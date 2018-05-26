@@ -200,9 +200,11 @@ class Front extends Component {
             <li className='roll' key = {key}>
                 { key === 0 
                 ? <div  className = 'featured' 
-                        style = {{ background: 'url(' + line.featuredImageUrl + ') no-repeat center', 
+                        style = {{ backgroundImage: 'url(' + line.featuredImageUrl + ')', 
                                    backgroundSize: 'cover', 
-                                   height: '500px', 
+                                   backgroundPosition: 'center center',
+                                   backgroundRepeat: 'no-repeat',
+                                   height: '500px'
                                 }}>
                         <span className = 'title'>
                             <div>{line.title}</div>
@@ -334,8 +336,12 @@ class Front extends Component {
       
     return (
       <div className = 'Forum'>
-        <h2>Sawasdee krub</h2>
-        
+
+        {this.state.user 
+        ? this.newPost() 
+        : <h2>Sawasdee krub</h2>
+        }
+         
         { this.state.chat !== ''
         ? <div className = 'OrderBy'>
                 <div onClick = {() => this.orderBy('nuevo')}       className = {this.state.sort === 'nuevo'       ? 'Selected' : null}>Nuevo 🔥</div>
@@ -345,11 +351,6 @@ class Front extends Component {
         : null
         }
         
-        {this.state.user 
-        ? this.newPost() 
-        : null
-        }
-         
         { this.state.send === true 
         ? <div className = 'Send'>
             <span>👍 Enviado</span>
