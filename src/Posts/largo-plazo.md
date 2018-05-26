@@ -35,6 +35,6 @@ Por desgracia, yo no tengo el talento de los tres de arriba. Pero, si hay algo q
 
 Y para eso, se necesita un equipo de gente y mucho tiempo. Equipo no tengo. Así que lo único que puedo hacer es comprar tiempo en Tailandia, donde los días cuestan más baratos que en España; treinta días sobre los seiscientos euros.
 
-De momento he ido [lanzando cositas pequeñas](https://nomoresheet.es/coste-vida-bangkok/) y que (me) producen cierta vergüenza ajena. La intención de ayudar a los demás está ahí y por algo se empieza. El proverbio chino ya lo dice:
+De momento he ido lanzando cositas pequeñas y que (me) producen cierta vergüenza ajena. La intención de ayudar a los demás está ahí y por algo se empieza. El proverbio chino ya lo dice:
 
 > Una hormiga en marcha hace más que un buey dormido.
