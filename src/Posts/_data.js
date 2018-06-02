@@ -1,4 +1,9 @@
 var data = {
+    'chiang-muhu-barcelona': {
+        'title': 'Chiang Muhu viene a Barcelona',
+        'date': [2, 'Junio', 2018],
+        'description': 'Si Mahoma no va a la montaña... A Chiang Muhu no le gustan los aviones. Siempre dice que le gustaría ser azafata de vuelo, pero sé que no es verdad. En breve vendrá a Barcelona y pasará unos días en occidente, a ver qué opinión tiene de todo esto.',
+    },
     'compras-bangkok': {
         'title': '¿Comprar en Bangkok? Sí, deberías',
         'date': [20, 'Abril', 2018],
