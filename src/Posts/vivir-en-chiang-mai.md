@@ -14,11 +14,11 @@ En Chiang Mai sufrí el síndrome de París en versión tailandesa. Y es que, an
 
 La sensación que tuve se resume en esta frase: «Ah... ¿que Chiang Mai era así?».
 
-Ojalá me hubiese zambullido en esta ciudad sin haber leído o escuchado opiniones ajenas. No habría creado expectativas y, probablemente, todo me habría resultado encantador.
+Ojalá me hubiese zambullido en esta ciudad sin haber leído o escuchado opiniones ajenas. No habría creado expectativas y todo me habría resultado encantador.
 
 ## Desencantado con Chiang Mai
 
-Desde mi punto de vista, Chiang Mai se queda en un [intento de Bangkok](https://nomoresheet.es/coste-vida-bangkok). Una ciudad con alrededores bonitos y cómoda para el día a día. Pero sin nada más. Una ciudad aburridísima.
+Desde mi punto de vista, Chiang Mai se queda en un [intento de Bangkok](https://nomoresheet.es/coste-vida-bangkok). Una ciudad con alrededores bonitos y cómoda para el día a día. Pero sin nada más, una ciudad aburridísima.
 
 Le falta un no sé qué... Un algo.
 
@@ -29,8 +29,8 @@ De todos modos, sería injusto no comentar los rasgos positivos de Chiang Mai, 
 ### Los alrededores
 
 ![Cascadas Doi Inthanon](https://lh3.googleusercontent.com/SBcTKEJBPmVhu_ewiTc4HOLEzjrHu6yOYi21H7Buvu05l59DkpCbXZ1unO3lHOxWNZcz7VaIcnX80b0AlRN87Nr8NdwsVe6R2snnsdKcA-sqU6ZpQ79ASHDiYLyn2ODPTZWrjxcoJkf929lu3lsIlir3WYG4oQVWkfVhGVLFb_Ws5bYCzoMeJiPUg62gTG0FsnP39vWp7CPjqJit-NL8CuAfkCvadNDwQcDPB-ZITN6iEv7NWas16t8FbvlGpOU4PlMTdT28RVe8uIuIRZSNRfDcSQTI-ZWvhRRpyAmYaxeyjBzDVdAIMDbdAH8jQPOUg__VOsi_WrMyPdlSUqgrVs29KY8UHcAd60GlIyCNa5z-ztmR-hzjLdO9E4uEdRDIcA_yA_oFI1FS79DviILGJNo7KW5jiWFIeCydlHa0H_IjRUDBOTd4v6iDgHPqgkJTTzZJjNm4GGsX5U_R4-XwxjUGkAzn98YYOfxR4IrJlc1y_lLTsng2ddTE7nJM4ZP-CroNdmiwkwF9uvuBV-2EWUR1xKEukRYptMZ6Ff5i0XMcn0q4W_qQ5hVKHNrghAKrKp5Vc4oO9TG8jJwxaJRUQYuQHFvcB3C4Vcfm-RSUBdcT1AqJdAY7Y2cN5hRN6cWpQlHOPiE70BG638Hf6v3_heuNCxcHmLlR5qv6RpqCIGI=w800-no)
+*Cascadas del parque de Doi Inthanon, en Chiang Mai*
 
-Cascadas del parque de Doi Inthanon, en Chiang Mai.
 Creo que mi estancia en Chiang Mai valió la pena por la visita al [parque de Doi Inthanon](https://nomoresheet.es/aventura-motera-hasta-doi-inthanon). Me pareció un lugar genial y los 300 bahts que me costó la entrada fueron la mejor inversión de todos esos días.
 
 Ojalá se pudiese vivir en ese parque durante una temporada larga, comiendo todos los días pollo a la brasa con arroz y nadando en el agua fría de las cascadas.
@@ -51,7 +51,7 @@ Los centros comerciales tienen menos aglomeración de gente y una oferta simila
 
 Las cafeterías también juegan a favor de la ciudad. Hay muchas esparcidas por el casco antiguo y son un atractivo de Chiang Mai. Cada una de ellas tiene una decoración y platos particulares, hay gustos para todos los colores.
 
-Se puede comer barato en todas ellas y son tranquilas. Se pueden aprovechar las horas con el portátil o leyendo un libro.
+Se puede comer barato en todas ellas y son tranquilas. Son geniales para aprovechar las horas con el portátil o leyendo.
 
 ## La parte negativa de vivir en Chiang Mai
 
@@ -60,9 +60,9 @@ Se puede comer barato en todas ellas y son tranquilas. Se pueden aprovechar las 
 ![Cartel de un templo budista](https://lh3.googleusercontent.com/m2hVptYMa52jCg17s4pprnYRi8t4OMnQyGddZpjgUbim56QqBDNtPpnU9yzlOmdpiWdu2FOuMK-1KbLtcddjjgNhWb4J8FyXtEN5lSVHS--UTl30_7T07xGs7Vw2bEVYLOLwUhA5bd-EYAR4BUDENK3DbwXX4hT0fpJZnLh14Uuo0zvuySEz5Wqv0pZSs9Xtpv_KZ-jk7HELs2I8ln8rckIvCK1xwuAMRvXdCYyQLYLX5Bs5MupWt2OLmOnq7q7DmlMv3X2QOTaDx_3LyGD8QfC0ST8oH7nZrnBHhADyF9P5lCHQtC7lpM8mei8qNvX7XUs0bAprGGD0QDHel_Vu_3xHxsh0X8L666TA8VR7gUwQ88bUNitUFWUE3Z0Dp6sYHFnBM8iFKCa2fuHffdkdQn9mUE_48yTyctQomVdObjAGCwoOZrPqOqaoN0kXHf6U7FVvOxokEo7hEKCMUp3AwPffkJhBV0ZxHXaJfrOaj-xJBNcCWYMBsqks6UR6M190Xvc-y-xvoZzvT4YqKh30pEnts3l9LsqUCSxyyaXY27IYh-r0Sgpd4u7Ivu8fAHBfDUPSV-QT8SBydem91A7Q6fdzrS1BJS6FZsGdU_rZ-2zWdsng5liT3zi1aZEBYrcOxffXt4l72q0txi98If6yzrpaJIOMRYZWXFmHEvpKI_M=w800-no)
 *Cartel de un templo budista: si no hay nada que te guste, te tiene que gustar lo que ya tienes*
 
-Una de las cosas que he echado en falta es el transporte público. Aunque por aquí circulan los camiones rojos que actúan como sucedáneo de los buses —songthaew—, no son iguales que los autobuses normales y corrientes. O que el BTS o MRT de Bangkok.
+Una de las cosas que he echado en falta es el transporte público. Aunque por aquí circulan los camiones rojos que actúan como sucedáneo de los buses —*songthaew*—, no son iguales que los autobuses normales y corrientes. O que el BTS o MRT de Bangkok.
 
-Aunque alquilar una moto sea barato y, quizá, sea la opción más recomendable, se corre un riesgo importante circulando por aquí.
+Aunque alquilar una moto sea barato y la opción más recomendable, se corre un riesgo importante circulando por aquí.
 
 Si paseas por la ciudad, verás a extranjeros con vendas en las piernas, brazos, tobillos… La mayoría de veces, a causa de caídas con estas joyitas de dos ruedas.
 
@@ -72,11 +72,11 @@ Tanto Saturday Market como Sunday Market son mercados bohemios que, para picar 
 
 Desde mi punto de vista, están sobrevalorados. Solo algunos productos artesanos valen la pena. El resto, ejem, ejem... Si te gustan las camisetas de tirantes Chang, puede que los disfrutes.
 
-Para mí, los productos del [mercado de Chatuchak](https://nomoresheet.es/chatuchak) o JJ Green en Bangkok son más variados. En JJ Green, por ejemplo, se ven a más tailandeses que [*farangs*](https://nomoresheet.es/farang) y eso es muy buena señal. En los mercados de Chiang Mai, sucede lo contrario.
+Para mí, los productos del [mercado de Chatuchak](https://nomoresheet.es/chatuchak) o JJ Green en Bangkok son más variados. En JJ Green, por ejemplo, se ve a más tailandeses que [*farangs*](https://nomoresheet.es/farang) y eso es muy buena señal. En los mercados de Chiang Mai sucede lo contrario.
 
 ### ¿Y la playa?
 
-En Tailandia hace calor. Si no has estado nunca en el Sudeste Asiático, no te imaginas lo agobiante que es el bochorno asiático.
+En Tailandia hace calor. Si no has estado nunca en el Sudeste Asiático, no te imaginas lo agobiante que es el bochorno de allí.
 
 Uno de los puntos fuertes que tiene Tailandia, es el gran abanico de playitas de agua turquesa. Bien, pues Chiang Mai es una ciudad a kilómetros de todas esas playas. Aunque el clima es más suave que en el centro o sur de Tailandia, sigue haciendo calorazo.
 

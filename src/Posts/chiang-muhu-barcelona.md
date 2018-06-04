@@ -3,7 +3,7 @@
 
 Hace un tiempo, pregunté en el foro por alternativas a Google Flights y Skyscanner para volar a Tailandia. No era para mí: Chiang Muhu viene de vacaciones a Barcelona.
 
-Chiang Muhu nunca ha viajado a occidente. La primera vez que voló fuera de Tailandia fue hace un año, cuando voló a Malasia. Quedamos en Kuala Lumpur porque podía ser la última vez que nos viésemos en una temporada.
+Chiang Muhu nunca ha viajado a occidente. La primera vez que salió de Tailandia fue hace un año, cuando voló a Malasia. Quedamos en Kuala Lumpur porque podía ser la última vez que nos viésemos en una temporada.
 
 Después de esa experiencia, pude confirmar que a Chiang Muhu no le gustan los aviones. Siempre dice que le gustaría ser azafata de vuelo, pero sé que no es verdad. Cuando fuimos a [Dream World Bangkok](https://nomoresheet.es/dream-world-bangkok), lloraba en algunas atracciones por el vértigo de la altura. Yo me cagaba más que ella, pero lo hacía con disimulo y de otra manera (que hay que guardar las formas).
 
@@ -33,7 +33,7 @@ Si un español necesita pasaporte y un billete de avión de ida y vuelta para vi
 
 Que si carta de invitación compulsada por la policía, que si foto de las cuentas del banco, que si contrato de trabajo, que si patatín, que si patatán... Ella está convencida de que en la entrevista con inmigración le van a hacer un examen preguntándole la alineación del Barça, pero no creo que vayan por ahí los tiros.
 
-Una de las condiciones que pone para venir a Barcelona es que quiere visitar el Camp Nou. La otra condición es que quiere ver no sé que tiendas. Así es Barcelona para los *millennials* asiáticos: ni Sagrada Familia, ni parque Güell, ni hostias... Barcelona se resume en Camp Nou y Paseo de Gracia.
+Una de las condiciones que pone para venir a Barcelona es que quiere visitar el Camp Nou. La otra condición es que quiere ver no sé qué tiendas. Así es Barcelona para los *millennials* asiáticos: ni Sagrada Familia, ni parque Güell, ni hostias... Barcelona se resume en Camp Nou y Paseo de Gracia.
 
 ## Swiss
 
