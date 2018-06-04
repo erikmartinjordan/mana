@@ -285,6 +285,7 @@
     justify-content: center;
     margin-bottom: 50px;
     padding: 20px;  
+    word-break: break-word;
 }
 .Forum ul.replies{
     margin: auto;
