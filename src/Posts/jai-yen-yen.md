@@ -16,7 +16,7 @@ En el rascacielos de delante, había dos que se lo estaban pasando genial.
 
 ## *Thais* juguetonas
 
-Como mi vista no alcanzaba a esas horas de la noche, enfoqué mis ojos hacia el interior del local. Un farang de unos cincuenta y muchos con una chica de veintipocos llamaban la atención. La chica lucía un vestido rojo a juego con el color de labios y acercaba su culo a la bragueta del tipo. Luego le besaba de forma juguetona. Muy amable la *thai*.
+Como mi vista no alcanzaba a esas horas de la noche, enfoqué mis ojos hacia el interior del local. Un *farang* de unos cincuenta y muchos con una chica de veintipocos llamaban la atención. La chica lucía un vestido rojo a juego con el color de labios y acercaba su culo a la bragueta del tipo. Luego le besaba de forma juguetona. Muy amable la *thai*.
 
 Cerca de nosotros, unos ingleses ocupaban las butacas de la terraza. El lugar estaba a reventar. Fuimos a la barra, pedimos un par de copas y preguntamos cuántos días tardaríamos en sentarnos en una mesa. Nos dijeron que en una hora podríamos coger sitio.
 
@@ -34,7 +34,7 @@ Tiene razón. La ley de Murphy dicta que dos ascensores sí pueden estropearse a
 
 Los tailandeses creen que los *farangs* nos enfadamos rápido. Cuando tenemos que esperar un poco más de lo normal, empezamos a cabrearnos.
 
-Es la mala costumbre del hombre occidental: experto en coger el metro a la primera, a no tener que hacer colas de tres horas en los controles de los aeropuertos, a que le traigan la pizza a casa en menos de treinta minutos...
+Es la mala costumbre del hombre occidental: experto en coger el metro a la primera, en no tener que hacer colas de tres horas en los controles de los aeropuertos, en que le traigan la pizza a casa en menos de treinta minutos...
 
 En Tailandia tienen una expresión cuando los farangs nos ponemos nerviosos por tener que esperar. Chiang Muhu la utiliza a menudo cuando me pongo nervioso por la parsimonia asiática: «*jai yen yen, farang*».
 
