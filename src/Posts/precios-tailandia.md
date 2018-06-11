@@ -25,7 +25,7 @@ Entonces, te das cuenta, tienes una revelación. Antes de acceder a las aguas te
 
 Tailandia entera se parte el ojete con la cara que se te ha quedado. Miras a tu alrededor en busca de una cámara oculta.
 
-El conductor del tuk-tuk que te llevó en Bangkok por un montón de tiendas de trajes pasa al lado de ti tocando el claxon. Se está partiendo, no puede parar de reírse, le va a dar algo...
+El conductor del tuk-tuk que te llevó en Bangkok por un montón de tiendas de trajes, pasa al lado de ti tocando el claxon. Se está partiendo, no puede parar de reírse, le va a dar algo...
 
 La recepcionista del hotel. Esa chica tan maja que te saluda por las mañanas, se está descojonando junto a él y se sube a la partera trasera del tuk-tuk. Ambos se van de ahí cagando hostias y soltando una carcajada que se oye hasta en [Ko Lan](https://nomoresheet.es/ko-lan/).
 
@@ -37,7 +37,7 @@ La historia de arriba es bastante común entre los visitantes del Reino de Siam.
 
 El otro día, se generó un debate en un grupo de españoles en Tailandia a raíz de una anécdota parecida. Uno de los administradores del grupo colgó una foto de un cartel donde aparecía un precio de entrada a un parque nacional, según si eras tailandés o extranjero.
 
-El extranjero pagaba diez veces más que el tailandés. ¿Precios según el país de origen en Tailandia? Oh, sí. Así es Tailandia amigo. El país donde los *farangs* pagan más por ser *farangs*. Algunos tailandeses se piensan que los europeos vamos tirando billetes como Di Caprio en El lobo de Wall Street. Nada más lejos de la realidad.
+El extranjero pagaba diez veces más que el tailandés. ¿Precios según el país de origen? Oh, sí. Así es Tailandia amigo. El país donde los *farangs* pagan más por ser *farangs*. Algunos tailandeses se piensan que los europeos vamos tirando billetes como Di Caprio en El lobo de Wall Street. Nada más lejos de la realidad.
 
 En España tampoco nos libramos. «Engañar como a un chino» es una expresión *made in Spain*. Donde además, de rebote, metemos a todos los asiáticos en la misma bolsa. Confunde a un tailandés con un chino y ya verás el cabreo que se pilla.
 
