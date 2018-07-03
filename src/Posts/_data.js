@@ -1,4 +1,9 @@
 var data = {
+    'verano': {
+        'title': 'Olor a verano',
+        'date': [3, 'Julio', 2018],
+        'description': 'Julio ya está aquí. España está eliminada del mundial. Benidorm se llena de pieles sudorosas y de sombrillas. Las piscinas se mezclan de cloro y orín. Los mosquitos empiezan su temporada alta...',
+    },
     'chiang-muhu-barcelona': {
         'title': 'Chiang Muhu viene a Barcelona',
         'date': [2, 'Junio', 2018],
