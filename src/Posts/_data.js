@@ -1,4 +1,9 @@
 var data = {
+    'tiempo': {
+        'title': 'El valor del tiempo',
+        'date': [21, 'Julio', 2018],
+        'description': 'Me doy la vuelta en la cama y miro el móvil: son las seis y media de la mañana. Es sábado. Me he despertado a la misma hora que todos los días. Convertirse en un adulto tiene estos defectos.',
+    },
     'verano': {
         'title': 'Olor a verano',
         'date': [3, 'Julio', 2018],

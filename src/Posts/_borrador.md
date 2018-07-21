@@ -8,7 +8,7 @@ Tailandia me dio sensación de elección y supongo que eso es lo que busca el se
 
 A los seres humanos nos gusta ser dueños de nuestro tiempo y construir cosas. Nos gusta la gratificación que se obtiene de haber conseguido algo por nuestros propios méritos. Aquellos que han tenido la desgracia de heredar grandes fortunas, tienen bastantes números de convertirse en personas hedonistas, buscadores del placer instantáneo, o seres egocéntricos y aburridos.
 
-En cambio, aquella gente que ha tenido que luchar con dureza para conseguir sobrevivir y ha conseguido tirar hacia delante, se convierten en dueños de su vida y experimentan una sensación de poder.
+En cambio, aquella gente que ha tenido que luchar con dureza para conseguir sobrevivir y ha conseguido tirar hacia delante, se convierten en dueños de su vida y experimentan una sensación de control.
 
 Entre esos dos grupos estamos la gente del montón. La persona del montón es un individuo que no ha recibido ninguna herencia, pero que tampoco hace un esfuerzo considerable por sobrevivir. Con un trabajo normal y obediencia, tiene garantizado el plato sobre la mesa.
 
@@ -16,4 +16,4 @@ Una de las cosas que más valoro de Tailandia es la autonomía que tiene la gent
 
 Un tailandés puede montar su chiringuito en la calle en pocos días y tirarlo adelante él solito, sin necesitar ayuda de nadie, ni regulaciones, ni controles, ni impuestos... Tailandia está repleto de pequeños comerciantes que plantan su tenderete dónde, cuándo y cómo les rota. 
 
-Puede que ganen poco dinero, pero la sensación de saber que eres tú el dueño de tu tiempo debe ser extraordinaria. El *sudapollismo* de algunos vendedores es envidiable.  
+Puede que ganen poco dinero, pero la sensación de saber que eres tú el dueño de tu tiempo debe ser extraordinaria.

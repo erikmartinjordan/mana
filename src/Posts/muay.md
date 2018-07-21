@@ -5,15 +5,15 @@ Johno, Geeb, Chiang Muhu y yo nos bañamos en la piscina de A Space Me. Hablamos
 
 Hablando de lombrices nos entra el gusanillo. Salimos de la piscina, subimos a casa, nos duchamos en tandas de dos y pillamos un taxi desde A Space Me hasta el McDonalds de On Nut. 
 
-Johno es de Reino Unido, Geeb es tailandesa, Chiang Muhu también y yo soy el spaniard. Entre patatas fritas y hamburguesas, Johno habla de Tailandia y de ladyboys. Pregunta por qué Tailandia es el país del Sudeste Asiático con más hombres que quieren ser mujeres.
+Johno es de Reino Unido, Geeb es tailandesa, Chiang Muhu también y yo soy el *spaniard*. Entre patatas fritas y hamburguesas, Johno habla de Tailandia y de *ladyboys*. Pregunta por qué Tailandia es el país del Sudeste Asiático con más hombres que quieren ser mujeres.
 
 ## *Ladyboys*
 
-Chiang Muhu habla de Lookme, una de sus mejores amigas ladyboy. De su padre militar, de la vida en el cuartel y de cómo Lookme se levantaba pronto por las mañanas para ver a todos esos hombres vestidos de camuflaje. Yo comento mi encuentro con un *ladyboy* en el hostal de Samui. De cómo me ofreció ir a tomar *whisky* y otras cosas. Así, a puerta fría.
+Chiang Muhu habla de Lookme, una de sus mejores amigas *ladyboy*. De su padre militar, de la vida en el cuartel y de cómo Lookme se levantaba pronto por las mañanas para ver a todos esos hombres vestidos de camuflaje. Yo comento mi encuentro con un *ladyboy* en el hostal de Samui. De cómo me ofreció ir a tomar *whisky* y otras cosas. Así, a puerta fría.
 
-Hablamos de la total integración de los ladyboys en la sociedad tailandesa. Otros países tendrían que tomar nota. En Tailandia trabajan de cara al público: tiendas de ropa, peluquerías, maquillaje, etc.
+Hablamos de la total integración de los *ladyboys* en la sociedad tailandesa. Otros países tendrían que tomar nota. En Tailandia trabajan de cara al público: tiendas de ropa, peluquerías, maquillaje, etc.
 
-Johno afirma que en Tailandia nada es lo que parece. Que las palabras significan una cosa u otra según el tono empleado. Habla de muay thai. De la palabra muay. Pronunciada incorrectamente, significa vello púbico. A un occidental le cuesta distinguir las diferencias de pronunciación.
+Johno afirma que en Tailandia nada es lo que parece. Que las palabras significan una cosa u otra según el tono empleado. Habla de *muay thai*. De la palabra *muay*. Pronunciada incorrectamente, significa vello púbico. A un occidental le cuesta distinguir las diferencias de pronunciación.
 
 Geeb y Chiang Muhu lo ven claro:
 
