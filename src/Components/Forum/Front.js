@@ -339,7 +339,7 @@ class Front extends Component {
 
         {this.state.user 
         ? this.newPost() 
-        : <h2>Sawasdee krub</h2>
+        : <h2></h2>
         }
          
         { this.state.chat !== ''

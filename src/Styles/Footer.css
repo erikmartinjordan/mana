@@ -21,9 +21,8 @@
     letter-spacing: 0.05em;
 }
 .Footer .Wrap a.Twitter{
-    background: var(--blue);
-    border-radius: 3px;
-    padding: 5px;
+    box-shadow: inset 0 -6px 0 var(--pastelGreen); 
+    padding: 0px 0px 5px 0px;
 }
 .Footer .Wrap .Footer-Menu span{
     text-transform: uppercase;

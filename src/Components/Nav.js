@@ -29,17 +29,16 @@ class Nav extends Component {
       <div className = 'Nav'>
         <div className = 'Wrap'>
             <div className = 'Title'>
-                <Link to = '/'>Nomoresheet</Link>
+                <Link to = '/'>N</Link>
             </div>
             <div className = 'Title-Mobile'>
-                <Link to = '/'>Nms</Link>
+                <Link to = '/'>N</Link>
             </div>
-            <Search></Search>
             <div className = 'Menu'>
                 <Link to = '/'>Comunidad</Link>
                 <Link to = '/blog'>Artículos</Link>
                 { !this.state.user 
-                    ? <button onClick = {this.showBanner} className = 'login'>Entrar</button>
+                    ? <a onClick = {this.showBanner} className = 'login'>Entrar</a>
                     : <div className = 'User' onClick = {this.showMenu} >
                             <div className = 'Img-Wrap'>
                                 <img src = {this.state.user.photoURL}></img>

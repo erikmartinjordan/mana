@@ -1,6 +1,6 @@
 .Nav{
-    background: var(--darkGray);
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.13);
+    background: none;
+    padding: 50px;
 }
 .Nav .Wrap{
     display: flex;
@@ -13,11 +13,14 @@
 }
 .Nav .Title a,
 .Nav .Title-Mobile a{
+    background: var(--darkGray);
+    border-radius: 5px;
     color: white;
     font-family: 'Gentium Book Basic', serif;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     letter-spacing: 0.05em;
+    padding: 5px 10px 5px 10px;
 }
 .Nav .Title-Mobile{
     display: none;
@@ -29,9 +32,19 @@
     flex: 2;
 }
 .Nav .Menu a{
-    color: white;
+    color: var(--darkGray);
     font-size: 12px;
     margin: 5px;
+}
+.Nav .Menu a:nth-child(1){
+    box-shadow: inset 0 -6px 0 var(--pastelYellow);   
+}
+.Nav .Menu a:nth-child(2){
+    box-shadow: inset 0 -6px 0 var(--pastelGreen);    
+}
+.Nav .Menu a:nth-child(3){
+    box-shadow: inset 0 -6px 0 var(--pastelPurple);    
+    cursor: pointer;
 }
 .Nav .Menu img{
     border-radius: 50%;
