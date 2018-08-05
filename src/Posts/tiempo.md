@@ -1,3 +1,5 @@
+![El valor del tiempo](https://lh3.googleusercontent.com/BCRJZeuU9gvsCbQyoavshCJ7WAAP_Fo20J8uaqJLVg3wH0yGWTicRjcasskorWLYQIdYovH7waYV14PwVQqOgF6lvEDcgmpBhfX9ASM4tzAUBz8OBMoVEAt0Kx2JGCKMtoFh5fDJVhjfMV2FxHOEKrIB6MGfyszqpsp4DIcboZpc98toJffV8thsnJ5w5cR-IehJGAxAFgeiasSOKTbwt3KBX1NE8alqxEGXm1IwrZ6Ke1M1xsgdtVotY6d7gmE2d_IEuukOmWtGMY038IsXIRKEsE94gZAwkJT3epCAJUlvQaOMqqTbuaNVO87ClvEJw7aMDzNv1O6cFci-slvgSiN11usrEUsVpE3zBPZ44V0oV-zfFcrnIBbjN2hZhbBky-PBt03FKJpB3iSLMe-DizN80F9vPiUw-JqXg-CqZqqlw0DiMirFIftlmwUZtJSVH-7aKKvs4W0y6bvFaFwvGFSt6H0DAHAk0sKG6M4gCr59V3n6LLvqsdF6p5jAai3nE8U0Uv8kTLtCyMgKoHpfulSVQ2Lla6FGjFuz9ZqaMsj_VCWaD0Ujyt3SYaK6ykSbiFxsVRIhbBC1XmhE0Vri99flu0KdoxcNrZ48de2l=w1440-h810-no)
+
 Me doy la vuelta en la cama y cojo el móvil: son las seis y media de la mañana. Es sábado y me he despertado a la misma hora que todos los días; convertirse en un adulto tiene estos defectos.
 
 Voy al lavabo, me miro en el espejo. Tengo los ojos achinados y llenos de legañas. Cada vez tengo menos pelo en la cabeza y me han salido las primeras canas en la barba. Tengo veintisiete años y el espejo muestra cómo me estoy convirtiendo en una calcomanía de mi padre.
