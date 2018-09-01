@@ -1,4 +1,9 @@
 var data = {
+    'mahoma': {
+        'title': 'Si Mahoma no va a la montaña...',
+        'date': [1, 'Septiembre', 2018],
+        'description': 'Es sábado y el día amanece nublado. Abro la nevera y no hay leche fría. Descarto desayunar cereales y me decanto por un par de barritas de chocolate. Luego, cojo un zumo mediterráneo de la nevera.',
+    },
     'juegos-adultos': {
         'title': 'Juegos de adultos',
         'date': [4, 'Agosto', 2018],
