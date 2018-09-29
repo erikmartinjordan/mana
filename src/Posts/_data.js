@@ -1,4 +1,9 @@
 var data = {
+    'tailandesa-barcelona-madrid': {
+        'title': 'Una tailandesa en Barcelona (y Madrid)',
+        'date': [29, 'Septiembre', 2018],
+        'description': 'Jamón ibérico, paella, bravas, tapeo... Entre Barcelona y Madrid hemos pasado los días. Impresiones de una tailandesa del país de los toros y la sangría...',
+    },
     'mahoma': {
         'title': 'Si Mahoma no va a la montaña...',
         'date': [1, 'Septiembre', 2018],
