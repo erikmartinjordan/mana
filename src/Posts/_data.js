@@ -49,11 +49,6 @@ var data = {
         'date': [5, 'Marzo', 2018],
         'description': 'Últimamente a Chiang Muhu le ha dado por publicar sus recetas en Instagram. Como me va contando lo que cocina, estoy aprendiendo sobre el menú diario de los tailandeses. Y he descubierto algo sorprendente: en Tailandia hay vida más allá del pad thai.',
     },
-    'habemus-forum': {
-        'title': 'Habemus forum',
-        'date': [7, 'Febrero', 2018],
-        'description': 'Hace un tiempo creé con mis propios dedacos un foro programado desde cero en JavaScript (React + Firebase). Es lo que tiene ser un puto freak. ¿Un foro? ¿Pero eso no es más antiguo que cagar sentado? Sí, pero es diferente a toda esa morralla de foros escritos en PHP que siguen en pie.',
-    },
     'birras': {
         'title': 'Unas birras en casa de Vaisent',
         'date': [25, 'Enero', 2018],
