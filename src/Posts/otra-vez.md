@@ -1,4 +1,4 @@
-Estos días estoy jodido. Hace un mes que Chiang Muhu volvió a Tailandia y eso siempre agita mi vida. Aunque queda un poco ñoño decirlo, necesitaba su manera de ver las cosas.
+Estos días estoy jodido. Hace un mes que Chiang Muhu volvió a Tailandia y eso ha vuelto a agitar mi vida. Aunque queda un poco ñoño decirlo, necesitaba su manera de ver las cosas.
 
 A pesar de que ahora tengo un salario fijo y cierta seguridad, no estoy convencido de que a largo plazo sea este tipo de vida el que más me convenga.
 
