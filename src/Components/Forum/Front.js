@@ -279,16 +279,16 @@ class Front extends Component {
   //
   //------------------------------------------------------------- 
   loading = () =>{ return <div>
-                            <div className = 'loading' style = {{background: 'gray'}}></div>
-                            <div className = 'loading' style = {{background: 'gray'}}></div>
-                            <div className = 'loading' style = {{background: 'gray'}}></div>
-                            <div className = 'loading' style = {{background: 'gray'}}></div>
-                            <div className = 'loading' style = {{background: 'gray'}}></div>
-                            <div className = 'loading' style = {{background: 'gray'}}></div>
-                            <div className = 'loading' style = {{background: 'gray'}}></div>
-                            <div className = 'loading' style = {{background: 'gray'}}></div>
-                            <div className = 'loading' style = {{background: 'gray'}}></div>
-                            <div className = 'loading' style = {{background: 'gray'}}></div>
+                            <div className = 'loading'></div>
+                            <div className = 'loading'></div>
+                            <div className = 'loading'></div>
+                            <div className = 'loading'></div>
+                            <div className = 'loading'></div>
+                            <div className = 'loading'></div>
+                            <div className = 'loading'></div>
+                            <div className = 'loading'></div>
+                            <div className = 'loading'></div>
+                            <div className = 'loading'></div>
                           </div> }
       
   //-------------------------------------------------------------

@@ -1,4 +1,9 @@
 var data = {
+    'otra-vez': {
+        'title': 'Volver',
+        'date': [20, 'Octubre', 2018],
+        'description': 'Estos días estoy jodido. Hace un mes que Chiang Muhu volvió a Tailandia y eso siempre agita mi vida. Aunque queda un poco ñoño decirlo, necesitaba su manera de ver las cosas.',
+    },
     'tailandesa-barcelona-madrid': {
         'title': 'Una tailandesa en Barcelona (y Madrid)',
         'date': [29, 'Septiembre', 2018],

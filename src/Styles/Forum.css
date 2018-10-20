@@ -247,6 +247,15 @@
     max-width: 100%;
     width: 100%;
 }
+.Forum .loading{
+    -webkit-animation-duration: 0.75s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: shimmer;
+    -webkit-animation-timing-function: linear;
+    background-image: linear-gradient(to right, #eeeeee 10%, #dddddd 18%, #eeeeee 33%);
+    background-size: 200% 100%;
+}
 .Forum .OrderBy{
     align-items: center;
     display: flex;
@@ -263,6 +272,10 @@
     background: var(--lightBlue);
     border-radius: 50px;
     color: var(--blue);
+}
+@keyframes shimmer{
+    0% { background-position: 100% 0;}
+    100% { background-position: -100% 0;}
 }
 /*******************************************************************/
 /*Detail
