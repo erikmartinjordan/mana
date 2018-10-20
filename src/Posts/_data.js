@@ -44,11 +44,6 @@ var data = {
         'date': [20, 'Marzo', 2018],
         'description': 'En Tailandia tienen una expresión cuando los farangs nos ponemos nerviosos por tener que esperar. Chiang Muhu la utiliza a menudo cuando me pongo nervioso por algo que va más lento de lo normal: «jai yen yen, farang».',
     },
-    'comida-tailandesa': {
-        'title': 'A la rica cocina tailandesa',
-        'date': [5, 'Marzo', 2018],
-        'description': 'Últimamente a Chiang Muhu le ha dado por publicar sus recetas en Instagram. Como me va contando lo que cocina, estoy aprendiendo sobre el menú diario de los tailandeses. Y he descubierto algo sorprendente: en Tailandia hay vida más allá del pad thai.',
-    },
     'birras': {
         'title': 'Unas birras en casa de Vaisent',
         'date': [25, 'Enero', 2018],
