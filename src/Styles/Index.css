@@ -92,7 +92,7 @@ img.emoji {
    border-radius: 0!important;
    height: 1em!important;
    width: 1em!important;
-   margin: 0 .05em 0 .1em!important;
+   margin: 0 .01em 0 .5em!important;
    vertical-align: -0.1em!important;
 }
 :root{
