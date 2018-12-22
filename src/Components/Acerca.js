@@ -40,7 +40,7 @@ class Acerca extends Component {
         </div>
         
         {data.map((item, key) =>
-            <div className = 'Block'>
+            [<div className = 'Block'>
                 <div className = 'Date'><p>{item.date[0] + ' de ' + item.date[1] + ' del '  + item.date[2]}</p></div>
                     <div className = 'Content'>
                         <div className = 'Emoji'>{item.emoji}</div>
@@ -49,7 +49,8 @@ class Acerca extends Component {
                             <img src = {item.img}></img>
                         </div>
                     </div>
-            </div>)
+            </div>,
+            <div className = 'Separator'></div>])
         }
       </div>
     );

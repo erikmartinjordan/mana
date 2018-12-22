@@ -28,9 +28,23 @@
     background: white;
     border-radius: 5px;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
-    margin-top: 20px;
     padding: 20px;
 } 
+.Acerca .Block:nth-of-type(3n){
+    margin: auto;
+    max-width: 400px;
+    width: 100%;
+}
+.Acerca .Block:nth-of-type(3n + 1){
+    margin: auto;
+    max-width: 500px;
+    width: 100%;
+}
+.Acerca .Block:nth-of-type(3n + 2){
+    margin: auto;
+    max-width: 600px;
+    width: 100%;
+}
 .Acerca .Block .Content{
     align-items: center;
     display: flex;
@@ -40,6 +54,12 @@
 }
 .Acerca .Block .Emoji img{
     font-size: 150px;
+}
+.Acerca .Separator{
+    background: var(--pastelYellow);
+    height: 50px;
+    margin: auto;
+    width: 5px;
 }
 @media (max-width: 768px){
    .Acerca{
