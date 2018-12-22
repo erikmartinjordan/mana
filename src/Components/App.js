@@ -13,6 +13,7 @@ import Default              from './Default';
 import Blog                 from './Blog';
 import Nav                  from './Nav';
 import Footer               from './Footer';
+import Acerca               from './Acerca';
 
 ReactGA.initialize('UA-87406650-1');
 
@@ -34,6 +35,7 @@ class App extends Component {
             <Route exact path = '/divisas'             component = {Divisas}/>
             <Route exact path = '/temperatura'         component = {Temp}/>
             <Route exact path = '/blog'                component = {Blog}/>
+            <Route exact path = '/acerca'              component = {Acerca}/>
             <Route path = '/comunidad/post/:string'    component = {ForumDetail}/>
             <Route path = '/:string'                   component = {Post}/>
             <Route                                     component = {Default}/>

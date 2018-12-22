@@ -33,18 +33,20 @@
 }
 .Nav .Menu a{
     color: var(--darkGray);
+    cursor: pointer;
     font-size: 12px;
     margin: 5px;
 }
-.Nav .Menu > a:nth-child(1){
-    box-shadow: inset 0 -6px 0 var(--pastelYellow);   
+.Nav .Menu > a:nth-child(4){
+    background-color: var(--greenMint);
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
 }
-.Nav .Menu > a:nth-child(2){
-    box-shadow: inset 0 -6px 0 var(--pastelGreen);    
-}
-.Nav .Menu > a:nth-child(3){
-    box-shadow: inset 0 -6px 0 var(--pastelPurple);    
-    cursor: pointer;
+.Nav .Menu > a:nth-child(4):hover{
+    transition: 0.2s ease-in-out;
+    transform: scale(1.01);   
 }
 .Nav .Menu img{
     border-radius: 50%;

@@ -41,6 +41,7 @@
     background: white;
     border-radius: 5px;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    color: var(--textBlog);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -265,7 +266,7 @@
     border-radius: 50px;
     cursor: pointer;
     font-size: small;
-    padding: 5px 20px;
+    padding: 5px 15px;
     text-align: center;
 }
 .Forum .OrderBy .Selected{

@@ -56,7 +56,7 @@ class Blog extends Component {
       
       //Metas and titles
       document.title = 'Blog - Nomoresheet'; 
-      document.querySelector('meta[name="description"]').content = 'En la actualidad, el blog contiene' + {length} + ' artículos...'; 
+      document.querySelector('meta[name="description"]').content = 'Artículos sobre Sudeste Asiático, especialmente sobre Tailandia y demás cosas que puedan resultar interesantes.'; 
       
       window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
   }

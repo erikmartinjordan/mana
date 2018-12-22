@@ -36,9 +36,10 @@ class Nav extends Component {
             </div>
             <div className = 'Menu'>
                 <Link to = '/'>Comunidad</Link>
-                <Link to = '/blog'>Artículos</Link>
+                <Link to = '/blog'>Blog</Link>
+                <Link to = '/acerca'>Acerca</Link>
                 { !this.state.user 
-                    ? <a onClick = {this.showBanner} className = 'login'>Entrar</a>
+                    ? <a onClick = {this.showBanner} className = 'login'>Acceder</a>
                     : <div className = 'User' onClick = {this.showMenu} >
                             <div className = 'Img-Wrap'>
                                 <img src = {this.state.user.photoURL}></img>

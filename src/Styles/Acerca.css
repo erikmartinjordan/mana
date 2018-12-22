@@ -1,0 +1,37 @@
+.Acerca{
+    margin: auto;
+    max-width: 600px;
+    width: 100%;
+}
+.Acerca .Intro{
+    margin: auto;
+    margin-bottom: 50px;
+    max-width: 800px;
+    text-align: center;
+    width: 100%;
+}
+.Acerca .Intro img{
+    border-radius: 50px;
+    height: 100px;
+    width: 100px;
+}
+.Acerca .Date p{
+    color: var(--lightGray);
+    font-size: x-small;
+    text-align: center;
+    text-transform: uppercase;
+}
+.Acerca .Block{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    margin-top: 20px;
+    padding: 20px;
+} 
+.Acerca .Block .Content{
+    align-items: center;
+    display: flex;
+}
+.Acerca .Block .Emoji img{
+    font-size: 150px;
+}
