@@ -324,9 +324,13 @@
     justify-content: left;
 }
 .Forum .verified{
-    color: var(--blue);
+    background: var(--greenMint);
+    border-radius: 5px;
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    color: white;
     cursor: default;
     margin: 5px;
+    padding: 1px 3px;
 }
 .Forum .verified:hover + .tooltip{
     display: inline-block;

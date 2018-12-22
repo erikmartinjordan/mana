@@ -36,12 +36,12 @@ class Acerca extends Component {
         
         <div className = 'Intro'>
             <img src = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg'></img>
-            <p>Hola 👋🏻<br></br> Soy Erik, el creador de Nomoresheet. En diciembre del 2015 nació esta web y bla, bla, bla... Estoy reconstruyendo algunos de los hitos más relevantes hasta la fecha...</p>
+            <p>Hola 👋🏻<br></br> Soy Erik, el creador de Nomoresheet. En diciembre del 2015 nació esta web y bla, bla, bla... Estoy reconstruyendo algunos de los hitos más relevantes hasta la fecha.</p>
         </div>
         
         {data.map((item, key) =>
             <div className = 'Block'>
-                <div className = 'Date'><p>{item.date[0]} de {item.date[1]} del {item.date[2]}</p></div>
+                <div className = 'Date'><p>{item.date[0] + ' de ' + item.date[1] + ' del '  + item.date[2]}</p></div>
                     <div className = 'Content'>
                         <div className = 'Emoji'>{item.emoji}</div>
                         <div className = 'Text'>

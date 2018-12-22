@@ -19,6 +19,9 @@
     color: var(--lightGray);
     font-size: x-small;
     text-align: center;
+    text-decoration: underline;
+    text-decoration-color: var(--greenMint);
+    text-decoration-style: wavy;
     text-transform: uppercase;
 }
 .Acerca .Block{
@@ -32,6 +35,17 @@
     align-items: center;
     display: flex;
 }
+.Acerca .Block .Content p{
+    font-size: 16px;
+}
 .Acerca .Block .Emoji img{
     font-size: 150px;
+}
+@media (max-width: 768px){
+   .Acerca{
+        padding: 20px;
+    }
+    .Acerca .Block .Content{
+        flex-direction: column;
+    }
 }
