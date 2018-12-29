@@ -1,4 +1,9 @@
 var data = {
+    'cagalera': {
+        'title': 'Despidiendo el año como se merece',
+        'date': [29, 'Diciembre', 2018],
+        'description': '«Me apetece cenar marisco», le digo a Chiang Muhu. Vamos en autobús de camino a China Town, esperando encontrar gambas, mejillones, sepia, almejas cocinadas al humo de la barbacoa.',
+    },
     'tres': {
         'title': 'Tres años',
         'date': [7, 'Diciembre', 2018],
