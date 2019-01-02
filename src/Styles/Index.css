@@ -1,9 +1,27 @@
+@font-face {
+  font-family: 'Interface';
+  font-style:  normal;
+  font-weight: 400;
+  src: local('Interface'), url('../Assets/Fonts/Inter-UI-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Interface';
+  font-style:  bold;
+  font-weight: 600;
+  src: local('Interface'), url('../Assets/Fonts/Inter-UI-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Interface';
+  font-style:  bold;
+  font-weight: 800;
+  src: local('Interface'), url('../Assets/Fonts/Inter-UI-Black.woff2') format('woff2');
+}
 html{
     overflow-x: hidden;
 }
 *{
     box-sizing: border-box;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Interface', sans-serif;
     -webkit-font-smoothing: antialiased;
     outline: none;
 }
@@ -29,13 +47,16 @@ h6{
     line-height: 1.5;
     text-align: center;
 }
+h1{
+    font-size: 50px;
+}
 h2{
-    font-size: xx-large;
+    font-size: 40px;
 }
 p,
 li,
 ul{
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Interface', sans-serif;
 }
 a{
     color: var(--blue);
@@ -105,7 +126,7 @@ img.emoji {
     --red: #db3236;
     --pastelRed: #ff6961;
     --pastelYellow: #ffde87;
-    --pastelGreen: #a5f7e2;
+    --pastelGreen: #c8e6e0;
     --pastelPurple: #778dff;
     --greenMint: #48AC98;
     --textBlog: #444a4e;
