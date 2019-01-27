@@ -19,9 +19,6 @@
     color: var(--lightGray);
     font-size: x-small;
     text-align: center;
-    text-decoration: underline;
-    text-decoration-color: var(--greenMint);
-    text-decoration-style: wavy;
     text-transform: uppercase;
 }
 .Acerca .Block{
@@ -32,7 +29,7 @@
 } 
 .Acerca .Block:nth-of-type(3n){
     margin: auto;
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
 }
 .Acerca .Block:nth-of-type(3n + 1){

@@ -18,10 +18,16 @@ class Acerca extends Component {
         {
             'title': 'Tres años',
             'date': [22, 'Diciembre', 2018],
-            'description': 'Hoy ha nacido esta página donde se recopilarán algunos hitos hasta la fecha. Esta pestaña está en construcción e ira modificándose a medida que pasen los días.',
+            'description': 'Nace la página «acerca de», donde se recopilarán algunos hitos hasta la fecha. Esta pestaña está en construcción e ira modificándose a medida que pasen los días.',
         },
         {
-            'title': 'Prueba',
+            'title': 'Comunidad',
+            'date': [13, 'Diciembre', 2017],
+            'description': 'Se crea la comunidad. Un foro donde se habla del Sudeste Asiático, de Tailandia y de cualquier tema que pueda ser de interés para el resto de los mortales.',
+            'emoji': '✍️',
+        },
+        {
+            'title': 'Primer artículo',
             'date': [9, 'Diciembre', 2015],
             'description': 'Primer artículo en Nomoresheet. Fue publicado en un blog cutrillo de WordPress sin dominio propio. El título de ese primer artículo ha cambiado en innumerables ocasiones.',
             'emoji': '🎈',
@@ -36,7 +42,7 @@ class Acerca extends Component {
         
         <div className = 'Intro'>
             <img src = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg'></img>
-            <p>Hola 👋🏻<br></br> Soy Erik, el creador de Nomoresheet. En diciembre del 2015 nació esta web y bla, bla, bla... Estoy reconstruyendo algunos de los hitos más relevantes hasta la fecha.</p>
+            <p>Hola 👋🏻<br></br> Soy Erik, el creador de Nomoresheet. En diciembre del 2015 nació esta web. Aquí encontrarás algunos de los hitos más relevantes hasta la fecha.</p>
         </div>
         
         {data.map((item, key) =>
