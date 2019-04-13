@@ -1,4 +1,9 @@
 var data = {
+    'natural': {
+        'title': 'Ser natural',
+        'date': [13, 'Abril', 2019],
+        'description': 'En el colegio, todos los años se organizaba una esquiada. Normalmente nos llevaban al Pirineo, a la estación de esquí de La Molina. Era una excursión voluntaria; aquellos niños que no iban, podían escoger entre ir a clase durante aquella semana (opción mala) o disfrutar de siete días de vacaciones (opción buena).',
+    },
     'fiebre-marzo': {
         'title': 'Fiebre de marzo',
         'date': [13, 'Marzo', 2019],
