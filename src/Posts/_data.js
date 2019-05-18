@@ -1,4 +1,9 @@
 var data = {
+    'vuelvo-a-tailandia': {
+        'title': 'Vuelvo a Tailandia',
+        'date': [18, 'Mayo', 2019],
+        'description': 'En breve se me acaba el contrato en el Servei Català de Trànsit. Ha sido una experiencia opuesta a la que tuve en consultoría: proyectos interesantes, equipo joven, ganas de hacer, buen horario, flexibilidad... La valoración es positiva.',
+    },
     'natural': {
         'title': 'Ser natural',
         'date': [13, 'Abril', 2019],
