@@ -301,6 +301,9 @@
     padding: 20px;  
     word-break: break-word;
 }
+.Forum .Linkify p{
+    margin: 5px;
+}
 .Forum ul.replies{
     margin: auto;
     max-width: 600px;
