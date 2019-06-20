@@ -198,25 +198,8 @@ class Front extends Component {
     var list = array.map( (line, key) =>   
         [<Link to = {'/comunidad/post/' + line.key}>
             <li className='roll' key = {key}>
-                { key === 0 
-                ? <div  className = 'featured' 
-                        style = {{ backgroundImage: 'url(' + line.featuredImageUrl + ')', 
-                                   backgroundSize: 'cover', 
-                                   backgroundPosition: 'center center',
-                                   backgroundRepeat: 'no-repeat',
-                                   height: '500px'
-                                }}>
-                        <span className = 'title'>
-                            <div>{line.title}</div>
-                        </span>
-                  </div>
-                : null
-                }
                 <div className = 'roll-wrap'>
-                    { key === 0 
-                    ? null
-                    : <span>{line.title}</span>
-                    }
+                    <span>{line.title}</span>
                     <div className = 'Infopost-Meta-Post'>
                         <div className = 'infopost'>
                             <img src = {line.userPhoto}></img>

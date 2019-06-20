@@ -28,7 +28,6 @@
     padding: 40px 20px 20px 20px;
 }
 .Forum ul.Front a:first-child{
-    color: white;
     font-size: xx-large;
     height: auto;
     max-width: 100%;
@@ -49,7 +48,6 @@
     justify-content: center;
     margin: auto;
     margin-bottom: 20px;
-    max-width: 600px;
 }
 .Forum ul.Front a:hover{
     transition: 0.2s ease-in-out;
