@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link }    from 'react-router-dom';
 import firebase, {auth} from './Firebase.js';
 import Login from './Login';
-import Search from './Search';
 import '../Styles/Nav.css';
 
 class Nav extends Component {
@@ -47,11 +46,6 @@ class Nav extends Component {
                             { this.state.menu
                             ? <div className = 'Avatar-Menu'>
                                 <Link to = '/perfil'>Perfil</Link>
-                                <div className = 'Separator'></div>
-                                <Link to = '/ruta'>Ruta</Link>
-                                <Link to = '/temperatura'>Clima</Link>
-                                <Link to = '/divisas'>Divisas</Link> 
-                                <Link to = '/calculadora'>Calculadora</Link>
                                 <div className = 'Separator'></div>
                                 <Link to = '/'><div onClick = {this.signOut} className = 'Logout'>Cerrar sesión</div></Link>
                               </div>
