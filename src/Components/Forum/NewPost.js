@@ -81,7 +81,7 @@ class NewPost extends Component {
     
   render() {
     return (
-        <div className = 'Post'>
+        <div className = 'NewPost'>
             
             { !this.state.send
             ? <form onSubmit = {this.handleSubmit}>

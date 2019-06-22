@@ -1,4 +1,4 @@
-.Post{
+.NewPost{
     align-items: center;
     background: rgba(1, 1, 1, 0.9);
     display: flex;
@@ -11,16 +11,16 @@
     top: 0;
     width: 100vw;
 }
-.Post h2,
-.Post p{
+.NewPost h2,
+.NewPost p{
     color: white;
 }
-.Post form{
+.NewPost form{
     max-width: 1000px;
     width: 100%;
     z-index: 1;
 }
-.Post input{
+.NewPost input{
     border: none;
     border-radius: 5px;
     display: block;
@@ -31,7 +31,7 @@
     padding: 10px;
     width: 100%;
 }
-.Post textarea{
+.NewPost textarea{
     border: none;
     border-radius: 5px;
     display: block;
@@ -42,7 +42,7 @@
     padding: 10px;
     width: 100%;
 }
-.Post button{
+.NewPost button{
     background-color: var(--greenMint);
     border: none;
     border-radius: 5px;
@@ -53,16 +53,16 @@
     padding: 10px 20px;
     width: auto;
 }
-.Post button:hover{
+.NewPost button:hover{
     box-shadow: none;
 }
-.Post .Invisible{
+.NewPost .Invisible{
     left: 0;
     top: 0;
     position: fixed;
     width: 100vw;
     height: 100vh;
 }
-.Post .Enviado{
+.NewPost .Enviado{
     z-index: 1;
 }

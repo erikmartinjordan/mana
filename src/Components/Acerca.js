@@ -16,6 +16,18 @@ class Acerca extends Component {
       
     var data = [
         {
+            'title': 'Mejoras sutiles',
+            'date': [22, 'Junio', 2019],
+            'description': 'He mejorado algunas cosillas de la web, he eliminado secciones que se utilizaban poco (divisas, calculadora, temperatura...) y añadiré funcionalidades que puedan ser de utilidad.',
+            'emoji': '🔥',
+        },
+        {
+            'title': 'Vuelvo a Tailandia',
+            'date': [14, 'Junio', 2019],
+            'description': 'Después de casi dos años, vuelvo a Tailandia otra vez. Ganas de crear cosas nuevas.',
+            'emoji': '😄',
+        },
+        {
             'title': 'Tres años',
             'date': [22, 'Diciembre', 2018],
             'description': 'Nace la página «acerca de», donde se recopilarán algunos hitos hasta la fecha. Esta pestaña está en construcción e ira modificándose a medida que pasen los días.',
