@@ -37,22 +37,26 @@
     font-size: 12px;
     margin: 5px;
 }
-.Nav .Menu > a:nth-child(4){
+.Nav .Menu a.login,
+.Nav .User a.New-Post{
     background-color: var(--greenMint);
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
     border-radius: 5px;
     color: white;
+    font-size: 12px;
     padding: 5px 10px;
 }
-.Nav .Menu > a:nth-child(4):hover{
+.Nav .Menu a.login:hover{
     transition: 0.2s ease-in-out;
     transform: scale(1.01);   
 }
 .Nav .Menu img{
+    border: 1px solid var(--pastelGreen);
     border-radius: 50%;
-    height: 20px;
-    margin-left: 5px;
-    width: 20px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 30px;
 }
 .Nav .Search{
     align-items: center;

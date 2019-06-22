@@ -77,19 +77,6 @@ class Perfil extends Component {
         <div className = 'Datos'>
             <img src = {img}></img>
             <h3>{nombre}</h3>
-            <table>
-                <tbody>
-                    <tr><td>País de origen</td><td>{pais}</td></tr>
-                    <tr><td>Presupuesto</td><td>{presupuesto} {divisa}</td></tr>
-                    <tr><td>Tipo de viajero</td><td>{viajero}</td></tr>
-                </tbody>
-            </table>
-            <h3>Ruta</h3>
-            <table>
-                <tbody>
-                    {cities}
-                </tbody>
-            </table>
         </div>
       </div>,
       <div>
