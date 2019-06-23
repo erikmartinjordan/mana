@@ -52,7 +52,7 @@ class Perfil extends Component {
         var mm = date.getMonth() + 1;
         var yyyy = date.getFullYear();
         var creation = dd + '/' + mm + '/' + yyyy;  
-        var visitas = this.state.infoUser.postsViews;
+        var visitas = this.state.infoUser.postsViews.toLocaleString();
         var articulos = this.state.infoUser.posts.numPosts;
         var respuestas = this.state.infoUser.replies.numReplies;
         
@@ -64,12 +64,20 @@ class Perfil extends Component {
         <div className = 'Datos'>
             <img src = {img}></img>
             <h3>{nombre}</h3>
-            <ul>
-                <li>Fecha de creación de la cuenta: <b>{creation}</b></li>
-                <li>Visitas: <b>{visitas}</b></li>
-                <li>Artículos publicados: <b>{articulos}</b></li>
-                <li>Respuestas publicadas: <b>{respuestas}</b></li>
-            </ul>
+            <div className = 'Bloque'>
+                <div>
+                    <div className = 'Peque'>✨Visitas</div>
+                    <div className = 'Gigante'>{visitas}</div>
+                </div>
+                <div>
+                    <div className = 'Peque'>✒️ Artículos publicados</div>
+                    <div className = 'Gigante'>{articulos}</div>
+                </div>
+                <div>
+                    <div className = 'Peque'>💬 Respuestas publicadas</div>
+                    <div className = 'Gigante'>{respuestas}</div>
+                </div>
+            </div>
         </div>
       </div>,
       <div>

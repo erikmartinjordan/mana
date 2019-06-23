@@ -37,6 +37,21 @@
 .Perfil .Datos span.Alert{
     background: var(--lightGray);
 }
+.Perfil .Bloque{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.Perfil .Bloque div{
+    flex: 1;
+}
+.Perfil .Bloque .Peque{
+    font-size: x-small;
+}
+.Perfil .Bloque .Gigante{
+    font-size: xx-large;
+    font-weight: bold;
+}
 @media (max-width: 768px){
    .Perfil{
         padding: 20px;
