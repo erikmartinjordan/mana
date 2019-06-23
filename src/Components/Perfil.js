@@ -10,7 +10,7 @@ class Perfil extends Component {
       this.state = {
          infoUser: null,
          render: true,
-         user: null
+         user: null,
       }
   }
     
@@ -45,29 +45,14 @@ class Perfil extends Component {
         
         var nombre = this.state.user.displayName;
         var img = this.state.user.photoURL;
+        var date = new Date(this.state.user.metadata.creationTime);
+        var dd = date.getDate();
+        var mm = date.getMonth() + 1;
+        var yyyy = date.getFullYear();
+        var creation = dd + '/' + mm + '/' + yyyy;  
+        var visitas = this.state.infoUser.postsViews;
         
-        var pais = 'No se sabe...';
-        var presupuesto = 'Mmmmmm...';
-        var divisa = '';
-        var viajero = '¿Lo qué?';
-        var cities = <tr><td>Sin ruta</td></tr>;
-        
-        if(typeof(this.state.infoUser.presupuesto) !== 'undefined'){
-            pais = this.state.infoUser.presupuesto.pais;
-            presupuesto = (this.state.infoUser.presupuesto.presupuesto / this.state.infoUser.presupuesto.conversionRate).toFixed(2).replace('.', ',');
-            divisa = this.state.infoUser.presupuesto.coinSymbol;
-            viajero = this.state.infoUser.presupuesto.viajero;  
-        }
-        if(typeof(this.state.infoUser.ruta) !== 'undefined'){
-            cities = this.state.infoUser.ruta.ciudad.map( (value, id) => <tr className = 'Recorrido' key = {id}>
-                                                                <td>{value[0]}</td>
-                                                                <td>{value[1]}</td>
-                                                                <td>{value[2]}</td>
-                                                                <td>{value[3]} {value[3] > 1 ? 'días' : 'día'}</td>
-                                                            </tr>);
-        }
-            
-
+        console.log()
     }
       
           
@@ -77,10 +62,14 @@ class Perfil extends Component {
         <div className = 'Datos'>
             <img src = {img}></img>
             <h3>{nombre}</h3>
+            <ul>
+                <li>Fecha de creación de la cuenta: {creation}</li>
+                <li>Número total de visitas: {visitas}</li>
+            </ul>
         </div>
       </div>,
       <div>
-        {this.state.render ? <Login hide={this.hideBanner}></Login> : null}
+        {this.state.render ? <Login hide = {this.hideBanner}></Login> : null}
       </div>]                                               
     );
   }

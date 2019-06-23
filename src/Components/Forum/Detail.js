@@ -83,7 +83,11 @@ class Detail extends Component {
                     views: capture.views
                 });
                 
+                //Increase number of views of the post
                 firebase.database().ref('posts/' + this.props.match.params.string + '/views').transaction( (value) =>  value + 1 );
+                
+                // Increase number of views in the user's profile
+                firebase.database().ref('users/' + capture.userUid + '/postsViews').transaction( (value) => value + 1);
                 
             }
 
