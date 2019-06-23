@@ -50,12 +50,15 @@ class NewPost extends Component {
                         views: 0
                     });
                     
+                    
+                    // Set timeStamp
+                    firebase.database().ref('users/' + this.state.user.uid + '/posts/timeStamp').transaction( (value) => Date.now() );
+                    
+                    // Increase number of views of the user's posts
+                    firebase.database().ref('users/' + this.state.user.uid + '/posts/numPosts').transaction( (value) =>  value + 1 );
+                    
                     // Get URL
                     var url = id.key;
-                    
-                    firebase.database().ref('users/' + this.state.user.uid + '/posts').set({
-                        timeStamp: Date.now(),
-                    });
                     
                     // Remove current alerts
                     this.setState({

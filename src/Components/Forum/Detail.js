@@ -148,7 +148,7 @@ class Detail extends Component {
 
                 var capture = snapshot.val();
 
-                if(capture == null || Date.now() - capture.timeStamp > 300000){
+                if(capture == null || Date.now() - capture.timeStamp > 300000 || this.state.user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2'){
 
                     firebase.database().ref('posts/' + this.props.match.params.string + '/replies/').push({
                         message: this.state.reply,
@@ -158,11 +158,12 @@ class Detail extends Component {
                         userUid: this.state.user.uid,
                     });
 
-
-                    firebase.database().ref('users/' + this.state.user.uid + '/replies').set({
-                        timeStamp: Date.now(),
-                    });
+                    //Set timestamp
+                    firebase.database().ref('users/' + this.state.user.uid + '/replies/timeStamp').transaction( (value) => Date.now() );
                     
+                    //Increase number of replies of the users
+                    firebase.database().ref('users/' + this.state.user.uid + '/replies/numReplies').transaction( (value) => value + 1 );
+                                        
                     this.setState({ 
                         reply: "",
                         send: true

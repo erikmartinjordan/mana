@@ -32,8 +32,10 @@ class Perfil extends Component {
                   this.setState({ infoUser: object });
 
               });
+              
           }
       });
+      
   }
   
   showBanner = () => this.setState({ render: true }); 
@@ -51,11 +53,11 @@ class Perfil extends Component {
         var yyyy = date.getFullYear();
         var creation = dd + '/' + mm + '/' + yyyy;  
         var visitas = this.state.infoUser.postsViews;
+        var articulos = this.state.infoUser.posts.numPosts;
+        var respuestas = this.state.infoUser.replies.numReplies;
         
-        console.log()
     }
-      
-          
+       
     return (
       [<div className = 'Perfil'>
         <h2>Perfil</h2>
@@ -63,8 +65,10 @@ class Perfil extends Component {
             <img src = {img}></img>
             <h3>{nombre}</h3>
             <ul>
-                <li>Fecha de creación de la cuenta: {creation}</li>
-                <li>Número total de visitas: {visitas}</li>
+                <li>Fecha de creación de la cuenta: <b>{creation}</b></li>
+                <li>Visitas: <b>{visitas}</b></li>
+                <li>Artículos publicados: <b>{articulos}</b></li>
+                <li>Respuestas publicadas: <b>{respuestas}</b></li>
             </ul>
         </div>
       </div>,
