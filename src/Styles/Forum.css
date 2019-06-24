@@ -76,6 +76,13 @@
     align-items: baseline;
     margin-right: 10px;
 }
+.Forum .Meta-Post .Multi-Pic{
+    display: flex;
+}
+.Forum .Meta-Post .Multi-Pic img{
+    border: 2px solid var(--bgColor);
+    margin-right: -11px;
+}
 .Forum .votes{
     align-items: flex-end;
     display: flex;
@@ -93,9 +100,9 @@
 }
 .Forum img{
     border-radius: 50%;
-    height: 20px;
+    height: 25px;
     margin-right: 10px;
-    width: 20px;
+    width: 25px;
 }
 .Forum img.Featured-Photo{
     border-radius: 0;

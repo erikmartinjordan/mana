@@ -103,31 +103,42 @@ class Front extends Component {
     
     // Number of messages depending on user's choice  
     var array = this.state.chat.slice(0, this.state.numposts);
-    
+      
+    // Get unique pics arrray
+    var photos = [];
+    var unique = [];
+    photos = array.map( (line, key) => Object.keys(line.replies).map( (reply, key)  => line.replies[reply].userPhoto));   
+    for(var i = 0; i < photos.length; i ++) unique[i] = [...new Set(photos[i])]
+                    
     // Enumerate list of posts  
-    var list = array.map( (line, key) =>   
-        [<Link to = {'/comunidad/post/' + line.key}>
-            <li className='roll' key = {key}>
-                <div className = 'roll-wrap'>
-                    <span>{line.title}</span>
-                    <div className = 'Infopost-Meta-Post'>
-                        <div className = 'infopost'>
-                            <img src = {line.userPhoto}></img>
-                            <p>{line.userName}, <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
-                        </div>
-                        <div className = 'Meta-Post'>
-                            <div className = 'Likes'>🌶️ {line.votes * -1}</div>
-                            <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
-                            <div className = 'Views'>✨ {line.views} visitas</div>
+    var list = array.map( (line, key) =>
+        <React.Fragment>
+            <Link to = {'/comunidad/post/' + line.key}>
+                <li className='roll' key = {key}>
+                    <div className = 'roll-wrap'>
+                        <span>{line.title}</span>
+                        <div className = 'Infopost-Meta-Post'>
+                            <div className = 'infopost'>
+                                <img src = {line.userPhoto}></img>
+                                <p>{line.userName}, <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
+                            </div>
+                            <div className = 'Meta-Post'>
+                                <div className = 'Likes'>🌶️ {line.votes * -1}</div>
+                                <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
+                                {unique[key].map( (photo, key) =>         
+                                  <div className = 'Multi-Pic'>
+                                     <img key = {key} src = {photo}></img>
+                                  </div>
+                                )}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
-        </Link>,
-        <div>
-            {this.state.user && this.state.admin ? <button className='delete' id={line.key} onClick={this.handleDelete}>Eliminar</button> : null}
-        </div>]);
-                                       
+                </li>
+            </Link>
+            <div> {this.state.user && this.state.admin ? <button className = 'delete' id = {line.key} onClick = {this.handleDelete}>Eliminar</button> : null} </div>
+        </React.Fragment>
+      );
+
     return list;
        
   }   
