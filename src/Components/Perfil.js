@@ -70,11 +70,11 @@ class Perfil extends Component {
                     <div className = 'Gigante'>{visitas}</div>
                 </div>
                 <div>
-                    <div className = 'Peque'>✒️ Artículos publicados</div>
+                    <div className = 'Peque'>✒️ Artículos</div>
                     <div className = 'Gigante'>{articulos}</div>
                 </div>
                 <div>
-                    <div className = 'Peque'>💬 Respuestas publicadas</div>
+                    <div className = 'Peque'>💬 Respuestas</div>
                     <div className = 'Gigante'>{respuestas}</div>
                 </div>
             </div>

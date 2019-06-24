@@ -14,11 +14,45 @@ class Nav extends Component {
           menu: false,
           render: false,
           post: false,
-          show: true
+          show: true,
+          theme: '',
       }
   }
     
-  componentDidMount     = () => auth.onAuthStateChanged( user => this.setState({ user: user }) );
+  componentDidMount = () => {
+      
+      // Is user authenticated?
+      auth.onAuthStateChanged( user => this.setState({ user: user }) );
+      
+      // Getting current theme from local storage
+      const theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+            
+      // Setting the theme
+      theme === 'dark' ? document.documentElement.setAttribute('data-theme','dark') : document.documentElement.setAttribute('data-theme','');
+      
+      // Setting the state
+      this.setState({ theme });
+      
+  }
+  
+  changeTheme = () => {
+      
+      // Theme
+      var theme = this.state.theme;
+      
+      // Is dark theme activated?
+      theme === 'dark' ? document.documentElement.setAttribute('data-theme','') : document.documentElement.setAttribute('data-theme','dark');
+      
+      // New theme
+      theme === 'dark' ? theme = '' : theme = 'dark';
+      
+      // Save in local storage
+      localStorage.setItem('theme', theme);
+      
+      // Setting the theme
+      this.setState({ theme });
+  }
+  
   showBanner            = () => this.setState({ render: true }); 
   hideBanner            = () => this.setState({ render: false }); 
   showMenu              = () => this.setState({ menu: true });
@@ -26,6 +60,7 @@ class Nav extends Component {
   showPost              = () => this.setState({ post: true });
   hidePost              = () => this.setState({ post: false });
   signOut               = () => auth.signOut().then( this.setState({ user: null }) );
+
     
   render() {       
     return (
@@ -40,6 +75,7 @@ class Nav extends Component {
             <div className = 'Menu'>
                 { !this.state.user 
                     ? <React.Fragment>
+                        <a onClick = {this.changeTheme}>💡</a>
                         <Link to = '/'>Comunidad</Link>
                         <Link to = '/blog'>Blog</Link>
                         <Link to = '/acerca'>Acerca</Link>

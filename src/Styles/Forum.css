@@ -37,7 +37,7 @@
     font-weight: bold;
 }
 .Forum ul.Front a{
-    background: white;
+    background: var(--bgBox);
     border-radius: 5px;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
     color: var(--textBlog);
@@ -262,7 +262,6 @@
 /*Detail
 /*******************************************************************/
 .Forum h2{
-    color: var(--darkGray);
     text-align: center;
 }
 .Forum .infopost.left{
@@ -270,7 +269,7 @@
     justify-content: space-between;
 }
 .Forum .Linkify{
-    background: white;
+    background: var(--bgBox);
     border-radius: 5px;
     box-shadow: 0px 2px 6px rgba(0,0,0,.1);
     display: flex;
@@ -318,7 +317,7 @@
     display: inline-block;
 }
 .Forum .tooltip{
-    background: var(--darkGray);
+    background: var(--secondaryFontColor);
     border-radius: 5px;
     color: white;
     display: none;

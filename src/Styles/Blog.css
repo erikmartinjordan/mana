@@ -7,13 +7,13 @@
     text-align: center;
 }
 .Blog p.Month{
-    color: var(--gray);
+    color: var(--secondaryFontColor);
     font-size: x-small; 
     margin: 0;
     text-transform: uppercase;
 }
 .Blog .Block{
-    background: white;
+    background: var(--bgBox);
     border-radius: 5px;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
     padding: 20px;

@@ -16,13 +16,13 @@
     width: 100px;
 }
 .Acerca .Date p{
-    color: var(--lightGray);
+    color: var(--thirdFontColor);
     font-size: x-small;
     text-align: center;
     text-transform: uppercase;
 }
 .Acerca .Block{
-    background: white;
+    background: var(--bgBox);
     border-radius: 5px;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
     padding: 20px;

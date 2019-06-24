@@ -11,7 +11,7 @@
     z-index: 1;
 }
 .Login .Login-wrap{
-    background: var(--superLightGray);
+    background: var(--bgBox);
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0,0,0,.15);
     padding: 0px 20px 20px 20px;
@@ -26,6 +26,7 @@
 }
 .Login .Login-wrap ul{
     list-style: none;
+    padding: 0;
 }
 .Login .Login-wrap button.more{
     justify-content: flex-end;

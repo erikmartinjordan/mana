@@ -26,8 +26,8 @@ html{
     outline: none;
 }
 body {
-    background: var(--superLightGray);
-    color: var(--darkGray);
+    background: var(--bgColor);
+    color: var(--primaryFontColor);
     line-height: 2;
     margin: 0;
 }
@@ -43,6 +43,7 @@ h3,
 h4,
 h5,
 h6{
+    color: var(--primaryFontColor);
     letter-spacing: -0.075em;
     line-height: 1.5;
     text-align: center;
@@ -64,10 +65,10 @@ a{
 }
 button{
     background: transparent;
-    border: 3px solid var(--darkGray);
+    border: 3px solid var(--primaryFontColor);
     border-radius: 5px;
-    box-shadow: 4px 4px 0 0 var(--darkGray);
-    color: #30363b;
+    box-shadow: 4px 4px 0 0 var(--primaryFontColor);
+    color: var(--primaryFontColor);
     cursor: pointer;
     display: block;
     font-size: small;
@@ -78,7 +79,7 @@ button{
     width: 200px;  
 }
 button:hover{
-    box-shadow: 8px 8px 0 0 var(--darkGray);
+    box-shadow: 8px 8px 0 0 var(--primaryFontColor);
     transition: 0.2s ease-in-out;
 }
 button.more{
@@ -117,10 +118,13 @@ img.emoji {
    vertical-align: -0.1em!important;
 }
 :root{
-    --superLightGray: #f4f8fb;
-    --lightGray: #828c99;
-    --mediumGray: #555;
-    --darkGray: #30363b;
+    --nmsLogo: #30363b;
+    --bgColor: #f4f8fb;
+    --primaryFontColor: #30363b;
+    --secondaryFontColor: #555; 
+    --thirdFontColor: #828c99;
+    --linkColor: #1e99e6;
+    --bgBox: white;
     --lightBlue: #d2eafa;
     --blue: #1e99e6;
     --red: #db3236;
@@ -128,9 +132,12 @@ img.emoji {
     --pastelYellow: #ffde87;
     --pastelGreen: #c8e6e0;
     --pastelPurple: #778dff;
-    --greenMint: #48AC98;
-    --textBlog: #444a4e;
-
+    --greenMint: #48ac98;
+}
+[data-theme = 'dark']{
+    --bgColor: #262b2f;
+    --primaryFontColor: white;  
+    --bgBox: #30363b;
 }
 ::selection{
     background: var(--darkGray);
