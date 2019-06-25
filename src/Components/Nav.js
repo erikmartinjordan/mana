@@ -75,15 +75,14 @@ class Nav extends Component {
             <div className = 'Menu'>
                 { !this.state.user 
                     ? <React.Fragment>
-                        <a onClick = {this.changeTheme}>💡</a>
+                        <a onClick = {this.changeTheme}>{this.state.theme === 'dark' ? '🌞' : '🌙'}</a>
                         <Link to = '/'>Comunidad</Link>
                         <Link to = '/blog'>Blog</Link>
                         <Link to = '/acerca'>Acerca</Link>
                         <a onClick = {this.showBanner} className = 'login'>Acceder</a>
                       </React.Fragment>
                     : <div className = 'User'>
-                            <div className = 'Img-Wrap'>
-                                
+                            <div className = 'Img-Wrap'> 
                                 <img onClick = {this.showMenu}  src = {this.state.user.photoURL}></img>        
                                 <Link to = '/' onClick = {this.showPost} className = 'New-Post'>Publicar</Link>
                             </div>

@@ -182,24 +182,99 @@ class Front extends Component {
   //-------------------------------------------------------------    
   orderBy = (type) => {
          
-         let sorted;
+     let sorted;
                           
-         if(type === 'nuevo')       sorted = this.state.chat.sort( (a, b) => b.timeStamp - a.timeStamp );
-         if(type === 'picante')     sorted = this.state.chat.sort( (a, b) => a.votes - b.votes );
-         if(type === 'comentarios') sorted = this.state.chat.sort( (a, b) => {
-                  
-            if(a.replies  && b.replies)   return Object.keys(b.replies).length - Object.keys(a.replies).length;
-            if(!a.replies && b.replies)   return 1;
-            if(a.replies  && !b.replies)  return -1;
-            if(!a.replies && !b.replies)  return 0;
-         
-         });
-                  
-         this.setState({ 
-            chat: sorted,
-            sort: type
-         });
+     if(type === 'nuevo')       sorted = this.state.chat.sort( (a, b) => b.timeStamp - a.timeStamp );
+     if(type === 'picante')     sorted = this.state.chat.sort( (a, b) => a.votes - b.votes );
+     if(type === 'comentarios') sorted = this.state.chat.sort( (a, b) => {
 
+        if(a.replies  && b.replies)   return Object.keys(b.replies).length - Object.keys(a.replies).length;
+        if(!a.replies && b.replies)   return 1;
+        if(a.replies  && !b.replies)  return -1;
+        if(!a.replies && !b.replies)  return 0;
+
+     });
+
+     this.setState({ 
+        chat: sorted,
+        sort: type
+     });
+
+  }
+  
+  //-------------------------------------------------------------
+  //
+  // get last comments, author and link
+  //
+  //-------------------------------------------------------------    
+  lastComments = (numberOfComments) => {
+       
+      // Getting all the array of posts
+      var posts = this.state.chat;
+            
+      // Declaring replies array
+      var replies = [];
+      
+      // Declaring keys array of the parents
+      var keysParents = [];
+      
+      // Declaring keys array of the children
+      var keysChildren = [];
+      
+      // Declaring timeStamps
+      var timeStamps = [];
+      
+      // Declaring userPhotos
+      var userPhotos = [];
+      
+      // Declaring userNames
+      var userNames = [];
+      
+      // Max timeStamps indexes
+      var maxIndexes = [];
+            
+      // Getting an array of replies
+      posts.map( (post) => {
+          
+          if(typeof post.replies !== 'undefined'){
+            replies.push(post.replies);
+            for(var j = 0; j < Object.keys(post.replies).length; j ++)
+              keysParents.push(post.key);   
+          }
+      });
+      
+      // Getting keys, timeStamps, userPhotos and userNames of all replies
+      for(var i = 0; i < replies.length; i ++){
+          
+          Object.keys(replies[i]).map( (key) => keysChildren.push(key));
+          Object.keys(replies[i]).map( (key) => timeStamps.push(replies[i][key].timeStamp)); 
+          Object.keys(replies[i]).map( (key) => userPhotos.push(replies[i][key].userPhoto)); 
+          Object.keys(replies[i]).map( (key) => userNames.push(replies[i][key].userName)); 
+                    
+      }
+      
+      // Getting max timeStamps indexes
+      var topTimeStamps = [...timeStamps];
+      topTimeStamps = topTimeStamps.sort( (a, b) => b - a).slice(0, numberOfComments);
+      
+      // Getting indexes of elements
+      for(var i = 0; i < topTimeStamps.length; i ++){
+          
+          maxIndexes.push(timeStamps.indexOf(topTimeStamps[i]));
+      }
+      
+      // Printing last comments
+      var lastComments = maxIndexes.map( (value, key) => {
+          
+          return <div className = 'Info'>
+                    <img src = {userPhotos[value]}></img>
+                    <Link to = {'/comunidad/post/' + keysParents[value]}>{userNames[value]}</Link>
+                    <span>, <TimeAgo formatter = {formatter} date = {timeStamps[value]}/></span>
+                 </div>
+      
+      });
+          
+      return lastComments
   }
          
   render() {      
@@ -213,12 +288,26 @@ class Front extends Component {
                 <div onClick = {() => this.orderBy('picante')}     className = {this.state.sort === 'picante'     ? 'Selected' : null}>Picante 🌶</div>
                 <div onClick = {() => this.orderBy('comentarios')} className = {this.state.sort === 'comentarios' ? 'Selected' : null}>Comentarios 💬</div>
           </div>
-        : null
-        }
-
-        <ul className = 'Front'>
-            {this.state.ready ? this.listItems() : this.loading()}
-        </ul>
+        : null}
+        
+        { this.state.ready
+        ? <div className = 'Forum-TwoCol'>
+                <ul className = 'Front'>
+                    {this.listItems()}
+                </ul>
+                <div className = 'Sidebar'>
+                    <div className = 'BestPosts'>
+                        <span className = 'Title'>Últimos comentarios</span>
+                        {this.state.ready ? this.lastComments(10) : null}
+                    </div>
+                    <div className = 'Welcome'>
+                        <span className = 'Title'>Únete</span>
+                        <p>👋 ¡Hola! Accede a la comunidad para poder publicar y responder a otros <em>posts</em>.</p>
+                        <a className = 'login'>Acceder</a>
+                    </div>
+                </div>
+            </div>
+        : this.loading()}
 
         {this.state.nomore || !this.state.ready ? null : <button className = 'more' onClick = {this.showMorePosts}>Ver más</button>}
         {this.state.render ? <Login hide={this.hideBanner}></Login> : null}

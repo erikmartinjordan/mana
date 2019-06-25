@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     margin: auto;
-    max-width: 800px;
+    max-width: 1200px;
 }
 .Nav .Title{
     flex: 2;
@@ -36,19 +36,6 @@
     cursor: pointer;
     font-size: 12px;
     margin: 5px;
-}
-.Nav .Menu a.login,
-.Nav .User a.New-Post{
-    background-color: var(--greenMint);
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
-    border-radius: 5px;
-    color: white;
-    font-size: 12px;
-    padding: 5px 10px;
-}
-.Nav .Menu a.login:hover{
-    transition: 0.2s ease-in-out;
-    transform: scale(1.01);   
 }
 .Nav .Menu img{
     border-radius: 50%;

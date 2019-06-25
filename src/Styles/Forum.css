@@ -3,8 +3,13 @@
 /*******************************************************************/
 .Forum{
     margin: auto;
-    max-width: 800px;
+    max-width: 1200px;
     width: 100%;
+}
+.Forum .Forum-TwoCol{
+    align-items: stretch;
+    display: flex;
+    justify-content: space-between;
 }
 .Forum .Image{
     border-radius: 5px;
@@ -16,6 +21,7 @@
     margin-bottom: 100px;
 }
 .Forum ul{
+    margin-top: 0px;
     padding: 0;
 }
 .Forum ul .roll-wrap{
@@ -27,14 +33,46 @@
     justify-content: space-between;
     padding: 40px 20px 20px 20px;
 }
-.Forum ul.Front a:first-child{
-    font-size: xx-large;
-    height: auto;
-    max-width: 100%;
-    overflow: hidden;
-}
 .Forum ul.Front a:first-child span.title{
     font-weight: bold;
+}
+.Forum .Sidebar{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.Forum .Sidebar .Welcome,
+.Forum .Sidebar .BestPosts{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    color: var(--textBlog);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding: 20px 20px 20px 20px;
+}
+.Forum .Sidebar .BestPosts .Info{
+    align-items: center;
+    display: flex;
+    margin-top: 5px;
+}
+.Forum .Sidebar .BestPosts .Info span,
+.Forum .Sidebar .BestPosts .Info a{
+    font-size: small;
+}
+.Forum .Sidebar .Welcome{
+    position: sticky;
+    top: 20px;
+}
+.Forum .Sidebar .Title{
+    color: var(--thirdFontColor);
+    font-size: small;
+    letter-spacing: 0.1px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 }
 .Forum ul.Front a{
     background: var(--bgBox);
@@ -43,12 +81,12 @@
     color: var(--textBlog);
     display: flex;
     flex-direction: column;
-    height: 100%;
-    min-height: 200px;
+    min-height: 250px;
     justify-content: center;
-    margin: auto;
     margin-bottom: 20px;
+    width: 850px;
 }
+
 .Forum ul.Front a:hover{
     transition: 0.2s ease-in-out;
     transform: scale(1.01);   
@@ -248,6 +286,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
 .Forum .OrderBy div{
     border-radius: 50px;

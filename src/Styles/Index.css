@@ -110,6 +110,20 @@ button.delete{
     margin-bottom: 50px;
     margin-top: 20px;
 }
+a.login,
+a.New-Post{
+    background-color: var(--greenMint);
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    border-radius: 50px;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    text-align: center;
+}
+a.login:hover{
+    transition: 0.2s ease-in-out;
+    transform: scale(1.01);   
+}
 img.emoji {
    border-radius: 0!important;
    height: 1em!important;
