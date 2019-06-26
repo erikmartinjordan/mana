@@ -43,7 +43,8 @@
     width: 500px;
 }
 .Forum .Sidebar .Welcome,
-.Forum .Sidebar .BestPosts{
+.Forum .Sidebar .LastComments,
+.Forum .Sidebar .LastArticles{
     background: var(--bgBox);
     border-radius: 5px;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
@@ -54,14 +55,25 @@
     margin-bottom: 20px;
     padding: 20px 20px 20px 20px;
 }
-.Forum .Sidebar .BestPosts .Info{
+.Forum .Sidebar .LastComments .Info{
     align-items: center;
     display: flex;
     margin-top: 5px;
 }
-.Forum .Sidebar .BestPosts .Info span,
-.Forum .Sidebar .BestPosts .Info a{
+.Forum .Sidebar .LastComments .Info span,
+.Forum .Sidebar .LastComments .Info a{
     font-size: small;
+}
+.Forum .Sidebar .LastArticles .Info{
+    align-items: center;
+    display: flex;
+}
+.Forum .Sidebar .LastArticles .Info .Bullet{
+    background-color: var(--greenMint);
+    border-radius: 50%;
+    height: 10px;
+    margin-right: 10px;
+    width: 10px;
 }
 .Forum .Sidebar .Welcome{
     position: sticky;

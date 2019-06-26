@@ -6,6 +6,7 @@ import spanishStrings from 'react-timeago/lib/language-strings/es';
 import TimeAgo from 'react-timeago';
 import Likes from './Likes.js';
 import Login from '../Login.js';
+import Data from '../../Posts/_data.js';
 import EmojiTextarea from './EmojiTextarea';
 import '../../Styles/Forum.css';
 
@@ -287,7 +288,30 @@ class Front extends Component {
       
       });
           
-      return lastComments
+      return lastComments;
+  }
+  
+  
+  //-------------------------------------------------------------
+  //
+  // get last articles
+  //
+  //-------------------------------------------------------------    
+  lastArticles = (numberOfArticles) => {
+      
+      var lastArticles; 
+      
+      lastArticles = Object.keys(Data).map( (key) => {
+          
+          return <div className = 'Info'>
+                      <div className = 'Bullet'></div>  
+                      <Link to = {'/' + key}>{Data[key].title}</Link>
+                 </div>
+      });
+          
+      lastArticles = lastArticles.slice(0, numberOfArticles); 
+      
+      return lastArticles;
   }
          
   render() {      
@@ -307,9 +331,13 @@ class Front extends Component {
                         {this.listItems()}
                     </ul>
                     <div className = 'Sidebar'>
-                        <div className = 'BestPosts'>
+                        <div className = 'LastComments'>
                             <span className = 'Title'>Últimos comentarios</span>
                             {this.state.ready ? this.lastComments(10) : null}
+                        </div>
+                        <div className = 'LastArticles'>
+                            <span className = 'Title'>Últimos artículos</span>
+                            {this.state.ready ? this.lastArticles(5) : null}
                         </div>
                         { !this.state.user
                         ? <div className = 'Welcome'>
