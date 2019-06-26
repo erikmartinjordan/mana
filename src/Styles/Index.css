@@ -44,7 +44,7 @@ h4,
 h5,
 h6{
     color: var(--primaryFontColor);
-    letter-spacing: -0.075em;
+    letter-spacing: -0.035em;
     line-height: 1.5;
     text-align: center;
 }
@@ -53,6 +53,9 @@ h1{
 }
 h2{
     font-size: 40px;
+}
+h3{
+    font-size: 30px;
 }
 p,
 li,
