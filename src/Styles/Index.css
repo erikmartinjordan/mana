@@ -89,11 +89,18 @@ button.more{
     box-shadow: none;
     color: var(--blue);
 }
-button.back{
-    background: none;
+button.bottom{
+    background-color: var(--greenMint);
     border: none;
-    box-shadow: none;
-    color: var(--blue);
+    border-radius: 50px;
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    color: white!important;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 20px;
+    padding: 5px 10px;
+    text-align: center; 
+    width: auto;
 }
 button.delete{
     background: var(--blue);

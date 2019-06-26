@@ -88,7 +88,7 @@ class NewPost extends Component {
             
             { !this.state.send
             ? <form onSubmit = {this.handleSubmit}>
-                <h2>Escribe tu mensaje</h2>
+                <h2>✍️ Escribe tu mensaje</h2>
                 <input onChange = {this.handleTitle} className = 'title' placeholder = 'Título...' maxLength = '50'></input>
                 <EmojiTextarea handleChange = {this.handleMessage} ></EmojiTextarea>
                 <button className = 'bottom'>Enviar</button>

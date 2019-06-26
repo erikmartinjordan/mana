@@ -61,6 +61,17 @@ class Nav extends Component {
   hidePost              = () => this.setState({ post: false });
   signOut               = () => auth.signOut().then( this.setState({ user: null }) );
 
+  toggleButton = (status) => {
+      
+      var button; 
+      
+      if(status === 'on') button = <div className = 'button-on'><div className = 'inner-button-on'></div></div>;
+      else                button = <div className = 'button-off'><div className = 'inner-button-off'></div></div>;
+      
+      return button;
+          
+  }
+
     
   render() {       
     return (
@@ -87,16 +98,16 @@ class Nav extends Component {
                                 <Link to = '/' onClick = {this.showPost} className = 'New-Post'>Publicar</Link>
                             </div>
                             { this.state.menu
-                            ? <div className = 'Avatar-Menu' onClick = {this.hideMenu}>
-                                <Link to = '/perfil'>Perfil</Link>
+                            ? <div className = 'Avatar-Menu'>
+                                <Link to = '/perfil' onClick = {this.hideMenu}>Perfil</Link>
                                 <div className = 'Separator'></div>
-                                <Link to = '/'>Comunidad</Link>
-                                <Link to = '/Blog'>Blog</Link> 
-                                <Link to = '/Acerca'>Acerca</Link>
+                                <Link to = '/' onClick = {this.hideMenu}>Comunidad</Link>
+                                <Link to = '/Blog' onClick = {this.hideMenu}>Blog</Link> 
+                                <Link to = '/Acerca' onClick = {this.hideMenu} >Acerca</Link>
                                 <div className = 'Separator'></div>
-                                <a onClick = {this.changeTheme}>Cambiar a modo {this.state.theme === 'dark' ? 'día' : 'noche'}</a>
+                                <a onClick = {this.changeTheme}>Modo noche{this.state.theme === 'dark' ? this.toggleButton('on') : this.toggleButton('off')}</a>
                                 <div className = 'Separator'></div>
-                                <Link to = '/'><div onClick = {this.signOut} className = 'Logout'>Cerrar sesión</div></Link>
+                                <Link to = '/' onClick = {this.hideMenu}><div onClick = {this.signOut} className = 'Logout'>Cerrar sesión</div></Link>
                               </div>
                             : null}
                       </div>

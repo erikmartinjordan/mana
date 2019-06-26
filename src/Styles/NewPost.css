@@ -1,6 +1,6 @@
 .NewPost{
     align-items: center;
-    background: rgba(1, 1, 1, 0.9);
+    background: rgba(15, 15, 15, 0.6);
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -16,7 +16,13 @@
     color: white;
 }
 .NewPost form{
-    max-width: 1000px;
+    background: var(--bgColor);
+    border-radius: 5px;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
+                rgba(15, 15, 15, 0.2) 0px 5px 10px, 
+                rgba(15, 15, 15, 0.4) 0px 15px 40px;
+    padding: 20px;
+    max-width: 600px;
     width: 100%;
     z-index: 1;
 }
@@ -41,20 +47,6 @@
     max-width: 1000px;
     padding: 10px;
     width: 100%;
-}
-.NewPost button{
-    background-color: var(--greenMint);
-    border: none;
-    border-radius: 5px;
-    box-shadow: none;
-    color: white;
-    font-size: 20px;
-    margin-top: 20px;
-    padding: 10px 20px;
-    width: auto;
-}
-.NewPost button:hover{
-    box-shadow: none;
 }
 .NewPost .Invisible{
     left: 0;

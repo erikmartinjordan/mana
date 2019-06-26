@@ -47,7 +47,9 @@
 .Nav .Avatar-Menu{
     background: var(--bgBox);
     border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
+                rgba(15, 15, 15, 0.2) 0px 5px 10px, 
+                rgba(15, 15, 15, 0.4) 0px 15px 40px;
     color: var(--darkGray);
     font-size: small;
     margin-left: -100px;
@@ -57,15 +59,16 @@
     z-index: 1;
 }
 .Nav .Avatar-Menu a{
+    align-items: center;
     color: var(--primaryFontColor);
-    display: block;
+    display: flex;
     font-size: small;
     margin: 0;
     padding: 5px 20px 5px 20px; 
 }
 .Nav .Avatar-Menu a:hover{
-    background: var(--primaryFontColor);
-    color: var(--bgBox);
+    background: var(--bgColor);
+    color: var(--primaryFontColor);
     transition: 0.2s ease-in-out;
 }
 .Nav .Separator{
@@ -85,6 +88,35 @@
 }
 .Nav .Logout{
     color: var(--red);
+}
+.Nav .button-on,
+.Nav .button-off{
+    align-items: center;
+    border-radius: 50px;
+    display: flex;
+    flex-shrink: 0;
+    height: 18px;
+    margin-left: 10px;
+    padding: 2px;
+    background: var(--blue);
+    transition: background 200ms ease 0s, box-shadow 200ms ease 0s;
+    width: 30px;
+}
+.Nav .button-off{
+    background: rgba(202, 204, 206, 0.3);
+
+}
+.Nav .inner-button-on,
+.Nav .inner-button-off{
+    width: 12px;
+    height: 12px;
+    border-radius: 50px;
+    background: white;
+    transition: transform 200ms ease-out 0s, background 200ms ease-out 0s;
+    transform: translateX(14px) translateY(0px);
+}
+.Nav .inner-button-off{
+    transform: translateX(0%) translateY(0px);
 }
 @media (max-width: 768px){
    .Nav{
