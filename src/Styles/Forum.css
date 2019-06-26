@@ -61,7 +61,8 @@
     margin-top: 5px;
 }
 .Forum .Sidebar .LastComments .Info span,
-.Forum .Sidebar .LastComments .Info a{
+.Forum .Sidebar .LastComments .Info a,
+.Forum .Sidebar .LastArticles .Info a{
     font-size: small;
 }
 .Forum .Sidebar .LastArticles .Info{
@@ -216,13 +217,12 @@
     font-size: large;
     height: 200px;
     margin: auto;
-    max-width: 1000px;
     padding: 10px;
     width: 100%;
 }
 .Forum .Emoji{
     margin: auto;
-    max-width: 600px;
+    width: 100%;
 }
 .Forum .Emoji-Grid{
     min-height: 32px;

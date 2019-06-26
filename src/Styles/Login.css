@@ -16,7 +16,7 @@
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
                 rgba(15, 15, 15, 0.2) 0px 5px 10px, 
                 rgba(15, 15, 15, 0.4) 0px 15px 40px;
-    padding: 0px 20px 20px 20px;
+    padding: 20px;
     width: 600px;
     z-index: 1;
 }
@@ -31,24 +31,31 @@
     list-style: none;
     padding: 0;
 }
-.Login .Login-wrap button.more{
-    justify-content: flex-end;
+.Login button.Google{
+    align-items: center;
+    background: white;
+    border: 1px solid var(--thirdFontColor);
+    border-radius: 50px;
+    box-shadow: none;
+    color: var(--secondaryFontColor);
+    cursor: pointer;
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 5px 10px;
+
 }
-.Login .Google-blue{
-    color: #4885ed
+.Login button.Google:hover{
+    transition: 0.2s ease-in-out;
+    transform: scale(1.01); 
 }
-.Login .Google-red{
-    color: #db3236;   
-}
-.Login .Google-yellow{
-    color: #f4c20d;
-}
-.Login .Google-green{
-    color: #3cba54;
+.Login svg{
+    margin-right: 10px;
 }
 .Login .info{
+    color: var(--thirdFontColor);
     font-size: small;
-    margin-top: 20px;
+    line-height: 1.3;
     text-align: center;
 }
 @media (max-width: 768px){
