@@ -34,9 +34,9 @@ class Login extends Component {
                     <span className = 'Google-green'>l</span>
                     <span className = 'Google-red'>e</span>
                 </button>
-                <button className = 'back'   onClick={this.close}> Volver</button>
                 <div className = 'info'>No publicaré en tu nombre, ni te enviaré <em>mails</em>, ni utilizaré tus datos.</div>
             </div>
+            <div className = 'Invisible' onClick = {this.close}></div>
         </div>  
     );
   }

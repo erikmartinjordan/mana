@@ -148,18 +148,31 @@ class Front extends Component {
   // loading blocks, fancy effect
   //
   //------------------------------------------------------------- 
-  loading = () =>{ return <div>
-                            <div className = 'loading'></div>
-                            <div className = 'loading'></div>
-                            <div className = 'loading'></div>
-                            <div className = 'loading'></div>
-                            <div className = 'loading'></div>
-                            <div className = 'loading'></div>
-                            <div className = 'loading'></div>
-                            <div className = 'loading'></div>
-                            <div className = 'loading'></div>
-                            <div className = 'loading'></div>
-                          </div> }
+  loading = () => <React.Fragment>
+                    <div className = 'OrderBy'>
+                        <div className = 'Loading'></div>
+                        <div className = 'Loading'></div>
+                        <div className = 'Loading'></div>
+                    </div>
+                     <div className = 'Forum-TwoCol'>
+                        <ul className = 'Front'>
+                            <div className = 'Loading'></div>
+                            <div className = 'Loading'></div>
+                            <div className = 'Loading'></div>
+                            <div className = 'Loading'></div>
+                            <div className = 'Loading'></div>
+                            <div className = 'Loading'></div>
+                            <div className = 'Loading'></div>
+                            <div className = 'Loading'></div>
+                            <div className = 'Loading'></div>
+                            <div className = 'Loading'></div>                       
+                        </ul>
+                        <div className = 'Sidebar'>
+                                <div className = 'Loading'></div> 
+                                <div className = 'Loading'></div> 
+                        </div>
+                     </div>
+                </React.Fragment>
       
   //-------------------------------------------------------------
   //
@@ -281,32 +294,31 @@ class Front extends Component {
       
     return (
       <div className = 'Forum'>
-         
-        { this.state.chat !== ''
-        ? <div className = 'OrderBy'>
-                <div onClick = {() => this.orderBy('nuevo')}       className = {this.state.sort === 'nuevo'       ? 'Selected' : null}>Nuevo 🔥</div>
-                <div onClick = {() => this.orderBy('picante')}     className = {this.state.sort === 'picante'     ? 'Selected' : null}>Picante 🌶</div>
-                <div onClick = {() => this.orderBy('comentarios')} className = {this.state.sort === 'comentarios' ? 'Selected' : null}>Comentarios 💬</div>
-          </div>
-        : null}
         
-        { this.state.ready
-        ? <div className = 'Forum-TwoCol'>
-                <ul className = 'Front'>
-                    {this.listItems()}
-                </ul>
-                <div className = 'Sidebar'>
-                    <div className = 'BestPosts'>
-                        <span className = 'Title'>Últimos comentarios</span>
-                        {this.state.ready ? this.lastComments(10) : null}
-                    </div>
-                    <div className = 'Welcome'>
-                        <span className = 'Title'>Únete</span>
-                        <p>👋 ¡Hola! Accede a la comunidad para poder publicar y responder a otros <em>posts</em>.</p>
-                        <a className = 'login'>Acceder</a>
+        { this.state.ready && this.state.chat !== ''
+        ?   <React.Fragment>
+                <div className = 'OrderBy'>
+                    <div onClick = {() => this.orderBy('nuevo')}       className = {this.state.sort === 'nuevo'       ? 'Selected' : null}>Nuevo 🔥</div>
+                    <div onClick = {() => this.orderBy('picante')}     className = {this.state.sort === 'picante'     ? 'Selected' : null}>Picante 🌶</div>
+                    <div onClick = {() => this.orderBy('comentarios')} className = {this.state.sort === 'comentarios' ? 'Selected' : null}>Comentarios 💬</div>
+                </div>
+                <div className = 'Forum-TwoCol'>
+                    <ul className = 'Front'>
+                        {this.listItems()}
+                    </ul>
+                    <div className = 'Sidebar'>
+                        <div className = 'BestPosts'>
+                            <span className = 'Title'>Últimos comentarios</span>
+                            {this.state.ready ? this.lastComments(10) : null}
+                        </div>
+                        <div className = 'Welcome'>
+                            <span className = 'Title'>Únete</span>
+                            <p>👋 ¡Hola! Accede a la comunidad para poder publicar y responder a otros <em>posts</em>.</p>
+                            <a className = 'login' onClick = {this.showBanner}>Acceder</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         : this.loading()}
 
         {this.state.nomore || !this.state.ready ? null : <button className = 'more' onClick = {this.showMorePosts}>Ver más</button>}

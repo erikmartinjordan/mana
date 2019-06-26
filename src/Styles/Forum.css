@@ -39,7 +39,8 @@
 .Forum .Sidebar{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    margin-left: 20px;
+    width: 500px;
 }
 .Forum .Sidebar .Welcome,
 .Forum .Sidebar .BestPosts{
@@ -51,7 +52,6 @@
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 20px;
-    margin-left: 20px;
     padding: 20px 20px 20px 20px;
 }
 .Forum .Sidebar .BestPosts .Info{
@@ -74,6 +74,9 @@
     margin-bottom: 10px;
     text-transform: uppercase;
 }
+.Forum ul.Front{
+    width: 100%;
+}
 .Forum ul.Front a{
     background: var(--bgBox);
     border-radius: 5px;
@@ -84,7 +87,7 @@
     min-height: 250px;
     justify-content: center;
     margin-bottom: 20px;
-    width: 850px;
+    width: 100%;
 }
 
 .Forum ul.Front a:hover{
@@ -267,13 +270,12 @@
     color: white;
     padding: 10px 20px;
 }
-.Forum .loading{
+.Forum .Loading{
     border-radius: 5px;
     height: 200px;
-    margin: auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
-.Forum .loading{
+.Forum .Loading{
     -webkit-animation-duration: 0.75s;
     -webkit-animation-fill-mode: forwards;
     -webkit-animation-iteration-count: infinite;
@@ -281,6 +283,12 @@
     -webkit-animation-timing-function: linear;
     background-image: linear-gradient(to right, var(--bgBox) 10%, var(--bgColor) 18%, var(--bgBox) 33%);
     background-size: 200% 100%;
+}
+.Forum .OrderBy .Loading{
+    border-radius: 50px;
+    height: 30px;
+    margin: 10px;
+    width: 70px;
 }
 .Forum .OrderBy{
     align-items: center;
@@ -393,5 +401,9 @@
     }
     .Forum .roll-wrap span{
         text-align: center;
+    }
+    .Forum .Sidebar,
+    .Forum .OrderBy{
+        display: none;
     }
 } 

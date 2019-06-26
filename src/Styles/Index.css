@@ -116,6 +116,7 @@ a.New-Post{
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
     border-radius: 50px;
     color: white;
+    cursor: pointer;
     font-size: 12px;
     padding: 5px 10px;
     text-align: center;
@@ -130,6 +131,13 @@ img.emoji {
    width: 1em!important;
    margin: 0 .01em 0 .5em!important;
    vertical-align: -0.1em!important;
+}
+.Invisible{
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
 }
 :root{
     --nmsLogo: #30363b;
