@@ -311,11 +311,13 @@ class Front extends Component {
                             <span className = 'Title'>Últimos comentarios</span>
                             {this.state.ready ? this.lastComments(10) : null}
                         </div>
-                        <div className = 'Welcome'>
+                        { !this.state.user
+                        ? <div className = 'Welcome'>
                             <span className = 'Title'>Únete</span>
                             <p>👋 ¡Hola! Accede a la comunidad para poder publicar y responder a otros <em>posts</em>.</p>
                             <a className = 'login' onClick = {this.showBanner}>Acceder</a>
-                        </div>
+                          </div>
+                        : null }
                     </div>
                 </div>
             </React.Fragment>
