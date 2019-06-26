@@ -1,6 +1,9 @@
+![Singapur, el punto clave para las fotos de Instagram](https://lh3.googleusercontent.com/pob30C27kcjaOIrzxyH3S43zQSrTLUki7tAUhKz9wg5VJKnEkd4MwiFY0LBlr9EfzOfIpK4yQXcKYGMkVgzLO9CdlHAyKjneEIhCrYn3qCpbrqLyDF-JcznPsqf8Ie_qTlu6tNKuv9bhqrfS3liAcSCzpuKmUsLQ_Q1HbVtnus8QdjGPr7XG7O8_aVI2Q1Xlkwgq0DwPN7IE1ebVldgmEBBdxKo-8fMgDmQOg1mvefgiEIf1vvlIydakL6KR-TTAbPm53eyAMJ1ZVevpFukfxOx2Ka0WL3uB1K4PvWn0_OPS_9zKnazsxbuBPB11SBGGIPPf0UotaHq5HjN49rFIfZOz9ynxx2PPr17Fz25EF8G0z7xQ92HK9h5uxXwdBXAiVM6gloYP9pMGxq8fLSmPq0LPoBZrO0BP48CqDcVp4ZE2Lzyg0xRMCoPZAcNTQlB5PFulGHXCUexfjGAJEUiSD5LAc_WJZUFJ9g5QbtVb9HCZrLLNBtRW83EUC_493kfGruB4ZOp3J-gKAt4fkv1Ra1wapNsJnOcYGB-VuAkd1YCIXlMQQqHaWRpoCARIVAPFnMYhvgu9DLHBSOLPmGJvUwbX76f4iw9-K-tjClF2D0CxrLEHqaNCJpedpmXncpQWSF-ztcmpqItYuccS8_79PyGwRd5csZtb=w616-h821-no)
+*Chiang Muhu posando en Singapur*
+
 Mi madre conduce hacia el aeropuerto de Barcelona. Mi hermana va detrás mirando por la ventana y yo voy en el asiento del copiloto. Hace unos pocos años, nos peleábamos por coger el asiento delantero de camino al colegio:
 
-—¡Hoy voy yo delante! —decía mi hermana mientras avanzaba a paso ligero hacia la puerta del coche.
+—¡Hoy voy yo delante! —decía mi hermana mientras avanzaba hacia la puerta del coche.
 
 Después de tantos años, repetimos la broma. Pocas son las veces en las que vamos subidos los tres en el coche y, a estas alturas, resulta extraño.
 
@@ -20,13 +23,14 @@ Con una hora y media de retraso, el avión pone rumbo a Asia, Singapur me espera
 
 En el avión comparto fila con un par de señoras que hablan portugués. Por suerte no tengo a ninguna criatura en varios metros a la redonda y el viaje pinta agradable.
 
-## 12 horas y 55 minutos
+## Sólo serán 12 horas y 55 minutos
 
 Durante el vuelo, juego al Tetris, veo una película, voy al baño, luego juego a algo parecido a Candy Crush y vuelvo a ir al baño. Repito el bucle varias veces y en orden aleatorio. 
 
 En una de mis idas al baño para estirar las patas, me miro en el espejo: mis ojos tienen un color rojo mercromina, como si me hubiese bañado en una piscina con exceso de cloro durante varias horas. «La próxima vez me tomo algo para poder dormir», me digo.
 
-Miro a la gente a mi alrededor y todos están roque; por qué no tendré la habilidad para poder dormir sentado.  
+Miro a la gente a mi alrededor y todos están roque; me pregunto por qué no tendré la habilidad para poder dormir sentado.
+
 ## Azafatas
 
 Con los ojos como platos, tengo tiempo para fijarme en lo que hay mi alrededor. 
@@ -41,7 +45,7 @@ Depués de casi 13 horas sobrevolando el planeta, llego por fin al aeropuerto de
 
 Me cuenta que ha estado durmiendo cual *homeless* en uno de los asientos del aeropuerto, que se despertaba cada hora y que nos larguemos de allá *ipsoputofacto*, que está harta de estar en el aeropuerto.
 
-Abro Grab y pido un vehículo que nos lleve al Arcadia Hotel, sitúado en calle Lavender. El tipo nos lleva al hotel por 17 dólares sin darnos conversación y, solo por eso, se merece la más grande de las propinas.
+Abro Grab y pido un vehículo que nos lleve al Arcadia Hotel, sitúado en calle Lavender. La aplicación me indica que un tipo de ojos rasgados nos espera en la puerta del aeropuerto. El tipo nos lleva al hotel por 17 dólares singapurenses sin darnos conversación y, sólo por eso, se merece la más grande de las propinas.
 
 ## No comprendo
 
@@ -51,6 +55,15 @@ Mis párpados pesan como si fuesen de hormigón, pero aún así, decidimos dar u
 
 El acento singapurense me resulta difícil de comprender. No les entiendo y eso hace que me sienta desubicado y gilipollas a partes iguales. 
 
-## Descanso y Marina Bay
+## Marina Bay 
 
-Después de descansar, decidimos visitar la zona céntrica de la ciudad y pasear por Marina Bay. Pillamos un billete de metro y 
+Marina Bay nos fascina. Rascacielos altos que son las delicias de cualquier banco o consultora que se precie. Un lago artificial con una figura mezcla de león y sirena que suelta agua por la boca. Un centro comercial enorme repleto de tiendas de lujo. Un hotel con tres torres cuya azotea parece una piragua. 
+
+Patinetes eléctricos al borde del lago. Música. Gentío.
+
+Singapur está limpito, no hay tiendas en las aceras, ni la gente friega los platos en la calle. El transporte público funciona como es debido. No hay masificación y en las carreteras hay poco tránsito. La vida es cara. 
+
+Le comento a Chiang Muhu que no veo *homeless*. ¿Singapur los habrá prohibido también?
+
+Me entran ganas de comer chicle. Mejor que no. 
+

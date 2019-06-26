@@ -1,4 +1,9 @@
 var data = {
+    'singapur': {
+        'title': 'Hola, Singapur',
+        'date': [26, 'Junio', 2019],
+        'description': 'Depués de casi 13 horas sobrevolando el planeta, llego por fin al aeropuerto de Singapur. Paso los controles de inmigración cual aguililla —la agilidad del aeropuerto de Changi me fascina— y me encuentro con Chiang Muhu después de seis meses.',
+    },
     'vuelvo-a-tailandia': {
         'title': 'Vuelvo a Tailandia',
         'date': [18, 'Mayo', 2019],
