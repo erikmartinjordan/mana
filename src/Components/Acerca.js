@@ -17,15 +17,18 @@ class Acerca extends Component {
     var data = [
         {
             'title': 'Mejoras sutiles',
-            'date': [22, 'Junio', 2019],
-            'description': 'He mejorado algunas cosillas de la web, he eliminado secciones que se utilizaban poco (divisas, calculadora, temperatura...) y añadiré funcionalidades que puedan ser de utilidad.',
-            'emoji': '🔥',
+            'date': [26, 'Junio', 2019],
+            'description': 'Mejoras de la última versión:',
+            'list': {
+                'elem1': '💬 Añadidos últimos comentarios en la portada.',
+                'elem2': '📈 Añadidas estadísticas de usuarios en perfil.',
+                'elem3': '🌙 Creado modo noche.'
+            }
         },
         {
             'title': 'Vuelvo a Tailandia',
             'date': [14, 'Junio', 2019],
             'description': 'Después de casi dos años, vuelvo a Tailandia otra vez. Ganas de crear cosas nuevas.',
-            'emoji': '😄',
         },
         {
             'title': 'Tres años',
@@ -36,19 +39,16 @@ class Acerca extends Component {
             'title': 'Comunidad',
             'date': [13, 'Diciembre', 2017],
             'description': 'Se crea la comunidad. Un foro donde se habla del Sudeste Asiático, de Tailandia y de cualquier tema que pueda ser de interés para el resto de los mortales.',
-            'emoji': '✍️',
         },
         {
             'title': 'Primer artículo',
             'date': [9, 'Diciembre', 2015],
             'description': 'Primer artículo en Nomoresheet. Fue publicado en un blog cutrillo de WordPress sin dominio propio. El título de ese primer artículo ha cambiado en innumerables ocasiones.',
-            'emoji': '🎈',
         },
     ]
     
     return (
       <div className = 'Acerca'>
-        
         
         <h2>Acerca</h2>
         
@@ -61,10 +61,9 @@ class Acerca extends Component {
             [<div className = 'Block'>
                 <div className = 'Date'><p>{item.date[0] + ' de ' + item.date[1] + ' del '  + item.date[2]}</p></div>
                     <div className = 'Content'>
-                        <div className = 'Emoji'>{item.emoji}</div>
                         <div className = 'Text'>
-                            <p>{item.description}</p>
-                            <img src = {item.img}></img>
+                            {item.description ? <p>{item.description}</p> : null}
+                            {item.list ? Object.keys(item.list).map((value, key) => <li>{item.list[value]}</li>) : null}
                         </div>
                     </div>
             </div>,

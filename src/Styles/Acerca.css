@@ -27,21 +27,6 @@
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
     padding: 20px;
 } 
-.Acerca .Block:nth-of-type(3n){
-    margin: auto;
-    max-width: 600px;
-    width: 100%;
-}
-.Acerca .Block:nth-of-type(3n + 1){
-    margin: auto;
-    max-width: 500px;
-    width: 100%;
-}
-.Acerca .Block:nth-of-type(3n + 2){
-    margin: auto;
-    max-width: 600px;
-    width: 100%;
-}
 .Acerca .Block .Content{
     align-items: center;
     display: flex;
