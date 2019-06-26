@@ -59,6 +59,7 @@ class Acerca extends Component {
         
         {data.map((item, key) =>
             [<div className = 'Block'>
+                {item.title ? <h3>{item.title}</h3> : null}
                 <div className = 'Date'><p>{item.date[0] + ' de ' + item.date[1] + ' del '  + item.date[2]}</p></div>
                     <div className = 'Content'>
                         <div className = 'Text'>
