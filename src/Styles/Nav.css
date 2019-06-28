@@ -45,6 +45,7 @@
     width: 30px;
 }
 .Nav .Avatar-Menu{
+    animation: bounce 0.2s;
     background: var(--bgBox);
     border-radius: 5px;
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
@@ -52,9 +53,8 @@
                 rgba(15, 15, 15, 0.4) 0px 15px 40px;
     color: var(--darkGray);
     font-size: small;
-    margin-left: -100px;
+    margin-left: -80px;
     margin-top: 10px;
-    overflow: hidden;
     position: absolute;
     z-index: 1;
 }
@@ -117,6 +117,11 @@
 }
 .Nav .inner-button-off{
     transform: translateX(0%) translateY(0px);
+}
+@keyframes bounce{
+    0%    {opacity: 0;   transform: scale(1,1);}
+    50%   {opacity: 0.5; transform: scale(1.1, 1.1);}
+    100%  {opacity: 1;   transform: scale(1,1);}
 }
 @media (max-width: 768px){
    .Nav{

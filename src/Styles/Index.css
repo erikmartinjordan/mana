@@ -16,9 +16,6 @@
   font-weight: 800;
   src: local('Interface'), url('../Assets/Fonts/Inter-UI-Black.woff2') format('woff2');
 }
-html{
-    overflow-x: hidden;
-}
 *{
     box-sizing: border-box;
     font-family: 'Interface', sans-serif;
@@ -143,6 +140,7 @@ img.emoji {
    vertical-align: -0.1em!important;
 }
 .Invisible{
+    cursor: default;
     left: 0;
     top: 0;
     position: fixed;

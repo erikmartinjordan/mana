@@ -50,6 +50,7 @@
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
     color: var(--textBlog);
     display: flex;
+    font-size: small;
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -59,11 +60,6 @@
     align-items: center;
     display: flex;
     margin-top: 5px;
-}
-.Forum .Sidebar .LastComments .Info span,
-.Forum .Sidebar .LastComments .Info a,
-.Forum .Sidebar .LastArticles .Info a{
-    font-size: small;
 }
 .Forum .Sidebar .LastArticles .Info{
     align-items: center;
@@ -144,7 +140,7 @@
 }
 .Forum .infopost{
     align-items: center;
-    color: var(--lightGray);
+    color: var(--thirdFontColor);
     display: flex;
     font-size: small;
 }
