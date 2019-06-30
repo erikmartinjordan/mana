@@ -60,7 +60,8 @@
     display: table;
     width: 100%;
 }
-.Content p{
+.Content p, 
+.Content li{
     font-size: 18px;
 }
 .Content h1,
@@ -80,7 +81,7 @@
     transform: translateX(-50%);
 }
 .Content img + em{
-    color: var(--lightGray);
+    color: var(--thirdFontColor);
     font-size: small;
     font-style: normal;
 }
