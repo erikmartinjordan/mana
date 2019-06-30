@@ -96,17 +96,14 @@ class Notifications extends Component {
     
   render() {
     return (
-        <div>
         <div className = 'Notifications'>
             <div className = 'Notifications-Icon' onClick = {this.showNotifications}>
                 <div className = 'Notifications-Logo' onClick = {this.showNotifications}>🔔</div>
                 <span className = 'Notifications-Number'>9</span>
             </div>
             {this.state.show ? this.getNotifications(10) : null}
-        </div>
-                    {this.state.show ? <div onClick = {this.hideNotifications} className = 'Invisible'></div> : null}
-
-        </div>
+            {this.state.show ? <div onClick = {this.hideNotifications} className = 'Invisible'></div> : null}
+        </div>  
     );
   }
 }
