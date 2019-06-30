@@ -219,10 +219,8 @@ class Detail extends Component {
             
             {this.state.ready && !this.state.empty ? 
                 <div className="detail-header">
-                    <div className="infopost center">
-                        <h2>{this.state.title}</h2>
-                    </div>
-                    <div className="infopost center">
+                    <h2>{this.state.title}</h2>
+                    <div className="infopost">
                         <img alt={this.state.userName} src={this.state.userPhoto}></img>
                         <div>{this.state.userName} {this.state.verified && this.state.verified[this.state.userUid].verified ? <span><span className = "verified">✓</span><span className = "tooltip">Cuenta verificada</span></span> : null} <TimeAgo formatter={formatter} date={this.state.timeStamp}/></div>
                     </div>
@@ -276,8 +274,8 @@ class Detail extends Component {
     var list = this.state.chat.map( (line, index) => 
         
         <li key={line.key}>
-            <div><img alt={line.userName} src={line.userPhoto}></img></div>
             <div className="infopost">
+                <img alt={line.userName} src={line.userPhoto}></img>
                 {line.userName} {this.state.verified && this.state.verified[line.userUid].verified ? 
                                 <span><span className = "verified">✓</span><span className = "tooltip">Cuenta verificada</span></span> : null}<TimeAgo formatter={formatter} date={line.timeStamp}/>
             </div> 
@@ -296,14 +294,19 @@ class Detail extends Component {
   //newReply()
   /*******************************************************************/
   newReply = () => {
-                    
+                            
     var form =  <form onSubmit={this.handleSubmit}>
-                    {this.state.alert ? <span className="alert">{this.state.alert}</span> : null}
-                    <div className="title">
-                        <h2>Escribe tu respuesta</h2>
+                    {this.state.alert ? <span className = 'alert'>{this.state.alert}</span> : null}
+                    {this.state.user 
+                    ? <div className = 'infopost'>
+                        <img alt = {this.state.user.displayName} src = {this.state.user.photoURL}></img>
+                        <div>{this.state.user.displayName}</div>
+                      </div>
+                    : null}
+                    <div className = 'responseBox'>
+                        <EmojiTextarea handleChange = {this.handleReply} ></EmojiTextarea>
+                        <button className = 'send'>Enviar</button>
                     </div>
-                    <EmojiTextarea handleChange = {this.handleReply} ></EmojiTextarea>
-                    <button className="bottom">Enviar</button>
                 </form>;
             
     return form;
