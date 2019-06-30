@@ -40,6 +40,9 @@
     color: var(--secondaryFontColor);
     cursor: pointer;
     display: flex;
+    font-size: 12px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 30px;
     margin-bottom: 30px;
     padding: 5px 10px;
