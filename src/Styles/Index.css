@@ -107,8 +107,7 @@ button.send{
 button.delete{
     background: var(--blue);
     border: none;
-    border-radius: 50px;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    box-shadow: none;
     color: white;
     font-size: 12px;
     margin: inherit;
@@ -173,6 +172,6 @@ img.emoji {
     --bgBox: #30363b;
 }
 ::selection{
-    background: var(--primaryFontColor);
-    color: var(--bgColor);
+    background: var(--darkGray);
+    color: white;
 }
