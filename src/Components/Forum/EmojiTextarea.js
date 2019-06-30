@@ -15,10 +15,6 @@ class EmojiTextarea extends Component {
      
       let text = e.target.value;
             
-      // Resizing textarea after key press 
-      e.target.style.height = 'inherit';
-      e.target.style.height = `${e.target.scrollHeight}px`; 
-            
       if(text.charAt(text.length - 1) === ' '){
           
           // Split words to array
@@ -59,7 +55,7 @@ class EmojiTextarea extends Component {
        
     return (
       <div className='Emoji-Textarea'>
-        <textarea onChange = {this.handleText} value = {this.state.comment} placeholder = 'Escribe tu mensaje...' maxLength = '560'></textarea>
+        <textarea onChange = {this.handleText} value = {this.state.comment} placeholder = 'Mensaje...' maxLength = '560' ></textarea>
         <div className = 'Emoji'>
             <div className = 'Emoji-Grid'> 
                 { this.state.showEmojis  ? this.state.emojis : null }

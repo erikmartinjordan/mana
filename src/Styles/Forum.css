@@ -140,15 +140,25 @@
 }
 .Forum .infopost{
     align-items: center;
+    color: var(--thirdFontColor);
     display: flex;
     font-size: small;
-    font-weight: 600;
+}
+.Forum .infopost.center{
+    display: flex;
+    justify-content: center;
 }
 .Forum img{
     border-radius: 50%;
     height: 25px;
     margin-right: 10px;
     width: 25px;
+}
+.Forum img.Featured-Photo{
+    border-radius: 0;
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
 }
 .Forum .infopost p{
     margin: 0;
@@ -197,30 +207,18 @@
     width: 100%;
 }
 .Forum textarea{
-    background: var(--bgBox);
     border: none;
-    box-sizing: border-box;
-    color: var(--primaryFontColor);
-    font-size: medium;
-    line-height: 2;
-    resize: none;
+    border-radius: 5px;
+    display: block;
+    font-size: large;
+    height: 200px;
+    margin: auto;
+    padding: 10px;
     width: 100%;
 }
-.Forum .Emoji-Textarea{
-    display: flex;
-
-}
-.Forum .responseBox{
-    background-color: var(--bgBox);
-    border-radius: 5px;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
-    padding: 20px;
-}
 .Forum .Emoji{
-    height: 50px;
-    overflow-x: scroll;
-    width: 200px;
-    white-space: nowrap;
+    margin: auto;
+    width: 100%;
 }
 .Forum .Emoji-Grid{
     min-height: 32px;
@@ -390,8 +388,6 @@
     position: absolute;
 }
 .Forum time{
-    color: var(--thirdFontColor);
-    font-weight: 400;
     margin: 5px;
 }
 /*******************************************************************/
@@ -404,7 +400,7 @@
     .Forum .Infopost-Meta-Post {
         flex-direction: column;
     }
-    .Forum ul.Front .infopost,
+    .Forum .infopost,
     .Forum .Meta-Post{
         justify-content: center;
     }
@@ -415,8 +411,7 @@
         text-align: center;
     }
     .Forum .Sidebar,
-    .Forum .OrderBy,
-    .Forum .Emoji{
+    .Forum .OrderBy{
         display: none;
     }
 } 

@@ -64,8 +64,23 @@ a{
     text-decoration: none;
 }
 button{
+    background: transparent;
+    border: 3px solid var(--primaryFontColor);
+    border-radius: 5px;
+    box-shadow: 4px 4px 0 0 var(--primaryFontColor);
+    color: var(--primaryFontColor);
+    cursor: pointer;
     display: block;
+    font-size: small;
+    font-weight: 400;
     margin: auto;
+    padding: 10px;
+    text-align: center;
+    width: 200px;  
+}
+button:hover{
+    box-shadow: 8px 8px 0 0 var(--primaryFontColor);
+    transition: 0.2s ease-in-out;
 }
 button.more{
     background: var(--lightBlue);
@@ -73,8 +88,6 @@ button.more{
     border-radius: 50px;
     box-shadow: none;
     color: var(--blue);
-    font-size: 12px;
-    padding: 10px 20px;
 }
 button.bottom{
     background-color: var(--greenMint);
@@ -85,21 +98,6 @@ button.bottom{
     cursor: pointer;
     font-size: 12px;
     margin-top: 20px;
-    padding: 10px 20px;
-    text-align: center; 
-    width: auto;
-}
-button.send{
-    background-color: var(--greenMint);
-    border: none;
-    border-radius: 50px;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
-    color: white!important;
-    cursor: pointer;
-    font-size: 12px;
-    height: 34px;
-    margin-right: 0;
-    margin-left: auto;
     padding: 10px 20px;
     text-align: center; 
     width: auto;
