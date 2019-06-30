@@ -3,7 +3,6 @@ import { Link }    from 'react-router-dom';
 import firebase, {auth} from './Firebase.js';
 import Login from './Login';
 import NewPost from './Forum/NewPost';
-import Notifications from './Notifications';
 import '../Styles/Nav.css';
 
 class Nav extends Component {
@@ -34,12 +33,7 @@ class Nav extends Component {
       // Setting the state
       this.setState({ theme });
       
-      // Setting emojis in svg
-      window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-      
   }
-  
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} ); 
   
   changeTheme = () => {
       
@@ -100,7 +94,6 @@ class Nav extends Component {
                       </React.Fragment>
                     : <div className = 'User'>
                             <div className = 'Img-Wrap'> 
-                                <Notifications></Notifications>
                                 <img onClick = {this.showMenu}  src = {this.state.user.photoURL}></img>        
                                 <Link to = '/' onClick = {this.showPost} className = 'New-Post'>Publicar</Link>
                             </div>
@@ -109,8 +102,8 @@ class Nav extends Component {
                                 <Link to = '/perfil' onClick = {this.hideMenu}>Perfil</Link>
                                 <div className = 'Separator'></div>
                                 <Link to = '/' onClick = {this.hideMenu}>Comunidad</Link>
-                                <Link to = '/blog' onClick = {this.hideMenu}>Blog</Link> 
-                                <Link to = '/acerca' onClick = {this.hideMenu} >Acerca</Link>
+                                <Link to = '/Blog' onClick = {this.hideMenu}>Blog</Link> 
+                                <Link to = '/Acerca' onClick = {this.hideMenu} >Acerca</Link>
                                 <div className = 'Separator'></div>
                                 <a onClick = {this.changeTheme}>Modo noche{this.state.theme === 'dark' ? this.toggleButton('on') : this.toggleButton('off')}</a>
                                 <div className = 'Separator'></div>
