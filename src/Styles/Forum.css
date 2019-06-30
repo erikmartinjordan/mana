@@ -151,6 +151,9 @@
     width: 25px;
 }
 .Forum .infopost p{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
     margin: 0;
 }
 .Forum .Likes{
@@ -392,7 +395,6 @@
 .Forum time{
     color: var(--thirdFontColor);
     font-weight: 400;
-    margin: 5px;
 }
 /*******************************************************************/
 /*Mobile
@@ -401,9 +403,7 @@
     .Forum{
         padding: 20px;
     }
-    .Forum .Infopost-Meta-Post {
-        flex-direction: column;
-    }
+
     .Forum ul.Front .infopost,
     .Forum .Meta-Post{
         justify-content: center;

@@ -64,20 +64,26 @@ class Perfil extends Component {
         <div className = 'Datos'>
             <img src = {img}></img>
             <h3>{nombre}</h3>
-            <div className = 'Bloque'>
-                <div>
-                    <div className = 'Peque'>✨Visitas</div>
-                    <div className = 'Gigante'>{visitas}</div>
+                <div className = 'Bloque'>
+                    <div className = 'Title'>Email</div>
+                    <div className = 'Num'>{this.state.user ? this.state.user.email : null}</div>
+                    <div className = 'Comment'>Tu correo no se muestra ni se utiliza en ningún momento.</div>
                 </div>
-                <div>
-                    <div className = 'Peque'>✒️ Artículos</div>
-                    <div className = 'Gigante'>{articulos}</div>
+                <div className = 'Bloque'>
+                    <div className = 'Title'>Visitas</div>
+                    <div className = 'Num'>{visitas}</div>
+                    <div className = 'Comment'>Se muestran el número de visitas totales que han recibido tus publicaciones.</div>
                 </div>
-                <div>
-                    <div className = 'Peque'>💬 Respuestas</div>
-                    <div className = 'Gigante'>{respuestas}</div>
+                <div className = 'Bloque'>
+                    <div className = 'Title'>Artículos</div>
+                    <div className = 'Num'>{articulos}</div>
+                    <div className = 'Comment'>Se muestran el número de artículos totales publicados.</div>
                 </div>
-            </div>
+                <div className = 'Bloque'>
+                    <div className = 'Title'>Respuestas</div>
+                    <div className = 'Num'>{respuestas}</div>
+                    <div className = 'Comment'>Se muestran el número de respuestas que has publicado.</div>
+                </div>
         </div>
       </div>,
       <div>
