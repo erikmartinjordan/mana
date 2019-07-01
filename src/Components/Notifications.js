@@ -10,6 +10,7 @@ class Notifications extends Component {
   //
   //--------------------------------------------------------------/
   state = {
+     notifications: [],
      points: 0,
      show: false
   }
@@ -21,16 +22,33 @@ class Notifications extends Component {
   //--------------------------------------------------------------/
   componentDidMount  = () => {
       
-      // Getting the data users current points
-      firebase.database().ref('users/' + this.props.user + '/points').on('value', snapshot => { 
+      // Getting the user current points of database
+      firebase.database().ref('users/' + this.props.user.uid + '/points').on('value', snapshot => { 
             
-            // Setting state with the current points
-            var dbPoints = snapshot.val();            
-            dbPoints ? this.setState({ points: dbPoints }) : dbPoints = 0;
+            // Capturing data
+            var dbPoints = snapshot.val(); 
+          
+            // Setting the state
+            this.setState({ points: dbPoints ? dbPoints : 0 });
           
             // Calculate the current points
-            this.calculateCurrentPoints(dbPoints);
+            this.calculateCurrentPoints(dbPoints ? dbPoints : 0);
                     
+      });
+      
+      
+      // Getting the notifications 
+      firebase.database().ref('notifications/' + this.props.user.uid).on('value', snapshot => { 
+          
+          // Capturing data
+          var notifications = snapshot.val();
+          
+          // Array of points
+          var array = Object.keys(notifications).map( id => notifications[id].points );
+          
+          // Setting the state
+          this.setState({ notifications: array });
+          
       });
       
       // Setting emojis in svg
@@ -74,7 +92,7 @@ class Notifications extends Component {
       var points, diff, visits = 0, posts = 0, replies = 0, spicy = 0;
             
       // Getting the data users current points
-      firebase.database().ref('users/' + this.props.user).once('value').then( snapshot => { 
+      firebase.database().ref('users/' + this.props.user.uid).once('value').then( snapshot => { 
             
             // Capturing data
             var capture = snapshot.val(); 
@@ -93,9 +111,10 @@ class Notifications extends Component {
                 // Calculating the difference between database points and current points
                 diff = points - this.state.points;
                 
-                // If points are different from state (database), generate a notification
+                // If points are different from state (database), generate a notification and update user's points
                 if(diff !== 0){    
-                        firebase.database().ref('notifications/' + this.props.user).push({ points: points });
+                        firebase.database().ref('notifications/' + this.props.user.uid).push({ points: points });
+                        firebase.database().ref('users/' + this.props.user.uid + '/points').transaction( value => points );
                 }
                 
             }
@@ -105,39 +124,40 @@ class Notifications extends Component {
       
   //--------------------------------------------------------------/
   //
-  // Getting the notifications from the database
+  // Represent notifications
   //
   //--------------------------------------------------------------/
   getNotifications = (number) => {
       
-      var url = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg';
-      var points = 30;
-      var message = 'Prueba';
-      
-      var notifications = <div className = 'Notifications-Menu'>
-                                <div className = 'Notifications-Content'>
-                                        <span className = 'Notifications-Photo'><img src = {url}></img></span>
-                                        <span className = 'Notifications-Points'>{points}</span>
-                                        <span className = 'Notifications-Message'>{message}</span>
-                                </div>
-                          </div>;
-      
-      return notifications;
+      var points;
+      var res;
+                                                
+      // Drawing block
+      res = this.state.notifications.map( points =>
+                <div className = 'Notifications-Content'>
+                    <span className = 'Notifications-Photo'><img src = {this.props.user.photoURL}></img></span>
+                    <span className = 'Notifications-Points'>+{points}</span>
+                    <span className = 'Notifications-Message'>Enhorabuena, has conseguido un montón de puntos.</span>
+                </div>          
+      );
+            
+      return res;
       
   }
+  
     
   render() {
     return (
-        <div>
-        <div className = 'Notifications'>
-            <div className = 'Notifications-Icon' onClick = {this.showNotifications}>
-                <div className = 'Notifications-Logo' onClick = {this.showNotifications}>🔔</div>
-                <span className = 'Notifications-Number'>9</span>
+        <React.Fragment>
+            <div className = 'Notifications'>
+                <div className = 'Notifications-Icon' onClick = {this.showNotifications}>
+                    <div className = 'Notifications-Logo' onClick = {this.showNotifications}>🔔</div>
+                    {this.state.notifications.length > 0 && <span className = 'Notifications-Number'>{this.state.notifications.length}</span>}
+                </div>
+                {this.state.show && <div className = 'Notifications-Menu'>{this.getNotifications(10)}</div>}
             </div>
-            {this.state.show ? this.getNotifications(10) : null}
-        </div>
-            {this.state.show ? <div onClick = {this.hideNotifications} className = 'Invisible'></div> : null}
-        </div>
+                {this.state.show && <div onClick = {this.hideNotifications} className = 'Invisible'></div>}
+        </React.Fragment>
     );
   }
 }

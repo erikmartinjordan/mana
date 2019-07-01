@@ -100,7 +100,7 @@ class Nav extends Component {
                       </React.Fragment>
                     : <div className = 'User'>
                             <div className = 'Img-Wrap'> 
-                                <Notifications user = {this.state.user.uid}></Notifications>
+                                <Notifications user = {this.state.user}></Notifications>
                                 <img onClick = {this.showMenu}  src = {this.state.user.photoURL}></img>        
                                 <Link to = '/' onClick = {this.showPost} className = 'New-Post'>Publicar</Link>
                             </div>
