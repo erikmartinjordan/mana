@@ -323,7 +323,7 @@ class Detail extends Component {
     this.state.message  ? document.querySelector('meta[name="description"]').content = this.state.message : null; 
                         
     return (
-      <div className = 'Forum'>
+      <div className = 'Forum Detail'>
         
         { this.state.send === true 
         ? <div className = 'Send'>
