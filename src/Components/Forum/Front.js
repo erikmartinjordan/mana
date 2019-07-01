@@ -105,10 +105,18 @@ class Front extends Component {
     // Number of messages depending on user's choice  
     var array = this.state.chat.slice(0, this.state.numposts);
       
+      
     // Get unique pics arrray
     var photos = [];
     var unique = [];
-    photos = array.map( (line, key) => Object.keys(line.replies).map( (reply, key)  => line.replies[reply].userPhoto));   
+      
+    photos = array.map( (line) => {
+        
+        if(typeof line.replies !== 'undefined') 
+            return Object.keys(line.replies).map( (reply)  => line.replies[reply].userPhoto);
+        
+    });
+                       
     for(var i = 0; i < photos.length; i ++) unique[i] = [...new Set(photos[i])]
                     
     // Enumerate list of posts  
@@ -121,7 +129,7 @@ class Front extends Component {
                         <div className = 'Infopost-Meta-Post'>
                             <div className = 'infopost'>
                                 <img src = {line.userPhoto}></img>
-                                <p>{line.userName}, <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
+                                <p>{line.userName} <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
                             </div>
                             <div className = 'Meta-Post'>
                                 <div className = 'Likes'>🌶️ {line.votes * -1}</div>

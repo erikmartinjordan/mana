@@ -11,6 +11,8 @@ class Perfil extends Component {
          infoUser: null,
          render: true,
          user: null,
+         postsAdmin: 0,
+         viewsAdmin: 0
       }
   }
     
@@ -32,6 +34,26 @@ class Perfil extends Component {
                   this.setState({ infoUser: object });
 
               });
+              if(user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2'){
+                  firebase.database().ref('articles/').on( 'value', (snapshot) => {
+
+                  var object = snapshot.val();
+                  var totalViews = 0; 
+                  var totalPosts = Object.keys(object).length;
+
+                  Object.keys(object).map( (key) => {
+                      
+                      totalViews = totalViews + object[key].views;
+                      return totalViews;
+                      
+                  });
+                  this.setState({ 
+                      postsAdmin: totalPosts,
+                      viewsAdmin: totalViews 
+                  });    
+                    
+              });
+              }
               
           }
       });
@@ -52,9 +74,9 @@ class Perfil extends Component {
         var mm = date.getMonth() + 1;
         var yyyy = date.getFullYear();
         var creation = dd + '/' + mm + '/' + yyyy;  
-        var visitas = this.state.infoUser.postsViews.toLocaleString();
-        var articulos = this.state.infoUser.posts.numPosts;
-        var respuestas = this.state.infoUser.replies.numReplies;
+        var articulos = (this.state.postsAdmin + this.state.infoUser.posts.numPosts).toLocaleString();
+        var respuestas = this.state.infoUser.replies.numReplies.toLocaleString();
+        var visitas = (this.state.viewsAdmin + this.state.infoUser.postsViews).toLocaleString();
         
     }
        
