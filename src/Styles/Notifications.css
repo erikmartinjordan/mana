@@ -43,8 +43,22 @@
     justify-content: space-between;
     padding: 20px;
 }
-.Notifications .Notifications-Content span.Notifications-Points{
+.Notifications .Notifications-Photo{
+    width: 10%;
+}
+.Notifications .Notifications-Points{
+    text-align: center;
+    width: 20%;
+}
+.Notifications .Notifications-Message{
+    width: 70%;
+}
+.Notifications .Notifications-Content span.Notifications-Points span.Pos{
     color: var(--greenMint);
+    margin-right: 10px;
+}
+.Notifications .Notifications-Content span.Notifications-Points span.Neg{
+    color: var(--pastelRed);
     margin-right: 10px;
 }
 .Notifications .Notifications-Content:hover{

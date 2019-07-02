@@ -34,7 +34,7 @@ class Notifications extends Component {
           
             // Calculate the current points
             this.calculateCurrentPoints(dbPoints ? dbPoints : 0);
-                    
+                              
       });
       
       
@@ -44,16 +44,16 @@ class Notifications extends Component {
           // Capturing data
           var notifications = snapshot.val();
           var array = [];
-          
+                    
           // Array of points
-          notifications ? array = Object.keys(notifications).map( id => notifications[id].points ) : notifications; 
+          notifications ? array = Object.keys(notifications).map( id => [notifications[id].points, notifications[id].diff] ) : notifications; 
           
           // Setting the state
           this.setState({ notifications: array });
           
       });
       
-      // Getting the user current points of database
+      // Getting listener on change of the posts
       firebase.database().ref('posts/').on('value', snapshot => { 
           
             // Calculate the current points
@@ -114,10 +114,17 @@ class Notifications extends Component {
 
       // Calculating the difference between database points and current points
       diff = points - this.state.points;
-
+      
       // If points are different from state (database), generate a notification and update user's points
       if(diff !== 0){    
-                firebase.database().ref('notifications/' + this.props.user.uid).push({ points: points });
+          
+                // Saves the total points of the user and the difference between old state
+                firebase.database().ref('notifications/' + this.props.user.uid).push({ 
+                    points: points,
+                    diff: diff
+                });
+                
+                // Updates the points of the user 
                 firebase.database().ref('users/' + this.props.user.uid + '/points').transaction( value => points );
       }
 
@@ -128,17 +135,27 @@ class Notifications extends Component {
   // Represent notifications
   //
   //--------------------------------------------------------------/
-  getNotifications = (number) => {
+  printNotifications = (number) => {
       
       var points;
       var res;
-                                                
+                                                      
       // Drawing block
-      res = this.state.notifications.map( points =>
+      res = this.state.notifications.reverse().map( notification =>
                 <div className = 'Notifications-Content'>
                     <span className = 'Notifications-Photo'><img src = {this.props.user.photoURL}></img></span>
-                    <span className = 'Notifications-Points'>+{points}</span>
-                    <span className = 'Notifications-Message'>Enhorabuena, has conseguido un montón de puntos.</span>
+                    <span className = 'Notifications-Points'>
+                        { notification[1] > 0 
+                        ? <span className = 'Pos'>+{notification[1]}</span>
+                        : <span className = 'Neg'> {notification[1]}</span>
+                        }
+                    </span>
+                    <span className = 'Notifications-Message'>
+                        { notification[1] > 0 
+                        ? <span>Enhorabuena, has conseguido sumar puntos por...</span>
+                        : <span>Ups, has perdido unos pocos puntos. No te preocupes, no cuesta nada recuperarlos.</span>
+                        }
+                    </span>
                 </div>          
       );
             
@@ -155,7 +172,7 @@ class Notifications extends Component {
                     <div className = 'Notifications-Logo' onClick = {this.showNotifications}>🔔</div>
                     {this.state.notifications.length > 0 && <span className = 'Notifications-Number'>{this.state.notifications.length}</span>}
                 </div>
-                {this.state.show && <div className = 'Notifications-Menu'>{this.getNotifications(10)}</div>}
+                {this.state.show && <div className = 'Notifications-Menu'>{this.printNotifications(10)}</div>}
             </div>
                 {this.state.show && <div onClick = {this.hideNotifications} className = 'Invisible'></div>}
         </React.Fragment>
