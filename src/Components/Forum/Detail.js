@@ -9,6 +9,7 @@ import Likes from './Likes.js';
 import LikesComments from './LikesComments.js';
 import Login from '../Login.js';
 import EmojiTextarea from './EmojiTextarea';
+import nmsNotification from '../InsertNotificationIntoDatabase.js';
 
 const formatter = buildFormatter(spanishStrings);
 
@@ -163,6 +164,9 @@ class Detail extends Component {
                     
                     //Increase number of replies of the users
                     firebase.database().ref('users/' + this.state.user.uid + '/replies/numReplies').transaction( (value) => value + 1 );
+                    
+                    // Notification after user replies something
+                    nmsNotification(this.state.user.uid, 'reply', 'add');
                                         
                     this.setState({ 
                         reply: "",

@@ -11,6 +11,7 @@ class Notifications extends Component {
   //
   //--------------------------------------------------------------/
   state = {
+     keys: [],
      notifications: [],
      points: 0,
      show: false
@@ -23,42 +24,20 @@ class Notifications extends Component {
   //--------------------------------------------------------------/
   componentDidMount  = () => {
       
-      // Getting the user current points of database
-      firebase.database().ref('users/').on('value', snapshot => { 
-            
-            // Capturing data
-            var dbPoints = snapshot.val()[this.props.user.uid].points; 
-          
-            // Setting the state
-            this.setState({ points: dbPoints ? dbPoints : 0 });
-          
-            // Calculate the current points
-            this.calculateCurrentPoints(dbPoints ? dbPoints : 0);
-                              
-      });
-      
-      
       // Getting the notifications 
       firebase.database().ref('notifications/' + this.props.user.uid).on('value', snapshot => { 
           
           // Capturing data
           var notifications = snapshot.val();
+          var keys = notifications ? Object.keys(notifications) : [];
           var array = [];
                     
           // Array of points
-          notifications ? array = Object.keys(notifications).map( id => [notifications[id].points, notifications[id].diff] ) : notifications; 
+          if(notifications) notifications = keys.map( id => [notifications[id].points, notifications[id].message, notifications[id].read] );
           
           // Setting the state
-          this.setState({ notifications: array });
+          this.setState({ keys, notifications });
           
-      });
-      
-      // Getting listener on change of the posts
-      firebase.database().ref('posts/').on('value', snapshot => { 
-          
-            // Calculate the current points
-            this.calculateCurrentPoints(this.state.points);
-                    
       });
       
       // Setting emojis in svg
@@ -90,44 +69,16 @@ class Notifications extends Component {
   // Show notifications modal
   //
   //--------------------------------------------------------------/
-  showNotifications = () => this.setState({ show: true });
-
-  //--------------------------------------------------------------/
-  //
-  // Calculating the current points and level
-  //
-  //--------------------------------------------------------------/
-  calculateCurrentPoints = async (number) => {
+  showNotifications = () => {
       
-      var points, diff, posts, replies, spicy, res = [];
-       
-      // Getting the points
-      res = await countVotesRepliesSpicy(this.props.user.uid);
+      this.setState({ show: true });
       
-      // Assigning to variables
-      posts = res[0];
-      replies = res[1];
-      spicy = res[2];
+      // Putting all the notifications as read
+      if(this.state.notifications)
+          this.state.keys.map( key => {
+              firebase.database().ref('notifications/' + this.props.user.uid + `/${key}/read/`).transaction( read => read = true )
+          });
       
-      // Calculating points
-      points = (30 * posts) + (40 * replies) + (50 * spicy);
-
-      // Calculating the difference between database points and current points
-      diff = points - this.state.points;
-      
-      // If points are different from state (database), generate a notification and update user's points
-      if(diff !== 0){    
-          
-                // Saves the total points of the user and the difference between old state
-                firebase.database().ref('notifications/' + this.props.user.uid).push({ 
-                    points: points,
-                    diff: diff
-                });
-                
-                // Updates the points of the user 
-                firebase.database().ref('users/' + this.props.user.uid + '/points').transaction( value => points );
-      }
-
   }
       
   //--------------------------------------------------------------/
@@ -135,7 +86,7 @@ class Notifications extends Component {
   // Represent notifications
   //
   //--------------------------------------------------------------/
-  printNotifications = (number) => {
+  printNotifications = () => {
       
       var points;
       var res;
@@ -145,16 +96,13 @@ class Notifications extends Component {
                 <div className = 'Notifications-Content'>
                     <span className = 'Notifications-Photo'><img src = {this.props.user.photoURL}></img></span>
                     <span className = 'Notifications-Points'>
-                        { notification[1] > 0 
-                        ? <span className = 'Pos'>+{notification[1]}</span>
-                        : <span className = 'Neg'> {notification[1]}</span>
+                        { notification[0] > 0 
+                        ? <span className = 'Pos'>+{notification[0]}</span>
+                        : <span className = 'Neg'> {notification[0]}</span>
                         }
                     </span>
                     <span className = 'Notifications-Message'>
-                        { notification[1] > 0 
-                        ? <span>Enhorabuena, has conseguido sumar puntos por...</span>
-                        : <span>Ups, has perdido unos pocos puntos. No te preocupes, no cuesta nada recuperarlos.</span>
-                        }
+                        { notification[1] }
                     </span>
                 </div>          
       );
@@ -163,6 +111,24 @@ class Notifications extends Component {
       
   }
   
+  //--------------------------------------------------------------/
+  //
+  // Get the number of unread notifications
+  //
+  //--------------------------------------------------------------/
+  unreadNotifications = () => {
+      
+      var notifications = this.state.notifications;
+      var length = this.state.notifications.length; 
+      var count  = 0;
+          
+      // Iterates through array of notifications, if read = true, increment count
+      for(var i = 0; i < length; i ++) notifications[i][2] === true && count ++;
+      
+      // Returns the difference between read and unread
+      return (length - count);
+      
+  }
     
   render() {
     return (
@@ -170,9 +136,12 @@ class Notifications extends Component {
             <div className = 'Notifications'>
                 <div className = 'Notifications-Icon' onClick = {this.showNotifications}>
                     <div className = 'Notifications-Logo' onClick = {this.showNotifications}>🔔</div>
-                    {this.state.notifications.length > 0 && <span className = 'Notifications-Number'>{this.state.notifications.length}</span>}
+                    {  this.state.notifications.length > 0 
+                    && this.unreadNotifications() > 0
+                    && <span className = 'Notifications-Number'>{this.unreadNotifications()}</span>
+                    }
                 </div>
-                {this.state.show && <div className = 'Notifications-Menu'>{this.printNotifications(10)}</div>}
+                {this.state.show && <div className = 'Notifications-Menu'>{this.printNotifications()}</div>}
             </div>
                 {this.state.show && <div onClick = {this.hideNotifications} className = 'Invisible'></div>}
         </React.Fragment>

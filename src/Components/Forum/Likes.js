@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../Firebase.js';
 import Login from '../Login';
+import nmsNotification from '../InsertNotificationIntoDatabase.js';
 
 class Likes extends Component {  
     
@@ -10,6 +11,7 @@ class Likes extends Component {
             capture: null,
             forbid: false,
             render: false,
+            userid: null,
             votes: 0
         }
       
@@ -24,6 +26,7 @@ class Likes extends Component {
             if(capture) 
                 this.setState({ 
                     capture: capture,
+                    userid: capture.userUid,
                     votes: capture.votes 
                 });
 
@@ -44,16 +47,23 @@ class Likes extends Component {
       if(typeof this.state.capture.voteUsers === 'undefined'){
           firebase.database().ref('posts/' + this.props.post + '/voteUsers/' + this.props.user.uid).set({ vote: vote });
           firebase.database().ref('posts/' + this.props.post + '/votes/').transaction( value => value - 1 );
+          
+          nmsNotification(this.state.userid, 'chili', 'add');
       }
       else if(typeof this.state.capture.voteUsers[this.props.user.uid] === 'undefined'){
           firebase.database().ref('posts/' + this.props.post + '/voteUsers/' + this.props.user.uid).set({ vote: vote });
           firebase.database().ref('posts/' + this.props.post + '/votes/').transaction( value => value - 1 );
+          
+          nmsNotification(this.state.userid, 'chili', 'add');
       }
       else{
           this.state.capture.voteUsers[this.props.user.uid].vote === true ? vote = false : vote = true;
           firebase.database().ref('posts/' + this.props.post + '/voteUsers/' + this.props.user.uid).set({ vote: vote });
           if(vote === true ) firebase.database().ref('posts/' + this.props.post + '/votes/').transaction( value => value - 1 );
           if(vote === false) firebase.database().ref('posts/' + this.props.post + '/votes/').transaction( value => value + 1 );
+          
+          if(vote === true)  nmsNotification(this.state.userid, 'chili', 'add');
+          if(vote === false) nmsNotification(this.state.userid, 'chili', 'sub');
           
       }
       

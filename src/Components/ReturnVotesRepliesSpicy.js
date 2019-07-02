@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import firebase, {auth} from './Firebase.js';
 
-const countVotesRepliesSpicy = async (uid) => {
+
+const VotesRepliesSpicy = (uid, children) =>{
     
-    var posts = 0, replies = 0, spicy = 0;
+    var array = useVotresRepliesSpicy(uid);
+    return children(array);
+}
+
+export default countVotesRepliesSpicy;
+
+
+const useVotesRepliesSpicy = (uid) => {
+    
+    const [posts,   setPosts]   = useState(0);
+    const [replies, setReplies] = useState(0);
+    const [spicy,   setSpicy]   = useState(0);
     
     // Getting users posts and replies
-    await firebase.database().ref('users/' + uid).once('value').then( snapshot => { 
+    firebase.database().ref('users/' + uid).once('value').then( snapshot => { 
             
             // Capturing data
             var capture = snapshot.val(); 
@@ -14,15 +26,18 @@ const countVotesRepliesSpicy = async (uid) => {
             if(capture) {
                 
                 // Setting variables
-                if(typeof capture.posts.numPosts !== 'undefined') posts = capture.posts.numPosts;
-                if(typeof capture.replies.numReplies !== 'undefined') replies = capture.replies.numReplies;
+                if(typeof capture.posts.numPosts !== 'undefined')     setPosts(capture.posts.numPosts);
+                if(typeof capture.replies.numReplies !== 'undefined') setReplies(capture.replies.numReplies);
             
             }
                     
       });
     
+      console.log(posts);
+      console.log(replies);
+    
       // Getting users spicy
-      await firebase.database().ref('posts/').once('value').then( snapshot => { 
+      firebase.database().ref('posts/').once('value').then( snapshot => { 
             
             // Capturing data
             var posts = snapshot.val(); 
@@ -33,15 +48,17 @@ const countVotesRepliesSpicy = async (uid) => {
                 Object.keys(posts).map( id => { 
                      
                     // Need to mulitply votes by -1, cause negative values on database
-                    if(posts[id].userUid === uid) spicy = spicy + (posts[id].votes * -1);
+                    if(posts[id].userUid === uid) setSpicy(spicy + (posts[id].votes * -1) );
                                     
                 });
                 
             }
           
       });
+    
+      console.log(spicy);
         
       return [posts, replies, spicy];
 }
 
-export default countVotesRepliesSpicy;
+export default useVotesRepliesSpicy;

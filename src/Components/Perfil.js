@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import firebase, { auth } from './Firebase.js';
 import Login from './Login.js';
+import countVotesRepliesSpicy from './ReturnVotesRepliesSpicy.js'
 import '../Styles/Perfil.css';
+
 
 class Perfil extends Component {
 
@@ -10,6 +12,7 @@ class Perfil extends Component {
       this.state = {
          infoUser: null,
          render: true,
+         spicy: 0,
          user: null,
          postsAdmin: 0,
          viewsAdmin: 0
@@ -54,7 +57,7 @@ class Perfil extends Component {
                     
               });
               }
-              
+                            
           }
       });
       
@@ -69,15 +72,10 @@ class Perfil extends Component {
         
         var nombre = this.state.user.displayName;
         var img = this.state.user.photoURL;
-        var date = new Date(this.state.user.metadata.creationTime);
-        var dd = date.getDate();
-        var mm = date.getMonth() + 1;
-        var yyyy = date.getFullYear();
-        var creation = dd + '/' + mm + '/' + yyyy;  
         var articulos = (this.state.postsAdmin + this.state.infoUser.posts.numPosts).toLocaleString();
         var respuestas = this.state.infoUser.replies.numReplies.toLocaleString();
         var visitas = (this.state.viewsAdmin + this.state.infoUser.postsViews).toLocaleString();
-        
+                
     }
        
     return (
@@ -105,6 +103,11 @@ class Perfil extends Component {
                     <div className = 'Title'>Respuestas</div>
                     <div className = 'Num'>{respuestas}</div>
                     <div className = 'Comment'>Se muestran el número de respuestas que has publicado.</div>
+                </div>
+                <div className = 'Bloque'>
+                    <div className = 'Title'>Picante</div>
+                    <div className = 'Num'></div>
+                    <div className = 'Comment'>Se muestran el número de veces que te han dado picante.</div>
                 </div>
         </div>
       </div>,
