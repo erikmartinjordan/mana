@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase, {auth} from './Firebase.js';
+import countVotesRepliesSpicy from './ReturnVotesRepliesSpicy.js';
 import '../Styles/Notifications.css';
 
 class Notifications extends Component {  
@@ -23,10 +24,10 @@ class Notifications extends Component {
   componentDidMount  = () => {
       
       // Getting the user current points of database
-      firebase.database().ref('users/' + this.props.user.uid + '/points').on('value', snapshot => { 
+      firebase.database().ref('users/').on('value', snapshot => { 
             
             // Capturing data
-            var dbPoints = snapshot.val(); 
+            var dbPoints = snapshot.val()[this.props.user.uid].points; 
           
             // Setting the state
             this.setState({ points: dbPoints ? dbPoints : 0 });
@@ -42,13 +43,22 @@ class Notifications extends Component {
           
           // Capturing data
           var notifications = snapshot.val();
+          var array = [];
           
           // Array of points
-          var array = Object.keys(notifications).map( id => notifications[id].points );
+          notifications ? array = Object.keys(notifications).map( id => notifications[id].points ) : notifications; 
           
           // Setting the state
           this.setState({ notifications: array });
           
+      });
+      
+      // Getting the user current points of database
+      firebase.database().ref('posts/').on('value', snapshot => { 
+          
+            // Calculate the current points
+            this.calculateCurrentPoints(this.state.points);
+                    
       });
       
       // Setting emojis in svg
@@ -87,39 +97,30 @@ class Notifications extends Component {
   // Calculating the current points and level
   //
   //--------------------------------------------------------------/
-  calculateCurrentPoints = (number) => {
+  calculateCurrentPoints = async (number) => {
       
-      var points, diff, visits = 0, posts = 0, replies = 0, spicy = 0;
-            
-      // Getting the data users current points
-      firebase.database().ref('users/' + this.props.user.uid).once('value').then( snapshot => { 
-            
-            // Capturing data
-            var capture = snapshot.val(); 
-                    
-            if(capture) {
-                
-                // Setting variables
-                if(typeof capture.postsViews !== 'undefined') visits = capture.postsViews;
-                if(typeof capture.posts.numPosts !== 'undefined') posts = capture.posts.numPosts;
-                if(typeof capture.replies.numReplies !== 'undefined') replies = capture.replies.numReplies;
-                if(typeof capture.spicy !== 'undefined') spicy = capture.spicy;
-                
-                // Calculating points
-                points = (2 * visits) + (3 * posts) + (4 * replies) + (5 * spicy);
-                
-                // Calculating the difference between database points and current points
-                diff = points - this.state.points;
-                
-                // If points are different from state (database), generate a notification and update user's points
-                if(diff !== 0){    
-                        firebase.database().ref('notifications/' + this.props.user.uid).push({ points: points });
-                        firebase.database().ref('users/' + this.props.user.uid + '/points').transaction( value => points );
-                }
-                
-            }
+      var points, diff, posts, replies, spicy, res = [];
+       
+      // Getting the points
+      res = await countVotesRepliesSpicy(this.props.user.uid);
+      
+      // Assigning to variables
+      posts = res[0];
+      replies = res[1];
+      spicy = res[2];
+      
+      // Calculating points
+      points = (30 * posts) + (40 * replies) + (50 * spicy);
 
-      });
+      // Calculating the difference between database points and current points
+      diff = points - this.state.points;
+
+      // If points are different from state (database), generate a notification and update user's points
+      if(diff !== 0){    
+                firebase.database().ref('notifications/' + this.props.user.uid).push({ points: points });
+                firebase.database().ref('users/' + this.props.user.uid + '/points').transaction( value => points );
+      }
+
   }
       
   //--------------------------------------------------------------/
