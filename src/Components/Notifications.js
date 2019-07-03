@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase, {auth} from './Firebase.js';
-import countVotesRepliesSpicy from './ReturnVotesRepliesSpicy.js';
 import '../Styles/Notifications.css';
 
 class Notifications extends Component {  
