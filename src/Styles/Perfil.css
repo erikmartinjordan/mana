@@ -1,6 +1,17 @@
 .Perfil {
     width: 100%;
 }
+.Perfil .Bar{
+    background: var(--bgColor);
+    border-radius: 5px;
+    display: flex;
+    height: 5px;
+    width: 100%;
+}
+.Perfil .Completed{
+    background: var(--greenMint);
+    border-radius: 5px;
+}
 .Perfil .Datos{
     background: var(--bgBox);
     border-radius: 5px;

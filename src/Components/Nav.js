@@ -4,7 +4,22 @@ import firebase, {auth} from './Firebase.js';
 import Login from './Login';
 import NewPost from './Forum/NewPost';
 import Notifications from './Notifications';
+import usePostsRepliesSpicy from './ReturnPostsRepliesSpicy.js';
+import returnPoints from './ReturnPointsAndValues.js';
+import returnLevel from './ReturnLevelAndPointsToNextLevel.js';
 import '../Styles/Nav.css';
+
+const PointsLevel = () => {
+    
+    var points;
+    var array;
+    
+    array = usePostsRepliesSpicy();
+    
+    points = returnPoints(array[0], array[1], array[2])[0];
+    
+    return points;
+}
 
 class Nav extends Component {
     
@@ -101,7 +116,10 @@ class Nav extends Component {
                     : <div className = 'User'>
                             <div className = 'Img-Wrap'> 
                                 <Notifications user = {this.state.user}></Notifications>
-                                <img onClick = {this.showMenu}  src = {this.state.user.photoURL}></img>        
+                                <div>
+                                    <img onClick = {this.showMenu}  src = {this.state.user.photoURL}></img>
+                                    <PointsLevel></PointsLevel>
+                                </div>
                                 <Link to = '/' onClick = {this.showPost} className = 'New-Post'>Publicar</Link>
                             </div>
                             { this.state.menu

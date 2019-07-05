@@ -12,44 +12,52 @@ const usePostsRepliesSpicy = () => {
     auth.onAuthStateChanged(user => { 
         
         if(user) {
-        
-                    // Getting users posts and replies
-                    firebase.database().ref('users/' + user.uid).once('value').then( snapshot => { 
-
-                            // Capturing data
-                            var capture = snapshot.val(); 
-
-                            if(capture) {
-
-                                // Setting variables
-                                if(typeof capture.posts.numPosts !== 'undefined')     setPosts(capture.posts.numPosts);
-                                if(typeof capture.replies.numReplies !== 'undefined') setReplies(capture.replies.numReplies);
-
-                            }
-
-                    });
     
-    
-                    // Getting users spicy
-                    firebase.database().ref('posts/').once('value').then( snapshot => { 
+            // Getting users posts, replies and spicy
+            firebase.database().ref('posts/').on('value', snapshot => { 
 
-                        // Capturing data
-                        var posts = snapshot.val(); 
-                        var count = 0;
+                // Capturing data
+                var posts = snapshot.val(); 
+                var countSpicy = 0;
+                var countPosts = 0;
+                var countReplies = 0;
 
-                        // We sum spicy points of all the posts written by user with ID = uid
-                        if(posts){
+                // We sum spicy points of all the posts written by user with ID = uid
+                if(posts){
 
-                            Object.keys(posts).map( id => { 
+                    Object.keys(posts).map( id => { 
 
-                                // Need to mulitply votes by -1, cause negative values on database
-                                if(posts[id].userUid === user.uid) count = count + (posts[id].votes * -1);
-
-                            });
+                        // Counting the posts is easy, only increment value by one
+                        // Need to mulitply votes by -1, cause negative values on database
+                        if(posts[id].userUid === user.uid) {
                             
-                            setSpicy(count);
+                            countPosts = countPosts + 1;
+                            countSpicy = countSpicy + (posts[id].votes * -1);
                         }
+                        
+                        // Getting all the replies
+                        if(typeof posts[id].replies !== 'undefined'){
+                            
+                            var replies = posts[id].replies;
+                            
+                            // Count same way as we did before, increment value by one                      
+                            Object.keys(replies).map( id => {
+                                
+                                if(replies[id].userUid === user.uid){
+                                    
+                                    countReplies = countReplies + 1;
+                                }
+                            });
+                        }
+
                     });
+                    
+                    // Setting the new states
+                    setSpicy(countSpicy);
+                    setPosts(countPosts);
+                    setReplies(countReplies);
+                }
+            });
         }
     });
         
