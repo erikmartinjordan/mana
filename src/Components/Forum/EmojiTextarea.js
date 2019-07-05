@@ -3,18 +3,22 @@ import Emojis from './Emojis';
 
 class EmojiTextarea extends Component {
     
-  constructor(){
-      super();
-      this.state = {
+  state = {
           comment: '',
           emojis: '',
           showEmojis: true
-      }
   }
+    
+  componentWillReceiveProps = () => {
+      
+      this.props.send && this.setState({ comment: '' });
+            
+  }
+  
   handleText = (e) => {
      
       let text = e.target.value;
-            
+                  
       // Resizing textarea after key press 
       e.target.style.height = 'inherit';
       e.target.style.height = `${e.target.scrollHeight}px`; 
@@ -62,7 +66,7 @@ class EmojiTextarea extends Component {
         <textarea onChange = {this.handleText} value = {this.state.comment} placeholder = 'Escribe tu mensaje...' maxLength = '560'></textarea>
         <div className = 'Emoji'>
             <div className = 'Emoji-Grid'> 
-                { this.state.showEmojis  ? this.state.emojis : null }
+                { this.state.showEmojis  && this.state.emojis }
             </div>
         </div>
       </div>
