@@ -9,6 +9,7 @@ import Likes from './Likes.js';
 import LikesComments from './LikesComments.js';
 import Login from '../Login.js';
 import EmojiTextarea from './EmojiTextarea';
+import Alert from '../Alert.js';
 
 const formatter = buildFormatter(spanishStrings);
 
@@ -328,11 +329,7 @@ class Detail extends Component {
     return (
       <div className = 'Forum Detail'>
         
-        { this.state.send && 
-          <div className = 'Send'>
-            <span>👍 Enviado</span>
-          </div> 
-        }
+        {this.state.send && Alert('Mensaje enviado')}
         
         {this.listTitle()}   
         {this.listContent()}
