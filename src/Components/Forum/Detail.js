@@ -10,6 +10,7 @@ import LikesComments from './LikesComments.js';
 import Login from '../Login.js';
 import EmojiTextarea from './EmojiTextarea';
 import nmsNotification from '../InsertNotificationIntoDatabase.js';
+import Alert from '../Alert.js';
 
 const formatter = buildFormatter(spanishStrings);
 
@@ -278,10 +279,13 @@ class Detail extends Component {
     var list = this.state.chat.map( (line, index) => 
         
         <li key={line.key}>
-            <div className="infopost">
+            <div className = 'infopost'>
                 <img alt={line.userName} src={line.userPhoto}></img>
-                {line.userName} {this.state.verified && this.state.verified[line.userUid].verified ? 
-                                <span><span className = "verified">✓</span><span className = "tooltip">Cuenta verificada</span></span> : null}<TimeAgo formatter={formatter} date={line.timeStamp}/>
+                <div className = 'infopost-column'>
+                    {line.userName} {this.state.verified && this.state.verified[line.userUid].verified 
+                                    ? <span><span className = "verified">✓</span><span className = "tooltip">Cuenta verificada</span></span> : null} 
+                    <TimeAgo formatter={formatter} date={line.timeStamp}/>
+                </div>
             </div> 
             <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
                 { line.message.split("\n").map(text => <p>{text}</p>) }
@@ -299,16 +303,16 @@ class Detail extends Component {
   /*******************************************************************/
   newReply = () => {
                             
-    var form =  <form onSubmit={this.handleSubmit}>
-                    {this.state.alert ? <span className = 'alert'>{this.state.alert}</span> : null}
-                    {this.state.user 
-                    ? <div className = 'infopost'>
+    var form =  <form onSubmit = {this.handleSubmit}>
+                    {this.state.alert && <span className = 'alert'>{this.state.alert}</span>}
+                    {this.state.user &&
+                     <div className = 'infopost'>
                         <img alt = {this.state.user.displayName} src = {this.state.user.photoURL}></img>
                         <div>{this.state.user.displayName}</div>
                       </div>
-                    : null}
+                    }
                     <div className = 'responseBox'>
-                        <EmojiTextarea handleChange = {this.handleReply} ></EmojiTextarea>
+                        <EmojiTextarea handleChange = {this.handleReply} send = {this.state.send}></EmojiTextarea>
                         <button className = 'send'>Enviar</button>
                     </div>
                 </form>;
@@ -329,12 +333,7 @@ class Detail extends Component {
     return (
       <div className = 'Forum Detail'>
         
-        { this.state.send === true 
-        ? <div className = 'Send'>
-            <span>👍 Enviado</span>
-          </div> 
-        : null 
-        }
+        {this.state.send && Alert('Mensaje enviado')}
         
         {this.listTitle()}   
         {this.listContent()}
@@ -343,8 +342,8 @@ class Detail extends Component {
             {this.state.ready ? this.listItems() : "Cargando..."}
         </ul>
             
-        {this.state.user && !this.state.empty ?  this.newReply() : null}                               
-        {this.state.user || !this.state.ready ||this.state.empty ? null: <button className="bottom" onClick={this.showBanner}>Responder</button>}
+        {this.state.user && !this.state.empty && this.newReply()}                               
+        {!this.state.user && this.state.ready && !this.state.empty  && <button className="bottom" onClick = {this.showBanner}> Responder</button>}
          
         {this.state.render ? <Login hide={this.hideBanner}></Login> : null}
       </div>    
