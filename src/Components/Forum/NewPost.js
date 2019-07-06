@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import firebase, {auth} from '../Firebase.js';
 import EmojiTextarea from './EmojiTextarea';
 import  '../../Styles/NewPost.css';
+import nmsNotification from '../InsertNotificationIntoDatabase.js';
 
 class NewPost extends Component {
     
@@ -56,6 +57,9 @@ class NewPost extends Component {
                     
                     // Increase number of views of the user's posts
                     firebase.database().ref('users/' + this.state.user.uid + '/posts/numPosts').transaction( (value) =>  value + 1 );
+                    
+                    // Send notification to user
+                    nmsNotification(this.state.user.uid, 'newPost', 'add');
                     
                     // Get URL
                     var url = id.key;

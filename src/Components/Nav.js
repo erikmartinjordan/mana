@@ -3,7 +3,34 @@ import { Link }    from 'react-router-dom';
 import firebase, {auth} from './Firebase.js';
 import Login from './Login';
 import NewPost from './Forum/NewPost';
+import Notifications from './Notifications';
+import usePostsRepliesSpicy from './ReturnPostsRepliesSpicy.js';
+import returnPoints from './ReturnPointsAndValues.js';
+import returnLevel from './ReturnLevelAndPointsToNextLevel.js';
 import '../Styles/Nav.css';
+import '../Styles/Progressbar.css';
+
+const PointsLevel = (props) => {
+    
+    var points;
+    var array;
+    var level;
+    var percentage;
+    var progressClass;
+    
+    array = usePostsRepliesSpicy();
+    
+    points = returnPoints(array[0], array[1], array[2])[0];
+    
+    level = returnLevel(points)[0];
+    percentage = returnLevel(points)[2];
+    
+    progressClass = `Progress ProgressBar-${percentage}`;
+    
+    if(props.variable === 'level') return level;
+    else                           return <div className = {progressClass}>{props.children}</div>;
+    
+}
 
 class Nav extends Component {
     
@@ -33,7 +60,12 @@ class Nav extends Component {
       // Setting the state
       this.setState({ theme });
       
+      // Setting emojis in svg
+      window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
+      
   }
+  
+  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} ); 
   
   changeTheme = () => {
       
@@ -93,17 +125,23 @@ class Nav extends Component {
                         <a onClick = {this.showBanner} className = 'login'>Acceder</a>
                       </React.Fragment>
                     : <div className = 'User'>
-                            <div className = 'Img-Wrap'> 
-                                <img onClick = {this.showMenu}  src = {this.state.user.photoURL}></img>        
-                                <Link to = '/' onClick = {this.showPost} className = 'New-Post'>Publicar</Link>
+                            <div className = 'Bar-Wrap'> 
+                                <Notifications user = {this.state.user}></Notifications>
+                                <div onClick = {this.showMenu} className = 'Img-Wrap'>
+                                    <PointsLevel>
+                                        <img src = {this.state.user.photoURL}></img>
+                                    </PointsLevel>
+                                    <span className = 'Points'>Nivel <PointsLevel variable = 'level'></PointsLevel></span>
+                                </div>
+                                <Link to = '/' onClick = {this.showPost} className = 'New-Post'>Publicar </Link>
                             </div>
                             { this.state.menu
                             ? <div className = 'Avatar-Menu'>
                                 <Link to = '/perfil' onClick = {this.hideMenu}>Perfil</Link>
                                 <div className = 'Separator'></div>
                                 <Link to = '/' onClick = {this.hideMenu}>Comunidad</Link>
-                                <Link to = '/Blog' onClick = {this.hideMenu}>Blog</Link> 
-                                <Link to = '/Acerca' onClick = {this.hideMenu} >Acerca</Link>
+                                <Link to = '/blog' onClick = {this.hideMenu}>Blog</Link> 
+                                <Link to = '/acerca' onClick = {this.hideMenu} >Acerca</Link>
                                 <div className = 'Separator'></div>
                                 <a onClick = {this.changeTheme}>Modo noche{this.state.theme === 'dark' ? this.toggleButton('on') : this.toggleButton('off')}</a>
                                 <div className = 'Separator'></div>

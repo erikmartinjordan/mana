@@ -1,0 +1,99 @@
+.Notifications .Notifications-Icon{
+    align-items: center;
+    display: flex;
+    
+}
+.Notifications .Notifications-Icon .Notifications-Logo{
+    font-size: large;
+}
+.Notifications .Notifications-Icon span.Notifications-Number{
+    align-items: center;
+    background: var(--blue);
+    border-radius: 50%;
+    color: white;
+    display: inline-flex;
+    font-size: xx-small;
+    height: 16px;
+    justify-content: center;
+    margin-left: -10px;
+    margin-bottom: 18px;
+    width: 16px;
+}
+.Notifications .Notifications-Menu{
+    animation: bounce 0.2s;
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
+                rgba(15, 15, 15, 0.2) 0px 5px 10px, 
+                rgba(15, 15, 15, 0.4) 0px 15px 40px;
+    box-sizing: border-box;
+    color: var(--darkGray);
+    font-size: small;
+    height: 500px;
+    margin-left: -470px;
+    margin-top: 10px;
+    width: 500px;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 1;
+}
+.Notifications .Notifications-Content{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    line-height: 1.5;
+    padding: 20px;
+}
+.Notifications .Notifications-Ago{
+    padding: 20px;
+    width: 100%;
+}
+.Notifications .Notifications-Photo{
+    width: 10%;
+}
+.Notifications .Notifications-Points{
+    text-align: center;
+    width: 20%;
+}
+.Notifications .Notifications-Message{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+.Notifications .Notifications-Message time{
+    color: var(--thirdFontColor);
+    font-size: x-small;
+}
+.Notifications .Notifications-Content span.Notifications-Points span.Pos{
+    color: var(--greenMint);
+    margin-right: 10px;
+}
+.Notifications .Notifications-Content span.Notifications-Points span.Neg{
+    color: var(--pastelRed);
+    margin-right: 10px;
+}
+.Notifications .Notifications-Content:hover{
+    background: var(--bgColor);
+    color: var(--primaryFontColor);
+    transition: 0.2s ease-in-out;
+}
+.Notifications-Content-Empty{
+    align-items: center;
+    color: var(--thirdFontColor);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 20px;
+    text-align: center;
+}
+.Notifications-Content-Empty .Big-Emoji{
+    font-size: xx-large;
+}
+@keyframes bounce{
+    0%    {opacity: 0;   transform: scale(1,1);}
+    50%   {opacity: 0.5; transform: scale(1.1, 1.1);}
+    100%  {opacity: 1;   transform: scale(1,1);}
+}
