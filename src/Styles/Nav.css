@@ -37,11 +37,16 @@
     font-size: 12px;
     margin: 5px;
 }
+.Nav .Menu .Progress{
+    display: flex;
+    height: 34px;
+    width: 34px;
+    justify-content: center;
+    align-items: center;
+}
 .Nav .Menu img{
     border-radius: 50%;
     height: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
     width: 30px;
 }
 .Nav .Avatar-Menu{
@@ -78,9 +83,20 @@
     margin-top: 5px;
     width: 100%;
 }
-.Nav .Img-Wrap{
+.Nav .Img-Wrap,
+.Nav .Bar-Wrap{
     align-items: center;
     display: flex;
+}
+.Nav .Img-Wrap{
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 18px;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+.Nav span.Points{
+    font-size: x-small;
 }
 .Nav .User{
     align-items: center;

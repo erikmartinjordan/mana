@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import firebase, {auth} from './Firebase.js';
 import '../Styles/Notifications.css';
+import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
+import spanishStrings from 'react-timeago/lib/language-strings/es';
+import TimeAgo from 'react-timeago';
+import printDate from './ReturnDifferenceBetweenTwoDates.js';
+
+const formatter = buildFormatter(spanishStrings);
 
 class Notifications extends Component {  
     
@@ -31,12 +37,14 @@ class Notifications extends Component {
           var keys = notifications ? Object.keys(notifications) : [];
           var array = [];
                     
-          // Array of points
-          if(notifications) notifications = keys.map( id => [notifications[id].points, notifications[id].message, notifications[id].read] );
-          
-          // Setting the state
-          this.setState({ keys, notifications });
-          
+          // Array of points and setting the state
+          if(notifications){ 
+              notifications = keys.map( id => {
+                  return [notifications[id].points, notifications[id].message, notifications[id].read, notifications[id].timeStamp] 
+              });
+              this.setState({ keys, notifications });
+          }
+
       });
       
       // Setting emojis in svg
@@ -89,22 +97,40 @@ class Notifications extends Component {
       
       var points;
       var res;
-                                                      
-      // Drawing block
+      var message;
+      
+      // Drawing block when there are notifications
       res = this.state.notifications.reverse().map( notification =>
-                <div className = 'Notifications-Content'>
-                    <span className = 'Notifications-Photo'><img src = {this.props.user.photoURL}></img></span>
-                    <span className = 'Notifications-Points'>
-                        { notification[0] > 0 
-                        ? <span className = 'Pos'>+{notification[0]}</span>
-                        : <span className = 'Neg'> {notification[0]}</span>
+                <React.Fragment>
+                        { printDate(Date.now(), notification[3]) !== message 
+                        && <div  className = 'Notifications-Ago'> {message = printDate(Date.now(), notification[3])} </div>
                         }
-                    </span>
-                    <span className = 'Notifications-Message'>
-                        { notification[1] }
-                    </span>
-                </div>          
+                    <div className = 'Notifications-Content'>
+                        <span className = 'Notifications-Photo'>
+                            <img src = {this.props.user.photoURL}></img>
+                        </span>
+                        <span className = 'Notifications-Points'>
+                            { notification[0] > 0 
+                            ? <span className = 'Pos'>+{notification[0]}</span>
+                            : <span className = 'Neg'> {notification[0]}</span>
+                            }
+                        </span>
+                        <span className = 'Notifications-Message'>
+                            { notification[1] }
+                            <TimeAgo formatter = {formatter} date = {notification[3]}/>
+                        </span>
+                    </div>
+                </React.Fragment>
       );
+      
+      // If 0 notifications, we write it
+      if(this.state.notifications.length === 0){
+          
+          res = <div className = 'Notifications-Content-Empty'>
+                    <div className = 'Big-Emoji'>😼</div>
+                    <div className = 'Empty-Message'>¡Miaaaaau! Aún no tienes notificaciones.</div>
+                </div>
+      }
             
       return res;
       

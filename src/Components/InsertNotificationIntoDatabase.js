@@ -20,7 +20,8 @@ const nmsNotification = (uid, type, operator) => {
         case 'reply': firebase.database().ref('notifications/' + uid).push({  
                             
                             points: replyPoints,
-                            message: 'Publicar una respuesta suma puntos.'
+                            message: 'Has publicado una respuesta a una publicación.',
+                            timeStamp: Date.now()
                       
                       });
                       break;
@@ -28,7 +29,8 @@ const nmsNotification = (uid, type, operator) => {
         case 'newPost': firebase.database().ref('notifications/' + uid).push({  
                             
                             points: newPostPoints,
-                            message: 'Publicar un artículo suma puntos.'
+                            message: 'Publicar un artículo suma puntos.',
+                            timeStamp: Date.now()
                       
                         });
                       break;
@@ -37,7 +39,8 @@ const nmsNotification = (uid, type, operator) => {
                             firebase.database().ref('notifications/' + uid).push({  
 
                                 points: chiliPoints,
-                                message: '¡Ue! Te han dado picante por un artículo tuyo publicado.'
+                                message: '¡Ue! Te han dado picante por un artículo tuyo publicado.',
+                                timeStamp: Date.now()
 
                             });
                       }
@@ -45,7 +48,8 @@ const nmsNotification = (uid, type, operator) => {
                           firebase.database().ref('notifications/' + uid).push({  
                             
                             points: -1 * chiliPoints,
-                            message: '¡Ups! Te han quitado picante... No te preocupes, los puntos se recuperan en nada.'
+                            message: '¡Ups! Te han quitado picante... No te preocupes, los puntos se recuperan.',
+                            timeStamp: Date.now()
                       
                         });
                       }

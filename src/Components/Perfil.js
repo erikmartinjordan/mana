@@ -3,8 +3,9 @@ import firebase, { auth } from './Firebase.js';
 import Login from './Login.js';
 import usePostsRepliesSpicy from './ReturnPostsRepliesSpicy.js';
 import returnPoints from './ReturnPointsAndValues.js';
-import returnLevel from './ReturnLevelAndPointsToNextLevel.js'
+import returnLevel from './ReturnLevelAndPointsToNextLevel.js';
 import '../Styles/Perfil.css';
+import '../Styles/Progressbar.css';
 
 const PostsRepliesSpicyPointsLevel = (props) => {
     
@@ -32,6 +33,8 @@ const PostsRepliesSpicyPointsLevel = (props) => {
     const divStyle = {
         width: `${percentage}%` 
     }
+    
+    const progressclass = `Progress ProgressBar-${percentage}`;
         
     switch(props.variable){
         case 'posts':               return posts.toLocaleString(); break;
@@ -45,20 +48,18 @@ const PostsRepliesSpicyPointsLevel = (props) => {
         case 'pointsToNextLevel':   return pointsToNextLevel.toLocaleString(); break;
         case 'percentage':          return percentage.toLocaleString(); break;
         case 'percetageBar':        return <div className = 'Completed' style = {divStyle}></div>; break;
+        case 'percentageCircle':    return <div className = {progressclass}>{props.children}</div>; break;
         default:                    return null; break;
     }
 }
 
 class Perfil extends Component {
 
-  constructor(){
-      super();
-      this.state = {
-         infoUser: null,
-         render: true,
-         spicy: 0,
-         user: null,
-      }
+  state = {
+      infoUser: null,
+      render: true,
+      spicy: 0,
+      user: null
   }
     
   componentDidMount = () => {
@@ -103,7 +104,9 @@ class Perfil extends Component {
       [<div className = 'Perfil'>
         <h2>Perfil</h2>
         <div className = 'Datos'>
-            <img src = {img}></img>
+            <PostsRepliesSpicyPointsLevel variable = 'percentageCircle'>
+                    <img src = {img}></img>
+            </PostsRepliesSpicyPointsLevel>
             <h3>{nombre}</h3>
                 <div className = 'Bloque'>
                     <div className = 'Title'>Email</div>

@@ -8,17 +8,28 @@ import usePostsRepliesSpicy from './ReturnPostsRepliesSpicy.js';
 import returnPoints from './ReturnPointsAndValues.js';
 import returnLevel from './ReturnLevelAndPointsToNextLevel.js';
 import '../Styles/Nav.css';
+import '../Styles/Progressbar.css';
 
-const PointsLevel = () => {
+const PointsLevel = (props) => {
     
     var points;
     var array;
+    var level;
+    var percentage;
+    var progressClass;
     
     array = usePostsRepliesSpicy();
     
     points = returnPoints(array[0], array[1], array[2])[0];
     
-    return points;
+    level = returnLevel(points)[0];
+    percentage = returnLevel(points)[2];
+    
+    progressClass = `Progress ProgressBar-${percentage}`;
+    
+    if(props.variable === 'level') return level;
+    else                           return <div className = {progressClass}>{props.children}</div>;
+    
 }
 
 class Nav extends Component {
@@ -114,13 +125,15 @@ class Nav extends Component {
                         <a onClick = {this.showBanner} className = 'login'>Acceder</a>
                       </React.Fragment>
                     : <div className = 'User'>
-                            <div className = 'Img-Wrap'> 
+                            <div className = 'Bar-Wrap'> 
                                 <Notifications user = {this.state.user}></Notifications>
-                                <div>
-                                    <img onClick = {this.showMenu}  src = {this.state.user.photoURL}></img>
-                                    <PointsLevel></PointsLevel>
+                                <div onClick = {this.showMenu} className = 'Img-Wrap'>
+                                    <PointsLevel>
+                                        <img src = {this.state.user.photoURL}></img>
+                                    </PointsLevel>
+                                    <span className = 'Points'>Nivel <PointsLevel variable = 'level'></PointsLevel></span>
                                 </div>
-                                <Link to = '/' onClick = {this.showPost} className = 'New-Post'>Publicar</Link>
+                                <Link to = '/' onClick = {this.showPost} className = 'New-Post'>Publicar </Link>
                             </div>
                             { this.state.menu
                             ? <div className = 'Avatar-Menu'>

@@ -1,0 +1,410 @@
+.Progress{
+    border-radius: 50%;
+    display: flex;
+    height: 110px;
+    margin: auto;
+    width: 110px;
+}
+.ProgressBar-0 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(90deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-1 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(93.6deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-2 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(97.2deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-3 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(100.8deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-4 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(104.4deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-5 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(108deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-6 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(111.6deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-7 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(115.2deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-8 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(118.8deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-9 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(122.4deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-10 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(126deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-11 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(129.6deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-12 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(133.2deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-13 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(136.8deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-14 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(140.4deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-15 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(144deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-16 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(147.6deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-17 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(151.2deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-18 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(154.8deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-19 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(158.4deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-20 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(162deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-21 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(165.6deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-22 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(169.2deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-23 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(172.8deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-24 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(176.4deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-25 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(180deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-26 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(183.6deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-27 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(187.2deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-28 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(190.8deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-29 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(194.4deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-30 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(198deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-31 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(201.6deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-32 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(205.2deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-33 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(208.8deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-34 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(212.4deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-35 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(216deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-36 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(219.6deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-37 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(223.2deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-38 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(226.8deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-39 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(230.4deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-40 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(234deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-41 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(237.6deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-42 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(241.2deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-43 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(244.8deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-44 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(248.4deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-45 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(252deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-46 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(255.6deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-47 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(259.2deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-48 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(262.8deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-49 {
+    background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(266.4deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-50 {
+    background-image: linear-gradient(-90deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-51 {
+    background-image: linear-gradient(-86.4deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-52 {
+    background-image: linear-gradient(-82.8deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-53 {
+    background-image: linear-gradient(-79.2deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-54 {
+    background-image: linear-gradient(-75.6deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-55 {
+    background-image: linear-gradient(-72deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-56 {
+    background-image: linear-gradient(-68.4deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-57 {
+    background-image: linear-gradient(-64.8deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-58 {
+    background-image: linear-gradient(-61.2deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-59 {
+    background-image: linear-gradient(-57.6deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-60 {
+    background-image: linear-gradient(-54deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-61 {
+    background-image: linear-gradient(-50.4deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-62 {
+    background-image: linear-gradient(-46.8deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-63 {
+    background-image: linear-gradient(-43.2deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-64 {
+    background-image: linear-gradient(-39.6deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-65 {
+    background-image: linear-gradient(-36deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-66 {
+    background-image: linear-gradient(-32.4deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-67 {
+    background-image: linear-gradient(-28.8deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-68 {
+    background-image: linear-gradient(-25.2deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-69 {
+    background-image: linear-gradient(-21.6deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-70 {
+    background-image: linear-gradient(-18deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-71 {
+    background-image: linear-gradient(-14.4deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-72 {
+    background-image: linear-gradient(-10.8deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-73 {
+    background-image: linear-gradient(-7.2deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-74 {
+    background-image: linear-gradient(-3.6deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-75 {
+    background-image: linear-gradient(0deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-76 {
+    background-image: linear-gradient(3.6deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-77 {
+    background-image: linear-gradient(7.2deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-78 {
+    background-image: linear-gradient(10.8deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-79 {
+    background-image: linear-gradient(14.4deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-80 {
+    background-image: linear-gradient(18deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-81 {
+    background-image: linear-gradient(21.6deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-82 {
+    background-image: linear-gradient(25.2deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-83 {
+    background-image: linear-gradient(28.8deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-84 {
+    background-image: linear-gradient(32.4deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-85 {
+    background-image: linear-gradient(36deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-86 {
+    background-image: linear-gradient(39.6deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-87 {
+    background-image: linear-gradient(43.2deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-88 {
+    background-image: linear-gradient(46.8deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-89 {
+    background-image: linear-gradient(50.4deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-90 {
+    background-image: linear-gradient(54deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-91 {
+    background-image: linear-gradient(57.6deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-92 {
+    background-image: linear-gradient(61.2deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-93 {
+    background-image: linear-gradient(64.8deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-94 {
+    background-image: linear-gradient(68.4deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-95 {
+    background-image: linear-gradient(72deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-96 {
+    background-image: linear-gradient(75.6deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-97 {
+    background-image: linear-gradient(79.2deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-98 {
+    background-image: linear-gradient(82.8deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-99 {
+    background-image: linear-gradient(86.4deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
+
+.ProgressBar-100 {
+    background-image: linear-gradient(90deg, var(--greenMint) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));
+}
