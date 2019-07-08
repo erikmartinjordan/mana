@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import firebase from '../Firebase.js';
-import Login from '../Login';
-import nmsNotification from '../InsertNotificationIntoDatabase.js';
+import firebase from './Firebase.js';
+import Login from '../Components/Login';
+import nmsNotification from './InsertNotificationIntoDatabase.js';
 
 class Likes extends Component {  
     

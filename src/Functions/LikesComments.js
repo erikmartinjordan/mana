@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import firebase from '../Firebase.js';
-import Login from '../Login';
+import firebase from './Firebase.js';
+import Login from '../Components/Login';
 
 class LikesComments extends Component {  
     

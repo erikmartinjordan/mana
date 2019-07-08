@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {auth, provider} from './Firebase.js';
+import {auth, provider} from '../Functions/Firebase.js';
 import '../Styles/Login.css';
 
 class Login extends Component {  

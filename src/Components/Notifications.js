@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import firebase, {auth} from './Firebase.js';
+import firebase, {auth} from '../Functions/Firebase.js';
 import '../Styles/Notifications.css';
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings from 'react-timeago/lib/language-strings/es';
 import TimeAgo from 'react-timeago';
-import printDate from './ReturnDifferenceBetweenTwoDates.js';
+import printDate from '../Functions/ReturnDifferenceBetweenTwoDates.js';
 
 const formatter = buildFormatter(spanishStrings);
 

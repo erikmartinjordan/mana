@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
-import firebase, { auth } from './Firebase';
+import firebase, { auth } from '../Functions/Firebase';
 import Default from './Default';
 import Login from './Login';
 import Data from '../Posts/_data';

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import firebase, {auth} from '../Firebase.js';
+import firebase, {auth} from './Firebase.js';
 import EmojiTextarea from './EmojiTextarea';
-import  '../../Styles/NewPost.css';
-import nmsNotification from '../InsertNotificationIntoDatabase.js';
+import nmsNotification from './InsertNotificationIntoDatabase.js';
+import  '../Styles/NewPost.css';
 
 class NewPost extends Component {
     

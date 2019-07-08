@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import firebase, { auth } from './Firebase.js';
+import firebase, { auth } from '../Functions/Firebase.js';
 import Login from './Login.js';
-import usePostsRepliesSpicy from './ReturnPostsRepliesSpicy.js';
-import returnPoints from './ReturnPointsAndValues.js';
-import returnLevel from './ReturnLevelAndPointsToNextLevel.js';
+import usePostsRepliesSpicy from '../Functions/ReturnPostsRepliesSpicy.js';
+import returnPoints from '../Functions/ReturnPointsAndValues.js';
+import returnLevel from '../Functions/ReturnLevelAndPointsToNextLevel.js';
 import '../Styles/Perfil.css';
 import '../Styles/Progressbar.css';
 

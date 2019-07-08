@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import firebase, {auth} from '../Firebase.js';
+import firebase, {auth} from '../Functions/Firebase.js';
 import { Link } from 'react-router-dom';
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings from 'react-timeago/lib/language-strings/es';
 import TimeAgo from 'react-timeago';
-import Likes from './Likes.js';
-import Login from '../Login.js';
-import Data from '../../Posts/_data.js';
-import EmojiTextarea from './EmojiTextarea';
-import '../../Styles/Forum.css';
+import Likes from '../Functions/Likes.js';
+import Login from './Login.js';
+import Data from '../Posts/_data.js';
+import EmojiTextarea from '../Functions/EmojiTextarea';
+import '../Styles/Forum.css';
 
 const formatter = buildFormatter(spanishStrings);
 

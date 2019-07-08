@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link }    from 'react-router-dom';
-import firebase, {auth} from './Firebase.js';
+import firebase, {auth} from '../Functions/Firebase.js';
 import Login from './Login';
-import NewPost from './Forum/NewPost';
+import NewPost from '../Functions/NewPost';
 import Notifications from './Notifications';
-import usePostsRepliesSpicy from './ReturnPostsRepliesSpicy.js';
-import returnPoints from './ReturnPointsAndValues.js';
-import returnLevel from './ReturnLevelAndPointsToNextLevel.js';
+import usePostsRepliesSpicy from '../Functions/ReturnPostsRepliesSpicy.js';
+import returnPoints from '../Functions/ReturnPointsAndValues.js';
+import returnLevel from '../Functions/ReturnLevelAndPointsToNextLevel.js';
 import '../Styles/Nav.css';
 import '../Styles/Progressbar.css';
 
