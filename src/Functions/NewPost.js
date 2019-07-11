@@ -1,81 +1,68 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import firebase, {auth} from './Firebase.js';
 import EmojiTextarea from './EmojiTextarea';
 import nmsNotification from './InsertNotificationIntoDatabase.js';
 import  '../Styles/NewPost.css';
 
-class NewPost extends Component {
+const NewPost = (props) => {
     
-  constructor(){
-        
-        super();
-        this.state = {
-            alert: '',
-            message: '',
-            send: false,
-            show: true,
-            title: '',
-            user: null
-        }
-  }
+  const [alert, setAlert]       = useState('');
+  const [message, setMessage]   = useState('');
+  const [send, setSend]         = useState(false);
+  const [show, setShow]         = useState(true);
+  const [title, setTitle]       = useState('');
+  const [url, setUrl]           = useState('');
+  const [user, setUser]         = useState(null);
     
-  componentDidMount  = () => {
-      auth.onAuthStateChanged( user => user ? this.setState({ user: user }) : this.setState({ user: null }) );
+  useEffect( () => {
+      
+      auth.onAuthStateChanged( user => { if(user) setUser(user) } );
       window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-  }
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-  handleTitle        = (e) => this.setState({ title:   e.target.value});
-  handleMessage      = (text)  => this.setState({ message: text});
-  handleSubmit       = (e) => {
+      
+  });
+
+  const handleSubmit = (e) => {
             
-      if(this.state.message === '' || this.state.title === ''){
-          this.setState({ alert: 'El título o mensaje no pueden estar vacíos.' });
+      if(message === '' || title === '') {
+          setAlert('El título o mensaje no pueden estar vacíos.');
       }
       else{
-          firebase.database().ref('users/' + this.state.user.uid + '/posts').once('value').then( snapshot => {
+          firebase.database().ref('users/' + user.uid + '/posts').once('value').then( snapshot => {
 
                 var capture = snapshot.val();
 
-                if(capture == null || Date.now() - capture.timeStamp > 86400000 || this.state.user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2'){
+                if(capture == null || Date.now() - capture.timeStamp > 86400000 || user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2'){
                     
                     // Post to database
                     var id = firebase.database().ref('posts/').push({
-                        title: this.state.title,
-                        message: this.state.message,
+                        title: title,
+                        message: message,
                         timeStamp: Date.now(),
-                        userName: this.state.user.displayName,
-                        userPhoto: this.state.user.photoURL,
-                        userUid: this.state.user.uid,
+                        userName: user.displayName,
+                        userPhoto: user.photoURL,
+                        userUid: user.uid,
                         votes: 0,
                         views: 0
                     });
                     
-                    
                     // Set timeStamp
-                    firebase.database().ref('users/' + this.state.user.uid + '/posts/timeStamp').transaction( (value) => Date.now() );
+                    firebase.database().ref('users/' + user.uid + '/posts/timeStamp').transaction( (value) => Date.now() );
                     
                     // Increase number of views of the user's posts
-                    firebase.database().ref('users/' + this.state.user.uid + '/posts/numPosts').transaction( (value) =>  value + 1 );
+                    firebase.database().ref('users/' + user.uid + '/posts/numPosts').transaction( (value) =>  value + 1 );
                     
                     // Send notification to user
-                    nmsNotification(this.state.user.uid, 'newPost', 'add');
+                    nmsNotification(user.uid, 'newPost', 'add');
                     
-                    // Get URL
-                    var url = id.key;
-                    
-                    // Remove current alerts
-                    this.setState({
-                        alert: null,
-                        send: true,
-                        url: url
-                    });
+                    // Setting states
+                    setAlert(null);
+                    setSend(true);
+                    setUrl(id.key)
                     
                 }
                 else{
-                        this.setState({
-                            alert: 'Ups, solamente se permite un mensaje cada 24 horas. 😳'
-                        });
+                        setAlert('Ups, solamente se permite un mensaje cada 24 horas. 😳');
                 }
 
           });
@@ -84,29 +71,29 @@ class NewPost extends Component {
       e.preventDefault();
        
   }
-  close = () => this.props.hide();
     
-  render() {
-    return (
+  return (
         <div className = 'NewPost'>
-            
-            { !this.state.send
-            ? <form onSubmit = {this.handleSubmit}>
-                <h2>✍️ Escribe tu mensaje</h2>
-                <input onChange = {this.handleTitle} className = 'title' placeholder = 'Título...' maxLength = '50'></input>
-                <EmojiTextarea handleChange = {this.handleMessage} ></EmojiTextarea>
+            { !send
+            ? <form onSubmit = {(e) => handleSubmit(e)}>
+                {user && <div className = 'User'><img src = {user.photoURL}></img>{user.displayName}</div>}
+                <input onChange = {(e) => {setTitle(e.target.value); setAlert(null)}}
+                       className = 'Title' 
+                       placeholder = 'Título...' 
+                       maxLength = '50'>
+                </input>
+                <EmojiTextarea handleChange = {(text) => {setMessage(text); setAlert(null)}}></EmojiTextarea>
                 <button className = 'bottom'>Enviar</button>
               </form>
             : <div className = 'Enviado'>
                 <h2>¡Gracias!</h2>
-                <p>Gracias por enviar tu mensaje, puedes verlo haciendo clic {this.state.send  ? <Link onClick = {this.close} to = {'/comunidad/post/' + this.state.url}>aquí</Link> : null}.</p>
+                <p>Gracias por enviar tu mensaje, puedes verlo haciendo clic {send  && <Link onClick = {props.hide} to = {'/comunidad/post/' + url}>aquí</Link>}.</p>
               </div>
             }
-            {this.state.alert ? <div className = 'Alert'>{alert}</div> : null}
-            {this.state.show  ? <div className = 'Invisible' onClick = {this.close} ></div> : null}
+            {alert && <div className = 'Alert'>{alert}</div>}
+            {show  && <div className = 'Invisible' onClick = {props.hide} ></div>}
         </div>  
-    );
-  }
+  );
 }
 
 export default NewPost;
