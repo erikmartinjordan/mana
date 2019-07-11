@@ -44,7 +44,8 @@
 }
 .Forum .Sidebar .Welcome,
 .Forum .Sidebar .LastComments,
-.Forum .Sidebar .LastArticles{
+.Forum .Sidebar .LastArticles,
+.Forum .Sidebar .Users{
     background: var(--bgBox);
     border-radius: 5px;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
@@ -55,6 +56,9 @@
     justify-content: space-between;
     margin-bottom: 20px;
     padding: 20px 20px 20px 20px;
+}
+.Forum .Sidebar .Users{
+    display: none;
 }
 .Forum .Sidebar .LastComments .Author-Date{
     display: flex;

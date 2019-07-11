@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chart.js": "^2.8.0",
+    "fingerprintjs": "^0.5.3",
     "firebase": "^4.13.1",
     "moment": "^2.22.1",
     "prismjs": "^1.14.0",

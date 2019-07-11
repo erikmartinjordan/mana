@@ -8,6 +8,7 @@ import Likes from '../Functions/Likes.js';
 import Login from './Login.js';
 import Data from '../Posts/_data.js';
 import EmojiTextarea from '../Functions/EmojiTextarea';
+import Users from './Users';
 import '../Styles/Forum.css';
 
 const formatter = buildFormatter(spanishStrings);
@@ -355,6 +356,10 @@ class Front extends Component {
                         <div className = 'LastArticles'>
                             <span className = 'Title'>Últimos artículos</span>
                             {this.state.ready ? this.lastArticles(5) : null}
+                        </div>
+                        <div className = 'Users'>
+                            <span className = 'Title'>Usuarios</span>
+                            {this.state.ready ? <Users></Users> : null}
                         </div>
                         { !this.state.user
                         ? <div className = 'Welcome'>
