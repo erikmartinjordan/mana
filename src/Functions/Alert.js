@@ -6,6 +6,12 @@ import '../Styles/Alert.css';
 // meessage => message to display
 //
 
-const Alert = (message) => <div className = 'Alert'>{message}</div>;
+const Alert = (props) => <div className = 'Alert'>
+                            <div className = 'Emoji'>📮</div>
+                            <div>
+                                <div className = 'Title'>Ups...</div>
+                                <div className = 'Message'>{props.message}</div>  
+                            </div>
+                         </div>;
 
 export default Alert;

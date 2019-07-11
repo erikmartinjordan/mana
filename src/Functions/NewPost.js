@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import firebase, {auth} from './Firebase.js';
 import EmojiTextarea from './EmojiTextarea';
 import nmsNotification from './InsertNotificationIntoDatabase.js';
+import Alert from './Alert.js';
 import  '../Styles/NewPost.css';
 
 const NewPost = (props) => {
     
-  const [alert, setAlert]       = useState('');
+  const [alert, setAlert]       = useState(null);
   const [message, setMessage]   = useState('');
   const [send, setSend]         = useState(false);
   const [show, setShow]         = useState(true);
@@ -90,7 +91,7 @@ const NewPost = (props) => {
                 <p>Gracias por enviar tu mensaje, puedes verlo haciendo clic {send  && <Link onClick = {props.hide} to = {'/comunidad/post/' + url}>aquí</Link>}.</p>
               </div>
             }
-            {alert && <div className = 'Alert'>{alert}</div>}
+            {alert && <Alert message = {alert}></Alert>}
             {show  && <div className = 'Invisible' onClick = {props.hide} ></div>}
         </div>  
   );
