@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase, { auth }   from '../Functions/Firebase';
-import Fingerprint from 'fingerprintjs';
 import Chart from 'chart.js';
 
 class Users extends Component {
@@ -61,14 +60,6 @@ class Users extends Component {
     let ctx = canvas.getContext('2d');
     let width = window.innerWidth;
     let gradientStroke = ctx.createLinearGradient(0, 0, width, 0);
-    let fingerprint = new Fingerprint().get();
-    let date = new Date();
-    let day = ('0' + date.getDate()).slice(-2);
-    let month = ('0' + (date.getMonth() + 1)).slice(-2);
-    let year = date.getFullYear();
-      
-    // Adding fingerprint to database
-    firebase.database().ref('stats/' + `/${year}${month}${day}/` + `/${fingerprint}` + '/visits/' ).transaction( value => value + 1 );
       
     // Getting the number of users
     firebase.database().ref('stats/').on('value', snapshot => {
