@@ -11,10 +11,10 @@ class Users extends Component {
         datasets: [{
           label: 'Usuarios',
           borderColor: 'blue',
-          pointBorderWidth: 8,
+          pointBorderWidth: 1,
           pointHoverRadius: 8,
           pointHoverBorderWidth: 1,
-          pointRadius: 0.5,
+          pointRadius: 1,
           backgroundColor: 'rgba(0, 210, 255, 0.05)',
           data: []
         }]
@@ -42,7 +42,7 @@ class Users extends Component {
           }],
           yAxes: [{
             type: "linear",
-            display: true,
+            display: false,
             position: "left",
             gridLines: {
                 display: false
