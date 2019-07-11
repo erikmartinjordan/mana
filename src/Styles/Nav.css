@@ -3,6 +3,7 @@
     padding: 50px;
 }
 .Nav .Wrap{
+    align-items: center;
     display: flex;
     justify-content: space-between;
     margin: auto;
@@ -143,12 +144,6 @@
    .Nav{
         padding: 20px;
     } 
-    .Nav .Title{
-        display: none;
-    }
-    .Nav .Title-Mobile{
-        display: block;
-    }
     .Nav .Search input{
         display: none;
     }

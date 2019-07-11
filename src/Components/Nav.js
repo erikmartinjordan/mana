@@ -112,9 +112,6 @@ class Nav extends Component {
             <div className = 'Title'>
                 <Link to = '/'>N</Link>
             </div>
-            <div className = 'Title-Mobile'>
-                <Link to = '/'>N</Link>
-            </div>
             <div className = 'Menu'>
                 { !this.state.user 
                     ? <React.Fragment>
