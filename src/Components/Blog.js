@@ -1,17 +1,34 @@
 import React, { Component } from 'react';
+import {auth, provider} from '../Functions/Firebase.js';
 import Data from '../Posts/_data.js';
 import { Link } from 'react-router-dom';
+import Login from './Login.js';
 import '../Styles/Blog.css';
 
 
 class Blog extends Component {
 
-  constructor(){
-      super();
-      this.state = {
-          archive: []
-      }
+  state = {
+      archive: [],
+      login: false,
+      user: null
   }
+
+  showBanner = (privat) => (e) => {
+            
+      // Is user logged in?
+      if(!this.state.user && privat) {
+          
+          // Prevent redirection to the new page
+          e.preventDefault();
+          
+          // Showing the banner
+          this.setState({ login: true });
+      }
+      
+  }
+  
+  hideBanner = () => this.setState({ login: false });
     
   componentDidMount = () => {
       
@@ -21,9 +38,13 @@ class Blog extends Component {
       let array = [];
       let posts = [];
       let i = 0;
-      
-      
+      let privat = false;
+            
+      // Is user authenticated?
+      auth.onAuthStateChanged( user => this.setState({ user: user }) );
+            
       for (var key in Data) {
+          
           
           i ++;
           
@@ -39,11 +60,22 @@ class Blog extends Component {
               posts = [];
               
           }
+          
+          // If privat is undefined, show article to the user
+          privat = Data[key].privat ? true : false;
         
-          posts.push(<article key = {key + 1}>
-                        <Link to = {'/' + key}>{Data[key].title}</Link>
-                        <p key = {key + 2} className = 'Month'>{Data[key].date[1]}</p>
-                     </article>);
+          // Inserting all the posts, if it's restricted and user is not logged in, we blocked it
+          let article = <article key = {key + 1}>
+                        <div className = 'Title-Date'>
+                            <Link onClick = {this.showBanner(privat)} to = {'/' + key}>{Data[key].title}</Link>
+                            <p className = 'Day-Month-Year'>{Data[key].date[0]} de {Data[key].date[1]} del {Data[key].date[2]}</p>
+                        </div>
+                        <div className = 'Access'>
+                            {Data[key].privat && <p>🔒</p>}
+                        </div>
+                     </article>;
+                             
+          posts.push(article);
                      
           if(i === length){
               array.push([<h2 key = {key} className = 'Year'>{year}</h2>, <div className = 'Block'>{posts}</div>]);
@@ -69,7 +101,8 @@ class Blog extends Component {
       <div className = 'Blog'>
             <h2>Blog</h2>
             <div style = {{textAlign: 'center'}}>El archivo contiene una colección de {Object.keys(Data).length} artículos. ☕</div>
-            {this.state.archive ? this.state.archive : null}
+            {this.state.archive}
+            {this.state.login && <Login hide = {this.hideBanner}></Login>}
       </div>
     );
   }

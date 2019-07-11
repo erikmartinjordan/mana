@@ -56,10 +56,20 @@
     margin-bottom: 20px;
     padding: 20px 20px 20px 20px;
 }
+.Forum .Sidebar .LastComments .Author-Date{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+}
 .Forum .Sidebar .LastComments .Info{
     align-items: center;
     display: flex;
-    margin-top: 5px;
+    justify-content: space-between;
+}
+.Forum .Sidebar .LastComments .Info-Wrap{
+    align-items: center;
+    display: flex;
+    margin-top: 10px;
 }
 .Forum .Sidebar .LastArticles .Info{
     align-items: center;

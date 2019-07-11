@@ -252,6 +252,9 @@ class Front extends Component {
       // Declaring userNames
       var userNames = [];
       
+      // Declaring claps
+      var claps = [];
+      
       // Max timeStamps indexes
       var maxIndexes = [];
             
@@ -272,6 +275,7 @@ class Front extends Component {
           Object.keys(replies[i]).map( (key) => timeStamps.push(replies[i][key].timeStamp)); 
           Object.keys(replies[i]).map( (key) => userPhotos.push(replies[i][key].userPhoto)); 
           Object.keys(replies[i]).map( (key) => userNames.push(replies[i][key].userName)); 
+          Object.keys(replies[i]).map( (key) => replies[i][key].votes ? claps.push(replies[i][key].votes * -1) : claps.push(0));
                     
       }
       
@@ -289,9 +293,14 @@ class Front extends Component {
       var lastComments = maxIndexes.map( (value, key) => {
           
           return <div className = 'Info'>
-                    <img src = {userPhotos[value]}></img>
-                    <Link to = {'/comunidad/post/' + keysParents[value]}>{userNames[value]}</Link>
-                    <span>, <TimeAgo formatter = {formatter} date = {timeStamps[value]}/></span>
+                    <div className = 'Info-Wrap'>
+                        <img src = {userPhotos[value]}></img>
+                        <div className = 'Author-Date'>
+                            <Link to = {'/comunidad/post/' + keysParents[value]}>{userNames[value]}</Link>
+                            <span><TimeAgo formatter = {formatter} date = {timeStamps[value]}/></span>
+                        </div>
+                    </div>
+                    <div className = 'Claps'>👏 {claps[value]}</div>
                  </div>
       
       });
