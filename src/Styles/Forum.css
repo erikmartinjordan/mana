@@ -57,9 +57,6 @@
     margin-bottom: 20px;
     padding: 20px 20px 20px 20px;
 }
-.Forum .Sidebar .Users{
-    display: none;
-}
 .Forum .Sidebar .LastComments .Author-Date{
     display: flex;
     flex-direction: column;

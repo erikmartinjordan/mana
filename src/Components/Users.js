@@ -11,10 +11,10 @@ class Users extends Component {
         datasets: [{
           label: 'Usuarios',
           borderColor: 'blue',
-          pointBorderWidth: 1,
+          pointBorderWidth: 3,
           pointHoverRadius: 8,
           pointHoverBorderWidth: 1,
-          pointRadius: 1,
+          pointRadius: 3,
           backgroundColor: 'rgba(0, 210, 255, 0.05)',
           data: []
         }]
