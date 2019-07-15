@@ -1,4 +1,9 @@
 var data = {
+    'dormir-a-ras': {
+        'title': 'Durmiendo al ras',
+        'date': [15, 'Julio', 2019],
+        'description': 'Me levanto de la cama, son las ocho de la mañana. Me doy una ducha, me visto y preparo la mochila para el fin de semana. La teoría dice que debes cogerte una prenda para cada día y una más de seguridad por imprevistos que pudiesen surgir.'
+    },
     'singapur': {
         'title': 'Hola, Singapur',
         'date': [26, 'Junio', 2019],
