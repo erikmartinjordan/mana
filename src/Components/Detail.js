@@ -333,7 +333,7 @@ class Detail extends Component {
     return (
       <div className = 'Forum Detail'>
         
-        {this.state.send && Alert('Mensaje enviado')}
+        {this.state.send && <Alert title = '¡Gracias!' message = 'Mensaje enviado'></Alert>}
         
         {this.listTitle()}   
         {this.listContent()}

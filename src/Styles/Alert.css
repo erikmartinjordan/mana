@@ -13,7 +13,7 @@
     top: 100px;
     z-index: 99999;
 }
-.Alert .Emoji{
+.Alert .Alert-Emoji{
     margin-right: 15px;
 }
 .Alert .Title{

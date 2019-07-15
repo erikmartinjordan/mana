@@ -7,9 +7,9 @@ import '../Styles/Alert.css';
 //
 
 const Alert = (props) => <div className = 'Alert'>
-                            <div className = 'Emoji'>📮</div>
+                            <div className = 'Alert-Emoji'>📮</div>
                             <div>
-                                <div className = 'Title'>Ups...</div>
+                                <div className = 'Title'>{props.title ? props.title : 'Ups...'}</div>
                                 <div className = 'Message'>{props.message}</div>  
                             </div>
                          </div>;
