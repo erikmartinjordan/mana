@@ -60,8 +60,8 @@ const NewPost = (props) => {
                         title: title,
                         message: message,
                         timeStamp: Date.now(),
-                        userName: user.displayName,
-                        userPhoto: user.photoURL,
+                        userName: nickName ? nickName: user.displayName,
+                        userPhoto: avatar ? avatar : user.photoURL,
                         userUid: user.uid,
                         votes: 0,
                         views: 0
