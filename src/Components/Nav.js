@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link }    from 'react-router-dom';
 import firebase, {auth} from '../Functions/Firebase.js';
 import Login from './Login';
@@ -34,136 +34,133 @@ const PointsLevel = (props) => {
     
 }
 
-class Nav extends Component {
+const Nav = () => {
     
-  constructor(){
-      super();
-      this.state = {
-          avatar: null,
-          invisible: false,
-          menu: false,
-          render: false,
-          post: false,
-          show: true,
-          theme: '',
-      }
-  }
-    
-  componentDidMount = () => {
+    const [avatar, setAvatar] = useState(null);
+    const [invisible, setInvisible] = useState(null);
+    const [menu, setMenu] = useState(false);
+    const [post, setPost] = useState(false);
+    const [render, setRender] = useState(false);
+    const [show, setShow] = useState(true);
+    const [theme, setTheme] = useState('');
+    const [user, setUser] = useState(null);
+
+    useEffect ( () => {
       
       // Is user authenticated?
       auth.onAuthStateChanged( user => {
     
           // Is user anonymous?
           firebase.database().ref('users/' + user.uid + '/anonimo/').on( 'value', snapshot => {
-                if(snapshot.val()) this.setState({ avatar: AnonymImg() });
+                if(snapshot.val()) 
+                    setAvatar(AnonymImg());
           });
           
-          this.setState({ user: user }) 
+          setUser(user); 
       
       });
-
+      // Declaring variable
+      var local;
       
       // Getting current theme from local storage
-      const theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+      local = localStorage.getItem('theme');
             
       // Setting the theme
-      theme === 'dark' ? document.documentElement.setAttribute('data-theme','dark') : document.documentElement.setAttribute('data-theme','');
+      local === 'dark' 
+      ? document.documentElement.setAttribute('data-theme','dark') 
+      : document.documentElement.setAttribute('data-theme','');
       
       // Setting the state
-      this.setState({ theme });
+      setTheme(local);
       
       // Setting emojis in svg
       window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
       
-  }
+  });
   
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} ); 
   
-  changeTheme = () => {
-      
-      // Theme
-      var theme = this.state.theme;
-      
+  const changeTheme = () => {
+            
       // Is dark theme activated?
-      theme === 'dark' ? document.documentElement.setAttribute('data-theme','') : document.documentElement.setAttribute('data-theme','dark');
+      theme === 'dark' 
+      ? document.documentElement.setAttribute('data-theme','') 
+      : document.documentElement.setAttribute('data-theme','dark');
       
       // New theme
-      theme === 'dark' ? theme = '' : theme = 'dark';
-      
-      // Save in local storage
-      localStorage.setItem('theme', theme);
+      theme === 'dark' 
+      ? localStorage.setItem('theme', '') 
+      : localStorage.setItem('theme', 'dark');
       
       // Setting the theme
-      this.setState({ theme });
+      theme === 'dark'
+      ? setTheme('')
+      : setTheme('dark');
   }
   
-  showBanner            = () => this.setState({ render: true }); 
-  hideBanner            = () => this.setState({ render: false }); 
-  showMenu              = () => this.setState({ menu: true });
-  hideMenu              = () => this.setState({ menu: false });
-  showPost              = () => this.setState({ post: true });
-  hidePost              = () => this.setState({ post: false });
-  signOut               = () => auth.signOut().then( this.setState({ user: null }) );
+  const menuNotUser = () => {
+      
+        return        <React.Fragment>
+                        <a onClick = {() => changeTheme}>{theme === 'dark' ? '🌞' : '🌙'}</a>
+                        <Link to = '/'>Comunidad</Link>
+                        <Link to = '/blog'>Blog</Link>
+                        <Link to = '/acerca'>Acerca</Link>
+                        <a onClick = {() => setRender(true)} className = 'login'>Acceder</a>
+                      </React.Fragment>;
+      
+  }
+  
+  const menuUser = () => {
+      
+        return         <div className = 'User'>
+                            <div className = 'Bar-Wrap'> 
+                                <Notifications user = {user}></Notifications>
+                                <div onClick = {() => setMenu(true)} className = 'Img-Wrap'>
+                                    <PointsLevel>
+                                        <img src = { avatar ? avatar : user.photoURL}></img>
+                                    </PointsLevel>
+                                    <span className = 'Points'>Nivel <PointsLevel variable = 'level'></PointsLevel></span>
+                                </div>
+                                <Link to = '/' onClick = {() => setPost(true)} className = 'New-Post'>Publicar </Link>
+                            </div>
+                            {menu && menuClicked()}
+                        </div>;
+  }
+  
+  const menuClicked = () => {
+      
+        return            <div className = 'Avatar-Menu'>
+                                <Link to = '/perfil' onClick = {() => setMenu(false)}>Perfil</Link>
+                                <div className = 'Separator'></div>
+                                <Link to = '/'       onClick = {() => setMenu(false)}>Comunidad</Link>
+                                <Link to = '/blog'   onClick = {() => setMenu(false)}>Blog</Link> 
+                                <Link to = '/acerca' onClick = {() => setMenu(false)} >Acerca</Link>
+                                <div className = 'Separator'></div>
+                                <a onClick = {() => changeTheme()}>Modo noche
+                                {theme === 'dark' ? <ToggleButton status = 'on'/> : <ToggleButton status = 'off'/>}
+                                </a>
+                                <div className = 'Separator'></div>
+                                <Link to = '/' onClick = {() => setMenu(false)}>
+                                    <div onClick = {() => auth.signOut().then(setUser(null))} className = 'Logout'>Cerrar sesión</div>
+                                </Link>
+                          </div>;
+      
+  }
     
-  render() {       
-    return (
+  return (
       <div className = 'Nav'>
         <div className = 'Wrap'>
             <div className = 'Title'>
                 <Link to = '/'>N</Link>
             </div>
             <div className = 'Menu'>
-                { !this.state.user 
-                    ? <React.Fragment>
-                        <a onClick = {this.changeTheme}>{this.state.theme === 'dark' ? '🌞' : '🌙'}</a>
-                        <Link to = '/'>Comunidad</Link>
-                        <Link to = '/blog'>Blog</Link>
-                        <Link to = '/acerca'>Acerca</Link>
-                        <a onClick = {this.showBanner} className = 'login'>Acceder</a>
-                      </React.Fragment>
-                    : <div className = 'User'>
-                            <div className = 'Bar-Wrap'> 
-                                <Notifications user = {this.state.user}></Notifications>
-                                <div onClick = {this.showMenu} className = 'Img-Wrap'>
-                                    <PointsLevel>
-                                        <img src = { this.state.avatar 
-                                                   ? this.state.avatar 
-                                                   : this.state.user.photoURL}>
-                                        </img>
-                                    </PointsLevel>
-                                    <span className = 'Points'>Nivel <PointsLevel variable = 'level'></PointsLevel></span>
-                                </div>
-                                <Link to = '/' onClick = {this.showPost} className = 'New-Post'>Publicar </Link>
-                            </div>
-                            { this.state.menu
-                            ? <div className = 'Avatar-Menu'>
-                                <Link to = '/perfil' onClick = {this.hideMenu}>Perfil</Link>
-                                <div className = 'Separator'></div>
-                                <Link to = '/' onClick = {this.hideMenu}>Comunidad</Link>
-                                <Link to = '/blog' onClick = {this.hideMenu}>Blog</Link> 
-                                <Link to = '/acerca' onClick = {this.hideMenu} >Acerca</Link>
-                                <div className = 'Separator'></div>
-                                <a onClick = {this.changeTheme}>Modo noche
-                                {this.state.theme === 'dark' 
-                                ? <ToggleButton status = 'on'/> 
-                                : <ToggleButton status = 'off'/>
-                                }
-                                </a>
-                                <div className = 'Separator'></div>
-                                <Link to = '/' onClick = {this.hideMenu}><div onClick = {this.signOut} className = 'Logout'>Cerrar sesión</div></Link>
-                              </div>
-                            : null}
-                      </div>
-                }
+                { user ? menuUser() : menuNotUser() }
             </div>
         </div>
-        {this.state.render ? <Login hide = {this.hideBanner}></Login> : null}
-        {this.state.menu   ? <div onClick = {this.hideMenu} className = 'Invisible'></div> : null}
-        {this.state.post   ? <NewPost hide = {this.hidePost}></NewPost> : null}
+        {render && <Login hide = {() => setRender(false)}></Login>}
+        {menu   && <div onClick = {() => setMenu(false)} className = 'Invisible'></div>}
+        {post   && <NewPost hide = {() => setPost(false)}></NewPost>}
       </div>
-    );
-  }
+  );
 }
 
 export default Nav;
