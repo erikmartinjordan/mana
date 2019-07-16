@@ -55,6 +55,12 @@
     padding: 5px;
     width: 100%;
 }
+.Perfil .Toggle{
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
 @media (max-width: 768px){
    .Perfil{
         padding: 20px;

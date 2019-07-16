@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import firebase, {auth} from './Firebase.js';
 import EmojiTextarea from './EmojiTextarea';
 import nmsNotification from './InsertNotificationIntoDatabase.js';
+import AnonymImg from './AnonymImg.js';
 import Alert from './Alert.js';
 import  '../Styles/NewPost.css';
 
@@ -15,10 +16,29 @@ const NewPost = (props) => {
   const [title, setTitle]       = useState('');
   const [url, setUrl]           = useState('');
   const [user, setUser]         = useState(null);
+  const [avatar, setAvatar]     = useState(null);
+  const [nickName, setnickName] = useState(null);
     
   useEffect( () => {
       
-      auth.onAuthStateChanged( user => { if(user) setUser(user) } );
+      // Is user authenticated?
+      auth.onAuthStateChanged( user => {
+    
+          // Is user anonymous?
+          firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
+              
+                var user = snapshot.val();
+              
+                if(user.anonimo) {
+                    setnickName(user.nickName);
+                    setAvatar(AnonymImg());
+                }
+          });
+          
+          setUser(user); 
+      
+      });
+      
       window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
       
   });
@@ -77,7 +97,11 @@ const NewPost = (props) => {
         <div className = 'NewPost'>
             { !send
             ? <form onSubmit = {(e) => handleSubmit(e)}>
-                {user && <div className = 'User'><img src = {user.photoURL}></img>{user.displayName}</div>}
+                {user 
+                && <div className = 'User'>
+                    <img src = {avatar ? avatar : user.photoURL}></img>
+                    {nickName ? nickName : user.displayName}
+                </div>}
                 <input onChange = {(e) => {setTitle(e.target.value); setAlert(null)}}
                        className = 'Title' 
                        placeholder = 'Título...' 

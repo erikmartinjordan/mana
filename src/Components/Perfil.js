@@ -4,8 +4,11 @@ import Login from './Login.js';
 import usePostsRepliesSpicy from '../Functions/ReturnPostsRepliesSpicy.js';
 import returnPoints from '../Functions/ReturnPointsAndValues.js';
 import returnLevel from '../Functions/ReturnLevelAndPointsToNextLevel.js';
+import ToggleButton from '../Functions/ToggleButton.js';
+import AnonymImg from '../Functions/AnonymImg.js';
 import '../Styles/Perfil.css';
 import '../Styles/Progressbar.css';
+import '../Styles/ToggleButton.css';
 
 const PostsRepliesSpicyPointsLevel = (props) => {
     
@@ -85,6 +88,24 @@ class Perfil extends Component {
       
   }
   
+  anonimizar = () => {
+      
+        firebase.database().ref('users/' + this.state.user.uid + '/anonimo/').transaction( (value) =>  {
+            
+            var res; 
+            
+            // Necesitamos anonimizar el nombre
+            if(value === null || value === false)
+                firebase.database().ref('users/' + this.state.user.uid + '/nickName/').transaction( (value) => {
+                    return Math.random().toString(36).substr(2, 5);
+                });
+            
+            // Devolvemos el resultado
+            return res = value === null ? true : !value; 
+        
+        });
+  }
+  
   showBanner = () => this.setState({ render: true }); 
   hideBanner = () => this.setState({ render: false });
     
@@ -92,11 +113,9 @@ class Perfil extends Component {
       
     if(this.state.user && this.state.infoUser){
         
-        var nombre = this.state.user.displayName;
-        var img = this.state.user.photoURL;
-        var articulos = this.state.infoUser.posts.numPosts.toLocaleString();
-        var respuestas = this.state.infoUser.replies.numReplies.toLocaleString();
-        var visitas = this.state.infoUser.postsViews.toLocaleString();
+        var nombre  = this.state.infoUser.anonimo ? this.state.infoUser.nickName : this.state.user.displayName;
+        var img     = this.state.infoUser.anonimo ? AnonymImg() : this.state.user.photoURL;
+        var toggle  = this.state.infoUser.anonimo;
                 
     }
        
@@ -109,14 +128,25 @@ class Perfil extends Component {
             </PostsRepliesSpicyPointsLevel>
             <h3>{nombre}</h3>
                 <div className = 'Bloque'>
+                    <div className = 'Title'>Nombre</div>
+                    <div className = 'Num'>{nombre}</div>
+                    <div className = 'Comment'>Nombre que se muestra públicamente.</div>
+                </div>
+                <div className = 'Bloque'>
+                    <div className = 'Title'>Anonimizar</div>
+                    <div className = 'Toggle' onClick = {this.anonimizar}>
+                        <div className = 'Tag'>Tu nombre real no se mostrará.</div>
+                        { toggle 
+                        ? <ToggleButton status = 'on' /> 
+                        : <ToggleButton status = 'off' />
+                        }
+                    </div>
+                    <div className = 'Comment'>Se mostrará un alias y foto genérica.</div>
+                </div>
+                <div className = 'Bloque'>
                     <div className = 'Title'>Email</div>
                     <div className = 'Num'>{this.state.user ? this.state.user.email : null}</div>
                     <div className = 'Comment'>Tu correo no se muestra ni se utiliza en ningún momento.</div>
-                </div>
-                <div className = 'Bloque'>
-                    <div className = 'Title'>Visitas</div>
-                    <div className = 'Num'>{visitas}</div>
-                    <div className = 'Comment'>Se muestran el número de visitas totales que han recibido tus publicaciones.</div>
                 </div>
                 <div className = 'Bloque'>
                     <div className = 'Title'>Artículos</div>

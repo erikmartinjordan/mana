@@ -7,6 +7,8 @@ import Notifications from './Notifications';
 import usePostsRepliesSpicy from '../Functions/ReturnPostsRepliesSpicy.js';
 import returnPoints from '../Functions/ReturnPointsAndValues.js';
 import returnLevel from '../Functions/ReturnLevelAndPointsToNextLevel.js';
+import ToggleButton from '../Functions/ToggleButton.js';
+import AnonymImg from '../Functions/AnonymImg.js';
 import '../Styles/Nav.css';
 import '../Styles/Progressbar.css';
 
@@ -37,6 +39,7 @@ class Nav extends Component {
   constructor(){
       super();
       this.state = {
+          avatar: null,
           invisible: false,
           menu: false,
           render: false,
@@ -49,7 +52,17 @@ class Nav extends Component {
   componentDidMount = () => {
       
       // Is user authenticated?
-      auth.onAuthStateChanged( user => this.setState({ user: user }) );
+      auth.onAuthStateChanged( user => {
+    
+          // Is user anonymous?
+          firebase.database().ref('users/' + user.uid + '/anonimo/').on( 'value', snapshot => {
+                if(snapshot.val()) this.setState({ avatar: AnonymImg() });
+          });
+          
+          this.setState({ user: user }) 
+      
+      });
+
       
       // Getting current theme from local storage
       const theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
@@ -92,18 +105,6 @@ class Nav extends Component {
   showPost              = () => this.setState({ post: true });
   hidePost              = () => this.setState({ post: false });
   signOut               = () => auth.signOut().then( this.setState({ user: null }) );
-
-  toggleButton = (status) => {
-      
-      var button; 
-      
-      if(status === 'on') button = <div className = 'button-on'><div className = 'inner-button-on'></div></div>;
-      else                button = <div className = 'button-off'><div className = 'inner-button-off'></div></div>;
-      
-      return button;
-          
-  }
-
     
   render() {       
     return (
@@ -126,7 +127,10 @@ class Nav extends Component {
                                 <Notifications user = {this.state.user}></Notifications>
                                 <div onClick = {this.showMenu} className = 'Img-Wrap'>
                                     <PointsLevel>
-                                        <img src = {this.state.user.photoURL}></img>
+                                        <img src = { this.state.avatar 
+                                                   ? this.state.avatar 
+                                                   : this.state.user.photoURL}>
+                                        </img>
                                     </PointsLevel>
                                     <span className = 'Points'>Nivel <PointsLevel variable = 'level'></PointsLevel></span>
                                 </div>
@@ -140,7 +144,12 @@ class Nav extends Component {
                                 <Link to = '/blog' onClick = {this.hideMenu}>Blog</Link> 
                                 <Link to = '/acerca' onClick = {this.hideMenu} >Acerca</Link>
                                 <div className = 'Separator'></div>
-                                <a onClick = {this.changeTheme}>Modo noche{this.state.theme === 'dark' ? this.toggleButton('on') : this.toggleButton('off')}</a>
+                                <a onClick = {this.changeTheme}>Modo noche
+                                {this.state.theme === 'dark' 
+                                ? <ToggleButton status = 'on'/> 
+                                : <ToggleButton status = 'off'/>
+                                }
+                                </a>
                                 <div className = 'Separator'></div>
                                 <Link to = '/' onClick = {this.hideMenu}><div onClick = {this.signOut} className = 'Logout'>Cerrar sesión</div></Link>
                               </div>
