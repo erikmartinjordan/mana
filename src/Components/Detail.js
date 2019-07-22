@@ -78,7 +78,7 @@ const Detail = (props) => {
       });
             
       // Load all the replies of the post
-      firebase.database().ref('posts/' + props.match.params.string + '/replies/').once('value').then( (snapshot) => { 
+      firebase.database().ref('posts/' + props.match.params.string + '/replies/').on('value', (snapshot) => { 
 
             var array = [];
             var uids = [];
@@ -106,7 +106,7 @@ const Detail = (props) => {
   const handleSubmit = (e) => {      
       
       //message can't be empty 
-      if(message === "") setAlert("El mensaje no puede estar vacío.");
+      if(reply === "") setAlert("El mensaje no puede estar vacío.");
       else{      
           
           firebase.database().ref('users/' + user.uid + '/replies').once('value').then( (snapshot) => {
@@ -193,7 +193,7 @@ const Detail = (props) => {
                                     <Likes user = {user} post = {props.match.params.string}></Likes>
                                 </Linkify>
                                 {user && admin &&
-                                    <Link to ="/"><button className = "delete" id = {props.match.params.string} onClick={() => handleDeletePost()}>Eliminar todo el artículo</button></Link>
+                                    <Link to ="/"><button className = "delete" id = {props.match.params.string} onClick={(e) => handleDeletePost(e)}>Eliminar todo el artículo</button></Link>
                                 }
                             </div>
                         }
@@ -218,7 +218,7 @@ const Detail = (props) => {
                 { line.message.split("\n").map(text => <p>{text}</p>) }
                 <LikesComments post = {props.match.params.string} reply = {line.key} user = {user}></LikesComments>
             </Linkify>
-            <div>{admin && <button className = 'delete' id={line.key} onClick={ () => handleDeleteReply()}>Eliminar comentario</button>}</div>
+            <div>{admin && <button className = 'delete' id={line.key} onClick={ (e) => handleDeleteReply(e)}>Eliminar comentario</button>}</div>
         </li> );
                                        
     return list;
@@ -227,8 +227,7 @@ const Detail = (props) => {
 
   const newReply = () => {
                             
-    var form =  <form onSubmit = {() => handleSubmit()}>
-                    {alert && <span className = 'alert'>{alert}</span>}
+    var form =  <form onSubmit = {(e) => handleSubmit(e)}>
                     {user &&
                      <div className = 'infopost'>
                         <img alt = {user.displayName} src = {user.photoURL}></img>
@@ -236,7 +235,7 @@ const Detail = (props) => {
                       </div>
                     }
                     <div className = 'responseBox'>
-                        <EmojiTextarea handleChange = {(text) => setReply(text)} send = {send}></EmojiTextarea>
+                        <EmojiTextarea handleChange = {(text) => {setReply(text); setAlert(null)}} send = {send}></EmojiTextarea>
                         <button className = 'send'>Enviar</button>
                     </div>
                 </form>;
@@ -249,6 +248,7 @@ const Detail = (props) => {
       <div className = 'Forum Detail'>
         
         {send && <Alert title = '¡Gracias!' message = 'Mensaje enviado'></Alert>}
+        {alert && <Alert message = {alert}></Alert>}
         
         {listTitle()}   
         {listContent()}
