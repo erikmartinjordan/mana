@@ -19,6 +19,8 @@ const NewPost = (props) => {
   const [avatar, setAvatar]     = useState(null);
   const [nickName, setnickName] = useState(null);
     
+  console.log(title);
+    
   useEffect( () => {
       
       // Is user authenticated?

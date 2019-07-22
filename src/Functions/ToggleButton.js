@@ -9,8 +9,9 @@ const ToggleButton = (props) => {
       
       var button; 
       
-      if(props.status === 'on') button = <div className = 'button-on'><div className = 'inner-button-on'></div></div>;
-      else                      button = <div className = 'button-off'><div className = 'inner-button-off'></div></div>;
+      props.status === 'on'
+      ? button = <div className = 'button-on'> <div className = 'inner-button-on'></div></div>
+      : button = <div className = 'button-off'><div className = 'inner-button-off'></div></div>;
       
       return button;
           

@@ -50,13 +50,15 @@ const Nav = () => {
       // Is user authenticated?
       auth.onAuthStateChanged( user => {
     
-          // Is user anonymous?
-          firebase.database().ref('users/' + user.uid + '/anonimo/').on( 'value', snapshot => {
-                if(snapshot.val()) 
-                    setAvatar(AnonymImg());
-          });
-          
-          setUser(user); 
+          if(user) {
+              // Is user anonymous?
+              firebase.database().ref('users/' + user.uid + '/anonimo/').on( 'value', snapshot => {
+                    if(snapshot.val()) 
+                        setAvatar(AnonymImg());
+              });
+
+              setUser(user); 
+          }
       
       });
       // Declaring variable

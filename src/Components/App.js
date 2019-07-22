@@ -5,7 +5,7 @@ import firebase             from '../Functions/Firebase';
 import Fingerprint          from 'fingerprintjs';
 import Perfil               from './Perfil';
 import Forum                from './Forum';
-import ForumDetail          from './Detail';
+import Detail          from './Detail';
 import Post                 from './Post';
 import Default              from './Default';
 import Blog                 from './Blog';
@@ -16,7 +16,7 @@ import Acerca               from './Acerca';
 ReactGA.initialize('UA-87406650-1');
 
 const App  = () => {
-    
+        
   useEffect( () => {
       
       // Declaring and getting fingerprint from the user
@@ -45,7 +45,7 @@ const App  = () => {
             <Route exact path = '/perfil'              component = {Perfil}/>
             <Route exact path = '/blog'                component = {Blog}/>
             <Route exact path = '/acerca'              component = {Acerca}/>
-            <Route path = '/comunidad/post/:string'    component = {ForumDetail}/>
+            <Route path = '/comunidad/post/:string'    component = {Detail}/>
             <Route path = '/:string'                   component = {Post}/>
             <Route                                     component = {Default}/>
         </Switch>,
