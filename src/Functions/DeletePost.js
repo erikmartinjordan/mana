@@ -34,15 +34,13 @@ const DeletePost = (props) => {
                     {confirmation &&
                         <div className = 'Confirmation'>
                             <div className = 'Confirmation-Wrap'>
-                                <p>¿Estás seguro de que quieres eliminar el artículo?</p>
+                                <p>¿Estás seguro de que quieres eliminar el {props.type === 'post' ? 'artículo? Se borrarán todos los comentarios.' : 'comentario?'}</p>
                                 <button onClick = { () => handleDelete(id) }       className = 'Yes-Delete'>Sí, eliminar</button>
                                 <button onClick = { () => setConfirmation(false) } className = 'No-Delete'>Cancelar</button>
                             </div>
                         </div>
                     }
-                    <button className = 'delete' id = {props.id} onClick = { (e) => handleConfirmation(e) }>
-                            {props.type === 'post' ? 'Eliminar todo el artículo' : 'Eliminar comentario'}
-                    </button>
+                    <button className = 'Delete' id = {props.id} onClick = { (e) => handleConfirmation(e) }>Eliminar</button>
                  </React.Fragment>;
 
     return deletion;

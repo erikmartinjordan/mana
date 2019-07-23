@@ -196,9 +196,11 @@ const Detail = (props) => {
                             <div>
                                 <Linkify properties = {{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
                                     {htmlMessage}
-                                    <Likes user = {user} post = {props.match.params.string}></Likes>
+                                    <div className = 'Meta-Post'>
+                                        <Likes user = {user} post = {props.match.params.string}></Likes>
+                                        {user && admin && <DeletePost type = 'post' id = {props.match.params.string} />}
+                                    </div>
                                 </Linkify>
-                                {user && admin && <DeletePost type = 'post' id = {props.match.params.string} />}
                             </div>
                         }
                     </div>;
@@ -219,10 +221,12 @@ const Detail = (props) => {
                 <TimeAgo formatter={formatter} date={line.timeStamp}/>
             </div> 
             <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
-                { line.message.split("\n").map(text => <p>{text}</p>) }
-                <LikesComments post = {props.match.params.string} reply = {line.key} user = {user}></LikesComments>
+                {line.message.split("\n").map(text => <p>{text}</p>)}
+                <div className = 'Meta-Post'>
+                    <LikesComments post = {props.match.params.string} reply = {line.key} user = {user}></LikesComments>
+                    {admin && <DeletePost type = 'reply' post = {props.match.params.string} id = {line.key} />}
+                </div>
             </Linkify>
-            <div>{admin && <DeletePost type = 'reply' post = {props.match.params.string} id = {line.key} />}</div>
         </li> );
 
     var items = <ul className = 'replies'>{list}</ul>;

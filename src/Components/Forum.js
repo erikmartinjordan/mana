@@ -8,7 +8,6 @@ import Likes from '../Functions/Likes.js';
 import Login from './Login.js';
 import Data from '../Posts/_data.js';
 import EmojiTextarea from '../Functions/EmojiTextarea';
-import DeletePost from '../Functions/DeletePost';
 import Users from './Users';
 import '../Styles/Forum.css';
 
@@ -146,7 +145,6 @@ class Front extends Component {
                     </div>
                 </li>
             </Link>
-            <div> {this.state.user && this.state.admin && <DeletePost type = 'post' id = {line.key} />} </div>
         </React.Fragment>
       );
 

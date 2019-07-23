@@ -343,6 +343,9 @@
     margin: auto;
     max-width: 600px;
 }
+.Forum.Detail .Likes{
+    margin-right: 0px;
+}
 .Forum h2{
     text-align: center;
 }

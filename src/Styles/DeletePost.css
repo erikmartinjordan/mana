@@ -23,6 +23,10 @@
     width: 300px;
     z-index: 1;
 }
+.Confirmation .Confirmation-Wrap p{
+    margin: 0;
+    margin-bottom: 10px;
+}
 .Confirmation .Yes-Delete,
 .Confirmation .No-Delete{
     background: none;
@@ -45,4 +49,22 @@
 }
 .Confirmation .No-Delete:hover{
     background: var(--thirdFontColor);
+}
+button.Delete{
+    background: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(15, 15, 15, 0.2) 0px 0px 0px 1px, 
+                rgba(15, 15, 15, 0.2) 0px 2px 4px;
+    color: var(--red);
+    cursor: pointer;
+    font-size: small;
+    margin: 0;
+    margin-left: 15px;
+    padding: 5px;
+    transition: all 0.2s ease-in-out;
+    z-index: 99999;
+}
+button.Delete:hover{
+    background: var(--pastelRed);
 }
