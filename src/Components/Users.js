@@ -73,8 +73,8 @@ class Users extends Component {
             let data   = Object.keys(json).map( date => Object.keys(json[date]).length);
             
             // Modifiying labels and data
-            object.data.labels = labels;
-            object.data.datasets['0'].data = data;
+            object.data.labels = labels.slice(-7);
+            object.data.datasets['0'].data = data.reverse().slice(-7);
                                     
             // Updating state  
             this.setState({ object });  
