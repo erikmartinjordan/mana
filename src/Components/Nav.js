@@ -102,7 +102,7 @@ const Nav = () => {
   const menuNotUser = () => {
       
         return        <React.Fragment>
-                        <a onClick = {() => changeTheme}>{theme === 'dark' ? '🌞' : '🌙'}</a>
+                        <a onClick = {() => changeTheme()}>{theme === 'dark' ? '🌞' : '🌙'}</a>
                         <Link to = '/'>Comunidad</Link>
                         <Link to = '/blog'>Blog</Link>
                         <Link to = '/acerca'>Acerca</Link>
