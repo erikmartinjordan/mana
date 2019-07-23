@@ -235,8 +235,10 @@ const Detail = (props) => {
             </Linkify>
             <div>{admin && <button className = 'delete' id={line.key} onClick={ (e) => handleDeleteReply(e)}>Eliminar comentario</button>}</div>
         </li> );
+
+    var items = <ul className = 'replies'>{list}</ul>;
                                        
-    return list;
+    return items;
        
   } 
 
@@ -257,7 +259,16 @@ const Detail = (props) => {
             
     return form;
 
-  }   
+  }
+  
+  const loading = () => {
+      
+      var load = [];
+      
+      for(var i = 0; i < 10; i ++) load.push(<div className = 'Loading'></div>)
+          
+      return load;
+  }
                  
   return (
       <div className = 'Forum Detail'>
@@ -265,12 +276,7 @@ const Detail = (props) => {
         {send && <Alert title = '¡Gracias!' message = 'Mensaje enviado'></Alert>}
         {alert && <Alert message = {alert}></Alert>}
         
-        {listTitle()}   
-        {listContent()}
-            
-        <ul className = 'replies'>
-            {ready ? listItems() : "Cargando..."}
-        </ul>
+        {ready ? [listTitle(), listContent(), listItems()] : loading() }
             
         {user && !empty && newReply()}                               
         {!user && ready && !empty  && <button className = "bottom" onClick = { () => setRender(true)}> Responder</button>}
