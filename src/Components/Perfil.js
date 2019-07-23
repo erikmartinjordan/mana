@@ -94,11 +94,15 @@ class Perfil extends Component {
             
             var res; 
             
-            // Necesitamos anonimizar el nombre
-            if(value === null || value === false)
+            // Necesitamos anonimizar el nombre y el avatar
+            if(value === null || value === false){
                 firebase.database().ref('users/' + this.state.user.uid + '/nickName/').transaction( (value) => {
                     return Math.random().toString(36).substr(2, 5);
                 });
+                firebase.database().ref('users/' + this.state.user.uid + '/avatar/').transaction( (value) => {
+                    return AnonymImg();
+                });
+            }
             
             // Devolvemos el resultado
             return res = value === null ? true : !value; 
@@ -114,7 +118,7 @@ class Perfil extends Component {
     if(this.state.user && this.state.infoUser){
         
         var nombre  = this.state.infoUser.anonimo ? this.state.infoUser.nickName : this.state.user.displayName;
-        var img     = this.state.infoUser.anonimo ? AnonymImg() : this.state.user.photoURL;
+        var img     = this.state.infoUser.anonimo ? this.state.infoUser.avatar : this.state.user.photoURL;
         var toggle  = this.state.infoUser.anonimo;
                 
     }

@@ -8,7 +8,6 @@ import usePostsRepliesSpicy from '../Functions/ReturnPostsRepliesSpicy.js';
 import returnPoints from '../Functions/ReturnPointsAndValues.js';
 import returnLevel from '../Functions/ReturnLevelAndPointsToNextLevel.js';
 import ToggleButton from '../Functions/ToggleButton.js';
-import AnonymImg from '../Functions/AnonymImg.js';
 import '../Styles/Nav.css';
 import '../Styles/Progressbar.css';
 
@@ -51,10 +50,16 @@ const Nav = () => {
       auth.onAuthStateChanged( user => {
     
           if(user) {
-              // Is user anonymous?
-              firebase.database().ref('users/' + user.uid + '/anonimo/').on( 'value', snapshot => {
-                    if(snapshot.val()) 
-                        setAvatar(AnonymImg());
+              // Getting user's properties
+              firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
+                    if(snapshot.val()){
+                        
+                        var capture = snapshot.val();
+                        
+                        // If user is anonymous, load avatar
+                        if(capture.anonimo) setAvatar(capture.avatar);
+                        else                setAvatar(null);
+                    }
               });
 
               setUser(user); 

@@ -32,7 +32,7 @@ const NewPost = (props) => {
 
                     if(user.anonimo) {
                         setnickName(user.nickName);
-                        setAvatar(AnonymImg());
+                        setAvatar(user.avatar);
                     }
               });
 

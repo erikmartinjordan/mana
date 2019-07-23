@@ -11,7 +11,6 @@ import Login from './Login.js';
 import EmojiTextarea from '../Functions/EmojiTextarea';
 import nmsNotification from '../Functions/InsertNotificationIntoDatabase.js';
 import useVerifiedTag from '../Functions/VerifiedTag.js';
-import AnonymImg from '../Functions/AnonymImg.js';
 import Alert from '../Functions/Alert.js';
 
 const formatter = buildFormatter(spanishStrings);
@@ -57,7 +56,7 @@ const Detail = (props) => {
 
                     if(user.anonimo) {
                         setnickName(user.nickName);
-                        setAvatar(AnonymImg());
+                        setAvatar(user.avatar);
                     }
               });
 
