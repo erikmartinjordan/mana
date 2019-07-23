@@ -18,26 +18,26 @@ const NewPost = (props) => {
   const [user, setUser]         = useState(null);
   const [avatar, setAvatar]     = useState(null);
   const [nickName, setnickName] = useState(null);
-    
-  console.log(title);
-    
+        
   useEffect( () => {
       
       // Is user authenticated?
       auth.onAuthStateChanged( user => {
     
-          // Is user anonymous?
-          firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
-              
-                var user = snapshot.val();
-              
-                if(user.anonimo) {
-                    setnickName(user.nickName);
-                    setAvatar(AnonymImg());
-                }
-          });
-          
-          setUser(user); 
+          if(user){
+              // Is user anonymous?
+              firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
+
+                    var user = snapshot.val();
+
+                    if(user.anonimo) {
+                        setnickName(user.nickName);
+                        setAvatar(AnonymImg());
+                    }
+              });
+
+              setUser(user); 
+          }
       
       });
       
@@ -64,7 +64,7 @@ const NewPost = (props) => {
                         timeStamp: Date.now(),
                         userName: nickName ? nickName: user.displayName,
                         userPhoto: avatar ? avatar : user.photoURL,
-                        userUid: user.uid,
+                        userUid: nickName ? nickName : user.uid,
                         votes: 0,
                         views: 0
                     });
@@ -76,7 +76,7 @@ const NewPost = (props) => {
                     firebase.database().ref('users/' + user.uid + '/posts/numPosts').transaction( (value) =>  value + 1 );
                     
                     // Send notification to user
-                    nmsNotification(user.uid, 'newPost', 'add');
+                    nmsNotification(nickName ? nickName : user.uid, 'newPost', 'add');
                     
                     // Setting states
                     setAlert(null);

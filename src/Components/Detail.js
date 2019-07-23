@@ -11,6 +11,7 @@ import Login from './Login.js';
 import EmojiTextarea from '../Functions/EmojiTextarea';
 import nmsNotification from '../Functions/InsertNotificationIntoDatabase.js';
 import useVerifiedTag from '../Functions/VerifiedTag.js';
+import AnonymImg from '../Functions/AnonymImg.js';
 import Alert from '../Functions/Alert.js';
 
 const formatter = buildFormatter(spanishStrings);
@@ -19,10 +20,12 @@ const Detail = (props) => {
         
   const [admin, setAdmin] = useState(false);
   const [alert, setAlert] = useState(null);
+  const [avatar, setAvatar] = useState(null);
   const [chat, setChat] = useState(null);
   const [empty, setEmpty] = useState(true);
   const [login, setLogin] = useState(false);
   const [message, setMessage] = useState("");
+  const [nickName, setnickName] = useState(null);
   const [ready, setReady] = useState(false);
   const [render, setRender] = useState(false);
   const [reply, setReply] = useState("");
@@ -45,10 +48,23 @@ const Detail = (props) => {
             
       // Setting user and admin
       auth.onAuthStateChanged( (user) => {
-          
-          if(user && user.uid === "dOjpU9i6kRRhCLfYb6sfSHhvdBx2") setAdmin(true);
-          setUser(user);
+                    
+          if(user){
+              // Is user anonymous?
+              firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
 
+                    var user = snapshot.val();
+
+                    if(user.anonimo) {
+                        setnickName(user.nickName);
+                        setAvatar(AnonymImg());
+                    }
+              });
+
+              setUser(user); 
+              
+              if(user.uid === "dOjpU9i6kRRhCLfYb6sfSHhvdBx2") setAdmin(true);
+          }
       });
       
       // If the post exists, load data and views ++
@@ -118,9 +134,9 @@ const Detail = (props) => {
                     firebase.database().ref('posts/' + props.match.params.string + '/replies/').push({
                         message: reply,
                         timeStamp: Date.now(),
-                        userName: user.displayName,
-                        userPhoto: user.photoURL,
-                        userUid: user.uid,
+                        userName: nickName ? nickName : user.displayName,
+                        userPhoto: avatar ? avatar : user.photoURL,
+                        userUid: nickName ? nickName : user.uid,
                     });
 
                     //Set timestamp
@@ -130,7 +146,7 @@ const Detail = (props) => {
                     firebase.database().ref('users/' + user.uid + '/replies/numReplies').transaction( (value) => value + 1 );
                     
                     // Notification after user replies something
-                    nmsNotification(user.uid, 'reply', 'add');
+                    nmsNotification(nickName ? nickName : user.uid, 'reply', 'add');
                          
                     // Sending ok
                     setReply("");
@@ -170,7 +186,7 @@ const Detail = (props) => {
                             <div className = 'infopost'>
                                 <img alt = {userName} src = {userPhoto}></img>
                                 {userName}
-                                {verified && userUid && verified[userUid].badge}
+                                {verified && userUid && verified[userUid] && verified[userUid].badge}
                                 <TimeAgo formatter={formatter} date={timeStamp}/>
                             </div>
                         </div>
@@ -211,7 +227,7 @@ const Detail = (props) => {
             <div className = 'infopost'>
                 <img alt={line.userName} src={line.userPhoto}></img>
                 {line.userName}
-                {verified && verified[line.userUid].badge}
+                {verified && verified[line.userUid] && verified[line.userUid].badge}
                 <TimeAgo formatter={formatter} date={line.timeStamp}/>
             </div> 
             <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
@@ -230,8 +246,8 @@ const Detail = (props) => {
     var form =  <form onSubmit = {(e) => handleSubmit(e)}>
                     {user &&
                      <div className = 'infopost'>
-                        <img alt = {user.displayName} src = {user.photoURL}></img>
-                        <div>{user.displayName}</div>
+                        <img alt = {nickName ? nickName : user.displayName} src = {avatar ? avatar : user.photoURL}></img>
+                        <div>{nickName ? nickName : user.displayName}</div>
                       </div>
                     }
                     <div className = 'responseBox'>
