@@ -9,6 +9,7 @@ import Likes from '../Functions/Likes.js';
 import LikesComments from '../Functions/LikesComments.js';
 import Login from './Login.js';
 import EmojiTextarea from '../Functions/EmojiTextarea';
+import DeletePost from '../Functions/DeletePost';
 import nmsNotification from '../Functions/InsertNotificationIntoDatabase.js';
 import useVerifiedTag from '../Functions/VerifiedTag.js';
 import Alert from '../Functions/Alert.js';
@@ -166,16 +167,6 @@ const Detail = (props) => {
        
   } 
 
-  const handleDeletePost = (e) => firebase.database().ref('posts/' + props.match.params.string).remove();
-    
-  const handleDeleteReply = (e) => {
-      
-      firebase.database().ref('posts/' + props.match.params.string + '/replies/' + e.target.getAttribute("id") ).remove();
-      e.preventDefault();
-       
-  } 
-    
-
   const listTitle = () => {  
              
       var header =  <div className = 'title'>                    
@@ -207,9 +198,7 @@ const Detail = (props) => {
                                     {htmlMessage}
                                     <Likes user = {user} post = {props.match.params.string}></Likes>
                                 </Linkify>
-                                {user && admin &&
-                                    <Link to ="/"><button className = "delete" id = {props.match.params.string} onClick={(e) => handleDeletePost(e)}>Eliminar todo el artículo</button></Link>
-                                }
+                                {user && admin && <DeletePost type = 'post' id = {props.match.params.string} />}
                             </div>
                         }
                     </div>;
@@ -233,7 +222,7 @@ const Detail = (props) => {
                 { line.message.split("\n").map(text => <p>{text}</p>) }
                 <LikesComments post = {props.match.params.string} reply = {line.key} user = {user}></LikesComments>
             </Linkify>
-            <div>{admin && <button className = 'delete' id={line.key} onClick={ (e) => handleDeleteReply(e)}>Eliminar comentario</button>}</div>
+            <div>{admin && <DeletePost type = 'reply' post = {props.match.params.string} id = {line.key} />}</div>
         </li> );
 
     var items = <ul className = 'replies'>{list}</ul>;

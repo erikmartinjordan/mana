@@ -368,10 +368,6 @@
 .Forum ul.replies{
     margin: auto;
 }
-.Forum ul.replies p{
-    margin: 0;
-    margin-top: 5px;
-}
 .Forum ul.replies .likes-comments{
     display: flex;
     justify-content: flex-end;

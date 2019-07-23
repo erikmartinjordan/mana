@@ -1,0 +1,48 @@
+.Confirmation{
+    align-items: center;
+    background: rgba(15, 15, 15, 0.6);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 1;
+}
+.Confirmation .Confirmation-Wrap{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
+                rgba(15, 15, 15, 0.2) 0px 5px 10px, 
+                rgba(15, 15, 15, 0.4) 0px 15px 40px;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+    padding: 20px;
+    width: 300px;
+    z-index: 1;
+}
+.Confirmation .Yes-Delete,
+.Confirmation .No-Delete{
+    background: none;
+    border: 1px solid var(--red);
+    border-radius: 5px;
+    color: var(--red);
+    cursor: pointer;
+    font-size: small;
+    margin-bottom: 5px;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+}
+.Confirmation .No-Delete{
+    border: 1px solid var(--secondaryFontColor);
+    color: var(--primaryFontColor);
+}
+.Confirmation .Yes-Delete:hover{
+    background: var(--pastelRed);
+}
+.Confirmation .No-Delete:hover{
+    background: var(--thirdFontColor);
+}
