@@ -137,8 +137,8 @@ const Detail = (props) => {
                     setSend(true);
                     
                     // Disable notification after 2 seconds
-                    setTimeout( () => { setSend(false), 2000 });
-
+                    setTimeout( () => setSend(false), 2000 );
+                    
                 }
                 else{
                         setAlert("Ups, debes esperarte 5 minutos para comentar de nuevo.");
