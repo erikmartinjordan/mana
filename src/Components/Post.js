@@ -60,9 +60,6 @@ class Post extends Component {
           document.title = title + ' - Nomoresheet'; 
           document.querySelector('meta[name="description"]').content = description; 
           
-          // Look for related posts
-          this.relatedContent();
-          
           window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
           
       }
@@ -87,13 +84,20 @@ class Post extends Component {
       let slice;
       let random;
       let res;
+      let nArticles;
+      
+      if(this.state.views && this.state.views > 1000) nArticles = 3;
+      else                                            nArticles = 4;
       
       array = Object.keys(Data);
-      random = Math.floor(Math.random() * (array.length - 3));
-      slice = array.slice(random, random + 3);
-      res = slice.map( value => <div><a href = {'/' + value}>{Data[value].title}</a></div> );
+      random = Math.floor(Math.random() * (array.length - nArticles));
+      slice = array.slice(random, random + nArticles);
+      res = slice.map( value => <a className = 'Article' href = {'/' + value}>
+                                    <p>📖 {Data[value].title}</p>
+                                    <span className = 'Tag Red'>Artículo</span>
+                                </a> );
                       
-      this.setState({ relatedContent: res });
+      return res;
         
   }
 
@@ -116,7 +120,9 @@ class Post extends Component {
                     </div>
                 </div>,
                 <div className = 'Content'>
-                    {this.state.text ? <ReactMarkdown source = {this.state.text} escapeHtml = {false} renderers = {{link : props => <a href={props.href} target = '_blank' rel = 'noindex noreferrer noopener'>{props.children}</a>}}/> : null}
+                    { this.state.text 
+                    ? <ReactMarkdown source = {this.state.text} escapeHtml = {false} renderers = {{link : props => <a href={props.href} target = '_blank' rel = 'noindex noreferrer noopener'>{props.children}</a>}}/> 
+                    : null}
                 </div>,
                 <div className = 'Infopost'>
                     <div></div>
@@ -125,8 +131,25 @@ class Post extends Component {
                     <div className = 'i' onClick = {this.state.user ? this.handleSuperLikes : this.showBanner}>🎉 {this.state.superlikes ? this.state.superlikes : null}</div>
                 </div>,
                 <div className = 'Related'>
-                    <h2>Otros artículos</h2>
-                    {this.state.relatedContent}
+                    <h2>Más cosas...</h2>
+                    <div className = 'Three-Block'>
+                        <a href = {'/'} className = 'Community'>
+                            <p>🐝 Accede a la comunidad: ¡Pregunta, opina y comenta!</p>
+                            <span className = 'Tag Green'>Comunidad</span>
+                        </a>
+                        {this.state.views > 1000
+                        ? <a href = 'https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1772106&hl=es&city=9395' className = 'Ad'>
+                            <p>✨ Reserva tu hotel en Agoda. Precios mejores que en Booking.</p>
+                            <span className = 'Tag Yellow'>Publicidad</span>
+                          </a>
+                        : null
+                        }
+                        <a onClick = {() => this.setState({render: true})} className = 'Otro'>
+                            <p>👋 Accede a Nomoresheet para votar y comentar.</p>
+                            <span className = 'Access'>Acceder</span>
+                        </a>
+                        {this.relatedContent()}
+                    </div>
                 </div>]
                 :
                 <Default></Default>

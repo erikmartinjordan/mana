@@ -162,10 +162,11 @@ img.emoji {
     --blue: #1e99e6;
     --red: #eb5757;
     --pastelRed: #f39a9a;
-    --pastelYellow: #ffde87;
+    --pastelYellow: #fff1cf;
     --pastelGreen: #c8e6e0;
     --pastelPurple: #778dff;
     --greenMint: #48ac98;
+    --yellow: #ffde87;
 }
 [data-theme = 'dark']{
     --bgColor: #262b2f;
