@@ -346,6 +346,10 @@
 .Forum.Detail .Likes{
     margin-right: 0px;
 }
+.Forum.Detail span.user-verified{
+    align-items: center;
+    display: flex;
+}
 .Forum h2{
     text-align: center;
 }

@@ -22,15 +22,13 @@ const useVerifiedTag = () => {
 
                 var data  = snapshot.val();
                 var object = {};
-                var badge =  <div className = 'Verified'>
+                var badge =  <span className = 'Verified'>
                                 <div className = 'Tilde'>✓</div>
                                 <div className = 'Tooltip'>Cuenta verificada</div>
-                             </div>;
-                
-                var empty = <div className = 'Verified'></div>;
-                
+                             </span>;
+                                
                 //Object.keys(data).map( key => array.push([key, data[key].verified ? badge : null]) );
-                Object.keys(data).map( key => object[key] = {'badge': data[key].verified ? badge : empty} );
+                Object.keys(data).map( key => object[key] = {'badge': data[key].verified ? badge : null} );
 
             }
 

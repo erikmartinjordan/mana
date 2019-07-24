@@ -175,9 +175,9 @@ const Detail = (props) => {
                             <h2>{title}</h2>
                             <div className = 'infopost'>
                                 <img alt = {userName} src = {userPhoto}></img>
-                                {userName}
-                                {verified && userUid && verified[userUid] && verified[userUid].badge}
-                                <TimeAgo formatter={formatter} date={timeStamp}/>
+                                <p> <span className = 'user-verified'>{userName} {verified && userUid && verified[userUid] && verified[userUid].badge}</span>
+                                    <TimeAgo formatter={formatter} date={timeStamp}/>
+                                </p>
                             </div>
                         </div>
                     }
@@ -216,9 +216,9 @@ const Detail = (props) => {
         <li key={line.key}>
             <div className = 'infopost'>
                 <img alt={line.userName} src={line.userPhoto}></img>
-                {line.userName}
-                {verified && verified[line.userUid] && verified[line.userUid].badge}
-                <TimeAgo formatter={formatter} date={line.timeStamp}/>
+                <p> <span className = 'user-verified'>{line.userName} {verified && verified[line.userUid] && verified[line.userUid].badge}</span>
+                    <TimeAgo formatter={formatter} date={line.timeStamp}/>
+                </p>
             </div> 
             <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
                 {line.message.split("\n").map(text => <p>{text}</p>)}
