@@ -418,8 +418,7 @@
         padding: 20px;
     }
 
-    .Forum ul.Front .infopost,
-    .Forum .Meta-Post{
+    .Forum ul.Front .infopost{
         justify-content: center;
     }
     .Forum .roll-wrap{
