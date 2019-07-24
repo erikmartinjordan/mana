@@ -94,7 +94,11 @@ class Post extends Component {
       slice = array.slice(random, random + nArticles);
       res = slice.map( value => <a className = 'Article' href = {'/' + value}>
                                     <p>📖 {Data[value].title}</p>
-                                    <span className = 'Tag Red'>Artículo</span>
+                                    <div className = 'Lines'>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <span className = 'Tag Red'>Leer artículo →</span>
                                 </a> );
                       
       return res;
@@ -135,18 +139,25 @@ class Post extends Component {
                     <div className = 'Three-Block'>
                         <a href = {'/'} className = 'Community'>
                             <p>🐝 Accede a la comunidad: ¡Pregunta, opina y comenta!</p>
-                            <span className = 'Tag Green'>Comunidad</span>
+                            <div className = 'Community-Grid'>
+                                <div>👵🏿</div>
+                                <div>👱🏾‍♀️</div>
+                                <div>👵🏽</div>
+                                <div>👳🏼</div>
+                                <div>👨🏻‍💻 </div>
+                            </div>
+                            <span className = 'Tag Green'>Comunidad →</span>
                         </a>
                         {this.state.views > 1000
                         ? <a href = 'https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1772106&hl=es&city=9395' className = 'Ad'>
                             <p>✨ Reserva tu hotel en Agoda. Precios mejores que en Booking.</p>
-                            <span className = 'Tag Yellow'>Publicidad</span>
+                            <span className = 'Tag Yellow'>Ver hoteles →</span>
                           </a>
                         : null
                         }
                         <a onClick = {() => this.setState({render: true})} className = 'Otro'>
                             <p>👋 Accede a Nomoresheet para votar y comentar.</p>
-                            <span className = 'Access'>Acceder</span>
+                            <span className = 'Access'>Acceder →</span>
                         </a>
                         {this.relatedContent()}
                     </div>

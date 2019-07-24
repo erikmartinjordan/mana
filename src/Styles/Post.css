@@ -130,9 +130,9 @@ a.Article{
     font-size: small;
     justify-content: space-between;
     line-height: 1.5;
-    margin: 5px;
+    margin-bottom: 10px;
     padding: 20px;
-    width: 195px;
+    width: 200px;
 }
 a.Community:hover,
 a.Ad:hover,
@@ -140,22 +140,6 @@ a.Otro:hover,
 a.Article:hover{
     transform: scale(1.1);
     transition: 0.2s ease-in-out;
-}
-a.Otro{
-    background: pink;
-    color: #664c51;
-}
-a.Community{
-    background: var(--greenMint);
-    color: white;
-}
-a.Ad{
-    background: var(--yellow);
-    color: #7f6f43;
-}
-a.Article{
-    background: var(--blue);
-    color: white;
 }
 a.Community p,
 a.Ad p,
@@ -170,8 +154,22 @@ a.Otro p img,
 a.Article p img{
     margin: 0 !important;
 }
+a.Article .Lines{
+    border-radius: 5px;
+    height: 40px;
+}
+a.Article .Lines div{
+    background: var(--bgColor);
+    margin-bottom: 10px;
+    height: 5px;
+    width: 100%;
+
+}
+a.Article .Lines div:nth-child(2){
+    width: 70%;
+}
 span.Access{
-    background: #664c51;
+    border: 1px solid pink;
     border-radius: 50px;
     color: pink;
     font-size: x-small;
@@ -179,24 +177,50 @@ span.Access{
     width: max-content;
 }
 span.Tag{
-    background: var(--lightBlue);
+    border: 1px solid var(--blue);
     border-radius: 50px;
     color: var(--blue);
     font-size: x-small;
     padding: 5px;
     width: max-content;
 }
-span.Tag.Blue{
-    background: var(--lightBlue);
-    color: var(--blue);
-}
 span.Tag.Green{
-    background: var(--pastelGreen);
+    border: 1px solid var(--greenMint);
     color: var(--greenMint);
 }
 span.Tag.Yellow{
-    background: #7f6f43;
-    color: var(--pastelYellow);
+    border: 1px solid var(--pastelPurple);
+    color: var(--pastelPurple);
+}
+.Community-Grid {
+    display: flex;
+    margin-bottom: 10px;
+}
+.Community-Grid div{
+    align-items: center;
+    background: pink;
+    border: 1px solid var(--bgBox);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    height: 20px;
+    margin-right: -5px;
+    width: 20px;
+}
+.Community-Grid div:nth-child(1){
+    background: var(--pastelPurple);
+}
+.Community-Grid div:nth-child(2){
+    background: var(--greenMint);
+}
+.Community-Grid div:nth-child(3){
+    background: var(--yellow);
+}
+.Community-Grid div:nth-child(4){
+    background: var(--pastelRed);
+}
+.Community-Grid img.emoji{
+    margin: 0!important;
 }
 @media (max-width:600px){
     .Post{
@@ -215,6 +239,7 @@ span.Tag.Yellow{
         flex-direction: column;
     }
     .Three-Block a{
+        min-height: 150px;
         width: 100%;
     }
 }
