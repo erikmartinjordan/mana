@@ -31,6 +31,7 @@ class Post extends Component {
               if(window.twttr) window.twttr.widgets.load();
           });
           
+          
           // Get info from Json
           let title         = Data[this.props.match.params.string].title;
           let date          = Data[this.props.match.params.string].date;
@@ -78,6 +79,7 @@ class Post extends Component {
   handleLikes           = () => firebase.database().ref('articles/' + this.props.match.params.string + '/likes/').transaction( value => value + 1 );
   handleSuperLikes      = () => firebase.database().ref('articles/' + this.props.match.params.string + '/superlikes/').transaction( value => value + 1 );
   handleDislikes        = () => firebase.database().ref('articles/' + this.props.match.params.string + '/dislikes/').transaction( value => value + 1 );
+  handleAd              = () => firebase.database().ref('stats/adClicks/').transaction(value => value + 1);
   relatedContent        = () => {
       
       let array;
@@ -149,7 +151,10 @@ class Post extends Component {
                             <span className = 'Tag Green'>Comunidad →</span>
                         </a>
                         {this.state.views > 1000
-                        ? <a href = 'https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1772106&hl=es&city=9395' className = 'Ad'>
+                        ? <a onClick = {this.handleAd} 
+                             target = '_blank'
+                             href = 'https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1772106&hl=es&city=9395' 
+                             className = 'Ad'>
                             <p>✨ Reserva tu hotel en Agoda. Precios mejores que en Booking.</p>
                             <span className = 'Tag Yellow'>Ver hoteles →</span>
                           </a>
