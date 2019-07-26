@@ -28,7 +28,8 @@
     display: flex;
     font-size: small;
     justify-content: center;
-    margin: 30px;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 .Blog .Filter-Blog div{
     border-radius: 50px;
