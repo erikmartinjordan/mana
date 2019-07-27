@@ -5,13 +5,14 @@ import firebase             from '../Functions/Firebase';
 import Fingerprint          from 'fingerprintjs';
 import Perfil               from './Perfil';
 import Forum                from './Forum';
-import Detail          from './Detail';
+import Detail               from './Detail';
 import Post                 from './Post';
 import Default              from './Default';
 import Blog                 from './Blog';
 import Nav                  from './Nav';
 import Footer               from './Footer';
 import Acerca               from './Acerca';
+import PublicInfo           from './PublicInfo';
 
 ReactGA.initialize('UA-87406650-1');
 
@@ -46,6 +47,7 @@ const App  = () => {
             <Route exact path = '/blog'                component = {Blog}/>
             <Route exact path = '/acerca'              component = {Acerca}/>
             <Route path = '/comunidad/post/:string'    component = {Detail}/>
+            <Route path = '/@:string'                  component = {PublicInfo}/>
             <Route path = '/:string'                   component = {Post}/>
             <Route                                     component = {Default}/>
         </Switch>,

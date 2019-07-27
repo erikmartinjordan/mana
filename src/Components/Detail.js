@@ -175,7 +175,10 @@ const Detail = (props) => {
                             <h2>{title}</h2>
                             <div className = 'infopost'>
                                 <img alt = {userName} src = {userPhoto}></img>
-                                <p> <span className = 'user-verified'>{userName} {verified && userUid && verified[userUid] && verified[userUid].badge}</span>
+                                <p> <span className = 'user-verified'>
+                                        <Link to = {'/@' + userUid}>{userName}</Link> 
+                                        {verified && userUid && verified[userUid] && verified[userUid].badge}
+                                    </span>
                                     <TimeAgo formatter={formatter} date={timeStamp}/>
                                 </p>
                             </div>
@@ -216,7 +219,9 @@ const Detail = (props) => {
         <li key={line.key}>
             <div className = 'infopost'>
                 <img alt={line.userName} src={line.userPhoto}></img>
-                <p> <span className = 'user-verified'>{line.userName} {verified && verified[line.userUid] && verified[line.userUid].badge}</span>
+                <p> <span className = 'user-verified'>
+                    <Link to = {'/@' + line.userUid}>{line.userName}</Link>
+                    {verified && verified[line.userUid] && verified[line.userUid].badge}</span>
                     <TimeAgo formatter={formatter} date={line.timeStamp}/>
                 </p>
             </div> 
