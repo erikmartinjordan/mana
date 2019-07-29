@@ -4,22 +4,22 @@ import firebase, {auth} from './Firebase.js';
 //--------------------------------------------------------------/
 //
 //
-// This functions returns the number of posts of a user 
+// This functions returns the number of chilis (spicy) of a user 
 // with a specific userUid
 //
 //
 //--------------------------------------------------------------/
-const GetNumberOfPosts = (userUid) => {
+const GetNumberOfSpicy = (userUid) => {
     
-    const [posts, setPosts]   = useState(0);
-    
+    const [spicy, setSpicy]   = useState(0);
+
     // Getting users posts
     useEffect( () => { 
         firebase.database().ref('posts/').on('value', snapshot => { 
 
                     // Capturing data
                     var posts = snapshot.val(); 
-                    var countPosts = 0;
+                    var countSpicy = 0;
 
                     // We sum spicy points of all the posts written by user with ID = uid
                     if(posts){
@@ -27,18 +27,17 @@ const GetNumberOfPosts = (userUid) => {
                         Object.keys(posts).map( id => { 
 
                             // Counting the posts is easy, only increment value by one
-                            if(posts[id].userUid === userUid) countPosts = countPosts + 1;
+                            if(posts[id].userUid === userUid) countSpicy = countSpicy + 1;
 
+                            // Setting posts
+                            setSpicy(countSpicy);
                         });
-                        
-                        // Setting posts
-                        setPosts(countPosts);
                     }
         });
         
     }, [userUid]);
         
-    return posts;
+    return spicy;
 }
 
-export default GetNumberOfPosts;
+export default GetNumberOfSpicy;

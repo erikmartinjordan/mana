@@ -9,36 +9,38 @@ import firebase, {auth} from './Firebase.js';
 //
 //
 //--------------------------------------------------------------/
-const GetNumberOfPosts = (userUid) => {
+const GetLastArticles = (userUid, nArticles) => {
     
-    const [posts, setPosts]   = useState(0);
+    const [articles, setArticles]   = useState([]);
     
     // Getting users posts
     useEffect( () => { 
         firebase.database().ref('posts/').on('value', snapshot => { 
-
+                
+                    // Array of data
+                    var array = [];
+                    
                     // Capturing data
-                    var posts = snapshot.val(); 
-                    var countPosts = 0;
+                    var posts = snapshot.val();
 
-                    // We sum spicy points of all the posts written by user with ID = uid
+                    // We look the posts written by user with ID = uid
                     if(posts){
 
                         Object.keys(posts).map( id => { 
 
-                            // Counting the posts is easy, only increment value by one
-                            if(posts[id].userUid === userUid) countPosts = countPosts + 1;
+                            // Pushing the post to the array
+                            if(posts[id].userUid === userUid) array.push({'title': posts[id].title, 'url': id});
 
                         });
                         
                         // Setting posts
-                        setPosts(countPosts);
+                        setArticles(array);
                     }
         });
         
     }, [userUid]);
-        
-    return posts;
+                
+    return articles.reverse().slice(0, nArticles);
 }
 
-export default GetNumberOfPosts;
+export default GetLastArticles;

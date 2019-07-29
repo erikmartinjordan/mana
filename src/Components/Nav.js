@@ -4,34 +4,14 @@ import firebase, {auth} from '../Functions/Firebase.js';
 import Login from './Login';
 import NewPost from '../Functions/NewPost';
 import Notifications from './Notifications';
-import usePostsRepliesSpicy from '../Functions/ReturnPostsRepliesSpicy.js';
-import returnPoints from '../Functions/ReturnPointsAndValues.js';
-import returnLevel from '../Functions/ReturnLevelAndPointsToNextLevel.js';
+import GetNumberOfPosts from '../Functions/GetNumberOfPosts.js';
+import GetNumberOfReplies from '../Functions/GetNumberOfReplies.js';
+import GetNumberOfSpicy from '../Functions/GetNumberOfSpicy.js';
+import GetPoints from '../Functions/GetPoints.js';
+import GetLevel from '../Functions/GetLevelAndPointsToNextLevel.js';
 import ToggleButton from '../Functions/ToggleButton.js';
 import '../Styles/Nav.css';
 import '../Styles/Progressbar.css';
-
-const PointsLevel = (props) => {
-    
-    var points;
-    var array;
-    var level;
-    var percentage;
-    var progressClass;
-    
-    array = usePostsRepliesSpicy();
-    
-    points = returnPoints(array[0], array[1], array[2])[0];
-    
-    level = returnLevel(points)[0];
-    percentage = returnLevel(points)[2];
-    
-    progressClass = `Progress ProgressBar-${percentage}`;
-    
-    if(props.variable === 'level') return level;
-    else                           return <div className = {progressClass}>{props.children}</div>;
-    
-}
 
 const Nav = () => {
     
@@ -42,7 +22,14 @@ const Nav = () => {
     const [render, setRender] = useState(false);
     const [show, setShow] = useState(true);
     const [theme, setTheme] = useState('');
+    const [uid, setUid] = useState(null);
     const [user, setUser] = useState(null);
+    const posts = GetNumberOfPosts(uid);
+    const replies = GetNumberOfReplies(uid);
+    const spicy = GetNumberOfSpicy(uid);
+    const points = GetPoints(posts, replies, spicy)[0];
+    const level = GetLevel(points)[0];
+    const percentage = GetLevel(points)[2];
 
     useEffect ( () => {
       
@@ -63,6 +50,7 @@ const Nav = () => {
               });
 
               setUser(user); 
+              setUid(user.uid);
           }
       
       });
@@ -122,10 +110,10 @@ const Nav = () => {
                             <div className = 'Bar-Wrap'> 
                                 <Notifications user = {user}></Notifications>
                                 <div onClick = {() => setMenu(true)} className = 'Img-Wrap'>
-                                    <PointsLevel>
+                                    <div className = {'Progress ProgressBar-' + percentage}>
                                         <img src = { avatar ? avatar : user.photoURL}></img>
-                                    </PointsLevel>
-                                    <span className = 'Points'>Nivel <PointsLevel variable = 'level'></PointsLevel></span>
+                                    </div>
+                                    <span className = 'Points'>Nivel {level}</span>
                                 </div>
                                 <Link to = '/' onClick = {() => setPost(true)} className = 'New-Post'>Publicar </Link>
                             </div>

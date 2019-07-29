@@ -6,7 +6,7 @@ import React from 'react';
 // points => current points
 //
 //--------------------------------------------------------------/
-const returnLevel = (points) => {
+const GetLevel = (points) => {
     
     // numb = log1.5(points + 1)
     // level = floor(log1.5(points + 1))
@@ -27,4 +27,4 @@ const returnLevel = (points) => {
     return [level, pointsToNextLevel, percentage];
 }
 
-export default returnLevel;
+export default GetLevel;

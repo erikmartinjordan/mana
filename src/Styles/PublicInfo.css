@@ -40,3 +40,18 @@
     padding: 5px;
     width: 100%;
 }
+.Public-Info .Bar{
+    background: var(--bgColor);
+    border-radius: 5px;
+    display: flex;
+    height: 5px;
+    width: 100%;
+}
+.Public-Info .Completed{
+    background: var(--greenMint);
+    border-radius: 5px;
+}
+.Public-Info .Last-Articles a{
+    border-bottom: 3px solid var(--bgColor);
+    font size: small;
+}

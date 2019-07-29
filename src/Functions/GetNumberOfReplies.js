@@ -48,7 +48,7 @@ const GetNumberOfReplies = (userUid) => {
             }
         });
         
-    }, []);
+    }, [userUid]);
         
     return replies;
 }

@@ -35,7 +35,7 @@ const GetNumberOfViews = (userUid) => {
                     }
         });
         
-    }, []);
+    }, [userUid]);
         
     return views;
 }

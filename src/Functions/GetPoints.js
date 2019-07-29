@@ -8,7 +8,7 @@ import React from 'react';
 // spicy => number of chillis 
 //
 //--------------------------------------------------------------/
-const returnPoints = (posts, replies, spicy) => {
+const GetPoints = (posts, replies, spicy) => {
     
     // Defining the value of each element
     const postValue     = 30;
@@ -22,4 +22,4 @@ const returnPoints = (posts, replies, spicy) => {
     return [points, postValue, replyValue, spicyValue];
 }
 
-export default returnPoints;
+export default GetPoints;
