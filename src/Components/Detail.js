@@ -12,6 +12,7 @@ import EmojiTextarea from '../Functions/EmojiTextarea';
 import DeletePost from '../Functions/DeletePost';
 import nmsNotification from '../Functions/InsertNotificationIntoDatabase.js';
 import useVerifiedTag from '../Functions/VerifiedTag.js';
+import PublicInfo from './PublicInfo.js';
 import Alert from '../Functions/Alert.js';
 
 const formatter = buildFormatter(spanishStrings);
@@ -35,7 +36,7 @@ const Detail = (props) => {
   const [user, setUser] = useState("");
   const [userName, setUserName] = useState("");
   const [userPhoto, setUserPhoto] = useState("");
-  const [userUid, setUserUid] = useState("");
+  const [userUid, setUserUid] = useState(true);
   const [views, setViews] = useState("");
   const verified = useVerifiedTag();
         
@@ -177,6 +178,7 @@ const Detail = (props) => {
                                 <img alt = {userName} src = {userPhoto}></img>
                                 <p> <span className = 'user-verified'>
                                         <Link to = {'/@' + userUid}>{userName}</Link> 
+                                        <PublicInfo uid = {userUid}></PublicInfo>
                                         {verified && userUid && verified[userUid] && verified[userUid].badge}
                                     </span>
                                     <TimeAgo formatter={formatter} date={timeStamp}/>
@@ -219,11 +221,14 @@ const Detail = (props) => {
         <li key={line.key}>
             <div className = 'infopost'>
                 <img alt={line.userName} src={line.userPhoto}></img>
-                <p> <span className = 'user-verified'>
-                    <Link to = {'/@' + line.userUid}>{line.userName}</Link>
-                    {verified && verified[line.userUid] && verified[line.userUid].badge}</span>
+                <div className = 'Group'> 
+                    <span className = 'user-verified'>
+                        <Link to = {'/@' + line.userUid}>{line.userName}</Link>
+                        <PublicInfo uid = {line.userUid}></PublicInfo>
+                        {verified && verified[line.userUid] && verified[line.userUid].badge}
+                    </span>
                     <TimeAgo formatter={formatter} date={line.timeStamp}/>
-                </p>
+                </div>
             </div> 
             <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
                 {line.message.split("\n").map(text => <p>{text}</p>)}

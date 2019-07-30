@@ -44,7 +44,7 @@ const GetProfileImg = (userUid) => {
                     }
         });
         
-    }, []);
+    }, [userUid]);
         
     return imgUrl;
 }

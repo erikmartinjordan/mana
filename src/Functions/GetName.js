@@ -42,9 +42,10 @@ const GetName = (userUid) => {
                             
                         });
                     }
+                
         });
         
-    }, []);
+    }, [userUid]);
         
     return name;
 }
