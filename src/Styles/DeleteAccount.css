@@ -1,0 +1,85 @@
+.Delete.Account.Confirmation{
+    align-items: center;
+    background: rgba(15, 15, 15, 0.6);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 1;
+}
+.Delete.Account.Confirmation .Confirmation-Wrap{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
+                rgba(15, 15, 15, 0.2) 0px 5px 10px, 
+                rgba(15, 15, 15, 0.4) 0px 15px 40px;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+    padding: 20px;
+    width: 400px;
+    z-index: 1;
+}
+.Delete.Account.Confirmation .Confirmation-Wrap p{
+    margin: 0;
+    margin-bottom: 10px;
+}
+.Delete.Account.Confirmation .Yes-Delete,
+.Delete.Account.Confirmation .No-Delete{
+    background: none;
+    border: 1px solid var(--red);
+    border-radius: 5px;
+    color: var(--red);
+    cursor: pointer;
+    font-size: small;
+    margin-bottom: 5px;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+}
+.Delete.Account.Confirmation .No-Delete{
+    border: 1px solid var(--secondaryFontColor);
+    color: var(--primaryFontColor);
+}
+.Delete.Account.Confirmation .Yes-Delete:hover{
+    background: var(--pastelRed);
+}
+.Delete.Account.Confirmation .No-Delete:hover{
+    background: var(--thirdFontColor);
+}
+.Delete.Account input{
+    background: var(--bgColor);
+    border: none;
+    border-radius: 5px;
+    font-size: medium;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    padding: 5px;
+    width: 100%;
+}
+.Delete.Account .Error{
+    color: red;
+    font-size: small;
+    margin-top: 20px;
+}
+button.Delete{
+    background: none;
+    border: 1px solid var(--red);
+    border-radius: 50px;
+    color: var(--red);
+    cursor: pointer;
+    font-size: small;
+    margin: 0;
+    padding: 5px;
+    transition: all 0.2s ease-in-out;
+    z-index: 99999;
+}
+button.Delete.Account{
+    margin: 0;
+}
+button.Delete:hover{
+    background: var(--pastelRed);
+}

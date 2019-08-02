@@ -52,6 +52,10 @@ const Nav = () => {
               setUser(user); 
               setUid(user.uid);
           }
+          
+          else{
+              setUser(null);
+          }
       
       });
       // Declaring variable

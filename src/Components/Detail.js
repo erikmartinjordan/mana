@@ -56,7 +56,7 @@ const Detail = (props) => {
 
                     var user = snapshot.val();
 
-                    if(user.anonimo) {
+                    if(user && user.anonimo) {
                         setnickName(user.nickName);
                         setAvatar(user.avatar);
                     }

@@ -8,6 +8,7 @@ import GetPoints from '../Functions/GetPoints.js';
 import GetLevel from '../Functions/GetLevelAndPointsToNextLevel.js';
 import ToggleButton from '../Functions/ToggleButton.js';
 import AnonymImg from '../Functions/AnonymImg.js';
+import DeleteAccount from '../Functions/DeleteAccount.js'
 import '../Styles/Perfil.css';
 import '../Styles/Progressbar.css';
 import '../Styles/ToggleButton.css';
@@ -136,6 +137,10 @@ const Perfil = () => {
                             <div className = 'Completed' style = {{width: percentage + '%'}}></div>
                         </div>
                         <div className = 'Comment'>{pointsToNextLevel} puntos para el siguiente nivel ({percentage}% completado).</div>
+                    </div>
+                    <div className = 'Bloque'>
+                        <div className = 'Title'>Zona de peligro</div>
+                        <DeleteAccount></DeleteAccount>
                     </div>
             </div>
           </div>
