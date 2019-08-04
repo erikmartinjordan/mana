@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
+import Fingerprint from 'fingerprintjs';
 import firebase, { auth } from '../Functions/Firebase';
 import Default from './Default';
 import Login from './Login';
@@ -79,7 +80,13 @@ class Post extends Component {
   handleLikes           = () => firebase.database().ref('articles/' + this.props.match.params.string + '/likes/').transaction( value => value + 1 );
   handleSuperLikes      = () => firebase.database().ref('articles/' + this.props.match.params.string + '/superlikes/').transaction( value => value + 1 );
   handleDislikes        = () => firebase.database().ref('articles/' + this.props.match.params.string + '/dislikes/').transaction( value => value + 1 );
-  handleAd              = () => firebase.database().ref('stats/adClicks/').transaction(value => value + 1);
+    handleAd              = () => {
+        
+        // Getting fingerprint of the user
+        var fingerprint = new Fingerprint().get();
+        
+        firebase.database().ref('ads/' + fingerprint + '/clicks/').transaction(value => value + 1);
+    }
   relatedContent        = () => {
       
       let array;
