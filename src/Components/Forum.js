@@ -230,16 +230,16 @@ const Front = () => {
     const lastComments = (numberOfComments) => { 
         
         var content = comments.slice(0, numberOfComments).map( reply =>
-            <div className = 'Info'>
+            <Link to = {'/comunidad/post/' + reply.pid} className = 'Info'>
                 <div className = 'Info-Wrap'>
                     <img src = {reply.userPhoto}></img>
                     <div className = 'Author-Date'>
-                        <Link to = {'/comunidad/post/' + reply.pid}>{reply.author}</Link>
+                        <span>{reply.author}</span>
                         <span><TimeAgo formatter = {formatter} date = {reply.timeStamp}/></span>
                     </div>
                 </div>
                 <div className = 'Claps'>👏  {reply.claps}</div>
-            </div>
+            </Link>
         );
         
         return content;
