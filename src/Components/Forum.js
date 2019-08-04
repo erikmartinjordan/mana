@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import firebase, {auth} from '../Functions/Firebase.js';
 import { Link } from 'react-router-dom';
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
@@ -8,162 +8,144 @@ import Likes from '../Functions/Likes.js';
 import Login from './Login.js';
 import Data from '../Posts/_data.js';
 import EmojiTextarea from '../Functions/EmojiTextarea';
+import GetLastComments from '../Functions/GetLastComments';
 import Users from './Users';
 import '../Styles/Forum.css';
 
 const formatter = buildFormatter(spanishStrings);
 
-class Front extends Component {
-       
-  constructor(){
-      
-        super();
-        this.state = {
-            admin: false,
-            alert: '',
-            chat: '',
-            message: '',
-            nomore: null,
-            numposts: 10,
-            ready: false,
-            render: false,
-            sort: 'nuevo',
-            title: '',
-            user: null,
-            write: false,
-        }
-  }
-      
-  showBanner = () => this.setState({render: true}); 
-  hideBanner = () => this.setState({render: false}); 
+const Front = () => {
+                
+    const [admin, setAdmin] = useState(false);
+    const [alert, setAlert] = useState('');
+    const [chat, setChat] = useState('');
+    const [message, setMessage] = useState('');
+    const [nomore, setNomore] = useState(null);
+    const [numposts, setNumposts] = useState(10);
+    const [ready, setReady] = useState(false);
+    const [render, setRender] = useState(false);
+    const [sort, setSort] = useState('nuevo');
+    const [title, setTitle] = useState('');
+    const [user, setUser] = useState(null);
+    const [write, setWrite] = useState(null);
+    const comments = GetLastComments();
     
-  //-------------------------------------------------------------
-  //
-  // Auth of user and last message
-  //
-  //------------------------------------------------------------- 
-  componentDidMount = () => {
+    //-------------------------------------------------------------
+    //
+    // Auth of user and last message
+    //
+    //------------------------------------------------------------- 
+    useEffect( () => {
+      
+        // Setting the title and description of the front page
+        document.title = 'Nomoresheet'; 
+        document.querySelector('meta[name="description"]').content = 'Comunidad de Tailandia'; 
             
-      auth.onAuthStateChanged( user => {
-          if(user){
-              if(user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2') this.setState({ admin: true });
-              this.setState({ user: user });
-          }
-          else{
-              this.setState({ user: null});
-          }
-      });
-      
-      firebase.database().ref('posts/').limitToLast(100).on('value', snapshot => { 
-
-        var array = [];
-
-        snapshot.forEach( childSnapshot => {
-
-            var item = childSnapshot.val();
-            item.key = childSnapshot.key;
-
-            array.push(item);
-
+        // Checking if there is user and setting admin profile
+        auth.onAuthStateChanged( user => {
+            if(user){
+                if(user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2') setAdmin(true);
+                setUser(user);
+            }
+            else{
+                setUser(null);
+            }
         });
-          
-        array.reverse();
-                    
-        this.setState({
-            chat: array,
-            ready: true
+        
+        // Getting the posts 
+        !ready && firebase.database().ref('posts/').limitToLast(100).on('value', snapshot => { 
+            
+            var posts = [];
+            
+            snapshot.forEach( post => {
+                
+                var item = post.val();
+                item.key = post.key;
+                
+                posts.push(item);
+                
+            });
+                        
+            posts.reverse();
+            
+            setChat(posts);
+            setReady(true);
+            
         });
-
-      });
       
-    document.title = 'Nomoresheet'; 
-    document.querySelector('meta[name="description"]').content = 'Comunidad de Tailandia'; 
+        // Drawing emojis in svg
+        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
       
-    window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-      
-  }
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-     
-  //-------------------------------------------------------------
-  //
-  // admin deletes a post
-  //
-  //------------------------------------------------------------- 
-  handleDelete = (e) => {
-      
-      firebase.database().ref('posts/' + e.target.getAttribute('id')).remove();
-      e.preventDefault();
+    }, [ready]);
        
-  }   
+    //-------------------------------------------------------------
+    //
+    // Render list of items
+    //
+    //------------------------------------------------------------- 
+    const listItems = () => {
         
-  //-------------------------------------------------------------
-  //
-  // list of items
-  //
-  //------------------------------------------------------------- 
-  listItems = () => {
-    
-    // Number of messages depending on user's choice  
-    var array = this.state.chat.slice(0, this.state.numposts);
-      
-      
-    // Get unique pics arrray
-    var photos = [];
-    var unique = [];
-      
-    photos = array.map( (line) => {
+        // Number of messages depending on user's choice  
+        var array = chat.slice(0, numposts);
         
-        if(typeof line.replies !== 'undefined') 
-            return Object.keys(line.replies).map( (reply)  => line.replies[reply].userPhoto);
+        // Get unique pics arrray
+        var photos = [];
+        var unique = [];
         
-    });
-                       
-    for(var i = 0; i < photos.length; i ++) unique[i] = [...new Set(photos[i])]
-                    
-    // Enumerate list of posts  
-    var list = array.map( (line, key) =>
-        <React.Fragment>
-            <Link to = {'/comunidad/post/' + line.key}>
-                <li className='roll' key = {key}>
-                    <div className = 'roll-wrap'>
-                        <span>{line.title}</span>
-                        <div className = 'Infopost-Meta-Post'>
-                            <div className = 'infopost'>
-                                <img src = {line.userPhoto}></img>
-                                <p>{line.userName} <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
-                            </div>
-                            <div className = 'Meta-Post'>
-                                <div className = 'Likes'>🌶️ {line.votes * -1}</div>
-                                <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
-                                {unique[key].map( (photo, key) =>         
-                                  <div className = 'Multi-Pic'>
-                                     <img key = {key} src = {photo}></img>
-                                  </div>
-                                )}
+        photos = array.map( (line) => {
+            
+            if(typeof line.replies !== 'undefined') 
+                return Object.keys(line.replies).map( (reply)  => line.replies[reply].userPhoto);
+            
+        });
+        
+        for(var i = 0; i < photos.length; i ++) unique[i] = [...new Set(photos[i])]
+        
+        // Enumerate list of posts  
+        var list = array.map( (line, key) =>
+            <React.Fragment>
+                <Link to = {'/comunidad/post/' + line.key}>
+                    <li className='roll' key = {key}>
+                        <div className = 'roll-wrap'>
+                            <span>{line.title}</span>
+                            <div className = 'Infopost-Meta-Post'>
+                                <div className = 'infopost'>
+                                    <img src = {line.userPhoto}></img>
+                                    <p>{line.userName} <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
+                                </div>
+                                <div className = 'Meta-Post'>
+                                    <div className = 'Likes'>🌶️ {line.votes * -1}</div>
+                                    <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
+                                    {unique[key].map( (photo, key) =>         
+                                      <div className = 'Multi-Pic'>
+                                         <img key = {key} src = {photo}></img>
+                                      </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-            </Link>
-        </React.Fragment>
-      );
-
-    return list;
-       
-  }   
-      
-  //-------------------------------------------------------------
-  //
-  // loading blocks, fancy effect
-  //
-  //------------------------------------------------------------- 
-  loading = () => <React.Fragment>
+                    </li>
+                </Link>
+            </React.Fragment>
+        );
+    
+        return list;
+    
+    }   
+    //-------------------------------------------------------------
+    //
+    // Loading blocks, before 
+    //
+    //------------------------------------------------------------- 
+    const loading = () => {
+        
+        return <React.Fragment>
                     <div className = 'OrderBy'>
                         <div className = 'Loading'></div>
                         <div className = 'Loading'></div>
                         <div className = 'Loading'></div>
                     </div>
-                     <div className = 'Forum-TwoCol'>
+                    <div className = 'Forum-TwoCol'>
                         <ul className = 'Front'>
                             <div className = 'Loading'></div>
                             <div className = 'Loading'></div>
@@ -177,206 +159,136 @@ class Front extends Component {
                             <div className = 'Loading'></div>                       
                         </ul>
                         <div className = 'Sidebar'>
-                                <div className = 'Loading'></div> 
-                                <div className = 'Loading'></div> 
-                        </div>
-                     </div>
-                </React.Fragment>
-      
-  //-------------------------------------------------------------
-  //
-  // show more posts
-  //
-  //-------------------------------------------------------------    
-  showMorePosts = () => {
-      var items  = this.state.numposts + 5;
-      var length = this.state.chat.length;
-         
-      if(items >= length) this.setState({ nomore: true });
-         
-      this.setState({ numposts: items });
-  }
-      
-  //-------------------------------------------------------------
-  //
-  // order by newest, comments and views
-  //
-  //-------------------------------------------------------------    
-  orderBy = (type) => {
-         
-     let sorted;
-                          
-     if(type === 'nuevo')       sorted = this.state.chat.sort( (a, b) => b.timeStamp - a.timeStamp );
-     if(type === 'picante')     sorted = this.state.chat.sort( (a, b) => a.votes - b.votes );
-     if(type === 'comentarios') sorted = this.state.chat.sort( (a, b) => {
-
-        if(a.replies  && b.replies)   return Object.keys(b.replies).length - Object.keys(a.replies).length;
-        if(!a.replies && b.replies)   return 1;
-        if(a.replies  && !b.replies)  return -1;
-        if(!a.replies && !b.replies)  return 0;
-
-     });
-
-     this.setState({ 
-        chat: sorted,
-        sort: type
-     });
-
-  }
-  
-  //-------------------------------------------------------------
-  //
-  // get last comments, author and link
-  //
-  //-------------------------------------------------------------    
-  lastComments = (numberOfComments) => {
-       
-      // Getting all the array of posts
-      var posts = this.state.chat;
-            
-      // Declaring replies array
-      var replies = [];
-      
-      // Declaring keys array of the parents
-      var keysParents = [];
-      
-      // Declaring keys array of the children
-      var keysChildren = [];
-      
-      // Declaring timeStamps
-      var timeStamps = [];
-      
-      // Declaring userPhotos
-      var userPhotos = [];
-      
-      // Declaring userNames
-      var userNames = [];
-      
-      // Declaring claps
-      var claps = [];
-      
-      // Max timeStamps indexes
-      var maxIndexes = [];
-            
-      // Getting an array of replies
-      posts.map( (post) => {
-          
-          if(typeof post.replies !== 'undefined'){
-            replies.push(post.replies);
-            for(var j = 0; j < Object.keys(post.replies).length; j ++)
-              keysParents.push(post.key);   
-          }
-      });
-      
-      // Getting keys, timeStamps, userPhotos and userNames of all replies
-      for(var i = 0; i < replies.length; i ++){
-          
-          Object.keys(replies[i]).map( (key) => keysChildren.push(key));
-          Object.keys(replies[i]).map( (key) => timeStamps.push(replies[i][key].timeStamp)); 
-          Object.keys(replies[i]).map( (key) => userPhotos.push(replies[i][key].userPhoto)); 
-          Object.keys(replies[i]).map( (key) => userNames.push(replies[i][key].userName)); 
-          Object.keys(replies[i]).map( (key) => replies[i][key].votes ? claps.push(replies[i][key].votes * -1) : claps.push(0));
-                    
-      }
-      
-      // Getting max timeStamps indexes
-      var topTimeStamps = [...timeStamps];
-      topTimeStamps = topTimeStamps.sort( (a, b) => b - a).slice(0, numberOfComments);
-      
-      // Getting indexes of elements
-      for(var i = 0; i < topTimeStamps.length; i ++){
-          
-          maxIndexes.push(timeStamps.indexOf(topTimeStamps[i]));
-      }
-      
-      // Printing last comments
-      var lastComments = maxIndexes.map( (value, key) => {
-          
-          return <div className = 'Info'>
-                    <div className = 'Info-Wrap'>
-                        <img src = {userPhotos[value]}></img>
-                        <div className = 'Author-Date'>
-                            <Link to = {'/comunidad/post/' + keysParents[value]}>{userNames[value]}</Link>
-                            <span><TimeAgo formatter = {formatter} date = {timeStamps[value]}/></span>
+                            <div className = 'Loading'></div> 
+                            <div className = 'Loading'></div> 
                         </div>
                     </div>
-                    <div className = 'Claps'>👏 {claps[value]}</div>
-                 </div>
+                </React.Fragment>
+    }
+    //-------------------------------------------------------------
+    //
+    // Show more posts
+    //
+    //-------------------------------------------------------------    
+    const showMorePosts = () => {
       
-      });
-          
-      return lastComments;
-  }
-  
-  
-  //-------------------------------------------------------------
-  //
-  // get last articles
-  //
-  //-------------------------------------------------------------    
-  lastArticles = (numberOfArticles) => {
-      
-      var lastArticles; 
-      
-      lastArticles = Object.keys(Data).map( (key) => {
-          
+        var items  = numposts + 5;
+        var length = chat.length;
+        
+        if(items >= length) setNomore(true);
+        
+        setNumposts(items);
+    }
+    //-------------------------------------------------------------
+    //
+    // Sort posts
+    //
+    //-------------------------------------------------------------    
+    const orderBy = (type) => {
+        
+        let sorted;
+        
+        if(type === 'nuevo')       sorted = chat.sort( (a, b) => b.timeStamp - a.timeStamp );
+        if(type === 'picante')     sorted = chat.sort( (a, b) => a.votes - b.votes );
+        if(type === 'comentarios') sorted = chat.sort( (a, b) => {
+            
+            if(a.replies  && b.replies)   return Object.keys(b.replies).length - Object.keys(a.replies).length;
+            if(!a.replies && b.replies)   return 1;
+            if(a.replies  && !b.replies)  return -1;
+            if(!a.replies && !b.replies)  return 0;
+        });
+        
+        setChat(sorted);
+        setSort(type);
+    }
+    //-------------------------------------------------------------
+    //
+    // Get last articles
+    //
+    //-------------------------------------------------------------    
+    const lastArticles = (numberOfArticles) => {
+        
+        var posts; 
+
+        posts = Object.keys(Data).map( (key) => {
           return <div className = 'Info'>
                       <div className = 'Bullet'></div>  
                       <Link to = {'/' + key}>{Data[key].title}</Link>
                  </div>
       });
-          
-      lastArticles = lastArticles.slice(0, numberOfArticles); 
-      
-      return lastArticles;
-  }
+        
+        posts = posts.slice(0, numberOfArticles); 
+        
+        return posts;
+    }
+  
+    //-------------------------------------------------------------
+    //
+    // Get last comments
+    //
+    //-------------------------------------------------------------     
+    const lastComments = (numberOfComments) => { 
+        
+        var content = comments.slice(0, numberOfComments).map( reply =>
+            <div className = 'Info'>
+                <div className = 'Info-Wrap'>
+                    <img src = {reply.userPhoto}></img>
+                    <div className = 'Author-Date'>
+                        <Link to = {'/comunidad/post/' + reply.pid}>{reply.author}</Link>
+                        <span><TimeAgo formatter = {formatter} date = {reply.timeStamp}/></span>
+                    </div>
+                </div>
+                <div className = 'Claps'>👏  {reply.claps}</div>
+            </div>
+        );
+        
+        return content;
+    }
          
-  render() {      
       
     return (
       <div className = 'Forum'>
         
-        { this.state.ready && this.state.chat !== ''
+        { ready && chat !== ''
         ?   <React.Fragment>
                 <div className = 'OrderBy'>
-                    <div onClick = {() => this.orderBy('nuevo')}       className = {this.state.sort === 'nuevo'       ? 'Selected' : null}>Nuevo 🔥</div>
-                    <div onClick = {() => this.orderBy('picante')}     className = {this.state.sort === 'picante'     ? 'Selected' : null}>Picante 🌶</div>
-                    <div onClick = {() => this.orderBy('comentarios')} className = {this.state.sort === 'comentarios' ? 'Selected' : null}>Comentarios 💬</div>
+                    <div onClick = {() => orderBy('nuevo')}       className = {sort === 'nuevo'       ? 'Selected' : null}>Nuevo 🔥</div>
+                    <div onClick = {() => orderBy('picante')}     className = {sort === 'picante'     ? 'Selected' : null}>Picante 🌶</div>
+                    <div onClick = {() => orderBy('comentarios')} className = {sort === 'comentarios' ? 'Selected' : null}>Comentarios 💬</div>
                 </div>
                 <div className = 'Forum-TwoCol'>
                     <ul className = 'Front'>
-                        {this.listItems()}
+                        {listItems()}
                     </ul>
                     <div className = 'Sidebar'>
                         <div className = 'LastComments'>
                             <span className = 'Title'>Últimos comentarios</span>
-                            {this.state.ready ? this.lastComments(10) : null}
+                            {lastComments(10)}
                         </div>
                         <div className = 'LastArticles'>
                             <span className = 'Title'>Últimos artículos</span>
-                            {this.state.ready ? this.lastArticles(5) : null}
+                            {lastArticles(5)}
                         </div>
                         <div className = 'Users'>
                             <span className = 'Title'>Usuarios</span>
-                            {this.state.ready ? <Users></Users> : null}
+                            <Users></Users>
                         </div>
-                        { !this.state.user
-                        ? <div className = 'Welcome'>
+                        { !user &&
+                          <div className = 'Welcome'>
                             <span className = 'Title'>Únete</span>
                             <p>👋 ¡Hola! Accede a la comunidad para poder publicar y responder a otros <em>posts</em>.</p>
-                            <a className = 'login' onClick = {this.showBanner}>Acceder</a>
+                            <a className = 'login' onClick = {() => setRender(true)}>Acceder</a>
                           </div>
-                        : null }
+                        }
                     </div>
                 </div>
             </React.Fragment>
-        : this.loading()}
-
-        {this.state.nomore || !this.state.ready ? null : <button className = 'more' onClick = {this.showMorePosts}>Ver más</button>}
-        {this.state.render ? <Login hide={this.hideBanner}></Login> : null}
+        : loading()
+        }
+        {!nomore &&  ready && <button className = 'more' onClick = {() => showMorePosts()}>Ver más</button>}
+        {render  && <Login hide = {() => setRender(false)}></Login>}
       </div>
     );
-  }
 }
 
 export default Front;

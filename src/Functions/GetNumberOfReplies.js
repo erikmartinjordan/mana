@@ -16,33 +16,33 @@ const GetNumberOfReplies = (userUid) => {
     // Getting users posts, replies and spicy
     useEffect( () => { 
         firebase.database().ref('posts/').on('value', snapshot => { 
-
+            
             // Capturing data
             var posts = snapshot.val(); 
             var countReplies = 0;
-
+            
             // We sum spicy points of all the posts written by user with ID = uid
             if(posts){
-
+                
                 Object.keys(posts).map( id => { 
-
+                    
                     // Getting all the replies
                     if(typeof posts[id].replies !== 'undefined'){
-
+                        
                         var replies = posts[id].replies;
-
+                        
                         // Count same way as we did before, increment value by one                      
                         Object.keys(replies).map( id => {
-
+                            
                             if(replies[id].userUid === userUid){
-
+                                
                                 countReplies = countReplies + 1;
                             }
                         });
                     }
-
+                    
                 });
-
+                
                 // Setting the new states
                 setReplies(countReplies);
             }
