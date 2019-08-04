@@ -18,24 +18,24 @@ ReactGA.initialize('UA-87406650-1');
 
 const App  = () => {
         
-  useEffect( () => {
-      
-      // Declaring and getting fingerprint from the user
-      let fingerprint = new Fingerprint().get();
-      
-      // Declaring date and make it dd/mm/yyyy
-      let date = new Date();
-      let day = ('0' + date.getDate()).slice(-2);
-      let month = ('0' + (date.getMonth() + 1)).slice(-2);
-      let year = date.getFullYear();
-      
-      // Adding stat of visits to database
-      firebase.database().ref('stats/' + `/${year}${month}${day}/` + `/${fingerprint}` + '/visits/' ).transaction( value => value + 1 );
-      
-      // Adding stat to Google Analytics
-      ReactGA.pageview(window.location.pathname + window.location.search); 
-      
-  });
+    useEffect( () => {
+
+        // Declaring and getting fingerprint from the user
+        let fingerprint = new Fingerprint().get();
+
+        // Declaring date and make it dd/mm/yyyy
+        let date = new Date();
+        let day = ('0' + date.getDate()).slice(-2);
+        let month = ('0' + (date.getMonth() + 1)).slice(-2);
+        let year = date.getFullYear();
+
+        // Adding stat of visits to database
+        firebase.database().ref('stats/' + `/${year}${month}${day}/` + `/${fingerprint}` + '/visits/' ).transaction( value => value + 1 );
+
+        // Adding stat to Google Analytics
+        ReactGA.pageview(window.location.pathname + window.location.search); 
+
+    });
    
     return (
         [<Switch key = 'A'>
