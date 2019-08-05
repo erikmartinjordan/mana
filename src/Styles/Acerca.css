@@ -1,9 +1,13 @@
 .Acerca{
     margin: auto;
-    max-width: 600px;
+    max-width: 700px;
     width: 100%;
 }
+.Acerca .Text p{
+    margin-left: 0;
+}
 .Acerca .Intro{
+    font-size: medium;
     margin: auto;
     margin-bottom: 50px;
     max-width: 800px;
@@ -15,24 +19,32 @@
     height: 100px;
     width: 100px;
 }
-.Acerca .Date p{
+.Acerca .Date{
     color: var(--thirdFontColor);
-    font-size: x-small;
-    text-align: center;
-    text-transform: uppercase;
+    font-size: small;
+    text-transform: lowercase;
 }
 .Acerca .Block{
     background: var(--bgBox);
     border-radius: 5px;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    line-height: 1.7;
     padding: 20px;
 } 
+.Acerca .Block h3{
+    margin: 0;
+    text-align: left;
+}
+.Acerca .Block p,
+.Acerca .Block li{
+    font-size: medium;
+}
+.Acerca .Block img{
+    width: 100%;
+}
 .Acerca .Block .Content{
     align-items: center;
     display: flex;
-}
-.Acerca .Block .Content p{
-    font-size: 16px;
 }
 .Acerca .Block .Emoji img{
     font-size: 150px;
@@ -42,6 +54,37 @@
     height: 50px;
     margin: auto;
     width: 5px;
+}
+.Acerca input.Title{
+    border: none;
+    color: var(--primaryFontColor);
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: -0.035em;
+    line-height: 1.5;
+    width: 100%;
+}
+.Acerca textarea.Content{
+    border: none;
+    color: var(--primaryFontColor);
+    font-size: medium;
+    margin-top: 20px;
+    width: 100%;
+}
+.Acerca .Buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+.Acerca button.Picture,
+.Acerca button.send{
+    margin: 0;
+}
+.Acerca button.Delete{
+    margin-left: auto;
+}
+.Acerca button.Picture{
+    border: none;
+    font-size: large;
 }
 @media (max-width: 768px){
    .Acerca{
