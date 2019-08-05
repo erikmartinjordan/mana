@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import firebase, { auth } from '../Functions/Firebase';
+import ReactMarkdown from 'react-markdown';
+import firebase, { auth, storageRef } from '../Functions/Firebase';
+import DeleteFeature from '../Functions/DeleteFeature.js';
 import { Link } from 'react-router-dom';
 import '../Styles/Acerca.css';
 
@@ -11,6 +13,7 @@ const Acerca = () => {
     const [content, setContent] = useState(null);
     const [data, setData] = useState(null);
     const [date, setDate] = useState(today.getDate() + ' de ' + month[today.getMonth()] + ' del ' + today.getFullYear());
+    const [imgUrl, setImgUrl] = useState(null);
     const [title, setTitle] = useState('Título');
     
     useEffect( () => {
@@ -22,14 +25,33 @@ const Acerca = () => {
         auth.onAuthStateChanged( user => { user && user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2' && setAdmin(true) });
         
         // Fetching data from Database
-        !data && firebase.database().ref('features/').on('value', snapshot => { if(snapshot.val()) setData(snapshot.val().reverse()) });
+        !data && firebase.database().ref('features/').on('value', snapshot => { snapshot.val() && setData(snapshot.val()) });
         
         // Emojis in svg
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
     }, [data]);
     
+    const handleImageChange = (e) => {
+        
+        // Getting hte picture
+        var reader = new FileReader();
+        var file = e.target.files[0];
+        
+        // Uploading to Firebase
+        storageRef.child('acerca/' + file.name).put(file).then( snapshot => setImgUrl(snapshot.downloadURL) );
+    }
+    
     const upload = () => {
         
+        // Uploading to Firebase
+        firebase.database().ref('features/').push({
+            
+            date: [today.getDate(), month[today.getMonth()], today.getFullYear()],
+            description: content,
+            pic: imgUrl,
+            title: title
+
+        })
         
     }
 
@@ -59,25 +81,29 @@ const Acerca = () => {
                             value = {content}>
                 </textarea>
                 <div className = 'Buttons'>
-                    <button className = 'Picture'>📸</button>
-                    <button className = 'send'>Añadir</button>
+                    {imgUrl && <img src = {imgUrl}></img>}
+                    <input  onChange = {(e) => handleImageChange(e)}
+                            className = 'Upload' 
+                            type = 'file'>
+                    </input>
+                    <button onClick = {() => upload()}className = 'send'>Añadir</button>
                 </div>
             </div>,
             <div className = 'Separator'></div>]           
         }
 
-        {data && data.map((item, key) =>
+        {data && Object.keys(data).reverse().map( key =>
             [<div className = 'Block'>
-                {item.title ? <h3>{item.title}</h3> : null}
-                <div className = 'Date'>{item.date[0] + ' de ' + item.date[1] + ' del '  + item.date[2]}</div>
+                {data[key].title && <h3>{data[key].title}</h3>}
+                <div className = 'Date'>{data[key].date[0] + ' de ' + data[key].date[1] + ' del '  + data[key].date[2]}</div>
                 <div className = 'Content'>
                     <div className = 'Text'>
-                        {item.description && <p>{item.description}</p>}
-                        {item.list && Object.keys(item.list).map((value, key) => <li>{item.list[value]}</li>)}
-                        {item.pic  && <img src = {item.pic}></img>}
+                        {data[key].description && <ReactMarkdown source = {data[key].description}></ReactMarkdown>}
+                        {data[key].list && Object.keys(data[key].list).map(value => <li>{data[key].list[value]}</li>)}
+                        {data[key].pic  && <img src = {data[key].pic}></img>}
                     </div>
                 </div>
-                {admin && <button className = 'Delete'>Eliminar</button>}
+                {admin && <DeleteFeature id = {key}></DeleteFeature>}
             </div>,
             <div className = 'Separator'></div>])
         }

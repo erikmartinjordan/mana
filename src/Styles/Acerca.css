@@ -72,8 +72,14 @@
     width: 100%;
 }
 .Acerca .Buttons{
+    align-items: center;
     display: flex;
     justify-content: flex-end;
+}
+.Acerca .Buttons img{
+    border-radius: 5px;
+    height: 100px;
+    width: 100px;
 }
 .Acerca button.Picture,
 .Acerca button.send{
@@ -85,6 +91,26 @@
 .Acerca button.Picture{
     border: none;
     font-size: large;
+}
+.Acerca .Upload{
+    color: transparent;
+    cursor: pointer;
+    height: 25px;
+    text-align: right;
+    width: 25px;
+}
+.Acerca .Upload:before{
+    align-items: center;
+    content: '📸';
+    color: black;
+    float: left;
+    font-size: large;
+    height: 30px;
+    margin-left: auto;
+    width: 30px;
+}
+.Acerca .Upload::-webkit-file-upload-button{
+    visibility: hidden;
 }
 @media (max-width: 768px){
    .Acerca{
