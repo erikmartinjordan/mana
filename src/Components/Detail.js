@@ -19,37 +19,39 @@ const formatter = buildFormatter(spanishStrings);
 
 const Detail = (props) => {
         
-  const [admin, setAdmin] = useState(false);
-  const [alert, setAlert] = useState(null);
-  const [avatar, setAvatar] = useState(null);
-  const [chat, setChat] = useState(null);
-  const [empty, setEmpty] = useState(true);
-  const [login, setLogin] = useState(false);
-  const [message, setMessage] = useState("");
-  const [nickName, setnickName] = useState(null);
-  const [ready, setReady] = useState(false);
-  const [render, setRender] = useState(false);
-  const [reply, setReply] = useState("");
-  const [send, setSend] = useState(false);
-  const [timeStamp, setTimeStamp] = useState(null);
-  const [title, setTitle] = useState("");
-  const [user, setUser] = useState("");
-  const [userName, setUserName] = useState("");
-  const [userPhoto, setUserPhoto] = useState("");
-  const [userUid, setUserUid] = useState(true);
-  const [views, setViews] = useState("");
-  const verified = useVerifiedTag();
+    const [admin, setAdmin] = useState(false);
+    const [alert, setAlert] = useState(null);
+    const [avatar, setAvatar] = useState(null);
+    const [chat, setChat] = useState(null);
+    const [empty, setEmpty] = useState(true);
+    const [login, setLogin] = useState(false);
+    const [message, setMessage] = useState("");
+    const [nickName, setnickName] = useState(null);
+    const [ready, setReady] = useState(false);
+    const [render, setRender] = useState(false);
+    const [reply, setReply] = useState("");
+    const [send, setSend] = useState(false);
+    const [timeStamp, setTimeStamp] = useState(null);
+    const [title, setTitle] = useState("");
+    const [user, setUser] = useState("");
+    const [userName, setUserName] = useState("");
+    const [userPhoto, setUserPhoto] = useState("");
+    const [userUid, setUserUid] = useState(true);
+    const [views, setViews] = useState("");
+    const verified = useVerifiedTag();
         
-  useEffect ( () => {
-      
-      
-      // Setting title and metadescription
-      if(title)    document.title = title + ' - Nomoresheet'; 
-      if(message)  document.querySelector('meta[name="description"]').content = message; 
-            
-      // Setting user and admin
-      auth.onAuthStateChanged( (user) => {
-                    
+    useEffect ( () => {
+
+        // Setting title and metadescription
+        if(title)    document.title = title + ' - Nomoresheet'; 
+        if(message)  document.querySelector('meta[name="description"]').content = message; 
+
+        // Loading emojis in svg
+        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
+
+        // Setting user and admin
+        auth.onAuthStateChanged( (user) => {
+
           if(user){
               // Is user anonymous?
               firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
@@ -63,16 +65,16 @@ const Detail = (props) => {
               });
 
               setUser(user); 
-              
+
               if(user.uid === "dOjpU9i6kRRhCLfYb6sfSHhvdBx2") setAdmin(true);
           }
-      });
-      
-      // If the post exists, load data and views ++
-      firebase.database().ref('posts/' + props.match.params.string).once('value').then( (snapshot) => { 
+        });
+
+        // If the post exists, load data and views ++
+        firebase.database().ref('posts/' + props.match.params.string).once('value').then( (snapshot) => { 
 
             var capture = snapshot.val();
-          
+
             if(capture){
 
                 setEmpty(false);
@@ -83,19 +85,19 @@ const Detail = (props) => {
                 setUserPhoto(capture.userPhoto);
                 setUserUid(capture.userUid);
                 setViews(capture.views);
-                                
+
                 //Increase number of views of the post
                 firebase.database().ref('posts/' + props.match.params.string + '/views').transaction( (value) =>  value + 1 );
-                
+
                 // Increase number of views in the user's profile
                 firebase.database().ref('users/' + capture.userUid + '/postsViews').transaction( (value) => value + 1);
-                
+
             }
 
-      });
-            
-      // Load all the replies of the post
-      firebase.database().ref('posts/' + props.match.params.string + '/replies/').on('value', (snapshot) => { 
+        });
+
+        // Load all the replies of the post
+        firebase.database().ref('posts/' + props.match.params.string + '/replies/').on('value', (snapshot) => { 
 
             var array = [];
             var uids = [];
@@ -104,28 +106,25 @@ const Detail = (props) => {
 
                 var item = childSnapshot.val();
                 item.key = childSnapshot.key;
-                
+
                 array.push(item);
 
             });
-          
+
             setChat(array);
             setReady(true);
-          
-      });
-      
-      // Loading emojis in svg
-      window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-                
-  }, []);
 
-    
-  const handleSubmit = (e) => {      
-      
+        });
+
+
+    }, []);
+
+    const handleSubmit = (e) => {      
+
       //message can't be empty 
       if(reply === "") setAlert("El mensaje no puede estar vacío.");
       else{      
-          
+
           firebase.database().ref('users/' + user.uid + '/replies').once('value').then( (snapshot) => {
 
                 var capture = snapshot.val();
@@ -142,20 +141,20 @@ const Detail = (props) => {
 
                     //Set timestamp
                     firebase.database().ref('users/' + user.uid + '/replies/timeStamp').transaction( (value) => Date.now() );
-                    
+
                     //Increase number of replies of the users
                     firebase.database().ref('users/' + user.uid + '/replies/numReplies').transaction( (value) => value + 1 );
-                    
+
                     // Notification after user replies something
                     nmsNotification(nickName ? nickName : user.uid, 'reply', 'add');
-                         
+
                     // Sending ok
                     setReply("");
                     setSend(true);
-                    
+
                     // Disable notification after 2 seconds
                     setTimeout( () => setSend(false), 2000 );
-                    
+
                 }
                 else{
                         setAlert("Ups, debes esperarte 5 minutos para comentar de nuevo.");
@@ -163,13 +162,13 @@ const Detail = (props) => {
 
           });
       }
-         
-      e.preventDefault();  
-       
-  } 
 
-  const listTitle = () => {  
-             
+      e.preventDefault();  
+
+    } 
+
+    const listTitle = () => {  
+
       var header =  <div className = 'title'>                    
                     {ready && !empty &&
                         <div className = 'detail-header'>
@@ -190,12 +189,12 @@ const Detail = (props) => {
 
         return header;
 
-  }
-      
-  const listContent = () => {
-      
+    }
+
+    const listContent = () => {
+
         var htmlMessage = message.split("\n").map(text => <p>{text}</p>);
-                                                         
+
         var content = <div className = 'content'>
                         {ready && !empty && 
                             <div>
@@ -212,12 +211,12 @@ const Detail = (props) => {
 
         return content;
 
-  }
+    }
 
-  const listItems = () => {
-      
+    const listItems = () => {
+
     var list = chat.map( (line, index) => 
-        
+
         <li key={line.key}>
             <div className = 'infopost'>
                 <img alt={line.userName} src={line.userPhoto}></img>
@@ -240,13 +239,13 @@ const Detail = (props) => {
         </li> );
 
     var items = <ul className = 'replies'>{list}</ul>;
-                                       
-    return items;
-       
-  } 
 
-  const newReply = () => {
-                            
+    return items;
+
+    } 
+
+    const newReply = () => {
+
     var form =  <form onSubmit = {(e) => handleSubmit(e)}>
                     {user &&
                      <div className = 'infopost'>
@@ -259,34 +258,34 @@ const Detail = (props) => {
                         <button className = 'send'>Enviar</button>
                     </div>
                 </form>;
-            
+
     return form;
 
-  }
-  
-  const loading = () => {
-      
+    }
+
+    const loading = () => {
+
       var load = [];
-      
+
       for(var i = 0; i < 10; i ++) load.push(<div className = 'Loading'></div>)
-          
+
       return load;
-  }
-                 
-  return (
+    }
+
+    return (
       <div className = 'Forum Detail'>
-        
+
         {send && <Alert title = '¡Gracias!' message = 'Mensaje enviado'></Alert>}
         {alert && <Alert message = {alert}></Alert>}
-        
+
         {ready ? [listTitle(), listContent(), listItems()] : loading() }
-            
+
         {user && !empty && newReply()}                               
         {!user && ready && !empty  && <button className = "bottom" onClick = { () => setRender(true)}> Responder</button>}
-         
+
         {render && <Login hide = {() => setRender(false)}></Login>}
       </div>    
-  );
+    );
 }
 
 export default Detail;
