@@ -6,8 +6,12 @@
     display: flex;
     justify-content: space-between;
     max-width: 1000px;
+    min-height: 700px;
     margin: auto;
     width: 100%;
+}
+.Perfil h3{
+    text-align: left;
 }
 .Perfil .Sidebar{
     background: var(--bgColor);
@@ -25,6 +29,11 @@
     color: var(--thirdFontColor);
     font-size: small;
     line-height: 1.3;
+}
+.Perfil .Sidebar .Menu-Title{
+    color: var(--secondaryFontColor);
+    font-size: small;
+    font-weight: 600;
 }
 .Perfil .Datos{
     padding: 20px;
@@ -46,6 +55,9 @@
     height: 100px;
     margin : auto;
     width: 100px;
+}
+.Perfil .Progress{
+    margin: 0;
 }
 .Perfil .Datos span.Nombre{
     font-size: large;
@@ -77,6 +89,61 @@
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+}
+.Perfil .Premium{
+    display: flex; 
+    justify-content: space-between;
+}
+.Perfil .Premium .Account-Block{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+.Perfil .Premium .Account-Block ul.Features{
+    background: var(--bgColor);
+    border-radius: 5px;
+    color: var(--thirdFontColor);
+    font-size: small;
+    line-height: 1.5;
+    padding: 30px;
+}
+.Perfil .Premium .Account-Block ul.Features li{
+    text-decoration: underline dotted;
+}
+.Perfil .Premium .Account-Block .Price{
+    align-items: flex-end;
+    display: flex;
+    line-height: 1;
+}
+.Perfil .Premium .Account-Block .Price .Quantity{
+    font-size: x-large;
+    margin-right: 5px;
+}
+.Perfil .Premium .Account-Type{
+    font-size: x-large;
+    font-weight: 600;
+}
+.Perfil .Faq{
+    padding: 20px;
+}
+.Perfil .Faq p.Question{
+    color: var(--secondFontColor);
+    font-size: large;
+    font-weight: 600;
+    line-height: 1.5;
+}
+.Perfil .Faq p.Answer{
+    color: var(--thirdFontColor);
+    font-size: medium;
+    line-height: 1.5;
+}
+.Perfil button{
+    margin: 0;
+    margin-left: 0!important;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: max-content!important;
 }
 @media (max-width: 768px){
    .Perfil{

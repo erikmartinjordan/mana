@@ -88,7 +88,7 @@ const Perfil = () => {
             <div className = 'Perfil'>
                 <div className = 'Sidebar'>
                     <div className = 'First-Menu'>
-                        <div className = 'Me'>Yo</div>
+                        <div className = 'Menu-Title'>Yo</div>
                         <div className = 'Item' onClick = {() => setMenu('Cuenta')}>🐨 Cuenta</div>
                         <div className = 'Item' onClick = {() => setMenu('Datos')}>📈 Datos</div>
                         <div className = 'Item' onClick = {() => setMenu('Premium')}>✨ Premium</div>
@@ -98,16 +98,14 @@ const Perfil = () => {
                     </div>
                 </div>
                 {menu === 'Cuenta' &&
-                <div className = 'Datos'>
-                    <div className = {'Progress ProgressBar-' + percentage}>
-                        {user && infoUser && infoUser.anonimo  && <img src = {infoUser.avatar}></img>}
-                        {user && infoUser && !infoUser.anonimo && <img src = {user.photoURL}></img>}
+                <div className = 'Datos Cuenta'>
+                    <div className = 'Bloque'>
+                        <div className = 'Title'>Imagen</div>
+                        <div className = {'Progress ProgressBar-' + percentage}>
+                            {user && infoUser && infoUser.anonimo  && <img src = {infoUser.avatar}></img>}
+                            {user && infoUser && !infoUser.anonimo && <img src = {user.photoURL}></img>}
+                        </div>
                     </div>
-                    <h3>
-                        {user && infoUser && infoUser.anonimo && infoUser.nickName}
-                        {user && infoUser && !infoUser.anonimo && user.displayName}
-                    </h3>
-
                     <div className = 'Bloque'>
                         <div className = 'Title'>Nombre</div>
                         <div className = 'Num'>
@@ -168,6 +166,53 @@ const Perfil = () => {
                             <div className = 'Completed' style = {{width: percentage + '%'}}></div>
                         </div>
                         <div className = 'Comment'>{pointsToNextLevel} puntos para el siguiente nivel ({percentage}% completado).</div>
+                    </div>
+                </div>
+                }
+                {menu === 'Premium' &&
+                <div className = 'Datos'>
+                    <div className = 'Premium'>
+                        <div className = 'Account-Block'>
+                            <div className = 'Account-Type'>Gratis</div>
+                            <div className = 'Price'>
+                                <span className = 'Quantity'>0 €</span>
+                                <span className = 'Comment'></span>
+                            </div>
+                            <button className = 'send'>Apuntarse</button>
+                            <ul className = 'Features'>
+                                <li>Vota artículos</li>
+                                <li>Envía mensajes con límites</li>
+                                <li>Notificaciones</li>
+                                <li>Experiencia con puntos y niveles</li>
+                            </ul>
+                        </div>
+                        <div className = 'Account-Block'>
+                            <div className = 'Account-Type'>Premium</div>
+                            <div className = 'Price'>
+                                <span className = 'Quantity'>19 €</span>
+                                <span className = 'Comment'>anuales</span>
+                            </div>
+                            <button className = 'send'>Apuntarse</button>
+                            <ul className = 'Features'>
+                                <li>Mensajes anónimos</li>
+                                <li>Mensajes privados</li>
+                                <li>Mensajes ilimitados</li>
+                                <li>Borrado de mensajes</li>
+                                <li>Consulta quién ha visitado tu perfil</li>
+                                <li>Verificación de cuenta</li>
+                                <li>Modo noche</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className = 'Faq'>
+                        <h3>Preguntas frecuentes</h3>
+                        <p className = 'Question'>¿Por qué una cuenta <em>premium</em>?</p>
+                        <p className = 'Answer'>Principalmente, porque como usuario <em>premium</em> gozas de un uso ilimitado de Nomoresheet. Puedes enviar tantos mensajes como quieras; sin restricciones de tiempo ni de longitud. Además, puedes editar mensajes y borrarlos. También puedes consultar quién ha visitado tu perfil, tendrás un <em>badge</em> que te identificará como usuario <em>premium</em> y podrás activar el modo noche.</p>
+                        <p className = 'Question'>¿Por qué cuesta dinero la cuenta <em>premium</em>? ¿Por qué son gratis otras plataformas?</p>
+                        <p className = 'Answer'>El espacio en la nube es costoso. A medida que más usuarios publican en Nomoresheet, más espacio ocupan los datos y más aumentan los gastos de los servidores. Las grandes plataformas reciben capital de inversores o tienen ingresos derivados de publicidad.</p>  
+                        <p className = 'Question'>¿Qué me ofrece Nomoresheet que no me ofrezcan otras plataformas?</p>
+                        <p className = 'Answer'>En otras redes sociales no tienes libertad para publicar lo que te apetezca. Tus datos son explotados y vendidos a terceras partes, o hay un uso excesivo de publicidad, etc.</p>
+                     
                     </div>
                 </div>
                 }
