@@ -17,19 +17,25 @@ const Acerca = () => {
     const [title, setTitle] = useState('Título');
     
     useEffect( () => {
-        //Meta and title
+        
+        // Meta and title
         document.title = 'Acerca - Nomoresheet'; 
         document.querySelector('meta[name="description"]').content = 'De cómo nació el sitio web y los diferentes hitos hasta la fecha.'; 
         
+        // Emojis in svg
+        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
+        
+    })
+    
+    useEffect( () => {
+
         // Checking if admin is connected
         auth.onAuthStateChanged( user => { user && user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2' && setAdmin(true) });
         
         // Fetching data from Database
-        !data && firebase.database().ref('features/').on('value', snapshot => { snapshot.val() && setData(snapshot.val()) });
+        firebase.database().ref('features/').on('value', snapshot => { snapshot.val() && setData(snapshot.val()) });
         
-        // Emojis in svg
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-    }, [data]);
+    }, []);
     
     const handleImageChange = (e) => {
         

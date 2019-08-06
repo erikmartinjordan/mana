@@ -39,15 +39,21 @@ const Detail = (props) => {
     const [userUid, setUserUid] = useState(true);
     const [views, setViews] = useState("");
     const verified = useVerifiedTag();
-        
+    
+    // Title, metadescription and loading emojis in svg will rereder always
     useEffect ( () => {
-
-        // Setting title and metadescription
+        
+         // Setting title and metadescription
         if(title)    document.title = title + ' - Nomoresheet'; 
         if(message)  document.querySelector('meta[name="description"]').content = message; 
 
         // Loading emojis in svg
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
+        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );      
+                
+    });
+    
+    // Getting data will only get called one time
+    useEffect ( () => {
 
         // Setting user and admin
         auth.onAuthStateChanged( (user) => {
@@ -115,7 +121,6 @@ const Detail = (props) => {
             setReady(true);
 
         });
-
 
     }, []);
 

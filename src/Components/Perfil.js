@@ -15,48 +15,56 @@ import '../Styles/ToggleButton.css';
 
 const Perfil = () => {
 
-  const [infoUser, setInfoUser] = useState(null);
-  const [render, setRender] = useState(true);
-  const [user, setUser] = useState(null);
-  const [uid, setUid] = useState(null);
-  const posts = GetNumberOfPosts(uid);
-  const replies = GetNumberOfReplies(uid);
-  const spicy = GetNumberOfSpicy(uid);
-  const points = GetPoints(posts, replies, spicy)[0];
-  const valuePost = GetPoints(posts, replies, spicy)[1];
-  const valueReply = GetPoints(posts, replies, spicy)[2];
-  const valueSpicy = GetPoints(posts, replies, spicy)[3];
-  const level = GetLevel(points)[0];
-  const pointsToNextLevel = GetLevel(points)[1];
-  const percentage = GetLevel(points)[2];
+    const [infoUser, setInfoUser] = useState(null);
+    const [render, setRender] = useState(true);
+    const [user, setUser] = useState(null);
+    const [uid, setUid] = useState(null);
+    const posts = GetNumberOfPosts(uid);
+    const replies = GetNumberOfReplies(uid);
+    const spicy = GetNumberOfSpicy(uid);
+    const points = GetPoints(posts, replies, spicy)[0];
+    const valuePost = GetPoints(posts, replies, spicy)[1];
+    const valueReply = GetPoints(posts, replies, spicy)[2];
+    const valueSpicy = GetPoints(posts, replies, spicy)[3];
+    const level = GetLevel(points)[0];
+    const pointsToNextLevel = GetLevel(points)[1];
+    const percentage = GetLevel(points)[2];
+    
+    useEffect( () => {
         
-  useEffect( () => {
-      
-      document.title = 'Perfil – Nomoresheet'; 
-      document.querySelector('meta[name="description"]').content = 'Este es tu perfil en Nomoresheet...';
-      
+        // Meta and title
+        document.title = 'Perfil – Nomoresheet'; 
+        document.querySelector('meta[name="description"]').content = 'Este es tu perfil en Nomoresheet...';   
+        
+        // Drawing emojis in svg
+        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
+        
+    });
+        
+    useEffect( () => {
+
       auth.onAuthStateChanged( user => {
 
           if(user){
-              
+
               firebase.database().ref('users/' + user.uid).on( 'value', (snapshot) => {
 
                   setInfoUser(snapshot.val());
 
               });    
-              
+
               setRender(false);
               setUser(user);
               setUid(user.uid);
           }
       });
-      
-  }, []);
+
+    }, []);
   
-  const anonimizar = () => {
-      
+    const anonimizar = () => {
+
         firebase.database().ref('users/' + user.uid + '/anonimo/').transaction( (value) =>  {
-                        
+
             // Necesitamos anonimizar el nombre y el avatar
             if(value === null || value === false){
                 firebase.database().ref('users/' + user.uid + '/nickName/').transaction( (value) => {
@@ -66,14 +74,14 @@ const Perfil = () => {
                     return AnonymImg();
                 });
             }
-            
+
             // Devolvemos el resultado
             return value === null ? true : !value; 
-        
+
         });
-  }
+    }
        
-  return (
+    return (
       <React.Fragment>
           <div className = 'Perfil'>
             <h2>Perfil</h2>

@@ -32,14 +32,25 @@ const Front = () => {
     
     //-------------------------------------------------------------
     //
+    // Title, metadescription and loading emojis in svg will 
+    // rerender
+    //
+    //------------------------------------------------------------- 
+    useEffect( () => { 
+        
+        // Setting the title and description of the front page
+        document.title = 'Nomoresheet'; 
+        document.querySelector('meta[name="description"]').content = 'Comunidad de Tailandia';
+        
+        // Drawing emojis in svg
+        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
+    })    
+    //-------------------------------------------------------------
+    //
     // Auth of user and last message
     //
     //------------------------------------------------------------- 
     useEffect( () => {
-      
-        // Setting the title and description of the front page
-        document.title = 'Nomoresheet'; 
-        document.querySelector('meta[name="description"]').content = 'Comunidad de Tailandia'; 
             
         // Checking if there is user and setting admin profile
         auth.onAuthStateChanged( user => {
@@ -53,7 +64,7 @@ const Front = () => {
         });
         
         // Getting the posts 
-        !ready && firebase.database().ref('posts/').limitToLast(100).on('value', snapshot => { 
+        firebase.database().ref('posts/').limitToLast(100).on('value', snapshot => { 
             
             var posts = [];
             
@@ -72,11 +83,7 @@ const Front = () => {
             setReady(true);
             
         });
-      
-        // Drawing emojis in svg
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-      
-    }, [ready]);
+    }, []);
        
     //-------------------------------------------------------------
     //
