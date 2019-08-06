@@ -16,6 +16,7 @@ import '../Styles/ToggleButton.css';
 const Perfil = () => {
 
     const [infoUser, setInfoUser] = useState(null);
+    const [menu, setMenu] = useState('Cuenta');
     const [render, setRender] = useState(true);
     const [user, setUser] = useState(null);
     const [uid, setUid] = useState(null);
@@ -82,18 +83,31 @@ const Perfil = () => {
     }
        
     return (
-      <React.Fragment>
-          <div className = 'Perfil'>
+        <React.Fragment>
             <h2>Perfil</h2>
-            <div className = 'Datos'>
-                <div className = {'Progress ProgressBar-' + percentage}>
-                    {user && infoUser && infoUser.anonimo  && <img src = {infoUser.avatar}></img>}
-                    {user && infoUser && !infoUser.anonimo && <img src = {user.photoURL}></img>}
+            <div className = 'Perfil'>
+                <div className = 'Sidebar'>
+                    <div className = 'First-Menu'>
+                        <div className = 'Me'>Yo</div>
+                        <div className = 'Item' onClick = {() => setMenu('Cuenta')}>🐨 Cuenta</div>
+                        <div className = 'Item' onClick = {() => setMenu('Datos')}>📈 Datos</div>
+                        <div className = 'Item' onClick = {() => setMenu('Premium')}>✨ Premium</div>
+                    </div>
+                    <div className = 'Last-Menu'>
+                        Usado un espacio de 235 Mb, sube a Premium para no tener limitaciones.
+                    </div>
                 </div>
-                <h3>
-                    {user && infoUser && infoUser.anonimo && infoUser.nickName}
-                    {user && infoUser && !infoUser.anonimo && user.displayName}
-                </h3>
+                {menu === 'Cuenta' &&
+                <div className = 'Datos'>
+                    <div className = {'Progress ProgressBar-' + percentage}>
+                        {user && infoUser && infoUser.anonimo  && <img src = {infoUser.avatar}></img>}
+                        {user && infoUser && !infoUser.anonimo && <img src = {user.photoURL}></img>}
+                    </div>
+                    <h3>
+                        {user && infoUser && infoUser.anonimo && infoUser.nickName}
+                        {user && infoUser && !infoUser.anonimo && user.displayName}
+                    </h3>
+
                     <div className = 'Bloque'>
                         <div className = 'Title'>Nombre</div>
                         <div className = 'Num'>
@@ -103,21 +117,30 @@ const Perfil = () => {
                         <div className = 'Comment'>Nombre que se muestra públicamente.</div>
                     </div>
                     <div className = 'Bloque'>
-                        <div className = 'Title'>Anonimizar</div>
-                        <div className = 'Toggle' onClick = {() => anonimizar()}>
-                            <div className = 'Tag'>Tu nombre real no se mostrará.</div>
-                            { infoUser && infoUser.anonimo 
-                            ? <ToggleButton status = 'on' /> 
-                            : <ToggleButton status = 'off' />
-                            }
-                        </div>
-                        <div className = 'Comment'>Se mostrará un alias y foto genérica.</div>
-                    </div>
-                    <div className = 'Bloque'>
-                        <div className = 'Title'>Email</div>
+                        <div className = 'Title'>Correo</div>
                         <div className = 'Num'>{user && user.email}</div>
                         <div className = 'Comment'>Tu correo no se muestra ni se utiliza en ningún momento.</div>
                     </div>
+                    {user && infoUser && infoUser.verified &&
+                    <div className = 'Bloque'>
+                            <div className = 'Title'>Anonimizar</div>
+                            <div className = 'Toggle' onClick = {() => anonimizar()}>
+                                <div className = 'Tag'>Tu nombre real no se mostrará.</div>
+                                { infoUser && infoUser.anonimo 
+                                ? <ToggleButton status = 'on' /> 
+                                : <ToggleButton status = 'off' />
+                                }
+                            </div>
+                            <div className = 'Comment'>Se mostrará un alias y foto genérica.</div>
+                    </div>}
+                    <div className = 'Bloque'>
+                        <div className = 'Title'>Zona de peligro</div>
+                        <DeleteAccount></DeleteAccount>
+                    </div>
+                </div>    
+                }
+                {menu === 'Datos' &&
+                <div className = 'Datos'>
                     <div className = 'Bloque'>
                         <div className = 'Title'>Artículos</div>
                         <div className = 'Num'>{posts}</div>
@@ -146,16 +169,11 @@ const Perfil = () => {
                         </div>
                         <div className = 'Comment'>{pointsToNextLevel} puntos para el siguiente nivel ({percentage}% completado).</div>
                     </div>
-                    <div className = 'Bloque'>
-                        <div className = 'Title'>Zona de peligro</div>
-                        <DeleteAccount></DeleteAccount>
-                    </div>
+                </div>
+                }
             </div>
-          </div>
-        <div>
-            {render && <Login hide = {() => setRender(false)}></Login>}
-        </div>
-    </React.Fragment>
+            <div>{render && <Login hide = {() => setRender(false)}></Login>}</div>
+        </React.Fragment>
     );
 }
 
