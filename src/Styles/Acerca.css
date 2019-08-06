@@ -56,6 +56,7 @@
     width: 5px;
 }
 .Acerca input.Title{
+    background: var(--bgBox);
     border: none;
     color: var(--primaryFontColor);
     font-size: 30px;
@@ -65,10 +66,12 @@
     width: 100%;
 }
 .Acerca textarea.Content{
+    background: var(--bgBox);
     border: none;
     color: var(--primaryFontColor);
     font-size: medium;
     margin-top: 20px;
+    resize: none;
     width: 100%;
 }
 .Acerca .Buttons{
@@ -92,21 +95,27 @@
     border: none;
     font-size: large;
 }
+.Acerca .Upload-Wrap{
+    display: flex;
+    height: 30px;
+    position: relative;
+    width: 30px;
+}
+.Acerca .Upload-Wrap div{
+    align-items: center;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+.Acerca .Upload-Wrap img.emoji{
+    margin: 0!important;
+}
 .Acerca .Upload{
     color: transparent;
     cursor: pointer;
-    height: 25px;
-    text-align: right;
-    width: 25px;
-}
-.Acerca .Upload:before{
-    align-items: center;
-    content: '📸';
-    color: black;
-    float: left;
-    font-size: large;
     height: 30px;
-    margin-left: auto;
+    position: absolute;
     width: 30px;
 }
 .Acerca .Upload::-webkit-file-upload-button{

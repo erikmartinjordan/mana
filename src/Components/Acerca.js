@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import firebase, { auth, storageRef } from '../Functions/Firebase';
 import DeleteFeature from '../Functions/DeleteFeature.js';
+import Alert from '../Functions/Alert.js';
 import { Link } from 'react-router-dom';
 import '../Styles/Acerca.css';
 
@@ -10,11 +11,12 @@ const Acerca = () => {
     const today = new Date();
     const month = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
     const [admin, setAdmin] = useState(null);
+    const [alert, setAlert] = useState(false);
     const [content, setContent] = useState(null);
     const [data, setData] = useState(null);
     const [date, setDate] = useState(today.getDate() + ' de ' + month[today.getMonth()] + ' del ' + today.getFullYear());
     const [imgUrl, setImgUrl] = useState(null);
-    const [title, setTitle] = useState('Título');
+    const [title, setTitle] = useState(null);
     
     useEffect( () => {
         
@@ -59,16 +61,34 @@ const Acerca = () => {
 
         })
         
+        // Setting alert
+        setAlert(true);
+        
+        // Disable notification after 2 seconds
+        setTimeout( () => setAlert(false), 2000 );
+        
+    }
+    
+    const handleTextArea = (e) => {
+        
+        // Resizing textarea after key press 
+        e.target.style.height = 'inherit';
+        e.target.style.height = `${e.target.scrollHeight}px`; 
+        
+        // Setting content
+        setContent(e.target.value);
     }
 
     return (
       <div className = 'Acerca'>
+        
+        {alert && <Alert title = '¡Olé!' message = 'Datos guardados'></Alert>}
 
         <h2>Acerca</h2>
 
         <div className = 'Intro'>
             <img src = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg'></img>
-            <p>Hola 👋🏻<br></br> Soy Erik, el creador de Nomoresheet. En diciembre del 2015 nació esta web. Aquí encontrarás algunos de los hitos más relevantes hasta la fecha.</p>
+            <p>Hola 👋🏻<br></br> Soy Erik, el creador de Nomoresheet. Aquí encontrarás algunos de los hitos más relevantes hasta la fecha.</p>
         </div>
         
         {admin &&
@@ -81,17 +101,20 @@ const Acerca = () => {
                 <div className = 'Date'>
                     {date}
                 </div>
-                <textarea   onChange = {(e) => setContent(e.target.value)}
+                <textarea   onChange = {(e) => handleTextArea(e)}
                             className = 'Content'
                             placeholder = 'Contenido...'
                             value = {content}>
                 </textarea>
+                {imgUrl && <img src = {imgUrl}></img>}
                 <div className = 'Buttons'>
-                    {imgUrl && <img src = {imgUrl}></img>}
-                    <input  onChange = {(e) => handleImageChange(e)}
-                            className = 'Upload' 
-                            type = 'file'>
-                    </input>
+                    <div className = 'Upload-Wrap'>
+                        <input  onChange = {(e) => handleImageChange(e)}
+                                className = 'Upload' 
+                                type = 'file'>
+                        </input>
+                        <div>📸</div>
+                    </div>
                     <button onClick = {() => upload()}className = 'send'>Añadir</button>
                 </div>
             </div>,
@@ -105,7 +128,6 @@ const Acerca = () => {
                 <div className = 'Content'>
                     <div className = 'Text'>
                         {data[key].description && <ReactMarkdown source = {data[key].description}></ReactMarkdown>}
-                        {data[key].list && Object.keys(data[key].list).map(value => <li>{data[key].list[value]}</li>)}
                         {data[key].pic  && <img src = {data[key].pic}></img>}
                     </div>
                 </div>
