@@ -98,9 +98,13 @@ class Notifications extends Component {
       var points;
       var res;
       var message;
+      var reverse;
+      
+      // Reversing notification's array
+      reverse = [...this.state.notifications].reverse();
       
       // Drawing block when there are notifications
-      res = this.state.notifications.reverse().map( notification =>
+      res = reverse.map( notification =>
                 <React.Fragment>
                         { printDate(Date.now(), notification[3]) !== message 
                         && <div  className = 'Notifications-Ago'> {message = printDate(Date.now(), notification[3])} </div>
