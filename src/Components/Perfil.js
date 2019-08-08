@@ -8,7 +8,9 @@ import GetPoints from '../Functions/GetPoints.js';
 import GetLevel from '../Functions/GetLevelAndPointsToNextLevel.js';
 import ToggleButton from '../Functions/ToggleButton.js';
 import AnonymImg from '../Functions/AnonymImg.js';
-import DeleteAccount from '../Functions/DeleteAccount.js'
+import DeleteAccount from '../Functions/DeleteAccount.js';
+import NightModeToggleButton from '../Functions/NightModeToggleButton.js';
+import Accounts from '../Rules/Accounts.js';
 import '../Styles/Perfil.css';
 import '../Styles/Progressbar.css';
 import '../Styles/ToggleButton.css';
@@ -16,6 +18,7 @@ import '../Styles/ToggleButton.css';
 const Perfil = () => {
 
     const [infoUser, setInfoUser] = useState(null);
+    const [lastSignIn, setLastSignIn] = useState(null);
     const [menu, setMenu] = useState('Cuenta');
     const [render, setRender] = useState(true);
     const [user, setUser] = useState(null);
@@ -31,6 +34,7 @@ const Perfil = () => {
     const pointsToNextLevel = GetLevel(points)[1];
     const percentage = GetLevel(points)[2];
     
+    
     useEffect( () => {
         
         // Meta and title
@@ -39,27 +43,32 @@ const Perfil = () => {
         
         // Drawing emojis in svg
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-        
+                
     });
         
     useEffect( () => {
+    
+        auth.onAuthStateChanged( user => {
 
-      auth.onAuthStateChanged( user => {
-
-          if(user){
-
-              firebase.database().ref('users/' + user.uid).on( 'value', (snapshot) => {
+            if(user){
+              
+                var date = new Date(parseInt(user.metadata.b));
+                
+                console.log(date);
+                
+                firebase.database().ref('users/' + user.uid).on( 'value', (snapshot) => {
 
                   setInfoUser(snapshot.val());
 
-              });    
+                });    
 
-              setRender(false);
-              setUser(user);
-              setUid(user.uid);
-          }
-      });
-
+                setRender(false);
+                setUser(user);
+                setUid(user.uid);
+                setLastSignIn(`Accedido por última vez, ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} a las ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`);
+            }
+        });
+        
     }, []);
   
     const anonimizar = () => {
@@ -88,13 +97,16 @@ const Perfil = () => {
             <div className = 'Perfil'>
                 <div className = 'Sidebar'>
                     <div className = 'First-Menu'>
-                        <div className = 'Menu-Title'>Yo</div>
+                        <div className = 'Menu-Title'>Menú</div>
                         <div className = 'Item' onClick = {() => setMenu('Cuenta')}>🐨 Cuenta</div>
                         <div className = 'Item' onClick = {() => setMenu('Datos')}>📈 Datos</div>
                         <div className = 'Item' onClick = {() => setMenu('Premium')}>✨ Premium</div>
+                        <div className = 'Separator'></div>
+                        <div className = 'Item'>Modo noche <NightModeToggleButton></NightModeToggleButton></div>
+                        <div className = 'Separator'></div>
                     </div>
                     <div className = 'Last-Menu'>
-                        Usado un espacio de 235 Mb, sube a Premium para no tener limitaciones.
+                        {lastSignIn}
                     </div>
                 </div>
                 {menu === 'Cuenta' &&
@@ -119,7 +131,7 @@ const Perfil = () => {
                         <div className = 'Num'>{user && user.email}</div>
                         <div className = 'Comment'>Tu correo no se muestra ni se utiliza en ningún momento.</div>
                     </div>
-                    {user && infoUser && infoUser.verified &&
+                    {user && infoUser && Accounts[infoUser.account].anonymMessages && 
                     <div className = 'Bloque'>
                             <div className = 'Title'>Anonimizar</div>
                             <div className = 'Toggle' onClick = {() => anonimizar()}>
@@ -178,12 +190,15 @@ const Perfil = () => {
                                 <span className = 'Quantity'>0 €</span>
                                 <span className = 'Comment'></span>
                             </div>
-                            <button className = 'send'>Apuntarse</button>
+                            {user && infoUser && infoUser.account === 'free'
+                            ?   <div className = 'current'>Plan actual</div>
+                            :   <button className = 'send'>Apuntarse</button>
+                            }
                             <ul className = 'Features'>
                                 <li>Vota artículos</li>
                                 <li>Envía mensajes con límites</li>
                                 <li>Notificaciones</li>
-                                <li>Experiencia con puntos y niveles</li>
+                                <li>Gana experiencia con puntos y niveles</li>
                             </ul>
                         </div>
                         <div className = 'Account-Block'>
@@ -192,14 +207,20 @@ const Perfil = () => {
                                 <span className = 'Quantity'>19 €</span>
                                 <span className = 'Comment'>anuales</span>
                             </div>
-                            <button className = 'send'>Apuntarse</button>
+                            {user && infoUser && infoUser.account === 'premium'
+                            ?   <div className = 'current'>Plan actual</div>
+                            :   <button className = 'send'>Apuntarse</button>
+                            }
                             <ul className = 'Features'>
+                                <li>Vota artículos</li>
+                                <li>Envía mensajes con límites</li>
+                                <li>Notificaciones</li>
+                                <li>Gana experiencia con puntos y niveles</li>                                
                                 <li>Mensajes anónimos</li>
-                                <li>Mensajes privados</li>
                                 <li>Mensajes ilimitados</li>
                                 <li>Borrado de mensajes</li>
                                 <li>Consulta quién ha visitado tu perfil</li>
-                                <li>Verificación de cuenta</li>
+                                <li><em>Badge</em> identificativo</li>
                                 <li>Modo noche</li>
                             </ul>
                         </div>
