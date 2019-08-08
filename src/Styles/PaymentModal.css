@@ -1,0 +1,91 @@
+.Modal{
+    align-items: center;
+    background: rgba(15, 15, 15, 0.6);
+    color: rgba(0,0,0,.7) !important;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 1;
+}
+.Modal h2{
+    text-align: center;
+}
+.Modal-Wrap{
+    background: var(--bgColor);
+    border-radius: 5px;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
+            rgba(15, 15, 15, 0.2) 0px 5px 10px, 
+            rgba(15, 15, 15, 0.4) 0px 15px 40px;
+    color: var(--primaryFontColor);
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    padding: 30px;
+}
+.Modal input,
+.StripeElement{
+    background: var(--bgBox)!important;
+    border: none;
+    border-radius: 5px;
+    color: rgba(0,0,0,.7);
+    font-size: medium!important;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+}
+.Modal button{
+    background: var(--blue);
+    border: 1px solid #3187e4;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-size: small;
+    padding: 5px 20px;
+    min-width: 125px;
+}
+.Modal button:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 7px 14px rgba(50,50,93,.1),0 3px 6px rgba(0,0,0,.08);
+}
+.Modal button.Cancel{
+    background: transparent;
+    border: 1px solid var(--thirdFontColor);
+    color: var(--primaryFontColor);
+    box-shadow: none;
+}
+.Modal .Checkout{
+    margin-bottom: 40px;
+}
+.Modal .Info-Payment{
+    font-size: small;
+    margin-top: 20px;
+    text-align: center;
+}
+.Modal .Info-Payment img{
+    max-width: 12px;
+}
+.Modal .Total{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+.Modal .Total .Price{
+    font-size: xx-large;
+    width: 50%;
+}
+.Modal .Total .Price span.info{
+    font-size: small;
+}
+.Modal img{
+    border-radius: 50%;
+    height: 100px;
+    margin: auto;
+    width: 100px;
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import firebase, { auth } from '../Functions/Firebase.js';
+import PaymentModal from './PaymentModal.js';
 import Login from './Login.js';
 import GetNumberOfPosts from '../Functions/GetNumberOfPosts.js';
 import GetNumberOfReplies from '../Functions/GetNumberOfReplies.js';
@@ -17,6 +18,7 @@ import '../Styles/ToggleButton.css';
 
 const Perfil = () => {
 
+    const [paymentModal, setPaymentModal] = useState(false);
     const [infoUser, setInfoUser] = useState(null);
     const [lastSignIn, setLastSignIn] = useState(null);
     const [menu, setMenu] = useState('Cuenta');
@@ -53,9 +55,7 @@ const Perfil = () => {
             if(user){
               
                 var date = new Date(parseInt(user.metadata.b));
-                
-                console.log(date);
-                
+                                
                 firebase.database().ref('users/' + user.uid).on( 'value', (snapshot) => {
 
                   setInfoUser(snapshot.val());
@@ -65,7 +65,7 @@ const Perfil = () => {
                 setRender(false);
                 setUser(user);
                 setUid(user.uid);
-                setLastSignIn(`Accedido por última vez, ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} a las ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`);
+                setLastSignIn(`Has accedido por última vez: ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} a las ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`);
             }
         });
         
@@ -209,7 +209,7 @@ const Perfil = () => {
                             </div>
                             {user && infoUser && infoUser.account === 'premium'
                             ?   <div className = 'current'>Plan actual</div>
-                            :   <button className = 'send'>Apuntarse</button>
+                            :   <button onClick = {() => setPaymentModal(true)} className = 'send'>Apuntarse</button>
                             }
                             <ul className = 'Features'>
                                 <li>Vota artículos</li>
@@ -221,7 +221,6 @@ const Perfil = () => {
                                 <li>Borrado de mensajes</li>
                                 <li>Consulta quién ha visitado tu perfil</li>
                                 <li><em>Badge</em> identificativo</li>
-                                <li>Modo noche</li>
                             </ul>
                         </div>
                     </div>
@@ -239,6 +238,7 @@ const Perfil = () => {
                 }
             </div>
             <div>{render && <Login hide = {() => setRender(false)}></Login>}</div>
+            {paymentModal && <PaymentModal percentage = {percentage} hide = {() => setPaymentModal(false)}></PaymentModal>}
         </React.Fragment>
     );
 }

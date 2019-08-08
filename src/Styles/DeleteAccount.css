@@ -38,7 +38,7 @@
     margin-bottom: 5px;
     padding: 10px;
     transition: all 0.2s ease-in-out;
-    width: 100%;
+    width: 100%!important;
 }
 .Delete.Account.Confirmation .No-Delete{
     border: 1px solid var(--secondaryFontColor);

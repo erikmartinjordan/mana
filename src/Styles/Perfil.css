@@ -162,7 +162,7 @@
     background-color: var(--bgColor);
     border: none;
     border-radius: 50px;
-    color: white!important;
+    color: var(--primaryFontColor);
     display: flex;
     font-size: 12px;
     height: 34px;
