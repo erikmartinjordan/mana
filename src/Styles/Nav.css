@@ -45,6 +45,17 @@
     justify-content: center;
     align-items: center;
 }
+.Nav .Menu .Progress .Tag{
+    background: var(--blue);
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    font-size: 6px;
+    left: 0;
+    padding: 1px 3px;
+    position: absolute;
+    top: 0;
+}
 .Nav .Menu img{
     border-radius: 50%;
     height: 30px;

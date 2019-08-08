@@ -24,6 +24,7 @@ const Nav = () => {
     const [theme, setTheme] = useState('');
     const [uid, setUid] = useState(null);
     const [user, setUser] = useState(null);
+    const [userInfo, setUserInfo] = useState(null);
     const posts = GetNumberOfPosts(uid);
     const replies = GetNumberOfReplies(uid);
     const spicy = GetNumberOfSpicy(uid);
@@ -46,6 +47,9 @@ const Nav = () => {
                         // If user is anonymous, load avatar
                         if(capture.anonimo) setAvatar(capture.avatar);
                         else                setAvatar(null);
+                        
+                        // Setting all the info of the user
+                        setUserInfo(capture);
                     }
               });
 
@@ -75,7 +79,7 @@ const Nav = () => {
       // Setting emojis in svg
       window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
       
-  });
+  }, []);
   
   
   const changeTheme = () => {
@@ -116,6 +120,7 @@ const Nav = () => {
                                 <div onClick = {() => setMenu(true)} className = 'Img-Wrap'>
                                     <div className = {'Progress ProgressBar-' + percentage}>
                                         <img src = { avatar ? avatar : user.photoURL}></img>
+                                        {userInfo && userInfo.account === 'premium' && <div className = 'Tag'>Pro</div>}
                                     </div>
                                     <span className = 'Points'>Nivel {level}</span>
                                 </div>
