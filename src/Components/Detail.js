@@ -14,6 +14,7 @@ import nmsNotification from '../Functions/InsertNotificationIntoDatabase.js';
 import useVerifiedTag from '../Functions/VerifiedTag.js';
 import PublicInfo from './PublicInfo.js';
 import Alert from '../Functions/Alert.js';
+import getPremiumUsers from '../Functions/GetPremiumUsers.js';
 
 const formatter = buildFormatter(spanishStrings);
 
@@ -39,7 +40,7 @@ const Detail = (props) => {
     const [userUid, setUserUid] = useState(true);
     const [views, setViews] = useState("");
     const verified = useVerifiedTag();
-    
+        
     // Title, metadescription and loading emojis in svg will rereder always
     useEffect ( () => {
         

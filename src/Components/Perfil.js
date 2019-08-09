@@ -12,12 +12,14 @@ import AnonymImg from '../Functions/AnonymImg.js';
 import DeleteAccount from '../Functions/DeleteAccount.js';
 import NightModeToggleButton from '../Functions/NightModeToggleButton.js';
 import Accounts from '../Rules/Accounts.js';
+import DowngradeToFreePlan from '../Functions/DowngradeToFreePlan.js';
 import '../Styles/Perfil.css';
 import '../Styles/Progressbar.css';
 import '../Styles/ToggleButton.css';
 
 const Perfil = () => {
 
+    const [confirmation, setConfirmation] = useState(false);
     const [paymentModal, setPaymentModal] = useState(false);
     const [infoUser, setInfoUser] = useState(null);
     const [lastSignIn, setLastSignIn] = useState(null);
@@ -116,6 +118,7 @@ const Perfil = () => {
                         <div className = {'Progress ProgressBar-' + percentage}>
                             {user && infoUser && infoUser.anonimo  && <img src = {infoUser.avatar}></img>}
                             {user && infoUser && !infoUser.anonimo && <img src = {user.photoURL}></img>}
+                            {user && infoUser && infoUser.account === 'premium' && <div className = 'Tag'>✨</div>}
                         </div>
                     </div>
                     <div className = 'Bloque'>
@@ -192,7 +195,7 @@ const Perfil = () => {
                             </div>
                             {user && infoUser && (!infoUser.account || infoUser.account === 'free')
                             ?   <div className = 'current'>Plan actual</div>
-                            :   <button className = 'send'>Apuntarse</button>
+                            :   <button onClick = {() => {setConfirmation(true)}} className = 'send'>Apuntarse</button>
                             }
                             <ul className = 'Features'>
                                 <li>Vota artículos</li>
@@ -238,6 +241,7 @@ const Perfil = () => {
             </div>
             <div>{render && <Login hide = {() => setRender(false)}></Login>}</div>
             {paymentModal && <PaymentModal percentage = {percentage} hide = {() => setPaymentModal(false)}></PaymentModal>}
+            {confirmation && <DowngradeToFreePlan subscriptionId = {infoUser.subscriptionId}></DowngradeToFreePlan>}
         </React.Fragment>
     );
 }

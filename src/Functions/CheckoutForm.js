@@ -20,12 +20,16 @@ const CheckoutForm = (props) => {
             body: JSON.stringify({stripeToken: token.id, userEmail: user.email})
         });
         
-        console.log(response);
-
+        let data = await response.json()
+        
         if (response.ok) {
 
             // Push account = premium for user
             firebase.database().ref('users/' + user.uid  + '/account').transaction(value => 'premium');
+            
+            // Setting subscription id
+            firebase.database().ref('users/' + user.uid + '/subscriptionId').transaction(value => data.id)
+            
             setPayment(true);
         }
     }
