@@ -131,7 +131,7 @@ const Perfil = () => {
                         <div className = 'Num'>{user && user.email}</div>
                         <div className = 'Comment'>Tu correo no se muestra ni se utiliza en ningún momento.</div>
                     </div>
-                    {user && infoUser && Accounts[infoUser.account].anonymMessages && 
+                    {user && infoUser && infoUser.account && Accounts[infoUser.account].anonymMessages && 
                     <div className = 'Bloque'>
                             <div className = 'Title'>Anonimizar</div>
                             <div className = 'Toggle' onClick = {() => anonimizar()}>
@@ -190,7 +190,7 @@ const Perfil = () => {
                                 <span className = 'Quantity'>0 €</span>
                                 <span className = 'Comment'></span>
                             </div>
-                            {user && infoUser && infoUser.account === 'free'
+                            {user && infoUser && (!infoUser.account || infoUser.account === 'free')
                             ?   <div className = 'current'>Plan actual</div>
                             :   <button className = 'send'>Apuntarse</button>
                             }
@@ -219,7 +219,6 @@ const Perfil = () => {
                                 <li>Mensajes anónimos</li>
                                 <li>Mensajes ilimitados</li>
                                 <li>Borrado de mensajes</li>
-                                <li>Consulta quién ha visitado tu perfil</li>
                                 <li><em>Badge</em> identificativo</li>
                             </ul>
                         </div>
