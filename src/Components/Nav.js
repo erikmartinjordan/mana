@@ -120,7 +120,7 @@ const Nav = () => {
                                 <div onClick = {() => setMenu(true)} className = 'Img-Wrap'>
                                     <div className = {'Progress ProgressBar-' + percentage}>
                                         <img src = { avatar ? avatar : user.photoURL}></img>
-                                        {userInfo && userInfo.account === 'premium' && <div className = 'Tag'>Pro</div>}
+                                        {userInfo && userInfo.account === 'premium' && <div className = 'Tag'>✨</div>}
                                     </div>
                                     <span className = 'Points'>Nivel {level}</span>
                                 </div>
