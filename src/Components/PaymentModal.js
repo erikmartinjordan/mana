@@ -6,7 +6,7 @@ import '../Styles/PaymentModal.css';
 const PaymentModal = (props) => {
 
     return  <div className = 'Modal'>
-                <StripeProvider apiKey = 'pk_live_genDzsOTtQmGTO8HUeiRYOc4004KnAdgau'>
+                <StripeProvider apiKey = 'pk_test_6pnYp66tdBEK5pSfB1RU4tQw00LTl4BKQD'>
                       <Elements>
                         <CheckoutForm percentage = {props.percentage} hide = {props.hide} price = '19'/>
                       </Elements>
