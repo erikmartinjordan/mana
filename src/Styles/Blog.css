@@ -6,23 +6,63 @@
 .Blog h2{
     text-align: center;
 }
-.Blog p.Day-Month-Year{
+.Blog a{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    display: flex;
+    margin-bottom: 20px;
+    min-height: 250px;
+    padding: 20px;
+    transition: 0.2s ease-in-out;
+}
+.Blog a:hover{
+    transform: scale(1.05);
+}
+.Blog article{
+    display: flex;
+    justify-content: space-between;
+}
+.Blog .Title-Date-Privat{
+    color: var(--primaryFontColor);
+    display: flex;
+    flex-direction: column;
+    font-size: x-large;
+    justify-content: space-between;
+    line-height: 1.3;
+    width: 60%;
+}
+.Blog .Title-Date-Privat .Date{
     color: var(--secondaryFontColor);
     font-size: x-small;
     line-height: 1.3;
     margin: 0;
     text-transform: lowercase;
 }
-.Blog .Block{
-    background: var(--bgBox);
-    border-radius: 5px;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
-    padding: 20px;
-} 
-.Blog article{
+.Blog .Title-Date-Privat .Meta{
     display: flex;
+    font-size: small;
+    justify-content: flex-start;
+    width: 100%;
+}
+.Blog .Title-Date-Privat .Meta > div{
+    margin-right: 5px;
+}
+.Blog .Content{
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 20px;
+}
+.Blog .Content p{
+    color: var(--secondaryFontColor);
+    line-height: 1.7;
+    font-size: medium;
+    margin: 0;
+}
+.Blog .Content .Privat{
+    display: flex;
+    justify-content: flex-end;
+    line-height: 1;
 }
 .Blog .Filter-Blog{
     display: flex;
@@ -32,8 +72,10 @@
     margin-top: 30px;
 }
 .Blog .Filter-Blog div{
+    align-items: center;
     border-radius: 50px;
     cursor: pointer;
+    display: flex;
     font-size: small;
     padding: 5px 15px;
     text-align: center;
@@ -53,5 +95,12 @@
     }
     .Blog article a{
         text-align: center;
+    }
+    .Blog .Title-Date-Privat{
+        width: 100%;
+    }
+    .Blog .Title-Date-Privat .Meta{
+        margin-bottom: 20px;
+        margin-top: 20px;
     }
 }

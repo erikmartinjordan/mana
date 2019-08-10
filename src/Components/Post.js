@@ -177,7 +177,7 @@ class Post extends Component {
                 :
                 <Default></Default>
             }
-            {this.state.render ? <Login hide = {this.hideBanner}></Login> : null}
+            {this.state.render || Data[this.props.match.params.string].privat  ? <Login hide = {this.hideBanner}></Login> : null}
       </div>
     );
   }
