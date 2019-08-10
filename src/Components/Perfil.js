@@ -229,9 +229,11 @@ const Perfil = () => {
                         <p className = 'Question'>¿Por qué una cuenta <em>premium</em>?</p>
                         <p className = 'Answer'>Principalmente, porque como usuario <em>premium</em> gozas de un uso ilimitado de Nomoresheet. Puedes enviar tantos mensajes como quieras; sin restricciones de tiempo ni de longitud.</p>
                         <p className = 'Question'>¿Por qué cuesta dinero la cuenta <em>premium</em>? ¿Por qué son gratis otras plataformas?</p>
-                        <p className = 'Answer'>El espacio en la nube es costoso. A medida que más usuarios publican en Nomoresheet, más espacio ocupan los datos y más aumentan los gastos de los servidores. Las grandes plataformas reciben capital de inversores o tienen ingresos derivados de publicidad.</p>  
+                        <p className = 'Answer'>El espacio en la nube es costoso. A medida que más usuarios publican en Nomoresheet, más espacio ocupan los datos y más aumentan los gastos de mantenimiento de la web. Las grandes plataformas reciben capital de inversores o tienen ingresos derivados de publicidad.</p>  
                         <p className = 'Question'>¿Qué me ofrece Nomoresheet que no me ofrezcan otras plataformas?</p>
                         <p className = 'Answer'>En otras redes sociales no tienes libertad para publicar lo que te apetezca. Tus datos son explotados y vendidos a terceras partes, o hay un uso excesivo de publicidad, etc.</p>
+                        <p className = 'Question'>¿Puedo cancelar la suscripción en cualquier momento?</p>
+                        <p className = 'Answer'>Sí, siempre que tú quieras.</p>
                      
                     </div>
                 </div>
