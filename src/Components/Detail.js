@@ -78,7 +78,7 @@ const Detail = (props) => {
                     var typeOfAccount = snapshot.val().account ? snapshot.val().account : 'free';
 
                     setMaxLength(Accounts[typeOfAccount].messages.maxLength);
-                    setTimeLimit(Accounts[typeOfAccount].timeSpanPosts);
+                    setTimeLimit(Accounts[typeOfAccount].messages.timeSpanReplies);
                   
                     if(user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2') setAdmin(true);
                   
@@ -146,7 +146,7 @@ const Detail = (props) => {
 
                 var capture = snapshot.val();
 
-                if(capture == null || Date.now() - capture.timeStamp > 300000){
+                if(capture == null || Date.now() - capture.timeStamp > timeLimit){
 
                     firebase.database().ref('posts/' + props.match.params.string + '/replies/').push({
                         message: reply,
@@ -271,7 +271,7 @@ const Detail = (props) => {
                       </div>
                     }
                     <div className = 'responseBox'>
-                        <EmojiTextarea handleChange = {(text) => {setReply(text); setAlert(null)}} send = {send}></EmojiTextarea>
+                        <EmojiTextarea maxLength = {maxLength} handleChange = {(text) => {setReply(text); setAlert(null)}} send = {send}></EmojiTextarea>
                         <button className = 'send'>Enviar</button>
                     </div>
                 </form>;
