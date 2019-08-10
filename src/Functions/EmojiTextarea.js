@@ -63,7 +63,7 @@ class EmojiTextarea extends Component {
        
     return (
       <div className='Emoji-Textarea'>
-        <textarea onChange = {this.handleText} value = {this.state.comment} placeholder = 'Escribe tu mensaje...' maxLength = '560'></textarea>
+        <textarea onChange = {this.handleText} value = {this.state.comment} placeholder = 'Escribe tu mensaje...' maxLength = {this.props.maxLength}></textarea>
         <div className = 'Emoji'>
             <div className = 'Emoji-Grid'> 
                 { this.state.showEmojis  && this.state.emojis }

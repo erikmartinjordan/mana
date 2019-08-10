@@ -15,6 +15,7 @@ import useVerifiedTag from '../Functions/VerifiedTag.js';
 import PublicInfo from './PublicInfo.js';
 import Alert from '../Functions/Alert.js';
 import getPremiumUsers from '../Functions/GetPremiumUsers.js';
+import Accounts from '../Rules/Accounts.js';
 
 const formatter = buildFormatter(spanishStrings);
 
@@ -26,12 +27,14 @@ const Detail = (props) => {
     const [chat, setChat] = useState(null);
     const [empty, setEmpty] = useState(true);
     const [login, setLogin] = useState(false);
+    const [maxLength, setMaxLength] = useState(null);
     const [message, setMessage] = useState("");
     const [nickName, setnickName] = useState(null);
     const [ready, setReady] = useState(false);
     const [render, setRender] = useState(false);
     const [reply, setReply] = useState("");
     const [send, setSend] = useState(false);
+    const [timeLimit, setTimeLimit] = useState(null);
     const [timeStamp, setTimeStamp] = useState(null);
     const [title, setTitle] = useState("");
     const [user, setUser] = useState("");
@@ -63,17 +66,25 @@ const Detail = (props) => {
               // Is user anonymous?
               firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
 
-                    var user = snapshot.val();
+                    // If the user is anonymous, set the nickname and avatar
+                    var anonimo = snapshot.val().anonimo;
 
-                    if(user && user.anonimo) {
+                    if(anonimo){
                         setnickName(user.nickName);
                         setAvatar(user.avatar);
                     }
+
+                    // Selecting timespan between messages and max Length depending on type of account
+                    var typeOfAccount = snapshot.val().account ? snapshot.val().account : 'free';
+
+                    setMaxLength(Accounts[typeOfAccount].messages.maxLength);
+                    setTimeLimit(Accounts[typeOfAccount].timeSpanPosts);
+                  
+                    if(user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2') setAdmin(true);
+                  
               });
 
               setUser(user); 
-
-              if(user.uid === "dOjpU9i6kRRhCLfYb6sfSHhvdBx2") setAdmin(true);
           }
         });
 
@@ -135,7 +146,7 @@ const Detail = (props) => {
 
                 var capture = snapshot.val();
 
-                if(capture == null || Date.now() - capture.timeStamp > 300000 || user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2'){
+                if(capture == null || Date.now() - capture.timeStamp > 300000){
 
                     firebase.database().ref('posts/' + props.match.params.string + '/replies/').push({
                         message: reply,

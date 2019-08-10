@@ -216,12 +216,10 @@ const Perfil = () => {
                             }
                             <ul className = 'Features'>
                                 <li>Vota artículos</li>
-                                <li>Envía mensajes con límites</li>
+                                <li>Envía mensajes ilimitados</li>
                                 <li>Notificaciones</li>
                                 <li>Gana experiencia con puntos y niveles</li>                                
                                 <li>Mensajes anónimos</li>
-                                <li>Mensajes ilimitados</li>
-                                <li>Borrado de mensajes</li>
                                 <li><em>Badge</em> identificativo</li>
                             </ul>
                         </div>
@@ -229,7 +227,7 @@ const Perfil = () => {
                     <div className = 'Faq'>
                         <h3>Preguntas frecuentes</h3>
                         <p className = 'Question'>¿Por qué una cuenta <em>premium</em>?</p>
-                        <p className = 'Answer'>Principalmente, porque como usuario <em>premium</em> gozas de un uso ilimitado de Nomoresheet. Puedes enviar tantos mensajes como quieras; sin restricciones de tiempo ni de longitud. Además, puedes editar mensajes y borrarlos. También puedes consultar quién ha visitado tu perfil, tendrás un <em>badge</em> que te identificará como usuario <em>premium</em> y podrás activar el modo noche.</p>
+                        <p className = 'Answer'>Principalmente, porque como usuario <em>premium</em> gozas de un uso ilimitado de Nomoresheet. Puedes enviar tantos mensajes como quieras; sin restricciones de tiempo ni de longitud.</p>
                         <p className = 'Question'>¿Por qué cuesta dinero la cuenta <em>premium</em>? ¿Por qué son gratis otras plataformas?</p>
                         <p className = 'Answer'>El espacio en la nube es costoso. A medida que más usuarios publican en Nomoresheet, más espacio ocupan los datos y más aumentan los gastos de los servidores. Las grandes plataformas reciben capital de inversores o tienen ingresos derivados de publicidad.</p>  
                         <p className = 'Question'>¿Qué me ofrece Nomoresheet que no me ofrezcan otras plataformas?</p>

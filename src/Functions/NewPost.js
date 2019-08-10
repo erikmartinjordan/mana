@@ -5,48 +5,62 @@ import EmojiTextarea from './EmojiTextarea';
 import nmsNotification from './InsertNotificationIntoDatabase.js';
 import AnonymImg from './AnonymImg.js';
 import Alert from './Alert.js';
+import Accounts from '../Rules/Accounts.js';
 import  '../Styles/NewPost.css';
 
 const NewPost = (props) => {
     
-  const [alert, setAlert]       = useState(null);
-  const [message, setMessage]   = useState('');
-  const [send, setSend]         = useState(false);
-  const [show, setShow]         = useState(true);
-  const [title, setTitle]       = useState('');
-  const [url, setUrl]           = useState('');
-  const [user, setUser]         = useState(null);
-  const [avatar, setAvatar]     = useState(null);
-  const [nickName, setnickName] = useState(null);
-        
-  useEffect( () => {
-      
-      // Is user authenticated?
-      auth.onAuthStateChanged( user => {
+    const [alert, setAlert]         = useState(null);
+    const [avatar, setAvatar]       = useState(null);
+    const [maxLength, setMaxLength] = useState(null);
+    const [message, setMessage]     = useState('');
+    const [nickName, setnickName]   = useState(null);
+    const [send, setSend]           = useState(false);
+    const [show, setShow]           = useState(true);
+    const [timeLimit, setTimeLimit] = useState(null);
+    const [title, setTitle]         = useState('');
+    const [url, setUrl]             = useState('');
+    const [user, setUser]           = useState(null);
     
-          if(user){
-              // Is user anonymous?
+    useEffect( () => { window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} ) });
+        
+    useEffect( () => {
+
+        auth.onAuthStateChanged( user => {
+
+            if(user){
+              
               firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
 
-                    var user = snapshot.val();
-
-                    if(user && user.anonimo) {
-                        setnickName(user.nickName);
-                        setAvatar(user.avatar);
+                    if(snapshot.val()) {
+                        
+                        // If the user is anonymous, set the nickname and avatar
+                        var anonimo = snapshot.val().anonimo;
+                        
+                        if(anonimo){
+                            setnickName(user.nickName);
+                            setAvatar(user.avatar);
+                        }
+                        
+                        // Selecting timespan between messages and max Length depending on type of account
+                        var typeOfAccount = snapshot.val().account ? snapshot.val().account : 'free';
+                        
+                        setMaxLength(Accounts[typeOfAccount].messages.maxLength);
+                        setTimeLimit(Accounts[typeOfAccount].timeSpanPosts);
+                        
                     }
+                   
               });
 
               setUser(user); 
-          }
-      
-      });
-      
-      window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-      
-  });
+            }
 
-  const handleSubmit = (e) => {
-            
+        });
+
+    }, []);
+
+    const handleSubmit = (e) => {
+
       if(message === '' || title === '') {
           setAlert('El título o mensaje no pueden estar vacíos.');
       }
@@ -55,8 +69,8 @@ const NewPost = (props) => {
 
                 var capture = snapshot.val();
 
-                if(capture == null || Date.now() - capture.timeStamp > 86400000 || user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2'){
-                    
+                if(capture == null || Date.now() - capture.timeStamp > timeLimit){
+
                     // Post to database
                     var id = firebase.database().ref('posts/').push({
                         title: title,
@@ -68,21 +82,21 @@ const NewPost = (props) => {
                         votes: 0,
                         views: 0
                     });
-                    
+
                     // Set timeStamp
                     firebase.database().ref('users/' + user.uid + '/posts/timeStamp').transaction( (value) => Date.now() );
-                    
+
                     // Increase number of views of the user's posts
                     firebase.database().ref('users/' + user.uid + '/posts/numPosts').transaction( (value) =>  value + 1 );
-                    
+
                     // Send notification to user
                     nmsNotification(nickName ? nickName : user.uid, 'newPost', 'add');
-                    
+
                     // Setting states
                     setAlert(null);
                     setSend(true);
                     setUrl(id.key)
-                    
+
                 }
                 else{
                         setAlert('Ups, solamente se permite un mensaje cada 24 horas. 😳');
@@ -90,12 +104,12 @@ const NewPost = (props) => {
 
           });
       }
-         
+
       e.preventDefault();
-       
-  }
+
+    }
     
-  return (
+    return (
         <div className = 'NewPost'>
             { !send
             ? <form onSubmit = {(e) => handleSubmit(e)}>
@@ -109,7 +123,7 @@ const NewPost = (props) => {
                        placeholder = 'Título...' 
                        maxLength = '50'>
                 </input>
-                <EmojiTextarea handleChange = {(text) => {setMessage(text); setAlert(null)}}></EmojiTextarea>
+                <EmojiTextarea maxLength = {maxLength} handleChange = {(text) => {setMessage(text); setAlert(null)}}></EmojiTextarea>
                 <button className = 'bottom'>Enviar</button>
               </form>
             : <div className = 'Enviado'>
@@ -120,7 +134,7 @@ const NewPost = (props) => {
             {alert && <Alert message = {alert}></Alert>}
             {show  && <div className = 'Invisible' onClick = {props.hide} ></div>}
         </div>  
-  );
+    );
 }
 
 export default NewPost;

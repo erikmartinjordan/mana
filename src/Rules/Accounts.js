@@ -1,7 +1,7 @@
 var accounts = {
                     'free': {
                         'vote': true,
-                        'meessages': {
+                        'messages': {
                             'maxLength': 550,
                             'timeSpanPosts': 86400000,
                             'timeSpanReplies': 300000,
@@ -12,10 +12,10 @@ var accounts = {
                     },
                     'premium': {
                         'vote': true,
-                        'meessages': {
-                            'maxLength': 'unlimited',
-                            'timeSpanPosts': 'unlimited',
-                            'timeSpanReplies': 'unlimited',
+                        'messages': {
+                            'maxLength': 99999,
+                            'timeSpanPosts': 0,
+                            'timeSpanReplies': 0,
                         },
                         'notifications': true,
                         'points': true,
