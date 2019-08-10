@@ -122,7 +122,9 @@ button.delete{
 }
 a.login,
 a.New-Post{
-    background-color: var(--greenMint);
+    animation: gradientBG 15s ease infinite;
+    background: linear-gradient(-45deg, var(--greenMint), var(--greenMint), var(--pastelPurple), var(--red));
+    background-size: 400% 400%;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
     border-radius: 50px;
     color: white!important;
@@ -130,6 +132,7 @@ a.New-Post{
     font-size: 12px;
     padding: 5px 10px;
     text-align: center;
+    width: max-content;
 }
 a.login:hover{
     transition: 0.2s ease-in-out;
@@ -176,4 +179,15 @@ img.emoji {
 ::selection{
     background: var(--primaryFontColor);
     color: var(--bgColor);
+}
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
