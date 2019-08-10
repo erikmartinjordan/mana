@@ -121,7 +121,7 @@ const NewPost = (props) => {
                 <input onChange = {(e) => {setTitle(e.target.value); setAlert(null)}}
                        className = 'Title' 
                        placeholder = 'Título...' 
-                       maxLength = '50'>
+                       maxLength = '140'>
                 </input>
                 <EmojiTextarea maxLength = {maxLength} handleChange = {(text) => {setMessage(text); setAlert(null)}}></EmojiTextarea>
                 <button className = 'bottom'>Enviar</button>
