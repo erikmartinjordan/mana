@@ -14,7 +14,7 @@ const CheckoutForm = (props) => {
     const submit = async (ev) => {
 
         let {token} = await props.stripe.createToken({name: user.uid});
-        let response = await fetch("http://localhost/nomoresheettest/stripe/examples/payment.php", {
+        let response = await fetch("stripe/examples/payment.php", {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({stripeToken: token.id, userEmail: user.email})
