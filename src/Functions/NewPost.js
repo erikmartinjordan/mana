@@ -46,7 +46,7 @@ const NewPost = (props) => {
                         var typeOfAccount = snapshot.val().account ? snapshot.val().account : 'free';
                         
                         setMaxLength(Accounts[typeOfAccount].messages.maxLength);
-                        setTimeLimit(Accounts[typeOfAccount].timeSpanPosts);
+                        setTimeLimit(Accounts[typeOfAccount].messages.timeSpanPosts);
                         
                     }
                    
