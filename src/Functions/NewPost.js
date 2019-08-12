@@ -31,17 +31,17 @@ const NewPost = (props) => {
             if(user){
               
               firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
-
+                  
                     if(snapshot.val()) {
                         
                         // If the user is anonymous, set the nickname and avatar
                         var anonimo = snapshot.val().anonimo;
                         
                         if(anonimo){
-                            setnickName(user.nickName);
-                            setAvatar(user.avatar);
+                            setnickName(snapshot.val().nickName);
+                            setAvatar(snapshot.val().avatar);
                         }
-                        
+                                                
                         // Selecting timespan between messages and max Length depending on type of account
                         var typeOfAccount = snapshot.val().account ? snapshot.val().account : 'free';
                         

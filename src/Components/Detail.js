@@ -62,7 +62,7 @@ const Detail = (props) => {
         // Setting user and admin
         auth.onAuthStateChanged( (user) => {
 
-          if(user){
+            if(user){
               // Is user anonymous?
               firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
 
@@ -70,8 +70,8 @@ const Detail = (props) => {
                     var anonimo = snapshot.val().anonimo;
 
                     if(anonimo){
-                        setnickName(user.nickName);
-                        setAvatar(user.avatar);
+                        setnickName(snapshot.val().nickName);
+                        setAvatar(snapshot.val().avatar);
                     }
 
                     // Selecting timespan between messages and max Length depending on type of account
@@ -79,13 +79,13 @@ const Detail = (props) => {
 
                     setMaxLength(Accounts[typeOfAccount].messages.maxLength);
                     setTimeLimit(Accounts[typeOfAccount].messages.timeSpanReplies);
-                  
+
                     if(user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2') setAdmin(true);
-                  
+
               });
 
               setUser(user); 
-          }
+            }
         });
 
         // If the post exists, load data and views ++
