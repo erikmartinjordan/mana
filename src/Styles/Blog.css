@@ -54,7 +54,7 @@
     justify-content: space-between;
 }
 .Blog .Content p{
-    color: var(--secondaryFontColor);
+    color: var(--primaryFontColor);
     line-height: 1.7;
     font-size: medium;
     margin: 0;
@@ -84,6 +84,62 @@
     background: var(--lightBlue);
     border-radius: 50px;
     color: var(--blue);
+}
+.Blog .Block .Active{
+    background: var(--lightBlue);
+    border-radius: 50px;
+    color: var(--blue);
+    cursor: pointer;
+    display: flex;
+    font-size: small;
+    margin: auto;
+    padding: 5px 15px;
+    text-align: center;
+    width: max-content;
+}
+.Blog .Login-Box{
+    animation: gradientBG 15s ease infinite;
+    background: linear-gradient(-45deg, var(--greenMint), var(--greenMint), var(--pastelPurple), var(--red));
+    background-size: 400% 400%;
+    border-radius: 5px;
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    color: white;
+    font-size: xx-large;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    min-height: 250px;
+    padding: 20px;
+    text-align: center;
+}
+.Blog span.Nms-Logo{
+    background: var(--nmsLogo);
+    border-radius: 5px;
+    color: white;
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    mix-blend-mode: multiply;
+    padding: 5px 10px 5px 10px;
+}
+.Blog .Google{
+    align-items: center;
+    background: none;
+    border: 3px solid white;
+    border-radius: 50px;
+    box-shadow: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-size: medium;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 5px 10px;
+}
+.Blog .Google span{
+    margin-left: 5px;
 }
 @media (max-width: 768px){
    .Blog{
