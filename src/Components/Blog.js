@@ -88,9 +88,9 @@ const Blog = () => {
                                             <div className = 'Date'>{Data[key].date[0]} de {Data[key].date[1]} del {Data[key].date[2]}</div>
                                         </div>
                                         <div className = 'Meta'>
-                                            <div className = 'Views'>👀 {articleData && articleData[key].views}</div>
-                                            <div className = 'Likes'>👏 {articleData && articleData[key].likes}</div>
-                                            <div className = 'SuperLikes'>🎉 {articleData && articleData[key].superlikes}</div>
+                                            <div className = 'Views'>👀 {articleData && articleData[key] && articleData[key].views}</div>
+                                            <div className = 'Likes'>👏 {articleData && articleData[key] && articleData[key].likes}</div>
+                                            <div className = 'SuperLikes'>🎉 {articleData && articleData[key] && articleData[key].superlikes}</div>
                                         </div>
                                     </div>
                                     <div className = 'Content'>
