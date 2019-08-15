@@ -1,4 +1,10 @@
 var data = {
+    'visado-tailandes-bali':{
+        'title': 'Tramitando el visado tailandés en Bali',
+        'date': [15, 'Agosto', 2019],
+        'description': 'En Bali se puede solicitar el visado de turista de Tailandia por un periodo de dos meses. Se necesitan: una foto de tamaño carnet de 4x6 cm, pasaporte original y fotocopia...'
+        
+    },
     'dormir-a-ras': {
         'title': 'Durmiendo al ras',
         'date': [15, 'Julio', 2019],
