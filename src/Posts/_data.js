@@ -1,4 +1,10 @@
 var data = {
+    'combatiendo-hormigas':{
+        'title': 'Combatiendo hormigas',
+        'date': [6, 'Septiembre', 2019],
+        'description': 'Es mediodía, después de casi tres horas programando, me entra el gusanillo. Voy a MaxValu, el supermercado que está cerca de casa y compro una tortilla francesa que viene acompañada de arroz blanco, también compro piña y cuatro gelatinas: dos de melón, una de fresa y otra de uva.',
+        'privat': true
+    },
     'visado-tailandes-bali':{
         'title': 'Tramitando el visado tailandés en Bali',
         'date': [15, 'Agosto', 2019],
