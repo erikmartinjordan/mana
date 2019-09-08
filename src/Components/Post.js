@@ -17,7 +17,7 @@ const Post = (props) => {
     const [superlikes, setSuperlikes] = useState('');
     const [text, setText] = useState(null);
     const [title, setTitle] = useState('');
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(true);
     const [views, setViews] = useState(null);
     const url = props.match.params.string;
     
@@ -31,7 +31,7 @@ const Post = (props) => {
 
     useEffect( () => { 
         
-      auth.onAuthStateChanged( user => setUser(user) );
+      auth.onAuthStateChanged( user => setUser(user ? user : null) );
         
       try{
           // Get .md post
