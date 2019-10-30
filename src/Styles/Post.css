@@ -40,7 +40,7 @@
 }
 .Post .Infopost .Author span{
     margin: 5px;
-}
+} 
 .Content p,
 .Content h1,
 .Content h2,
@@ -101,6 +101,36 @@
 .Content .center{
     margin: auto;
     max-width: 620px;
+}
+.Content .Blur-Login{
+    position: relative;
+}
+.Content .Blur-Login:after{
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, var(--bgColor) 100%);
+    bottom: 0;
+    content: "";
+    height: 200px;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+.Content .Login-Box{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    margin: auto;
+    padding: 20px;
+    max-width: 620px;
+}
+.Content .Login-Box h3{
+    margin-top: 1em;
+}
+.Content .Login-Box p{
+    line-height: 1.5;
+}
+.Content .Login-Box a{
+    font-size: 14px;
+    padding: 10px 20px;
 }
 .Related{
     margin: auto;
