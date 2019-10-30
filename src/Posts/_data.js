@@ -1,4 +1,9 @@
 var data = {
+    'visado-tailandes-desde-malasia': {
+        'title': 'Visado tailandés desde Malasia',
+        'date': [30, 'Octubre', 2019],
+        'description': 'Desde la ciudad de Kuala Lumpur, se permite a los ciudadanos extranjeros solicitar el visado de turista para Tailandia. El coste es de 150 ringgits...',
+    },
     'combatiendo-hormigas':{
         'title': 'Combatiendo hormigas',
         'date': [6, 'Septiembre', 2019],
@@ -220,11 +225,6 @@ var data = {
         'title': 'Cosillas sobre Kuala Lumpur',
         'date': [1, 'Mayo', 2017],
         'description': 'Apuntes imprescindibles para todo aquel que visite la capital malaya; qué ver y qué hacer, cómo moverse por la ciudad, dónde comer...',
-    },
-    'visado-tailandes-desde-malasia': {
-        'title': 'Visado tailandés desde Malasia',
-        'date': [28, 'Abril', 2017],
-        'description': 'Desde la ciudad de Kuala Lumpur, se permite a los ciudadanos extranjeros solicitar el visado de turista para Tailandia. El coste es de 150 ringgits...',
     },
     'taxi-bangkok': {
         'title': '¿Cuánto cuesta un taxi en Bangkok?',
