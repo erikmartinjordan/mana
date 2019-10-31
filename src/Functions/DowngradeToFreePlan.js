@@ -18,7 +18,7 @@ const downGrade = (props) => {
     
     const handleDowngrade = async () => {
 
-        let response = await fetch("stripe/examples/cancelSubscription.php", {
+        let response = await fetch("https://us-central1-payment-hub-6543e.cloudfunctions.net/downgradeNomoresheet", {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({subscriptionId: props.subscriptionId})
