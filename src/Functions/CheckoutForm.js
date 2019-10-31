@@ -14,21 +14,22 @@ const CheckoutForm = (props) => {
     const submit = async (ev) => {
 
         let {token} = await props.stripe.createToken({name: user.uid});
-        let response = await fetch("stripe/examples/payment.php", {
+        let response = await fetch("https://us-central1-payment-hub-6543e.cloudfunctions.net/subscriptionNomoresheet", {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({stripeToken: token.id, userEmail: user.email})
         });
-        
-        let data = await response.json()
-        
+            
         if (response.ok) {
-
+            
+            let data = await response.json();
+            let subscriptionId = data.subscriptionId;
+            
             // Push account = premium for user
             firebase.database().ref('users/' + user.uid  + '/account').transaction(value => 'premium');
             
             // Setting subscription id
-            firebase.database().ref('users/' + user.uid + '/subscriptionId').transaction(value => data.id)
+            firebase.database().ref('users/' + user.uid + '/subscriptionId').transaction(value => subscriptionId)
             
             setPayment(true);
         }
