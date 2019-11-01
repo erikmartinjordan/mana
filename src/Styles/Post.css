@@ -1,3 +1,8 @@
+.Post{
+    margin: auto;
+    padding: 20px;
+    width: 100%;
+}
 .Post .Header{
     padding-bottom: 50px;
     padding-top: 50px;

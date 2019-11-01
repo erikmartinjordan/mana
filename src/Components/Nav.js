@@ -103,10 +103,10 @@ const Nav = () => {
   const menuNotUser = () => {
       
         return        <React.Fragment>
-                        <a onClick = {() => changeTheme()}>{theme === 'dark' ? '🌞' : '🌙'}</a>
                         <Link to = '/'>Comunidad</Link>
                         <Link to = '/blog'>Blog</Link>
                         <Link to = '/acerca'>Acerca</Link>
+                        <a onClick = {() => changeTheme()}>{theme === 'dark' ? <ToggleButton status = 'on'/> : <ToggleButton status = 'off'/>}</a>
                         <a onClick = {() => setRender(true)} className = 'login'>Acceder</a>
                       </React.Fragment>;
       

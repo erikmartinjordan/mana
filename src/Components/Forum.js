@@ -258,15 +258,18 @@ const Front = () => {
         
         { ready && chat !== ''
         ?   <React.Fragment>
-                <div className = 'OrderBy'>
-                    <div onClick = {() => orderBy('nuevo')}       className = {sort === 'nuevo'       ? 'Selected' : null}>Nuevo 🔥</div>
-                    <div onClick = {() => orderBy('picante')}     className = {sort === 'picante'     ? 'Selected' : null}>Picante 🌶</div>
-                    <div onClick = {() => orderBy('comentarios')} className = {sort === 'comentarios' ? 'Selected' : null}>Comentarios 💬</div>
-                </div>
                 <div className = 'Forum-TwoCol'>
-                    <ul className = 'Front'>
-                        {listItems()}
-                    </ul>
+                    <div className = 'Main'>
+                        <div className = 'OrderBy'>
+                            <div onClick = {() => orderBy('nuevo')} className = {sort === 'nuevo' ? 'Selected' : null}>Nuevo 🔥</div>
+                            <div onClick = {() => orderBy('picante')} className = {sort === 'picante' ? 'Selected' : null}>Picante 🌶</div>
+                            <div onClick = {() => orderBy('comentarios')} className = {sort === 'comentarios' ? 'Selected' : null}>Comentarios 💬</div>
+                        </div>
+                        <ul className = 'Front'>
+                            {listItems()}
+                        </ul>
+                        {!nomore &&  ready && <button className = 'more' onClick = {() => showMorePosts()}>Ver más</button>}
+                    </div>
                     <div className = 'Sidebar'>
                         <div className = 'LastComments'>
                             <span className = 'Title'>Últimos comentarios</span>
@@ -280,19 +283,11 @@ const Front = () => {
                             <span className = 'Title'>Usuarios</span>
                             <Users></Users>
                         </div>
-                        { !user &&
-                          <div className = 'Welcome'>
-                            <span className = 'Title'>Únete</span>
-                            <p>👋 ¡Hola! Accede a la comunidad para poder publicar y responder a otros <em>posts</em>.</p>
-                            <a className = 'login' onClick = {() => setRender(true)}>Acceder</a>
-                          </div>
-                        }
                     </div>
                 </div>
             </React.Fragment>
         : loading()
         }
-        {!nomore &&  ready && <button className = 'more' onClick = {() => showMorePosts()}>Ver más</button>}
         {render  && <Login hide = {() => setRender(false)}></Login>}
       </div>
     );

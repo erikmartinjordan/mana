@@ -1,16 +1,21 @@
 .Nav{
     background: none;
-    padding: 50px;
+    height: 100vh;
+    max-width: 300px;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    width: 100%;
 }
 .Nav .Wrap{
-    align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     margin: auto;
-    max-width: 1200px;
 }
 .Nav .Title{
     flex: 2;
+    padding: 20px;
 }
 .Nav .Title a,
 .Nav .Title-Mobile a{
@@ -21,22 +26,24 @@
     font-size: 30px;
     font-weight: bold;
     letter-spacing: 0.05em;
+    line-height: 1;
     padding: 5px 10px 5px 10px;
 }
 .Nav .Title-Mobile{
     display: none;
 }
 .Nav .Menu{
-    align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
     flex: 2;
+    padding: 20px;
 }
 .Nav .Menu a{
     color: var(--primaryFontColor);
     cursor: pointer;
-    font-size: 12px;
-    margin: 5px;
+    font-size: medium;
+    width: max-content;
 }
 .Nav .Menu .Progress{
     display: flex;
