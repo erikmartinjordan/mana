@@ -2,7 +2,13 @@ var data = {
     'visado-tailandes-desde-malasia': {
         'title': 'Visado tailandés desde Malasia',
         'date': [30, 'Octubre', 2019],
-        'description': 'Desde la ciudad de Kuala Lumpur, se permite a los ciudadanos extranjeros solicitar el visado de turista para Tailandia. El coste es de 150 ringgits...',
+        'description': 'Desde la ciudad de Kuala Lumpur, se permite a los ciudadanos extranjeros solicitar el visado de turista para Tailandia. El coste es de 150 ringgits...'
+    },
+    'suegros': {
+        'title': 'Los suegros vienen de visita',
+        'date': [23, 'Octubre', 2019],
+        'description': 'Me despierto de golpe. Hace calor. El aire acondicionado ha dejado de funcionar. Me doy la vuelta y veo a Chiang Muhu dormida cual oso perezoso. Cojo el móvil y observo que son las seis de la mañana. El WiFi no funciona, así que dejo el móvil, me doy la vuelta e intento dormir de nuevo.',
+        'privat': true
     },
     'combatiendo-hormigas':{
         'title': 'Combatiendo hormigas',
