@@ -17,7 +17,7 @@ import '../Styles/Perfil.css';
 import '../Styles/Progressbar.css';
 import '../Styles/ToggleButton.css';
 
-const Perfil = () => {
+const Perfil = (props) => {
 
     const [confirmation, setConfirmation] = useState(false);
     const [paymentModal, setPaymentModal] = useState(false);
@@ -94,9 +94,8 @@ const Perfil = () => {
     }
        
     return (
-        <React.Fragment>
-            <h2>Perfil</h2>
-            <div className = 'Perfil'>
+        <div className = 'Perfil'>
+            <div className = 'Perfil-Wrap'>
                 <div className = 'Sidebar'>
                     <div className = 'First-Menu'>
                         <div className = 'Menu-Title'>Menú</div>
@@ -242,7 +241,8 @@ const Perfil = () => {
             <div>{render && <Login hide = {() => setRender(false)}></Login>}</div>
             {paymentModal && <PaymentModal percentage = {percentage} hide = {() => setPaymentModal(false)}></PaymentModal>}
             {confirmation && <DowngradeToFreePlan subscriptionId = {infoUser.subscriptionId}></DowngradeToFreePlan>}
-        </React.Fragment>
+            <div className = 'Invisible' onClick = {() => props.hide()}></div>
+        </div>
     );
 }
 

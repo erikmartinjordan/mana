@@ -4,7 +4,10 @@
     
 }
 .Notifications .Notifications-Icon .Notifications-Logo{
-    font-size: large;
+    font-size: medium;
+}
+.Notifications .Notifications-Icon .Notifications-Logo img.emoji{
+    margin: 0 !important;
 }
 .Notifications .Notifications-Icon span.Notifications-Number{
     align-items: center;
