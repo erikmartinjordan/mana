@@ -123,7 +123,7 @@ const Nav = () => {
                     <Link to = '/'>N</Link>
                     <i className = {menu === 'Mobile' ? 'Up' : 'Down'}></i>
                 </div>
-                <div className = {'Menu ' + menu}>
+                <div className = {'Menu ' + menu} onClick = {() => setMenu('')}>
                     {user ? menuUser() : menuNotUser()}
                 </div>
             {perfil        && <Perfil  hide = {() => setPerfil(false)}/>}

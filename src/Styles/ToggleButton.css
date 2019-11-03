@@ -26,7 +26,7 @@
     height: 23px;
     border-radius: 50px;
     background: white;
-    transition: transform 200ms ease-out 0s, background 200ms ease-out 0s;
+    transition: all 0.2s ease-out;
     transform: translateX(17px) translateY(0px);
 }
 .inner-button-on{
