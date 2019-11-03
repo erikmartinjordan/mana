@@ -10,21 +10,20 @@ import GetLevel from '../Functions/GetLevelAndPointsToNextLevel.js';
 import ToggleButton from '../Functions/ToggleButton.js';
 import AnonymImg from '../Functions/AnonymImg.js';
 import DeleteAccount from '../Functions/DeleteAccount.js';
-import NightModeToggleButton from '../Functions/NightModeToggleButton.js';
 import Accounts from '../Rules/Accounts.js';
 import DowngradeToFreePlan from '../Functions/DowngradeToFreePlan.js';
 import '../Styles/Perfil.css';
 import '../Styles/Progressbar.css';
 import '../Styles/ToggleButton.css';
 
-const Perfil = () => {
+const Perfil = (props) => {
 
     const [confirmation, setConfirmation] = useState(false);
     const [paymentModal, setPaymentModal] = useState(false);
     const [infoUser, setInfoUser] = useState(null);
     const [lastSignIn, setLastSignIn] = useState(null);
     const [menu, setMenu] = useState('Cuenta');
-    const [render, setRender] = useState(true);
+    const [render, setRender] = useState(false);
     const [user, setUser] = useState(null);
     const [uid, setUid] = useState(null);
     const posts = GetNumberOfPosts(uid);
@@ -94,18 +93,14 @@ const Perfil = () => {
     }
        
     return (
-        <React.Fragment>
-            <h2>Perfil</h2>
-            <div className = 'Perfil'>
+        <div className = 'Perfil'>
+            <div className = 'Perfil-Wrap'>
                 <div className = 'Sidebar'>
                     <div className = 'First-Menu'>
                         <div className = 'Menu-Title'>Menú</div>
                         <div className = 'Item' onClick = {() => setMenu('Cuenta')}>🐨 Cuenta</div>
                         <div className = 'Item' onClick = {() => setMenu('Datos')}>📈 Datos</div>
                         <div className = 'Item' onClick = {() => setMenu('Premium')}>✨ Premium</div>
-                        <div className = 'Separator'></div>
-                        <div className = 'Item'>Modo noche <NightModeToggleButton></NightModeToggleButton></div>
-                        <div className = 'Separator'></div>
                     </div>
                     <div className = 'Last-Menu'>
                         {lastSignIn}
@@ -242,7 +237,8 @@ const Perfil = () => {
             <div>{render && <Login hide = {() => setRender(false)}></Login>}</div>
             {paymentModal && <PaymentModal percentage = {percentage} hide = {() => setPaymentModal(false)}></PaymentModal>}
             {confirmation && <DowngradeToFreePlan subscriptionId = {infoUser.subscriptionId}></DowngradeToFreePlan>}
-        </React.Fragment>
+            <div className = 'Invisible' onClick = {() => props.hide()}></div>
+        </div>
     );
 }
 

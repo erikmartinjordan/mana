@@ -1,49 +1,54 @@
 .Nav{
     background: none;
-    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 300px;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    width: 100%;
 }
-.Nav .Wrap{
+.Nav .Nomoresheet{
     align-items: center;
     display: flex;
-    justify-content: space-between;
-    margin: auto;
-    max-width: 1200px;
+    height: 100px;
+    padding: 20px;
 }
-.Nav .Title{
-    flex: 2;
+.Nav .Nomoresheet.Mobile{
+    display: none;
 }
-.Nav .Title a,
-.Nav .Title-Mobile a{
+.Nav .Nomoresheet a{
     background: var(--nmsLogo);
     border-radius: 5px;
-    color: white;
+    color: white !important;
     font-family: 'Gentium Book Basic', serif;
     font-size: 30px;
     font-weight: bold;
     letter-spacing: 0.05em;
+    line-height: 1;
     padding: 5px 10px 5px 10px;
 }
-.Nav .Title-Mobile{
-    display: none;
-}
 .Nav .Menu{
-    align-items: center;
     display: flex;
-    justify-content: flex-end;
-    flex: 2;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    padding: 20px;
+    width: 100%;
 }
 .Nav .Menu a{
     color: var(--primaryFontColor);
     cursor: pointer;
-    font-size: 12px;
-    margin: 5px;
+    width: max-content;
 }
 .Nav .Menu .Progress{
+    align-items: center;
     display: flex;
     height: 34px;
+    margin-right: 5px;
     width: 34px;
     justify-content: center;
-    align-items: center;
     position: relative;
 }
 .Nav .Menu img{
@@ -79,33 +84,52 @@
     transition: 0.2s ease-in-out;
 }
 .Nav .Separator{
-    background: var(--bgColor);
     height: 1px;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     width: 100%;
 }
 .Nav .Img-Wrap,
 .Nav .Bar-Wrap{
     align-items: center;
+    cursor: pointer;
     display: flex;
 }
-.Nav .Img-Wrap{
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 18px;
-    margin-left: 10px;
-    margin-right: 15px;
-}
-.Nav span.Points{
-    font-size: x-small;
-}
+
 .Nav .User{
     align-items: center;
     cursor: pointer;
 }
 .Nav .Logout{
+    border: 1px solid var(--red);
+    border-radius: 50px;
     color: var(--red);
+    cursor: pointer;
+    font-size: small;
+    margin-bottom: 5px;
+    margin-top: auto;
+    padding: 0px 10px;
+    width: max-content;
+}
+.Nav .Name-Points{
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+.Nav span.Name{
+    font-size: small;
+}
+.Nav span.Points{
+    color: var(--thirdFontColor);
+    font-size: x-small;
+}
+.Nav .SignIn{
+    color: var(--thirdFontColor);
+    line-height: 1;
+    font-size: x-small;
+}
+.Nav i{
+    display: none;
 }
 @keyframes bounce{
     0%    {opacity: 0;   transform: scale(1,1);}
@@ -113,10 +137,43 @@
     100%  {opacity: 1;   transform: scale(1,1);}
 }
 @media (max-width: 768px){
-   .Nav{
-        padding: 20px;
-    } 
-    .Nav .Search input{
+    .Nav .Menu{
         display: none;
+    }
+    .Nav .Menu.Mobile{
+        display: flex;
+    }
+    .Nav{
+        height: auto;
+        max-width: 100%;
+        padding: 0;
+        position: relative;
+        width: max-content;
+    }
+    .Nav .Nomoresheet{
+        width: max-content;
+    }
+    .Nav.Mobile{
+        background: var(--bgColor);
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        width: 100vw;
+    }
+    .Nav i{
+        border: solid var(--primaryFontColor);
+        border-width: 0 1px 1px 0;
+        display: inline-block;
+        margin: 10px;
+        padding: 3px;
+        transition-duration: 0.8s;
+    }
+    .Nav i.Down {
+        transform: rotate(45deg);
+    }
+    .Nav i.Up{
+        transform: rotate(-135deg);
     }
 }

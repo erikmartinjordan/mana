@@ -3,7 +3,7 @@
 /*******************************************************************/
 .Forum{
     margin: auto;
-    max-width: 1200px;
+    padding: 20px;
     width: 100%;
 }
 .Forum .Forum-TwoCol{
@@ -36,11 +36,15 @@
 .Forum ul.Front a:first-child span.title{
     font-weight: bold;
 }
+.Forum .Main{
+    width: 100%;
+}
 .Forum .Sidebar{
     display: flex;
     flex-direction: column;
     margin-left: 20px;
-    width: 500px;
+    max-width: 300px;
+    padding-top: 100px;
 }
 .Forum .Sidebar .Welcome,
 .Forum .Sidebar .LastComments,
@@ -326,8 +330,9 @@
 .Forum .OrderBy{
     align-items: center;
     display: flex;
+    height: 100px;
     justify-content: center;
-    margin-bottom: 20px;
+    padding: 20px;
 }
 .Forum .OrderBy div{
     border-radius: 50px;
@@ -353,7 +358,7 @@
 /*******************************************************************/
 .Forum.Detail{
     margin: auto;
-    max-width: 600px;
+    width: 100%;
 }
 .Forum.Detail .Likes{
     margin-right: 0px;

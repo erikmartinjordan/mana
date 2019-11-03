@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../Styles/ToggleButton.css';
 
 //
@@ -6,15 +6,22 @@ import '../Styles/ToggleButton.css';
 //
 
 const ToggleButton = (props) => {
+    
+    var button; 
+    
+    useEffect( () => {
+        
+        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
+        
+    });
       
-      var button; 
       
-      props.status === 'on'
-      ? button = <div className = 'button-on'> <div className = 'inner-button-on'></div></div>
-      : button = <div className = 'button-off'><div className = 'inner-button-off'></div></div>;
+    props.status === 'on'
+    ? button = <div className = 'button-on'> <div className = 'inner-button-on'> {props.icon}</div></div>
+    : button = <div className = 'button-off'><div className = 'inner-button-off'>{props.icon}</div></div>;
       
-      return button;
-          
+    return button;
+ 
 }
 
 export default ToggleButton; 

@@ -27,6 +27,7 @@ body {
     color: var(--primaryFontColor);
     line-height: 2;
     margin: 0;
+    overflow-x: hidden;
 }
 #root{
     display: flex;
@@ -129,7 +130,7 @@ a.New-Post{
     border-radius: 50px;
     color: white!important;
     cursor: pointer;
-    font-size: 12px;
+    font-size: medium;
     padding: 5px 10px;
     text-align: center;
     width: max-content;

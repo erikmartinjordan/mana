@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Link }    from 'react-router-dom';
-import firebase, {auth} from '../Functions/Firebase.js';
-import Login from './Login';
-import NewPost from '../Functions/NewPost';
-import Notifications from './Notifications';
-import GetNumberOfPosts from '../Functions/GetNumberOfPosts.js';
-import GetNumberOfReplies from '../Functions/GetNumberOfReplies.js';
-import GetNumberOfSpicy from '../Functions/GetNumberOfSpicy.js';
-import GetPoints from '../Functions/GetPoints.js';
-import GetLevel from '../Functions/GetLevelAndPointsToNextLevel.js';
-import ToggleButton from '../Functions/ToggleButton.js';
+import React, { useState, useEffect }   from 'react';
+import { Link }                         from 'react-router-dom';
+import Login                            from './Login';
+import Notifications                    from './Notifications';
+import Perfil                           from './Perfil';
+import firebase, {auth}                 from '../Functions/Firebase.js';
+import NightModeToggleButton            from '../Functions/NightModeToggleButton.js';
+import NewPost                          from '../Functions/NewPost';
+import GetNumberOfPosts                 from '../Functions/GetNumberOfPosts.js';
+import GetNumberOfReplies               from '../Functions/GetNumberOfReplies.js';
+import GetNumberOfSpicy                 from '../Functions/GetNumberOfSpicy.js';
+import GetPoints                        from '../Functions/GetPoints.js';
+import GetLevel                         from '../Functions/GetLevelAndPointsToNextLevel.js';
+import ToggleButton                     from '../Functions/ToggleButton.js';
 import '../Styles/Nav.css';
 import '../Styles/Progressbar.css';
 
@@ -17,9 +19,11 @@ const Nav = () => {
     
     const [avatar, setAvatar] = useState(null);
     const [invisible, setInvisible] = useState(null);
-    const [menu, setMenu] = useState(false);
+    const [lastSignIn, setLastSignIn] = useState(null)
+    const [menu, setMenu] = useState('');
     const [post, setPost] = useState(false);
-    const [render, setRender] = useState(false);
+    const [login, setLogin] = useState(false);
+    const [perfil, setPerfil] = useState(false);
     const [show, setShow] = useState(true);
     const [theme, setTheme] = useState('');
     const [uid, setUid] = useState(null);
@@ -42,6 +46,7 @@ const Nav = () => {
               firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
                     if(snapshot.val()){
                         
+                        var date = new Date(parseInt(user.metadata.b));
                         var capture = snapshot.val();
                         
                         // If user is anonymous, load avatar
@@ -50,6 +55,7 @@ const Nav = () => {
                         
                         // Setting all the info of the user
                         setUserInfo(capture);
+                        setLastSignIn(`Accediste el ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} a las ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`);
                     }
               });
 
@@ -62,19 +68,6 @@ const Nav = () => {
           }
       
       });
-      // Declaring variable
-      var local;
-      
-      // Getting current theme from local storage
-      local = localStorage.getItem('theme');
-            
-      // Setting the theme
-      local === 'dark' 
-      ? document.documentElement.setAttribute('data-theme','dark') 
-      : document.documentElement.setAttribute('data-theme','');
-      
-      // Setting the state
-      setTheme(local);
       
       // Setting emojis in svg
       window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
@@ -82,89 +75,62 @@ const Nav = () => {
   }, []);
   
   
-  const changeTheme = () => {
-            
-      // Is dark theme activated?
-      theme === 'dark' 
-      ? document.documentElement.setAttribute('data-theme','') 
-      : document.documentElement.setAttribute('data-theme','dark');
+    const menuNotUser = () => {
       
-      // New theme
-      theme === 'dark' 
-      ? localStorage.setItem('theme', '') 
-      : localStorage.setItem('theme', 'dark');
-      
-      // Setting the theme
-      theme === 'dark'
-      ? setTheme('')
-      : setTheme('dark');
-  }
+        return  <React.Fragment>
+                    <Link to = '/'>Comunidad</Link>
+                    <Link to = '/blog'>Blog</Link>
+                    <Link to = '/acerca'>Acerca</Link>
+                    <NightModeToggleButton></NightModeToggleButton>
+                    <a onClick = {() => setLogin(true)} className = 'login'>Acceder</a>
+                </React.Fragment>;  
+    }
   
-  const menuNotUser = () => {
+    const menuUser = () => {
       
-        return        <React.Fragment>
-                        <a onClick = {() => changeTheme()}>{theme === 'dark' ? '🌞' : '🌙'}</a>
-                        <Link to = '/'>Comunidad</Link>
-                        <Link to = '/blog'>Blog</Link>
-                        <Link to = '/acerca'>Acerca</Link>
-                        <a onClick = {() => setRender(true)} className = 'login'>Acceder</a>
-                      </React.Fragment>;
-      
-  }
-  
-  const menuUser = () => {
-      
-        return         <div className = 'User'>
-                            <div className = 'Bar-Wrap'> 
-                                <Notifications user = {user}></Notifications>
-                                <div onClick = {() => setMenu(true)} className = 'Img-Wrap'>
-                                    <div className = {'Progress ProgressBar-' + percentage}>
-                                        <img src = { avatar ? avatar : user.photoURL}></img>
-                                        {userInfo && userInfo.account === 'premium' && <div className = 'Tag'>✨</div>}
-                                    </div>
-                                    <span className = 'Points'>Nivel {level}</span>
-                                </div>
-                                <Link to = '/' onClick = {() => setPost(true)} className = 'New-Post'>Publicar </Link>
+        return      <React.Fragment>
+                        <div onClick = {() => setPerfil(true)} className = 'Img-Wrap'>
+                            <div className = {'Progress ProgressBar-' + percentage}>
+                                <img src = { avatar ? avatar : user.photoURL}></img>
+                                {userInfo && userInfo.account === 'premium' && <div className = 'Tag'>✨</div>}
                             </div>
-                            {menu && menuClicked()}
-                        </div>;
-  }
-  
-  const menuClicked = () => {
-      
-        return            <div className = 'Avatar-Menu'>
-                                <Link to = '/perfil' onClick = {() => setMenu(false)}>Perfil</Link>
-                                <div className = 'Separator'></div>
-                                <Link to = '/'       onClick = {() => setMenu(false)}>Comunidad</Link>
-                                <Link to = '/blog'   onClick = {() => setMenu(false)}>Blog</Link> 
-                                <Link to = '/acerca' onClick = {() => setMenu(false)} >Acerca</Link>
-                                <div className = 'Separator'></div>
-                                <a onClick = {() => changeTheme()}>Modo noche
-                                {theme === 'dark' ? <ToggleButton status = 'on'/> : <ToggleButton status = 'off'/>}
-                                </a>
-                                <div className = 'Separator'></div>
-                                <Link to = '/' onClick = {() => setMenu(false)}>
-                                    <div onClick = {() => auth.signOut().then(setUser(null))} className = 'Logout'>Cerrar sesión</div>
-                                </Link>
-                          </div>;
-      
-  }
+                            <div className = 'Name-Points'>
+                                <span className = 'Name'>
+                                    {user && userInfo && userInfo.anonimo  && userInfo.nickName}
+                                    {user && userInfo && !userInfo.anonimo && user.displayName}
+                                </span>
+                                <span className = 'Points'>Nivel {level}</span>
+                            </div>
+                        </div>
+                        <div className = 'Separator'></div>
+                        <Notifications user = {user}/>
+                        <Link to = '/'       onClick = {() => setMenu(false)}>Comunidad</Link>
+                        <Link to = '/blog'   onClick = {() => setMenu(false)}>Blog</Link> 
+                        <Link to = '/acerca' onClick = {() => setMenu(false)} >Acerca</Link>
+                        <div className = 'Separator'></div>
+                        <NightModeToggleButton></NightModeToggleButton>
+                        <div className = 'Separator'></div>
+                        <Link to = '/' onClick = {() => setPost(true)} className = 'login'>Publicar </Link>
+                        <div className = 'Separator'></div>
+                        <div onClick = {() => auth.signOut().then(setUser(null))} className = 'Logout'>Cerrar sesión</div>
+                        <div className = 'SignIn'>{lastSignIn}</div>
+                    </React.Fragment>;
+    }
     
-  return (
-      <div className = 'Nav'>
-        <div className = 'Wrap'>
-            <div className = 'Title'>
-                <Link to = '/'>N</Link>
-            </div>
-            <div className = 'Menu'>
-                { user ? menuUser() : menuNotUser() }
-            </div>
+    return (
+        <div className = {'Nav ' + menu}>
+                <div className = 'Nomoresheet' onClick = {() => menu === 'Mobile' ? setMenu(''): setMenu('Mobile')}>
+                    <Link to = '/'>N</Link>
+                    <i className = {menu === 'Mobile' ? 'Up' : 'Down'}></i>
+                </div>
+                <div className = {'Menu ' + menu}>
+                    {user ? menuUser() : menuNotUser()}
+                </div>
+            {perfil        && <Perfil  hide = {() => setPerfil(false)}/>}
+            {login         && <Login   hide = {() => setLogin(false)}/>}
+            {post          && <NewPost hide = {() => setPost(false)}/>}
         </div>
-        {render && <Login hide = {() => setRender(false)}></Login>}
-        {menu   && <div onClick = {() => setMenu(false)} className = 'Invisible'></div>}
-        {post   && <NewPost hide = {() => setPost(false)}></NewPost>}
-      </div>
-  );
+    );
 }
 
 export default Nav;

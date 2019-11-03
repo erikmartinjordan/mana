@@ -95,7 +95,10 @@ const Blog = () => {
                                     </div>
                                     <div className = 'Content'>
                                         <p>{Data[key].description}</p>
-                                        <div className = 'Privat'>{Data[key].privat && <div>🔒</div>}</div>
+                                        <div className = 'Privat'>
+                                            {!user && Data[key].privat && <div>🔒</div>}
+                                            {user  && Data[key].privat && <div>🔓</div>}
+                                        </div>
                                     </div>
                                 </article>
                             </Link>;

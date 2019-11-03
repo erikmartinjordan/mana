@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import firebase, {auth} from '../Functions/Firebase.js';
 import '../Styles/Notifications.css';
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
@@ -8,110 +8,75 @@ import printDate from '../Functions/ReturnDifferenceBetweenTwoDates.js';
 
 const formatter = buildFormatter(spanishStrings);
 
-class Notifications extends Component {  
+const Notifications = (props) => {  
     
-  //--------------------------------------------------------------/
-  //
-  // Declaring inital state
-  //
-  //--------------------------------------------------------------/
-  state = {
-     keys: [],
-     notifications: [],
-     points: 0,
-     show: false
-  }
+    const [keys, setKeys] = useState([]);
+    const [notifications, setNotifications] = useState([]);
+    const [points, setPoints] = useState(0);
+    const [show, setShow] = useState(false);
 
-  //--------------------------------------------------------------/
-  //
-  // After component is mounted
-  //
-  //--------------------------------------------------------------/
-  componentDidMount  = () => {
+    useEffect( () => {
       
-      // Getting the notifications 
-      firebase.database().ref('notifications/' + this.props.user.uid).on('value', snapshot => { 
-          
-          // Capturing data
-          var notifications = snapshot.val();
-          var keys = notifications ? Object.keys(notifications) : [];
-          var array = [];
-                    
-          // Array of points and setting the state
-          if(notifications){ 
+        // Getting the notifications 
+        firebase.database().ref('notifications/' + props.user.uid).on('value', snapshot => { 
+            
+            // Capturing data
+            var notifications = snapshot.val();
+            var keys = notifications ? Object.keys(notifications) : [];
+            var array = [];
+
+            // Array of points and setting the state
+            if(notifications){ 
               notifications = keys.map( id => {
                   return [notifications[id].points, notifications[id].message, notifications[id].read, notifications[id].timeStamp] 
               });
-              this.setState({ keys, notifications });
-          }
+              setKeys(keys);
+              setNotifications(notifications);
+            }
+            
+        });
+      
+      
+    }, []);
+    
+    useEffect( () => {
+        // Setting emojis in svg
+        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );  
+    });
 
-      });
-      
-      // Setting emojis in svg
-      window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-      
-  }
-  
-  //--------------------------------------------------------------/
-  //
-  // After an update of the component
-  //
-  //--------------------------------------------------------------/
-  componentDidUpdate = () => {
-      
-      // Setting emojis in svg
-      window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-      
-  }
-  
-  //--------------------------------------------------------------/
-  //
-  // Hide notifications modal
-  //
-  //--------------------------------------------------------------/
-  hideNotifications = () => this.setState({ show: false });
+    const hideNotifications = () => setShow(false);
 
-  //--------------------------------------------------------------/
-  //
-  // Show notifications modal
-  //
-  //--------------------------------------------------------------/
-  showNotifications = () => {
-      
-      this.setState({ show: true });
-      
-      // Putting all the notifications as read
-      if(this.state.notifications)
-          this.state.keys.map( key => {
-              firebase.database().ref('notifications/' + this.props.user.uid + `/${key}/read/`).transaction( read => read = true )
-          });
-      
-  }
-      
-  //--------------------------------------------------------------/
-  //
-  // Represent notifications
-  //
-  //--------------------------------------------------------------/
-  printNotifications = () => {
-      
+    const showNotifications = () => {
+
+        setShow(true);
+
+        // Putting all the notifications as read
+        if(notifications)
+            keys.map( key => {
+              firebase.database().ref('notifications/' + props.user.uid + `/${key}/read/`).transaction( read => read = true )
+        });
+
+    }
+  
+    const printNotifications = () => {
+        
       var points;
       var res;
       var message;
       var reverse;
-      
+        
       // Reversing notification's array
-      reverse = [...this.state.notifications].reverse();
-      
+      reverse = [...notifications].reverse();
+        
       // Drawing block when there are notifications
       res = reverse.map( notification =>
-                <React.Fragment>
+                <div className = 'Notification'>
                         { printDate(Date.now(), notification[3]) !== message 
                         && <div  className = 'Notifications-Ago'> {message = printDate(Date.now(), notification[3])} </div>
                         }
                     <div className = 'Notifications-Content'>
                         <span className = 'Notifications-Photo'>
-                            <img src = {this.props.user.photoURL}></img>
+                            <img src = {props.user.photoURL}></img>
                         </span>
                         <span className = 'Notifications-Points'>
                             { notification[0] > 0 
@@ -124,58 +89,51 @@ class Notifications extends Component {
                             <TimeAgo formatter = {formatter} date = {notification[3]}/>
                         </span>
                     </div>
-                </React.Fragment>
+                </div>
       );
-      
+        
       // If 0 notifications, we write it
-      if(this.state.notifications.length === 0){
+      if(notifications.length === 0){
           
           res = <div className = 'Notifications-Content-Empty'>
                     <div className = 'Big-Emoji'>😼</div>
                     <div className = 'Empty-Message'>¡Miaaaaau! Aún no tienes notificaciones.</div>
                 </div>
       }
-            
+        
       return res;
-      
-  }
-  
-  //--------------------------------------------------------------/
-  //
-  // Get the number of unread notifications
-  //
-  //--------------------------------------------------------------/
-  unreadNotifications = () => {
-      
-      var notifications = this.state.notifications;
-      var length = this.state.notifications.length; 
+        
+    }
+
+    const unreadNotifications = () => {
+
+      var length = notifications.length; 
       var count  = 0;
-          
+
       // Iterates through array of notifications, if read = true, increment count
       for(var i = 0; i < length; i ++) notifications[i][2] === true && count ++;
-      
+
       // Returns the difference between read and unread
       return (length - count);
-      
-  }
+
+    }
     
-  render() {
     return (
         <React.Fragment>
-            <div className = 'Notifications'>
-                <div className = 'Notifications-Icon' onClick = {this.showNotifications}>
-                    <div className = 'Notifications-Logo' onClick = {this.showNotifications}>🔔</div>
-                    {  this.state.notifications.length > 0 
-                    && this.unreadNotifications() > 0
-                    && <span className = 'Notifications-Number'>{this.unreadNotifications()}</span>
-                    }
-                </div>
-                {this.state.show && <div className = 'Notifications-Menu'>{this.printNotifications()}</div>}
+            <div className = 'Notifications-Tag' onClick = {() => showNotifications()}>
+                <span>Notificaciones</span>
+                {notifications.length > 0 && unreadNotifications() > 0 && <span className = 'Notifications-Number'></span>}
             </div>
-                {this.state.show && <div onClick = {this.hideNotifications} className = 'Invisible'></div>}
+            {show &&
+                <div className = 'Notifications'>
+                    <div className = 'Notifications-Wrap'>
+                        <div className = 'Notifications-Menu'>{printNotifications()}</div>
+                    </div>
+                    <div onClick = {hideNotifications} className = 'Invisible'></div>
+                </div>
+            }
         </React.Fragment>
     );
-  }
 }
 
 export default Notifications;

@@ -1,0 +1,87 @@
+{
+  "rules": {
+    // Todos los usuarios pueden leer y escribir el número de visitas de los artículos
+    // No es un dato crítico
+    "articles":{
+        ".read": "true",
+        ".write": "true"
+    },
+    // Los usuarios registrados y no registrados pueden leer los datos del foro
+    // Los datos y respuestas no pueden ser modificables
+    "posts":{
+      	".read": "true",
+        ".write": "auth != null",  
+        "$postsuid":{
+          "message":{
+            ".validate" : "newData.val().length <= 99999"
+          },
+          "title":{
+            ".validate": "newData.val().length <= 140"
+          },
+          "views":{
+            ".write": "true"
+          }
+        }
+      },
+    // Los usuarios no pueden modificar las cuentas verificadas
+    "users":{
+        ".read": "true",
+      	"$useruid":{
+            "points":{
+              ".write": "auth != null"
+            },
+          	"posts":{
+              ".write": "auth != null"
+            },
+            "postsViews":{
+              ".write": "true"
+            },
+            "replies":{
+              ".write": "auth != null"
+            },  
+          	"verified":{
+              ".write": "!data.exists()"
+            },
+          	"anonimo":{
+              ".write": "auth != null"
+            },
+          	"nickName":{
+              ".write": "auth != null"
+            },
+            "avatar":{
+              ".write": "auth != null"
+            },
+            "account":{
+              ".write": "auth != null"
+            },
+            "subscriptionId":{
+              ".write": "auth != null"
+            }
+        }
+    },
+    // Los usuarios se crean notificaciones
+    // Deben haber iniciado sesión en Nomoresheet
+    "notifications":{
+        ".read": "true",
+        ".write": "auth != null",      
+    },
+    // Los usuarios pueden introducir estadísticas de visualizaciones
+    // No deben haber iniciado sesión en Nomoresheet
+    "stats":{
+      ".read": "true",
+      ".write": "true"
+    },
+    // Los usuarios pueden introducir datos cuando hacen clic en un anuncio
+    // No deben haber iniciado sesión en Nomoresheet
+    "ads":{
+      	".read": "true",
+        ".write": "true" 
+    },
+    // Los usuarios pueden leer las modificaciones en Nomoresheet
+    // No deben haber iniciado sesión en Nomoresheet
+    "features":{
+      	".read": "true",
+        ".write":  "auth != null"
+    }  
+  }
+}

@@ -50,8 +50,8 @@ const NightModeToggleButton = () => {
     
     return  <div className = 'Toggle-Button' onClick = {() => changeTheme()} >
                 {theme === 'dark' 
-                ? <ToggleButton status = 'on'/> 
-                : <ToggleButton status = 'off'/>
+                ? <ToggleButton status = 'on'  icon = '🌙'/> 
+                : <ToggleButton status = 'off' icon = '🌞'/>
                 }
             </div>
     
