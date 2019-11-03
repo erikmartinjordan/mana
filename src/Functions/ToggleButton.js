@@ -15,13 +15,11 @@ const ToggleButton = (props) => {
         
     });
       
-      
-    props.status === 'on'
-    ? button = <div className = 'button-on'> <div className = 'inner-button-on'> {props.icon}</div></div>
-    : button = <div className = 'button-off'><div className = 'inner-button-off'>{props.icon}</div></div>;
-      
-    return button;
- 
+    return  <div className = {'button-' + props.status} > 
+                <div className = {'inner-button-' + props.status}> 
+                    {props.icon}
+                </div>
+            </div>;
 }
 
 export default ToggleButton; 

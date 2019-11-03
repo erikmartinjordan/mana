@@ -49,10 +49,7 @@ const NightModeToggleButton = () => {
     }
     
     return  <div className = 'Toggle-Button' onClick = {() => changeTheme()} style = {{width: 'max-content'}}>
-                {theme === 'dark' 
-                ? <ToggleButton status = 'on'  icon = '🌙'/> 
-                : <ToggleButton status = 'off' icon = '🌞'/>
-                }
+                <ToggleButton status = {theme === 'dark' ? 'on' : 'off'}  icon = {theme === 'dark' ? '🌙' : '🌞'}/> 
             </div>
     
 }

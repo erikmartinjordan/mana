@@ -28,6 +28,7 @@ body {
     line-height: 2;
     margin: 0;
     overflow-x: hidden;
+    transition: all 0.1s ease-out;
 }
 #root{
     display: flex;

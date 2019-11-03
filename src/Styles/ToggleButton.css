@@ -8,32 +8,32 @@
     background: var(--secondaryFontColor);
     margin-bottom: 20px;
     margin-top: 20px;
-    transition: background 200ms ease 0s, box-shadow 200ms ease 0s;
+    transition: all 0.5s ease-out;
+    user-select: none;
     width: 40px;
 }
 .button-off{
     background: rgba(202, 204, 206, 0.3);
-
+}
+.button-on{
+    background: var(--blue);
 }
 .inner-button-on,
 .inner-button-off{
     align-items: center;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
     display: flex;
     justify-content: center;
     font-size: small;
     width: 23px;
     height: 23px;
     border-radius: 50px;
-    background: white;
-    transition: all 0.2s ease-out;
-    transform: translateX(17px) translateY(0px);
-}
-.inner-button-on{
     background: var(--bgBox);
+    transition: all 0.2s ease-out;
+    transform: translateX(18px) translateY(0px);
 }
 .inner-button-off{
-    transform: translateX(0%) translateY(0px);
+    transform: translateX(0px) translateY(0px);
 }
 .inner-button-off img.emoji,
 .inner-button-on img.emoji{
