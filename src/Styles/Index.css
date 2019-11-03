@@ -130,7 +130,7 @@ a.New-Post{
     border-radius: 50px;
     color: white!important;
     cursor: pointer;
-    font-size: 12px;
+    font-size: medium;
     padding: 5px 10px;
     text-align: center;
     width: max-content;

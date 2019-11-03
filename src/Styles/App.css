@@ -1,3 +1,8 @@
 .Title-Menu{
     display: flex;
 }
+@media (max-width: 768px){
+    .Title-Menu{
+        flex-direction: column;
+    } 
+}

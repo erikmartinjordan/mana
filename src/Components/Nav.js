@@ -4,6 +4,7 @@ import Login                            from './Login';
 import Notifications                    from './Notifications';
 import Perfil                           from './Perfil';
 import firebase, {auth}                 from '../Functions/Firebase.js';
+import NightModeToggleButton            from '../Functions/NightModeToggleButton.js';
 import NewPost                          from '../Functions/NewPost';
 import GetNumberOfPosts                 from '../Functions/GetNumberOfPosts.js';
 import GetNumberOfReplies               from '../Functions/GetNumberOfReplies.js';
@@ -19,7 +20,7 @@ const Nav = () => {
     const [avatar, setAvatar] = useState(null);
     const [invisible, setInvisible] = useState(null);
     const [lastSignIn, setLastSignIn] = useState(null)
-    const [menu, setMenu] = useState(false);
+    const [menu, setMenu] = useState('');
     const [post, setPost] = useState(false);
     const [login, setLogin] = useState(false);
     const [perfil, setPerfil] = useState(false);
@@ -67,19 +68,6 @@ const Nav = () => {
           }
       
       });
-      // Declaring variable
-      var local;
-      
-      // Getting current theme from local storage
-      local = localStorage.getItem('theme');
-            
-      // Setting the theme
-      local === 'dark' 
-      ? document.documentElement.setAttribute('data-theme','dark') 
-      : document.documentElement.setAttribute('data-theme','');
-      
-      // Setting the state
-      setTheme(local);
       
       // Setting emojis in svg
       window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
@@ -87,41 +75,18 @@ const Nav = () => {
   }, []);
   
   
-  const changeTheme = () => {
-            
-      // Is dark theme activated?
-      theme === 'dark' 
-      ? document.documentElement.setAttribute('data-theme','') 
-      : document.documentElement.setAttribute('data-theme','dark');
-      
-      // New theme
-      theme === 'dark' 
-      ? localStorage.setItem('theme', '') 
-      : localStorage.setItem('theme', 'dark');
-      
-      // Setting the theme
-      theme === 'dark'
-      ? setTheme('')
-      : setTheme('dark');
-  }
-  
-  const menuNotUser = () => {
+    const menuNotUser = () => {
       
         return  <React.Fragment>
                     <Link to = '/'>Comunidad</Link>
                     <Link to = '/blog'>Blog</Link>
                     <Link to = '/acerca'>Acerca</Link>
-                    <a onClick = {() => changeTheme()}>
-                        { theme === 'dark' 
-                        ? <ToggleButton status = 'on'  icon = '🌙'/> 
-                        : <ToggleButton status = 'off' icon = '🌞'/>
-                        }
-                    </a>
+                    <NightModeToggleButton></NightModeToggleButton>
                     <a onClick = {() => setLogin(true)} className = 'login'>Acceder</a>
                 </React.Fragment>;  
-  }
+    }
   
-  const menuUser = () => {
+    const menuUser = () => {
       
         return      <React.Fragment>
                         <div onClick = {() => setPerfil(true)} className = 'Img-Wrap'>
@@ -130,45 +95,42 @@ const Nav = () => {
                                 {userInfo && userInfo.account === 'premium' && <div className = 'Tag'>✨</div>}
                             </div>
                             <div className = 'Name-Points'>
-                                <span className = 'Name'>Erik Martín Jordán</span>
+                                <span className = 'Name'>
+                                    {user && userInfo && userInfo.anonimo  && userInfo.nickName}
+                                    {user && userInfo && !userInfo.anonimo && user.displayName}
+                                </span>
                                 <span className = 'Points'>Nivel {level}</span>
                             </div>
                         </div>
                         <div className = 'Separator'></div>
-                        <Notifications user = {user}></Notifications>
+                        <Notifications user = {user}/>
                         <Link to = '/'       onClick = {() => setMenu(false)}>Comunidad</Link>
                         <Link to = '/blog'   onClick = {() => setMenu(false)}>Blog</Link> 
                         <Link to = '/acerca' onClick = {() => setMenu(false)} >Acerca</Link>
                         <div className = 'Separator'></div>
-                        <a onClick = {() => changeTheme()}>
-                            {theme === 'dark' 
-                            ? <ToggleButton status = 'on'  icon = '🌙'/> 
-                            : <ToggleButton status = 'off' icon = '🌞'/>
-                            }
-                        </a>
+                        <NightModeToggleButton></NightModeToggleButton>
                         <div className = 'Separator'></div>
                         <Link to = '/' onClick = {() => setPost(true)} className = 'login'>Publicar </Link>
                         <div className = 'Separator'></div>
                         <div onClick = {() => auth.signOut().then(setUser(null))} className = 'Logout'>Cerrar sesión</div>
                         <div className = 'SignIn'>{lastSignIn}</div>
                     </React.Fragment>;
-  }
+    }
     
-  return (
-      <div className = 'Nav'>
-        <div className = 'Wrap'>
-            <div className = 'Nomoresheet'>
-                <Link to = '/'>N</Link>
-            </div>
-            <div className = 'Menu'>
-                { user ? menuUser() : menuNotUser() }
-            </div>
+    return (
+        <div className = {'Nav ' + menu}>
+                <div className = 'Nomoresheet' onClick = {() => menu === 'Mobile' ? setMenu(''): setMenu('Mobile')}>
+                    <Link to = '/'>N</Link>
+                    <i className = {menu === 'Mobile' ? 'Up' : 'Down'}></i>
+                </div>
+                <div className = {'Menu ' + menu}>
+                    {user ? menuUser() : menuNotUser()}
+                </div>
+            {perfil        && <Perfil  hide = {() => setPerfil(false)}/>}
+            {login         && <Login   hide = {() => setLogin(false)}/>}
+            {post          && <NewPost hide = {() => setPost(false)}/>}
         </div>
-        {perfil && <Perfil  hide = {() => setPerfil(false)}></Perfil>}
-        {login  && <Login   hide = {() => setLogin(false)}></Login>}
-        {post   && <NewPost hide = {() => setPost(false)}></NewPost>}
-      </div>
-  );
+    );
 }
 
 export default Nav;

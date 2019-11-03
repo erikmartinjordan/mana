@@ -3,7 +3,6 @@ import ReactGA              from 'react-ga';
 import { Switch, Route }    from 'react-router-dom';
 import firebase             from '../Functions/Firebase';
 import Fingerprint          from 'fingerprintjs';
-import Perfil               from './Perfil';
 import Forum                from './Forum';
 import Detail               from './Detail';
 import Post                 from './Post';
@@ -45,7 +44,6 @@ const App  = () => {
              </Switch>
             <Switch  key = 'B'>
                 <Route exact path = '/'                    component = {Forum}/>
-                <Route exact path = '/perfil'              component = {Perfil}/>
                 <Route exact path = '/blog'                component = {Blog}/>
                 <Route exact path = '/acerca'              component = {Acerca}/>
                 <Route path = '/comunidad/post/:string'    component = {Detail}/>

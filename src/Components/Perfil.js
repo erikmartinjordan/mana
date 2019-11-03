@@ -10,7 +10,6 @@ import GetLevel from '../Functions/GetLevelAndPointsToNextLevel.js';
 import ToggleButton from '../Functions/ToggleButton.js';
 import AnonymImg from '../Functions/AnonymImg.js';
 import DeleteAccount from '../Functions/DeleteAccount.js';
-import NightModeToggleButton from '../Functions/NightModeToggleButton.js';
 import Accounts from '../Rules/Accounts.js';
 import DowngradeToFreePlan from '../Functions/DowngradeToFreePlan.js';
 import '../Styles/Perfil.css';
@@ -24,7 +23,7 @@ const Perfil = (props) => {
     const [infoUser, setInfoUser] = useState(null);
     const [lastSignIn, setLastSignIn] = useState(null);
     const [menu, setMenu] = useState('Cuenta');
-    const [render, setRender] = useState(true);
+    const [render, setRender] = useState(false);
     const [user, setUser] = useState(null);
     const [uid, setUid] = useState(null);
     const posts = GetNumberOfPosts(uid);
@@ -102,9 +101,6 @@ const Perfil = (props) => {
                         <div className = 'Item' onClick = {() => setMenu('Cuenta')}>🐨 Cuenta</div>
                         <div className = 'Item' onClick = {() => setMenu('Datos')}>📈 Datos</div>
                         <div className = 'Item' onClick = {() => setMenu('Premium')}>✨ Premium</div>
-                        <div className = 'Separator'></div>
-                        <div className = 'Item'>Modo noche <NightModeToggleButton></NightModeToggleButton></div>
-                        <div className = 'Separator'></div>
                     </div>
                     <div className = 'Last-Menu'>
                         {lastSignIn}

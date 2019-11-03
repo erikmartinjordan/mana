@@ -30,8 +30,8 @@ const Notifications = (props) => {
               notifications = keys.map( id => {
                   return [notifications[id].points, notifications[id].message, notifications[id].read, notifications[id].timeStamp] 
               });
-              setKeys({keys});
-              setNotifications({notifications});
+              setKeys(keys);
+              setNotifications(notifications);
             }
             
         });
@@ -70,7 +70,7 @@ const Notifications = (props) => {
         
       // Drawing block when there are notifications
       res = reverse.map( notification =>
-                <React.Fragment>
+                <div className = 'Notification'>
                         { printDate(Date.now(), notification[3]) !== message 
                         && <div  className = 'Notifications-Ago'> {message = printDate(Date.now(), notification[3])} </div>
                         }
@@ -89,7 +89,7 @@ const Notifications = (props) => {
                             <TimeAgo formatter = {formatter} date = {notification[3]}/>
                         </span>
                     </div>
-                </React.Fragment>
+                </div>
       );
         
       // If 0 notifications, we write it
@@ -107,7 +107,6 @@ const Notifications = (props) => {
 
     const unreadNotifications = () => {
 
-      var notifications = notifications;
       var length = notifications.length; 
       var count  = 0;
 
@@ -121,15 +120,18 @@ const Notifications = (props) => {
     
     return (
         <React.Fragment>
-            <div className = 'Notifications'>
-                <div className = 'Notifications-Icon' onClick = {this.showNotifications}>
-                    <div className = 'Notifications-Logo' onClick = {this.showNotifications}>Notificaciones</div>
-                    {notifications.length > 0 && unreadNotifications() > 0 && <span className = 'Notifications-Number'>{unreadNotifications()}</span>
-                    }
-                </div>
-                {show && <div className = 'Notifications-Menu'>{printNotifications()}</div>}
+            <div className = 'Notifications-Tag' onClick = {() => showNotifications()}>
+                <span>Notificaciones</span>
+                {notifications.length > 0 && unreadNotifications() > 0 && <span className = 'Notifications-Number'></span>}
             </div>
-                {show && <div onClick = {hideNotifications} className = 'Invisible'></div>}
+            {show &&
+                <div className = 'Notifications'>
+                    <div className = 'Notifications-Wrap'>
+                        <div className = 'Notifications-Menu'>{printNotifications()}</div>
+                    </div>
+                    <div onClick = {hideNotifications} className = 'Invisible'></div>
+                </div>
+            }
         </React.Fragment>
     );
 }

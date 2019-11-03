@@ -1,26 +1,17 @@
-.Notifications .Notifications-Icon{
+.Notifications{
     align-items: center;
+    background: rgba(15, 15, 15, 0.6);
     display: flex;
-    
-}
-.Notifications .Notifications-Icon .Notifications-Logo{
-    font-size: medium;
-}
-.Notifications .Notifications-Icon .Notifications-Logo img.emoji{
-    margin: 0 !important;
-}
-.Notifications .Notifications-Icon span.Notifications-Number{
-    align-items: center;
-    background: var(--blue);
-    border-radius: 50%;
-    color: white;
-    display: inline-flex;
-    font-size: xx-small;
-    height: 16px;
+    height: 100vh;
     justify-content: center;
-    margin-left: -10px;
-    margin-bottom: 18px;
-    width: 16px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 1;
+}
+.Notifications .Notifications-Wrap{
+    z-index: 1;
 }
 .Notifications .Notifications-Menu{
     animation: bounce 0.2s;
@@ -33,12 +24,27 @@
     color: var(--darkGray);
     font-size: small;
     height: 500px;
-    margin-left: -470px;
-    margin-top: 10px;
     width: 500px;
-    overflow-y: auto;
-    position: absolute;
+    overflow-y: scroll;
     z-index: 1;
+}
+.Notifications-Tag{
+    cursor: pointer;
+}
+.Notifications-Number{
+    align-items: center;
+    animation: gradientBG 15s ease infinite;
+    background: linear-gradient(-45deg, var(--greenMint), var(--greenMint), var(--pastelPurple), var(--red));
+    background-size: 400% 400%;
+    border-radius: 50%;
+    color: white;
+    display: inline-flex;
+    font-size: xx-small;
+    height: 6px;
+    justify-content: center;
+    margin-bottom: 7px;
+    margin-left: 3px;
+    width: 6px;
 }
 .Notifications .Notifications-Content{
     align-items: center;

@@ -358,7 +358,7 @@
 /*******************************************************************/
 .Forum.Detail{
     margin: auto;
-    max-width: 600px;
+    width: 100%;
 }
 .Forum.Detail .Likes{
     margin-right: 0px;

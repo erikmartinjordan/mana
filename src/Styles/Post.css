@@ -82,8 +82,8 @@
     color: var(--gray);
 }
 .Content img{
-    margin-left: 50%;
-    transform: translateX(-50%);
+    margin: auto;
+    max-width: 620px;
 }
 .Content img + em{
     color: var(--thirdFontColor);

@@ -22,6 +22,7 @@
 .Blog article{
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 .Blog .Title-Date-Privat{
     color: var(--primaryFontColor);

@@ -1,5 +1,7 @@
 .Nav{
     background: none;
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     max-width: 300px;
     padding: 20px;
@@ -7,20 +9,19 @@
     top: 0;
     width: 100%;
 }
-.Nav .Wrap{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
-    margin: auto;
-}
 .Nav .Nomoresheet{
+    align-items: center;
+    display: flex;
+    height: 100px;
     padding: 20px;
+}
+.Nav .Nomoresheet.Mobile{
+    display: none;
 }
 .Nav .Nomoresheet a{
     background: var(--nmsLogo);
     border-radius: 5px;
-    color: white;
+    color: white !important;
     font-family: 'Gentium Book Basic', serif;
     font-size: 30px;
     font-weight: bold;
@@ -31,13 +32,14 @@
 .Nav .Menu{
     display: flex;
     flex-direction: column;
-    flex: 2;
+    height: 100%;
+    min-height: 0;
     padding: 20px;
+    width: 100%;
 }
 .Nav .Menu a{
     color: var(--primaryFontColor);
     cursor: pointer;
-    font-size: medium;
     width: max-content;
 }
 .Nav .Menu .Progress{
@@ -126,16 +128,52 @@
     line-height: 1;
     font-size: x-small;
 }
+.Nav i{
+    display: none;
+}
 @keyframes bounce{
     0%    {opacity: 0;   transform: scale(1,1);}
     50%   {opacity: 0.5; transform: scale(1.1, 1.1);}
     100%  {opacity: 1;   transform: scale(1,1);}
 }
 @media (max-width: 768px){
-   .Nav{
-        padding: 20px;
-    } 
-    .Nav .Search input{
+    .Nav .Menu{
         display: none;
+    }
+    .Nav .Menu.Mobile{
+        display: flex;
+    }
+    .Nav{
+        height: auto;
+        max-width: 100%;
+        padding: 0;
+        position: relative;
+        width: max-content;
+    }
+    .Nav .Nomoresheet{
+        width: max-content;
+    }
+    .Nav.Mobile{
+        background: var(--bgColor);
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        width: 100vw;
+    }
+    .Nav i{
+        border: solid var(--primaryFontColor);
+        border-width: 0 1px 1px 0;
+        display: inline-block;
+        margin: 10px;
+        padding: 3px;
+        transition-duration: 0.8s;
+    }
+    .Nav i.Down {
+        transform: rotate(45deg);
+    }
+    .Nav i.Up{
+        transform: rotate(-135deg);
     }
 }
