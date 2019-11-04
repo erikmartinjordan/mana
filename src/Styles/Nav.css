@@ -150,6 +150,9 @@
         position: relative;
         width: max-content;
     }
+    .Nav .Logout{
+        margin-top: 20px;
+    }
     .Nav .Nomoresheet{
         width: max-content;
     }
