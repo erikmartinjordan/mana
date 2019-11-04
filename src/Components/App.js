@@ -38,23 +38,25 @@ const App  = () => {
     });
    
     return (
-        [<div className = 'Title-Menu'>
-            <Switch key = 'A'>
-                <Route                                     component = {Nav}/>
-             </Switch>
-            <Switch  key = 'B'>
-                <Route exact path = '/'                    component = {Forum}/>
-                <Route exact path = '/blog'                component = {Blog}/>
-                <Route exact path = '/acerca'              component = {Acerca}/>
-                <Route path = '/comunidad/post/:string'    component = {Detail}/>
-                <Route path = '/@:string'                  component = {PublicInfo}/>
-                <Route path = '/:string'                   component = {Post}/>
-                <Route                                     component = {Default}/>
+        <React.Fragment>
+            <div className = 'Title-Menu'>
+                <Switch key = 'A'>
+                    <Route                                     component = {Nav}/>
+                 </Switch>
+                <Switch  key = 'B'>
+                    <Route exact path = '/'                    component = {Forum}/>
+                    <Route exact path = '/blog'                component = {Blog}/>
+                    <Route exact path = '/acerca'              component = {Acerca}/>
+                    <Route path = '/comunidad/post/:string'    component = {Detail}/>
+                    <Route path = '/@:string'                  component = {PublicInfo}/>
+                    <Route path = '/:string'                   component = {Post}/>
+                    <Route                                     component = {Default}/>
+                </Switch>
+            </div>
+            <Switch key = 'C'>
+                <Route                                         component = {Footer}/>
             </Switch>
-        </div>,
-        <Switch key = 'C'>
-            <Route                                         component = {Footer}/>
-        </Switch>]
+        </React.Fragment>
     );
 }
 

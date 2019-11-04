@@ -186,7 +186,7 @@ const Detail = (props) => {
 
     const listTitle = () => {  
 
-      var header =  <div className = 'title'>                    
+      return    <div  key = 'title' className = 'title'>                    
                     {ready && !empty &&
                         <div className = 'detail-header'>
                             <h2>{title}</h2>
@@ -202,17 +202,14 @@ const Detail = (props) => {
                             </div>
                         </div>
                     }
-                    </div>;
-
-        return header;
-
+                </div>;
     }
 
     const listContent = () => {
 
-        var htmlMessage = message.split("\n").map(text => <p>{text}</p>);
+        var htmlMessage = message.split("\n").map((text, key) => <p key = {key}>{text}</p>);
 
-        var content = <div className = 'content'>
+        return      <div key = 'content' className = 'content'>
                         {ready && !empty && 
                             <div>
                                 <Linkify properties = {{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
@@ -225,16 +222,13 @@ const Detail = (props) => {
                             </div>
                         }
                     </div>;
-
-        return content;
-
     }
 
     const listItems = () => {
 
     var list = chat.map( (line, index) => 
 
-        <li key={line.key}>
+        <li key = {line.key}>
             <div className = 'infopost'>
                 <img alt={line.userName} src={line.userPhoto}></img>
                 <div className = 'Group'> 
@@ -247,7 +241,7 @@ const Detail = (props) => {
                 </div>
             </div> 
             <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
-                {line.message.split("\n").map(text => <p>{text}</p>)}
+                {line.message.split("\n").map((text, key) => <p key = {key}>{text}</p>)}
                 <div className = 'Meta-Post'>
                     <LikesComments post = {props.match.params.string} reply = {line.key} user = {user}></LikesComments>
                     {admin && <DeletePost type = 'reply' post = {props.match.params.string} id = {line.key} />}
@@ -255,7 +249,7 @@ const Detail = (props) => {
             </Linkify>
         </li> );
 
-    var items = <ul className = 'replies'>{list}</ul>;
+    var items = <ul key = 'replies' className = 'replies'>{list}</ul>;
 
     return items;
 
@@ -284,7 +278,7 @@ const Detail = (props) => {
 
       var load = [];
 
-      for(var i = 0; i < 10; i ++) load.push(<div className = 'Loading'></div>)
+      for(var i = 0; i < 10; i ++) load.push(<div key = {i} className = 'Loading'></div>)
 
       return load;
     }

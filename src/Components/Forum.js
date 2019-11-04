@@ -110,7 +110,7 @@ const Front = () => {
         
         // Enumerate list of posts  
         var list = array.map( (line, key) =>
-            <React.Fragment>
+            <React.Fragment key = {key}>
                 <Link to = {'/comunidad/post/' + line.key}>
                     <li className='roll' key = {key}>
                         <div className = 'roll-wrap'>
@@ -124,8 +124,8 @@ const Front = () => {
                                     <div className = 'Likes'>🌶️ {line.votes * -1}</div>
                                     <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
                                     {unique[key].map( (photo, key) =>         
-                                      <div className = 'Multi-Pic'>
-                                         <img key = {key} src = {photo}></img>
+                                      <div key = {key} className = 'Multi-Pic'>
+                                         <img src = {photo}></img>
                                       </div>
                                     )}
                                 </div>
@@ -218,7 +218,7 @@ const Front = () => {
         var posts; 
 
         posts = Object.keys(Data).map( (key) => {
-          return <div className = 'Info'>
+          return <div key = {key} className = 'Info'>
                       <div className = 'Bullet'></div>  
                       <Link to = {'/' + key}>{Data[key].title}</Link>
                  </div>
@@ -236,8 +236,8 @@ const Front = () => {
     //-------------------------------------------------------------     
     const lastComments = (numberOfComments) => { 
         
-        var content = comments.slice(0, numberOfComments).map( reply =>
-            <Link to = {'/comunidad/post/' + reply.pid} className = 'Info'>
+        var content = comments.slice(0, numberOfComments).map( (reply, key) =>
+            <Link to = {'/comunidad/post/' + reply.pid} key = {key} className = 'Info'>
                 <div className = 'Info-Wrap'>
                     <img src = {reply.userPhoto}></img>
                     <div className = 'Author-Date'>
