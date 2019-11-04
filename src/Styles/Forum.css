@@ -432,17 +432,20 @@
     color: var(--thirdFontColor);
     font-weight: 400;
 }
-.Forum.Detail span.user-verified{
+.Forum.Detail .user-info{
+    line-height: 1;
+}
+.Forum.Detail .user-verified{
     position: relative;
 }
-.Forum.Detail span.user-verified .Public-Info{
+.Forum.Detail .user-verified .Public-Info{
     color: var(--primaryFontColor);
     display: none;
     position: absolute;
     top: 15px;
     transition: opacity 0.3s ease-out;
 }
-.Forum.Detail span.user-verified:hover .Public-Info{
+.Forum.Detail .user-verified:hover .Public-Info{
     display: block;
     width: max-content;
     z-index: 99999;

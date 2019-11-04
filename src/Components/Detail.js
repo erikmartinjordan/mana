@@ -192,13 +192,14 @@ const Detail = (props) => {
                             <h2>{title}</h2>
                             <div className = 'infopost'>
                                 <img alt = {userName} src = {userPhoto}></img>
-                                <p> <span className = 'user-verified'>
+                                <div className = 'user-info'>
+                                    <div className = 'user-verified'>
                                         <Link to = {'/@' + userUid}>{userName}</Link> 
                                         <PublicInfo uid = {userUid}></PublicInfo>
                                         {verified && userUid && verified[userUid] && verified[userUid].badge}
-                                    </span>
+                                    </div>
                                     <TimeAgo formatter={formatter} date={timeStamp}/>
-                                </p>
+                                </div>
                             </div>
                         </div>
                     }
