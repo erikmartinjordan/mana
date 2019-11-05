@@ -111,7 +111,7 @@
     position: relative;
 }
 .Content .Blur-Login:after{
-    background: linear-gradient(to bottom, rgba(var(--bgColorRGB), 0), rgba(var(--bgColorRGB), 0.8));
+    background: linear-gradient(to bottom, rgba(var(--bgColorRGB), 0), rgba(var(--bgColorRGB), 0.5));
     bottom: 0;
     content: "";
     height: 100px;
