@@ -40,6 +40,9 @@
     padding: 5px;
     width: 100%;
 }
+.Public-Info .Datos .Progress{
+    margin: auto;
+}
 .Public-Info .Bar{
     background: var(--bgColor);
     border-radius: 5px;

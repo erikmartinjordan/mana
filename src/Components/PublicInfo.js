@@ -52,7 +52,7 @@ const PublicInfo = (props) => {
                         <div className = 'Title'>Impacto</div>
                         <div className = 'Num'>{views.toLocaleString()}</div>
                         {!props.uid &&
-                            <div className = 'Comment'>Se muestran el número total de visitas que han recibido los artículos publicados.</div>
+                            <div className = 'Comment'>Se muestran el número total de impresiones que han recibido tus publicaciones.</div>
                         }
                     </div>
                     <div className = 'Bloque'>
@@ -72,7 +72,7 @@ const PublicInfo = (props) => {
                     </div>
                     {!props.uid &&
                         <div className = 'Last-Articles'>
-                            <div className = 'Title'>Últimos artículos</div>
+                            <div className = 'Title'>Últimas publicaciones</div>
                             {articles.map(article => <div><Link to = {'/comunidad/post/' + article.url}>{article.title}</Link></div>)}
                         </div>
                     }
