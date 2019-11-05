@@ -16,6 +16,9 @@ const Notifications = (props) => {
     const [show, setShow] = useState(false);
 
     useEffect( () => {
+        
+        // Check if component is mounted
+        let mounted = true;
       
         // Getting the notifications 
         firebase.database().ref('notifications/' + props.user.uid).on('value', snapshot => { 
@@ -26,15 +29,23 @@ const Notifications = (props) => {
             var array = [];
 
             // Array of points and setting the state
-            if(notifications){ 
-              notifications = keys.map( id => {
-                  return [notifications[id].points, notifications[id].message, notifications[id].read, notifications[id].timeStamp] 
-              });
-              setKeys(keys);
-              setNotifications(notifications);
+            if(notifications && mounted){ 
+                notifications = keys.map( id => {
+                    return [notifications[id].points, notifications[id].message, notifications[id].read, notifications[id].timeStamp] 
+                });
+                
+                setKeys(keys);
+                setNotifications(notifications);
+                
+                keys.map( key => {
+                  firebase.database().ref('notifications/' + props.user.uid + `/${key}/read/`).transaction( read => read = true )
+                });
             }
             
         });
+        
+        // Unmounting component
+        return () => { mounted = false };
       
       
     }, []);
@@ -44,20 +55,6 @@ const Notifications = (props) => {
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );  
     });
 
-    const hideNotifications = () => setShow(false);
-
-    const showNotifications = () => {
-
-        setShow(true);
-
-        // Putting all the notifications as read
-        if(notifications)
-            keys.map( key => {
-              firebase.database().ref('notifications/' + props.user.uid + `/${key}/read/`).transaction( read => read = true )
-        });
-
-    }
-  
     const printNotifications = () => {
         
       var points;
@@ -69,8 +66,8 @@ const Notifications = (props) => {
       reverse = [...notifications].reverse();
         
       // Drawing block when there are notifications
-      res = reverse.map( notification =>
-                <div className = 'Notification'>
+      res = reverse.map( (notification, key) =>
+                <div key = {key} className = 'Notification'>
                         { printDate(Date.now(), notification[3]) !== message 
                         && <div  className = 'Notifications-Ago'> {message = printDate(Date.now(), notification[3])} </div>
                         }
@@ -105,34 +102,14 @@ const Notifications = (props) => {
         
     }
 
-    const unreadNotifications = () => {
-
-      var length = notifications.length; 
-      var count  = 0;
-
-      // Iterates through array of notifications, if read = true, increment count
-      for(var i = 0; i < length; i ++) notifications[i][2] === true && count ++;
-
-      // Returns the difference between read and unread
-      return (length - count);
-
-    }
     
     return (
-        <React.Fragment>
-            <div className = 'Notifications-Tag' onClick = {() => showNotifications()}>
-                <span>Notificaciones</span>
-                {notifications.length > 0 && unreadNotifications() > 0 && <span className = 'Notifications-Number'></span>}
+        <div className = 'Notifications'>
+            <div className = 'Notifications-Wrap'>
+                <div className = 'Notifications-Menu'>{printNotifications()}</div>
             </div>
-            {show &&
-                <div className = 'Notifications'>
-                    <div className = 'Notifications-Wrap'>
-                        <div className = 'Notifications-Menu'>{printNotifications()}</div>
-                    </div>
-                    <div onClick = {hideNotifications} className = 'Invisible'></div>
-                </div>
-            }
-        </React.Fragment>
+            <div onClick = {props.hide} className = 'Invisible'></div>
+        </div>
     );
 }
 

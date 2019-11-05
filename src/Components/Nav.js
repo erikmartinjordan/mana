@@ -6,6 +6,7 @@ import Perfil                           from './Perfil';
 import firebase, {auth}                 from '../Functions/Firebase.js';
 import NightModeToggleButton            from '../Functions/NightModeToggleButton.js';
 import NewPost                          from '../Functions/NewPost';
+import GetUnreadNotifications           from '../Functions/GetUnreadNotifications.js';
 import GetNumberOfPosts                 from '../Functions/GetNumberOfPosts.js';
 import GetNumberOfReplies               from '../Functions/GetNumberOfReplies.js';
 import GetNumberOfSpicy                 from '../Functions/GetNumberOfSpicy.js';
@@ -21,6 +22,7 @@ const Nav = () => {
     const [invisible, setInvisible] = useState(null);
     const [lastSignIn, setLastSignIn] = useState(null)
     const [menu, setMenu] = useState('');
+    const [notifications, setNotifications] = useState(false);
     const [post, setPost] = useState(false);
     const [login, setLogin] = useState(false);
     const [perfil, setPerfil] = useState(false);
@@ -103,7 +105,10 @@ const Nav = () => {
                             </div>
                         </div>
                         <div className = 'Separator'></div>
-                        <Notifications user = {user}/>
+                        <div onClick = {() => setNotifications(true)}>
+                            <span>Notificaciones</span>
+                            <GetUnreadNotifications user = {user}/>
+                        </div>
                         <Link to = '/'       onClick = {() => setMenu(false)}>Comunidad</Link>
                         <Link to = '/blog'   onClick = {() => setMenu(false)}>Blog</Link> 
                         <Link to = '/acerca' onClick = {() => setMenu(false)} >Acerca</Link>
@@ -126,9 +131,10 @@ const Nav = () => {
                 <div className = {'Menu ' + menu} onClick = {() => setMenu('')}>
                     {user ? menuUser() : menuNotUser()}
                 </div>
-            {perfil        && <Perfil  hide = {() => setPerfil(false)}/>}
-            {login         && <Login   hide = {() => setLogin(false)}/>}
-            {post          && <NewPost hide = {() => setPost(false)}/>}
+            {notifications  && <Notifications   hide = {() => setNotifications(false)} user = {user}/>}
+            {perfil         && <Perfil          hide = {() => setPerfil(false)}/>}
+            {login          && <Login           hide = {() => setLogin(false)}/>}
+            {post           && <NewPost         hide = {() => setPost(false)}/>}
         </div>
     );
 }

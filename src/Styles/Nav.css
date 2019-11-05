@@ -43,6 +43,9 @@
     cursor: pointer;
     width: max-content;
 }
+.Nav .Menu span{
+    cursor: pointer;
+}
 .Nav .Menu .Progress{
     align-items: center;
     display: flex;

@@ -59,6 +59,8 @@
     width: 100%;
 }
 .Notifications .Notifications-Photo{
+    align-items: center;
+    display: flex;
     width: 10%;
 }
 .Notifications .Notifications-Points{
@@ -100,6 +102,11 @@
 }
 .Notifications-Content-Empty .Big-Emoji{
     font-size: xx-large;
+}
+.Notifications img{
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
 }
 @keyframes bounce{
     0%    {opacity: 0;   transform: scale(1,1);}
