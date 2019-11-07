@@ -1,47 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import firebase, {auth} from '../Functions/Firebase.js';
-import { Link }    from 'react-router-dom';
-import GetNumberOfPosts from '../Functions/GetNumberOfPosts.js';
-import GetNumberOfReplies from '../Functions/GetNumberOfReplies.js';
-import GetName from '../Functions/GetName.js';
-import GetProfileImg from '../Functions/GetProfileImg.js';
-import GetNumberOfViews from '../Functions/GetNumberOfViews.js';
-import GetNumberOfSpicy from '../Functions/GetNumberOfSpicy.js';
-import GetLevel from '../Functions/GetLevelAndPointsToNextLevel.js';
-import GetPoints from '../Functions/GetPoints.js';
-import GetLastArticles from '../Functions/GetLastArticles.js';
+import React, { useState, useEffect }   from 'react';
+import { Link }                         from 'react-router-dom';
+import firebase, {auth}                 from '../Functions/Firebase.js';
+import GetNumberOfPosts                 from '../Functions/GetNumberOfPosts.js';
+import GetNumberOfReplies               from '../Functions/GetNumberOfReplies.js';
+import GetName                          from '../Functions/GetName.js';
+import GetProfileImg                    from '../Functions/GetProfileImg.js';
+import GetNumberOfViews                 from '../Functions/GetNumberOfViews.js';
+import GetNumberOfSpicy                 from '../Functions/GetNumberOfSpicy.js';
+import GetLevel                         from '../Functions/GetLevelAndPointsToNextLevel.js';
+import GetPoints                        from '../Functions/GetPoints.js';
+import GetLastArticles                  from '../Functions/GetLastArticles.js';
+import GetRankingUser                   from '../Functions/GetRankingUser.js';
 import '../Styles/PublicInfo.css';
 
 
 const PublicInfo = (props) => {
     
-  const [userUid, setUserUid] = useState(false);
-  const imgUrl = GetProfileImg(userUid);
-  const name = GetName(userUid);
-  const posts = GetNumberOfPosts(userUid);
-  const replies = GetNumberOfReplies(userUid);
-  const spicy = GetNumberOfSpicy(userUid);
-  const views = GetNumberOfViews(userUid);
-  const points = GetPoints(posts, replies, spicy)[0];
-  const level = GetLevel(points)[0];
-  const pointsToNextLevel = GetLevel(points)[1];
-  const percentage = GetLevel(points)[2];
-  const articles = GetLastArticles(userUid, 10);  
+    const [userUid, setUserUid] = useState(false);
+    const imgUrl = GetProfileImg(userUid);
+    const name = GetName(userUid);
+    const posts = GetNumberOfPosts(userUid);
+    const replies = GetNumberOfReplies(userUid);
+    const spicy = GetNumberOfSpicy(userUid);
+    const views = GetNumberOfViews(userUid);
+    const points = GetPoints(posts, replies, spicy)[0];
+    const level = GetLevel(points)[0];
+    const pointsToNextLevel = GetLevel(points)[1];
+    const percentage = GetLevel(points)[2];
+    const articles = GetLastArticles(userUid, 10); 
+    const ranking = GetRankingUser(userUid);
     
-  useEffect( () => {
-      
+    
+    useEffect( () => {
+
       // Getting UID of the user
       var uid;
-      
+
       // From props or from URL
       uid = props.uid ? props.uid : props.match.params.string;
-      
+
       // Setting state
       setUserUid(uid);
-  
-  });
-                                                                    
-  return (
+
+    });
+        
+    return (
           <div className = 'Public-Info'>
                 <div className = 'Datos'>
                     <div className = {'Progress ProgressBar-' + percentage}>
@@ -49,17 +52,17 @@ const PublicInfo = (props) => {
                     </div>
                     <h2>{name}</h2>
                     <div className = 'Bloque'>
+                        <div className = 'Title'>Puntos {ranking && <span className = 'Ranking'>{ranking}</span>}</div>
+                        <div className = 'Num'>{points.toLocaleString()}</div>
+                        {!props.uid &&
+                            <div className = 'Comment'>Se muestran el número de puntos totales conseguidos hasta el momento.</div>
+                        }
+                    </div>
+                    <div className = 'Bloque'>
                         <div className = 'Title'>Impacto</div>
                         <div className = 'Num'>{views.toLocaleString()}</div>
                         {!props.uid &&
                             <div className = 'Comment'>Se muestran el número total de impresiones que han recibido tus publicaciones.</div>
-                        }
-                    </div>
-                    <div className = 'Bloque'>
-                        <div className = 'Title'>Puntos</div>
-                        <div className = 'Num'>{points.toLocaleString()}</div>
-                        {!props.uid &&
-                            <div className = 'Comment'>Se muestran el número de puntos totales conseguidos hasta el momento.</div>
                         }
                     </div>
                     <div className = 'Bloque'>
@@ -78,7 +81,7 @@ const PublicInfo = (props) => {
                     }
                 </div>
             </div>
-  );
+    );
 }
 
 export default PublicInfo;
