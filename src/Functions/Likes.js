@@ -1,87 +1,80 @@
-import React, { Component } from 'react';
-import firebase from './Firebase.js';
-import Login from '../Components/Login';
-import nmsNotification from './InsertNotificationIntoDatabase.js';
+import React, { useState, useEffect }   from 'react';
+import firebase                         from './Firebase.js';
+import nmsNotification                  from './InsertNotificationIntoDatabase.js';
+import Login                            from '../Components/Login';
 
-class Likes extends Component {  
+const Likes = (props) => {  
     
-  constructor(){
-        super();
-        this.state = {
-            capture: null,
-            forbid: false,
-            render: false,
-            userid: null,
-            votes: 0
-        }
-      
-  }
-    
-  componentDidMount = () => {
-            
-        firebase.database().ref('posts/' + this.props.post).on('value', snapshot => { 
+    const [capture, setCapture] = useState(null);
+    const [forbid, setForbid]   = useState(false);
+    const [render, setRender]   = useState(false);
+    const [userid, setUserid]   = useState(null);
+    const [votes, setVotes]     = useState(0);
+        
+    useEffect( () => {
+       
+        firebase.database().ref('posts/' + props.post).on('value', snapshot => { 
 
             var capture = snapshot.val();            
             
-            if(capture) 
-                this.setState({ 
-                    capture: capture,
-                    userid: capture.userUid,
-                    votes: capture.votes 
-                });
-
+            if(capture) {
+                
+                setCapture(capture);
+                setUserid(capture.userUid);
+                setVotes(capture.votes);
+            }
+            
         });
-      
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-  }
-  
-  componentDidUpdate = () => { window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} ); }
-
-  showBanner = () => this.setState({render: true}); 
-  hideBanner = () => this.setState({render: false});
+        
+    },[]);
+    
+    useEffect( () => {
+        
+        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} ) 
+    
+    });
    
-  handleVote = (e) => { 
-      
+    const handleVote = (e) => { 
+
       var vote = true;
-  
-      if(typeof this.state.capture.voteUsers === 'undefined'){
-          firebase.database().ref('posts/' + this.props.post + '/voteUsers/' + this.props.user.uid).set({ vote: vote });
-          firebase.database().ref('posts/' + this.props.post + '/votes/').transaction( value => value - 1 );
+
+      if(typeof capture.voteUsers === 'undefined'){
           
-          nmsNotification(this.state.userid, 'chili', 'add');
+          firebase.database().ref('posts/' + props.post + '/voteUsers/' + props.user.uid).set({ vote: vote });
+          firebase.database().ref('posts/' + props.post + '/votes/').transaction( value => value - 1 );
+
+          nmsNotification(userid, 'chili', 'add');
       }
-      else if(typeof this.state.capture.voteUsers[this.props.user.uid] === 'undefined'){
-          firebase.database().ref('posts/' + this.props.post + '/voteUsers/' + this.props.user.uid).set({ vote: vote });
-          firebase.database().ref('posts/' + this.props.post + '/votes/').transaction( value => value - 1 );
+      else if(typeof capture.voteUsers[props.user.uid] === 'undefined'){
           
-          nmsNotification(this.state.userid, 'chili', 'add');
+          firebase.database().ref('posts/' + props.post + '/voteUsers/' + props.user.uid).set({ vote: vote });
+          firebase.database().ref('posts/' + props.post + '/votes/').transaction( value => value - 1 );
+
+          nmsNotification(userid, 'chili', 'add');
       }
       else{
-          this.state.capture.voteUsers[this.props.user.uid].vote === true ? vote = false : vote = true;
-          firebase.database().ref('posts/' + this.props.post + '/voteUsers/' + this.props.user.uid).set({ vote: vote });
-          if(vote === true ) firebase.database().ref('posts/' + this.props.post + '/votes/').transaction( value => value - 1 );
-          if(vote === false) firebase.database().ref('posts/' + this.props.post + '/votes/').transaction( value => value + 1 );
-          
-          if(vote === true)  nmsNotification(this.state.userid, 'chili', 'add');
-          if(vote === false) nmsNotification(this.state.userid, 'chili', 'sub');
-          
-      }
-      
-      e.preventDefault();
-      
-  }
+          capture.voteUsers[props.user.uid].vote === true ? vote = false : vote = true;
+          firebase.database().ref('posts/' + props.post + '/voteUsers/' + props.user.uid).set({ vote: vote });
+          if(vote === true ) firebase.database().ref('posts/' + props.post + '/votes/').transaction( value => value - 1 );
+          if(vote === false) firebase.database().ref('posts/' + props.post + '/votes/').transaction( value => value + 1 );
 
-  render() {
+          if(vote === true)  nmsNotification(userid, 'chili', 'add');
+          if(vote === false) nmsNotification(userid, 'chili', 'sub');
+
+      }
+
+      e.preventDefault();
+
+    }
 
     return (
       <div className = 'Likes'>
-            <div className="votes">
-                <span onClick={this.props.user ? this.handleVote : this.showBanner}>🌶️ {this.state.votes * -1}</span>
+            <div className = 'votes'>
+                <span onClick = {props.user ? (e) => handleVote(e) : () => setRender(true)}>🌶️ {votes * -1}</span>
             </div>
-            {this.state.render ? <Login hide = {this.hideBanner}></Login> : null}
+            {render && <Login hide = {() => setRender(false)}></Login>}
       </div>    
     );
-  }
 }
 
 export default Likes;
