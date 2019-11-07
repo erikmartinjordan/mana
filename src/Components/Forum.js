@@ -51,16 +51,24 @@ const Front = () => {
     //
     //------------------------------------------------------------- 
     useEffect( () => {
+        
+        // Component is mounted
+        let mounted = true;
             
         // Checking if there is user and setting admin profile
         auth.onAuthStateChanged( user => {
             if(user){
-                if(user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2') setAdmin(true);
-                setUser(user);
+                
+                let admin = (user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2') ? true : false;
+                
+                if(mounted){
+                    
+                    setAdmin(admin);
+                    setUser(user)
+                    
+                }
             }
-            else{
-                setUser(null);
-            }
+
         });
         
         // Getting the posts 
@@ -79,10 +87,18 @@ const Front = () => {
                         
             posts.reverse();
             
-            setChat(posts);
-            setReady(true);
+            if(mounted){
+                
+                setChat(posts);
+                setReady(true);
+                
+            }
             
         });
+        
+        // Component is unmounted
+        return () => {mounted = false};
+        
     }, []);
        
     //-------------------------------------------------------------

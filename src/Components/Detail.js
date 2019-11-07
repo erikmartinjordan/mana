@@ -58,18 +58,30 @@ const Detail = (props) => {
     
     // Getting data will only get called one time
     useEffect ( () => {
+        
+        // Component is mounted
+        let mounted = true;
 
         // Setting user and admin
         auth.onAuthStateChanged( (user) => {
 
             if(user){
-              // Is user anonymous?
-              firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
+                
+                // Checking admin
+                let admin = (user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2') ? true : false;
+                
+                if(mounted){
+                    setAdmin(admin);
+                    setUser(user);
+                }
+                  
+                // Is user anonymous?
+                firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
 
                     // If the user is anonymous, set the nickname and avatar
                     var anonimo = snapshot.val().anonimo;
 
-                    if(anonimo){
+                    if(anonimo && mounted){
                         setnickName(snapshot.val().nickName);
                         setAvatar(snapshot.val().avatar);
                     }
@@ -77,14 +89,15 @@ const Detail = (props) => {
                     // Selecting timespan between messages and max Length depending on type of account
                     var typeOfAccount = snapshot.val().account ? snapshot.val().account : 'free';
 
-                    setMaxLength(Accounts[typeOfAccount].messages.maxLength);
-                    setTimeLimit(Accounts[typeOfAccount].messages.timeSpanReplies);
-
-                    if(user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2') setAdmin(true);
-
-              });
-
-              setUser(user); 
+                    if(mounted){
+                        
+                        setMaxLength(Accounts[typeOfAccount].messages.maxLength);
+                        setTimeLimit(Accounts[typeOfAccount].messages.timeSpanReplies);
+                        
+                    }
+                    
+                });
+            
             }
         });
 
@@ -94,24 +107,26 @@ const Detail = (props) => {
             var capture = snapshot.val();
 
             if(capture){
-
-                setEmpty(false);
-                setMessage(capture.message);
-                setTimeStamp(capture.timeStamp);
-                setTitle(capture.title);
-                setUserName(capture.userName);
-                setUserPhoto(capture.userPhoto);
-                setUserUid(capture.userUid);
-                setViews(capture.views);
-
+                
+                if(mounted){
+                    setEmpty(false);
+                    setMessage(capture.message);
+                    setTimeStamp(capture.timeStamp);
+                    setTitle(capture.title);
+                    setUserName(capture.userName);
+                    setUserPhoto(capture.userPhoto);
+                    setUserUid(capture.userUid);
+                    setViews(capture.views);
+                }
+                
                 //Increase number of views of the post
                 firebase.database().ref('posts/' + props.match.params.string + '/views').transaction( (value) =>  value + 1 );
-
+                
                 // Increase number of views in the user's profile
                 firebase.database().ref('users/' + capture.userUid + '/postsViews').transaction( (value) => value + 1);
-
+                
             }
-
+            
         });
 
         // Load all the replies of the post
@@ -128,11 +143,14 @@ const Detail = (props) => {
                 array.push(item);
 
             });
-
-            setChat(array);
-            setReady(true);
-
+            
+            if(mounted){
+                setChat(array);
+                setReady(true);
+            }
         });
+        
+        return () => {mounted = false};
 
     }, []);
 

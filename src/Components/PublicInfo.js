@@ -32,15 +32,21 @@ const PublicInfo = (props) => {
     
     
     useEffect( () => {
+        
+        // Component is mounted
+        let mounted = true;
 
-      // Getting UID of the user
-      var uid;
+        // Getting UID of the user
+        var uid;
 
-      // From props or from URL
-      uid = props.uid ? props.uid : props.match.params.string;
+        // From props or from URL
+        uid = props.uid ? props.uid : props.match.params.string;
 
-      // Setting state
-      setUserUid(uid);
+        // Setting state
+        if(mounted) setUserUid(uid);
+        
+        // Unmounting
+        return () => {mounted = false};
 
     });
         

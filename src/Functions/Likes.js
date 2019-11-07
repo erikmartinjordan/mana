@@ -12,12 +12,15 @@ const Likes = (props) => {
     const [votes, setVotes]     = useState(0);
         
     useEffect( () => {
-       
+    
+        // Component is mounted
+        let mounted = true;
+        
         firebase.database().ref('posts/' + props.post).on('value', snapshot => { 
 
             var capture = snapshot.val();            
             
-            if(capture) {
+            if(capture && mounted) {
                 
                 setCapture(capture);
                 setUserid(capture.userUid);
@@ -25,6 +28,9 @@ const Likes = (props) => {
             }
             
         });
+        
+        // Unmounting component
+        return () => {mounted = false};
         
     },[]);
     
