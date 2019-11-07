@@ -56,15 +56,9 @@ const GetRankingUser = (userUid) => {
     // Ranking
     let rank = ( (index + 1) / users.length);
     
-    console.log(sorted);
-    console.log(sortedUids);
-    console.log(index);
-    console.log(rank);
-    console.log(isFinite(rank));
+    // Generating res
+    var res = (isFinite(rank) && rank < 0.4) ? `top ${Math.round(rank * 100)} %` : null ;
     
-    var res = (isFinite(rank) && rank < 0.4) ? `${Math.round(rank * 100)} %` : null ;
-    
-    console.log(res)
         
     return res ;
 }
