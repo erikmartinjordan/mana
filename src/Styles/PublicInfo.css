@@ -58,3 +58,10 @@
     border-bottom: 3px solid var(--bgColor);
     font size: small;
 }
+.Public-Info .Ranking{
+    background: var(--blue);
+    border-radius: 5px;
+    color: white;
+    font-size: x-small;
+    padding: 5px;
+}
