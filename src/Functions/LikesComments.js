@@ -1,78 +1,72 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from './Firebase.js';
 import Login from '../Components/Login';
 
-class LikesComments extends Component {  
+const LikesComments = (props) => {  
     
-  constructor(){
-        super();
-        this.state = {
-            capture: null,
-            forbid: false,
-            render: false,
-            votes: 0
-        }
-      
-  }
+    const [capture, setCapture] = useState(null);
+    const [forbid, setForbid] = useState(false);
+    const [render, setRender] = useState(false);
+    const [userid, setUserid] = useState(null);
+    const [votes, setVotes] = useState(0);
     
-  componentDidMount = () => {
-            
-        firebase.database().ref('posts/' + this.props.post + '/replies/'  + this.props.reply).on('value', (snapshot) => { 
+    useEffect( () => { 
+        
+        // Component is mounted
+        let mounted = true;
+        
+        firebase.database().ref('posts/' + props.post + '/replies/'  + props.reply).on('value', snapshot => { 
 
             var capture = snapshot.val();            
             
-            if(capture) {
+            if(capture && mounted) {
                 
-                if(typeof capture.votes === 'undefined')   this.setState({ capture: capture})
-                else                                       this.setState({ capture: capture, votes: capture.votes}) 
+                let uid   = capture.userUid;
+                let votes = capture.voteUsers ? Object.keys(capture.voteUsers).length : 0;
                 
+                setCapture(capture);
+                setUserid(uid);
+                setVotes(votes);
             }
-
+            
         });
-      
+        
+        // Unmounting component
+        return () => {mounted = false};
+        
+    }, []);
+    
+    useEffect( () => {
+            
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-  } 
-  
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-  
-  showBanner = () => this.setState({render: true});     
-  hideBanner = () => this.setState({render: false});
-   
-  handleVote = (e) => { 
-      
-      var vote = true;
-  
-      if(typeof this.state.capture.voteUsers === 'undefined'){
-          firebase.database().ref('posts/' + this.props.post + '/replies/' + this.props.reply + '/voteUsers/' + this.props.user.uid).set({ vote: vote });
-          firebase.database().ref('posts/' + this.props.post + '/replies/' + this.props.reply + '/votes/').transaction( value => value - 1 );
-      }
-      else if(typeof this.state.capture.voteUsers[this.props.user.uid] === 'undefined'){
-          firebase.database().ref('posts/' + this.props.post + '/replies/' + this.props.reply + '/voteUsers/' + this.props.user.uid).set({ vote: vote });
-          firebase.database().ref('posts/' + this.props.post + '/replies/' + this.props.reply + '/votes/').transaction( value => value - 1 );
-      }
-      else{
-          this.state.capture.voteUsers[this.props.user.uid].vote === true ? vote = false : vote = true;
-          firebase.database().ref('posts/' + this.props.post + '/replies/' + this.props.reply + '/voteUsers/' + this.props.user.uid).set({ vote: vote });
-          if(vote === true ) firebase.database().ref('posts/' + this.props.post + '/replies/' + this.props.reply + '/votes/').transaction( value => value - 1 );
-          if(vote === false) firebase.database().ref('posts/' + this.props.post + '/replies/' + this.props.reply + '/votes/').transaction( value => value + 1 );
-          
-      }
-      
-      e.preventDefault();
-      
-  }
-
-  render() {
+        
+    });
+    
+    const handleVote = async (e) => {
+        
+        // Capturing likes object
+        let capture = await firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/').once('value');
+        
+        // Getting the fingerprint of the users
+        let users = capture.val() ? Object.keys(capture.val()) : [];
+        console.log(users);
+        
+        // If user liked the post already, remove the branch
+        // In other case, add it
+        users.indexOf(userid) === -1
+        ? firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/' + props.user.uid).transaction( value => true)
+        : firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/' + props.user.uid).remove();
+        
+    }
 
     return (
-      <div className="likes-comments">
-            <div className="votes">
-                <span onClick={this.props.user ? this.handleVote : this.showBanner}>👏 {this.state.votes * -1 > 0 ? this.state.votes * -1 : null}</span>
+      <div className = 'likes-comments'>
+            <div className = 'votes'>
+                <span onClick = {props.user ? (e) => handleVote(e) : () => setRender(true)}>👏 {votes}</span>
             </div>
-            {this.state.render ? <Login hide = {this.hideBanner}></Login> : null}
+            {render && <Login hide = {() => setRender(false)}></Login>}
       </div>    
     );
-  }
 }
 
 export default LikesComments;
