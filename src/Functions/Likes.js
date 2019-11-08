@@ -22,9 +22,12 @@ const Likes = (props) => {
             
             if(capture && mounted) {
                 
+                let uid   = capture.userUid;
+                let votes = capture.voteUsers ? Object.keys(capture.voteUsers).length : 0;
+                
                 setCapture(capture);
-                setUserid(capture.userUid);
-                setVotes(capture.votes);
+                setUserid(uid);
+                setVotes(votes);
             }
             
         });
@@ -37,46 +40,34 @@ const Likes = (props) => {
     useEffect( () => {
         
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} ) 
-    
+        
     });
-   
-    const handleVote = (e) => { 
-
-      var vote = true;
-
-      if(typeof capture.voteUsers === 'undefined'){
-          
-          firebase.database().ref('posts/' + props.post + '/voteUsers/' + props.user.uid).set({ vote: vote });
-          firebase.database().ref('posts/' + props.post + '/votes/').transaction( value => value - 1 );
-
-          nmsNotification(userid, 'chili', 'add');
-      }
-      else if(typeof capture.voteUsers[props.user.uid] === 'undefined'){
-          
-          firebase.database().ref('posts/' + props.post + '/voteUsers/' + props.user.uid).set({ vote: vote });
-          firebase.database().ref('posts/' + props.post + '/votes/').transaction( value => value - 1 );
-
-          nmsNotification(userid, 'chili', 'add');
-      }
-      else{
-          capture.voteUsers[props.user.uid].vote === true ? vote = false : vote = true;
-          firebase.database().ref('posts/' + props.post + '/voteUsers/' + props.user.uid).set({ vote: vote });
-          if(vote === true ) firebase.database().ref('posts/' + props.post + '/votes/').transaction( value => value - 1 );
-          if(vote === false) firebase.database().ref('posts/' + props.post + '/votes/').transaction( value => value + 1 );
-
-          if(vote === true)  nmsNotification(userid, 'chili', 'add');
-          if(vote === false) nmsNotification(userid, 'chili', 'sub');
-
-      }
-
-      e.preventDefault();
-
+    
+    const handleVote = async (e) => {
+        
+        // Capturing likes object
+        let capture = await firebase.database().ref('posts/' + props.post + '/voteUsers/').once('value');
+        
+        // Getting the fingerprint of the users
+        let users = capture.val() ? Object.keys(capture.val()) : [];
+        
+        // If user liked the post already, remove the branch
+        // In other case, add it
+        users.indexOf(userid) === -1
+        ? firebase.database().ref('posts/' + props.post + '/voteUsers/' + props.user.uid).transaction( value => true)
+        : firebase.database().ref('posts/' + props.post + '/voteUsers/' + props.user.uid).remove();
+        
+        // Sending notification to user
+        users.indexOf(userid) === -1
+        ? nmsNotification(userid, 'chili', 'add')
+        : nmsNotification(userid, 'chili', 'sub');
+        
     }
-
+    
     return (
       <div className = 'Likes'>
             <div className = 'votes'>
-                <span onClick = {props.user ? (e) => handleVote(e) : () => setRender(true)}>🌶️ {votes * -1}</span>
+                <span onClick = {props.user ? (e) => handleVote(e) : () => setRender(true)}>🌶️ {votes}</span>
             </div>
             {render && <Login hide = {() => setRender(false)}></Login>}
       </div>    
