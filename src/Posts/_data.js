@@ -1,4 +1,10 @@
 var data = {
+    'airbnb': {
+        'title': 'Kuala Lumpur, cumpleaños y AirBnB',
+        'date': [8, 'Noviembre', 2019],
+        'description': 'Hace un par de semanas aterrizamos en Kuala Lumpur. El viaje fue obligado (pero gustoso) por la caducidad de mi visado tailandés. Además, dio la casualidad de que la fecha límite de salida de Tailandia era justo un día antes de mi cumpleaños. Viaje y cumpleaños significa matar dos pájaros de un tiro.',
+        'privat': true
+    },
     'visado-tailandes-desde-malasia': {
         'title': 'Visado tailandés desde Malasia',
         'date': [30, 'Octubre', 2019],
