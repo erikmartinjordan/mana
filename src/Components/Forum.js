@@ -137,8 +137,8 @@ const Front = () => {
                                     <p>{line.userName} <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
                                 </div>
                                 <div className = 'Meta-Post'>
-                                    <div className = 'Likes'>🌶️ {line.votes * -1}</div>
-                                    <div className = 'Comments'>{line.replies ? '💬 ' + Object.keys(line.replies).length : '💬 0'}</div>
+                                    <div className = 'Likes'>   🌶️ {line.voteUsers  ? Object.keys(line.voteUsers).length : 0}</div>
+                                    <div className = 'Comments'>💬 {line.replies    ? Object.keys(line.replies).length   : 0}</div>
                                     {unique[key].map( (photo, key) =>         
                                       <div key = {key} className = 'Multi-Pic'>
                                          <img src = {photo}></img>
