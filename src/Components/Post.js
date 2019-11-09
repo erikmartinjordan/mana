@@ -184,10 +184,12 @@ const Post = (props) => {
                                 <span className = 'Tag Yellow'>Ver hoteles →</span>
                             </a>
                             }
+                            {!user &&
                             <a onClick = {() => setRender(true)} className = 'Otro'>
                                 <p>👋 Accede a Nomoresheet para votar y comentar.</p>
                                 <span className = 'Access'>Acceder →</span>
-                            </a>
+                            </a>    
+                            }
                             {relatedContent()}
                         </div>
                     </div>
