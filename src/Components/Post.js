@@ -19,7 +19,7 @@ const Post = (props) => {
     const [text, setText] = useState(null);
     const [title, setTitle] = useState('');
     const [user, setUser] = useState(false);
-    const [views, setViews] = useState(null);
+    const [views, setViews] = useState(0);
     const url = props.match.params.string;
     
     useEffect( () => {
@@ -95,8 +95,11 @@ const Post = (props) => {
         let random;
         let res;
         let nArticles;
-
-        nArticles = (views && views > 1000) ? 3 : 4;
+        
+        if(user  && views <= 1000) nArticles = 5;
+        if(user  && views >  1000) nArticles = 4;
+        if(!user && views <= 1000) nArticles = 4;
+        if(!user && views >  1000) nArticles = 3;
 
         array = Object.keys(Data);
         random = Math.floor(Math.random() * (array.length - nArticles));
