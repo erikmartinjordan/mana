@@ -147,7 +147,7 @@ const Post = (props) => {
                         </div>
                         <div className = 'Login-Box'>
                             <h3>Lee la historia completa</h3>
-                            <p>Para poder seguir leyendo este artículo y {privatPosts} más, accede a la comunidad.</p>
+                            <p>Para poder seguir leyendo este artículo y {privatPosts} más, accede a Nomoresheet.</p>
                             <a className = 'login' onClick = {() => setRender(true)}>Acceder</a>
                         </div>
                     </React.Fragment>
