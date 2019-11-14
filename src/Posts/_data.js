@@ -1,4 +1,10 @@
 var data = {
+    'inmigracion-tailandia': {
+        'title': 'Detenido en el control de inmigración',
+        'date': [14, 'Noviembre', 2019],
+        'description': 'Hace un par de días aterricé en Tailandia de nuevo. Llegué por primera vez el 18 de junio de este año, por lo que llevo viviendo aproximadamente unos cuatro meses en Bangkok.',
+        'privat': true
+    },
     'airbnb': {
         'title': 'Kuala Lumpur, cumpleaños y AirBnB',
         'date': [8, 'Noviembre', 2019],
