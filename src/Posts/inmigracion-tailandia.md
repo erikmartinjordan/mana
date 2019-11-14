@@ -30,7 +30,7 @@ Y con cara de haber escuchado la misma historia quinientas veces, me dicen que e
 
 Genial. Estupendo. ¿Alernativas? Que me case, que pague una 'Visa Élite', o que me saque el visado de estudiante. 
 
-Que el dinero manda en el Reino de Siam queda claro en el momento que ofrecen una 'Visa Élite' para aquellos afortunados que puedan poner 1 millón de bahts sobre la mesa.
+Que el dinero manda en el Reino de Siam queda claro en el momento que ofrecen una 'Visa Élite' para aquellos afortunados que puedan poner un millón de bahts sobre la mesa.
 
 ## Pero, ¿vale la pena tanto elitismo?
 
@@ -40,6 +40,6 @@ Pero le falta muy mucho para tratar de convertirse en un país elitista y este t
 
 Ya sabemos que Tailandia no vive del turismo. Que la región *per se* es un motor económico del Sudeste Asiático. Pero todo suma como dijo aquel. Y si vamos haciendo cuentas, entre el mal aspecto que presenta el baht (que ha subido más de un 20% desde el 2015), los controles de inmigración lentos y estrictos, el nefasto tráfico de Bangkok junto a la bendita contaminación, hacen que la llegada a Tailandia sea cuanto menos, poco apetecible. 
 
-Yo, sinceramente, no lo acabo de entender. Los jóvenes que llegan con un portátil entre sus rodillas deberían tener una alfombra roja, porque a pesar de no pagar impuestos en el país, dejan sus billetes en él. Sin afectar en nada al trabajo de la gente local.
+Yo, sinceramente, no lo acabo de entender. Los jóvenes que llegan con un portátil entre sus rodillas deberían ser bienvenidos, porque a pesar de no pagar impuestos en el país, dejan sus billetes en él. Sin afectar en nada al trabajo de la gente local.
 
 Pero, en fin, ellos sabrán lo que hacen.
