@@ -63,6 +63,8 @@ const Nav = () => {
 
               setUser(user); 
               setUid(user.uid);
+              
+              console.log(user);
           }
           
           else{
@@ -98,8 +100,9 @@ const Nav = () => {
                             </div>
                             <div className = 'Name-Points'>
                                 <span className = 'Name'>
-                                    {user && userInfo && userInfo.anonimo  && userInfo.nickName}
-                                    {user && userInfo && !userInfo.anonimo && user.displayName}
+                                    {user && userInfo  && userInfo.anonimo  && userInfo.nickName}
+                                    {user && userInfo  && !userInfo.anonimo && user.displayName}
+                                    {user && !userInfo && user.displayName}
                                 </span>
                                 <span className = 'Points'>Nivel {level}</span>
                             </div>

@@ -111,16 +111,18 @@ const Perfil = (props) => {
                     <div className = 'Bloque'>
                         <div className = 'Title'>Imagen</div>
                         <div className = {'Progress ProgressBar-' + percentage}>
-                            {user && infoUser && infoUser.anonimo  && <img src = {infoUser.avatar}></img>}
-                            {user && infoUser && !infoUser.anonimo && <img src = {user.photoURL}></img>}
-                            {user && infoUser && infoUser.account === 'premium' && <div className = 'Tag'>✨</div>}
+                            {user && infoUser  && infoUser.anonimo  && <img src = {infoUser.avatar}></img>}
+                            {user && infoUser  && !infoUser.anonimo && <img src = {user.photoURL}></img>}
+                            {user && infoUser  && infoUser.account === 'premium' && <div className = 'Tag'>✨</div>}
+                            {user && !infoUser && <img src = {user.photoURL}></img>}
                         </div>
                     </div>
                     <div className = 'Bloque'>
                         <div className = 'Title'>Nombre</div>
                         <div className = 'Num'>
-                            {user && infoUser && infoUser.anonimo  && infoUser.nickName}
-                            {user && infoUser && !infoUser.anonimo && user.displayName}
+                            {user && infoUser  && infoUser.anonimo  && infoUser.nickName}
+                            {user && infoUser  && !infoUser.anonimo && user.displayName}
+                            {user && !infoUser && user.displayName}
                         </div>
                         <div className = 'Comment'>Nombre que se muestra públicamente.</div>
                     </div>
