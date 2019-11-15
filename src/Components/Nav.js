@@ -64,7 +64,6 @@ const Nav = () => {
               setUser(user); 
               setUid(user.uid);
               
-              console.log(user);
           }
           
           else{
