@@ -13,12 +13,13 @@ const GetLastComments = () => {
     const [replies, setReplies] = useState(null);
    
     useEffect( () => {
-        
-        var res = [];
-        var sorted = [];
-        var content = [];
-          
-        !replies && firebase.database().ref('posts/').on('value', snapshot => { 
+      
+        firebase.database().ref('posts/').on('value', snapshot => { 
+            
+            // Declaring variables
+            var res = [];
+            var sorted = [];
+            var content = [];
             
             // Capturing data
             var posts = snapshot.val(); 
@@ -62,8 +63,8 @@ const GetLastComments = () => {
         // Drawing emojies in svg
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
                   
-    }, [replies]);
-            
+    }, []);
+        
     return replies;
           
 }
