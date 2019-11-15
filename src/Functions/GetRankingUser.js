@@ -47,7 +47,7 @@ const GetRankingUser = (userUid) => {
     const array = users.map( (_, i) => [users[i], posts[i], replies[i], spicy[i], applauses[i], points[i]] );
         
     // Sorting array by points
-    const sorted = array.sort( (a, b) => a[4] > b[4] ? -1 : 1);
+    const sorted = array.sort( (a, b) => a[5] > b[5] ? -1 : 1);
     
     // Getting firs position of sorted array -> userUids
     const sortedUids = sorted.map(array => array[0]);
