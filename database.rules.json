@@ -56,6 +56,12 @@
             },
             "subscriptionId":{
               ".write": "auth != null"
+            },
+            "profileViews":{
+              ".write": "true"
+            },
+            "profileLastSeen":{
+              ".write": "true"
             }
         }
     },
