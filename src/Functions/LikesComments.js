@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import firebase from './Firebase.js';
-import Login from '../Components/Login';
+import React, { useEffect, useState }   from 'react';
+import firebase                         from './Firebase.js';
+import nmsNotification                  from './InsertNotificationIntoDatabase.js';
+import Login                            from '../Components/Login';
 
 const LikesComments = (props) => {  
     
@@ -56,6 +57,11 @@ const LikesComments = (props) => {
         users.indexOf(userid) === -1
         ? firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/' + props.user.uid).transaction( value => true)
         : firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/' + props.user.uid).remove();
+        
+        // Sending notification to user
+        users.indexOf(userid) === -1
+        ? nmsNotification(userid, 'applause', 'add')
+        : nmsNotification(userid, 'applause', 'sub');
         
     }
 

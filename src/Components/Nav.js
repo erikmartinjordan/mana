@@ -10,6 +10,7 @@ import GetUnreadNotifications           from '../Functions/GetUnreadNotification
 import GetNumberOfPosts                 from '../Functions/GetNumberOfPosts.js';
 import GetNumberOfReplies               from '../Functions/GetNumberOfReplies.js';
 import GetNumberOfSpicy                 from '../Functions/GetNumberOfSpicy.js';
+import GetNumberOfApplauses             from '../Functions/GetNumberOfApplauses.js';
 import GetPoints                        from '../Functions/GetPoints.js';
 import GetLevel                         from '../Functions/GetLevelAndPointsToNextLevel.js';
 import ToggleButton                     from '../Functions/ToggleButton.js';
@@ -34,7 +35,8 @@ const Nav = () => {
     const posts = GetNumberOfPosts(uid);
     const replies = GetNumberOfReplies(uid);
     const spicy = GetNumberOfSpicy(uid);
-    const points = GetPoints(posts, replies, spicy)[0];
+    const applauses = GetNumberOfApplauses(uid);
+    const points = GetPoints(posts, replies, spicy, applauses)[0];
     const level = GetLevel(points)[0];
     const percentage = GetLevel(points)[2];
 

@@ -10,6 +10,7 @@ import GetName                          from '../Functions/GetName.js';
 import GetProfileImg                    from '../Functions/GetProfileImg.js';
 import GetNumberOfViews                 from '../Functions/GetNumberOfViews.js';
 import GetNumberOfSpicy                 from '../Functions/GetNumberOfSpicy.js';
+import GetNumberOfApplauses             from '../Functions/GetNumberOfApplauses.js';
 import GetLevel                         from '../Functions/GetLevelAndPointsToNextLevel.js';
 import GetPoints                        from '../Functions/GetPoints.js';
 import GetLastArticles                  from '../Functions/GetLastArticles.js';
@@ -28,8 +29,9 @@ const PublicInfo = (props) => {
     const posts = GetNumberOfPosts(userUid);
     const replies = GetNumberOfReplies(userUid);
     const spicy = GetNumberOfSpicy(userUid);
+    const applauses = GetNumberOfApplauses(userUid);
     const views = GetNumberOfViews(userUid);
-    const points = GetPoints(posts, replies, spicy)[0];
+    const points = GetPoints(posts, replies, spicy, applauses)[0];
     const level = GetLevel(points)[0];
     const pointsToNextLevel = GetLevel(points)[1];
     const percentage = GetLevel(points)[2];

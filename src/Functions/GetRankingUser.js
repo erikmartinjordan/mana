@@ -2,6 +2,7 @@ import React, { useState, useEffect }   from 'react';
 import GetNumberOfPosts                 from './GetNumberOfPosts.js';
 import GetNumberOfReplies               from './GetNumberOfReplies.js';
 import GetNumberOfSpicy                 from './GetNumberOfSpicy.js';
+import GetNumberOfApplauses             from './GetNumberOfApplauses.js';
 import GetPoints                        from './GetPoints.js';
 import firebase                         from './Firebase.js';
 
@@ -34,15 +35,16 @@ const GetRankingUser = (userUid) => {
     // Getting the number of posts, replies and spicy
     // If I don't do optional spreading, I get error, because
     // initial state of users is null
-    const posts   = GetNumberOfPosts(...users); 
-    const replies = GetNumberOfReplies(...users);
-    const spicy   = GetNumberOfSpicy(...users);
+    const posts     = GetNumberOfPosts(...users); 
+    const replies   = GetNumberOfReplies(...users);
+    const spicy     = GetNumberOfSpicy(...users);
+    const applauses = GetNumberOfApplauses(...users);
     
     // Getting points
-    const points = posts.map( (_, i) => GetPoints(posts[i], replies[i], spicy[i])[0] );
+    const points = posts.map( (_, i) => GetPoints(posts[i], replies[i], spicy[i], applauses[i])[0] );
     
     // Array of users and points
-    const array = users.map( (_, i) => [users[i], posts[i], replies[i], spicy[i], points[i]] );
+    const array = users.map( (_, i) => [users[i], posts[i], replies[i], spicy[i], applauses[i], points[i]] );
         
     // Sorting array by points
     const sorted = array.sort( (a, b) => a[4] > b[4] ? -1 : 1);

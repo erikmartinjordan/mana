@@ -24,7 +24,7 @@ const GetNumberOfSpicy = (...userUids) => {
             
             // Declaring array to count the number of spicy for each user uid
             var countSpicy = new Array(userUids.length).fill(0);
-
+            
             // We sum spicy points of all the posts written by user with ID = uid
             if(posts){
                 
@@ -32,9 +32,12 @@ const GetNumberOfSpicy = (...userUids) => {
                     
                         Object.keys(posts).map( id => { 
                             
-                            // Counting the posts is easy, only increment value by one
-                            if(posts[id].userUid === userUids[i]) countSpicy[i] = countSpicy[i] + 1;
-                            
+                            // Counting spicy -> counting length of voteUsers
+                            if(posts[id].userUid === userUids[i] && posts[id].voteUsers) {
+                                
+                                countSpicy[i] = countSpicy[i] + Object.keys(posts[id].voteUsers).length;
+                                
+                            } 
                             
                         });
                 }
