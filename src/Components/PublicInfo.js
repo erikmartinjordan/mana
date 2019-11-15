@@ -1,5 +1,8 @@
 import React, { useState, useEffect }   from 'react';
 import { Link }                         from 'react-router-dom';
+import TimeAgo                          from 'react-timeago';
+import buildFormatter                   from 'react-timeago/lib/formatters/buildFormatter';
+import spanishStrings                   from 'react-timeago/lib/language-strings/es';
 import firebase, {auth}                 from '../Functions/Firebase.js';
 import GetNumberOfPosts                 from '../Functions/GetNumberOfPosts.js';
 import GetNumberOfReplies               from '../Functions/GetNumberOfReplies.js';
@@ -13,10 +16,13 @@ import GetLastArticles                  from '../Functions/GetLastArticles.js';
 import GetRankingUser                   from '../Functions/GetRankingUser.js';
 import '../Styles/PublicInfo.css';
 
+const formatter = buildFormatter(spanishStrings);
 
 const PublicInfo = (props) => {
     
     const [userUid, setUserUid] = useState(false);
+    const [profileViews, setProfileViews] = useState(0);
+    const [profileLastSeen, setProfileLastSeen] = useState(null);
     const imgUrl = GetProfileImg(userUid);
     const name = GetName(userUid);
     const posts = GetNumberOfPosts(userUid);
@@ -29,7 +35,6 @@ const PublicInfo = (props) => {
     const percentage = GetLevel(points)[2];
     const articles = GetLastArticles(userUid, 10); 
     const ranking = GetRankingUser(userUid);
-    
     
     useEffect( () => {
         
@@ -49,6 +54,38 @@ const PublicInfo = (props) => {
         return () => {mounted = false};
 
     });
+    
+    useEffect( () => {
+        
+        if(userUid){
+            
+            // Adding profile visits to database
+            firebase.database().ref('users/' + userUid + '/profileViews' ).transaction( value => {
+                
+                // Setting profile views as state
+                setProfileViews(value ? value : 0);
+                
+                // If we are opening the profile of the user in a new URL 
+                // Then, we need to increment the number of visits by 1
+                // Otherwise, we don't modify the value
+                return props.uid ? value : value + 1;
+            });
+            
+            // Adding date last visit to profile
+            firebase.database().ref('users/' + userUid + '/profileLastSeen').transaction( value => {
+                
+                // Setting last date as state
+                setProfileLastSeen(value ? value : 0);
+                
+                // If we are opening the profile of the user in a new URL 
+                // Then, we need to update the date of last seen
+                // Otherwise, we don't modify the value
+                return props.uid ? value : (new Date()).getTime();
+            });
+            
+        }
+        
+    }, [userUid]);
         
     return (
           <div className = 'Public-Info'>
@@ -72,6 +109,18 @@ const PublicInfo = (props) => {
                         }
                     </div>
                     <div className = 'Bloque'>
+                        <div className = 'Title'>Visitas al perfil</div>
+                        <div className = 'Num'>{profileViews}</div>
+                        {!props.uid &&
+                            <div className = 'Comment'>
+                                {profileLastSeen 
+                                ? <div>Última visita a tu perfil <TimeAgo formatter = {formatter} date = {profileLastSeen}/>.</div>
+                                : 'Tu perfil no tiene visitas'
+                                }           
+                            </div>
+                        }
+                    </div>
+                    <div className = 'Bloque'>
                         <div className = 'Title'>Nivel</div>
                         <div className = 'Num'>{level}</div>
                         <div className = 'Bar'>
@@ -82,7 +131,7 @@ const PublicInfo = (props) => {
                     {!props.uid &&
                         <div className = 'Last-Articles'>
                             <div className = 'Title'>Últimas publicaciones</div>
-                            {articles.map(article => <div><Link to = {'/comunidad/post/' + article.url}>{article.title}</Link></div>)}
+                            {articles.map( (article, key) => <div key = {key}><Link to = {'/comunidad/post/' + article.url}>{article.title}</Link></div>)}
                         </div>
                     }
                 </div>
