@@ -117,7 +117,7 @@ const PublicInfo = (props) => {
                             <div className = 'Comment'>
                                 {profileLastSeen 
                                 ? <div>Última visita a tu perfil <TimeAgo formatter = {formatter} date = {profileLastSeen}/>.</div>
-                                : 'Tu perfil no tiene visitas'
+                                : 'Tu perfil no tiene visitas.'
                                 }           
                             </div>
                         }
