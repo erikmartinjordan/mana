@@ -19,7 +19,7 @@ var configPRE = {
     messagingSenderId: "878815391785"
   };
 
-firebase.initializeApp(configPRE);
+firebase.initializeApp(configPRO);
 
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const auth = firebase.auth();
