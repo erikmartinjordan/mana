@@ -2,8 +2,7 @@ import React, { useState, useEffect }   from 'react';
 import { Link }                         from 'react-router-dom';
 import firebase, {auth}                 from './Firebase.js';
 import EmojiTextarea                    from './EmojiTextarea';
-import nmsNotification                  from './InsertNotificationIntoDatabase.js';
-import nmsInsertReputation              from './InsertReputationIntoDatabase.js';
+import insertNotificationAndReputation  from './InsertNotificationAndReputationIntoDatabase.js';
 import AnonymImg                        from './AnonymImg.js';
 import Alert                            from './Alert.js';
 import GetPoints                        from './GetPoints.js';
@@ -23,8 +22,9 @@ const NewPost = (props) => {
     const [title, setTitle]         = useState('');
     const [url, setUrl]             = useState('');
     const [user, setUser]           = useState(null);
-    const [points, setPoints]       = GetPoints(user ? user.uid : null);
-
+    const points                    = GetPoints(user ? user.uid : null);
+    
+    console.log(points);
         
     useEffect( () => { window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} ) });
         
@@ -93,11 +93,8 @@ const NewPost = (props) => {
                     // Increase number of views of the user's posts
                     firebase.database().ref('users/' + user.uid + '/posts/numPosts').transaction( (value) =>  value + 1 );
 
-                    // Send notification to user
-                    nmsNotification(nickName ? nickName : user.uid, 'newPost', 'add');
-                    
-                    // Insert reputation into database
-                    nmsInsertReputation(nickName ? nickName : user.uid, points);
+                    // Send notification and reputation
+                    insertNotificationAndReputation(nickName ? nickName : user.uid, 'newPost', 'add', points);
 
                     // Setting states
                     setAlert(null);

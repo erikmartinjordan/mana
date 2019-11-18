@@ -9,7 +9,7 @@ import GetNumberOfApplauses from './GetNumberOfApplauses.js';
 //
 //--------------------------------------------------------------/
 const GetPoints = (...userUids) => {
-    
+        
     // Defining the value of each element
     const postValue     = 30;
     const replyValue    = 40;

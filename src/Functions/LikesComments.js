@@ -1,15 +1,17 @@
 import React, { useEffect, useState }   from 'react';
 import firebase                         from './Firebase.js';
-import nmsNotification                  from './InsertNotificationIntoDatabase.js';
+import GetPoints                        from './GetPoints.js';
+import insertNotificationAndReputation  from './InsertNotificationAndReputationIntoDatabase.js';
 import Login                            from '../Components/Login';
 
 const LikesComments = (props) => {  
     
     const [capture, setCapture] = useState(null);
-    const [forbid, setForbid] = useState(false);
-    const [render, setRender] = useState(false);
-    const [userid, setUserid] = useState(null);
-    const [votes, setVotes] = useState(0);
+    const [forbid, setForbid]   = useState(false);
+    const [render, setRender]   = useState(false);
+    const [userid, setUserid]   = useState(null);
+    const [votes, setVotes]     = useState(0);
+    const points                = GetPoints(userid);
     
     useEffect( () => { 
         
@@ -50,7 +52,6 @@ const LikesComments = (props) => {
         
         // Getting the fingerprint of the users
         let users = capture.val() ? Object.keys(capture.val()) : [];
-        console.log(users);
         
         // If user liked the post already, remove the branch
         // In other case, add it
@@ -60,8 +61,8 @@ const LikesComments = (props) => {
         
         // Sending notification to user
         users.indexOf(userid) === -1
-        ? nmsNotification(userid, 'applause', 'add')
-        : nmsNotification(userid, 'applause', 'sub');
+        ? insertNotificationAndReputation(userid, 'applause', 'add', points)
+        : insertNotificationAndReputation(userid, 'applause', 'sub', points);
         
     }
 

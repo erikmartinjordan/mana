@@ -96,8 +96,8 @@ const PublicInfo = (props) => {
                     </div>
                     <h2>{name}</h2>
                     <div className = 'Bloque'>
-                        <div className = 'Title'>Puntos {ranking && <span className = 'Ranking'>{ranking}</span>}</div>
-                        <ReputationGraph userUid = {userUid}/>
+                        <div className = 'Title'>Reputación {ranking && <span className = 'Ranking'>{ranking}</span>}</div>
+                        <ReputationGraph userUid = {userUid} canvas = {props.canvas}/>
                     </div>
                     <div className = 'Bloque'>
                         <div className = 'Title'>Impacto</div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect }   from 'react';
 import firebase                         from './Firebase.js';
-import nmsNotification                  from './InsertNotificationIntoDatabase.js';
+import GetPoints                        from './GetPoints.js';
+import insertNotificationAndReputation  from './InsertNotificationAndReputationIntoDatabase.js';
 import Login                            from '../Components/Login';
 
 const Likes = (props) => {  
@@ -10,7 +11,8 @@ const Likes = (props) => {
     const [render, setRender]   = useState(false);
     const [userid, setUserid]   = useState(null);
     const [votes, setVotes]     = useState(0);
-        
+    const points                = GetPoints(userid);
+    
     useEffect( () => {
     
         // Component is mounted
@@ -59,8 +61,8 @@ const Likes = (props) => {
         
         // Sending notification to user
         users.indexOf(userid) === -1
-        ? nmsNotification(userid, 'chili', 'add')
-        : nmsNotification(userid, 'chili', 'sub');
+        ? insertNotificationAndReputation(userid, 'chili', 'add', points)
+        : insertNotificationAndReputation(userid, 'chili', 'sub', points);
         
     }
     

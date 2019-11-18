@@ -11,12 +11,12 @@ const ReputationGraph = (props) => {
           data: {
             labels: [],
             datasets: [{
-              label: 'Reputation',
+              label: 'Puntos',
               borderColor: 'green',
-              pointBorderWidth: 0,
-              pointHoverRadius: 0,
-              pointHoverBorderWidth: 0,
-              pointRadius: 0,
+              pointBorderWidth: 2,
+              pointHoverRadius: 2,
+              pointHoverBorderWidth: 2,
+              pointRadius: 2,
               backgroundColor: 'rgba(0, 210, 255, 0)',
               data: []
             }]
@@ -32,7 +32,7 @@ const ReputationGraph = (props) => {
             },
             scales: {
               xAxes: [{
-                display: true,
+                display: false,
                 gridLines: {
                     drawTicks: false,
                     display: false,
@@ -43,7 +43,7 @@ const ReputationGraph = (props) => {
                     maxRotation: 45,
                     minRotation: 45,
                     maxTicksLimit: 4,
-                    padding: 20
+                    padding: 5
                 }  
               }],
               yAxes: [{
@@ -68,7 +68,7 @@ const ReputationGraph = (props) => {
     //  Views Stats
     useEffect( () => {
         
-        let canvas = document.getElementById('Graph');
+        let canvas = document.getElementById(`Graph-${props.canvas}`);
         let ctx = canvas.getContext('2d');
         let width = window.innerWidth;
         let gradientStroke = ctx.createLinearGradient(0, 0, width, 0);
@@ -99,7 +99,6 @@ const ReputationGraph = (props) => {
                         // Formatting date
                         return date.toLocaleDateString('es-ES', options);
                         
-                        
                     });
                     
                     // Adding x and y axes
@@ -118,7 +117,7 @@ const ReputationGraph = (props) => {
     
     return (
         <div className = 'Reputation'>
-            <canvas id = 'Graph'/>
+            <canvas id = {'Graph-' + props.canvas}/>
         </div>
     );
     

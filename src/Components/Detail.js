@@ -1,49 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import firebase, {auth} from '../Functions/Firebase.js';
-import { Link } from 'react-router-dom';
-import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
-import spanishStrings from 'react-timeago/lib/language-strings/es';
-import TimeAgo from 'react-timeago';
-import Linkify from 'react-linkify';
-import Likes from '../Functions/Likes.js';
-import LikesComments from '../Functions/LikesComments.js';
-import Login from './Login.js';
-import EmojiTextarea from '../Functions/EmojiTextarea';
-import DeletePost from '../Functions/DeletePost';
-import nmsNotification from '../Functions/InsertNotificationIntoDatabase.js';
-import useVerifiedTag from '../Functions/VerifiedTag.js';
-import PublicInfo from './PublicInfo.js';
-import Alert from '../Functions/Alert.js';
-import getPremiumUsers from '../Functions/GetPremiumUsers.js';
-import Accounts from '../Rules/Accounts.js';
+import React, { useState, useEffect }  from 'react';
+import { Link }                        from 'react-router-dom';
+import buildFormatter                  from 'react-timeago/lib/formatters/buildFormatter';
+import spanishStrings                  from 'react-timeago/lib/language-strings/es';
+import TimeAgo                         from 'react-timeago';
+import Linkify                         from 'react-linkify';
+import PublicInfo                      from './PublicInfo.js';
+import Login                           from './Login.js';
+import firebase, {auth}                from '../Functions/Firebase.js';
+import Likes                           from '../Functions/Likes.js';
+import LikesComments                   from '../Functions/LikesComments.js';
+import EmojiTextarea                   from '../Functions/EmojiTextarea';
+import DeletePost                      from '../Functions/DeletePost';
+import insertNotificationAndReputation from '../Functions/InsertNotificationAndReputationIntoDatabase.js';
+import useVerifiedTag                  from '../Functions/VerifiedTag.js';
+import Alert                           from '../Functions/Alert.js';
+import getPremiumUsers                 from '../Functions/GetPremiumUsers.js';
+import GetPoints                       from '../Functions/GetPoints.js';
+import Accounts                        from '../Rules/Accounts.js';
 
 const formatter = buildFormatter(spanishStrings);
 
 const Detail = (props) => {
         
-    const [admin, setAdmin] = useState(false);
-    const [alert, setAlert] = useState(null);
-    const [avatar, setAvatar] = useState(null);
-    const [chat, setChat] = useState(null);
-    const [empty, setEmpty] = useState(true);
-    const [login, setLogin] = useState(false);
+    const [admin, setAdmin]         = useState(false);
+    const [alert, setAlert]         = useState(null);
+    const [avatar, setAvatar]       = useState(null);
+    const [chat, setChat]           = useState(null);
+    const [empty, setEmpty]         = useState(true);
+    const [login, setLogin]         = useState(false);
     const [maxLength, setMaxLength] = useState(null);
-    const [message, setMessage] = useState("");
-    const [nickName, setnickName] = useState(null);
-    const [ready, setReady] = useState(false);
-    const [render, setRender] = useState(false);
-    const [reply, setReply] = useState("");
-    const [send, setSend] = useState(false);
+    const [message, setMessage]     = useState("");
+    const [nickName, setnickName]   = useState(null);
+    const [ready, setReady]         = useState(false);
+    const [render, setRender]       = useState(false);
+    const [reply, setReply]         = useState("");
+    const [send, setSend]           = useState(false);
     const [timeLimit, setTimeLimit] = useState(null);
     const [timeStamp, setTimeStamp] = useState(null);
-    const [title, setTitle] = useState("");
-    const [user, setUser] = useState("");
-    const [userName, setUserName] = useState("");
+    const [title, setTitle]         = useState("");
+    const [user, setUser]           = useState("");
+    const [userName, setUserName]   = useState("");
     const [userPhoto, setUserPhoto] = useState("");
-    const [userUid, setUserUid] = useState(true);
-    const [views, setViews] = useState("");
-    const verified = useVerifiedTag();
-        
+    const [userUid, setUserUid]     = useState(true);
+    const [views, setViews]         = useState("");
+    const verified                  = useVerifiedTag();
+    const points                    = GetPoints(userUid);
+    
     // Title, metadescription and loading emojis in svg will rereder always
     useEffect ( () => {
         
@@ -181,7 +183,7 @@ const Detail = (props) => {
                     firebase.database().ref('users/' + user.uid + '/replies/numReplies').transaction( (value) => value + 1 );
 
                     // Notification after user replies something
-                    nmsNotification(nickName ? nickName : user.uid, 'reply', 'add');
+                    insertNotificationAndReputation(nickName ? nickName : user.uid, 'reply', 'add', points)
 
                     // Sending ok
                     setReply("");
@@ -253,7 +255,7 @@ const Detail = (props) => {
                 <div className = 'Group'> 
                     <span className = 'user-verified'>
                         <Link to = {'/@' + line.userUid}>{line.userName}</Link>
-                        <PublicInfo uid = {line.userUid}></PublicInfo>
+                        <PublicInfo uid = {line.userUid} canvas = {index}></PublicInfo>
                         {verified && verified[line.userUid] && verified[line.userUid].badge}
                     </span>
                     <TimeAgo formatter={formatter} date={line.timeStamp}/>
