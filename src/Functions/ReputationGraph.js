@@ -3,6 +3,8 @@ import firebase                       from './Firebase';
 import Chart                          from 'chart.js';
 
 const ReputationGraph = (props) => {
+    
+    const [reputationGraph, setReputationGraph] = useState(null);
         
     // Properties
     let statsProperties = {
@@ -68,24 +70,24 @@ const ReputationGraph = (props) => {
     //  Views Stats
     useEffect( () => {
         
-        let canvas = document.getElementById(`Graph-${props.canvas}`);
-        let ctx = canvas.getContext('2d');
-        let width = window.innerWidth;
-        let gradientStroke = ctx.createLinearGradient(0, 0, width, 0);
-        
-        // Generating gradient color  
-        gradientStroke.addColorStop(0.0, '#48ac98');
-        gradientStroke.addColorStop(0.2, '#778dff');
-        gradientStroke.addColorStop(0.5, '#f39a9a');
-        
-        // Setting gradient stroke  
-        statsProperties.data.datasets['0'].borderColor = gradientStroke;
-        
         if(props.userUid){
             
             firebase.database().ref('users/' + props.userUid + '/reputationData').on('value', snapshot => {
                 
                 if(snapshot.val()){
+                    
+                    let canvas = document.getElementById(`Graph-${props.canvas}`);
+                    let ctx = canvas.getContext('2d');
+                    let width = window.innerWidth;
+                    let gradientStroke = ctx.createLinearGradient(0, 0, width, 0);
+
+                    // Generating gradient color  
+                    gradientStroke.addColorStop(0.0, '#48ac98');
+                    gradientStroke.addColorStop(0.2, '#778dff');
+                    gradientStroke.addColorStop(0.5, '#f39a9a');
+
+                    // Setting gradient stroke  
+                    statsProperties.data.datasets['0'].borderColor = gradientStroke;
                     
                     // Modifiying labels and data
                     const dateArray = Object.keys(snapshot.val()).map( ts => {
@@ -107,7 +109,13 @@ const ReputationGraph = (props) => {
                 
                     // Drawing chart  
                     new Chart(ctx, statsProperties);
+                    
+                    // There is reputation Graph
+                    setReputationGraph(true);
                 }
+                
+                else 
+                    setReputationGraph(null);
                 
             });
         }
@@ -117,7 +125,7 @@ const ReputationGraph = (props) => {
     
     return (
         <div className = 'Reputation'>
-            <canvas id = {'Graph-' + props.canvas}/>
+            {reputationGraph ? <canvas id = {'Graph-' + props.canvas}/> : null}
         </div>
     );
     
