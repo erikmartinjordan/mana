@@ -7,10 +7,6 @@ import firebase, {auth}                 from '../Functions/Firebase.js';
 import NightModeToggleButton            from '../Functions/NightModeToggleButton.js';
 import NewPost                          from '../Functions/NewPost';
 import GetUnreadNotifications           from '../Functions/GetUnreadNotifications.js';
-import GetNumberOfPosts                 from '../Functions/GetNumberOfPosts.js';
-import GetNumberOfReplies               from '../Functions/GetNumberOfReplies.js';
-import GetNumberOfSpicy                 from '../Functions/GetNumberOfSpicy.js';
-import GetNumberOfApplauses             from '../Functions/GetNumberOfApplauses.js';
 import GetPoints                        from '../Functions/GetPoints.js';
 import GetLevel                         from '../Functions/GetLevelAndPointsToNextLevel.js';
 import ToggleButton                     from '../Functions/ToggleButton.js';
@@ -32,13 +28,9 @@ const Nav = () => {
     const [uid, setUid] = useState(null);
     const [user, setUser] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
-    const posts = GetNumberOfPosts(uid);
-    const replies = GetNumberOfReplies(uid);
-    const spicy = GetNumberOfSpicy(uid);
-    const applauses = GetNumberOfApplauses(uid);
-    const points = GetPoints(posts, replies, spicy, applauses)[0];
-    const level = GetLevel(points)[0];
-    const percentage = GetLevel(points)[2];
+    const points = GetPoints(uid);
+    const level = GetLevel(...points)[0];
+    const percentage = GetLevel(...points)[2];
 
     useEffect ( () => {
       

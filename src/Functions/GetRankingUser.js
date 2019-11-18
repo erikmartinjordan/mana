@@ -31,25 +31,19 @@ const GetRankingUser = (userUid) => {
         }) 
         
     }, []);
-    
-    // Getting the number of posts, replies and spicy
+        
+    // Getting the number of points
     // If I don't do optional spreading, I get error, because
     // initial state of users is null
-    const posts     = GetNumberOfPosts(...users); 
-    const replies   = GetNumberOfReplies(...users);
-    const spicy     = GetNumberOfSpicy(...users);
-    const applauses = GetNumberOfApplauses(...users);
-    
-    // Getting points
-    const points = posts.map( (_, i) => GetPoints(posts[i], replies[i], spicy[i], applauses[i])[0] );
+    const points = GetPoints(...users);
     
     // Array of users and points
-    const array = users.map( (_, i) => [users[i], posts[i], replies[i], spicy[i], applauses[i], points[i]] );
+    const array = users.map( (_, i) => [users[i], points[i]] );
         
     // Sorting array by points
-    const sorted = array.sort( (a, b) => a[5] > b[5] ? -1 : 1);
+    const sorted = array.sort( (a, b) => a[1] > b[1] ? -1 : 1);
     
-    // Getting firs position of sorted array -> userUids
+    // Getting first position of sorted array -> userUids
     const sortedUids = sorted.map(array => array[0]);
     
     // Getting the index of the user
@@ -60,8 +54,7 @@ const GetRankingUser = (userUid) => {
     
     // Generating res
     var res = (isFinite(rank) && rank > 0 && rank < 0.3) ? `top ${Math.round(rank * 100)} %` : null ;
-    
-        
+ 
     return res ;
 }
 

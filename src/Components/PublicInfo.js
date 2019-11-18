@@ -4,17 +4,14 @@ import TimeAgo                          from 'react-timeago';
 import buildFormatter                   from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings                   from 'react-timeago/lib/language-strings/es';
 import firebase, {auth}                 from '../Functions/Firebase.js';
-import GetNumberOfPosts                 from '../Functions/GetNumberOfPosts.js';
-import GetNumberOfReplies               from '../Functions/GetNumberOfReplies.js';
 import GetName                          from '../Functions/GetName.js';
 import GetProfileImg                    from '../Functions/GetProfileImg.js';
 import GetNumberOfViews                 from '../Functions/GetNumberOfViews.js';
-import GetNumberOfSpicy                 from '../Functions/GetNumberOfSpicy.js';
-import GetNumberOfApplauses             from '../Functions/GetNumberOfApplauses.js';
 import GetLevel                         from '../Functions/GetLevelAndPointsToNextLevel.js';
 import GetPoints                        from '../Functions/GetPoints.js';
 import GetLastArticles                  from '../Functions/GetLastArticles.js';
 import GetRankingUser                   from '../Functions/GetRankingUser.js';
+import ReputationGraph                  from '../Functions/ReputationGraph.js';
 import '../Styles/PublicInfo.css';
 
 const formatter = buildFormatter(spanishStrings);
@@ -26,18 +23,14 @@ const PublicInfo = (props) => {
     const [profileLastSeen, setProfileLastSeen] = useState(null);
     const imgUrl = GetProfileImg(userUid);
     const name = GetName(userUid);
-    const posts = GetNumberOfPosts(userUid);
-    const replies = GetNumberOfReplies(userUid);
-    const spicy = GetNumberOfSpicy(userUid);
-    const applauses = GetNumberOfApplauses(userUid);
     const views = GetNumberOfViews(userUid);
-    const points = GetPoints(posts, replies, spicy, applauses)[0];
-    const level = GetLevel(points)[0];
-    const pointsToNextLevel = GetLevel(points)[1];
-    const percentage = GetLevel(points)[2];
+    const points = GetPoints(userUid);
+    const level = GetLevel(...points)[0];
+    const pointsToNextLevel = GetLevel(...points)[1];
+    const percentage = GetLevel(...points)[2];
     const articles = GetLastArticles(userUid, 10); 
     const ranking = GetRankingUser(userUid);
-    
+        
     useEffect( () => {
         
         // Component is mounted
@@ -59,13 +52,16 @@ const PublicInfo = (props) => {
     
     useEffect( () => {
         
+        // Component is mounted
+        let mounted = true;
+        
         if(userUid){
             
             // Adding profile visits to database
             firebase.database().ref('users/' + userUid + '/profileViews' ).transaction( value => {
                 
                 // Setting profile views as state
-                setProfileViews(value ? value : 0);
+                if(mounted) setProfileViews(value ? value : 0);
                 
                 // If we are opening the profile of the user in a new URL 
                 // Then, we need to increment the number of visits by 1
@@ -77,7 +73,7 @@ const PublicInfo = (props) => {
             firebase.database().ref('users/' + userUid + '/profileLastSeen').transaction( value => {
                 
                 // Setting last date as state
-                setProfileLastSeen(value ? value : 0);
+                if(mounted) setProfileLastSeen(value ? value : 0);
                 
                 // If we are opening the profile of the user in a new URL 
                 // Then, we need to update the date of last seen
@@ -86,6 +82,9 @@ const PublicInfo = (props) => {
             });
             
         }
+        
+        // Unmounted component
+        return () => mounted = false;
         
     }, [userUid]);
         
@@ -98,10 +97,7 @@ const PublicInfo = (props) => {
                     <h2>{name}</h2>
                     <div className = 'Bloque'>
                         <div className = 'Title'>Puntos {ranking && <span className = 'Ranking'>{ranking}</span>}</div>
-                        <div className = 'Num'>{points.toLocaleString()}</div>
-                        {!props.uid &&
-                            <div className = 'Comment'>Se muestran el número de puntos totales conseguidos hasta el momento.</div>
-                        }
+                        <ReputationGraph userUid = {userUid}/>
                     </div>
                     <div className = 'Bloque'>
                         <div className = 'Title'>Impacto</div>

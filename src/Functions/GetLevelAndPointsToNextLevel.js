@@ -24,7 +24,7 @@ const GetLevel = (points) => {
     const percentage = Math.floor(100 * (points - pointsLevelDown) / (pointsLevelUp - pointsLevelDown));
     
     // Returning the actual level and number of points to the next
-    return [level, pointsToNextLevel, percentage];
+    return isNaN(level) ? [0, 0, 0] : [level, pointsToNextLevel, percentage];
 }
 
 export default GetLevel;

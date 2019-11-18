@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import firebase, {auth} from './Firebase.js';
-import EmojiTextarea from './EmojiTextarea';
-import nmsNotification from './InsertNotificationIntoDatabase.js';
-import AnonymImg from './AnonymImg.js';
-import Alert from './Alert.js';
-import Accounts from '../Rules/Accounts.js';
+import React, { useState, useEffect }   from 'react';
+import { Link }                         from 'react-router-dom';
+import firebase, {auth}                 from './Firebase.js';
+import EmojiTextarea                    from './EmojiTextarea';
+import nmsNotification                  from './InsertNotificationIntoDatabase.js';
+import nmsInsertReputation              from './InsertReputationIntoDatabase.js';
+import AnonymImg                        from './AnonymImg.js';
+import Alert                            from './Alert.js';
+import GetPoints                        from './GetPoints.js';
+import Accounts                         from '../Rules/Accounts.js';
 import  '../Styles/NewPost.css';
 
 const NewPost = (props) => {
@@ -21,7 +23,9 @@ const NewPost = (props) => {
     const [title, setTitle]         = useState('');
     const [url, setUrl]             = useState('');
     const [user, setUser]           = useState(null);
-    
+    const [points, setPoints]       = GetPoints(user ? user.uid : null);
+
+        
     useEffect( () => { window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} ) });
         
     useEffect( () => {
@@ -91,6 +95,9 @@ const NewPost = (props) => {
 
                     // Send notification to user
                     nmsNotification(nickName ? nickName : user.uid, 'newPost', 'add');
+                    
+                    // Insert reputation into database
+                    nmsInsertReputation(nickName ? nickName : user.uid, points);
 
                     // Setting states
                     setAlert(null);
