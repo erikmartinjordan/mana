@@ -10,6 +10,7 @@ import firebase, {auth}                from '../Functions/Firebase.js';
 import Likes                           from '../Functions/Likes.js';
 import LikesComments                   from '../Functions/LikesComments.js';
 import EmojiTextarea                   from '../Functions/EmojiTextarea';
+import EditPost                        from '../Functions/EditPost';
 import DeletePost                      from '../Functions/DeletePost';
 import insertNotificationAndReputation from '../Functions/InsertNotificationAndReputationIntoDatabase.js';
 import useVerifiedTag                  from '../Functions/VerifiedTag.js';
@@ -246,20 +247,18 @@ const Detail = (props) => {
     }
 
     const listItems = () => {
-
+    
     var list = chat.map( (line, index) => 
-
         <li key = {line.key}>
             <div className = 'infopost'>
-                <img alt={line.userName} src={line.userPhoto}></img>
+                <img alt = {line.userName} src = {line.userPhoto}></img>
                 <div className = 'Group'> 
                     <span className = 'user-verified'>
                         <Link to = {'/@' + line.userUid}>{line.userName}</Link>
                         <PublicInfo uid = {line.userUid} canvas = {index}></PublicInfo>
-                        {console.log(index)}
                         {verified && verified[line.userUid] && verified[line.userUid].badge}
                     </span>
-                    <TimeAgo formatter={formatter} date={line.timeStamp}/>
+                    <TimeAgo formatter = {formatter} date = {line.timeStamp}/>
                 </div>
             </div> 
             <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
@@ -267,6 +266,7 @@ const Detail = (props) => {
                 <div className = 'Meta-Post'>
                     <LikesComments post = {props.match.params.string} reply = {line.key} user = {user}></LikesComments>
                     {admin && <DeletePost type = 'reply' post = {props.match.params.string} id = {line.key} />}
+                    {line.userUid === userUid && <EditPost postId = {props.match.params.string} replyId = {line.key}></EditPost>}
                 </div>
             </Linkify>
         </li> );
