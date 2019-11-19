@@ -215,7 +215,7 @@ const Detail = (props) => {
                                 <div className = 'Group'> 
                                     <span className = 'user-verified'>
                                         <Link to = {'/@' + userUid}>{userName}</Link> 
-                                        <PublicInfo uid = {userUid}></PublicInfo>
+                                        <PublicInfo uid = {userUid} canvas = 'title'></PublicInfo>
                                         {verified && userUid && verified[userUid] && verified[userUid].badge}
                                     </span>
                                     <TimeAgo formatter={formatter} date={timeStamp}/>
@@ -256,6 +256,7 @@ const Detail = (props) => {
                     <span className = 'user-verified'>
                         <Link to = {'/@' + line.userUid}>{line.userName}</Link>
                         <PublicInfo uid = {line.userUid} canvas = {index}></PublicInfo>
+                        {console.log(index)}
                         {verified && verified[line.userUid] && verified[line.userUid].badge}
                     </span>
                     <TimeAgo formatter={formatter} date={line.timeStamp}/>

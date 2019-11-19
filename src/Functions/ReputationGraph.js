@@ -76,6 +76,8 @@ const ReputationGraph = (props) => {
                 
                 if(snapshot.val()){
                     
+                    console.log(props.canvas);
+                    
                     let canvas = document.getElementById(`Graph-${props.canvas}`);
                     let ctx = canvas.getContext('2d');
                     let width = window.innerWidth;
@@ -110,12 +112,11 @@ const ReputationGraph = (props) => {
                     // Drawing chart  
                     new Chart(ctx, statsProperties);
                     
-                    // There is reputation Graph
+                    // Display reputation graph
                     setReputationGraph(true);
+                    
+                    
                 }
-                
-                else 
-                    setReputationGraph(null);
                 
             });
         }
@@ -124,8 +125,8 @@ const ReputationGraph = (props) => {
     }, [props.userUid]);
     
     return (
-        <div className = 'Reputation'>
-            {reputationGraph ? <canvas id = {'Graph-' + props.canvas}/> : null}
+        <div className = 'Reputation' style = {{height: reputationGraph ? 'auto' : '0px'}}>
+            <canvas id = {'Graph-' + props.canvas}/>
         </div>
     );
     
