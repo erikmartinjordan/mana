@@ -256,7 +256,6 @@ const Detail = (props) => {
                     <span className = 'user-verified'>
                         <Link to = {'/@' + line.userUid}>{line.userName}</Link>
                         <PublicInfo uid = {line.userUid} canvas = {index}></PublicInfo>
-                        {console.log(index)}
                         {verified && verified[line.userUid] && verified[line.userUid].badge}
                     </span>
                     <TimeAgo formatter={formatter} date={line.timeStamp}/>

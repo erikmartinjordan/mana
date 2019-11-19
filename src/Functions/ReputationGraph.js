@@ -76,8 +76,6 @@ const ReputationGraph = (props) => {
                 
                 if(snapshot.val()){
                     
-                    console.log(props.canvas);
-                    
                     let canvas = document.getElementById(`Graph-${props.canvas}`);
                     let ctx = canvas.getContext('2d');
                     let width = window.innerWidth;
