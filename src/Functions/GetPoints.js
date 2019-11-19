@@ -28,9 +28,9 @@ const GetPoints = (...userUids) => {
     // Getting the points
     for(let i = 0; i < userUids.length; i ++)
         points[i] = (posts[i] * postValue) + (replies[i] * replyValue) + (spicy[i] * spicyValue) + (applauses[i] * applauseValue);
-      
+    
     // Returning total points and the values of each element
-    return isNaN(points) ? 0 : points;
+    return points.some(isNaN) ? 0 : points;
 }
 
 export default GetPoints;
