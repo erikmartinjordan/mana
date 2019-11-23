@@ -46,7 +46,10 @@ const Detail = (props) => {
     const [userUid, setUserUid]     = useState(true);
     const [views, setViews]         = useState("");
     const verified                  = useVerifiedTag();
-    const points                    = GetPoints(userUid);
+    
+    // To get the points of the user, first we need to check out if he/she is using a nickname
+    // In this case, getting the points of the user with nickname 
+    const points  = GetPoints(nickName ? nickName : user ? user.uid : null);
     
     // Title, metadescription and loading emojis in svg will rereder always
     useEffect ( () => {
@@ -88,6 +91,11 @@ const Detail = (props) => {
                     if(anonimo && mounted){
                         setnickName(snapshot.val().nickName);
                         setAvatar(snapshot.val().avatar);
+                    }
+                    
+                    if(!anonimo && mounted){
+                        setnickName(null);
+                        setAvatar(null);
                     }
 
                     // Selecting timespan between messages and max Length depending on type of account
@@ -177,37 +185,37 @@ const Detail = (props) => {
                         userPhoto: avatar ? avatar : user.photoURL,
                         userUid: nickName ? nickName : user.uid,
                     });
-
+                    
                     //Set timestamp
                     firebase.database().ref('users/' + user.uid + '/replies/timeStamp').transaction( (value) => Date.now() );
-
+                    
                     //Increase number of replies of the users
                     firebase.database().ref('users/' + user.uid + '/replies/numReplies').transaction( (value) => value + 1 );
-
+                    
                     // Notification after user replies something
-                    insertNotificationAndReputation(nickName ? nickName : user.uid, 'reply', 'add', points)
-
+                    insertNotificationAndReputation(nickName ? nickName : user.uid, 'reply', 'add', points);
+                    
                     // Sending ok
                     setReply("");
                     setSend(true);
-
+                    
                     // Disable notification after 2 seconds
                     setTimeout( () => setSend(false), 2000 );
-
+                    
                 }
                 else{
                         setAlert("Ups, debes esperarte 5 minutos para comentar de nuevo.");
                 }
-
+              
           });
       }
-
+        
       e.preventDefault();  
-
+        
     } 
-
+    
     const listTitle = () => {  
-
+        
       return    <div  key = 'title' className = 'title'>                    
                     {ready && !empty &&
                         <div className = 'detail-header'>

@@ -3,6 +3,7 @@ import GetNumberOfPosts     from './GetNumberOfPosts.js';
 import GetNumberOfReplies   from './GetNumberOfReplies.js';
 import GetNumberOfSpicy     from './GetNumberOfSpicy.js';
 import GetNumberOfApplauses from './GetNumberOfApplauses.js';
+import Points               from './PointsAndValues.js';
 
 //--------------------------------------------------------------/
 // This function returns the points of the user
@@ -11,10 +12,10 @@ import GetNumberOfApplauses from './GetNumberOfApplauses.js';
 const GetPoints = (...userUids) => {
         
     // Defining the value of each element
-    const postValue     = 30;
-    const replyValue    = 40;
-    const spicyValue    = 50;
-    const applauseValue = 60;
+    const postValue     = Points.post;
+    const replyValue    = Points.reply;
+    const spicyValue    = Points.spicy;
+    const applauseValue = Points.applause;
     
     // Getting posts, replies, spicy and applauses
     const posts     = GetNumberOfPosts(...userUids);
