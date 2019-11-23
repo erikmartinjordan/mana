@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import firebase, {auth}               from './Firebase';
 import Alert                          from './Alert';
+import '../Styles/EditPost.css';
 
 //--------------------------------------------------------------/
 //
@@ -13,9 +14,10 @@ const EditPost = (props) => {
     
     const [alert, setAlert] = useState(null);
     const [message, setMessage] = useState(null);
-    
-    const handleEdit = async () => {
         
+        
+    const editMessage = async () => {
+
         // Reading the message
         const snapshot = await firebase.database().ref('posts/' + props.postId + '/replies/' + props.replyId + '/message').once('value');
         const message  = snapshot.val();
@@ -53,11 +55,8 @@ const EditPost = (props) => {
     return (
         <div className = 'Edit'>
             {message 
-            ? <div className = 'Message'>
-                <textarea onChange = {(e) => handleMessage(e)}>{message}</textarea>
-                <button onClick = {() => submitMessage()}>Guardar</button>
-              </div>
-            : <button onClick = {() => handleEdit()}>Editar</button>
+            ? <button onClick = {() => submitMessage()}>Guardar</button>
+            : <button onClick = {() => editMessage()}>Editar</button>
             }
             {alert && <Alert title = 'Genial' message = 'Mensaje editado'></Alert>}
         </div>
