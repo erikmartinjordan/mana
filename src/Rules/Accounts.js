@@ -24,7 +24,8 @@ var accounts = {
                         'deleteMessages': true,
                         'profileViews': true,
                         'badge': true,
-                        'nightMode': true
+                        'nightMode': true,
+                        'edit': true
                     }
                 }
 

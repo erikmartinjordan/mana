@@ -1,0 +1,46 @@
+.Edit .Edit-Message{
+    align-items: center;
+    background: rgba(15, 15, 15, 0.6);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 9999999;
+}
+.Edit .Edit-Message-Wrap{
+    background: var(--bgColor);
+    border-radius: 5px;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
+                rgba(15, 15, 15, 0.2) 0px 5px 10px, 
+                rgba(15, 15, 15, 0.4) 0px 15px 40px;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    z-index: 99999999;
+}
+.Edit .Edit-Message-Wrap textarea{
+    border-radius: 5px;
+}
+.Edit .Invisible{
+    z-index: 9999999;
+}
+.Edit button.Edit{
+    background: none;
+    border: 1px solid var(--primaryFontColor);
+    border-radius: 50px;
+    color: var(--primaryFontColor);
+    cursor: pointer;
+    font-size: small;
+    margin: 5px;
+    padding: 5px;
+    transition: all 0.2s ease-in-out;
+    z-index: 99999;
+}
+.Edit button.Edit:hover{
+    background: var(--thirdFontColor);
+}

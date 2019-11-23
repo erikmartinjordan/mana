@@ -38,7 +38,7 @@ const PublicInfo = (props) => {
 
         // Getting UID of the user
         var uid;
-
+        
         // From props or from URL
         uid = props.uid ? props.uid : props.match.params.string;
 

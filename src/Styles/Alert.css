@@ -11,7 +11,7 @@
     position: fixed;
     right: 100px;
     top: 100px;
-    z-index: 99999;
+    z-index: 999999999999999999;
 }
 .Alert .Alert-Emoji{
     margin-right: 15px;

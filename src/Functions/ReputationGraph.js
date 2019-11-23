@@ -76,16 +76,16 @@ const ReputationGraph = (props) => {
                 
                 if(snapshot.val()){
                     
-                    let canvas = document.getElementById(`Graph-${props.canvas}`);                    
+                    let canvas = document.getElementById(`Graph-${props.canvas}`);
                     let ctx = canvas.getContext('2d');
                     let width = window.innerWidth;
                     let gradientStroke = ctx.createLinearGradient(0, 0, width, 0);
-
+                    
                     // Generating gradient color  
                     gradientStroke.addColorStop(0.0, '#48ac98');
                     gradientStroke.addColorStop(0.2, '#778dff');
                     gradientStroke.addColorStop(0.5, '#f39a9a');
-
+                    
                     // Setting gradient stroke  
                     statsProperties.data.datasets['0'].borderColor = gradientStroke;
                     
@@ -112,8 +112,7 @@ const ReputationGraph = (props) => {
                     
                     // Display reputation graph
                     setReputationGraph(true);
-                    
-                    
+                       
                 }
                 
             });
