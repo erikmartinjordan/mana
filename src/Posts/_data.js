@@ -320,7 +320,7 @@ var data = {
         'description': 'Encontrar un hueco para el simple desplazarse, sin ningún otro objetivo que el propio movimiento. Dirigirse a ninguna parte. Pedalear sin destino.',
     },
     'ko-samet': {
-        'title': 'Ko Samet en un fin de semana',
+        'title': 'Qué hacer en Ko Samet en un par de días',
         'date': [13, 'Enero', 2017],
         'description': 'Ko Samet es una pequeña isla que flota a un poca distancia de la capital tailandesa. Llegar desde Bangkok a esta isla tailandesa es baratísimo...',
     },
