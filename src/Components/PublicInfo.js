@@ -101,7 +101,7 @@ const PublicInfo = (props) => {
                         {!props.uid &&
                             <div className = 'Comment'>Puntos totales hasta el momento.</div>
                         }
-                        <ReputationGraph userUid = {userUid} canvas = {props.canvas}/>
+                        <ReputationGraph userUid = {userUid} canvas = {props.canvas ? props.canvas : 1}/>
                     </div>
                     <div className = 'Bloque'>
                         <div className = 'Title'>Impacto</div>
