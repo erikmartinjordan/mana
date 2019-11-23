@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import firebase, {auth}               from './Firebase';
 import Alert                          from './Alert';
+import EmojiTextarea                   from './EmojiTextarea';
 import '../Styles/EditPost.css';
 
 //--------------------------------------------------------------/
@@ -14,11 +15,10 @@ const EditPost = (props) => {
     
     const [alert, setAlert] = useState(null);
     const [message, setMessage] = useState(null);
-        
-        
+    
     const editMessage = async () => {
-
-        // Reading the message
+        
+        // Reading the message from database
         const snapshot = await firebase.database().ref('posts/' + props.postId + '/replies/' + props.replyId + '/message').once('value');
         const message  = snapshot.val();
         
@@ -28,6 +28,10 @@ const EditPost = (props) => {
     }
     
     const handleMessage = (e) => {
+        
+        // Resizing textarea after key press 
+        e.target.style.height = 'inherit';
+        e.target.style.height = `${e.target.scrollHeight}px`; 
         
         // Setting new state using new message
         setMessage(e.target.value);
@@ -54,9 +58,15 @@ const EditPost = (props) => {
 
     return (
         <div className = 'Edit'>
-            {message 
-            ? <button onClick = {() => submitMessage()}>Guardar</button>
-            : <button onClick = {() => editMessage()}>Editar</button>
+            { message 
+            ? <div className = 'Message'>
+                <div className = 'Message-Wrap'>
+                    <textarea value = {message} onChange = {(e) => handleMessage(e)}></textarea>
+                    <button onClick = {() => submitMessage()} className = 'bottom'>Guardar</button>
+                </div>
+                {message && <div className = 'Invisible' onClick = {() => setMessage(null)} ></div>}
+              </div>
+            : <button onClick = {() => editMessage()} className = 'Edit'>Editar</button>
             }
             {alert && <Alert title = 'Genial' message = 'Mensaje editado'></Alert>}
         </div>

@@ -28,7 +28,6 @@ const Detail = (props) => {
     const [avatar, setAvatar]       = useState(null);
     const [chat, setChat]           = useState(null);
     const [empty, setEmpty]         = useState(true);
-    const [edit, setEdit]           = useState(false);
     const [login, setLogin]         = useState(false);
     const [maxLength, setMaxLength] = useState(null);
     const [message, setMessage]     = useState("");
@@ -50,6 +49,8 @@ const Detail = (props) => {
     // To get the points of the user, first we need to check out if he/she is using a nickname
     // In this case, getting the points of the user with nickname 
     const points  = GetPoints(nickName ? nickName : user ? user.uid : null);
+    
+    console.log(userUid);
     
     // Title, metadescription and loading emojis in svg will rereder always
     useEffect ( () => {
@@ -271,14 +272,11 @@ const Detail = (props) => {
                 </div>
             </div> 
             <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
-                { edit
-                ? <textarea value = {edit}/>
-                : line.message.split("\n").map((text, key) => <p key = {key}>{text}</p>)
-                }
+                {line.message.split("\n").map((text, key) => <p key = {key}>{text}</p>)}
                 <div className = 'Meta-Post'>
                     <LikesComments post = {props.match.params.string} reply = {line.key} user = {user}></LikesComments>
+                    {line.userUid === userUid && <EditPost postId = {props.match.params.string} replyId = {line.key}/>}
                     {line.userUid === userUid && <DeletePost type = 'reply' post = {props.match.params.string} id = {line.key} />}
-                    {line.userUid === userUid && <EditPost postId = {props.match.params.string} replyId = {line.key} setEdit = {setEdit}/>}
                 </div>
             </Linkify>
         </li> );
