@@ -1,4 +1,4 @@
-.Edit .Message{
+.Edit .Edit-Message{
     align-items: center;
     background: rgba(15, 15, 15, 0.6);
     display: flex;
@@ -12,7 +12,7 @@
     width: 100vw;
     z-index: 9999999;
 }
-.Edit .Message-Wrap{
+.Edit .Edit-Message-Wrap{
     background: var(--bgColor);
     border-radius: 5px;
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
@@ -23,7 +23,7 @@
     width: 100%;
     z-index: 99999999;
 }
-.Edit .Message-Wrap textarea{
+.Edit .Edit-Message-Wrap textarea{
     border-radius: 5px;
 }
 .Edit .Invisible{

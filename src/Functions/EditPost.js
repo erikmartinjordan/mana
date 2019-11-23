@@ -15,7 +15,7 @@ const EditPost = (props) => {
     
     const [alert, setAlert] = useState(null);
     const [message, setMessage] = useState(null);
-    
+        
     const editMessage = async () => {
         
         // Reading the message from database
@@ -53,14 +53,17 @@ const EditPost = (props) => {
         setAlert(true);
         
         // Setting timeOut to alert
-        setTimeout( () => setAlert(false), 3000);
+        setTimeout( () => setAlert(false), 1500);
+        
+        // Settin timeOut to message
+        setTimeout( () => setMessage(null), 1500);
     }
 
     return (
         <div className = 'Edit'>
             { message 
-            ? <div className = 'Message'>
-                <div className = 'Message-Wrap'>
+            ? <div className = 'Edit-Message'>
+                <div className = 'Edit-Message-Wrap'>
                     <textarea value = {message} onChange = {(e) => handleMessage(e)}></textarea>
                     <button onClick = {() => submitMessage()} className = 'bottom'>Guardar</button>
                 </div>
