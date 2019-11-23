@@ -55,12 +55,12 @@ const Likes = (props) => {
         
         // If user liked the post already, remove the branch
         // In other case, add it
-        users.indexOf(userid) === -1
+        users.indexOf(props.user.uid) === -1
         ? firebase.database().ref('posts/' + props.post + '/voteUsers/' + props.user.uid).transaction( value => true)
         : firebase.database().ref('posts/' + props.post + '/voteUsers/' + props.user.uid).remove();
         
         // Sending notification to user
-        users.indexOf(userid) === -1
+        users.indexOf(props.user.uid) === -1
         ? insertNotificationAndReputation(userid, 'chili', 'add', points)
         : insertNotificationAndReputation(userid, 'chili', 'sub', points);
         
