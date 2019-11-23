@@ -22,10 +22,11 @@ const NewPost = (props) => {
     const [title, setTitle]         = useState('');
     const [url, setUrl]             = useState('');
     const [user, setUser]           = useState(null);
-    const points                    = GetPoints(user ? user.uid : null);
     
-    console.log(points);
-        
+    // To get the points of the user, first we need to check out if he/she is using a nickname
+    // In this case, getting the points of the user with nickname 
+    const points = GetPoints(nickName ? nickName : user ? user.uid : null);
+    
     useEffect( () => { window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} ) });
         
     useEffect( () => {
@@ -92,7 +93,7 @@ const NewPost = (props) => {
 
                     // Increase number of views of the user's posts
                     firebase.database().ref('users/' + user.uid + '/posts/numPosts').transaction( (value) =>  value + 1 );
-
+                    
                     // Send notification and reputation
                     insertNotificationAndReputation(nickName ? nickName : user.uid, 'newPost', 'add', points);
 

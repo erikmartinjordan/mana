@@ -12,7 +12,7 @@ const Likes = (props) => {
     const [userid, setUserid]   = useState(null);
     const [votes, setVotes]     = useState(0);
     const points                = GetPoints(userid);
-    
+        
     useEffect( () => {
     
         // Component is mounted

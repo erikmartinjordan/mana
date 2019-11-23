@@ -76,7 +76,7 @@ const ReputationGraph = (props) => {
                 
                 if(snapshot.val()){
                     
-                    let canvas = document.getElementById(`Graph-${props.canvas}`);
+                    let canvas = document.getElementById(`Graph-${props.canvas}`);                    
                     let ctx = canvas.getContext('2d');
                     let width = window.innerWidth;
                     let gradientStroke = ctx.createLinearGradient(0, 0, width, 0);
