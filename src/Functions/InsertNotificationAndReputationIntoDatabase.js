@@ -1,5 +1,6 @@
 import React            from 'react';
 import firebase, {auth} from './Firebase.js';
+import Points           from './PointsAndValues.js';
 
 //--------------------------------------------------------------/
 // This function inserts notification into database:
@@ -13,11 +14,11 @@ import firebase, {auth} from './Firebase.js';
 //--------------------------------------------------------------/
 const insertNotificationAndReputation = (uid, type, operator, points) => {
     
-    var replyPoints = 30;
-    var newPostPoints = 40;
-    var chiliPoints = 50;
-    var applausePoints = 60;
-    var points = points[0];
+    var replyPoints    = Points.reply;
+    var newPostPoints  = Points.post;
+    var chiliPoints    = Points.spicy;
+    var applausePoints = Points.applause;
+    var points         = points[0];
     
     switch(type){
             
