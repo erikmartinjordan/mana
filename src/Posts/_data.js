@@ -1,4 +1,10 @@
 var data = {
+    'nuevo-piso': {
+        'title': 'Nuevo piso',
+        'date': [24, 'Noviembre', 2019],
+        'description': 'Una nota apareció hace un par de meses en la puerta de nuestro piso en Bangkok. Me la encontré al llegar de comprar del súper, firmada con un sello con una figura semejante a un elefante, pensé que no sería nada serio.',
+        'privat': true
+    },
     'inmigracion-tailandia': {
         'title': 'Detenido en el control de inmigración',
         'date': [14, 'Noviembre', 2019],
