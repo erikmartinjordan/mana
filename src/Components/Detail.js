@@ -275,8 +275,8 @@ const Detail = (props) => {
                 {line.message.split("\n").map((text, key) => <p key = {key}>{text}</p>)}
                 <div className = 'Meta-Post'>
                     <LikesComments post = {props.match.params.string} reply = {line.key} user = {user}></LikesComments>
-                    {user && line.userUid === user.uid && <EditPost postId = {props.match.params.string} replyId = {line.key}/>}
-                    {user && line.userUid === user.uid && <DeletePost type = 'reply' post = {props.match.params.string} id = {line.key} />}
+                    {user && admin && <EditPost postId = {props.match.params.string} replyId = {line.key}/>}
+                    {user && admin && <DeletePost type = 'reply' post = {props.match.params.string} id = {line.key} />}
                 </div>
             </Linkify>
         </li> );
