@@ -1,4 +1,9 @@
 var data = {
+    '2019': {
+        'title': 'Fin de una década',
+        'date': [3, 'Diciembre', 2019],
+        'description': 'En una nota del móvil, voy apuntando las cosas que quiero conseguir durante el año. No son (des)propósitos de año nuevo, Dios me libre, porque no pongo gran empeño en conseguir lo que anoto. Pero el caso es que voy apuntado ítems aleatorios.'
+    },
     'nuevo-piso': {
         'title': 'Nuevo piso',
         'date': [24, 'Noviembre', 2019],
