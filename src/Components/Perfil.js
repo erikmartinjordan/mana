@@ -19,10 +19,11 @@ import '../Styles/ToggleButton.css';
 const Perfil = (props) => {
 
     const [confirmation, setConfirmation] = useState(false);
-    const [paymentModal, setPaymentModal] = useState(false);
     const [infoUser, setInfoUser] = useState(null);
     const [lastSignIn, setLastSignIn] = useState(null);
     const [menu, setMenu] = useState('Cuenta');
+    const [nextPayment, setNextPayment] = useState('');
+    const [paymentModal, setPaymentModal] = useState(false);
     const [render, setRender] = useState(false);
     const [user, setUser] = useState(null);
     const [uid, setUid] = useState(null);
@@ -58,19 +59,63 @@ const Perfil = (props) => {
                 var date = new Date(parseInt(user.metadata.b));
                                 
                 firebase.database().ref('users/' + user.uid).on( 'value', (snapshot) => {
-
-                  setInfoUser(snapshot.val());
-
+                    
+                    if(snapshot.val()){
+                        
+                        // Getting info of the user
+                        let infoUser = snapshot.val();
+                        
+                        console.log(infoUser);
+                        
+                        // Getting info of next Payment if user is Premium
+                        if(infoUser.account === 'premium') getNextPaymentInfo(infoUser.subscriptionId);
+                        
+                        // Seting info of the user
+                        setInfoUser(snapshot.val());
+                        
+                    }
+                    
                 });    
-
+                
                 setRender(false);
                 setUser(user);
                 setUid(user.uid);
                 setLastSignIn(`Has accedido por última vez: ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} a las ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`);
             }
         });
+
         
     }, []);
+    
+    const getNextPaymentInfo = async (subscriptionId) => {
+        
+        // URL to fetch
+        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/nextPaymentNomoresheet';
+            
+        // Waiting for response
+        let response = await fetch(fetchURL, {
+            
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({subscriptionId: subscriptionId})
+            
+        });
+            
+        // If response ok, update state
+        if(response.ok){
+            
+            // Waiting for next Payment
+            let data = await response.json();
+            
+            // Setting date
+            let date = (new Date(data.nextPaymentDate * 1000)).toLocaleDateString();
+            
+            // Setting state
+            setNextPayment(date);
+            
+        }
+        
+    }
   
     const anonimizar = () => {
 
@@ -131,6 +176,21 @@ const Perfil = (props) => {
                         <div className = 'Num'>{user && user.email}</div>
                         <div className = 'Comment'>Tu correo no se muestra ni se utiliza en ningún momento.</div>
                     </div>
+                    <div className = 'Bloque'>
+                        <div className = 'Title'>Tipo de cuenta</div>
+                        <div className = 'Num'>
+                            {user && infoUser && infoUser.account === 'premium' 
+                            ? 'Premium' 
+                            : 'Gratis'
+                            }
+                        </div>
+                        <div className = 'Comment'>
+                            { user && infoUser && infoUser.account === 'premium' 
+                            ? `Cuenta válida hasta el ${nextPayment}`
+                            : 'Sube a Premium para disfrutar de Nomoresheet sin limitaciones.'
+                            }
+                        </div>
+                    </div>
                     {user && infoUser && infoUser.account && Accounts[infoUser.account].anonymMessages && 
                     <div className = 'Bloque'>
                             <div className = 'Title'>Anonimizar</div>
@@ -190,9 +250,9 @@ const Perfil = (props) => {
                                 <span className = 'Quantity'>0 €</span>
                                 <span className = 'Comment'></span>
                             </div>
-                            {user && infoUser && (!infoUser.account || infoUser.account === 'free')
-                            ?   <div className = 'current'>Plan actual</div>
-                            :   <button onClick = {() => {setConfirmation(true)}} className = 'send'>Apuntarse</button>
+                            {user && infoUser && infoUser.account === 'premium'
+                            ?   <button onClick = {() => {setConfirmation(true)}} className = 'send'>Apuntarse</button>
+                            :   <div className = 'current'>Plan actual</div>   
                             }
                             <ul className = 'Features'>
                                 <li>Vota artículos</li>
