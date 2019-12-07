@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import firebase, {auth}               from './Firebase';
 import Alert                          from './Alert';
-import EmojiTextarea                   from './EmojiTextarea';
+import EmojiTextarea                  from './EmojiTextarea';
 import '../Styles/EditPost.css';
 
 //--------------------------------------------------------------/
 //
 //
-// This functions allows users to edit posts
+// This functions allows users to edit posts and reples
 //
 //
 //--------------------------------------------------------------/
@@ -18,8 +18,15 @@ const EditPost = (props) => {
         
     const editMessage = async () => {
         
+        // Getting the datapoint
+        let reference;
+        
+        props.type === 'post'
+        ? reference = firebase.database().ref('posts/' + props.post + '/message')
+        : reference = firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/message');
+        
         // Reading the message from database
-        const snapshot = await firebase.database().ref('posts/' + props.postId + '/replies/' + props.replyId + '/message').once('value');
+        const snapshot = await reference.once('value');
         const message  = snapshot.val();
         
         //Setting message 
@@ -40,14 +47,24 @@ const EditPost = (props) => {
     
     const submitMessage = () => {
         
-        // I need to set message and edition time in 2 lines of code, becuase otherwise, 
-        // message and edition time will replace the old atributes
+        // Getting the datapoint
+        let reference;
         
-        // 1. Setting message
-        firebase.database().ref('posts/' + props.postId + '/replies/' + props.replyId + '/message').set(message);
+        props.type === 'post'
+        ? reference = firebase.database().ref('posts/' + props.post + '/message')
+        : reference = firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/message');
         
-        // 2. Setting edition time
-        firebase.database().ref('posts/' + props.postId + '/replies/' + props.replyId + '/edited').transaction(value => Date.now());
+        // Setting message
+        reference.set(message);
+        
+        // Getting edition time datapoint
+        props.type === 'post'
+        ? reference = firebase.database().ref('posts/' + props.post + '/edited')
+        : reference = firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/edited');
+
+        
+        // Settting edition time
+        reference.transaction(value => Date.now());
         
         // Displaying alert
         setAlert(true);

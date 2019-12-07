@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import firebase, {auth} from '../Functions/Firebase.js';
 import '../Styles/DeletePost.css';
 
+//--------------------------------------------------------------/
 //
 // Deletes a post or with a confirmation message
 //
-
+//--------------------------------------------------------------/
 const DeletePost = (props) => {
     
     const [confirmation, setConfirmation] = useState(false);
@@ -23,8 +24,8 @@ const DeletePost = (props) => {
     // Function that deletes the post
     const handleDelete = (id) => {
       
-      if(props.type === 'post') firebase.database().ref('posts/' + id).remove();
-      if(props.type === 'reply')firebase.database().ref('posts/' + props.post + '/replies/' + id ).remove();
+      if(props.type === 'post') firebase.database().ref('posts/' + props.post).remove();
+      if(props.type === 'reply')firebase.database().ref('posts/' + props.post + '/replies/' + props.reply).remove();
           
       setConfirmation(false);
        

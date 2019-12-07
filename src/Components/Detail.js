@@ -27,6 +27,7 @@ const Detail = (props) => {
     const [alert, setAlert]         = useState(null);
     const [avatar, setAvatar]       = useState(null);
     const [chat, setChat]           = useState(null);
+    const [editPost, setEditPost]   = useState(null);
     const [empty, setEmpty]         = useState(true);
     const [login, setLogin]         = useState(false);
     const [maxLength, setMaxLength] = useState(null);
@@ -49,8 +50,6 @@ const Detail = (props) => {
     // To get the points of the user, first we need to check out if he/she is using a nickname
     // In this case, getting the points of the user with nickname 
     const points  = GetPoints(nickName ? nickName : user ? user.uid : null);
-    
-    console.log(userUid);
     
     // Title, metadescription and loading emojis in svg will rereder always
     useEffect ( () => {
@@ -104,6 +103,7 @@ const Detail = (props) => {
 
                     if(mounted){
                         
+                        setEditPost(Accounts[typeOfAccount].edit);
                         setMaxLength(Accounts[typeOfAccount].messages.maxLength);
                         setTimeLimit(Accounts[typeOfAccount].messages.timeSpanReplies);
                         
@@ -121,6 +121,23 @@ const Detail = (props) => {
 
             if(capture){
                 
+                //Increase number of views of the post
+                firebase.database().ref('posts/' + props.match.params.string + '/views').transaction( (value) =>  value + 1 );
+                
+                // Increase number of views in the user's profile
+                firebase.database().ref('users/' + capture.userUid + '/postsViews').transaction( (value) => value + 1);
+                
+            }
+            
+        });
+        
+        // Load all the post info
+        firebase.database().ref('posts/' + props.match.params.string).on('value', (snapshot) => { 
+
+            var capture = snapshot.val();
+
+            if(capture){
+                
                 if(mounted){
                     setEmpty(false);
                     setMessage(capture.message);
@@ -131,12 +148,6 @@ const Detail = (props) => {
                     setUserUid(capture.userUid);
                     setViews(capture.views);
                 }
-                
-                //Increase number of views of the post
-                firebase.database().ref('posts/' + props.match.params.string + '/views').transaction( (value) =>  value + 1 );
-                
-                // Increase number of views in the user's profile
-                firebase.database().ref('users/' + capture.userUid + '/postsViews').transaction( (value) => value + 1);
                 
             }
             
@@ -236,26 +247,27 @@ const Detail = (props) => {
                     }
                 </div>;
     }
-
+    
     const listContent = () => {
-
-        var htmlMessage = message.split("\n").map((text, key) => <p key = {key}>{text}</p>);
-
-        return      <div key = 'content' className = 'content'>
+    
+        return <div key = 'content' className = 'content'>
                         {ready && !empty && 
                             <div>
                                 <Linkify properties = {{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
-                                    {htmlMessage}
+                                    {/* Start of the user message*/}
+                                    {message.split("\n").map((text, key) => <p key = {key}>{text}</p>)}
+                                    {/* End of the user messange*/}
                                     <div className = 'Meta-Post'>
                                         <Likes user = {user} post = {props.match.params.string}></Likes>
-                                        {user && admin && <DeletePost type = 'post' id = {props.match.params.string} />}
+                                        {user && admin && <EditPost   type = 'post' post = {props.match.params.string}/>}
+                                        {user && admin && <DeletePost type = 'post' post = {props.match.params.string} />}
                                     </div>
                                 </Linkify>
                             </div>
                         }
                     </div>;
     }
-
+    
     const listItems = () => {
     
     var list = chat.map( (line, index) => 
@@ -275,8 +287,8 @@ const Detail = (props) => {
                 {line.message.split("\n").map((text, key) => <p key = {key}>{text}</p>)}
                 <div className = 'Meta-Post'>
                     <LikesComments post = {props.match.params.string} reply = {line.key} user = {user}></LikesComments>
-                    {user && admin && <EditPost postId = {props.match.params.string} replyId = {line.key}/>}
-                    {user && admin && <DeletePost type = 'reply' post = {props.match.params.string} id = {line.key} />}
+                    {user && admin && <EditPost   type = 'reply' post = {props.match.params.string} reply = {line.key}/>}
+                    {user && admin && <DeletePost type = 'reply' post = {props.match.params.string} reply = {line.key} />}
                 </div>
             </Linkify>
         </li> );
@@ -318,7 +330,7 @@ const Detail = (props) => {
     return (
       <div className = 'Forum Detail'>
 
-        {send && <Alert title = '¡Gracias!' message = 'Mensaje enviado'></Alert>}
+        {send  && <Alert title = '¡Gracias!' message = 'Mensaje enviado'></Alert>}
         {alert && <Alert message = {alert}></Alert>}
 
         {ready ? [listTitle(), listContent(), listItems()] : loading() }
