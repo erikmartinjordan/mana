@@ -86,7 +86,7 @@ const Detail = (props) => {
                 firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
 
                     // If the user is anonymous, set the nickname and avatar
-                    var anonimo = snapshot.val().anonimo;
+                    var anonimo = snapshot.val() && snapshot.val().anonimo ? snapshot.val().anonimo : false;
 
                     if(anonimo && mounted){
                         setnickName(snapshot.val().nickName);
@@ -99,7 +99,7 @@ const Detail = (props) => {
                     }
 
                     // Selecting timespan between messages and max Length depending on type of account
-                    var typeOfAccount = snapshot.val().account ? snapshot.val().account : 'free';
+                    var typeOfAccount = snapshot.val() && snapshot.val().account ? snapshot.val().account : 'free';
 
                     if(mounted){
                         
