@@ -66,7 +66,12 @@ const Perfil = (props) => {
                         let infoUser = snapshot.val();
                         
                         // Getting info of next Payment if user is Premium
-                        if(infoUser.account === 'premium') getNextPaymentInfo(infoUser.subscriptionId);
+                        if(infoUser.account === 'premium' && infoUser.subscriptionId) 
+                            getNextPaymentInfo(infoUser.subscriptionId);
+                        
+                        // If user hasn't subscription Id, he/she has an infinite premium account
+                        if(infoUser.account === 'premium' && !infoUser.subscriptionId)
+                            setNextPayment('∞');
                         
                         // Seting info of the user
                         setInfoUser(snapshot.val());
@@ -119,17 +124,19 @@ const Perfil = (props) => {
 
         firebase.database().ref('users/' + user.uid + '/anonimo/').transaction( (value) =>  {
 
-            // Necesitamos anonimizar el nombre y el avatar
+            // Anonymize name and avatar
             if(value === null || value === false){
+                
                 firebase.database().ref('users/' + user.uid + '/nickName/').transaction( (value) => {
                     return Math.random().toString(36).substr(2, 5);
                 });
                 firebase.database().ref('users/' + user.uid + '/avatar/').transaction( (value) => {
                     return AnonymImg();
                 });
+                
             }
-
-            // Devolvemos el resultado
+            
+            // Returning res
             return value === null ? true : !value; 
 
         });
@@ -184,7 +191,7 @@ const Perfil = (props) => {
                         </div>
                         <div className = 'Comment'>
                             { user && infoUser && infoUser.account === 'premium' 
-                            ? `Cuenta válida hasta el ${nextPayment}`
+                            ? `Cuenta válida hasta el ${nextPayment}.`
                             : 'Sube a Premium para disfrutar de Nomoresheet sin limitaciones.'
                             }
                         </div>
