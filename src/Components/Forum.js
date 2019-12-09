@@ -128,11 +128,11 @@ const Front = () => {
         var list = array.map( (line, key) =>
             <React.Fragment key = {key}>
                 <Link to = {'/comunidad/post/' + line.key}>
-                    <li className='roll' key = {key}>
-                        <div className = 'roll-wrap'>
-                            <span>{line.title}</span>
+                    <li className = 'Post-List' key = {key}>
+                        <div className = 'Post-Card'>
+                            <h3>{line.title}</h3>
                             <div className = 'Infopost-Meta-Post'>
-                                <div className = 'infopost'>
+                                <div className = 'Infopost'>
                                     <img src = {line.userPhoto}></img>
                                     <p>{line.userName} <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
                                 </div>
