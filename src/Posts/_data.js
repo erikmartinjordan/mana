@@ -1,5 +1,10 @@
 var data = {
-    '2019': {
+    'instagram': {
+        'title': 'El tabaco e Instagram',
+        'date': [9, 'Diciembre', 2019],
+        'description': 'Yo no he fumado nunca, por lo menos activamente. La culpa la tuvieron mis padres, que fumaron durante toda mi infancia y eso generó en mí un rechazo prematuro hacia la nicotina. Mis padres siempre han hecho las cosas por nuestro bien.'
+    },
+    'fin-decada': {
         'title': 'Fin de una década',
         'date': [3, 'Diciembre', 2019],
         'description': 'En una nota del móvil, voy apuntando las cosas que quiero conseguir durante el año. No son (des)propósitos de año nuevo, Dios me libre, porque no pongo gran empeño en conseguir lo que anoto. Pero el caso es que voy apuntado ítems aleatorios.'
