@@ -21,6 +21,7 @@
 }
 .Blog article{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
 }
@@ -40,10 +41,14 @@
     margin: 0;
     text-transform: lowercase;
 }
+.Blog .Title-Date-Privat .Title{
+    font-weight: bold;
+}
 .Blog .Title-Date-Privat .Meta{
     display: flex;
     font-size: small;
     justify-content: flex-start;
+    margin-top: 10px;
     width: 100%;
 }
 .Blog .Title-Date-Privat .Meta > div{
@@ -147,7 +152,6 @@
         padding: 20px;
     }
     .Blog article{
-        flex-direction: column;
         margin-bottom: 10px;
     }
     .Blog article a{

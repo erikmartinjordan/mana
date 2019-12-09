@@ -280,6 +280,7 @@
     justify-content: space-between;
 }
 .Forum .roll-wrap span{
+    font-weight: bold;
     line-height: 1.5;
 }
 .Forum span.alert{
