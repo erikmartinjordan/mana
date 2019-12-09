@@ -65,8 +65,6 @@ const Perfil = (props) => {
                         // Getting info of the user
                         let infoUser = snapshot.val();
                         
-                        console.log(infoUser);
-                        
                         // Getting info of next Payment if user is Premium
                         if(infoUser.account === 'premium') getNextPaymentInfo(infoUser.subscriptionId);
                         
