@@ -232,7 +232,7 @@ const Detail = (props) => {
                     {ready && !empty &&
                         <div className = 'detail-header'>
                             <h2>{title}</h2>
-                            <div className = 'infopost'>
+                            <div className = 'Infopost'>
                                 <img alt = {userName} src = {userPhoto}></img>
                                 <div className = 'Group'> 
                                     <span className = 'user-verified'>
@@ -272,7 +272,7 @@ const Detail = (props) => {
     
     var list = chat.map( (line, index) => 
         <li key = {line.key}>
-            <div className = 'infopost'>
+            <div className = 'Infopost'>
                 <img alt = {line.userName} src = {line.userPhoto}></img>
                 <div className = 'Group'> 
                     <span className = 'user-verified'>
@@ -303,7 +303,7 @@ const Detail = (props) => {
 
     var form =  <form onSubmit = {(e) => handleSubmit(e)}>
                     {user &&
-                     <div className = 'infopost'>
+                     <div className = 'Infopost'>
                         <img alt = {nickName ? nickName : user.displayName} src = {avatar ? avatar : user.photoURL}></img>
                         <div>{nickName ? nickName : user.displayName}</div>
                       </div>
