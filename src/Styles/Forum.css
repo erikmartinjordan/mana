@@ -2,7 +2,6 @@
 /*Front design
 /*******************************************************************/
 .Forum{
-    margin: auto;
     padding: 20px;
     width: 100%;
 }
@@ -49,7 +48,8 @@
 .Forum .Sidebar .Welcome,
 .Forum .Sidebar .LastComments,
 .Forum .Sidebar .LastArticles,
-.Forum .Sidebar .Users{
+.Forum .Sidebar .Users,
+.Forum .Sidebar .Norms{
     background: var(--bgBox);
     border-radius: 5px;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
@@ -104,6 +104,15 @@
     letter-spacing: 0.1px;
     margin-bottom: 10px;
     text-transform: uppercase;
+} 
+.Forum .Sidebar .Norms ol{
+    padding: 0;
+}
+.Forum .Sidebar .Norms ol li{
+    border-top: 1px dotted var(--bgColor);
+    font-size: small;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 .Forum ul.Front{
     width: 100%;
@@ -360,7 +369,6 @@
 /*Detail
 /*******************************************************************/
 .Forum.Detail{
-    margin: auto;
     width: 100%;
 }
 .Forum.Detail .Likes{

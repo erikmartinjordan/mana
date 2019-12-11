@@ -326,18 +326,40 @@ const Detail = (props) => {
 
       return load;
     }
-
+    
+    
     return (
       <div className = 'Forum Detail'>
-
+        {/* Two columns of content: main content and sidebar */}
+        {ready
+        ?   <div className = 'Forum-TwoCol'>
+                <div className = 'Main'>
+                    {listTitle()}
+                    {listContent()}
+                    {listItems()}
+                    {user && !empty && newReply()}                               
+                    {!user && ready && !empty  && <button className = 'bottom' onClick = { () => setRender(true)}> Responder</button>}
+                </div>
+                <div className = 'Sidebar'>
+                    <div className = 'Norms'>
+                        <span className = 'Title'>Antes de publicar</span>
+                        <ol>
+                            <li>Puedes escribir sobre lo que te apetezca: desde Tailandia hasta cualquier otro tema que pueda resultar de interés para la comunidad.</li>
+                            <li>Evita mensajes en mayúsculas o con excesivos puntos de exclamación. </li>
+                            <li>Cita la fuente original de tu publicación poniendo la URL sin recortar al final del mensaje.</li>
+                            <li>Si introduces enlaces de afiliado, tu mensaje será borrado.</li>
+                            <li>Cuida tu ortografía.</li>
+                            <li>Evita títulos que empiecen con numerales. Por ejemplo, «5 mejores platos tailandeses» puede ser «Platos tailandeses que son una delicia».</li>
+                            <li>Escribe como si estuvieses tomándote un café con alguien: sé amable, supón buena fe por parte de los demás, no seas puntilloso. </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        :   loading()
+        }
+        {/* Alert messages and login modals */}
         {send  && <Alert title = '¡Gracias!' message = 'Mensaje enviado'></Alert>}
         {alert && <Alert message = {alert}></Alert>}
-
-        {ready ? [listTitle(), listContent(), listItems()] : loading() }
-
-        {user && !empty && newReply()}                               
-        {!user && ready && !empty  && <button className = "bottom" onClick = { () => setRender(true)}> Responder</button>}
-
         {render && <Login hide = {() => setRender(false)}></Login>}
       </div>    
     );
