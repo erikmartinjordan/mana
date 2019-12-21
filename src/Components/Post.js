@@ -135,7 +135,7 @@ const Post = (props) => {
                     </div>
                 </div>,
                 <div className = 'Content'>
-                    { Data[url].privat && !user
+                    { Data[url] && Data[url].privat && !user
                     ? text && 
                     <React.Fragment>
                         <div className = 'Blur-Login'>
