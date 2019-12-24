@@ -1,4 +1,9 @@
 var data = {
+    'donde-estas-farang': {
+        'title': 'Dónde estás, «farang»',
+        'date': [24, 'Diciembre', 2019],
+        'description': 'Hace unos días, los oficiales de turismo de Hua Hin/Cha Am convocaron una reunión con el objetivo de comentar la decreciente llegada de europeos y poner el foco en la siguiente oleada de turistas. El resumen del artículo es que los europeos ya no vienen tanto como años ha. Y, en lugar de encontrar soluciones o preguntarse los porqués, la conclusión del gobierno tailandés es que hay que confiar en la siguiente oleada: chinos e indios. Ellos sí son el futuro. '
+    },
     'instagram': {
         'title': 'El tabaco e Instagram',
         'date': [9, 'Diciembre', 2019],
