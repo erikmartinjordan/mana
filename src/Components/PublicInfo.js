@@ -97,7 +97,7 @@ const PublicInfo = (props) => {
                     <h2>{name}</h2>
                     <div className = 'Bloque'>
                         <div className = 'Title'>Reputación {ranking && <span className = 'Ranking'>{ranking}</span>}</div>
-                        <div className = 'Num'>{points}</div>
+                        <div className = 'Num'>{points.toLocaleString()}</div>
                         {!props.uid &&
                             <div className = 'Comment'>Puntos totales hasta el momento.</div>
                         }
@@ -107,7 +107,7 @@ const PublicInfo = (props) => {
                         <div className = 'Title'>Impacto</div>
                         <div className = 'Num'>{views.toLocaleString()}</div>
                         {!props.uid &&
-                            <div className = 'Comment'>Número total de impresiones que han recibido tus publicaciones.</div>
+                            <div className = 'Comment'>Número total de impresiones de publicaciones.</div>
                         }
                     </div>
                     <div className = 'Bloque'>

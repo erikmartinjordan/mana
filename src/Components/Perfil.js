@@ -1,43 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import firebase, { auth } from '../Functions/Firebase.js';
-import PaymentModal from './PaymentModal.js';
-import Login from './Login.js';
-import GetNumberOfPosts from '../Functions/GetNumberOfPosts.js';
-import GetNumberOfReplies from '../Functions/GetNumberOfReplies.js';
-import GetNumberOfSpicy from '../Functions/GetNumberOfSpicy.js';
-import GetPoints from '../Functions/GetPoints.js';
-import GetLevel from '../Functions/GetLevelAndPointsToNextLevel.js';
-import ToggleButton from '../Functions/ToggleButton.js';
-import AnonymImg from '../Functions/AnonymImg.js';
-import DeleteAccount from '../Functions/DeleteAccount.js';
-import Accounts from '../Rules/Accounts.js';
-import DowngradeToFreePlan from '../Functions/DowngradeToFreePlan.js';
+import Login                          from './Login.js';
+import PaymentModal                   from './PaymentModal.js';
+import Points                         from '../Functions/PointsAndValues.js';
+import firebase, { auth }             from '../Functions/Firebase.js';
+import GetNumberOfPosts               from '../Functions/GetNumberOfPosts.js';
+import GetNumberOfReplies             from '../Functions/GetNumberOfReplies.js';
+import GetNumberOfSpicy               from '../Functions/GetNumberOfSpicy.js';
+import GetPoints                      from '../Functions/GetPoints.js';
+import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel.js';
+import ToggleButton                   from '../Functions/ToggleButton.js';
+import AnonymImg                      from '../Functions/AnonymImg.js';
+import DeleteAccount                  from '../Functions/DeleteAccount.js';
+import DowngradeToFreePlan            from '../Functions/DowngradeToFreePlan.js';
+import Accounts                       from '../Rules/Accounts.js';
 import '../Styles/Perfil.css';
 import '../Styles/Progressbar.css';
 import '../Styles/ToggleButton.css';
 
 const Perfil = (props) => {
 
-    const [confirmation, setConfirmation] = useState(false);
-    const [infoUser, setInfoUser] = useState(null);
-    const [lastSignIn, setLastSignIn] = useState(null);
-    const [menu, setMenu] = useState('Cuenta');
-    const [nextPayment, setNextPayment] = useState('');
-    const [paymentModal, setPaymentModal] = useState(false);
-    const [render, setRender] = useState(false);
-    const [user, setUser] = useState(null);
-    const [uid, setUid] = useState(null);
-    const posts = GetNumberOfPosts(uid);
-    const replies = GetNumberOfReplies(uid);
-    const spicy = GetNumberOfSpicy(uid);
-    const points = GetPoints(posts, replies, spicy)[0];
-    const valuePost = GetPoints(posts, replies, spicy)[1];
-    const valueReply = GetPoints(posts, replies, spicy)[2];
-    const valueSpicy = GetPoints(posts, replies, spicy)[3];
-    const level = GetLevel(points)[0];
-    const pointsToNextLevel = GetLevel(points)[1];
-    const percentage = GetLevel(points)[2];
-    
+    const [confirmation, setConfirmation]   = useState(false);
+    const [infoUser, setInfoUser]           = useState(null);
+    const [lastSignIn, setLastSignIn]       = useState(null);
+    const [menu, setMenu]                   = useState('Cuenta');
+    const [nextPayment, setNextPayment]     = useState('');
+    const [paymentModal, setPaymentModal]   = useState(false);
+    const [render, setRender]               = useState(false);
+    const [user, setUser]                   = useState(null);
+    const [uid, setUid]                     = useState(null);
+    const posts                             = GetNumberOfPosts(uid);
+    const replies                           = GetNumberOfReplies(uid);
+    const spicy                             = GetNumberOfSpicy(uid);
+    const points                            = GetPoints(uid)[0];
+    const valuePost                         = Points.post;
+    const valueReply                        = Points.reply;
+    const valueSpicy                        = Points.spicy;
+    const level                             = GetLevel(points)[0];
+    const pointsToNextLevel                 = GetLevel(points)[1];
+    const percentage                        = GetLevel(points)[2];
     
     useEffect( () => {
         
@@ -83,7 +83,9 @@ const Perfil = (props) => {
                 setRender(false);
                 setUser(user);
                 setUid(user.uid);
-                setLastSignIn(`Has accedido por última vez: ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} a las ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`);
+                setLastSignIn(`Has accedido por última vez: 
+                            ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} 
+                            a las ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`);
             }
         });
 
