@@ -113,3 +113,10 @@
     50%   {opacity: 0.5; transform: scale(1.1, 1.1);}
     100%  {opacity: 1;   transform: scale(1,1);}
 }
+@media(max-width: 768px){
+    .Notifications .Notifications-Wrap,
+    .Notifications .Notifications-Menu{
+        width: 100%;
+    }
+    
+}
