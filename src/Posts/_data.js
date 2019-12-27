@@ -1,4 +1,9 @@
 var data = {
+    'academia': {
+        'title': 'Cómo es lo de apuntarse a aprender tailandés',
+        'date': [27, 'Diciembre', 2019],
+        'description': 'En el artículo anterior, conté que la cosa se está poniendo peliaguda en Tailandia. Los controles de inmigración se están volviendo insufribles y, como ya me dieron el alto en inmigración hace un par de meses, no las tengo todas conmigo en que levanten la barrera de seguridad para dejar que el «farang» pueda estudiar tailandés. El papeleo que te piden en la academia es digno de mención, pues me he sentido como supongo que se sentiría alguien que firme una hipoteca. Cincuenta y siete firmas sobre papeles, fotocopias y fotocopias de las fotocopias. Su puta madre.'
+    },
     'donde-estas-farang': {
         'title': 'Dónde estás, «farang»',
         'date': [24, 'Diciembre', 2019],
