@@ -30,6 +30,13 @@ const PublicInfo = (props) => {
     const percentage = GetLevel(...points)[2];
     const articles = GetLastArticles(userUid, 10); 
     const ranking = GetRankingUser(userUid);
+    
+    useEffect( () => { 
+        
+        // No indexing user's profiles
+        document.querySelector('meta[name="robots"]').content = 'noindex';
+        
+    });
         
     useEffect( () => {
         
