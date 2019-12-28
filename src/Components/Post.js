@@ -23,9 +23,15 @@ const Post = (props) => {
     const url = props.match.params.string;
     
     useEffect( () => {
+        
         // Add title and meta description
         document.title = title + ' - Nomoresheet'; 
         document.querySelector('meta[name="description"]').content = description; 
+        
+        // Adding no-index property if article is privat
+        if(Data[url] && Data[url].privat){
+            document.querySelector('meta[name="robots"]').content = 'noindex';
+        }
         
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );   
     })
