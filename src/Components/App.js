@@ -30,7 +30,7 @@ const App  = () => {
         let year = date.getFullYear();
 
         // Adding stat of visits to database
-        firebase.database().ref('stats/' + `/${year}${month}${day}/` + `/${fingerprint}` + '/visits/' ).transaction( value => value + 1 );
+        firebase.database().ref('visits/' + `/${year}${month}${day}/` + `/${fingerprint}` + '/visits/' ).transaction( value => value + 1 );
 
         // Adding stat to Google Analytics
         ReactGA.pageview(window.location.pathname + window.location.search); 

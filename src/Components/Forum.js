@@ -1,34 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import firebase, {auth} from '../Functions/Firebase.js';
-import { Link } from 'react-router-dom';
-import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
-import spanishStrings from 'react-timeago/lib/language-strings/es';
-import TimeAgo from 'react-timeago';
-import Likes from '../Functions/Likes.js';
-import Login from './Login.js';
-import Data from '../Posts/_data.js';
-import EmojiTextarea from '../Functions/EmojiTextarea';
-import GetLastComments from '../Functions/GetLastComments';
-import Users from './Users';
+import { Link }                       from 'react-router-dom';
+import buildFormatter                 from 'react-timeago/lib/formatters/buildFormatter';
+import spanishStrings                 from 'react-timeago/lib/language-strings/es';
+import TimeAgo                        from 'react-timeago';
+import Login                          from './Login';
+import firebase, {auth}               from '../Functions/Firebase';
+import Likes                          from '../Functions/Likes';
+import EmojiTextarea                  from '../Functions/EmojiTextarea';
+import GetLastComments                from '../Functions/GetLastComments';
+import Loading                        from '../Functions/Loading';
+import OrderBy                        from '../Functions/OrderBy'
+import Data                           from '../Posts/_data';
 import '../Styles/Forum.css';
 
 const formatter = buildFormatter(spanishStrings);
 
 const Front = () => {
                 
-    const [admin, setAdmin] = useState(false);
-    const [alert, setAlert] = useState('');
-    const [chat, setChat] = useState('');
-    const [message, setMessage] = useState('');
-    const [nomore, setNomore] = useState(null);
+    const [admin, setAdmin]       = useState(false);
+    const [alert, setAlert]       = useState('');
+    const [chat, setChat]         = useState('');
+    const [message, setMessage]   = useState('');
+    const [nomore, setNomore]     = useState(null);
     const [numposts, setNumposts] = useState(10);
-    const [ready, setReady] = useState(false);
-    const [render, setRender] = useState(false);
-    const [sort, setSort] = useState('nuevo');
-    const [title, setTitle] = useState('');
-    const [user, setUser] = useState(null);
-    const [write, setWrite] = useState(null);
-    const comments = GetLastComments();
+    const [ready, setReady]       = useState(false);
+    const [render, setRender]     = useState(false);
+    const [sort, setSort]         = useState('nuevo');
+    const [title, setTitle]       = useState('');
+    const [user, setUser]         = useState(null);
+    const [write, setWrite]       = useState(null);
+    const comments                = GetLastComments();
     
     //-------------------------------------------------------------
     //
@@ -155,39 +156,7 @@ const Front = () => {
         return list;
     
     }   
-    //-------------------------------------------------------------
-    //
-    // Loading blocks, before 
-    //
-    //------------------------------------------------------------- 
-    const loading = () => {
-        
-        return <React.Fragment>
-                    <div className = 'OrderBy'>
-                        <div className = 'Loading'></div>
-                        <div className = 'Loading'></div>
-                        <div className = 'Loading'></div>
-                    </div>
-                    <div className = 'Forum-TwoCol'>
-                        <ul className = 'Front'>
-                            <div className = 'Loading'></div>
-                            <div className = 'Loading'></div>
-                            <div className = 'Loading'></div>
-                            <div className = 'Loading'></div>
-                            <div className = 'Loading'></div>
-                            <div className = 'Loading'></div>
-                            <div className = 'Loading'></div>
-                            <div className = 'Loading'></div>
-                            <div className = 'Loading'></div>
-                            <div className = 'Loading'></div>                       
-                        </ul>
-                        <div className = 'Sidebar'>
-                            <div className = 'Loading'></div> 
-                            <div className = 'Loading'></div> 
-                        </div>
-                    </div>
-                </React.Fragment>
-    }
+
     //-------------------------------------------------------------
     //
     // Show more posts
@@ -202,28 +171,7 @@ const Front = () => {
         
         setNumposts(items);
     }
-    //-------------------------------------------------------------
-    //
-    // Sort posts
-    //
-    //-------------------------------------------------------------    
-    const orderBy = (type) => {
-        
-        let sorted;
-        
-        if(type === 'nuevo')       sorted = chat.sort( (a, b) => b.timeStamp - a.timeStamp );
-        if(type === 'picante')     sorted = chat.sort( (a, b) => a.votes - b.votes );
-        if(type === 'comentarios') sorted = chat.sort( (a, b) => {
-            
-            if(a.replies  && b.replies)   return Object.keys(b.replies).length - Object.keys(a.replies).length;
-            if(!a.replies && b.replies)   return 1;
-            if(a.replies  && !b.replies)  return -1;
-            if(!a.replies && !b.replies)  return 0;
-        });
-        
-        setChat(sorted);
-        setSort(type);
-    }
+
     //-------------------------------------------------------------
     //
     // Get last articles
@@ -276,11 +224,10 @@ const Front = () => {
         ?   <React.Fragment>
                 <div className = 'Forum-TwoCol'>
                     <div className = 'Main'>
-                        <div className = 'OrderBy'>
-                            <div onClick = {() => orderBy('nuevo')} className = {sort === 'nuevo' ? 'Selected' : null}>Nuevo 🔥</div>
-                            <div onClick = {() => orderBy('picante')} className = {sort === 'picante' ? 'Selected' : null}>Picante 🌶</div>
-                            <div onClick = {() => orderBy('comentarios')} className = {sort === 'comentarios' ? 'Selected' : null}>Comentarios 💬</div>
-                        </div>
+                        <OrderBy
+                            chat = {chat} setChat = {setChat}
+                            sort = {sort} setSort = {setSort}
+                        />
                         <ul className = 'Front'>
                             {listItems()}
                         </ul>
@@ -295,14 +242,10 @@ const Front = () => {
                             <span className = 'Title'>Últimos artículos</span>
                             {lastArticles(5)}
                         </div>
-                        <div className = 'Users'>
-                            <span className = 'Title'>Usuarios</span>
-                            <Users></Users>
-                        </div>
                     </div>
                 </div>
             </React.Fragment>
-        : loading()
+        : <Loading page = 'Main'/>
         }
         {render  && <Login hide = {() => setRender(false)}></Login>}
       </div>

@@ -1,0 +1,19 @@
+.OrderBy{
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    padding: 20px;
+}
+.OrderBy div{
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: small;
+    padding: 5px 15px;
+    text-align: center;
+}
+.OrderBy .Selected{
+    background: var(--lightBlue);
+    border-radius: 50px;
+    color: var(--blue);
+}

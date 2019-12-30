@@ -18,6 +18,26 @@
     height: 30px;
     animation: spin 1s linear infinite;
 }
+.Forum-TwoCol .Loading{
+    -webkit-animation-duration: 0.75s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: shimmer;
+    -webkit-animation-timing-function: linear;
+    background-image: linear-gradient(to right, var(--bgBox) 10%, var(--bgColor) 18%, var(--bgBox) 33%);
+    background-size: 200% 100%;
+}
+.Forum-TwoCol .Main .Loading{
+    border-radius: 5px;
+    height: 200px;
+    margin-bottom: 20px;
+}
+.Forum-TwoCol .Main .OrderBy .Loading{
+    border-radius: 50px;
+    height: 30px;
+    margin: 10px;
+    width: 70px;
+}
 @keyframes spin {
     0% {   transform: rotate(0deg); }
     100% { transform: rotate(360deg); }

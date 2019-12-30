@@ -5,17 +5,14 @@ import firebase, { auth }               from '../Functions/Firebase';
 const Users = () => {
 
     let object = {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: [],
         datasets: [{
           label: 'Usuarios',
           borderColor: 'blue',
-          pointBorderWidth: 3,
-          pointHoverRadius: 8,
-          pointHoverBorderWidth: 1,
-          pointRadius: 3,
-          backgroundColor: 'rgba(0, 210, 255, 0.05)',
+          borderWidth: 3,
+          backgroundColor: 'rgba(0, 210, 255, 0.2)',
           data: []
         }]
       },
@@ -75,8 +72,8 @@ const Users = () => {
                 let json = snapshot.val();
                 
                 // Getting labels and data
-                let labels = Object.keys(json).map( date => date.slice(6, 8) + '-' + date.slice(4, 6) + '-' + date.slice(0, 4));
-                let data   = Object.keys(json).map( date => Object.keys(json[date]).length);
+                let labels = Object.keys(json).map( date => `${date.substr(4, 2)}-${date.substr(0, 4)}`);
+                let data   = Object.keys(json).map( date => json[date].visits);
                 
                 // Modifiying labels and data
                 object.data.labels = labels.slice(-7);

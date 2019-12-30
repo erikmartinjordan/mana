@@ -44,6 +44,7 @@
     margin-left: 20px;
     max-width: 300px;
     padding-top: 100px;
+    width: 100%;
 }
 .Forum .Sidebar .Welcome,
 .Forum .Sidebar .LastComments,
@@ -318,45 +319,6 @@
     border-radius: 5px;
     color: white;
     padding: 10px 20px;
-}
-.Forum .Loading{
-    border-radius: 5px;
-    height: 200px;
-    margin-bottom: 20px;
-}
-.Forum .Loading{
-    -webkit-animation-duration: 0.75s;
-    -webkit-animation-fill-mode: forwards;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-name: shimmer;
-    -webkit-animation-timing-function: linear;
-    background-image: linear-gradient(to right, var(--bgBox) 10%, var(--bgColor) 18%, var(--bgBox) 33%);
-    background-size: 200% 100%;
-}
-.Forum .OrderBy .Loading{
-    border-radius: 50px;
-    height: 30px;
-    margin: 10px;
-    width: 70px;
-}
-.Forum .OrderBy{
-    align-items: center;
-    display: flex;
-    height: 100px;
-    justify-content: center;
-    padding: 20px;
-}
-.Forum .OrderBy div{
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: small;
-    padding: 5px 15px;
-    text-align: center;
-}
-.Forum .OrderBy .Selected{
-    background: var(--lightBlue);
-    border-radius: 50px;
-    color: var(--blue);
 }
 .Forum .Claps{
     color: var(--primaryFontColor);
