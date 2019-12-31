@@ -1,0 +1,60 @@
+.Estadisticas{
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+}
+.Estadisticas .Parrilla{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.Estadisticas .Parrilla .Datos{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    padding: 10px;
+    margin: 5px;
+    width: 100%;
+}
+.Estadisticas .Parrilla .Datos .Titulo{
+    color: var(--thirdFontColor);
+    font-size: small;
+}
+.Estadisticas .Parrilla .Datos .Desc{
+    font-size: large;
+}
+.Estadisticas .Fecha{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+.Estadisticas .Fecha button{
+    background: none;
+    border: none;
+    color: var(--primaryFontColor);
+    cursor: pointer;
+    font-size: small;
+    margin: 5px;
+    padding: 5px 15px;
+    text-align: center;
+}
+.Estadisticas .Fecha button.Selected {
+    background: var(--lightBlue);
+    border-radius: 50px;
+    color: var(--blue);
+}
+.Estadisticas .Grafico{
+    margin: auto;
+    width: 600px;
+}
+.Estadisticas .Ranking{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    padding: 20px;
+}
+.Estadisticas .Ranking .Row{
+    display: flex;
+    justify-content: space-between;
+}

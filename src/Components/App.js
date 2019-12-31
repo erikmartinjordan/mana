@@ -56,8 +56,6 @@ const App  = () => {
         
         if(ref){
             
-            console.log('Entro aquí');
-            
             firebase.database().ref(`analytics/${year}${month}${day}/${fingerprint}/${ref.key}/pageviews`).push({
                 
                 url: window.location.pathname
