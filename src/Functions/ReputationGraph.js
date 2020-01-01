@@ -15,10 +15,10 @@ const ReputationGraph = (props) => {
             datasets: [{
               label: 'Puntos',
               borderColor: 'green',
-              pointBorderWidth: 2,
-              pointHoverRadius: 2,
-              pointHoverBorderWidth: 2,
-              pointRadius: 2,
+              pointBorderWidth: 1,
+              pointHoverRadius: 1,
+              pointHoverBorderWidth: 1,
+              pointRadius: 1,
               backgroundColor: 'rgba(0, 210, 255, 0)',
               data: []
             }]

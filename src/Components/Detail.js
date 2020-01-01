@@ -226,12 +226,11 @@ const Detail = (props) => {
         
     } 
     
-    const listTitle = () => {  
+    const listQuestion = () => {  
         
       return    <div  key = 'title' className = 'title'>                    
                     {ready && !empty &&
                         <div className = 'detail-header'>
-                            <h2>{title}</h2>
                             <div className = 'Infopost'>
                                 <img alt = {userName} src = {userPhoto}></img>
                                 <div className = 'Group'> 
@@ -332,9 +331,11 @@ const Detail = (props) => {
       <div className = 'Forum Detail'>
         {/* Two columns of content: main content and sidebar */}
         {ready
-        ?   <div className = 'Forum-TwoCol'>
+        ?   <React.Fragment>
+            <h2>{title}</h2>
+            <div className = 'Forum-TwoCol'>
                 <div className = 'Main'>
-                    {listTitle()}
+                    {listQuestion()}
                     {listContent()}
                     {listItems()}
                     {user && !empty && newReply()}                               
@@ -355,6 +356,7 @@ const Detail = (props) => {
                     </div>
                 </div>
             </div>
+            </React.Fragment>
         :   loading()
         }
         {/* Alert messages and login modals */}

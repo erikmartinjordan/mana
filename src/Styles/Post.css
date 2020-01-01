@@ -3,9 +3,9 @@
     padding: 20px;
     width: 100%;
 }
-.Post .Header{
-    padding-bottom: 50px;
-    padding-top: 50px;
+.Post h1{
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 .Post .Header img#Erik{
     border-radius: 50%;

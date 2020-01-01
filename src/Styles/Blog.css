@@ -22,7 +22,6 @@
 .Blog article{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     width: 100%;
 }
 .Blog .Title-Date-Privat{
@@ -58,12 +57,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
+    margin-top: 20px;
 }
 .Blog .Content p{
     color: var(--primaryFontColor);
     line-height: 1.7;
     font-size: medium;
     margin: 0;
+    max-width: 100%;
 }
 .Blog .Content .Privat{
     display: flex;
