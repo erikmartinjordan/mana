@@ -17,6 +17,7 @@ import useVerifiedTag                  from '../Functions/VerifiedTag.js';
 import Alert                           from '../Functions/Alert.js';
 import getPremiumUsers                 from '../Functions/GetPremiumUsers.js';
 import GetPoints                       from '../Functions/GetPoints.js';
+import Loading                         from '../Functions/Loading.js';
 import Accounts                        from '../Rules/Accounts.js';
 
 const formatter = buildFormatter(spanishStrings);
@@ -316,16 +317,6 @@ const Detail = (props) => {
     return form;
 
     }
-
-    const loading = () => {
-
-      var load = [];
-
-      for(var i = 0; i < 10; i ++) load.push(<div key = {i} className = 'Loading'></div>)
-
-      return load;
-    }
-    
     
     return (
       <div className = 'Forum Detail'>
@@ -357,7 +348,7 @@ const Detail = (props) => {
                 </div>
             </div>
             </React.Fragment>
-        :   loading()
+        :   <Loading page = 'Main'/>
         }
         {/* Alert messages and login modals */}
         {send  && <Alert title = '¡Gracias!' message = 'Mensaje enviado'></Alert>}
