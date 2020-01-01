@@ -76,9 +76,15 @@
     },
     // Los usuarios pueden introducir estadísticas de visualizaciones
     // No deben haber iniciado sesión en Nomoresheet
-    "stats":{
+    "analytics":{
       ".read": "true",
       ".write": "true"
+    },
+    // Los usuarios pueden leer estadísticas
+    // No deben haber iniciado sesión en Nomoresheet
+    "stats":{
+      ".read": "true",
+      ".write": "false"
     },
     // Los usuarios pueden introducir datos cuando hacen clic en un anuncio
     // No deben haber iniciado sesión en Nomoresheet

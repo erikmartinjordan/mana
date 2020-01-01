@@ -123,29 +123,12 @@ exports.getStats  = functions.https.onRequest(async (request, response) => {
     let articles  = Object.keys(json.articles).length;
     let users     = Object.keys(json.users).length;
     
-    // Getting this month visits
-    let visits = 0;
-    
-    Object.keys(json.visits).map(date => {
-        
-        // Getting year and month
-        let yyyymm = date.substr(0, 6);
-        
-        // If data year and month is equal to this day and month
-        if(yyyymm === `${year}${month}`) {
-            
-            visits = visits + Object.keys(json.visits[date]).length;
-        }
-        
-    });
-        
     // Writing the number of posts
     admin.database().ref(`/stats/${year}${month}`).set({
         
         posts: articles,
         articles: articles,
         users: users,
-        visits: visits
         
     });
     

@@ -237,7 +237,7 @@ const Estadisticas = () => {
             
             let avg = duration.reduce( (a,b) => a + b)/duration.length;
             
-            return `${Math.floor(avg / 60)} min ${Math.floor(avg % 60)} sec`;
+            return `${Math.floor(avg / 60)} min ${Math.floor(avg % 60)} seg`;
             
         }
         
@@ -437,7 +437,10 @@ const Estadisticas = () => {
                 <canvas id = 'graph-1'/>
             </div>
             
-            <h3>Páginas más visitadas</h3>
+            { interval === 1
+            ? <h3>Lo más visto de hoy</h3>
+            : <h3>Lo más visto de los últimos {interval} días</h3>
+            }
             <div className = 'Ranking'>
                 <div className = 'Row'>
                     <div className = 'Url'>URL</div>
