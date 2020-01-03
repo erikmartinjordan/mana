@@ -10,7 +10,7 @@ import firebase, {auth} from './Firebase.js';
 //--------------------------------------------------------------/
 const GetLastComments = () => {
     
-    const [replies, setReplies] = useState(null);
+    const [replies, setReplies] = useState([]);
    
     useEffect( () => {
       

@@ -15,6 +15,7 @@ import DeletePost                      from '../Functions/DeletePost';
 import insertNotificationAndReputation from '../Functions/InsertNotificationAndReputationIntoDatabase.js';
 import useVerifiedTag                  from '../Functions/VerifiedTag.js';
 import Alert                           from '../Functions/Alert.js';
+import GetLastComments                 from '../Functions/GetLastComments.js';
 import getPremiumUsers                 from '../Functions/GetPremiumUsers.js';
 import GetPoints                       from '../Functions/GetPoints.js';
 import Loading                         from '../Functions/Loading.js';
@@ -51,6 +52,9 @@ const Detail = (props) => {
     // To get the points of the user, first we need to check out if he/she is using a nickname
     // In this case, getting the points of the user with nickname 
     const points  = GetPoints(nickName ? nickName : user ? user.uid : null);
+    
+    // Getting last comments of the users
+    const comments = GetLastComments();
     
     // Title, metadescription and loading emojis in svg will rereder always
     useEffect ( () => {
@@ -318,6 +322,26 @@ const Detail = (props) => {
 
     }
     
+    const lastComments = (numberOfComments) => { 
+        
+        var content = comments.slice(0, numberOfComments).map( (reply, key) =>
+            <Link to = {'/comunidad/post/' + reply.pid} key = {key} className = 'Info'>
+                <div className = 'Info-Wrap'>
+                    <img src = {reply.userPhoto}></img>
+                    <div className = 'Author-Date'>
+                        <span>{reply.author}</span>
+                        <span><TimeAgo formatter = {formatter} date = {reply.timeStamp}/></span>
+                    </div>
+                </div>
+                <div className = 'Claps'>👏  {reply.claps}</div>
+            </Link>
+        );
+      
+        content.push(<Link style = {{textAlign: 'center', width: '100%', marginTop: '20px'}} to = '/'>Ver más temas</Link>);
+        
+        return content;
+    }
+    
     return (
       <div className = 'Forum Detail'>
         {/* Two columns of content: main content and sidebar */}
@@ -333,17 +357,23 @@ const Detail = (props) => {
                     {!user && ready && !empty  && <button className = 'bottom' onClick = { () => setRender(true)}> Responder</button>}
                 </div>
                 <div className = 'Sidebar'>
+                    {/* General community guidelines */}
                     <div className = 'Norms'>
                         <span className = 'Title'>Antes de publicar</span>
                         <ol>
-                            <li>Puedes escribir sobre lo que te apetezca: desde Tailandia hasta cualquier otro tema que pueda resultar de interés para la comunidad.</li>
-                            <li>Evita mensajes en mayúsculas o con excesivos puntos de exclamación. </li>
-                            <li>Cita la fuente original de tu publicación poniendo la URL sin recortar al final del mensaje.</li>
-                            <li>Si introduces enlaces de afiliado, tu mensaje será borrado.</li>
-                            <li>Cuida tu ortografía.</li>
-                            <li>Evita títulos que empiecen con numerales. Por ejemplo, «5 mejores platos tailandeses» puede ser «Platos tailandeses que son una delicia».</li>
-                            <li>Escribe como si estuvieses tomándote un café con alguien: sé amable, supón buena fe por parte de los demás, no seas puntilloso. </li>
+                            <li className = 'Bien'>Puedes escribir sobre lo que te apetezca: desde Tailandia hasta cualquier otro tema que pueda resultar de interés para la comunidad.</li>
+                            <li className = 'Bien'>Escribe como si estuvieses tomándote un café con alguien: sé amable, supón buena fe por parte de los demás, no seas puntilloso. </li>
+                            <li className = 'Bien'>Cita la fuente original de tu publicación poniendo la URL sin recortar al final del mensaje.</li>
+                            <li className = 'Bien'>Cuida tu ortografía.</li>
+                            <li className = 'Mal'>Evita mensajes en mayúsculas o con excesivos puntos de exclamación. </li>
+                            <li className = 'Mal'>Evita títulos que empiecen con numerales. Por ejemplo, «5 mejores platos tailandeses» puede ser «Platos tailandeses que son una delicia».</li>
+                            <li className = 'Mal'>Si introduces enlaces de afiliado, tu mensaje será borrado.</li>
                         </ol>
+                    </div>
+                    {/* Two columns of content: main content and sidebar */}
+                    <div className = 'LastComments'>
+                        <span className = 'Title'>Últimos comentarios</span>
+                        {lastComments(10)}
                     </div>
                 </div>
             </div>
