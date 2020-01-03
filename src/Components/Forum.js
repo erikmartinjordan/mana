@@ -9,7 +9,8 @@ import Likes                          from '../Functions/Likes';
 import EmojiTextarea                  from '../Functions/EmojiTextarea';
 import GetLastComments                from '../Functions/GetLastComments';
 import Loading                        from '../Functions/Loading';
-import OrderBy                        from '../Functions/OrderBy'
+import OrderBy                        from '../Functions/OrderBy';
+import UserAvatar                     from '../Functions/UserAvatar';
 import Data                           from '../Posts/_data';
 import '../Styles/Forum.css';
 
@@ -134,7 +135,7 @@ const Front = () => {
                             <h3>{line.title}</h3>
                             <div className = 'Infopost-Meta-Post'>
                                 <div className = 'Infopost'>
-                                    <img src = {line.userPhoto}></img>
+                                    <UserAvatar user = {{uid: line.userUid, photoURL: line.userPhoto}}/>
                                     <p>{line.userName} <TimeAgo formatter={formatter} date={line.timeStamp}/></p>
                                 </div>
                                 <div className = 'Meta-Post'>
@@ -203,7 +204,7 @@ const Front = () => {
         var content = comments.slice(0, numberOfComments).map( (reply, key) =>
             <Link to = {'/comunidad/post/' + reply.pid} key = {key} className = 'Info'>
                 <div className = 'Info-Wrap'>
-                    <img src = {reply.userPhoto}></img>
+                    <UserAvatar user = {{uid: reply.userUid, photoURL: reply.userPhoto}}/>
                     <div className = 'Author-Date'>
                         <span>{reply.author}</span>
                         <span><TimeAgo formatter = {formatter} date = {reply.timeStamp}/></span>

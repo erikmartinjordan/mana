@@ -12,24 +12,26 @@ import GetPoints                        from '../Functions/GetPoints.js';
 import GetLastArticles                  from '../Functions/GetLastArticles.js';
 import GetRankingUser                   from '../Functions/GetRankingUser.js';
 import ReputationGraph                  from '../Functions/ReputationGraph.js';
+import UserAvatar                       from '../Functions/UserAvatar.js';
 import '../Styles/PublicInfo.css';
 
 const formatter = buildFormatter(spanishStrings);
 
 const PublicInfo = (props) => {
     
-    const [userUid, setUserUid] = useState(false);
-    const [profileViews, setProfileViews] = useState(0);
+    const [userUid, setUserUid]                 = useState(false);
+    const [profileViews, setProfileViews]       = useState(0);
     const [profileLastSeen, setProfileLastSeen] = useState(null);
-    const imgUrl = GetProfileImg(userUid);
-    const name = GetName(userUid);
-    const views = GetNumberOfViews(userUid);
-    const points = GetPoints(userUid);
-    const level = GetLevel(...points)[0];
+    const name              = GetName(userUid);
+    const views             = GetNumberOfViews(userUid);
+    const photoURL          = GetProfileImg(userUid);
+    const points            = GetPoints(userUid);
+    const level             = GetLevel(...points)[0];
     const pointsToNextLevel = GetLevel(...points)[1];
-    const percentage = GetLevel(...points)[2];
-    const articles = GetLastArticles(userUid, 10); 
-    const ranking = GetRankingUser(userUid);
+    const percentage        = GetLevel(...points)[2];
+    const articles          = GetLastArticles(userUid, 10); 
+    const ranking           = GetRankingUser(userUid);
+    const user              = {uid: userUid, photoURL: photoURL};
     
     useEffect( () => { 
         
@@ -94,13 +96,11 @@ const PublicInfo = (props) => {
         return () => mounted = false;
         
     }, [userUid]);
-        
+    
     return (
           <div className = 'Public-Info'>
                 <div className = 'Datos'>
-                    <div className = {'Progress ProgressBar-' + percentage}>
-                        <img src = {imgUrl}></img>
-                    </div>
+                    <UserAvatar user = {user}/>
                     <h2>{name}</h2>
                     <div className = 'Bloque'>
                         <div className = 'Title'>Reputación {ranking && <span className = 'Ranking'>{ranking}</span>}</div>

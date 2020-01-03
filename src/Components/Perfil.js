@@ -12,9 +12,10 @@ import ToggleButton                   from '../Functions/ToggleButton.js';
 import AnonymImg                      from '../Functions/AnonymImg.js';
 import DeleteAccount                  from '../Functions/DeleteAccount.js';
 import DowngradeToFreePlan            from '../Functions/DowngradeToFreePlan.js';
+import UserAvatar                     from '../Functions/UserAvatar.js';
 import Accounts                       from '../Rules/Accounts.js';
 import '../Styles/Perfil.css';
-import '../Styles/Progressbar.css';
+import '../Styles/UserAvatar.css';
 import '../Styles/ToggleButton.css';
 
 const Perfil = (props) => {
@@ -26,7 +27,7 @@ const Perfil = (props) => {
     const [nextPayment, setNextPayment]     = useState('');
     const [paymentModal, setPaymentModal]   = useState(false);
     const [render, setRender]               = useState(false);
-    const [user, setUser]                   = useState(null);
+    const [user, setUser]                   = useState([]);
     const [uid, setUid]                     = useState(null);
     const posts                             = GetNumberOfPosts(uid);
     const replies                           = GetNumberOfReplies(uid);
@@ -162,12 +163,7 @@ const Perfil = (props) => {
                 <div className = 'Datos Cuenta'>
                     <div className = 'Bloque'>
                         <div className = 'Title'>Imagen</div>
-                        <div className = {'Progress ProgressBar-' + percentage}>
-                            {user && infoUser  && infoUser.anonimo  && <img src = {infoUser.avatar}></img>}
-                            {user && infoUser  && !infoUser.anonimo && <img src = {user.photoURL}></img>}
-                            {user && infoUser  && infoUser.account === 'premium' && <div className = 'Tag'>✨</div>}
-                            {user && !infoUser && <img src = {user.photoURL}></img>}
-                        </div>
+                        <UserAvatar user = {user}/>
                     </div>
                     <div className = 'Bloque'>
                         <div className = 'Title'>Nombre</div>

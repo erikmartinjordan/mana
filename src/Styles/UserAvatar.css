@@ -1,25 +1,23 @@
 .Progress{
+    align-items: center;
     border-radius: 50%;
     display: flex;
-    height: 110px;
+    height: 30px;
+    justify-content: center;
+    margin-right: 5px;
     position: relative;
-    width: 110px;
+    width: 30px;
 }
-.Progress .Tag{
-    top: 0;
-    color: white;
-    cursor: pointer;
-    font-size: 2vw;
-    right: 0;
+.Progress img{
+    border-radius: 50%;
+    height: 85%;
+    width: 85%;
+}
+.Progress svg{
+    left: 0;
     position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-.Progress .Tag img{
-    height: 35%!important;
-    margin: 0!important;
-    width: 35%!important;
+    top: 0;
+    width: 55%;
 }
 .ProgressBar-0 {
     background-image: linear-gradient(90deg, var(--bgColor) 50%, transparent 50%, transparent), linear-gradient(90deg, var(--greenMint) 50%, var(--bgColor) 50%, var(--bgColor));

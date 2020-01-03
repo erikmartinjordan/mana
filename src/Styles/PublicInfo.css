@@ -14,12 +14,6 @@
     padding: 20px;
     width: 100%;
 }
-.Public-Info img{
-    border-radius: 50%;
-    height: 100px;
-    margin : auto;
-    width: 100px;
-}
 .Public-Info .Datos .Bloque {
     margin-bottom: 20px;
 }
@@ -41,7 +35,9 @@
     width: 100%;
 }
 .Public-Info .Datos .Progress{
+    height: 100px;
     margin: auto;
+    width: 100px;
 }
 .Public-Info .Bar{
     background: var(--bgColor);

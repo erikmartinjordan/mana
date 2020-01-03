@@ -10,8 +10,8 @@ import GetUnreadNotifications           from '../Functions/GetUnreadNotification
 import GetPoints                        from '../Functions/GetPoints.js';
 import GetLevel                         from '../Functions/GetLevelAndPointsToNextLevel.js';
 import ToggleButton                     from '../Functions/ToggleButton.js';
+import UserAvatar                       from '../Functions/UserAvatar.js';
 import '../Styles/Nav.css';
-import '../Styles/Progressbar.css';
 
 const Nav = () => {
     
@@ -26,7 +26,7 @@ const Nav = () => {
     const [show, setShow] = useState(true);
     const [theme, setTheme] = useState('');
     const [uid, setUid] = useState(null);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState([]);
     const [userInfo, setUserInfo] = useState(null);
     const points = GetPoints(uid);
     const level = GetLevel(...points)[0];
@@ -87,10 +87,7 @@ const Nav = () => {
       
         return      <React.Fragment>
                         <div onClick = {() => setPerfil(true)} className = 'Img-Wrap'>
-                            <div className = {'Progress ProgressBar-' + percentage}>
-                                <img src = { avatar ? avatar : user.photoURL}></img>
-                                {userInfo && userInfo.account === 'premium' && <div className = 'Tag'>✨</div>}
-                            </div>
+                            <UserAvatar user = {user}/>
                             <div className = 'Name-Points'>
                                 <span className = 'Name'>
                                     {user && userInfo  && userInfo.anonimo  && userInfo.nickName}

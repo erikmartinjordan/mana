@@ -26,6 +26,10 @@
 .Perfil h3{
     text-align: left;
 }
+.Perfil .Progress{
+    height: 100px;
+    width: 100px;
+}
 .Perfil .Sidebar{
     background: var(--bgColor);
     border-radius: 5px 0px 0px 5px;
@@ -76,15 +80,6 @@
 .Perfil .Completed{
     background: var(--greenMint);
     border-radius: 5px;
-}
-.Perfil .Datos img{
-    border-radius: 50%;
-    height: 100px;
-    margin : auto;
-    width: 100px;
-}
-.Perfil .Progress{
-    margin: 0;
 }
 .Perfil .Datos span.Nombre{
     font-size: large;

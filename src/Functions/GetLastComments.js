@@ -41,6 +41,7 @@ const GetLastComments = () => {
                                 'rid': rid,
                                 'author': replies[rid].userName,
                                 'userPhoto': replies[rid].userPhoto,
+                                'userUid': replies[rid].userUid,
                                 'claps': replies[rid].voteUsers ? Object.keys(replies[rid].voteUsers).length : 0,
                                 'timeStamp': replies[rid].timeStamp
                             }

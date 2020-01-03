@@ -19,6 +19,7 @@ import GetLastComments                 from '../Functions/GetLastComments.js';
 import getPremiumUsers                 from '../Functions/GetPremiumUsers.js';
 import GetPoints                       from '../Functions/GetPoints.js';
 import Loading                         from '../Functions/Loading.js';
+import UserAvatar                      from '../Functions/UserAvatar.js';
 import Accounts                        from '../Rules/Accounts.js';
 
 const formatter = buildFormatter(spanishStrings);
@@ -237,7 +238,7 @@ const Detail = (props) => {
                     {ready && !empty &&
                         <div className = 'detail-header'>
                             <div className = 'Infopost'>
-                                <img alt = {userName} src = {userPhoto}></img>
+                                <UserAvatar user = {{uid: userUid, photoURL: userPhoto}}/>
                                 <div className = 'Group'> 
                                     <span className = 'user-verified'>
                                         <Link to = {'/@' + userUid}>{userName}</Link> 
@@ -277,7 +278,7 @@ const Detail = (props) => {
     var list = chat.map( (line, index) => 
         <li key = {line.key}>
             <div className = 'Infopost'>
-                <img alt = {line.userName} src = {line.userPhoto}></img>
+                <UserAvatar user = {{uid: line.userUid, photoURL: line.userPhoto}}/>
                 <div className = 'Group'> 
                     <span className = 'user-verified'>
                         <Link to = {'/@' + line.userUid}>{line.userName}</Link>
@@ -308,7 +309,7 @@ const Detail = (props) => {
     var form =  <form onSubmit = {(e) => handleSubmit(e)}>
                     {user &&
                      <div className = 'Infopost'>
-                        <img alt = {nickName ? nickName : user.displayName} src = {avatar ? avatar : user.photoURL}></img>
+                        <UserAvatar user = {{uid: userUid, photoURL: avatar ? avatar : user.photoURL}}/>
                         <div>{nickName ? nickName : user.displayName}</div>
                       </div>
                     }
@@ -327,7 +328,7 @@ const Detail = (props) => {
         var content = comments.slice(0, numberOfComments).map( (reply, key) =>
             <Link to = {'/comunidad/post/' + reply.pid} key = {key} className = 'Info'>
                 <div className = 'Info-Wrap'>
-                    <img src = {reply.userPhoto}></img>
+                    <UserAvatar user = {{uid: reply.userUid, photoURL: reply.userPhoto}}/>
                     <div className = 'Author-Date'>
                         <span>{reply.author}</span>
                         <span><TimeAgo formatter = {formatter} date = {reply.timeStamp}/></span>
