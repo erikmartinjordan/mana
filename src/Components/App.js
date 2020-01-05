@@ -54,11 +54,13 @@ const App  = ({history}) => {
     
     useEffect( () => {
         
-        let ref = firebase.database().ref(`analytics/${year}${month}${day}/${fingerprint}/${branchKey}/pageviews`);
-        
-        if(branchKey) 
+        if(branchKey){
+            
+            let ref = firebase.database().ref(`analytics/${year}${month}${day}/${fingerprint}/${branchKey}/pageviews`);
+            
             ref.push({ url: history.location.pathname });
-        
+            
+        }
         
     }, [branchKey, history.location.pathname]);
     
