@@ -17,9 +17,6 @@ const Estadisticas = () => {
     const [sessions, setSessions]                 = useState([]);
     const [users, setUsers]                       = useState([]);
     
-    console.log(`Interval ${interval}`)
-    console.log(ranking);
-    
     let graph1 = {
       type: 'line',
       data: {
@@ -105,8 +102,10 @@ const Estadisticas = () => {
         // Drawing chart 
         if(days && users && sessions && pageviews) {
             
-            new Chart(ctx, graph1); 
+            var chart = new Chart(ctx, graph1); 
         } 
+        
+        return () => chart.destroy();
         
     }, [days, users, sessions, pageviews]);
     
@@ -351,7 +350,6 @@ const Estadisticas = () => {
                 
                 // Getting the json
                 let data = snapshot.val();
-                console.log(data);
                 
                 // Getting the days
                 let days = Object.keys(data).map(date => `${date.substr(6, 2)} ${getMonth(date.substr(4, 2))}`);
