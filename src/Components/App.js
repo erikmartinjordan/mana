@@ -17,10 +17,10 @@ import '../Styles/App.css';
 
 ReactGA.initialize('UA-87406650-1');
 
-const App  = () => {
+const App  = ({history}) => {
     
-    // Declaring reference
-    const [ref, setRef] = useState(null);
+    // Reference to database
+    const [branchKey, setBranchKey] = useState(null);
     
     // Declaring and getting fingerprint from the user
     let fingerprint = new Fingerprint().get();
@@ -32,41 +32,41 @@ const App  = () => {
     let year  = date.getFullYear();
     
     useEffect( () => {
-
-        // Adding session to database
-        let ref = firebase.database().ref(`analytics/${year}${month}${day}/${fingerprint}`).push({
+        
+        let ref = firebase.database().ref(`analytics/${year}${month}${day}/${fingerprint}`);
+        
+        let branch = ref.push({
             
             timeStampIni: date.getTime(),
             timeStampEnd: date.getTime()
             
         });
         
-        // Addings scroll event listener and returning last timeStamp of scroll
         window.addEventListener('scroll', () => {
             
-            firebase.database().ref(`analytics/${year}${month}${day}/${fingerprint}/${ref.key}/timeStampEnd`).transaction( value => (new Date()).getTime());
+            ref.child(`${branch.key}/timeStampEnd`).transaction( value => (new Date()).getTime() );
             
         });
         
-        setRef(ref);
-
+        setBranchKey(branch.key);
+        
     }, []);
     
     useEffect( () => {
         
-        if(ref){
-            
-            firebase.database().ref(`analytics/${year}${month}${day}/${fingerprint}/${ref.key}/pageviews`).push({
-                
-                url: window.location.pathname
-                
-            });
-            
-        }
+        let ref = firebase.database().ref(`analytics/${year}${month}${day}/${fingerprint}/${branchKey}/pageviews`);
+        
+        if(branchKey) 
+            ref.push({ url: history.location.pathname });
+        
+        
+    }, [branchKey, history.location.pathname]);
+    
+    useEffect( () => {
         
         ReactGA.pageview(window.location.pathname + window.location.search); 
         
-    });
+    }, []);
    
     return (
         <React.Fragment>

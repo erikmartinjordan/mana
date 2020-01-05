@@ -193,9 +193,6 @@ const Estadisticas = () => {
                     
                     Object.keys(data[day][uid]).map(session => {
                         
-                        console.log(session);
-                        console.log(Object.keys(data[day][uid][session]));
-                        console.log(Object.keys(data[day][uid][session].pageviews));
                         count = count + Object.keys(data[day][uid][session].pageviews).length;
                         
                     });
