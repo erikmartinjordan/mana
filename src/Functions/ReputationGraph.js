@@ -72,7 +72,9 @@ const ReputationGraph = (props) => {
         
         if(props.userUid){
             
-            firebase.database().ref('users/' + props.userUid + '/reputationData').on('value', snapshot => {
+            var ref = firebase.database().ref('users/' + props.userUid + '/reputationData');
+            
+            var listener = ref.on('value', snapshot => {
                 
                 if(snapshot.val()){
                     
@@ -106,18 +108,20 @@ const ReputationGraph = (props) => {
                     // Adding x and y axes
                     statsProperties.data.labels = dateArray;
                     statsProperties.data.datasets['0'].data = Object.values(snapshot.val());
-                
+                    
                     // Drawing chart  
                     new Chart(ctx, statsProperties);
                     
                     // Display reputation graph
                     setReputationGraph(true);
-                       
+                   
                 }
                 
             });
+            
+            return () => ref.off('value', listener);
+            
         }
-
         
     }, [props.userUid]);
     
