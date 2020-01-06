@@ -41,8 +41,8 @@ const GetUnreadNotifications = (props) => {
             
         });
       
-    }, []);
-        
+    }, [props]);
+    
     return unread ? <span className = 'Notifications-Number'></span> : null;
     
 }
