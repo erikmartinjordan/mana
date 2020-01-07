@@ -27,7 +27,8 @@ const GetNumberOfViews = (userUid) => {
                         Object.keys(posts).map( id => { 
 
                             // Counting the posts is easy, only increment value by one
-                            if(posts[id].userUid === userUid) count = count + posts[id].views;
+                            if(posts[id].userUid === userUid && posts[id].views) 
+                                count = count + posts[id].views;
                             
                         });
                         
