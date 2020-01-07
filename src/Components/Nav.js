@@ -11,63 +11,65 @@ import GetPoints                        from '../Functions/GetPoints.js';
 import GetLevel                         from '../Functions/GetLevelAndPointsToNextLevel.js';
 import ToggleButton                     from '../Functions/ToggleButton.js';
 import UserAvatar                       from '../Functions/UserAvatar.js';
+import NomoresheetLogo                  from '../Functions/NomoresheetLogo.js';
 import '../Styles/Nav.css';
 
 const Nav = () => {
     
-    const [avatar, setAvatar] = useState(null);
-    const [invisible, setInvisible] = useState(null);
-    const [lastSignIn, setLastSignIn] = useState(null)
-    const [menu, setMenu] = useState('');
+    const [avatar, setAvatar]               = useState(null);
+    const [invisible, setInvisible]         = useState(null);
+    const [lastSignIn, setLastSignIn]       = useState(null)
+    const [menu, setMenu]                   = useState('');
     const [notifications, setNotifications] = useState(false);
-    const [post, setPost] = useState(false);
-    const [login, setLogin] = useState(false);
-    const [perfil, setPerfil] = useState(false);
-    const [show, setShow] = useState(true);
-    const [theme, setTheme] = useState('');
-    const [uid, setUid] = useState(null);
-    const [user, setUser] = useState([]);
-    const [userInfo, setUserInfo] = useState(null);
-    const points = GetPoints(uid);
-    const level = GetLevel(...points)[0];
-    const percentage = GetLevel(...points)[2];
+    const [post, setPost]                   = useState(false);
+    const [login, setLogin]                 = useState(false);
+    const [perfil, setPerfil]               = useState(false);
+    const [show, setShow]                   = useState(true);
+    const [theme, setTheme]                 = useState('');
+    const [uid, setUid]                     = useState(null);
+    const [user, setUser]                   = useState(null);
+    const [userInfo, setUserInfo]           = useState(null);
+    const points                            = GetPoints(uid);
+    const level                             = GetLevel(...points)[0];
+    const percentage                        = GetLevel(...points)[2];
+    
+    useEffect( () => {
+        
+        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
+        
+    });
 
     useEffect ( () => {
       
-      // Is user authenticated?
-      auth.onAuthStateChanged( user => {
-    
-          if(user) {
-              // Getting user's properties
-              firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
+        auth.onAuthStateChanged( user => {
+
+            if(user) {
+                
+                firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
+                    
                     if(snapshot.val()){
                         
-                        var date = new Date(parseInt(user.metadata.b));
-                        var capture = snapshot.val();
+                        let date    = new Date(parseInt(user.metadata.b));
+                        let day     = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+                        let hour    = `${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`;
+                        let capture = snapshot.val();
                         
-                        // If user is anonymous, load avatar
-                        if(capture.anonimo) setAvatar(capture.avatar);
-                        else                setAvatar(null);
+                        capture.anonimo 
+                        ? setAvatar(capture.avatar)
+                        : setAvatar(null);
                         
-                        // Setting all the info of the user
                         setUserInfo(capture);
-                        setLastSignIn(`Accediste el ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} a las ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`);
+                        setLastSignIn(`Accediste el ${day} a las ${hour}`);
                     }
-              });
-
-              setUser(user); 
-              setUid(user.uid);
-              
-          }
-          
-          else{
-              setUser(null);
-          }
-      
-      });
-      
-      // Setting emojis in svg
-      window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
+                });
+                
+                setUid(user.uid);
+                
+            }
+            
+            setUser(user);
+            
+        });
       
   }, []);
   
@@ -118,7 +120,7 @@ const Nav = () => {
     return (
         <div className = {'Nav ' + menu}>
                 <div className = 'Nomoresheet' onClick = {() => menu === 'Mobile' ? setMenu(''): setMenu('Mobile')}>
-                    <Link to = '/'>N</Link>
+                    <NomoresheetLogo/>
                     <i className = {menu === 'Mobile' ? 'Up' : 'Down'}></i>
                 </div>
                 <div className = {'Menu ' + menu} onClick = {() => setMenu('')}>
