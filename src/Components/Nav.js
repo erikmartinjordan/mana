@@ -3,9 +3,9 @@ import { Link }                         from 'react-router-dom';
 import Login                            from './Login';
 import Notifications                    from './Notifications';
 import Perfil                           from './Perfil';
+import NewPost                          from './NewPost.js';
 import firebase, {auth}                 from '../Functions/Firebase.js';
 import NightModeToggleButton            from '../Functions/NightModeToggleButton.js';
-import NewPost                          from '../Functions/NewPost';
 import GetUnreadNotifications           from '../Functions/GetUnreadNotifications.js';
 import GetPoints                        from '../Functions/GetPoints.js';
 import GetLevel                         from '../Functions/GetLevelAndPointsToNextLevel.js';
@@ -87,7 +87,7 @@ const Nav = () => {
       
         return      <React.Fragment>
                         <div onClick = {() => setPerfil(true)} className = 'Img-Wrap'>
-                            <UserAvatar user = {user}/>
+                            <UserAvatar user = {user} allowAnonymousUser = {true}/>
                             <div className = 'Name-Points'>
                                 <span className = 'Name'>
                                     {user && userInfo  && userInfo.anonimo  && userInfo.nickName}
