@@ -7,7 +7,7 @@ import React from 'react';
 // date2 => timestamp of date 2 (ms)
 //
 //--------------------------------------------------------------/
-const printDate = (date1, date2) => {
+const last30DaysOrOlder = (date1, date2) => {
     
     // Defining the value of each element
     const difference = Math.abs(date2 - date1);
@@ -22,4 +22,4 @@ const printDate = (date1, date2) => {
     return message;
 }
 
-export default printDate;
+export default last30DaysOrOlder;
