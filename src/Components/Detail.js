@@ -309,7 +309,7 @@ const Detail = (props) => {
     var form =  <form onSubmit = {(e) => handleSubmit(e)}>
                     {user &&
                      <div className = 'Infopost'>
-                        <UserAvatar user = {{uid: userUid, photoURL: avatar ? avatar : user.photoURL}}/>
+                        <UserAvatar user = {{uid: user.uid, photoURL: user.photoURL}} allowAnonymousUser = {true}/>
                         <div>{nickName ? nickName : user.displayName}</div>
                       </div>
                     }
