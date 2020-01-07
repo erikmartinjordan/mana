@@ -11,11 +11,7 @@
     top: 0;
     width: 100vw;
 }
-.NewPost h2,
-.NewPost p{
-    color: white;
-}
-.NewPost form{
+.NewPost-Wrap{
     background: var(--bgColor);
     border-radius: 5px;
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
@@ -25,6 +21,9 @@
     max-width: 600px;
     width: 100%;
     z-index: 1;
+}
+.NewPost-Wrap .User{
+    display: flex;
 }
 .NewPost input{
     background: var(--bgBox);
@@ -58,19 +57,4 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
-}
-.NewPost .Enviado{
-    z-index: 1;
-}
-.NewPost .User{
-    align-items: center;
-    display: flex;
-    font-size: small;
-    font-weight: 600;
-}
-.NewPost .User img{
-    border-radius: 50%;
-    height: 25px;
-    margin-right: 10px;
-    width: 25px;
 }
