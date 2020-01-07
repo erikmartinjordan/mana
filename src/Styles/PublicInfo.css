@@ -52,7 +52,7 @@
 }
 .Public-Info .Last-Articles a{
     border-bottom: 3px solid var(--bgColor);
-    font size: small;
+    font-size: small;
 }
 .Public-Info .Ranking{
     background: var(--blue);
