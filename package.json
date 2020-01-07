@@ -16,7 +16,7 @@
     "react-linkify": "^0.2.2",
     "react-markdown": "^3.3.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
+    "react-scripts": "2.0.3",
     "react-stripe-elements": "^4.0.0",
     "react-timeago": "^3.4.3"
   },
@@ -25,5 +25,11 @@
     "build": "react-scripts build && cp src/Posts/_data.js functions/hosting/_data.js && cp build/index.html functions/hosting/index.html && rm build/index.html",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
