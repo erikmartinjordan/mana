@@ -1,4 +1,5 @@
-import React from 'react';
+import React    from 'react';
+import { Link } from 'react-router-dom';
 
 const NomoresheetLogo = () => {
     
@@ -14,7 +15,7 @@ const NomoresheetLogo = () => {
         padding: '5px 10px 5px 10px'
     }
     
-    return(<a href = '/' style = {style}>N</a>);
+    return(<Link to = '/' style = {style}>N</Link>);
 
 }
 
