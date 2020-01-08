@@ -49,7 +49,7 @@ const PublicInfo = (props) => {
         var uid;
         
         // From props or from URL
-        uid = props.uid ? props.uid : props.match.params.string;
+        uid = props.canvas ? props.uid : props.match.params.string;
 
         // Setting state
         if(mounted) setUserUid(uid);

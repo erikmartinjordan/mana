@@ -19,13 +19,10 @@ ReactGA.initialize('UA-87406650-1');
 
 const App  = ({history}) => {
     
-    // Reference to database
     const [branchKey, setBranchKey] = useState(null);
     
-    // Declaring and getting fingerprint from the user
     let fingerprint = new Fingerprint().get();
 
-    // Declaring date and make it dd/mm/yyyy
     let date  = new Date();
     let day   = ('0' + date.getDate()).slice(-2);
     let month = ('0' + (date.getMonth() + 1)).slice(-2);

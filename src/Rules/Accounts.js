@@ -25,7 +25,8 @@ var accounts = {
                         'profileViews': true,
                         'badge': true,
                         'nightMode': true,
-                        'edit': true
+                        'edit': true,
+                        'mdformat': true
                     }
                 }
 

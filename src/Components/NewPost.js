@@ -23,7 +23,7 @@ const NewPost = (props) => {
     
     useEffect( () => {
         
-        auth.onAuthStateChanged(async user => { 
+        auth.onAuthStateChanged( user => { 
             
             if(user){
                 
