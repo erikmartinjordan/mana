@@ -1,7 +1,7 @@
 ![Cartel de embajada tailandesa en Kuala Lumpur](https://lh3.googleusercontent.com/-7yKeL0lM3UVekLtMwQwD0g3smh4H3NenrZrZL12mgJEEvyLSH6xLpRH-k6i8sofNkIk1Pn8fmW8y2KlVd98xneZGs5zMztW72gTJUosB2Zk8qecItp80Ib1zjKT7hiotuuDKBcq3eUkFze6KbrlwU6f_AISGv34KFzX_Dk9XsbXRPPymfGuC-iUV6Gm4yJJH9tAUYCxGTdIV2gGKBt4KsRdP1Mhfvrw6f7vAcY0yBIIY8LMJ-5yYkKrXQpVM0eO35aa0getqv9UPod8IQ5sTqfg95QUSofuYbjVXAi1AXNjo5AoUL091oTFrXEFX3nXnWbxoDkU2-UbdLr5xZHn5gITdsn8AF4TtMqI45AajEqBgmMW5b4BR2jSvhxAv7QdzqUYGLcA8HVfoc4pu1K9KKcJpFHfOSa9t2Ja04-dxbsKJJaaAyekEOP5XYjgAxRassSn8QAHIs2FH_LJXOc-H4byio3ERTaIQXd384h8QGFSD9YJ-pHBKq4R8vpli2s7UrxWwlS5PY9XDrSMvT0yu2Cl_cFgwK2g9DYUWfyUhumza4gS9PsodZYbR0cXz-En0bdsIXxhIXaDA0FG8QLcDX_82mYEqsiOLEka9Hdqn9p_8Z9CmHtcGe8L2FiVReuF7WQ6JTZigODCUCR7TTjyvtqd759xt0WLajuQ7el1SVw=w800-no)
 *Cartel de la embajada tailandesa en Kuala Lumpur*
 
-El visado de turista permite estar en Tailandia sesenta días (se pueden extender treinta días más desde Tailandia). Desde febrero del 2019, antes de poder hacer la solicitud, hay que [pedir cita previa](!http://www.thaiembassy.org/kualalumpur/en/services/99061-Visa-Requirements-II.html). 
+El visado de turista permite estar en Tailandia sesenta días (se pueden extender treinta días más desde Tailandia). Desde febrero del 2019, antes de poder hacer la solicitud, hay que [pedir cita previa](http://www.thaiembassy.org/kualalumpur/en/services/99061-Visa-Requirements-II.html). 
 
 El coste de la solicitud desde Kuala Lumpur es de 150 ringgits. La embajada tailandesa confirma la aprobación o denegación de la solicitud en el plazo de un día laborable.
 
@@ -17,7 +17,7 @@ En Kuala Lumpur, circulan unos [autobuses rosas](http://www.gokl.com.my/) que so
 
 ## ¿Cúal es el horario para realizar el trámite?
 
-Recuerda que, antes de poder hacer la solicitud, tienes que pedir [pedir cita previa](!http://www.thaiembassy.org/kualalumpur/en/services/99061-Visa-Requirements-II.html). Se hace desde la web de la embajada tailandesa.
+Recuerda que, antes de poder hacer la solicitud, tienes que pedir [pedir cita previa](http://www.thaiembassy.org/kualalumpur/en/services/99061-Visa-Requirements-II.html). Se hace desde la web de la embajada tailandesa.
 
 Es aconsejable pedir cita con dos días de antelación. Después de haber pedido cita previa, recibes un SMS de confirmación que deberás enseñar al guardia de seguridad en la embajada.
 
