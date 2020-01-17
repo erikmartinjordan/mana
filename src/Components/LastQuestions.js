@@ -60,8 +60,6 @@ const LastQuestions = (props) => {
             
         });
         
-        console.log(sorted);
-        
         return sorted;
         
     }
