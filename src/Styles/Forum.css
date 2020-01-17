@@ -20,6 +20,9 @@
     padding-top: 100px;
     width: 100%;
 }
+.Detail .Forum-TwoCol .Sidebar{
+    padding-top: 35px;
+}
 .Forum .Forum-TwoCol .Sidebar .Title{
     color: var(--secondaryFontColor);
     font-size: small;

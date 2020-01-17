@@ -7,6 +7,7 @@
     font-size: small;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 .LastComments{
     padding: 10px;

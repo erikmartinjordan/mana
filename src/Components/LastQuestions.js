@@ -30,7 +30,9 @@ const LastQuestions = (props) => {
                 
                 let lastQuestions = snapshot.val();
                 
-                setLastQuestions(lastQuestions);
+                let sortedQuestions = sortQuestions(lastQuestions, props.timeline);
+                
+                setLastQuestions(sortedQuestions);
                 
             }
             
@@ -38,32 +40,56 @@ const LastQuestions = (props) => {
         
         return () => ref.off('value', listener);
         
-    }, [items]);
+    }, [items, props.timeline]);
+    
+    const sortQuestions = (questions, orderBy) => {
+        
+        Object.keys(questions).map(key => {
+            
+            questions[key].key = key;
+            if(!questions[key].voteUsers) questions[key].voteUsers = {};
+            if(!questions[key].replies)   questions[key].replies = {};
+        
+        });
+        
+        let sorted = Object.values(questions).sort( (a, b) => {
+            
+            if(orderBy === 'nuevo')        return b.timeStamp - a.timeStamp;
+            if(orderBy === 'comentarios')  return Object.keys(b.replies).length   - Object.keys(a.replies).length;
+            if(orderBy === 'picante')      return Object.keys(b.voteUsers).length - Object.keys(a.voteUsers).length;
+            
+        });
+        
+        console.log(sorted);
+        
+        return sorted;
+        
+    }
     
     return(
         <div className = 'LastQuestions'>
-            {Object.keys(lastQuestions).reverse().map( postId => (
-                <div className = 'Question' key = {postId}>
-                    <Link to = {`/comunidad/post/${postId}`}>
-                        <h3>{lastQuestions[postId].title}</h3>
+            {lastQuestions.map(question => (
+                <div className = 'Question' key = {question.key}>
+                    <Link to = {`/comunidad/post/${question.key}`}>
+                        <h3>{question.title}</h3>
                         <div className = 'Bottom-Card'>
                             <div className = 'Author-Name-Date'> 
-                            <UserAvatar user = {{uid: lastQuestions[postId].userUid, photoURL: lastQuestions[postId].userPhoto}}/>
+                            <UserAvatar user = {{uid: question.userUid, photoURL: question.userPhoto}}/>
                             <span className = 'Author-Date'>
-                                {lastQuestions[postId].userName}
-                                <TimeAgo formatter = {formatter} date = {lastQuestions[postId].timeStamp}/>
+                                {question.userName}
+                                <TimeAgo formatter = {formatter} date = {question.timeStamp}/>
                             </span>
                         </div>
                             <div className = 'Meta-Post'>
                             <div className = 'Likes'>   
-                                🌶️ {lastQuestions[postId].voteUsers ? Object.keys(lastQuestions[postId].voteUsers).length : 0}
+                                🌶️ {question.voteUsers ? Object.keys(question.voteUsers).length : 0}
                             </div>
                             <div className = 'Num-Comments'>
-                                💬 {lastQuestions[postId].replies   ? Object.keys(lastQuestions[postId].replies).length   : 0}
+                                💬 {question.replies   ? Object.keys(question.replies).length   : 0}
                             </div>
-                            {lastQuestions[postId].replies && Object.keys(lastQuestions[postId].replies).map(replyId =>         
-                              <div key = {replyId} className = 'Multi-Pic'>
-                                 <img src = {lastQuestions[postId].replies[replyId].userPhoto}></img>
+                            {question.replies && Object.keys(question.replies).map(key =>         
+                              <div key = {key} className = 'Multi-Pic'>
+                                 <img src = {question.replies[key].userPhoto}></img>
                               </div>
                             )}
                         </div>

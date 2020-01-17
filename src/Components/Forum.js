@@ -7,12 +7,14 @@ import '../Styles/Forum.css';
 
 const Front = () => {
     
+    const [timeline, setTimeline] = useState('nuevo');
+ 
     return (
         <div className = 'Forum'>
             <div className = 'Forum-TwoCol'>
                 <div className = 'Main'>
-                    <OrderBy/>
-                    <LastQuestions items = {10}/>
+                    <OrderBy       timeline = {timeline} setTimeline = {setTimeline}/>
+                    <LastQuestions timeline = {timeline} items = {10}/>
                 </div>
                 <div className = 'Sidebar'>
                     <Comments/>
