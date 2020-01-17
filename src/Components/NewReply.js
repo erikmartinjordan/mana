@@ -1,10 +1,12 @@
 import React, { useEffect, useState }    from 'react';
+import Login                             from './Login.js';
 import firebase, {auth}                  from '../Functions/Firebase.js';
 import UserAvatar                        from '../Functions/UserAvatar.js';
 import Alert                             from '../Functions/Alert.js';
 import GetPoints                         from '../Functions/GetPoints.js';
 import insertNotificationAndReputation   from '../Functions/InsertNotificationAndReputationIntoDatabase.js';
 import Accounts                          from '../Rules/Accounts.js';
+import '../Styles/NewReply.css';
 
 const NewReply = () => {
     
@@ -15,6 +17,7 @@ const NewReply = () => {
     const [maxLengthReply, setMaxLengthReply]     = useState(null);
     const [message, setMessage]                   = useState('');
     const [nickName, setNickName]                 = useState(null);
+    const [showLogin, setShowLogin]               = useState(false);
     const [timeSpanReplies, setTimeSpanReplies]   = useState(null);
     const [user, setUser]                         = useState(null);
     const points                                  = GetPoints(nickName ? nickName : user ? user.uid : null);
@@ -127,14 +130,15 @@ const NewReply = () => {
                 </div>
                 <textarea   
                     placeholder = 'Mensaje...'
-                    maxlength   = {maxLengthReply}
+                    maxLength   = {maxLengthReply}
                     onChange    = {(e) => setMessage(e.target.value)}
                 />
                 <button className = 'bottom' onClick = {() => reviewMessage()}>Enviar</button>
             </div>
-            : <button className = 'bottom'>Responder</button>  
+            : <button className = 'bottom' onClick = {() => setShowLogin(true)}>Responder</button>  
             }
             {displayAlert && <Alert title = {alertTitle} message = {alertMessage}/>}
+            {showLogin    && <Login/>}
         </div>
     );
     

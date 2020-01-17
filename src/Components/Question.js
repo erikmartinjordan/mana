@@ -11,6 +11,7 @@ import firebase                       from '../Functions/Firebase';
 import EditPost                       from '../Functions/EditPost';
 import DeletePost                     from '../Functions/DeletePost';
 import UserAvatar                     from '../Functions/UserAvatar';
+import '../Styles/Question.css';
 
 const formatter = buildFormatter(spanishStrings);
 

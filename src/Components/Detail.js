@@ -5,6 +5,7 @@ import Norms                           from './Norms';
 import Comments                        from './Comments';
 import NewReply                        from './NewReply';
 import firebase, { auth }              from '../Functions/Firebase';
+import '../Styles/Forum.css';
 
 const Detail = (props) => {
     

@@ -11,6 +11,7 @@ import UserAvatar                      from '../Functions/UserAvatar.js';
 import LikesComments                   from '../Functions/LikesComments.js';
 import EditPost                        from '../Functions/EditPost';
 import DeletePost                      from '../Functions/DeletePost';
+import '../Styles/Replies.css';
 
 const formatter = buildFormatter(spanishStrings);
 
@@ -38,10 +39,10 @@ const Replies = (props) => {
         <div className = 'Replies'>
             {Object.keys(replies).map( (key, index) => (
                 <div className = 'Reply' key = {key}>
-                    <div className = 'Infopost'>
+                    <div className = 'Header'>
                         <UserAvatar user = {{uid: replies[key].userUid, photoURL: replies[key].userPhoto}}/>
-                        <div className = 'Group'> 
-                            <span className = 'user-verified'>
+                        <div className = 'Author-Name-Date'> 
+                            <span className = 'Author-Info'>
                                 <Link to = {'/@' + replies[key].userUid}>{replies[key].userName}</Link>
                                 <PublicInfo uid = {replies[key].userUid} canvas = {index + 1}/>
                                 <Verified   uid = {replies[key].userUid}/>
@@ -49,14 +50,16 @@ const Replies = (props) => {
                             <TimeAgo formatter = {formatter} date = {replies[key].timeStamp}/>
                         </div>
                     </div> 
-                    <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
-                        {replies[key].message.split('\n').map((text, key) => <p key = {key}>{text}</p>)}
-                        <div className = 'Meta-Post'>
-                            <LikesComments post = {props.postId} reply = {key} user = {{uid: replies[key].userUid}} />
-                            {props.admin && <EditPost   type = 'reply' post = {props.postId} reply = {key} />}
-                            {props.admin && <DeletePost type = 'reply' post = {props.postId} reply = {key} />}
-                        </div>
-                    </Linkify>
+                    <div className = 'Content'>
+                        <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
+                            {replies[key].message.split('\n').map((text, key) => <p key = {key}>{text}</p>)}
+                            <div className = 'Meta'>
+                                <LikesComments post = {props.postId} reply = {key} user = {{uid: replies[key].userUid}} />
+                                {props.admin && <EditPost   type = 'reply' post = {props.postId} reply = {key} />}
+                                {props.admin && <DeletePost type = 'reply' post = {props.postId} reply = {key} />}
+                            </div>
+                        </Linkify>
+                    </div>
                 </div>
             ))}
         </div> 

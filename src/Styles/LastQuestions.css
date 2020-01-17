@@ -1,0 +1,55 @@
+.LastQuestions .Question{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    padding: 20px;
+}
+.LastQuestions .Question a{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    min-height: 200px;
+}
+.LastQuestions .Question h3{
+    font-size: x-large;
+    margin: 0;
+    text-align: left;
+}
+.LastQuestions .Question .Author-Name-Date{
+    align-items: center;
+    color: var(--primaryFontColor);
+    display: flex;
+    font-size: small;
+    font-weight: 600;
+}
+.LastQuestions .Question .Author-Date{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+.LastQuestions .Question .Author-Date time{
+    color: var(--thirdFontColor);
+    font-size: small;
+    font-weight: 400;
+}
+.LastQuestions .Question .Meta-Post{
+    color: var(--primaryFontColor);
+    display: flex;
+}
+.LastQuestions .Question .Meta-Post .Likes,
+.LastQuestions .Question .Meta-Post .Num-Comments{
+    font-size: small;
+    margin-right: 5px;
+}
+.LastQuestions .Question .Bottom-Card{
+    display: flex;
+    justify-content: space-between;
+}
+.LastQuestions .Question .Bottom-Card .Multi-Pic img{
+    border: 2px solid var(--bgColor);
+    margin-right: -11px;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}

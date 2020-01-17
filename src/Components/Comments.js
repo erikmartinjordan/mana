@@ -5,6 +5,7 @@ import spanishStrings           from 'react-timeago/lib/language-strings/es';
 import TimeAgo                  from 'react-timeago';
 import GetLastComments          from '../Functions/GetLastComments.js';
 import UserAvatar               from '../Functions/UserAvatar.js';
+import '../Styles/Comments.css';
 
 const formatter = buildFormatter(spanishStrings);
 
@@ -20,8 +21,8 @@ const Comments = () => {
     
     return(
         <div className = 'Comments'>
+            <span className = 'Title'>Últimos comentarios</span>
             <div className = 'LastComments'>
-                <span className = 'Title'>Últimos comentarios</span>
                 {comments.map( (comment, key) =>
                 <Link to = {'/comunidad/post/' + comment.pid} key = {key} className = 'Info'>
                     <div className = 'Info-Wrap'>
@@ -34,7 +35,7 @@ const Comments = () => {
                     <div className = 'Claps'>👏  {comment.claps}</div>
                 </Link>
                 )}
-                <Link style = {{textAlign: 'center', width: '100%', marginTop: '20px'}} to = '/'>Ver más temas</Link>
+                <Link style = {{display: 'block', textAlign: 'center', width: '100%', marginTop: '20px'}} to = '/'>Ver más temas</Link>
             </div>
         </div>);
 }

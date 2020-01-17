@@ -1,0 +1,33 @@
+.Comments{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    color: var(--textBlog);
+    display: flex;
+    font-size: small;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.LastComments{
+    padding: 10px;
+}
+.LastComments a{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+.LastComments .Info-Wrap{
+    display: flex;
+}
+.LastComments .Info-Wrap time{
+    color: var(--thirdFontColor);
+}
+.LastComments .Author-Date{
+    display: flex;
+    flex-direction: column;
+}
+.LastComments .Claps{
+    color: var(--primaryFontColor);
+}
