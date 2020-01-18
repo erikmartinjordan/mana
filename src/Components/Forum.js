@@ -7,6 +7,7 @@ import '../Styles/Forum.css';
 
 const Front = () => {
     
+    const [ready, setReady]       = useState(false);
     const [timeline, setTimeline] = useState('nuevo');
  
     return (

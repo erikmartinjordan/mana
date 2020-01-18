@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import firebase                       from '../Functions/Firebase.js';
 import GetPoints                      from '../Functions/GetPoints.js';
 import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel.js';
+import Loading                        from '../Components/Loading.js';
 import { ReactComponent as ProBadge } from '../Assets/pro.svg';
 import '../Styles/UserAvatar.css';
 
@@ -40,10 +41,15 @@ const UserAvatar = (props) => {
     }, [props.user]);
         
     return (
-        <div className = {`Progress ProgressBar-${percentage}`}>
-            <img src = {picture}></img>
-            {premium ? <ProBadge/> : null}
-        </div>
+        <React.Fragment>
+            { picture
+            ? <div className = {`Progress ProgressBar-${percentage}`}>
+                <img src = {picture}></img>
+                {premium ? <ProBadge/> : null}
+              </div>
+            : <Loading type = 'Avatar'/> 
+            }
+        </React.Fragment>
     );
   
 }

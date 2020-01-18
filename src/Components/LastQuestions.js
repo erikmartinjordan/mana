@@ -3,6 +3,7 @@ import { Link }                       from 'react-router-dom';
 import buildFormatter                 from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings                 from 'react-timeago/lib/language-strings/es';
 import TimeAgo                        from 'react-timeago';
+import Loading                        from './Loading.js';
 import UserAvatar                     from '../Functions/UserAvatar';
 import firebase                       from '../Functions/Firebase';
 import '../Styles/LastQuestions.css';
@@ -65,7 +66,9 @@ const LastQuestions = (props) => {
     }
     
     return(
-        <div className = 'LastQuestions'>
+        <React.Fragment>
+        { lastQuestions.length !== 0
+        ? <div className = 'LastQuestions'>
             {lastQuestions.map(question => (
                 <div className = 'Question' key = {question.key}>
                     <Link to = {`/comunidad/post/${question.key}`}>
@@ -96,7 +99,10 @@ const LastQuestions = (props) => {
                 </div>
             ))}
             <button onClick = {() => setItems(prev => prev + 10)} className = 'bottom'>Mostrar más</button>
-        </div>
+          </div>
+        : <Loading type = 'Responses'/>  
+        }
+        </React.Fragment>
     ); 
     
 }

@@ -7,6 +7,7 @@
     align-items: center;
     display: flex;
     margin-bottom: 5px;
+    width: max-content;
 }
 .Reply .Header .Public-Info{
     display: none;
@@ -35,6 +36,7 @@
     width: 100%;
 }
 .Reply .Content p{
+    font-size: inherit;
     margin: 0;
     max-width: none;
 }
@@ -42,4 +44,7 @@
     cursor: pointer;
     margin-left: auto;
     width: max-content;
+}
+.Reply span.Author-Info{
+    display: flex;
 }

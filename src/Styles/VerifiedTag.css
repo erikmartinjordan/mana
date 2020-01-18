@@ -1,10 +1,10 @@
-.Verified{
+span.Verified{
     align-items: center;
     display: flex;
     margin-left: 5px;
     position: relative;
 }
-.Verified .Tilde{
+span.Verified .Tilde{
     align-items: center;
     background: var(--pastelGreen);
     border-radius: 50px;
@@ -17,10 +17,10 @@
     padding: 2px;
     width: 15px;
 }
-.Verified:hover .Tooltip{
+span.Verified:hover .Tooltip{
     display: flex;
 }
-.Verified .Tooltip{
+span.Verified .Tooltip{
     background: var(--secondaryFontColor);
     border-radius: 5px;
     color: white;

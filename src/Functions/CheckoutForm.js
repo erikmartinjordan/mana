@@ -1,7 +1,7 @@
 import React, { useState, useEffect }   from 'react';
 import {CardElement, injectStripe}      from 'react-stripe-elements';
 import firebase, { auth }               from '../Functions/Firebase.js';
-import Loading                          from '../Functions/Loading.js';
+import Loading                          from '../Components/Loading.js';
 
 const CheckoutForm = (props) => {
     

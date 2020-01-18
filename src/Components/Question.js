@@ -6,6 +6,7 @@ import TimeAgo                        from 'react-timeago';
 import Linkify                        from 'react-linkify';
 import Verified                       from './Verified';
 import PublicInfo                     from './PublicInfo';
+import Loading                        from './Loading';
 import Likes                          from '../Functions/Likes';
 import firebase                       from '../Functions/Firebase';
 import EditPost                       from '../Functions/EditPost';
@@ -58,7 +59,9 @@ const Question = (props) => {
     }, [window.location.href]);
     
     return(
-        <div className = 'Question'>
+        <React.Fragment>
+        { question !== ''
+        ? <div className = 'Question'>
             <div className = 'Header'>
                 <UserAvatar user = {{uid: userUid, photoURL: userPhoto}}/>
                 <div className = 'Author-Name-Date'> 
@@ -80,8 +83,10 @@ const Question = (props) => {
                     </div>
                 </Linkify>
             </div>
-        </div> 
-        
+         </div> 
+        : <Loading type = 'Question'/>
+        }
+        </React.Fragment>
     );
 }
 

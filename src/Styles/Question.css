@@ -7,6 +7,7 @@
     align-items: center;
     display: flex;
     margin-bottom: 5px;
+    width: max-content;
 }
 .Question .Header .Public-Info{
     display: none;
@@ -44,3 +45,7 @@
     margin-left: auto;
     width: max-content;
 }
+.Question span.Author-Info{
+    display: flex;
+}
+

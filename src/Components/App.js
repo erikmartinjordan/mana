@@ -38,6 +38,8 @@ const App  = ({history}) => {
             timeStampEnd: date.getTime()
             
         });
+            
+        ref.child(`${branch.key}/pageviews`).push({ url: history.location.pathname });
         
         window.addEventListener('scroll', () => {
             
@@ -59,7 +61,7 @@ const App  = ({history}) => {
             
         }
         
-    }, [branchKey, history.location.pathname]);
+    }, [history.location.pathname]);
     
     useEffect( () => {
         

@@ -3,6 +3,7 @@ import { Link }                 from 'react-router-dom';
 import buildFormatter           from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings           from 'react-timeago/lib/language-strings/es';
 import TimeAgo                  from 'react-timeago';
+import Loading                  from './Loading';
 import GetLastComments          from '../Functions/GetLastComments.js';
 import UserAvatar               from '../Functions/UserAvatar.js';
 import '../Styles/Comments.css';
@@ -20,7 +21,9 @@ const Comments = () => {
     });
     
     return(
-        <div className = 'Comments'>
+        <React.Fragment>
+        { comments.length !== 0
+        ? <div className = 'Comments'>
             <span className = 'Title'>Últimos comentarios</span>
             <div className = 'LastComments'>
                 {comments.map( (comment, key) =>
@@ -37,7 +40,10 @@ const Comments = () => {
                 )}
                 <Link style = {{display: 'block', textAlign: 'center', width: '100%', marginTop: '20px'}} to = '/'>Ver más temas</Link>
             </div>
-        </div>);
+        </div>
+        : <Loading type = 'Comments'/>
+        }
+        </React.Fragment>);
 }
 
 export default Comments;

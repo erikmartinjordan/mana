@@ -30,3 +30,9 @@
     padding: 10px;
     text-transform: uppercase;
 }
+@media(max-width: 768px){
+    
+    .Forum .Forum-TwoCol .Sidebar{
+        display: none;
+    }
+}
