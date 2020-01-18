@@ -34,7 +34,7 @@ const Detail = (props) => {
                 <div className = 'Main'>
                     <Question postId = {props.match.params.string} admin = {admin} setTitle = {setTitle}/>
                     <Replies  postId = {props.match.params.string} admin = {admin}/>
-                    <NewReply/>
+                    <NewReply postId = {props.match.params.string}/>
                 </div>
                 <div className = 'Sidebar'>
                     <Norms/>
