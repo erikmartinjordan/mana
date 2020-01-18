@@ -14,20 +14,19 @@ const Verified = (props) => {
             let verified = snapshot.val();
             
             setVerified(verified);
-        
         }
         
-        fetchData();
+        if(props.uid) fetchData();
         
-    }, []);
+    }, [props.uid]);
     
     return(
             <React.Fragment>
                 {verified 
-                ? <span className = 'Verified'>
+                ? <div className = 'Verified'>
                     <div className = 'Tilde'>✓</div>
                     <div className = 'Tooltip'>Cuenta verificada</div>
-                  </span> 
+                  </div> 
                 : null}
             </React.Fragment>
         );

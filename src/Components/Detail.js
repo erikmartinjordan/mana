@@ -18,9 +18,12 @@ const Detail = (props) => {
             
             if(user){
                 
-                let admin = (user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2') ? true : false;
+                let admin = (user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2' || 'VCcNB2N7owaHILHyfb6S1ea7FA73') ? true : false;
                 
                 setAdmin(admin);
+            }
+            else{
+                setAdmin(false);
             }
             
         });

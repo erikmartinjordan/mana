@@ -48,3 +48,8 @@
 .Reply span.Author-Info{
     display: flex;
 }
+.Reply .Meta{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

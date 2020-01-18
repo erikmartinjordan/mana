@@ -1,10 +1,9 @@
-span.Verified{
+.Verified{
     align-items: center;
     display: flex;
     margin-left: 5px;
-    position: relative;
 }
-span.Verified .Tilde{
+.Verified .Tilde{
     align-items: center;
     background: var(--pastelGreen);
     border-radius: 50px;
@@ -17,18 +16,18 @@ span.Verified .Tilde{
     padding: 2px;
     width: 15px;
 }
-span.Verified:hover .Tooltip{
+.Verified:hover .Tooltip{
     display: flex;
 }
-span.Verified .Tooltip{
+.Verified .Tooltip{
     background: var(--secondaryFontColor);
     border-radius: 5px;
     color: white;
+    font-size: xx-small;
     display: none;
-    font-size: small;
+    align-items: center;
     left: 15px;
-    padding: 5px;
-    position: absolute;
-    z-index: 9999;
-    width: 125px;
+    padding: 3px;
+    height: 15px;
+    width: 83px;
 }

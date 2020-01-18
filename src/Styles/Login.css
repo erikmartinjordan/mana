@@ -1,6 +1,5 @@
 .Login{
     align-items: center;
-    background: rgba(15, 15, 15, 0.6);
     display: flex;
     height: 100vh;
     justify-content: center;
@@ -26,7 +25,7 @@
     text-align: center;
 }
 .Login .Login-wrap p,
-.Login .Login-wrap ul{
+.Login .Login-wrap ul li{
     font-size: medium;
 }
 .Login .Login-wrap ul{
