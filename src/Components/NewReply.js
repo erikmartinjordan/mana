@@ -121,26 +121,28 @@ const NewReply = (props) => {
     }
     
     return(
-        <div className = 'NewReply'>
+        <React.Fragment>
             { user
-            ? <div className = 'NewReply-Wrap'>
-                <div className = 'User'>
-                    <UserAvatar user = {user} allowAnonymousUser = {true}/>
-                    <span>{nickName ? nickName : user.displayName}</span>
+            ? <div className = 'NewReply'>
+                <div className = 'NewReply-Wrap'>
+                    <div className = 'User'>
+                        <UserAvatar user = {user} allowAnonymousUser = {true}/>
+                        <span>{nickName ? nickName : user.displayName}</span>
+                    </div>
+                    <textarea   
+                        placeholder = 'Mensaje...'
+                        maxLength   = {maxLengthReply}
+                        onChange    = {(e) => setMessage(e.target.value)}
+                        onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
+                    />
+                    <button className = 'bottom' onClick = {() => reviewMessage()}>Enviar</button>
                 </div>
-                <textarea   
-                    placeholder = 'Mensaje...'
-                    maxLength   = {maxLengthReply}
-                    onChange    = {(e) => setMessage(e.target.value)}
-                    onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
-                />
-                <button className = 'bottom' onClick = {() => reviewMessage()}>Enviar</button>
-            </div>
+              </div>
             : <button className = 'bottom' onClick = {() => setShowLogin(true)}>Responder</button>  
             }
             {displayAlert && <Alert title = {alertTitle} message = {alertMessage}/>}
-            {showLogin    && <Login/>}
-        </div>
+            {showLogin    && <Login hide = {() => setShowLogin(false)}/>}
+        </React.Fragment>
     );
     
 }
