@@ -1,22 +1,24 @@
 import React, { useEffect, useState }   from 'react';
-import firebase                         from './Firebase.js';
+import firebase, { auth }               from './Firebase.js';
 import GetPoints                        from './GetPoints.js';
 import insertNotificationAndReputation  from './InsertNotificationAndReputationIntoDatabase.js';
 import Login                            from '../Components/Login';
 
 const LikesComments = (props) => {  
     
-    const [capture, setCapture] = useState(null);
-    const [forbid, setForbid]   = useState(false);
-    const [render, setRender]   = useState(false);
-    const [userid, setUserid]   = useState(null);
-    const [votes, setVotes]     = useState(0);
-    const points                = GetPoints(userid);
+    const [authorId, setAuthorId] = useState(null);
+    const [capture, setCapture]   = useState(null);
+    const [forbid, setForbid]     = useState(false);
+    const [render, setRender]     = useState(false);
+    const [user, setUser]         = useState(null);
+    const [votes, setVotes]       = useState(0);
+    const points                  = GetPoints(authorId);
     
     useEffect( () => { 
         
-        // Component is mounted
         let mounted = true;
+        
+        auth.onAuthStateChanged( user => { user ? setUser(user) : setUser(null) }); 
         
         firebase.database().ref('posts/' + props.post + '/replies/'  + props.reply).on('value', snapshot => { 
 
@@ -28,48 +30,42 @@ const LikesComments = (props) => {
                 let votes = capture.voteUsers ? Object.keys(capture.voteUsers).length : 0;
                 
                 setCapture(capture);
-                setUserid(uid);
+                setAuthorId(uid);
                 setVotes(votes);
             }
             
         });
         
-        // Unmounting component
         return () => {mounted = false};
         
     }, []);
     
     useEffect( () => {
-            
+        
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
         
     });
     
     const handleVote = async (e) => {
         
-        // Capturing likes object
         let capture = await firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/').once('value');
         
-        // Getting the fingerprint of the users
-        let users = capture.val() ? Object.keys(capture.val()) : [];
+        let usersIdsVotes = capture.val() ? Object.keys(capture.val()) : [];
         
-        // If user liked the post already, remove the branch
-        // In other case, add it
-        users.indexOf(props.user.uid) === -1
-        ? firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/' + props.user.uid).transaction( value => true)
-        : firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/' + props.user.uid).remove();
+        usersIdsVotes.indexOf(user.uid) === -1
+        ? firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/' + user.uid).transaction( value => true)
+        : firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/' + user.uid).remove();
         
-        // Sending notification to user
-        users.indexOf(props.user.uid) === -1
-        ? insertNotificationAndReputation(userid, 'applause', 'add', points)
-        : insertNotificationAndReputation(userid, 'applause', 'sub', points);
+        usersIdsVotes.indexOf(user.uid) === -1
+        ? insertNotificationAndReputation(authorId, 'applause', 'add', points)
+        : insertNotificationAndReputation(authorId, 'applause', 'sub', points);
         
     }
 
     return (
       <div className = 'likes-comments'>
             <div className = 'votes'>
-                <span onClick = {props.user ? (e) => handleVote(e) : () => setRender(true)}>👏 {votes}</span>
+                <span onClick = {user ? (e) => handleVote(e) : () => setRender(true)}>👏 {votes}</span>
             </div>
             {render && <Login hide = {() => setRender(false)}></Login>}
       </div>    

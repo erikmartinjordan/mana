@@ -1,22 +1,24 @@
 import React, { useState, useEffect }   from 'react';
-import firebase                         from './Firebase.js';
+import firebase , { auth }              from './Firebase.js';
 import GetPoints                        from './GetPoints.js';
 import insertNotificationAndReputation  from './InsertNotificationAndReputationIntoDatabase.js';
 import Login                            from '../Components/Login';
 
 const Likes = (props) => {  
     
-    const [capture, setCapture] = useState(null);
-    const [forbid, setForbid]   = useState(false);
-    const [render, setRender]   = useState(false);
-    const [userid, setUserid]   = useState(null);
-    const [votes, setVotes]     = useState(0);
-    const points                = GetPoints(userid);
-        
+    const [authorId, setAuthorId] = useState(null);
+    const [capture, setCapture]   = useState(null);
+    const [forbid, setForbid]     = useState(false);
+    const [render, setRender]     = useState(false);
+    const [user, setUser]         = useState(null);
+    const [votes, setVotes]       = useState(0);
+    const points                  = GetPoints(authorId);
+    
     useEffect( () => {
     
-        // Component is mounted
         let mounted = true;
+        
+        auth.onAuthStateChanged( user => { user ? setUser(user) : setUser(null) }); 
         
         firebase.database().ref('posts/' + props.post).on('value', snapshot => { 
 
@@ -28,13 +30,12 @@ const Likes = (props) => {
                 let votes = capture.voteUsers ? Object.keys(capture.voteUsers).length : 0;
                 
                 setCapture(capture);
-                setUserid(uid);
+                setAuthorId(uid);
                 setVotes(votes);
             }
             
         });
         
-        // Unmounting component
         return () => {mounted = false};
         
     },[]);
@@ -47,29 +48,24 @@ const Likes = (props) => {
     
     const handleVote = async (e) => {
         
-        // Capturing likes object
         let capture = await firebase.database().ref('posts/' + props.post + '/voteUsers/').once('value');
         
-        // Getting the fingerprint of the users
-        let users = capture.val() ? Object.keys(capture.val()) : [];
+        let usersIdsVotes = capture.val() ? Object.keys(capture.val()) : [];
         
-        // If user liked the post already, remove the branch
-        // In other case, add it
-        users.indexOf(props.user.uid) === -1
-        ? firebase.database().ref('posts/' + props.post + '/voteUsers/' + props.user.uid).transaction( value => true)
-        : firebase.database().ref('posts/' + props.post + '/voteUsers/' + props.user.uid).remove();
+        usersIdsVotes.indexOf(user.uid) === -1
+        ? firebase.database().ref('posts/' + props.post + '/voteUsers/' + user.uid).transaction( value => true)
+        : firebase.database().ref('posts/' + props.post + '/voteUsers/' + user.uid).remove();
         
-        // Sending notification to user
-        users.indexOf(props.user.uid) === -1
-        ? insertNotificationAndReputation(userid, 'chili', 'add', points)
-        : insertNotificationAndReputation(userid, 'chili', 'sub', points);
+        usersIdsVotes.indexOf(user.uid) === -1
+        ? insertNotificationAndReputation(authorId, 'chili', 'add', points)
+        : insertNotificationAndReputation(authorId, 'chili', 'sub', points);
         
     }
     
     return (
       <div className = 'Likes'>
             <div className = 'votes'>
-                <span onClick = {props.user ? (e) => handleVote(e) : () => setRender(true)}>🌶️ {votes}</span>
+                <span onClick = {user ? (e) => handleVote(e) : () => setRender(true)}>🌶️ {votes}</span>
             </div>
             {render && <Login hide = {() => setRender(false)}></Login>}
       </div>    
