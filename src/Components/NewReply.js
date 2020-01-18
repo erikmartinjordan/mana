@@ -8,7 +8,7 @@ import insertNotificationAndReputation   from '../Functions/InsertNotificationAn
 import Accounts                          from '../Rules/Accounts.js';
 import '../Styles/NewReply.css';
 
-const NewReply = () => {
+const NewReply = (props) => {
     
     const [alertTitle, setAlertTitle]             = useState(null);
     const [alertMessage, setAlertMessage]         = useState(null);
@@ -35,7 +35,7 @@ const NewReply = () => {
                     if(userInfo){
                         
                         let timeSpanReplies = Accounts[userInfo.account === 'premium' ? 'premium' : 'free'].messages.timeSpanReplies;
-                        let maxLengtReply   = Accounts[userInfo.account === 'premium' ? 'premium' : 'free'].messages.maxLength;
+                        let maxLengthReply   = Accounts[userInfo.account === 'premium' ? 'premium' : 'free'].messages.maxLength;
                         
                         let nickName        = userInfo.anonimo  ? userInfo.nickName : null;
                         let avatar          = userInfo.anonimo  ? userInfo.avatar   : null;
@@ -75,7 +75,7 @@ const NewReply = () => {
         
         let now = Date.now();
         
-        firebase.database().ref('posts/${props.postId}/replies').push({
+        firebase.database().ref(`posts/${props.postId}/replies`).push({
             
             message:    message,
             timeStamp:  now,
@@ -132,6 +132,7 @@ const NewReply = () => {
                     placeholder = 'Mensaje...'
                     maxLength   = {maxLengthReply}
                     onChange    = {(e) => setMessage(e.target.value)}
+                    onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
                 />
                 <button className = 'bottom' onClick = {() => reviewMessage()}>Enviar</button>
             </div>

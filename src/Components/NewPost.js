@@ -143,6 +143,7 @@ const NewPost = (props) => {
                     placeholder = 'Mensaje...'
                     maxlength   = {maxLengthPost}
                     onChange    = {(e) => setMessage(e.target.value)}
+                    onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
                 />
                 <button className = 'bottom' onClick = {() => reviewTitleAndMessage()}>Enviar</button>
             </div>
