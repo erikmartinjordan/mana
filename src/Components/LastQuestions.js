@@ -65,6 +65,20 @@ const LastQuestions = (props) => {
         
     }
     
+    const uniquePics = (question) => {
+        
+        if(question.replies){
+            
+            var imgArray = Object.keys(question.replies).map(key => question.replies[key].userPhoto);         
+            
+        }
+        
+        let unique = [...new Set(imgArray)].map(elem => <img src = {elem}></img>);
+        
+        return unique;
+        
+    }
+    
     return(
         <React.Fragment>
         { lastQuestions.length !== 0
@@ -88,11 +102,9 @@ const LastQuestions = (props) => {
                             <div className = 'Num-Comments'>
                                 💬 {question.replies   ? Object.keys(question.replies).length   : 0}
                             </div>
-                            {question.replies && Object.keys(question.replies).map(key =>         
-                              <div key = {key} className = 'Multi-Pic'>
-                                 <img src = {question.replies[key].userPhoto}></img>
-                              </div>
-                            )}
+                            <div className = 'Multi-Pic'>
+                                {uniquePics(question)}
+                            </div>
                         </div>
                         </div>
                     </Link>
