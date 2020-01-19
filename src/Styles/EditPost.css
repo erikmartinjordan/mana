@@ -24,7 +24,17 @@
     z-index: 99999999;
 }
 .Edit .Edit-Message-Wrap textarea{
+    background: var(--bgBox);
+    border: none;
     border-radius: 5px;
+    box-sizing: border-box;
+    color: var(--primaryFontColor);
+    font-size: medium;
+    line-height: 2;
+    margin-top: 20px;
+    padding: 5px;
+    resize: none;
+    width: 100%;
 }
 .Edit .Invisible{
     z-index: 9999999;
