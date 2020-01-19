@@ -35,10 +35,48 @@
     padding: 20px;
     width: 100%;
 }
-.Reply .Content p{
+.Reply .Content h1,
+.Reply .Content h2,
+.Reply .Content h3,
+.Reply .Content h4,
+.Reply .Content h5,
+.Reply .Content h6{
+    margin: 0;
+    margin-bottom: 0.5em;
+    text-align: left;
+}
+.Reply .Content p,
+.Reply .Content li{
     font-size: inherit;
     margin: 0;
     max-width: none;
+}
+.Reply .Content table,
+.Reply .Content ol{
+    border-collapse: collapse;
+    max-width: 100%;
+}
+.Reply .Content table tr{
+    border-top: 1px solid #c6cbd1;
+}
+.Reply .Content table tr:nth-child(2n) {
+    background-color: var(--bgColor);
+}
+.Reply .Content table td, 
+.Reply .Content table th{
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+.Reply .Content blockquote{
+    border-left: 3px solid var(--thirdFontColor);
+    color: var(--thirdFontColor);
+    margin: 0;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+.Reply .Content img{
+    max-width: 100%;
 }
 .Reply .Content .likes-comments{
     cursor: pointer;
