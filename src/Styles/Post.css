@@ -99,9 +99,10 @@
     margin: auto;
     max-width: 620px;
 }
-.Content blockquote p{
-    color: var(--blue);
-    font-size: x-large;
+.Content blockquote{
+    border-left: 3px solid var(--thirdFontColor);
+    color: var(--thirdFontColor);
+    padding-left: 10px;
 }
 .Content .center{
     margin: auto;
