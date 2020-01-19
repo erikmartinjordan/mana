@@ -14,11 +14,11 @@ const Detail = (props) => {
     
     useEffect( () => {
         
-        auth.onAuthStateChanged( (user) => {
+        auth.onAuthStateChanged( user => {
             
             if(user){
                 
-                let admin = (user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2' || 'VCcNB2N7owaHILHyfb6S1ea7FA73') ? true : false;
+                let admin = (user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2' || user.uid === 'VCcNB2N7owaHILHyfb6S1ea7FA73') ? true : false;
                 
                 setAdmin(admin);
             }

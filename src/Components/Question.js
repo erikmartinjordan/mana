@@ -18,7 +18,7 @@ import '../Styles/Question.css';
 const formatter = buildFormatter(spanishStrings);
 
 const Question = (props) => {
-    
+
     const [question, setQuestion] = useState('');
     
     useEffect ( () => {
