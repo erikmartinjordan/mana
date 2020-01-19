@@ -1,4 +1,5 @@
 import React, { useEffect, useState }  from 'react';
+import ReactMarkdown                   from 'react-markdown';
 import buildFormatter                  from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings                  from 'react-timeago/lib/language-strings/es';
 import TimeAgo                         from 'react-timeago';
@@ -35,6 +36,16 @@ const Replies = (props) => {
         
     }, [window.location.href]);
     
+    const isPremiumUser = async (uid) => {
+        
+        let snapshot = await firebase.database().ref(`users/${uid}`).once('value');
+        
+        let userInfo = snapshot.val();
+        
+        return userInfo.account === 'premium' ? true : false;
+        
+    }
+    
     return(
         <div className = 'Replies'>
             {Object.keys(replies).map( (key, index) => (
@@ -52,7 +63,10 @@ const Replies = (props) => {
                     </div> 
                     <div className = 'Content'>
                         <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
-                            {replies[key].message.split('\n').map((text, key) => <p key = {key}>{text}</p>)}
+                            { isPremiumUser(replies[key].userUid)
+                            ? <ReactMarkdown source = {replies[key].message}/> 
+                            : replies[key].message.split('\n').map((text, key) => <p key = {key}>{text}</p>)
+                            }
                             <div className = 'Meta'>
                                 <LikesComments post = {props.postId} reply = {key} user = {{uid: replies[key].userUid}} />
                                 {props.admin && <EditPost   type = 'reply' post = {props.postId} reply = {key} />}
