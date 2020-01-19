@@ -3,9 +3,11 @@ const fs         = require('fs');
 const admin      = require('firebase-admin');
 const functions  = require('firebase-functions');
 const nodemailer = require('nodemailer');
-const user = functions.config().gmail.user;
-const pass = functions.config().gmail.pass;
-const dest = functions.config().gmail.dest;
+const cors       = require('cors')({origin: true});
+const user       = functions.config().gmail.user;
+const pass       = functions.config().gmail.pass;
+const dest       = functions.config().gmail.dest;
+const adminIds   = functions.config().admin.ids;
 // Remember to type command before deploying → firebase functions:config:set gmail.user="EMAIL"
 // Remember to type command before deploying → firebase functions:config:set gmail.pass="PASS"
 // Remember to type command before deploying → firebase functions:config:set gmail.dest="DEST"
@@ -134,5 +136,28 @@ exports.getStats  = functions.https.onRequest(async (request, response) => {
     
     // Response
     response.send(200);
+    
+});
+
+// Determines if a user is admin
+exports.isAdmin   = functions.https.onRequest(async (request, response) => {
+    
+    // Enable CORS using the `cors` express middleware.
+    return cors(request, response, async () => {
+    
+        // Getting token
+        let token = request.body.idToken;
+
+        // Creating charge
+        let decodedToken = await admin.auth().verifyIdToken(token);
+
+        // Checking if user is admin
+        let isAdmin = (adminIds.includes(decodedToken.uid));
+
+        // Sending response
+        response.status(200).json({isAdmin: isAdmin});
+        
+    });
+    
     
 });

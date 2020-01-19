@@ -12,24 +12,20 @@ const Detail = (props) => {
     const [admin, setAdmin] = useState(false);
     const [title, setTitle] = useState(null);
     
-    useEffect( () => {
-        
-        auth.onAuthStateChanged( user => {
+    auth.onAuthStateChanged( async user => {
+
+        if(user){
             
-            if(user){
-                
-                let admin = (user.uid === 'dOjpU9i6kRRhCLfYb6sfSHhvdBx2' || user.uid === 'VCcNB2N7owaHILHyfb6S1ea7FA73') ? true : false;
-                
-                setAdmin(admin);
-            }
-            else{
-                setAdmin(false);
-            }
+            let admin = await fetchAdmin(user);
             
-        });
+            setAdmin(admin);
+        }
+        else{
+            setAdmin(false);
+        }
         
-    }, []);
-    
+    });
+        
     return (
         <div className = 'Forum Detail'>
             <h2>{title}</h2>
@@ -49,3 +45,27 @@ const Detail = (props) => {
 }
 
 export default Detail;
+
+export const fetchAdmin = async (user) => {
+    
+    let idToken = await firebase.auth().currentUser.getIdToken(true);
+    
+    let url = 'https://us-central1-nomoresheet-pre.cloudfunctions.net/isAdmin';
+    
+    let response = await fetch(url, {
+        "method":  "POST",
+        "headers": { "Content-Type": "application/json" },
+        "body":    JSON.stringify({ "idToken": idToken })
+    });
+    
+    if(response.ok){
+        
+        let json    = await response.json();
+        
+        var isAdmin = json.isAdmin;
+        
+    } 
+    
+    return isAdmin;
+    
+}
