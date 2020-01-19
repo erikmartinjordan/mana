@@ -35,10 +35,48 @@
     padding: 20px;
     width: 100%;
 }
-.Question .Content p{
+.Question .Content h1,
+.Question .Content h2,
+.Question .Content h3,
+.Question .Content h4,
+.Question .Content h5,
+.Question .Content h6{
+    margin: 0;
+    margin-bottom: 0.5em;
+    text-align: left;
+}
+.Question .Content p,
+.Question .Content li{
     font-size: inherit;
     margin: 0;
     max-width: none;
+}
+.Question .Content table,
+.Question .Content ol{
+    border-collapse: collapse;
+    max-width: 100%;
+}
+.Question .Content table tr{
+    border-top: 1px solid #c6cbd1;
+}
+.Question .Content table tr:nth-child(2n) {
+    background-color: var(--bgColor);
+}
+.Question .Content table td, 
+.Question .Content table th{
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+.Question .Content blockquote{
+    border-left: 3px solid var(--thirdFontColor);
+    color: var(--thirdFontColor);
+    margin: 0;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+.Question .Content img{
+    max-width: 100%;
 }
 .Question .Content .Likes .votes{
     cursor: pointer;
