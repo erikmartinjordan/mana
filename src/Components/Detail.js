@@ -1,16 +1,18 @@
-import React, { useState, useEffect }  from 'react';
-import Question                        from './Question';
-import Replies                         from './Replies';
-import Norms                           from './Norms';
-import Comments                        from './Comments';
-import NewReply                        from './NewReply';
-import firebase, { auth }              from '../Functions/Firebase';
+import React, { useState, useEffect }      from 'react';
+import Question                            from './Question';
+import Replies                             from './Replies';
+import Norms                               from './Norms';
+import Comments                            from './Comments';
+import NewReply                            from './NewReply';
+import Default                             from './Default';
+import firebase, { auth, fetchAdmin }      from '../Functions/Firebase';
 import '../Styles/Forum.css';
 
 const Detail = (props) => {
     
-    const [admin, setAdmin] = useState(false);
-    const [title, setTitle] = useState(null);
+    const [admin, setAdmin]         = useState(false);
+    const [validPost, setValidPost] = useState(true);
+    const [title, setTitle]         = useState(null);
     
     auth.onAuthStateChanged( async user => {
 
@@ -25,47 +27,46 @@ const Detail = (props) => {
         }
         
     });
+    
+    useEffect( () => {
+        
+        const fetchPost = async () => {
+            
+            let snapshot = await firebase.database().ref(`posts/${props.match.params.string}`).once('value');
+            
+            let capture  = snapshot.val();
+            
+            capture
+            ? firebase.database().ref(`posts/${props.match.params.string}/views`).transaction( value =>  value + 1 )
+            : setValidPost(false);
+            
+        }
+        
+        fetchPost();
+        
+    }, []);
         
     return (
-        <div className = 'Forum Detail'>
-            <h2>{title}</h2>
-            <div className = 'Forum-TwoCol'>
-                <div className = 'Main'>
-                    <Question postId = {props.match.params.string} admin = {admin} setTitle = {setTitle}/>
-                    <Replies  postId = {props.match.params.string} admin = {admin}/>
-                    <NewReply postId = {props.match.params.string}/>
+        <React.Fragment>
+            {validPost
+            ? <div className = 'Forum Detail'>
+                <h2>{title}</h2>
+                <div className = 'Forum-TwoCol'>
+                    <div className = 'Main'>
+                        <Question postId = {props.match.params.string} admin = {admin} setTitle = {setTitle}/>
+                        <Replies  postId = {props.match.params.string} admin = {admin}/>
+                        <NewReply postId = {props.match.params.string}/>
+                    </div>
+                    <div className = 'Sidebar'>
+                        <Norms/>
+                        <Comments/>
+                    </div>
                 </div>
-                <div className = 'Sidebar'>
-                    <Norms/>
-                    <Comments/>
-                </div>
-            </div>
-      </div>    
+              </div>   
+            : <Default/>
+            }
+        </React.Fragment> 
     );
 }
 
 export default Detail;
-
-export const fetchAdmin = async (user) => {
-    
-    let idToken = await firebase.auth().currentUser.getIdToken(true);
-    
-    let url = 'https://us-central1-nomoresheet-forum.cloudfunctions.net/isAdmin';
-    
-    let response = await fetch(url, {
-        "method":  "POST",
-        "headers": { "Content-Type": "application/json" },
-        "body":    JSON.stringify({ "idToken": idToken })
-    });
-    
-    if(response.ok){
-        
-        let json    = await response.json();
-        
-        var isAdmin = json.isAdmin;
-        
-    } 
-    
-    return isAdmin;
-    
-}

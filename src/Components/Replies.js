@@ -42,7 +42,7 @@ const Replies = (props) => {
         
         let userInfo = snapshot.val();
         
-        return userInfo.account === 'premium' ? true : false;
+        return userInfo && userInfo.account === 'premium' ? true : false;
         
     }
     

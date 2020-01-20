@@ -47,8 +47,6 @@ const Question = (props) => {
             
         });
         
-        firebase.database().ref(`posts/${props.postId}/views`).transaction( value =>  value + 1 );
-        
         
     }, [window.location.href]);
     

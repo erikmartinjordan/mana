@@ -1,5 +1,15 @@
 import firebase from 'firebase'
 
+///////////////////////////////////////////////
+//Modify this line to set the environment
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+let environment = 'PRO';
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+
 var configPRE = {
     apiKey: "AIzaSyCUBpYspYtPSoNKjFx86Y5xHJkXp3dPcO0",
     authDomain: "nomoresheet-pre.firebaseapp.com",
@@ -10,7 +20,7 @@ var configPRE = {
     appId: "1:809572059318:web:dcbab69066a1dddc"
 }
 
-  var configPRO = {
+var configPRO = {
     apiKey: "AIzaSyCI6dpu54CeFd1NOH5s7B-sHeK3KdEH5KU",
     authDomain: "nomoresheet-forum.firebaseapp.com",
     databaseURL: "https://nomoresheet-forum.firebaseio.com",
@@ -19,8 +29,34 @@ var configPRE = {
     messagingSenderId: "878815391785"
   };
 
-firebase.initializeApp(configPRO);
+firebase.initializeApp(environment === 'PRE' ? configPRE : configPRO);
 
+
+export const fetchAdmin = async (user) => {
+    
+    let idToken = await firebase.auth().currentUser.getIdToken(true);
+    
+    let url = environment === 'PRE' 
+    ? 'https://us-central1-nomoresheet-pre.cloudfunctions.net/isAdmin' 
+    : 'https://us-central1-nomoresheet-forum.cloudfunctions.net/isAdmin';
+    
+    let response = await fetch(url, {
+        "method":  "POST",
+        "headers": { "Content-Type": "application/json" },
+        "body":    JSON.stringify({ "idToken": idToken })
+    });
+    
+    if(response.ok){
+        
+        let json    = await response.json();
+        
+        var isAdmin = json.isAdmin;
+        
+    } 
+    
+    return isAdmin;
+    
+}
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const auth = firebase.auth();
 export const storageRef = firebase.storage().ref();
