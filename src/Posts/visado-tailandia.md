@@ -22,7 +22,7 @@ Es la opción más cómoda cuando viajes a Tailandia porque no necesitarás real
 
 ## Visado de entrada única
 
-Deberás solicitar este visado a la embajada tailandesa y aportar los siguientes documentos:
+Deberás solicitar este visado en la embajada tailandesa y aportar los siguientes documentos:
 
 - Pasaporte original con una validez de 6 meses.
 - Formulario de entrada al país cumplimentado.
@@ -44,9 +44,9 @@ Deberás solicitar este visado en la embajada tailandesa y aportar los siguien
 - Reserva confirmada del hotel para toda la estancia.
 - 175 euros en efectivo para los gastos de tramitación.
 - Acreditar suficientes medios económicos:
-    * Trabajadores por cuenta ajena: extracto bancario que refleje un balance de 6000 euros durante los últimos 6 meses y fotocopia de la última nómina firmada por responsable de la empresa.
-    * Trabajadores por cuenta propia: extracto bancario que refleje un balance de 6000 euros durante los últimos 6 meses y justificantes de pago de las cuotas de autónomos, justificantes de pago de IVA e IRPF. 
-    * Pensionista: extracto bancario que refleje un balance de 6000 euros durante los últimos 6 meses y certificado bancario o de la Seguridad Social que indique la cuantía de la pensión que percibe.
+    * Trabajadores por cuenta ajena: extracto bancario que refleje un balance de 6.000 euros durante los últimos 6 meses y fotocopia de la última nómina firmada por responsable de la empresa.
+    * Trabajadores por cuenta propia: extracto bancario que refleje un balance de 6.000 euros durante los últimos 6 meses y justificantes de pago de las cuotas de autónomos, justificantes de pago de IVA e IRPF. 
+    * Pensionista: extracto bancario que refleje un balance de 6.000 euros durante los últimos 6 meses y certificado bancario o de la Seguridad Social que indique la cuantía de la pensión que percibe.
     * Estudiante sin ingresos o menores de edad: declaración firmada del familiar conforme se hace cargo del solicitante y demás documentos a requerir por la embajada tailandesa en Madrid.
 
 > El visado de entrada múltiple te permite permanecer 6 meses en Tailandia y cuesta 175 euros.

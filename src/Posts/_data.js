@@ -1,4 +1,9 @@
 var data = {
+    'entrada-y-salida-de-tailandia': {
+        'title': '¿Se puede salir de Tailandia y volver a entrar en un mismo día?',
+        'date': [20, 'Enero', 2020],
+        'description': 'El experimento consiste en irse a un país fronterizo para renovar el visado y volver en una única jornada, obteniendo así, 30 días adicionales en Tailandia.',
+    },
     'visado-tailandia': {
         'title': 'Visado Tailandia 2020: precio, duración y opciones',
         'date': [20, 'Enero', 2020],
@@ -379,11 +384,6 @@ var data = {
         'title': 'En Chatuchak se preparan paellas',
         'date': [3, 'Diciembre', 2016],
         'description': 'El mercado de Chatuchak es de visita obligada cuando uno viene a la capital tailandesa. Bangkok perdería un trozo de su alma sin esta atracción.',
-    },
-    'entrada-y-salida-de-tailandia': {
-        'title': '¿Se puede salir de Tailandia y volver a entrar en un mismo día?',
-        'date': [30, 'Noviembre', 2016],
-        'description': 'El experimento consiste en irse a un país fronterizo para renovar el visado y volver en una única jornada, obteniendo así, 30 días adicionales en Tailandia.',
     },
     'perros': {
         'title': 'Mafia canina',
