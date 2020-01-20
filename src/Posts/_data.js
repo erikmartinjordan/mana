@@ -1,4 +1,9 @@
 var data = {
+    'visado-tailandia': {
+        'title': 'Visado Tailandia 2020: precio, duración y opciones',
+        'date': [20, 'Enero', 2020],
+        'description': 'Todo lo que necesitas saber sobre el visado para Tailandia en 2020. De manera resumida y detallada. Precio, duración de la estancia y tipos de visado.',
+    },
     'academia': {
         'title': 'Cómo es lo de apuntarse a aprender tailandés',
         'date': [27, 'Diciembre', 2019],
@@ -159,11 +164,6 @@ var data = {
         'title': 'Vida sencilla y frugalidad',
         'date': [9, 'Enero', 2018],
         'description': 'En el Sudeste Asiático aprendí a manejar un presupuesto mensual de seiscientos euros. Me di cuenta de que podía vivir con algo menos del salario mínimo interprofesional español. Sin lujos pero sin carencias; llevando una vida sencilla y frugal.',
-    },
-    'visado-tailandia': {
-        'title': 'Visado Tailandia 2018: precio, duración y opciones',
-        'date': [1, 'Enero', 2018],
-        'description': 'Todo lo que necesitas saber sobre el visado para Tailandia en 2018. De manera resumida y detallada. Precio, duración de la estancia y tipos de visado.',
     },
     'muay': {
         'title': 'Vello púbico tailandés',
