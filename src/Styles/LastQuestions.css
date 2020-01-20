@@ -39,12 +39,18 @@
 }
 .LastQuestions .Question .Meta-Post .Likes,
 .LastQuestions .Question .Meta-Post .Num-Comments{
+    align-items: center;
+    display: flex;
     font-size: small;
     margin-right: 5px;
 }
 .LastQuestions .Question .Bottom-Card{
     display: flex;
     justify-content: space-between;
+}
+.LastQuestions .Question .Bottom-Card .Multi-Pic{
+    align-items: center;
+    display: flex;
 }
 .LastQuestions .Question .Bottom-Card .Multi-Pic img{
     border: 2px solid var(--bgColor);

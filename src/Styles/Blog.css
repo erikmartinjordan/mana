@@ -55,9 +55,6 @@
 }
 .Blog .Content{
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
     margin-top: 20px;
 }
 .Blog .Content p{
