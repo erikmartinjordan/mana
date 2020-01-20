@@ -10,6 +10,7 @@
     position: fixed;
     top: 0;
     width: 100vw;
+    z-index: 2;
 }
 .NewPost-Wrap{
     background: var(--bgColor);
@@ -20,7 +21,7 @@
     padding: 20px;
     max-width: 600px;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
 }
 .NewPost-Wrap .User{
     display: flex;
@@ -57,4 +58,5 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
+    z-index: 1;
 }

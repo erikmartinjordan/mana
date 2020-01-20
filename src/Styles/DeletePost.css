@@ -60,7 +60,6 @@ button.Delete{
     margin: 5px;
     padding: 5px;
     transition: all 0.2s ease-in-out;
-    z-index: 99999;
 }
 button.Delete:hover{
     background: var(--pastelRed);

@@ -8,7 +8,7 @@
     position: fixed;
     top: 0;
     width: 100vw;
-    z-index: 999;
+    z-index: 3;
 }
 .Perfil-Wrap{
     background: var(--bgBox);
@@ -21,7 +21,10 @@
     max-width: 1000px;
     margin: auto;
     width: 100%;
-    z-index: 999;
+    z-index: 2
+}
+.Perfil .Invisible{
+    z-index: 1;
 }
 .Perfil h3{
     text-align: left;
