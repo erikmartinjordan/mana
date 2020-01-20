@@ -31,20 +31,52 @@
     line-height: 1.7;
     padding: 20px;
 } 
-.Acerca .Block h3{
+.Acerca h3{
     margin: 0;
     text-align: left;
 }
-.Acerca .Block p,
-.Acerca .Block li{
-    font-size: medium;
+.Acerca .Content h1,
+.Acerca .Content h2,
+.Acerca .Content h3,
+.Acerca .Content h4,
+.Acerca .Content h5,
+.Acerca .Content h6{
+    margin: 0;
+    margin-bottom: 0.5em;
+    text-align: left;
 }
-.Acerca .Block img{
-    width: 100%;
+.Acerca .Content p,
+.Acerca .Content li{
+    font-size: inherit;
+    margin: 0px;
+    max-width: none;
 }
-.Acerca .Block .Content{
-    align-items: center;
-    display: flex;
+.Acerca .Content table,
+.Acerca .Content ol{
+    border-collapse: collapse;
+    max-width: 100%;
+}
+.Acerca .Content table tr{
+    border-top: 1px solid #c6cbd1;
+}
+.Acerca .Content table tr:nth-child(2n) {
+    background-color: var(--bgColor);
+}
+.Acerca .Content table td, 
+.Acerca .Content table th{
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+.Acerca .Content blockquote{
+    border-left: 3px solid var(--thirdFontColor);
+    color: var(--thirdFontColor);
+    margin: 0;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+.Acerca .Content img{
+    max-width: 100%;
 }
 .Acerca .Block .Emoji img{
     font-size: 150px;
