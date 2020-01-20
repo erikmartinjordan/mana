@@ -14,9 +14,7 @@ const EditPost = (props) => {
     useEffect( () => {
         
         if(refTextarea.current)
-            refTextarea.current.style.height = `${refTextarea.current.scrollHeight}px`;
-        
-        console.log(refTextarea);
+            refTextarea.current.style.height = `${refTextarea.current.scrollHeight}px`;    
         
     }, [message]);
         

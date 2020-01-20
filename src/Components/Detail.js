@@ -50,7 +50,7 @@ export const fetchAdmin = async (user) => {
     
     let idToken = await firebase.auth().currentUser.getIdToken(true);
     
-    let url = 'https://us-central1-nomoresheet-pre.cloudfunctions.net/isAdmin';
+    let url = 'https://us-central1-nomoresheet-forum.cloudfunctions.net/isAdmin';
     
     let response = await fetch(url, {
         "method":  "POST",
