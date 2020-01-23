@@ -1,8 +1,8 @@
 var data = {
     'entrada-y-salida-de-tailandia': {
-        'title': '¿Se puede salir de Tailandia y volver a entrar en un mismo día?',
+        'title': '¿Se puede salir de Tailandia y volver a entrar en un corto período de tiempo?',
         'date': [20, 'Enero', 2020],
-        'description': 'El experimento consiste en irse a un país fronterizo para renovar el visado y volver en una única jornada, obteniendo así, 30 días adicionales en Tailandia.',
+        'description': 'Si no has venido nunca a Tailandia y vas a estar viajando por el Sudeste Asiático, entrar un par de veces al país no te causará ningún problema: cada vez que entres por vía aérea obtendrás 30 días adicionales.',
     },
     'visado-tailandia': {
         'title': 'Visado Tailandia 2020: precio, duración y opciones',

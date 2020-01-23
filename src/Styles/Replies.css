@@ -51,6 +51,9 @@
     margin: 0;
     max-width: none;
 }
+.Reply .Content p{
+    margin-bottom:20px;
+}
 .Reply .Content table,
 .Reply .Content ol{
     border-collapse: collapse;
