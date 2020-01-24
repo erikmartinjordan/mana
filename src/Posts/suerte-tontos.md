@@ -1,4 +1,4 @@
-Acabo de salir del mejor AirBnB en que me he alojado hasta el momento en Kuala Lumpur. Se llama Swiss Garden Residences y lo pillé en una oferta de última hora por menos de 20 euros la noche.
+Acabo de salir del mejor AirBnB en que me he alojado hasta el momento en Kuala Lumpur. El apartamento está en Swiss Garden Residences y lo pillé en una oferta de última hora por menos de 20 euros la noche.
 
 A veces, los tontos tenemos suerte.
 
@@ -28,7 +28,7 @@ En principio, si las cosas no cambian, volvería a Barcelona en abril y empezar�
 
 Vivir en Tailandia como turista durante una larga temporada es imposible. Visto lo visto, como máximo podría estar 180 días al año (6 meses) y recibiendo incesantes preguntas de los oficiales de inmigración. El no saber si voy a poder entrar en Tailandia, a pesar de tener un visado de turista en el pasaporte, es algo que me desespera. Y las preguntas de los oficiales de inmigración también. Como introvertido que soy, me siento incómodo dando explicaciones de por qué estoy en Tailandia. 
 
-El ser humano es el único animal que tropieza dos veces en la misma piedra y ya es la segunda costra que me sale en la rodilla. Parece que no escarmiento, pero soy de los animales más cabezones que hay.
+El ser humano es el único animal que tropieza dos veces con la misma piedra y ya es la segunda costra que me sale en la rodilla. Parece que no escarmiento, pero soy de los animales más cabezones que hay.
 
 Si pudiese escribir una carta a los Reyes Magos, les diría que me trajesen una vida de desarrolllador de *software* en remoto. Idealmente, en lugar de ser miembro de una corporación, me gustaría crear aplicaciones por mi cuenta que generasen suficientes ingresos para poder vivir aquí y allá. Les diría que confíasen en mí, que es una ardúa tarea y que en ello me hallo. Las probabilidades de tener una aplicación que la gente quiera y que genere ingresos como para poder vivir, son pequeñas, pero sigo en ello.
 
