@@ -33,13 +33,6 @@ const PublicInfo = (props) => {
     const ranking           = GetRankingUser(userUid);
     const user              = {uid: userUid, photoURL: photoURL};
     
-    useEffect( () => { 
-        
-        // No indexing user's profiles
-        document.querySelector('meta[name="robots"]').content = 'noindex';
-        
-    });
-        
     useEffect( () => {
         
         // Component is mounted
