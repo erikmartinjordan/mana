@@ -1,4 +1,10 @@
 var data = {
+    'mis-dias-kuala-lumpur': {
+        'title': 'Solo en Kuala Lumpur',
+        'date': [6, 'Febrero', 2020],
+        'description': 'Hace ya prácticamente un mes que estoy viviendo solo en Kuala Lumpur. Me resulta extraño decir que vivo en una ciudad con un visado de turista en el pasaporte y con contratos de alquiler de una semana de duración.',
+        'privat': true
+    },
     'suerte-tontos': {
         'title': 'A veces, los tontos tenemos suerte',
         'date': [24, 'Enero', 2020],
