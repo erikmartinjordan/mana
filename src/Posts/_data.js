@@ -44,20 +44,17 @@ var data = {
     'nuevo-piso': {
         'title': 'Nuevo piso',
         'date': [24, 'Noviembre', 2019],
-        'description': 'Una nota apareció hace un par de meses en la puerta de nuestro piso en Bangkok. Me la encontré al llegar de comprar del súper, firmada con un sello con una figura semejante a un elefante, pensé que no sería nada serio.',
-        'privat': true
+        'description': 'Una nota apareció hace un par de meses en la puerta de nuestro piso en Bangkok. Me la encontré al llegar de comprar del súper, firmada con un sello con una figura semejante a un elefante, pensé que no sería nada serio.'
     },
     'inmigracion-tailandia': {
         'title': 'Detenido en el control de inmigración',
         'date': [14, 'Noviembre', 2019],
-        'description': 'Hace un par de días aterricé en Tailandia de nuevo. Llegué por primera vez el 18 de junio de este año, por lo que llevo viviendo aproximadamente unos cuatro meses en Bangkok.',
-        'privat': true
+        'description': 'Hace un par de días aterricé en Tailandia de nuevo. Llegué por primera vez el 18 de junio de este año, por lo que llevo viviendo aproximadamente unos cuatro meses en Bangkok.'
     },
     'airbnb': {
         'title': 'Kuala Lumpur, cumpleaños y AirBnB',
         'date': [8, 'Noviembre', 2019],
-        'description': 'Hace un par de semanas aterrizamos en Kuala Lumpur. El viaje fue obligado (pero gustoso) por la caducidad de mi visado tailandés. Además, dio la casualidad de que la fecha límite de salida de Tailandia era justo un día antes de mi cumpleaños. Viaje y cumpleaños significa matar dos pájaros de un tiro.',
-        'privat': true
+        'description': 'Hace un par de semanas aterrizamos en Kuala Lumpur. El viaje fue obligado (pero gustoso) por la caducidad de mi visado tailandés. Además, dio la casualidad de que la fecha límite de salida de Tailandia era justo un día antes de mi cumpleaños. Viaje y cumpleaños significa matar dos pájaros de un tiro.'
     },
     'visado-tailandes-desde-malasia': {
         'title': 'Visado tailandés desde Malasia',
@@ -67,14 +64,12 @@ var data = {
     'suegros': {
         'title': 'Los suegros vienen de visita',
         'date': [23, 'Octubre', 2019],
-        'description': 'Me despierto de golpe. Hace calor. El aire acondicionado ha dejado de funcionar. Me doy la vuelta y veo a Chiang Muhu dormida cual oso perezoso. Cojo el móvil y observo que son las seis de la mañana. El WiFi no funciona, así que dejo el móvil, me doy la vuelta e intento dormir de nuevo.',
-        'privat': true
+        'description': 'Me despierto de golpe. Hace calor. El aire acondicionado ha dejado de funcionar. Me doy la vuelta y veo a Chiang Muhu dormida cual oso perezoso. Cojo el móvil y observo que son las seis de la mañana. El WiFi no funciona, así que dejo el móvil, me doy la vuelta e intento dormir de nuevo.'
     },
     'combatiendo-hormigas':{
         'title': 'Combatiendo hormigas',
         'date': [6, 'Septiembre', 2019],
-        'description': 'Es mediodía, después de casi tres horas programando, me entra el gusanillo. Voy a MaxValu, el supermercado que está cerca de casa y compro una tortilla francesa que viene acompañada de arroz blanco, también compro piña y cuatro gelatinas: dos de melón, una de fresa y otra de uva.',
-        'privat': true
+        'description': 'Es mediodía, después de casi tres horas programando, me entra el gusanillo. Voy a MaxValu, el supermercado que está cerca de casa y compro una tortilla francesa que viene acompañada de arroz blanco, también compro piña y cuatro gelatinas: dos de melón, una de fresa y otra de uva.'
     },
     'visado-tailandes-bali':{
         'title': 'Tramitando el visado tailandés en Bali',
