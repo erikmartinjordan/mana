@@ -280,6 +280,8 @@ const Perfil = (props) => {
                                 <li>Notificaciones</li>
                                 <li>Gana experiencia con puntos y niveles</li>                                
                                 <li>Mensajes anónimos</li>
+                                <li>Edita y elimina mensajes</li>
+                                <li>Añade formato a tus mensajes</li>
                                 <li><em>Badge</em> identificativo</li>
                             </ul>
                         </div>
