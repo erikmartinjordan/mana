@@ -153,6 +153,7 @@
 }
 .Perfil .Faq p.Question{
     color: var(--secondFontColor);
+    display: block;
     font-size: large;
     font-weight: 600;
     line-height: 1.5;
