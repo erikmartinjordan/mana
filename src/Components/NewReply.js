@@ -51,6 +51,9 @@ const NewReply = (props) => {
                 
                 setUser(user);
             }
+            else{
+                setUser(null);
+            }
         });
         
         
