@@ -56,7 +56,13 @@ const Question = (props) => {
         
         let userInfo = snapshot.val();
         
-        return userInfo.account === 'premium' ? true : false;
+        return userInfo && userInfo.account === 'premium' ? true : false;
+        
+    }
+    
+    const editDelete = (questionUid) => {
+        
+        return props.admin || (isPremiumUser(props.uid) && props.uid === questionUid);
         
     }
     
@@ -83,8 +89,8 @@ const Question = (props) => {
                     }
                     <div className = 'Meta'>
                             <Likes user = {{uid: question.userUid}} post = {props.postId}></Likes>
-                            {props.admin && <EditPost   type = 'post' post = {props.postId}/>}
-                            {props.admin && <DeletePost type = 'post' post = {props.postId} />}
+                            {editDelete(question.userUid) && <EditPost   type = 'post' post = {props.postId}/>}
+                            {editDelete(question.userUid) && <DeletePost type = 'post' post = {props.postId} />}
                     </div>
                 </Linkify>
             </div>

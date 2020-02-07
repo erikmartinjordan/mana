@@ -11,6 +11,7 @@ import '../Styles/Forum.css';
 const Detail = (props) => {
     
     const [admin, setAdmin]         = useState(false);
+    const [uid, setUid]             = useState(null);
     const [validPost, setValidPost] = useState(true);
     const [title, setTitle]         = useState(null);
     
@@ -21,9 +22,11 @@ const Detail = (props) => {
             let admin = await fetchAdmin(user);
             
             setAdmin(admin);
+            setUid(user.uid);
         }
         else{
             setAdmin(false);
+            setUid(null);
         }
         
     });
@@ -53,8 +56,8 @@ const Detail = (props) => {
                 <h2>{title}</h2>
                 <div className = 'Forum-TwoCol'>
                     <div className = 'Main'>
-                        <Question postId = {props.match.params.string} admin = {admin} setTitle = {setTitle}/>
-                        <Replies  postId = {props.match.params.string} admin = {admin}/>
+                        <Question postId = {props.match.params.string} admin = {admin} uid = {uid} setTitle = {setTitle} />
+                        <Replies  postId = {props.match.params.string} admin = {admin} uid = {uid}/>
                         <NewReply postId = {props.match.params.string}/>
                     </div>
                     <div className = 'Sidebar'>

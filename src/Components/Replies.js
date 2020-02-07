@@ -46,32 +46,38 @@ const Replies = (props) => {
         
     }
     
+    const canEditDelete = (replyUid) => {
+        
+        return props.admin || (isPremiumUser(props.uid) && props.uid === replyUid);
+        
+    }
+    
     return(
         <div className = 'Replies'>
-            {Object.keys(replies).map( (key, index) => (
+            {Object.entries(replies).map( ([key, reply], index) => (
                 <div className = 'Reply' key = {key}>
                     <div className = 'Header'>
-                        <UserAvatar user = {{uid: replies[key].userUid, photoURL: replies[key].userPhoto}}/>
+                        <UserAvatar user = {{uid: reply.userUid, photoURL: reply.userPhoto}}/>
                         <div className = 'Author-Name-Date'> 
                             <span className = 'Author-Info'>
-                                <Link to = {'/@' + replies[key].userUid}>{replies[key].userName}</Link>
-                                <PublicInfo uid = {replies[key].userUid} canvas = {index + 1}/>
-                                <Verified   uid = {replies[key].userUid}/>
+                                <Link to = {'/@' + reply.userUid}>{reply.userName}</Link>
+                                <PublicInfo uid = {reply.userUid} canvas = {index + 1}/>
+                                <Verified   uid = {reply.userUid}/>
                             </span>
-                            <TimeAgo formatter = {formatter} date = {replies[key].timeStamp}/>
+                            <TimeAgo formatter = {formatter} date = {reply.timeStamp}/>
                         </div>
                     </div> 
                     <div className = 'Content'>
                         <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
-                            { isPremiumUser(replies[key].userUid)
-                            ? <ReactMarkdown source = {replies[key].message}/> 
-                            : replies[key].message.split('\n').map((text, key) => <p key = {key}>{text}</p>)
-                            }
-                            <div className = 'Meta'>
-                                <LikesComments post = {props.postId} reply = {key} user = {{uid: replies[key].userUid}} />
-                                {props.admin && <EditPost   type = 'reply' post = {props.postId} reply = {key} />}
-                                {props.admin && <DeletePost type = 'reply' post = {props.postId} reply = {key} />}
-                            </div>
+                        { isPremiumUser(reply.userUid)
+                        ? <ReactMarkdown source = {reply.message}/> 
+                        : reply.message.split('\n').map((text, key) => <p key = {key}>{text}</p>)
+                        }
+                        <div className = 'Meta'>
+                            <LikesComments post = {props.postId} reply = {key} user = {{uid: reply.userUid}} />
+                            {canEditDelete(reply.userUid) && <EditPost   type = 'reply' post = {props.postId} reply = {key} />}
+                            {canEditDelete(reply.userUid) && <DeletePost type = 'reply' post = {props.postId} reply = {key} />}
+                        </div>
                         </Linkify>
                     </div>
                 </div>
