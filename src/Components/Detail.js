@@ -53,7 +53,7 @@ const Detail = (props) => {
         <React.Fragment>
             {validPost
             ? <div className = 'Forum Detail'>
-                <h2>{title}</h2>
+                <h1>{title}</h1>
                 <div className = 'Forum-TwoCol'>
                     <div className = 'Main'>
                         <Question postId = {props.match.params.string} admin = {admin} uid = {uid} setTitle = {setTitle} />
