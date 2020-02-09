@@ -11,7 +11,7 @@ const Blog = () => {
     const [articleData, setArticleData] = useState(null);
     const [abstract, setAbstract] = useState(null);
     const [displayPosts, setDisplayPosts] = useState(10);
-    const [filter, setFilter] = useState('Todos');
+    const [filter, setFilter] = useState('Nuevo');
     const [img, setImg] = useState({});
     const [login, setLogin] = useState(false);
     const [user, setUser]  = useState(null);
@@ -70,7 +70,7 @@ const Blog = () => {
                 return articleData[b].likes - articleData[a].likes;
         
         }); 
-        if(filter === 'Todos') sortedKeys = Object.keys(Data);            
+        if(filter === 'Nuevo') sortedKeys = Object.keys(Data);            
                 
         sortedKeys && sortedKeys.forEach( key => {
                         
@@ -86,11 +86,6 @@ const Blog = () => {
                                         <div className = 'Title-Date'>
                                             <div className = 'Title'>{Data[key].title}</div>
                                             <div className = 'Date'>{Data[key].date[0]} de {Data[key].date[1]} del {Data[key].date[2]}</div>
-                                        </div>
-                                        <div className = 'Meta'>
-                                            <div className = 'Views'>👀 {articleData && articleData[key] && articleData[key].views}</div>
-                                            <div className = 'Likes'>👏 {articleData && articleData[key] && articleData[key].likes}</div>
-                                            <div className = 'SuperLikes'>🎉 {articleData && articleData[key] && articleData[key].superlikes}</div>
                                         </div>
                                     </div>
                                     <div className = 'Content'>
@@ -120,9 +115,9 @@ const Blog = () => {
             <h2>Blog</h2>
             <div style = {{textAlign: 'center'}}>El archivo contiene una colección de {Object.keys(Data).length} artículos. ☕</div>
             <div className = 'Filter-Blog'>
-                <div className = {filter === 'Todos'      ? 'Active' : null} onClick = {() => setFilter('Todos')}>Todos 📋 </div>
-                <div className = {filter === 'Visitas'    ? 'Active' : null} onClick = {() => setFilter('Visitas')}>Visitas 👀</div>
-                <div className = {filter === 'Aplausos'   ? 'Active' : null} onClick = {() => setFilter('Aplausos')}>Aplausos 👏</div>
+                <div className = {filter === 'Nuevo'      ? 'Active' : null} onClick = {() => setFilter('Nuevo')}>Nuevo</div>
+                <div className = {filter === 'Visitas'    ? 'Active' : null} onClick = {() => setFilter('Visitas')}>Visitas</div>
+                <div className = {filter === 'Aplausos'   ? 'Active' : null} onClick = {() => setFilter('Aplausos')}>Aplausos</div>
             </div>
             <div className = 'Block'>
                 {posts()}

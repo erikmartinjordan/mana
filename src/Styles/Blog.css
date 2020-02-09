@@ -34,6 +34,7 @@
 .Blog .Title-Date-Privat .Title-Date .Date{
     color: var(--secondaryFontColor);
     font-size: x-small;    
+    text-transform: lowercase;
 }
 .Blog .Title-Date-Privat .Meta{
     color: var(--primaryFontColor);
@@ -51,7 +52,7 @@
     justify-content: space-between;
 }
 .Blog .Content p{
-    color: var(--primaryFontColor);
+    color: var(--secondaryFontColor);
     line-height: 1.7;
     font-size: medium;
     margin: 0;
