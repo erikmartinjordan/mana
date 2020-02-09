@@ -1,5 +1,6 @@
 import React, { useState, useEffect }   from 'react';
 import { Link }                         from 'react-router-dom';
+import Fingerprint                      from 'fingerprintjs';
 import Login                            from './Login';
 import Notifications                    from './Notifications';
 import Perfil                           from './Perfil';
@@ -82,6 +83,7 @@ const Nav = () => {
                     <Link to = '/acerca'>Acerca</Link>
                     <NightModeToggleButton></NightModeToggleButton>
                     <a onClick = {() => setLogin(true)} className = 'login'>Acceder</a>
+                    <AirBnB/>
                 </React.Fragment>;  
     }
   
@@ -135,3 +137,24 @@ const Nav = () => {
 }
 
 export default Nav;
+
+
+const AirBnB = () => {
+    
+     const handleAd = () => {
+        
+        var fingerprint = new Fingerprint().get();
+        
+        firebase.database().ref('ads/' + fingerprint + '/clicks/').transaction(value => value + 1);
+    }
+    
+    return(
+        
+        <a className = 'Ad' href = 'https://www.airbnb.es/c/erikm3737?currency=EUR' onClick = {() => handleAd()} target = '_blank' rel = 'noopener noreferrer nofollow'>
+            <span className = 'Title'>Anuncio</span>
+            <p>Obtén 34 euros de descuento en tu primera reserva de AirBnB.</p>
+        </a>
+    );
+    
+    
+}
