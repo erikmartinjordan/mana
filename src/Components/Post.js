@@ -86,13 +86,6 @@ const Post = (props) => {
     
     const handleLikes           = () => firebase.database().ref('articles/' + url+ '/likes/').transaction( value => value + 1 );
     const handleSuperLikes      = () => firebase.database().ref('articles/' + url + '/superlikes/').transaction( value => value + 1 );
-    const handleAd              = () => {
-        
-        // Getting fingerprint of the user
-        var fingerprint = new Fingerprint().get();
-        
-        firebase.database().ref('ads/' + fingerprint + '/clicks/').transaction(value => value + 1);
-    }
     
     const relatedContent = () => {
 
@@ -102,10 +95,7 @@ const Post = (props) => {
         let res;
         let nArticles;
         
-        if(user  && views <= 1000) nArticles = 5;
-        if(user  && views >  1000) nArticles = 4;
-        if(!user && views <= 1000) nArticles = 4;
-        if(!user && views >  1000) nArticles = 3;
+        nArticles = user ? 5 : 4;
 
         array = Object.keys(Data);
         random = Math.floor(Math.random() * (array.length - nArticles));
@@ -184,15 +174,6 @@ const Post = (props) => {
                                 </div>
                                 <span className = 'Tag Green'>Comunidad →</span>
                             </a>
-                            {views > 1000 &&
-                            <a onClick = {handleAd} 
-                                target = '_blank'
-                                href = 'https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1772106&hl=es&city=9395' 
-                                className = 'Ad'>
-                                <p>✨ Reserva tu hotel en Agoda. Precios mejores que en Booking.</p>
-                                <span className = 'Tag Yellow'>Ver hoteles →</span>
-                            </a>
-                            }
                             {!user &&
                             <a onClick = {() => setRender(true)} className = 'Otro'>
                                 <p>👋 Accede a Nomoresheet para votar y comentar.</p>
