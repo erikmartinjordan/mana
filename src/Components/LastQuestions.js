@@ -87,6 +87,7 @@ const LastQuestions = (props) => {
                 <div className = 'Question' key = {question.key}>
                     <Link to = {`/comunidad/post/${question.key}`}>
                         <h3>{question.title}</h3>
+                        <p>{`${question.message.split('.')[0]}...`}</p>
                         <div className = 'Bottom-Card'>
                             <div className = 'Author-Name-Date'> 
                             <UserAvatar user = {{uid: question.userUid, photoURL: question.userPhoto}}/>

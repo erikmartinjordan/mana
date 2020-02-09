@@ -16,6 +16,10 @@
     margin: 0;
     text-align: left;
 }
+.LastQuestions .Question p{
+    color: var(--secondaryFontColor);
+    line-height: 1.5;
+}
 .LastQuestions .Question .Author-Name-Date{
     align-items: center;
     color: var(--primaryFontColor);
