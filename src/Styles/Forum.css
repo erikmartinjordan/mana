@@ -2,9 +2,9 @@
     padding: 20px;
     width: 100%;
 }
-.Forum h2{
+.Forum h1{
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 0px;
     text-align: left;
 }
 .Forum .Forum-TwoCol{

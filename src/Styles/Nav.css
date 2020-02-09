@@ -136,6 +136,21 @@
 .Nav i{
     display: none;
 }
+.Nav a.Ad{
+    background: transparent;
+    border-radius: 5px;
+    box-shadow: none;
+    color: var(--secondaryFontColor);
+    margin-top: 20px;
+    max-width: 100%;
+    padding: 0px;
+}
+.Nav a.Ad:hover{
+    transform: none;
+}
+.Nav a.Ad .Title{
+    margin-bottom: 5px;
+}
 @keyframes bounce{
     0%    {opacity: 0;   transform: scale(1,1);}
     50%   {opacity: 0.5; transform: scale(1.1, 1.1);}
