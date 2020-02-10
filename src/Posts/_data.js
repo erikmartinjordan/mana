@@ -1,4 +1,10 @@
 var data = {
+    'thai-visa-elite': {
+        'title': 'Thai Visa Elite, ¿vale la pena?',
+        'date': [10, 'Febrero', 2020],
+        'description': 'Vivir con un visado de turista entrando y saliendo del país es misión imposible en Tailandia desde el 2014. Entonces, ¿estudiar tailandés, casarse o tener un hijo, encontrar trabajo en Tailandia? Todas estas opciones permiten obtener visados de no inmigrante y permanecer una temporada larga en el Reino de Siam. Pero qué alternativa queda para alguien que no esté interesado en ninguna de estas tres opciones: Thai Visa Elite.',
+        'privat': true
+    },
     'mis-dias-kuala-lumpur': {
         'title': 'Solo en Kuala Lumpur',
         'date': [6, 'Febrero', 2020],
