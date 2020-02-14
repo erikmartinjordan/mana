@@ -82,17 +82,15 @@ const Question = (props) => {
                 </div>
             </div>
             <div className = 'Content'>
-                <Linkify properties = {{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
                     { isPremiumUser(question.userUid)
-                    ? <ReactMarkdown source = {question.message}/> 
-                    : question.message.split("\n").map((text, key) => <p key = {key}>{text}</p>)
+                    ? <MarkDownMessage   message = {question.message}/>
+                    : <NoMarkDownMessage message = {question.message}/>
                     }
                     <div className = 'Meta'>
                             <Likes user = {{uid: question.userUid}} post = {props.postId}></Likes>
                             {editDelete(question.userUid) && <EditPost   type = 'post' post = {props.postId}/>}
                             {editDelete(question.userUid) && <DeletePost type = 'post' post = {props.postId} />}
                     </div>
-                </Linkify>
             </div>
          </div> 
         : <Loading type = 'Question'/>
@@ -102,3 +100,18 @@ const Question = (props) => {
 }
 
 export default Question;
+
+const MarkDownMessage   = ({ message }) => {
+    
+    const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'};
+    
+    return <ReactMarkdown source = {message} renderers = {{paragraph: props => <Linkify properties = {linkProperties}>{props.children}</Linkify>}}/>;
+    
+}
+const NoMarkDownMessage = ({ message }) => {
+    
+    const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'}; 
+    
+    return message.split("\n").map((text, key) => <Linkify properties = {linkProperties}><p key = {key}>{text}</p></Linkify>)
+    
+}

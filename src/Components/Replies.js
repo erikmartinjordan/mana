@@ -70,8 +70,8 @@ const Replies = (props) => {
                     <div className = 'Content'>
                         <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
                         { isPremiumUser(reply.userUid)
-                        ? <ReactMarkdown source = {reply.message}/> 
-                        : reply.message.split('\n').map((text, key) => <p key = {key}>{text}</p>)
+                        ? <MarkDownMessage   message = {reply.message}/>
+                        : <NoMarkDownMessage message = {reply.message}/>
                         }
                         <div className = 'Meta'>
                             <LikesComments post = {props.postId} reply = {key} user = {{uid: reply.userUid}} />
@@ -88,3 +88,18 @@ const Replies = (props) => {
 }
 
 export default Replies;
+
+const MarkDownMessage   = ({ message }) => {
+    
+    const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'};
+    
+    return <ReactMarkdown source = {message} renderers = {{paragraph: props => <Linkify properties = {linkProperties}>{props.children}</Linkify>}}/>;
+    
+}
+const NoMarkDownMessage = ({ message }) => {
+    
+    const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'}; 
+    
+    return message.split("\n").map((text, key) => <Linkify properties = {linkProperties}><p key = {key}>{text}</p></Linkify>)
+    
+}
