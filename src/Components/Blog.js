@@ -112,7 +112,7 @@ const Blog = () => {
     
     return (
       <div className = 'Blog'>
-            <h2>Blog</h2>
+            <h1>Blog</h1>
             <div style = {{textAlign: 'center'}}>El archivo contiene una colección de {Object.keys(Data).length} artículos. ☕</div>
             <div className = 'Filter-Blog'>
                 <div className = {filter === 'Nuevo'      ? 'Active' : null} onClick = {() => setFilter('Nuevo')}>Nuevo</div>
