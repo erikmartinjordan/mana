@@ -11,12 +11,13 @@
     margin: auto;
     margin-bottom: 50px;
     max-width: 800px;
-    text-align: center;
     width: 100%;
 }
 .Acerca .Intro img{
     border-radius: 50px;
+    display: flex;
     height: 100px;
+    margin: auto;
     width: 100px;
 }
 .Acerca .Date{
@@ -31,6 +32,10 @@
     line-height: 1.7;
     padding: 20px;
 } 
+.Acerca h2{
+    font-size: large;
+    text-align: left;
+}
 .Acerca h3{
     margin: 0;
     text-align: left;
