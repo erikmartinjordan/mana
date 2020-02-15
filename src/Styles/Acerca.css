@@ -32,6 +32,10 @@
     line-height: 1.7;
     padding: 20px;
 } 
+.Acerca h1{
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
 .Acerca h2{
     font-size: large;
     text-align: left;

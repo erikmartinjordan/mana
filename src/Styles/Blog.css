@@ -3,6 +3,10 @@
     padding: 20px;
     width: 100%;
 }
+.Blog h1{
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
 .Blog h2{
     text-align: center;
 }
