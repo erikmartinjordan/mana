@@ -14,7 +14,7 @@ var data = {
     'suerte-tontos': {
         'title': 'A veces, los tontos tenemos suerte',
         'date': [24, 'Enero', 2020],
-        'description': 'Si no has venido nunca a Tailandia y vas a estar viajando por el Sudeste Asiático, entrar un par de veces al país no te causará ningún problema: cada vez que entres por vía aérea obtendrás 30 días adicionales.',
+        'description': 'Acabo de salir del mejor AirBnB en que me he alojado hasta el momento en Kuala Lumpur. El apartamento está en Swiss Garden Residences y lo pillé en una oferta de última hora por menos de 20 euros la noche.',
         'privat': true
     },
     'entrada-y-salida-de-tailandia': {
