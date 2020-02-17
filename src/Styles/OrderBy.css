@@ -12,6 +12,9 @@
     padding: 5px 15px;
     text-align: center;
 }
+.OrderBy img.emoji{
+    margin-left: 5px;
+}
 .OrderBy .Selected{
     background: var(--lightBlue);
     border-radius: 50px;
