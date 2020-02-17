@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link }                       from 'react-router-dom';
 import firebase                       from '../Functions/Firebase';
 import Chart                          from 'chart.js'; 
-import '../Styles/Estadisticas.css';
+import '../Styles/Stats.css';
 
-const Estadisticas = () => {
+const Stats = () => {
     
     const [bounceRate, setBounceRate]             = useState('0%');
     const [days, setDays]                         = useState([]);
@@ -223,7 +223,7 @@ const Estadisticas = () => {
                         
                         let sec = (data[day][uid][session].timeStampEnd - data[day][uid][session].timeStampIni)/1000;
                         
-                        duration.push(sec);
+                        if(!isNaN(sec)) duration.push(sec);
                     
                     });
                     
@@ -453,4 +453,4 @@ const Estadisticas = () => {
 
 }
 
-export default Estadisticas;
+export default Stats;

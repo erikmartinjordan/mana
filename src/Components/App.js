@@ -12,7 +12,7 @@ import Nav                            from './Nav';
 import Footer                         from './Footer';
 import Acerca                         from './Acerca';
 import PublicInfo                     from './PublicInfo';
-import Estadisticas                   from './Estadisticas';
+import Stats                          from './Stats';
 import '../Styles/App.css';
 
 ReactGA.initialize('UA-87406650-1');
@@ -79,7 +79,7 @@ const App  = ({history}) => {
                     <Route exact path = '/'                    component = {Forum}/>
                     <Route exact path = '/blog'                component = {Blog}/>
                     <Route exact path = '/acerca'              component = {Acerca}/>
-                    <Route exact path = '/estadisticas'        component = {Estadisticas}/>
+                    <Route exact path = '/estadisticas'        component = {Stats}/>
                     <Route path = '/comunidad/post/:string'    component = {Detail}/>
                     <Route path = '/@:string'                  component = {PublicInfo}/>
                     <Route path = '/:string'                   component = {Post}/>
