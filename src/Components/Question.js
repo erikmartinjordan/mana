@@ -105,7 +105,7 @@ const MarkDownMessage   = ({ message }) => {
     
     const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'};
     
-    return <ReactMarkdown source = {message} renderers = {{paragraph: props => <Linkify properties = {linkProperties}>{props.children}</Linkify>}}/>;
+    return <ReactMarkdown source = {message} renderers = {{paragraph: props => <Linkify properties = {linkProperties}><p>{props.children}</p></Linkify>}}/>;
     
 }
 const NoMarkDownMessage = ({ message }) => {
