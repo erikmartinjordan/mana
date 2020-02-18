@@ -1,4 +1,10 @@
 var data = {
+    'prioridades': {
+        'title': 'Thai Visa Elite, ¿vale la pena?',
+        'date': [17, 'Febrero', 2020],
+        'description': 'No tener que contestar correos, evitar el teléfono, ser dueño de tu tiempo, gastar menos de lo que ganas, no desear demasiado, tener bajas expectativas sobre tu futuro...',
+        'privat': true
+    },
     'thai-visa-elite': {
         'title': 'Thai Visa Elite, ¿vale la pena?',
         'date': [10, 'Febrero', 2020],
