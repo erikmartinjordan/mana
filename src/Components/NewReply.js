@@ -104,7 +104,7 @@ const NewReply = (props) => {
         let lastUserMessage = snapshot.val();
         
         if(Date.now() - lastUserMessage < timeSpanReplies) 
-            alert('Ups...', `Se permite un mensaje cada ${timeSpanReplies/(1000 * 60)} para una cuenta gratuita. Sube a Premium.`);
+            alert('Ups...', `Se permite un mensaje cada ${timeSpanReplies/(1000 * 60)} minutos para una cuenta gratuita. Sube a Premium.`);
         else
             sendPost();
         
