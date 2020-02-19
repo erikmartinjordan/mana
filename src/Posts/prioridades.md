@@ -1,8 +1,8 @@
 No tener que contestar correos, evitar el teléfono, ser dueño de tu tiempo, gastar menos de lo que ganas, no desear demasiado, tener bajas expectativas sobre tu futuro.
 
-No esperar que los demás solucionen tus problemas, comer menos kcal de las que tu cuerpo consume, hacer deporte, dos veces al día si es posible, meditar, también dos veces al día.
+No esperar a que los demás solucionen tus problemas, comer menos kcal de las que tu cuerpo consume, hacer deporte, dos veces al día si es posible, meditar, también dos veces al día.
 
-No endeudarte, por ejemplo, no queriendo tener coche o un piso —a no ser que puedas pagarlo a tocateja—. Caminar, ir en transporte públilco, leer menos el periódico, ver aún menos la tele. 
+No endeudarte, por ejemplo, no queriendo tener coche o un piso —a no ser que puedas pagarlo a tocateja—. Caminar, ir en transporte público, leer menos el periódico, ver aún menos la tele. 
 
 Escribir un poco cada día, programar un poco cada día, reír un poco cada día. Aprender algo nuevo, leer un poco, perder el tiempo otro rato, no fijarse metas, establecer sistemas, aprender sobre economía. Pasear en buena compañía, hablar de cómo arreglar el mundo sorbiendo un café, quizá un helado. Una buena comida, plato de pasta, paella, pan con tomate y embutido, un filete de ternera, *pad kra pao*. No ser estricto con los demás, tampoco con uno mismo.
 
