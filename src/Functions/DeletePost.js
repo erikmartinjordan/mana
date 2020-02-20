@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory }                 from 'react-router-dom';
 import firebase                       from '../Functions/Firebase.js';
 import '../Styles/DeletePost.css';
 
-const DeletePost = ({ admin, postId, replyId, type, uid }) => {
+const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
     
     const [canDelete, setCanDelete]       = useState(false);
     const [confirmation, setConfirmation] = useState(false);
     const [id, setId]                     = useState(null);
+    const history                         = useHistory();
     
     useEffect( () => {
         
@@ -15,15 +17,16 @@ const DeletePost = ({ admin, postId, replyId, type, uid }) => {
             let userInfo = snapshot.val();
             
             let isAdmin   = admin;
+            let isAuthor  = authorId === uid; 
             let isPremium = userInfo && userInfo.account === 'premium';
-            let isAuthor  = uid === replyId; 
             
-            if(isAdmin) setCanDelete(true);
-            if(isPremium && isAuthor) setCanDelete(true);
+            if(isAdmin || (isPremium && isAuthor)) setCanDelete(true);
+            else                                   setCanDelete(false);
+            
             
         });
         
-    }, []);
+    }, [uid]);
     
     const handleConfirmation = () => {
         
@@ -36,6 +39,9 @@ const DeletePost = ({ admin, postId, replyId, type, uid }) => {
         type === 'post'
         ? firebase.database().ref(`posts/${postId}`).remove()
         : firebase.database().ref(`posts/${postId}/replies/${replyId}`).remove();
+        
+        let urlRedirect = `/`;
+        history.push(urlRedirect);
       
         setConfirmation(false);
        

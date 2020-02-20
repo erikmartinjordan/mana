@@ -3,7 +3,7 @@ import firebase, {auth}                       from './Firebase';
 import Alert                                  from './Alert';
 import '../Styles/EditPost.css';
 
-const EditPost = ({ admin, postId, replyId, type, uid }) => {
+const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
     
     const refTextarea           = useRef(null);
     const [alert, setAlert]     = useState(null);
@@ -24,15 +24,15 @@ const EditPost = ({ admin, postId, replyId, type, uid }) => {
             let userInfo = snapshot.val();
             
             let isAdmin   = admin;
+            let isAuthor  = authorId === uid; 
             let isPremium = userInfo && userInfo.account === 'premium';
-            let isAuthor  = uid === replyId; 
             
-            if(isAdmin) setCanEdit(true);
-            if(isPremium && isAuthor) setCanEdit(true);
+            if(isAdmin || (isPremium && isAuthor)) setCanEdit(true);
+            else                                   setCanEdit(false);
             
         });
         
-    }, []);
+    }, [uid]);
     
     const editMessage = async () => {
         
@@ -44,6 +44,8 @@ const EditPost = ({ admin, postId, replyId, type, uid }) => {
         
         const snapshot = await reference.once('value');
         const message  = snapshot.val();
+        
+        console.log(message);
         
         setMessage(message);
         
