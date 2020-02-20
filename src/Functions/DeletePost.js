@@ -1,50 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import firebase, {auth} from '../Functions/Firebase.js';
+import firebase                       from '../Functions/Firebase.js';
 import '../Styles/DeletePost.css';
 
-//--------------------------------------------------------------/
-//
-// Deletes a post or with a confirmation message
-//
-//--------------------------------------------------------------/
-const DeletePost = (props) => {
+const DeletePost = ({ admin, postId, replyId, type, uid }) => {
     
+    const [canDelete, setCanDelete]       = useState(false);
     const [confirmation, setConfirmation] = useState(false);
-    const [id, setId] = useState(null);
+    const [id, setId]                     = useState(null);
     
+    useEffect( () => {
+        
+        firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+            
+            let userInfo = snapshot.val();
+            
+            let isAdmin   = admin;
+            let isPremium = userInfo && userInfo.account === 'premium';
+            let isAuthor  = uid === replyId; 
+            
+            if(isAdmin) setCanDelete(true);
+            if(isPremium && isAuthor) setCanDelete(true);
+            
+        });
+        
+    }, []);
     
-    // Function that displays confirmation modal before deleting post
-    const handleConfirmation = (e) => {
-    
-     setId(e.target.getAttribute('id'));
-     setConfirmation(true);
-    
+    const handleConfirmation = () => {
+        
+        setConfirmation(true);
+        
     }
     
-    // Function that deletes the post
-    const handleDelete = (id) => {
+    const handleDelete = () => {
+        
+        type === 'post'
+        ? firebase.database().ref(`posts/${postId}`).remove()
+        : firebase.database().ref(`posts/${postId}/replies/${replyId}`).remove();
       
-      if(props.type === 'post') firebase.database().ref('posts/' + props.post).remove();
-      if(props.type === 'reply')firebase.database().ref('posts/' + props.post + '/replies/' + props.reply).remove();
-          
-      setConfirmation(false);
+        setConfirmation(false);
        
     }
     
-    var deletion = <React.Fragment>
-                    {confirmation &&
-                        <div className = 'Confirmation'>
-                            <div className = 'Confirmation-Wrap'>
-                                <p>¿Estás seguro de que quieres eliminar el {props.type === 'post' ? 'artículo? Se borrarán todos los comentarios.' : 'comentario?'}</p>
-                                <button onClick = { () => handleDelete(id) }       className = 'Yes-Delete'>Sí, eliminar</button>
-                                <button onClick = { () => setConfirmation(false) } className = 'No-Delete'>Cancelar</button>
-                            </div>
-                        </div>
-                    }
-                    <button className = 'Delete' id = {props.id} onClick = { (e) => handleConfirmation(e) }>Eliminar</button>
-                 </React.Fragment>;
-
-    return deletion;
+    return(
+        
+        <React.Fragment>
+            {confirmation &&
+                <div className = 'Confirmation'>
+                    <div className = 'Confirmation-Wrap'>
+                        <p>¿Estás seguro de que quieres eliminar el {type === 'post' ? 'artículo? Se borrarán todos los comentarios.' : 'comentario?'}</p>
+                        <button onClick = { () => handleDelete(id) }       className = 'Yes-Delete'>Sí, eliminar</button>
+                        <button onClick = { () => setConfirmation(false) } className = 'No-Delete'>Cancelar</button>
+                    </div>
+                </div>
+            }
+            {canDelete && <button className = 'Delete' onClick = { (e) => handleConfirmation() }>Eliminar</button>}
+        </React.Fragment>
+        
+    );
     
 }
 

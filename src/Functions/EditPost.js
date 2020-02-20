@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import firebase, {auth}                       from './Firebase';
 import Alert                                  from './Alert';
-import EmojiTextarea                          from './EmojiTextarea';
 import '../Styles/EditPost.css';
 
-const EditPost = (props) => {
+const EditPost = ({ admin, postId, replyId, type, uid }) => {
     
     const refTextarea           = useRef(null);
     const [alert, setAlert]     = useState(null);
     const [message, setMessage] = useState(null);
-    
+    const [canEdit, setCanEdit] = useState(false);
     
     useEffect( () => {
         
@@ -17,14 +16,31 @@ const EditPost = (props) => {
             refTextarea.current.style.height = `${refTextarea.current.scrollHeight}px`;    
         
     }, [message]);
+    
+    useEffect( () => {
         
+        firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+            
+            let userInfo = snapshot.val();
+            
+            let isAdmin   = admin;
+            let isPremium = userInfo && userInfo.account === 'premium';
+            let isAuthor  = uid === replyId; 
+            
+            if(isAdmin) setCanEdit(true);
+            if(isPremium && isAuthor) setCanEdit(true);
+            
+        });
+        
+    }, []);
+    
     const editMessage = async () => {
         
         let reference;
         
-        props.type === 'post'
-        ? reference = firebase.database().ref('posts/' + props.post + '/message')
-        : reference = firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/message');
+        type === 'post'
+        ? reference = firebase.database().ref(`posts/${postId}/message`)
+        : reference = firebase.database().ref(`posts/${postId}/replies/${replyId}/message`);
         
         const snapshot = await reference.once('value');
         const message  = snapshot.val();
@@ -46,15 +62,15 @@ const EditPost = (props) => {
         
         let reference;
         
-        props.type === 'post'
-        ? reference = firebase.database().ref('posts/' + props.post + '/message')
-        : reference = firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/message');
+        type === 'post'
+        ? reference = firebase.database().ref(`posts/${postId}/message`)
+        : reference = firebase.database().ref(`posts/${postId}/replies/${replyId}/message`);
         
         reference.set(message);
         
-        props.type === 'post'
-        ? reference = firebase.database().ref('posts/' + props.post + '/edited')
-        : reference = firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/edited');
+        type === 'post'
+        ? reference = firebase.database().ref(`posts/${postId}/edited`)
+        : reference = firebase.database().ref(`posts/${postId}/replies/${replyId}/edited`);
 
         
         reference.transaction(value => Date.now());
@@ -62,7 +78,6 @@ const EditPost = (props) => {
         setAlert(true);
         
         setTimeout( () => setAlert(false), 1500);
-        
         setTimeout( () => setMessage(null), 1500);
     }
 
@@ -79,7 +94,7 @@ const EditPost = (props) => {
                 </div>
                 {message && <div className = 'Invisible' onClick = {() => setMessage(null)} ></div>}
               </div>
-            : <button onClick = {() => editMessage()} className = 'Edit'>Editar</button>
+            : canEdit && <button onClick = {() => editMessage()} className = 'Edit'>Editar</button>
             }
             {alert && <Alert title = 'Genial' message = 'Mensaje editado'></Alert>}
         </div>
