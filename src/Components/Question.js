@@ -17,7 +17,7 @@ import '../Styles/Question.css';
 
 const formatter = buildFormatter(spanishStrings);
 
-const Question = ({ postId, admin, setTitle }) => {
+const Question = ({ admin, postId, setTitle, uid }) => {
 
     const [question, setQuestion] = useState('');
     
@@ -65,11 +65,11 @@ const Question = ({ postId, admin, setTitle }) => {
                 </div>
             </div>
             <div className = 'Content'>
-                    <QuestionContent uid = {question.userUid} message = {question.message}/>
+                    <QuestionContent authorId = {question.userUid} message = {question.message}/>
                     <div className = 'Meta'>
                         <Likes user = {{uid: question.userUid}} post = {postId}></Likes>
-                        <EditPost   type = 'post' postId = {postId} uid = {question.userUid} admin = {admin}/>
-                        <DeletePost type = 'post' postId = {postId} uid = {question.userUid} admin = {admin}/>
+                        <EditPost   type = 'post' postId = {postId} authorId = {question.userUid} admin = {admin} uid = {uid}/>
+                        <DeletePost type = 'post' postId = {postId} authorId = {question.userUid} admin = {admin} uid = {uid}/>
                     </div>
             </div>
          </div> 
@@ -81,13 +81,13 @@ const Question = ({ postId, admin, setTitle }) => {
 
 export default Question;
 
-const QuestionContent   = ({ uid, message }) => {
+const QuestionContent   = ({ authorId, message }) => {
     
     const [premium, setPremium] = useState(null);
     
     useEffect( () => {
         
-        firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+        firebase.database().ref(`users/${authorId}`).on('value', snapshot => {
             
             let userInfo = snapshot.val();
             
@@ -120,6 +120,6 @@ const NoMarkDownMessage = ({ message }) => {
     
     const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'}; 
     
-    return message.split("\n").map((text, key) => <Linkify properties = {linkProperties}><p key = {key}>{text}</p></Linkify>)
+    return message.split("\n").map((text, key) => <Linkify key = {key} properties = {linkProperties}><p>{text}</p></Linkify>)
     
 }
