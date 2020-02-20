@@ -15,7 +15,7 @@
     "react-ga": "^2.5.0",
     "react-linkify": "^0.2.2",
     "react-markdown": "^3.3.0",
-    "react-router-dom": "^4.2.2",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "2.0.3",
     "react-stripe-elements": "^4.0.0",
     "react-timeago": "^3.4.3"
