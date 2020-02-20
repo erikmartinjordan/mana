@@ -17,7 +17,7 @@ import '../Styles/Question.css';
 
 const formatter = buildFormatter(spanishStrings);
 
-const Question = (props) => {
+const Question = ({ postId, admin, setTitle }) => {
 
     const [question, setQuestion] = useState('');
     
@@ -34,37 +34,20 @@ const Question = (props) => {
     
     useEffect( () => {
         
-        firebase.database().ref(`posts/${props.postId}`).on('value', snapshot => { 
+        firebase.database().ref(`posts/${postId}`).on('value', snapshot => { 
             
             let question = snapshot.val();
             
             if(question){
                 
                 setQuestion(question)
-                props.setTitle(question.title);
+                setTitle(question.title);
                 
             }
             
         });
         
-        
     }, [window.location.href]);
-    
-    const isPremiumUser = async (uid) => {
-        
-        let snapshot = await firebase.database().ref(`users/${uid}`).once('value');
-        
-        let userInfo = snapshot.val();
-        
-        return userInfo && userInfo.account === 'premium' ? true : false;
-        
-    }
-    
-    const editDelete = (questionUid) => {
-        
-        return props.admin || (isPremiumUser(props.uid) && props.uid === questionUid);
-        
-    }
     
     return(
         <React.Fragment>
@@ -82,14 +65,11 @@ const Question = (props) => {
                 </div>
             </div>
             <div className = 'Content'>
-                    { isPremiumUser(question.userUid)
-                    ? <MarkDownMessage   message = {question.message}/>
-                    : <NoMarkDownMessage message = {question.message}/>
-                    }
+                    <QuestionContent uid = {question.userUid} message = {question.message}/>
                     <div className = 'Meta'>
-                            <Likes user = {{uid: question.userUid}} post = {props.postId}></Likes>
-                            {editDelete(question.userUid) && <EditPost   type = 'post' post = {props.postId}/>}
-                            {editDelete(question.userUid) && <DeletePost type = 'post' post = {props.postId} />}
+                        <Likes user = {{uid: question.userUid}} post = {postId}></Likes>
+                        <EditPost   type = 'post' postId = {postId} uid = {question.userUid} admin = {admin}/>
+                        <DeletePost type = 'post' postId = {postId} uid = {question.userUid} admin = {admin}/>
                     </div>
             </div>
          </div> 
@@ -101,6 +81,34 @@ const Question = (props) => {
 
 export default Question;
 
+const QuestionContent   = ({ uid, message }) => {
+    
+    const [premium, setPremium] = useState(null);
+    
+    useEffect( () => {
+        
+        firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+            
+            let userInfo = snapshot.val();
+            
+            setPremium(userInfo && userInfo.account === 'premium' ? true : false)
+            
+        });
+        
+    }, []);
+    
+    return(
+        
+        <React.Fragment>
+            { premium
+            ? <MarkDownMessage   message = { message }/>
+            : <NoMarkDownMessage message = { message }/>    
+            }
+        </React.Fragment>
+        
+    );
+    
+}
 const MarkDownMessage   = ({ message }) => {
     
     const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'};

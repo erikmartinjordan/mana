@@ -16,13 +16,13 @@ import '../Styles/Replies.css';
 
 const formatter = buildFormatter(spanishStrings);
 
-const Replies = (props) => {
+const Replies = ({ postId, admin }) => {
     
     const [replies, setReplies] = useState([]);
     
     useEffect( () => {
         
-        firebase.database().ref(`posts/${props.postId}/replies`).on('value', snapshot => { 
+        firebase.database().ref(`posts/${postId}/replies`).on('value', snapshot => { 
             
             let replies = snapshot.val();
             
@@ -35,22 +35,6 @@ const Replies = (props) => {
         });
         
     }, [window.location.href]);
-    
-    const isPremiumUser = async (uid) => {
-        
-        let snapshot = await firebase.database().ref(`users/${uid}`).once('value');
-        
-        let userInfo = snapshot.val();
-        
-        return userInfo && userInfo.account === 'premium' ? true : false;
-        
-    }
-    
-    const canEditDelete = (replyUid) => {
-        
-        return props.admin || (isPremiumUser(props.uid) && props.uid === replyUid);
-        
-    }
     
     return(
         <div className = 'Replies'>
@@ -69,26 +53,50 @@ const Replies = (props) => {
                     </div> 
                     <div className = 'Content'>
                         <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
-                        { isPremiumUser(reply.userUid)
-                        ? <MarkDownMessage   message = {reply.message}/>
-                        : <NoMarkDownMessage message = {reply.message}/>
-                        }
+                        <Reply uid = {reply.userUid} message = {reply.message}/>
                         <div className = 'Meta'>
-                            <LikesComments post = {props.postId} reply = {key} user = {{uid: reply.userUid}} />
-                            {canEditDelete(reply.userUid) && <EditPost   type = 'reply' post = {props.postId} reply = {key} />}
-                            {canEditDelete(reply.userUid) && <DeletePost type = 'reply' post = {props.postId} reply = {key} />}
+                            <LikesComments post = {postId} reply = {key} user = {{uid: reply.userUid}} />
+                            <EditPost   type = 'reply' postId = {postId} replyId = {key} uid = {reply.userUid} admin = {admin}/>
+                            <DeletePost type = 'reply' postId = {postId} replyId = {key} uid = {reply.userUid} admin = {admin}/>
                         </div>
                         </Linkify>
                     </div>
                 </div>
             ))}
         </div> 
-        
     );
 }
 
 export default Replies;
 
+const Reply = ({ uid, message }) => {
+    
+    const [premium, setPremium] = useState(null);
+    
+    useEffect( () => {
+        
+        firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+            
+            let userInfo = snapshot.val();
+            
+            setPremium(userInfo && userInfo.account === 'premium' ? true : false)
+            
+        });
+        
+    }, []);
+    
+    return(
+        
+        <React.Fragment>
+            { premium
+            ? <MarkDownMessage   message = { message }/>
+            : <NoMarkDownMessage message = { message }/>    
+            }
+        </React.Fragment>
+        
+    );
+    
+}
 const MarkDownMessage   = ({ message }) => {
     
     const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'};
