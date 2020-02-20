@@ -16,7 +16,7 @@ import '../Styles/Replies.css';
 
 const formatter = buildFormatter(spanishStrings);
 
-const Replies = ({ postId, admin }) => {
+const Replies = ({ admin, postId, uid }) => {
     
     const [replies, setReplies] = useState([]);
     
@@ -53,11 +53,11 @@ const Replies = ({ postId, admin }) => {
                     </div> 
                     <div className = 'Content'>
                         <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
-                        <Reply uid = {reply.userUid} message = {reply.message}/>
+                        <Reply authorId = {reply.userUid} message = {reply.message}/>
                         <div className = 'Meta'>
                             <LikesComments post = {postId} reply = {key} user = {{uid: reply.userUid}} />
-                            <EditPost   type = 'reply' postId = {postId} replyId = {key} uid = {reply.userUid} admin = {admin}/>
-                            <DeletePost type = 'reply' postId = {postId} replyId = {key} uid = {reply.userUid} admin = {admin}/>
+                            <EditPost   type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
+                            <DeletePost type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
                         </div>
                         </Linkify>
                     </div>
@@ -69,13 +69,13 @@ const Replies = ({ postId, admin }) => {
 
 export default Replies;
 
-const Reply = ({ uid, message }) => {
+const Reply = ({ authorId, message }) => {
     
     const [premium, setPremium] = useState(null);
     
     useEffect( () => {
         
-        firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+        firebase.database().ref(`users/${authorId}`).on('value', snapshot => {
             
             let userInfo = snapshot.val();
             
@@ -108,6 +108,6 @@ const NoMarkDownMessage = ({ message }) => {
     
     const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'}; 
     
-    return message.split("\n").map((text, key) => <Linkify properties = {linkProperties}><p key = {key}>{text}</p></Linkify>)
+    return message.split("\n").map((text, key) => <Linkify key = {key} properties = {linkProperties}><p>{text}</p></Linkify>)
     
 }
