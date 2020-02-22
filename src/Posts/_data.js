@@ -1,4 +1,10 @@
 var data = {
+    'encuentros-piscina': {
+        'title': 'Encuentros de piscina',
+        'date': [22, 'Febrero', 2020],
+        'description': 'Tengo un imán en las piscinas, pero no uno de los buenos, sino uno de los que atraen a la gente más excéntrica del lugar. Si voy a una piscina y veo a un personaje llamativo, sé que en algún momento coincidiremos, el destino hará que nos topemos. Puede ser buceando, en las hamacas, yendo al lavabo o en la ducha de la piscina.',
+        'privat': true
+    },
     'prioridades': {
         'title': 'Prioridades',
         'date': [18, 'Febrero', 2020],
