@@ -27,6 +27,9 @@
     "users":{
         ".read": "true",
       	"$useruid":{
+            "displayNotifications":{
+              ".write": "auth != null"
+            },
             "points":{
               ".write": "auth != null"
             },
