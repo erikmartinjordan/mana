@@ -4,46 +4,58 @@ import firebase from './Firebase.js';
 //--------------------------------------------------------------/
 //
 //
-// This functions returns if there are unread articles 
+// This functions returns if there are unread notifications 
 //
 //
 //--------------------------------------------------------------/
-const GetUnreadNotifications = (props) => {
+const GetUnreadNotifications = ({user}) => {
     
-    const [unread, setUnread] = useState(false);
-    
+    const [displayNotifications, setDisplayNotifications]   = useState(true);
+    const [unread, setUnread]                               = useState([]);
+        
     useEffect( () => {
       
-        // Getting the notifications 
-        firebase.database().ref('notifications/' + props.user.uid).on('value', snapshot => { 
+        firebase.database().ref(`notifications/${user.uid}`).on('value', snapshot => { 
             
-            // Capturing data
-            var notifications = snapshot.val();
-            var keys = notifications ? Object.keys(notifications) : [];
-            
-            // We consider there aren't unread notifications
-            let unread = false;
-            
-            // Array of points and setting the state
-            if(notifications){
+            if(snapshot){
                 
-                for(let i = 0; i < keys.length; i ++){
-                    
-                    if(!notifications[keys[i]].read) {
-                        
-                        unread = true;
-                        break;
-                    }
-                }
+                let notifications       = snapshot.val();
+                let entries             = Object.entries(notifications);
+                let unreadNotifications = entries.filter( ([key, notification]) => !notification.read);
+                
+                setUnread(unreadNotifications);
+                
             }
             
-            setUnread(unread);
-            
         });
+        
+        firebase.database().ref(`users/${user.uid}/displayNotifications`).on('value', snapshot => { 
+            
+            if(snapshot) 
+                setDisplayNotifications(snapshot.val())
+            else               
+                setDisplayNotifications(true);
+            
+        }); 
+        
       
-    }, [props]);
+    }, []);
     
-    return unread ? <span className = 'Notifications-Number'></span> : null;
+    useEffect( () => {
+        
+        if(displayNotifications){
+            
+            unread.map(([key, value]) => { 
+                
+                firebase.database().ref(`notifications/${user.uid}/${key}/read`).transaction(value => true);
+                
+            });
+            
+        }
+        
+    }, [displayNotifications]);
+    
+    return displayNotifications && unread.length > 0 ? <span className = 'Notifications-Number'></span> : null;
     
 }
 
