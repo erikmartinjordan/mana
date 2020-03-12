@@ -25,7 +25,7 @@ const Notifications = ({hide, user}) => {
       
         firebase.database().ref(`notifications/${user.uid}`).on('value', snapshot => { 
             
-            if(snapshot) 
+            if(snapshot.val()) 
                 setNotifications(snapshot.val())
             else               
                 setNotifications('empty');
@@ -34,10 +34,8 @@ const Notifications = ({hide, user}) => {
         
         firebase.database().ref(`users/${user.uid}/displayNotifications`).on('value', snapshot => { 
             
-            if(snapshot) 
-                setDisplayNotifications(snapshot.val())
-            else               
-                setDisplayNotifications(true);
+            if(snapshot.exists())    
+                setDisplayNotifications(snapshot.val());
             
         });  
       
@@ -73,7 +71,7 @@ const ToggleNotifications = ({displayNotifications, setDisplayNotifications, use
 
     const handleNotifications = () => {
         
-        firebase.database().ref(`users/${user.uid}/displayNotifications`).transaction(value => value ? false : true);
+        firebase.database().ref(`users/${user.uid}/displayNotifications`).transaction(value => !displayNotifications);
         
         setDisplayNotifications(!displayNotifications);
     }

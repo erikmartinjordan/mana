@@ -17,7 +17,7 @@ const GetUnreadNotifications = ({user}) => {
       
         firebase.database().ref(`notifications/${user.uid}`).on('value', snapshot => { 
             
-            if(snapshot){
+            if(snapshot.val()){
                 
                 let notifications       = snapshot.val();
                 let entries             = Object.entries(notifications);
@@ -31,10 +31,8 @@ const GetUnreadNotifications = ({user}) => {
         
         firebase.database().ref(`users/${user.uid}/displayNotifications`).on('value', snapshot => { 
             
-            if(snapshot) 
-                setDisplayNotifications(snapshot.val())
-            else               
-                setDisplayNotifications(true);
+            if(snapshot.exists())    
+                setDisplayNotifications(snapshot.val());
             
         }); 
         
