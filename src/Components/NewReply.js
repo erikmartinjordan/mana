@@ -1,11 +1,12 @@
 import React, { useEffect, useState }    from 'react';
-import Login                             from './Login.js';
-import firebase, {auth}                  from '../Functions/Firebase.js';
-import UserAvatar                        from '../Functions/UserAvatar.js';
-import Alert                             from '../Functions/Alert.js';
-import GetPoints                         from '../Functions/GetPoints.js';
-import insertNotificationAndReputation   from '../Functions/InsertNotificationAndReputationIntoDatabase.js';
-import Accounts                          from '../Rules/Accounts.js';
+import Login                             from './Login';
+import firebase, {auth}                  from '../Functions/Firebase';
+import UserAvatar                        from '../Functions/UserAvatar';
+import Alert                             from '../Functions/Alert';
+import GetPoints                         from '../Functions/GetPoints';
+import GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel'
+import insertNotificationAndReputation   from '../Functions/InsertNotificationAndReputationIntoDatabase';
+import Accounts                          from '../Rules/Accounts';
 import '../Styles/NewReply.css';
 
 const NewReply = (props) => {
@@ -21,6 +22,7 @@ const NewReply = (props) => {
     const [timeSpanReplies, setTimeSpanReplies]   = useState(null);
     const [user, setUser]                         = useState(null);
     const points                                  = GetPoints(nickName ? nickName : user ? user.uid : null);
+    const level                                   = GetLevel(...points)[0];
     
     useEffect( () => {
         
@@ -34,11 +36,30 @@ const NewReply = (props) => {
 
                     if(userInfo){
                         
-                        let timeSpanReplies = Accounts[userInfo.account === 'premium' ? 'premium' : 'free'].messages.timeSpanReplies;
-                        let maxLengthReply   = Accounts[userInfo.account === 'premium' ? 'premium' : 'free'].messages.maxLength;
+                        let nickName;
+                        let avatar;
+                        let timeSpanReplies;
+                        let maxLengthReply;
                         
-                        let nickName        = userInfo.anonimo  ? userInfo.nickName : null;
-                        let avatar          = userInfo.anonimo  ? userInfo.avatar   : null;
+                        if(userInfo.account === 'premium'){
+                            
+                            timeSpanReplies = Accounts['premium'].messages.timeSpanReplies;
+                            maxLengthReply  = Accounts['premium'].messages.maxLength;
+                            
+                        }
+                        else{
+                            
+                            timeSpanReplies = Accounts['free'][level].messages.timeSpanReplies;
+                            maxLengthReply  = Accounts['free'][level].messages.maxLength;
+                            
+                        }
+                        
+                        if(userInfo.anonimo){
+                            
+                            nickName = userInfo.nickName;
+                            avatar   = userInfo.avatar;  
+                            
+                        }
                         
                         setTimeSpanReplies(timeSpanReplies);
                         setMaxLengthReply(maxLengthReply);

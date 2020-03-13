@@ -1,10 +1,11 @@
 import React, { useEffect, useState }    from 'react';
-import firebase, {auth}                  from '../Functions/Firebase.js';
-import UserAvatar                        from '../Functions/UserAvatar.js';
-import Alert                             from '../Functions/Alert.js';
-import GetPoints                         from '../Functions/GetPoints.js';
-import insertNotificationAndReputation   from '../Functions/InsertNotificationAndReputationIntoDatabase.js';
-import Accounts                          from '../Rules/Accounts.js';
+import firebase, {auth}                  from '../Functions/Firebase';
+import UserAvatar                        from '../Functions/UserAvatar';
+import Alert                             from '../Functions/Alert';
+import GetPoints                         from '../Functions/GetPoints';
+import GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel'
+import insertNotificationAndReputation   from '../Functions/InsertNotificationAndReputationIntoDatabase';
+import Accounts                          from '../Rules/Accounts';
 import '../Styles/NewPost.css';
 
 const NewPost = (props) => {
@@ -20,6 +21,7 @@ const NewPost = (props) => {
     const [title, setTitle]                 = useState('');
     const [user, setUser]                   = useState([]);
     const points                            = GetPoints(nickName ? nickName : user ? user.uid : null);
+    const level                             = GetLevel(...points)[0];
     
     useEffect( () => {
         
@@ -33,11 +35,38 @@ const NewPost = (props) => {
                     
                     if(userInfo){
                         
-                        let timeSpanPosts = Accounts[userInfo.account === 'premium' ? 'premium' : 'free'].messages.timeSpanPosts;
-                        let maxLengthPost = Accounts[userInfo.account === 'premium' ? 'premium' : 'free'].messages.maxLength;
+                        let nickName;
+                        let avatar;
+                        let timeSpanPosts;
+                        let maxLengthPost;
                         
-                        let nickName      = userInfo.anonimo  ? userInfo.nickName : null;
-                        let avatar        = userInfo.anonimo  ? userInfo.avatar   : null;
+                        console.log(level);
+                        
+                        if(userInfo.account === 'premium'){
+                            
+                            timeSpanPosts = Accounts['premium'].messages.timeSpanPosts;
+                            maxLengthPost = Accounts['premium'].messages.maxLength;
+                            
+                        }
+                        else{
+                            
+                            let rangeOfLevels = Object.keys(Accounts['free']);
+                            let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
+                            
+                            console.log(rangeOfLevels);
+                            console.log(closestLevel);
+                            
+                            timeSpanPosts = Accounts['free'][closestLevel].messages.timeSpanPosts;
+                            maxLengthPost = Accounts['free'][closestLevel].messages.maxLength;
+                            
+                        }
+                        
+                        if(userInfo.anonimo){
+                            
+                            nickName = userInfo.nickName;
+                            avatar   = userInfo.avatar;  
+                            
+                        } 
                         
                         setTimeSpanPosts(timeSpanPosts);
                         setMaxLengthPost(maxLengthPost);
@@ -51,10 +80,13 @@ const NewPost = (props) => {
                 setUser(user);
                 
             } 
+            else{
+                setUser(null);
+            }
             
         });
         
-    }, []);
+    }, [level]);
     
     const alert = (title, message) => {
         
