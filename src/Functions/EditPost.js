@@ -45,8 +45,6 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
         const snapshot = await reference.once('value');
         const message  = snapshot.val();
         
-        console.log(message);
-        
         setMessage(message);
         
     }
