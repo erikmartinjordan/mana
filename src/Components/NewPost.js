@@ -8,13 +8,14 @@ import insertNotificationAndReputation   from '../Functions/InsertNotificationAn
 import Accounts                          from '../Rules/Accounts';
 import '../Styles/NewPost.css';
 
-const NewPost = (props) => {
+const NewPost = ({hide}) => {
     
     const [alertTitle, setAlertTitle]       = useState(null);
     const [alertMessage, setAlertMessage]   = useState(null);
     const [avatar, setAvatar]               = useState(null);
     const [displayAlert, setDisplayAlert]   = useState(false);
     const [maxLengthPost, setMaxLengthPost] = useState(null);
+    const [mdFormat, setMdFormat]           = useState(false);
     const [message, setMessage]             = useState('');
     const [nickName, setNickName]           = useState(null);
     const [timeSpanPosts, setTimeSpanPosts] = useState(null);
@@ -37,15 +38,15 @@ const NewPost = (props) => {
                         
                         let nickName;
                         let avatar;
+                        let canWriteInMd;
                         let timeSpanPosts;
                         let maxLengthPost;
-                        
-                        console.log(level);
                         
                         if(userInfo.account === 'premium'){
                             
                             timeSpanPosts = Accounts['premium'].messages.timeSpanPosts;
                             maxLengthPost = Accounts['premium'].messages.maxLength;
+                            canWriteInMd  = Accounts['premium'].mdformat ? true : false;
                             
                         }
                         else{
@@ -53,11 +54,9 @@ const NewPost = (props) => {
                             let rangeOfLevels = Object.keys(Accounts['free']);
                             let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
                             
-                            console.log(rangeOfLevels);
-                            console.log(closestLevel);
-                            
                             timeSpanPosts = Accounts['free'][closestLevel].messages.timeSpanPosts;
                             maxLengthPost = Accounts['free'][closestLevel].messages.maxLength;
+                            canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false;
                             
                         }
                         
@@ -68,6 +67,7 @@ const NewPost = (props) => {
                             
                         } 
                         
+                        setMdFormat(canWriteInMd);
                         setTimeSpanPosts(timeSpanPosts);
                         setMaxLengthPost(maxLengthPost);
                         setNickName(nickName);
@@ -99,7 +99,7 @@ const NewPost = (props) => {
     
     const closeNewPost = (secondsToClose) => {
         
-        setTimeout(() => props.hide(), secondsToClose * 1000);
+        setTimeout(hide, secondsToClose * 1000);
         
     }
     
@@ -177,9 +177,10 @@ const NewPost = (props) => {
                     onChange    = {(e) => setMessage(e.target.value)}
                     onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
                 />
+                <Hints mdFormat = {mdFormat}/>
                 <button className = 'bottom' onClick = {() => reviewTitleAndMessage()}>Enviar</button>
             </div>
-            <div className = 'Invisible' onClick = {() => props.hide()}></div>
+            <div className = 'Invisible' onClick = {hide}></div>
             {displayAlert && <Alert title = {alertTitle} message = {alertMessage}/>}
         </div>
     );
@@ -187,3 +188,20 @@ const NewPost = (props) => {
 }
 
 export default NewPost;
+
+const Hints = ({mdFormat}) => {
+    
+    let bold   = {'font-weight': 'bold'};
+    let italic = {'font-style': 'italic'};
+    
+    return(
+        
+        <div className = 'Hints' style = {{'font-size': 'small'}}>
+            {mdFormat 
+                ? <span>**<span style = {bold}>negrita</span>**, *<span style = {italic}>cursiva</span>*, > cita</span> 
+            : null}
+        </div>
+        
+    );
+    
+}
