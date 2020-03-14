@@ -59,8 +59,8 @@ var accounts = {
             'vote': true,
             'messages': {
                 'maxLength': 99999,
-                'timeSpanPosts': 0,
-                'timeSpanReplies': 300000,
+                'timeSpanPosts': 86400000,
+                'timeSpanReplies': 0,
             },
             'notifications': true,
             'points': true,
