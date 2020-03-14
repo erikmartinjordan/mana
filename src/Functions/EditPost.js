@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import firebase, {auth}                       from './Firebase';
 import Alert                                  from './Alert';
+import GetPoints                              from '../Functions/GetPoints';
+import GetLevel                               from '../Functions/GetLevelAndPointsToNextLevel';
+import Accounts                               from '../Rules/Accounts';
 import '../Styles/EditPost.css';
 
 const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
@@ -9,6 +12,8 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
     const [alert, setAlert]     = useState(null);
     const [message, setMessage] = useState(null);
     const [canEdit, setCanEdit] = useState(false);
+    const points                = GetPoints(authorId);
+    const level                 = GetLevel(...points)[0];
     
     useEffect( () => {
         
@@ -23,16 +28,36 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
             
             let userInfo = snapshot.val();
             
-            let isAdmin   = admin;
-            let isAuthor  = authorId === uid; 
-            let isPremium = userInfo && userInfo.account === 'premium';
-            
-            if(isAdmin || (isPremium && isAuthor)) setCanEdit(true);
-            else                                   setCanEdit(false);
+            if(userInfo){
+                
+                let isAdmin   = admin;
+                let isAuthor  = authorId === uid; 
+                let isPremium = false;
+                let canEditMessages = false;
+                
+                if(userInfo.account === 'premium'){
+                    
+                    isPremium = true;
+                }
+                else{
+                    
+                    let rangeOfLevels = Object.keys(Accounts['free']);
+                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
+                    
+                    canEditMessages = Accounts['free'][closestLevel].edit ? true : false;
+                    
+                }
+                
+                if(isAdmin)                      setCanEdit(true);
+                else if(isPremium && isAuthor)   setCanEdit(true);
+                else if(canEditMessages)         setCanEdit(true);
+                else                             setCanEdit(false);
+                
+            }
             
         });
         
-    }, [uid]);
+    }, [level, uid]);
     
     const editMessage = async () => {
         
