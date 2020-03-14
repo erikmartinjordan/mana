@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory }                 from 'react-router-dom';
-import firebase                       from '../Functions/Firebase.js';
+import firebase                       from '../Functions/Firebase';
+import GetPoints                      from '../Functions/GetPoints';
+import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel';
+import Accounts                       from '../Rules/Accounts';
 import '../Styles/DeletePost.css';
 
 const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
@@ -9,6 +12,8 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
     const [confirmation, setConfirmation] = useState(false);
     const [id, setId]                     = useState(null);
     const history                         = useHistory();
+    const points                          = GetPoints(authorId);
+    const level                           = GetLevel(...points)[0];
     
     useEffect( () => {
         
@@ -16,17 +21,37 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
             
             let userInfo = snapshot.val();
             
-            let isAdmin   = admin;
-            let isAuthor  = authorId === uid; 
-            let isPremium = userInfo && userInfo.account === 'premium';
-            
-            if(isAdmin || (isPremium && isAuthor)) setCanDelete(true);
-            else                                   setCanDelete(false);
+            if(userInfo){
+                
+                let isAdmin   = admin;
+                let isAuthor  = authorId === uid; 
+                let isPremium = false;
+                let canDeleteMessages = false;
+                
+                if(userInfo.account === 'premium'){
+                    
+                    isPremium = true;
+                }
+                else{
+                    
+                    let rangeOfLevels = Object.keys(Accounts['free']);
+                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
+                    
+                    canDeleteMessages = Accounts['free'][closestLevel].deleteMessages ? true : false;
+                    
+                }
+                
+                if(isAdmin)                      setCanDelete(true);
+                else if(isPremium && isAuthor)   setCanDelete(true);
+                else if(canDeleteMessages)       setCanDelete(true);
+                else                             setCanDelete(false);
+                
+            }
             
             
         });
         
-    }, [uid]);
+    }, [level, uid]);
     
     const handleConfirmation = () => {
         
