@@ -13,6 +13,9 @@ import firebase                       from '../Functions/Firebase';
 import EditPost                       from '../Functions/EditPost';
 import DeletePost                     from '../Functions/DeletePost';
 import UserAvatar                     from '../Functions/UserAvatar';
+import GetPoints                      from '../Functions/GetPoints';
+import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel';
+import Accounts                       from '../Rules/Accounts';
 import '../Styles/Question.css';
 
 const formatter = buildFormatter(spanishStrings);
@@ -83,7 +86,9 @@ export default Question;
 
 const QuestionContent   = ({ authorId, message }) => {
     
-    const [premium, setPremium] = useState(null);
+    const [mdFormat, setMdFormat] = useState(null);
+    const points                  = GetPoints(authorId);
+    const level                   = GetLevel(...points)[0];
     
     useEffect( () => {
         
@@ -91,16 +96,32 @@ const QuestionContent   = ({ authorId, message }) => {
             
             let userInfo = snapshot.val();
             
-            setPremium(userInfo && userInfo.account === 'premium' ? true : false)
+            if(userInfo){
+                
+                if(userInfo.account === 'premium'){
+                    
+                    setMdFormat(true);
+                }
+                else{
+                    
+                    let rangeOfLevels = Object.keys(Accounts['free']);
+                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
+                    let canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false;
+                    
+                    setMdFormat(canWriteInMd);
+                    
+                }
+                
+            }
             
         });
         
-    }, []);
+    }, [level]);
     
     return(
         
         <React.Fragment>
-            { premium
+            { mdFormat
             ? <MarkDownMessage   message = { message }/>
             : <NoMarkDownMessage message = { message }/>    
             }
