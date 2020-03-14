@@ -4,18 +4,19 @@ import firebase, {auth}                  from '../Functions/Firebase';
 import UserAvatar                        from '../Functions/UserAvatar';
 import Alert                             from '../Functions/Alert';
 import GetPoints                         from '../Functions/GetPoints';
-import GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel'
+import GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel';
 import insertNotificationAndReputation   from '../Functions/InsertNotificationAndReputationIntoDatabase';
 import Accounts                          from '../Rules/Accounts';
 import '../Styles/NewReply.css';
 
-const NewReply = (props) => {
+const NewReply = ({postId}) => {
     
     const [alertTitle, setAlertTitle]             = useState(null);
     const [alertMessage, setAlertMessage]         = useState(null);
     const [avatar, setAvatar]                     = useState(null);
     const [displayAlert, setDisplayAlert]         = useState(false);
     const [maxLengthReply, setMaxLengthReply]     = useState(null);
+    const [mdFormat, setMdFormat]                 = useState(false);
     const [message, setMessage]                   = useState('');
     const [nickName, setNickName]                 = useState(null);
     const [showLogin, setShowLogin]               = useState(false);
@@ -38,6 +39,7 @@ const NewReply = (props) => {
                         
                         let nickName;
                         let avatar;
+                        let canWriteInMd;
                         let timeSpanReplies;
                         let maxLengthReply;
                         
@@ -45,12 +47,17 @@ const NewReply = (props) => {
                             
                             timeSpanReplies = Accounts['premium'].messages.timeSpanReplies;
                             maxLengthReply  = Accounts['premium'].messages.maxLength;
+                            canWriteInMd    = Accounts['premium'].mdformat ? true : false;
                             
                         }
                         else{
                             
-                            timeSpanReplies = Accounts['free'][level].messages.timeSpanReplies;
-                            maxLengthReply  = Accounts['free'][level].messages.maxLength;
+                            let rangeOfLevels = Object.keys(Accounts['free']);
+                            let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
+                            
+                            timeSpanReplies = Accounts['free'][closestLevel].messages.timeSpanReplies;
+                            maxLengthReply  = Accounts['free'][closestLevel].messages.maxLength;
+                            canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false;
                             
                         }
                         
@@ -61,6 +68,7 @@ const NewReply = (props) => {
                             
                         }
                         
+                        setMdFormat(canWriteInMd);
                         setTimeSpanReplies(timeSpanReplies);
                         setMaxLengthReply(maxLengthReply);
                         setNickName(nickName);
@@ -78,7 +86,7 @@ const NewReply = (props) => {
         });
         
         
-    }, []);
+    }, [level]);
     
     const alert = (title, message) => {
         
@@ -99,7 +107,7 @@ const NewReply = (props) => {
         
         let now = Date.now();
         
-        firebase.database().ref(`posts/${props.postId}/replies`).push({
+        firebase.database().ref(`posts/${postId}/replies`).push({
             
             message:    message,
             timeStamp:  now,
@@ -147,21 +155,24 @@ const NewReply = (props) => {
     return(
         <React.Fragment>
             { user
-            ? <div className = 'NewReply'>
-                <div className = 'NewReply-Wrap'>
-                    <div className = 'User'>
-                        <UserAvatar user = {user} allowAnonymousUser = {true}/>
-                        <span>{nickName ? nickName : user.displayName}</span>
+            ? <React.Fragment>
+                <div className = 'NewReply'>
+                    <div className = 'NewReply-Wrap'>
+                        <div className = 'User'>
+                            <UserAvatar user = {user} allowAnonymousUser = {true}/>
+                            <span>{nickName ? nickName : user.displayName}</span>
+                        </div>
+                        <textarea   
+                            placeholder = 'Mensaje...'
+                            maxLength   = {maxLengthReply}
+                            onChange    = {(e) => setMessage(e.target.value)}
+                            onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
+                        />
+                        <button className = 'bottom' onClick = {() => reviewMessage()}>Enviar</button>
                     </div>
-                    <textarea   
-                        placeholder = 'Mensaje...'
-                        maxLength   = {maxLengthReply}
-                        onChange    = {(e) => setMessage(e.target.value)}
-                        onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
-                    />
-                    <button className = 'bottom' onClick = {() => reviewMessage()}>Enviar</button>
                 </div>
-              </div>
+                <Hints mdFormat = {mdFormat}/>
+            </React.Fragment>
             : <button className = 'bottom' onClick = {() => setShowLogin(true)}>Responder</button>  
             }
             {displayAlert && <Alert title = {alertTitle} message = {alertMessage}/>}
@@ -172,3 +183,20 @@ const NewReply = (props) => {
 }
 
 export default NewReply;
+
+const Hints = ({mdFormat}) => {
+    
+    let bold   = {'font-weight': 'bold'};
+    let italic = {'font-style': 'italic'};
+    
+    return(
+        
+        <div className = 'Hints' style = {{'font-size': 'small'}}>
+            {mdFormat 
+                ? <span>**<span style = {bold}>negrita</span>**, *<span style = {italic}>cursiva</span>*, > cita</span> 
+            : null}
+        </div>
+        
+    );
+    
+}
