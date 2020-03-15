@@ -5,6 +5,7 @@ import Norms                               from './Norms';
 import Comments                            from './Comments';
 import NewReply                            from './NewReply';
 import Default                             from './Default';
+import Privileges                          from './Privileges';
 import firebase, { auth, fetchAdmin }      from '../Functions/Firebase';
 import '../Styles/Forum.css';
 
@@ -62,6 +63,7 @@ const Detail = (props) => {
                     </div>
                     <div className = 'Sidebar'>
                         <Norms/>
+                        <Privileges/>
                         <Comments/>
                     </div>
                 </div>
