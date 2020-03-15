@@ -25,4 +25,11 @@ const GetPoints = (...userUids) => {
     return points.some(isNaN) ? points.fill(0) : points;
 }
 
+export const GetPointsLevel = (level) => {
+    
+    let points = Math.pow(1.5, level) - 1;
+    
+    return points;
+}
+
 export default GetPoints;
