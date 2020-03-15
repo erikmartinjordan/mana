@@ -9,7 +9,8 @@ var accounts = {
             },
             'notifications': true,
             'points': true,
-            'levels': true
+            'levels': true,
+            'privilege': 'Sin anuncios'
         },
         5: {
             'vote': true,
@@ -20,7 +21,8 @@ var accounts = {
             },
             'notifications': true,
             'points': true,
-            'levels': true
+            'levels': true,
+            'privilege': 'Publicaciones de 1100 caracteres'
         },
         10: {
             'vote': true,
@@ -31,7 +33,8 @@ var accounts = {
             },
             'notifications': true,
             'points': true,
-            'levels': true
+            'levels': true,
+            'privilege': 'Publicaciones de 2200 caracteres'
         },
         15: {
             'vote': true,
@@ -42,7 +45,8 @@ var accounts = {
             },
             'notifications': true,
             'points': true,
-            'levels': true
+            'levels': true,
+            'privilege': 'Publicaciones de 4400 caracteres'
         },
         20: {
             'vote': true,
@@ -53,7 +57,8 @@ var accounts = {
             },
             'notifications': true,
             'points': true,
-            'levels': true
+            'levels': true,
+            'privilege': 'Publicaciones de longitud ∞'
         },
         25: {
             'vote': true,
@@ -64,7 +69,8 @@ var accounts = {
             },
             'notifications': true,
             'points': true,
-            'levels': true
+            'levels': true,
+            'privilege': 'Tiempo entre respuestas ilimitado'
         },
         30: {
             'vote': true,
@@ -75,7 +81,8 @@ var accounts = {
             },
             'notifications': true,
             'points': true,
-            'levels': true
+            'levels': true,
+            'privilege': 'Tiempo entre publicaciones ilimitado'
         },
         35: {
             'vote': true,
@@ -87,7 +94,8 @@ var accounts = {
             'notifications': true,
             'points': true,
             'levels': true,
-            'deleteMessages': true
+            'deleteMessages': true,
+            'privilege': 'Borrado de mensajes'
         },
         40: {
             'vote': true,
@@ -101,6 +109,7 @@ var accounts = {
             'levels': true,
             'deleteMessages': true,
             'edit': true,
+            'privilege': 'Edición de mensajes'
         },
         45: {
             'vote': true,
@@ -114,7 +123,8 @@ var accounts = {
             'levels': true,
             'deleteMessages': true,
             'edit': true,
-            'mdformat': true
+            'mdformat': true,
+            'privilege': 'Publicaciones con formato md'
         },
         50: {
             'vote': true,
@@ -129,7 +139,8 @@ var accounts = {
             'deleteMessages': true,
             'edit': true,
             'mdformat': true,
-            'badge': true
+            'badge': true,
+            'privilege': 'Badge de usuario pro'
         }
     },
     'premium': {
@@ -148,7 +159,8 @@ var accounts = {
         'badge': true,
         'nightMode': true,
         'edit': true,
-        'mdformat': true
+        'mdformat': true,
+        'privileges': ['Sin anuncios', 'Tiempo entre respuestas ilimitado', 'Tiempo entre publicaciones ilimitado', 'Edición de mensajes', 'Borado de mensajes', 'Publicaciones con formato md', 'Badge de usuario pro', 'Mensajes anónimos']
     }
 }
 
