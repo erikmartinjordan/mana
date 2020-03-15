@@ -1,51 +1,72 @@
 import React, { useState, useEffect } from 'react';
-import firebase                       from '../Functions/Firebase.js';
-import GetPoints                      from '../Functions/GetPoints.js';
-import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel.js';
-import Loading                        from '../Components/Loading.js';
+import firebase                       from '../Functions/Firebase';
+import GetPoints                      from '../Functions/GetPoints';
+import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel';
+import Loading                        from '../Components/Loading';
+import Accounts                       from '../Rules/Accounts';
 import { ReactComponent as ProBadge } from '../Assets/pro.svg';
 import '../Styles/UserAvatar.css';
 
-const UserAvatar = (props) => {  
+const UserAvatar = ({allowAnonymousUser, user}) => {  
     
     const [picture, setPicture] = useState(null);
-    const [premium, setPremium] = useState(null);
+    const [badge, setBadge]     = useState(null);
     
-    const points     = GetPoints(props.user.uid);
+    const points     = GetPoints(user.uid);
     const level      = GetLevel(...points)[0];
     const percentage = GetLevel(...points)[2];
     
     useEffect( () => {
         
-        let ref = firebase.database().ref('users/' + props.user.uid);
+        let ref = firebase.database().ref(`users/${user.uid}`);
         
         let listener = ref.on( 'value', snapshot => {
             
-            if(snapshot.val()){
+            let userInfo = snapshot.val();
+            
+            if(userInfo){
                 
                 let capture = snapshot.val();
                 
-                capture.anonimo && props.allowAnonymousUser
-                ? setPicture(capture.avatar)
-                : setPicture(props.user.photoURL);
+                if(capture.anonimo && allowAnonymousUser){
+                    
+                    setPicture(capture.avatar);
+                    
+                }
+                else{
+                    
+                    setPicture(user.photoURL);
+                }
                 
-                capture.account === 'premium'
-                ? setPremium(true)
-                : setPremium(false);
+                if(capture.account === 'premium'){
+                    
+                    setBadge(true);
+                    
+                }
+                else{
+                    
+                    let rangeOfLevels = Object.keys(Accounts['free']);
+                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
+                    let proBadge      = Accounts['free'][closestLevel].badge ? true : false;
+                    
+                    setBadge(proBadge);
+                    
+                }
+                
             }
             
         });
         
         return () => ref.off('value', listener);
         
-    }, [props.user]);
+    }, [user]);
         
     return (
         <React.Fragment>
             { picture
             ? <div className = {`Progress ProgressBar-${percentage}`}>
                 <img src = {picture}></img>
-                {premium ? <ProBadge/> : null}
+                {badge ? <ProBadge/> : null}
               </div>
             : <Loading type = 'Avatar'/> 
             }
