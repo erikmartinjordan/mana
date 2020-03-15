@@ -3,7 +3,7 @@ import firebase, {auth}                  from '../Functions/Firebase';
 import UserAvatar                        from '../Functions/UserAvatar';
 import Alert                             from '../Functions/Alert';
 import GetPoints                         from '../Functions/GetPoints';
-import GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel'
+import GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel';
 import insertNotificationAndReputation   from '../Functions/InsertNotificationAndReputationIntoDatabase';
 import Accounts                          from '../Rules/Accounts';
 import '../Styles/NewPost.css';
