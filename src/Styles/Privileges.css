@@ -1,0 +1,27 @@
+.Privileges{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    margin-bottom: 20px;
+}
+.Privileges .Next{
+    font-size: small;
+    padding: 20px;
+}
+.Privileges .Bar{
+    background: var(--bgColor);
+    border-radius: 5px;
+    display: flex;
+    height: 5px;
+    width: 100%;
+}
+.Privileges .Completed{
+    background: var(--greenMint);
+    border-radius: 5px;
+}
+.Privileges .Comment{
+    color: var(--thirdFontColor);
+}
+.Privileges .Subheader{
+    margin-top: 20px;
+}
