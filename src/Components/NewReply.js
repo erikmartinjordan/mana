@@ -164,6 +164,7 @@ const NewReply = ({postId}) => {
                         </div>
                         <textarea   
                             placeholder = 'Mensaje...'
+                            value       = {message}
                             maxLength   = {maxLengthReply}
                             onChange    = {(e) => setMessage(e.target.value)}
                             onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
