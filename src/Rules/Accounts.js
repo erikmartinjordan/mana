@@ -70,7 +70,7 @@ var accounts = {
             'notifications': true,
             'points': true,
             'levels': true,
-            'privilege': 'Tiempo entre respuestas ilimitado'
+            'privilege': 'Tiempo ilimitado entre respuestas'
         },
         30: {
             'vote': true,
@@ -82,7 +82,7 @@ var accounts = {
             'notifications': true,
             'points': true,
             'levels': true,
-            'privilege': 'Tiempo entre publicaciones ilimitado'
+            'privilege': 'Tiempo ilimitado entre publicaciones'
         },
         35: {
             'vote': true,
@@ -124,7 +124,7 @@ var accounts = {
             'deleteMessages': true,
             'edit': true,
             'mdformat': true,
-            'privilege': 'Publicaciones con formato md'
+            'privilege': 'Publicaciones en formato md'
         },
         50: {
             'vote': true,
@@ -160,7 +160,7 @@ var accounts = {
         'nightMode': true,
         'edit': true,
         'mdformat': true,
-        'privileges': ['Sin anuncios', 'Tiempo entre respuestas ilimitado', 'Tiempo entre publicaciones ilimitado', 'Edición de mensajes', 'Borado de mensajes', 'Publicaciones con formato md', 'Badge de usuario pro', 'Mensajes anónimos']
+        'privileges': ['Sin anuncios', 'Publicaciones de 1100 caracteres', 'Publicaciones de 2200 caracteres', 'Publicaciones de 4400 caracteres', 'Publicaciones de longitud ∞', 'Tiempo ilimitado entre respuestas', 'Tiempo ilimitado entre publicaciones', 'Borrado de mensajes', 'Edición de mensajes', 'Publicaciones en formato md', `Badge de usuario 'Pro'`, 'Mensajes anónimos']
     }
 }
 
