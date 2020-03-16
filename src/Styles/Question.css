@@ -55,6 +55,9 @@
 .Question .Content p{
     margin-bottom: 20px;
 }
+.Question .Content table{
+    margin-bottom: 20px;
+}
 .Question .Content table,
 .Question .Content ol{
     border-collapse: collapse;
