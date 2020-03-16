@@ -54,6 +54,10 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
                 else                             setCanEdit(false);
                 
             }
+            else{
+                
+                setCanEdit(false);
+            }
             
         });
         

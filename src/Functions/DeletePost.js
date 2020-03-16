@@ -47,7 +47,11 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
                 else                             setCanDelete(false);
                 
             }
-            
+            else{
+                
+                setCanDelete(false);
+                
+            }
             
         });
         
