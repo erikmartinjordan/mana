@@ -20,7 +20,7 @@ const Blog = () => {
     useEffect( () => {
         
         document.title = 'Blog - Nomoresheet'; 
-        document.querySelector('meta[name="description"]').content = 'Artículos de Nomoresheet.'; 
+        document.querySelector(`meta[name = 'description']`).content = 'Artículos de Nomoresheet.'; 
         
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );  
     })
@@ -69,7 +69,9 @@ const Filter = ({setSortedPosts}) => {
     
     useEffect( () => {
         
-        firebase.database().ref('articles/').on('value', snapshot => {
+        let ref = firebase.database().ref('articles');
+        
+        let listener = ref.on('value', snapshot => {
             
             let articleData = snapshot.val();
             
@@ -77,6 +79,8 @@ const Filter = ({setSortedPosts}) => {
                 setArticleData(articleData);
             
         });
+        
+        return () => ref.off('value', listener);
         
     }, []);
     
@@ -125,16 +129,21 @@ const Posts = ({sortedPosts, displayPosts, timeLimitPrivateArticleInMonths, user
     
     const isPrivat = (key) => {
         
-        let privat = Data[key].privat ? true : false;
+        let privat;
         
         let [day, month, year] = [Data[key].date[0], Data[key].date[1], Data[key].date[2]];
         
         let fullDate = moment().year(year).month(month).date(day).format('YYYYMMDD');
         let today    = moment();
         
-        let diff = today.diff(fullDate, 'months');
+        let monthsSincePostWasPublished = today.diff(fullDate, 'months');
         
-        if(diff < timeLimitPrivateArticleInMonths) privat = true;
+        if('privat' in Data[key]){
+            privat = Data[key].privat;
+        }
+        else if(monthsSincePostWasPublished < timeLimitPrivateArticleInMonths){
+            privat = true;
+        }
         
         return privat;
         
@@ -143,8 +152,8 @@ const Posts = ({sortedPosts, displayPosts, timeLimitPrivateArticleInMonths, user
     return(
         <div className = 'Block'>
             {sortedPosts.slice(0, displayPosts).map(key =>
-                <Link to = {'/' + key}>
-                    <article key = {key + 1}>
+                <Link to = {'/' + key} key = {key + 1}>
+                    <article >
                         <div className = 'Title-Date-Privat'>
                             <div className = 'Title-Date'>
                                 <div className = 'Title'>{Data[key].title}</div>
@@ -169,11 +178,11 @@ const Posts = ({sortedPosts, displayPosts, timeLimitPrivateArticleInMonths, user
 const ShowMorePosts = ({displayPosts, setDisplayPosts}) => {
     
     return(
-        <React.Fragment>
+        <div className = 'Block'>
             {displayPosts < Object.keys(Data).length
             ? <div className = 'Active' onClick = {() => setDisplayPosts(displayPosts + 10)}>Ver más</div>
             : null}
-        </React.Fragment>
+        </div>
     );
     
 }
