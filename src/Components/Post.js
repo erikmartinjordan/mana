@@ -1,197 +1,249 @@
 import React, { Component, useState, useEffect } from 'react';
-import ReactMarkdown from 'react-markdown';
-import Fingerprint from 'fingerprintjs';
-import firebase, { auth, provider } from '../Functions/Firebase';
-import Default from './Default';
-import Login from './Login';
-import Data from '../Posts/_data';
+import moment                                    from 'moment';
+import ReactMarkdown                             from 'react-markdown';
+import Fingerprint                               from 'fingerprintjs';
+import Default                                   from './Default';
+import Login                                     from './Login';
+import firebase, { auth, provider }              from '../Functions/Firebase';
+import Data                                      from '../Posts/_data';
 import '../Styles/Post.css';
 
-const Post = (props) => {
+const Post = () => {
     
-    const [date, setDate] = useState(null);
-    const [description, setDescription] = useState(null);
-    const [error, setError] = useState(false);
-    const [likes, setLikes] = useState('');
-    const [privatPosts, setPrivatPosts] = useState(null);
-    const [render, setRender] = useState(false);
-    const [superlikes, setSuperlikes] = useState('');
-    const [text, setText] = useState(null);
-    const [title, setTitle] = useState('');
-    const [user, setUser] = useState(false);
-    const [views, setViews] = useState(0);
-    const url = props.match.params.string;
+    const [date, setDate]                       = useState([]);
+    const [description, setDescription]         = useState(null);
+    const [error, setError]                     = useState(false);
+    const [likes, setLikes]                     = useState('');
+    const [login, setLogin]                     = useState(false);
+    const [numPrivatePosts, setNumPrivatePosts] = useState(0);
+    const [privateArticle, setPrivateArticle]   = useState(false);
+    const [superlikes, setSuperlikes]           = useState('');
+    const [text, setText]                       = useState('');
+    const [title, setTitle]                     = useState('');
+    const [url, setUrl]                         = useState(window.location.pathname.split('/').pop());
+    const [user, setUser]                       = useState(false);
+    const [views, setViews]                     = useState(0);
+    const timeLimitPrivateArticleInMonths       = 2;
+    
+    console.log(privateArticle);
     
     useEffect( () => {
         
-        // Add title and meta description
         document.title = title + ' - Nomoresheet'; 
         document.querySelector('meta[name="description"]').content = description; 
         
-        // Adding no-index property if article is privat
-        if(Data[url] && Data[url].privat){
+        if(privateArticle){
             document.querySelector('meta[name="robots"]').content = 'noindex';
         }
         
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );   
-    })
-
-    useEffect( () => { 
+        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
         
-        // Check if user is logged in
-        auth.onAuthStateChanged( user => setUser(user ? user : null) );
+    });
+    
+    useEffect( () => {
         
-        // Count number of privat posts
-        let counter = 0;
-        Object.keys(Data).map( key => Data[key].privat && setPrivatPosts(counter => counter + 1) );
+        auth.onAuthStateChanged( user => {
+            
+            if(user)
+                setUser(user);
+            else
+                setUser(null);
+            
+        });
         
-        try{
-          // Get .md post
-          const readmePath = require('../Posts/' + url + '.md'); 
+    }, []);
+    
+    useEffect( () => {
+        
+        let numPrivatePosts = Object.values(Data).reduce( (accumulator, post) => {
+            
+            let [day, month, year] = [post.date[0], post.date[1], post.date[2]];
+            
+            let postDate = moment().year(year).month(month).date(day).format('YYYYMMDD');
+            let today    = moment();
+            
+            let monthsSincePostWasPublished = today.diff(postDate, 'months');
+            
+            if(monthsSincePostWasPublished < timeLimitPrivateArticleInMonths || post.privat) accumulator ++;
+            
+            return accumulator;
+            
+        }, 0);
+        
+        setNumPrivatePosts(numPrivatePosts);
+        
+    }, []);
 
-          // Fecth response and load Instagram and Twitter scripts
-          fetch(readmePath).then(response => response.text()).then(text => setText(text)).then( () => {
-              if(window.instgrm) window.instgrm.Embeds.process();
-              if(window.twttr) window.twttr.widgets.load();
-          });
+    useEffect( () => {  
+        
+        const fetchData = async () => {
+         
+            try{
+                
+                const readmePath = require(`../Posts/${url}.md`); 
+                
+                let resp = await fetch(readmePath);
+                let text = await resp.text();
+                
+                let [title, date, description] = [Data[url].title, Data[url].date, Data[url].description];
+                let [day, month, year] = [date[0], date[1], date[2]];
+                
+                let postDate = moment().year(year).month(month).date(day).format('YYYYMMDD');
+                let today    = moment();
+                
+                let monthsSincePostWasPublished = today.diff(postDate, 'months');
 
-          // Get info from Json
-          let title         = Data[url].title;
-          let date          = Data[url].date;
-          let description   = Data[url].description;
-
-          setTitle(title);
-          setDate(date);
-          setDescription(description);
-
-          // Get infro from Views and Likes
-          firebase.database().ref('articles/' + url).on('value', snapshot => {
-                if(snapshot.val()){
-                    setViews(snapshot.val().views);
-                    setLikes(snapshot.val().likes);
-                    setSuperlikes(snapshot.val().superlikes)
+                if('privat' in Data[url]){
+                    setPrivateArticle(Data[url].privat);
                 }
-          })
-
-          // Update counters 
-          firebase.database().ref('articles/' + url + '/views/').transaction( value => value + 1 );
-
+                else if(monthsSincePostWasPublished < timeLimitPrivateArticleInMonths){
+                    setPrivateArticle(true);
+                }
+                
+                setTitle(title);
+                setDate(date);
+                setDescription(description);
+                setText(text);
+                
+                firebase.database().ref(`articles/${url}`).on('value', snapshot => {
+                    
+                    if(snapshot.val()){
+                        
+                        let [views, likes, superlikes] = [snapshot.val().views, snapshot.val().likes, snapshot.val().superlikes];
+                        
+                        setViews(views);
+                        setLikes(likes);
+                        setSuperlikes(superlikes);
+                        
+                    }
+                    
+                })
+                
+                firebase.database().ref(`articles/${url}/views/`).transaction( value => value + 1 );
+                
+            }
+            catch(e){
+                
+                setError(true);
+                
+            }
+            
         }
-        catch(e){
-          // Md content doesn't exist
-          setError(true);
-        }  
         
-    }, [])
-    
-    const handleLikes           = () => firebase.database().ref('articles/' + url+ '/likes/').transaction( value => value + 1 );
-    const handleSuperLikes      = () => firebase.database().ref('articles/' + url + '/superlikes/').transaction( value => value + 1 );
-    
-    const relatedContent = () => {
-
-        let array;
-        let slice;
-        let random;
-        let res;
-        let nArticles;
+        fetchData();
         
-        nArticles = user ? 5 : 4;
-
-        array = Object.keys(Data);
-        random = Math.floor(Math.random() * (array.length - nArticles));
-        slice = array.slice(random, random + nArticles);
-        res = slice.map( value => <a className = 'Article' href = {'/' + value}>
-                                    <p>📖 {Data[value].title}</p>
-                                    <div className = 'Lines'>
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <span className = 'Tag Red'>Leer artículo →</span>
-                                </a> );
-
-        return res;
+    }, []);
+    
+    const handleLikes = () => {
+        
+        firebase.database().ref(`articles/${url}/likes/`).transaction(value => value + 1);
+        
     }
     
-    const loginUser = () => { auth.signInWithPopup(provider).then( result => setUser(result.user) ); }
-
+    const handleSuperLikes  = () => {
+        
+        firebase.database().ref(`articles/${url}/superlikes/`).transaction(value => value + 1);
+        
+    }
+    
+    const loginUser = async () => { 
+        
+        await auth.signInWithPopup(provider);
+        
+    }
+    
     return (
-    <div className = 'Post'>
-            {!error ? 
-                [<div className = 'Header'>
-                    <h1>{title}</h1>
-                    <div className = 'Infopost'>
-                        <p className = 'Author'>
-                            <img id = 'Erik' src = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg'></img>
-                            <span>Erik Martín Jordán,</span>
-                            <span>{date && [' ' + date[1],' ', date[2]]}</span>
-                        </p>
-                        <div className = 'i'>👀 {views && parseInt(views).toLocaleString('es')}</div>
-                        <div className = 'i' onClick = {user ? handleLikes : () => setRender(true)}>👏 {likes}</div>
-                        <div className = 'i' onClick = {user ? handleSuperLikes : () => setRender(true)}>🎉 {superlikes}</div>
-                    </div>
-                </div>,
-                <div className = 'Content'>
-                    { Data[url] && Data[url].privat && !user
-                    ? text && 
-                    <React.Fragment>
-                        <div className = 'Blur-Login'>
-                            <ReactMarkdown 
-                            source = {text.split('\n')[0] + '\n' + text.split('\n')[1] + '\n' + text.split('\n')[2] + '\n' + text.split('\n')[3]} 
-                            escapeHtml = {false} 
-                            renderers = {{link : props => <a href = {props.href} target = '_blank' rel = 'noindex noreferrer noopener'>{props.children}</a>}}
-                            /> 
-                        </div>
-                        <div className = 'Login-Box'>
-                            <h3>Lee la historia completa</h3>
-                            <p>Para poder seguir leyendo este artículo y {privatPosts} más, accede a Nomoresheet.</p>
-                            <a className = 'login' onClick = {() => setRender(true)}>Acceder</a>
-                        </div>
-                    </React.Fragment>
-                    : text &&
-                    <React.Fragment>
-                        <ReactMarkdown 
-                        source = {text} 
-                        escapeHtml = {false} 
-                        renderers = {{link : props => <a href = {props.href} target = '_blank' rel = 'noindex noreferrer noopener'>{props.children}</a>}}
-                        /> 
-                        <div className = 'Infopost'>
-                            <div></div>
-                            <div className = 'i'>👀 {parseInt(views).toLocaleString('es')}</div>
-                            <div className = 'i' onClick = {user ? handleLikes : () => setRender(true)}>👏 {likes}</div>
-                            <div className = 'i' onClick = {user ? handleSuperLikes : () => setRender(true)}>🎉 {superlikes}</div>
-                        </div>
-                        <div className = 'Related'>
-                        <h2>Más cosas...</h2>
-                        <div className = 'Three-Block'>
-                            <a href = {'/'} className = 'Community'>
-                                <p>🐝 Accede a la comunidad: ¡Pregunta, opina y comenta!</p>
-                                <div className = 'Community-Grid'>
-                                    <div>👵🏿</div>
-                                    <div>👱🏾‍♀️</div>
-                                    <div>👵🏽</div>
-                                    <div>👳🏼</div>
-                                    <div>👨🏻‍💻 </div>
-                                </div>
-                                <span className = 'Tag Green'>Comunidad →</span>
-                            </a>
-                            {!user &&
-                            <a onClick = {() => setRender(true)} className = 'Otro'>
-                                <p>👋 Accede a Nomoresheet para votar y comentar.</p>
-                                <span className = 'Access'>Acceder →</span>
-                            </a>    
-                            }
-                            {relatedContent()}
-                        </div>
-                    </div>
-                    </React.Fragment>
-                    }
-                </div>]
-                :
-                <Default></Default>
+        <div className = 'Post'>
+            { error
+            ? <Default/>
+            : [<Header
+                   title            = {title}
+                   date             = {date}
+                   user             = {user}
+                   views            = {views}
+                   likes            = {likes}
+                   superlikes       = {superlikes}
+                   handleLikes      = {handleLikes}
+                   handleSuperLikes = {handleSuperLikes}
+                   setLogin         = {setLogin}
+               />,
+              <Content
+                   text             = {text}
+                   setLogin         = {setLogin}
+                   privateArticle   = {privateArticle}
+                   numPrivatePosts  = {numPrivatePosts}
+                   views            = {views}
+                   likes            = {likes}
+                   superlikes       = {superlikes}
+                   handleLikes      = {handleLikes}
+                   handleSuperLikes = {handleSuperLikes}
+                   setLogin         = {setLogin}
+              />]  
             }
-            {render && <Login hide = {() => setRender(false)}/>}
-    </div>
+            {login ? <Login hide = {() => setLogin(false)}/> : null}
+        </div>
     );
 }
 
 export default Post;
+
+const Header = ({title, date, user, views, likes, superlikes, handleLikes, handleSuperLikes, setLogin}) => {
+    
+    let profilePic = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg';
+    
+    return(
+        <div className = 'Header'>
+            <h1>{title}</h1>
+            <div className = 'Infopost'>
+                <p className = 'Author'>
+                    <img id = 'Erik' src = {profilePic}></img>
+                    <span>{`Erik Martín Jordán, ${date[1]} ${date[2]}`}</span>
+                </p>
+                <div className = 'i'>👀 {parseInt(views).toLocaleString('es')}</div>
+                <div className = 'i' onClick = {user ? handleLikes()      : () => setLogin(true)}>👏 {likes}</div>
+                <div className = 'i' onClick = {user ? handleSuperLikes() : () => setLogin(true)}>🎉 {superlikes}</div>
+            </div>
+        </div>
+    );
+    
+}
+
+const Content = ({text, privateArticle, numPrivatePosts, user, views, likes, superlikes, handleLikes, handleSuperLikes, setLogin}) => {
+    
+    let twoParagraphs = text ? `${text.split('\n')[0]}\n\n${text.split('\n')[2]}\n\n` : null;
+    
+    return(
+        <div className = 'Content'>
+            { privateArticle && !user
+            ? <React.Fragment>
+                <div className = 'Blur-Login'>
+                    <ReactMarkdown 
+                    source     = {twoParagraphs} 
+                    escapeHtml = {false} 
+                    renderers  = {{link : props => <a href = {props.href} target = '_blank' rel = 'noindex noreferrer noopener'>{props.children}</a>}}
+                    /> 
+                </div>
+                <div className = 'Login-Box'>
+                    <h3>Lee la historia completa</h3>
+                    <p>Para poder seguir leyendo este artículo y {numPrivatePosts} más, accede a Nomoresheet.</p>
+                    <a className = 'login' onClick = {() => setLogin(true)}>Acceder</a>
+                </div>    
+              </React.Fragment>
+            : <React.Fragment>
+                <ReactMarkdown 
+                    source     = {text} 
+                    escapeHtml = {false} 
+                    renderers  = {{link : props => <a href = {props.href} target = '_blank' rel = 'noindex noreferrer noopener'>{props.children}</a>}}
+                /> 
+                <div className = 'Infopost'>
+                    <div></div>
+                    <div className = 'i'>👀 {parseInt(views).toLocaleString('es')}</div>
+                    <div className = 'i' onClick = {user ? handleLikes()      : () => setLogin(true)}>👏 {likes}</div>
+                    <div className = 'i' onClick = {user ? handleSuperLikes() : () => setLogin(true)}>🎉 {superlikes}</div>
+                </div>
+              </React.Fragment>
+            }
+        </div>
+    );
+    
+}
