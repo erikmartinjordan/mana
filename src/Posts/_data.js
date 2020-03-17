@@ -3,31 +3,26 @@ var data = {
         'title': 'Encuentros de piscina',
         'date': [22, 'Febrero', 2020],
         'description': 'Tengo un imán en las piscinas, pero no uno de los buenos, sino uno de los que atraen a la gente más excéntrica del lugar. Si voy a una piscina y veo a un personaje llamativo, sé que en algún momento coincidiremos, el destino hará que nos topemos. Puede ser buceando, en las hamacas, yendo al lavabo o en la ducha de la piscina.',
-        'privat': true
     },
     'prioridades': {
         'title': 'Prioridades',
         'date': [18, 'Febrero', 2020],
         'description': 'No tener que contestar correos, evitar el teléfono, ser dueño de tu tiempo, gastar menos de lo que ganas, no desear demasiado, tener bajas expectativas sobre tu futuro...',
-        'privat': true
     },
     'thai-visa-elite': {
         'title': 'Thai Visa Elite, ¿vale la pena?',
         'date': [10, 'Febrero', 2020],
         'description': 'Vivir con un visado de turista entrando y saliendo del país es misión imposible en Tailandia desde el 2014. Entonces, ¿estudiar tailandés, casarse o tener un hijo, encontrar trabajo en Tailandia? Todas estas opciones permiten obtener visados de no inmigrante y permanecer una temporada larga en el Reino de Siam. Pero qué alternativa queda para alguien que no esté interesado en ninguna de estas tres opciones: Thai Visa Elite.',
-        'privat': true
     },
     'mis-dias-kuala-lumpur': {
         'title': 'Solo en Kuala Lumpur',
         'date': [6, 'Febrero', 2020],
         'description': 'Hace ya prácticamente un mes que estoy viviendo solo en Kuala Lumpur. Me resulta extraño decir que vivo en una ciudad con un visado de turista en el pasaporte y con contratos de alquiler de una semana de duración.',
-        'privat': true
     },
     'suerte-tontos': {
         'title': 'A veces, los tontos tenemos suerte',
         'date': [24, 'Enero', 2020],
         'description': 'Acabo de salir del mejor AirBnB en que me he alojado hasta el momento en Kuala Lumpur. El apartamento está en Swiss Garden Residences y lo pillé en una oferta de última hora por menos de 20 euros la noche.',
-        'privat': true
     },
     'entrada-y-salida-de-tailandia': {
         'title': '¿Se puede salir de Tailandia y volver a entrar en un corto período de tiempo?',
