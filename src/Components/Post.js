@@ -10,7 +10,7 @@ import '../Styles/Post.css';
 
 const Post = () => {
     
-    const [date, setDate]                       = useState([]);
+    const [date, setDate]                       = useState(['', '', '']);
     const [description, setDescription]         = useState(null);
     const [error, setError]                     = useState(false);
     const [likes, setLikes]                     = useState('');
@@ -25,20 +25,22 @@ const Post = () => {
     const [views, setViews]                     = useState(0);
     const timeLimitPrivateArticleInMonths       = 2;
     
-    console.log(privateArticle);
-    
     useEffect( () => {
         
-        document.title = title + ' - Nomoresheet'; 
-        document.querySelector('meta[name="description"]').content = description; 
-        
-        if(privateArticle){
-            document.querySelector('meta[name="robots"]').content = 'noindex';
-        }
+        document.title = `${title} - Nomoresheet`; 
+        document.querySelector(`meta[name = 'description']`).content = description; 
         
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
         
     });
+    
+    useEffect( () => {
+        
+        if(privateArticle){
+            document.querySelector(`meta[name = 'robots']`).content = 'noindex';
+        }
+        
+    }, [privateArticle]);
     
     useEffect( () => {
         
@@ -74,7 +76,7 @@ const Post = () => {
         
     }, []);
 
-    useEffect( () => {  
+    useEffect( () => { 
         
         const fetchData = async () => {
          
@@ -156,7 +158,8 @@ const Post = () => {
         <div className = 'Post'>
             { error
             ? <Default/>
-            : [<Header
+            : <React.Fragment>
+                <Header
                    title            = {title}
                    date             = {date}
                    user             = {user}
@@ -166,7 +169,7 @@ const Post = () => {
                    handleLikes      = {handleLikes}
                    handleSuperLikes = {handleSuperLikes}
                    setLogin         = {setLogin}
-               />,
+               />
               <Content
                    text             = {text}
                    setLogin         = {setLogin}
@@ -178,7 +181,9 @@ const Post = () => {
                    handleLikes      = {handleLikes}
                    handleSuperLikes = {handleSuperLikes}
                    setLogin         = {setLogin}
-              />]  
+                   user             = {user}
+              />
+            </React.Fragment>
             }
             {login ? <Login hide = {() => setLogin(false)}/> : null}
         </div>
@@ -200,15 +205,15 @@ const Header = ({title, date, user, views, likes, superlikes, handleLikes, handl
                     <span>{`Erik Martín Jordán, ${date[1]} ${date[2]}`}</span>
                 </p>
                 <div className = 'i'>👀 {parseInt(views).toLocaleString('es')}</div>
-                <div className = 'i' onClick = {user ? handleLikes()      : () => setLogin(true)}>👏 {likes}</div>
-                <div className = 'i' onClick = {user ? handleSuperLikes() : () => setLogin(true)}>🎉 {superlikes}</div>
+                <div className = 'i' onClick = {user ? handleLikes      : () => setLogin(true)}>👏 {likes}</div>
+                <div className = 'i' onClick = {user ? handleSuperLikes : () => setLogin(true)}>🎉 {superlikes}</div>
             </div>
         </div>
     );
     
 }
 
-const Content = ({text, privateArticle, numPrivatePosts, user, views, likes, superlikes, handleLikes, handleSuperLikes, setLogin}) => {
+const Content = ({text, privateArticle, numPrivatePosts, user, setLogin}) => {
     
     let twoParagraphs = text ? `${text.split('\n')[0]}\n\n${text.split('\n')[2]}\n\n` : null;
     
@@ -235,12 +240,6 @@ const Content = ({text, privateArticle, numPrivatePosts, user, views, likes, sup
                     escapeHtml = {false} 
                     renderers  = {{link : props => <a href = {props.href} target = '_blank' rel = 'noindex noreferrer noopener'>{props.children}</a>}}
                 /> 
-                <div className = 'Infopost'>
-                    <div></div>
-                    <div className = 'i'>👀 {parseInt(views).toLocaleString('es')}</div>
-                    <div className = 'i' onClick = {user ? handleLikes()      : () => setLogin(true)}>👏 {likes}</div>
-                    <div className = 'i' onClick = {user ? handleSuperLikes() : () => setLogin(true)}>🎉 {superlikes}</div>
-                </div>
               </React.Fragment>
             }
         </div>
