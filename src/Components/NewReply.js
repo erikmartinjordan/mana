@@ -27,13 +27,6 @@ const NewReply = ({postId}) => {
     
     useEffect( () => {
         
-        let rangeOfLevels   = Object.keys(Accounts['free']);
-        let closestLevel    = Math.max(...rangeOfLevels.filter(num => num <= level));
-        
-        let timeSpanReplies = Accounts['free'][closestLevel].messages.timeSpanReplies;
-        let maxLengthReply  = Accounts['free'][closestLevel].messages.maxLength;
-        let canWriteInMd    = Accounts['free'][closestLevel].mdformat ? true : false; 
-        
         auth.onAuthStateChanged(user => {
             
             if(user){
@@ -41,8 +34,14 @@ const NewReply = ({postId}) => {
                 firebase.database().ref(`users/${user.uid}`).on( 'value', snapshot => {
                     
                     let userInfo = snapshot.val();
-                    
+
                     if(userInfo){
+                        
+                        let nickName;
+                        let avatar;
+                        let canWriteInMd;
+                        let timeSpanReplies;
+                        let maxLengthReply;
                         
                         if(userInfo.account === 'premium'){
                             
@@ -51,22 +50,31 @@ const NewReply = ({postId}) => {
                             canWriteInMd    = Accounts['premium'].mdformat ? true : false;
                             
                         }
-                        
-                        if(userInfo.anonimo){
+                        else{
                             
-                            let nickName = userInfo.nickName;
-                            let avatar   = userInfo.avatar; 
+                            let rangeOfLevels = Object.keys(Accounts['free']);
+                            let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
                             
-                            setNickName(nickName);
-                            setAvatar(avatar);
+                            timeSpanReplies = Accounts['free'][closestLevel].messages.timeSpanReplies;
+                            maxLengthReply  = Accounts['free'][closestLevel].messages.maxLength;
+                            canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false;
                             
                         }
                         
+                        if(userInfo.anonimo){
+                            
+                            nickName = userInfo.nickName;
+                            avatar   = userInfo.avatar;  
+                            
+                        }
+                        
+                        setMdFormat(canWriteInMd);
+                        setTimeSpanReplies(timeSpanReplies);
+                        setMaxLengthReply(maxLengthReply);
+                        setNickName(nickName);
+                        setAvatar(avatar);
+                        
                     }
-                    
-                    setMdFormat(canWriteInMd);
-                    setTimeSpanReplies(timeSpanReplies);
-                    setMaxLengthReply(maxLengthReply);
                     
                 });
                 

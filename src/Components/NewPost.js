@@ -26,13 +26,6 @@ const NewPost = ({hide}) => {
     
     useEffect( () => {
         
-        let rangeOfLevels = Object.keys(Accounts['free']);
-        let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
-        
-        let timeSpanPosts = Accounts['free'][closestLevel].messages.timeSpanPosts;
-        let maxLengthPost = Accounts['free'][closestLevel].messages.maxLength;
-        let canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false;
-        
         auth.onAuthStateChanged( user => { 
             
             if(user){
@@ -43,6 +36,12 @@ const NewPost = ({hide}) => {
                     
                     if(userInfo){
                         
+                        let nickName;
+                        let avatar;
+                        let canWriteInMd;
+                        let timeSpanPosts;
+                        let maxLengthPost;
+                        
                         if(userInfo.account === 'premium'){
                             
                             timeSpanPosts = Accounts['premium'].messages.timeSpanPosts;
@@ -50,22 +49,31 @@ const NewPost = ({hide}) => {
                             canWriteInMd  = Accounts['premium'].mdformat ? true : false;
                             
                         }
+                        else{
+                            
+                            let rangeOfLevels = Object.keys(Accounts['free']);
+                            let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
+                            
+                            timeSpanPosts = Accounts['free'][closestLevel].messages.timeSpanPosts;
+                            maxLengthPost = Accounts['free'][closestLevel].messages.maxLength;
+                            canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false;
+                            
+                        }
                         
                         if(userInfo.anonimo){
                             
-                            let nickName = userInfo.nickName;
-                            let avatar   = userInfo.avatar; 
-                            
-                            setNickName(nickName);
-                            setAvatar(avatar);
+                            nickName = userInfo.nickName;
+                            avatar   = userInfo.avatar;  
                             
                         } 
                         
+                        setMdFormat(canWriteInMd);
+                        setTimeSpanPosts(timeSpanPosts);
+                        setMaxLengthPost(maxLengthPost);
+                        setNickName(nickName);
+                        setAvatar(avatar);
+                        
                     }
-                    
-                    setMdFormat(canWriteInMd);
-                    setTimeSpanPosts(timeSpanPosts);
-                    setMaxLengthPost(maxLengthPost);
                     
                 });
                 
