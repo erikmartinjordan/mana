@@ -68,6 +68,9 @@
             },
             "reputationData":{
               ".write": "true"
+            },
+            "timeStampLastLogin":{
+              ".write": "true"              
             }
         }
     },
