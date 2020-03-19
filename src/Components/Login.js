@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {auth, provider}               from '../Functions/Firebase.js';
+import firebase, {auth, provider}     from '../Functions/Firebase.js';
 import NomoresheetLogo                from '../Functions/NomoresheetLogo.js';
 import '../Styles/Login.css';
 
-const Login = (props) => {  
+const Login = ({hide}) => {  
     
     const [user, setUser] = useState(null);
         
@@ -13,12 +13,11 @@ const Login = (props) => {
         
     });
 
-    const login = () => {
+    const login = async () => {
         
-        auth.signInWithPopup(provider).then( result => {
-            props.hide();
-            setUser(result.user)
-        });
+        let {user} = await auth.signInWithPopup(provider);
+        firebase.database().ref(`users/${user.uid}/timeStampLastLogin`).transaction(value => Date.now());
+        hide();
       
     }  
     
@@ -41,7 +40,7 @@ const Login = (props) => {
                 </button>
                 <div className = 'info'>El acceso vía Google previene el uso de cuentas falsas y <em>spam</em>. Nomoresheet no publicará en tu nombre, ni te enviará <em>mails</em>, ni utilizará tus datos.</div>
             </div>
-            <div className = 'Invisible' onClick = {() => props.hide()}></div>
+            <div className = 'Invisible' onClick = {hide}></div>
         </div>  
     );
   
