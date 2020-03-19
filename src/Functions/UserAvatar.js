@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import firebase                       from '../Functions/Firebase';
 import GetPoints                      from '../Functions/GetPoints';
 import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel';
+import AnonymImg                      from '../Functions/AnonymImg';
 import Loading                        from '../Components/Loading';
 import Accounts                       from '../Rules/Accounts';
 import { ReactComponent as ProBadge } from '../Assets/pro.svg';
@@ -15,6 +16,7 @@ const UserAvatar = ({allowAnonymousUser, user}) => {
     const points     = GetPoints(user.uid);
     const level      = GetLevel(...points)[0];
     const percentage = GetLevel(...points)[2];
+    const randomImg  = AnonymImg();
     
     useEffect( () => {
         
@@ -53,6 +55,10 @@ const UserAvatar = ({allowAnonymousUser, user}) => {
                     
                 }
                 
+            }
+            else{
+                
+                setPicture(randomImg);
             }
             
         });
