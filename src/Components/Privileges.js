@@ -31,8 +31,22 @@ const Privileges = () => {
     }, []);
     
     useEffect( () => {
-    
+        
         if(user){
+            
+            let rangeOfLevels          = Object.keys(Accounts['free']);
+            
+            let previousLevels         = [...rangeOfLevels].filter(num => num <=  level);
+            let previousPrivileges     = previousLevels.map(level => Accounts['free'][level].privilege);
+            
+            let lowClosestLevel        = Math.max(...rangeOfLevels.filter(num => num <= level));
+            let highClosestLevel       = Math.min(...rangeOfLevels.filter(num => num >  level));
+            let pointsLowClosestLevel  = Math.ceil(GetPointsLevel(lowClosestLevel));
+            let pointsHighClosestLevel = Math.ceil(GetPointsLevel(highClosestLevel));
+            let nextPrivilege          = Accounts['free'][highClosestLevel].privilege;
+            
+            let diff                   = pointsHighClosestLevel - pointsLowClosestLevel;
+            let percentage             = Math.floor(100 * (points - lowClosestLevel)/(diff));
             
             firebase.database().ref(`users/${user.uid}`).on('value', snapshot => {
                 
@@ -44,36 +58,19 @@ const Privileges = () => {
                         
                         let privileges = Accounts['premium'].privileges;
                         
-                        setNextPrivilege('Todos los privilegios desbloqueados');
-                        setPreviousPrivileges(privileges);
-                        setPointsNextPrivilege(points);
-                        setPercentage(100);
-                        
-                    }
-                    else{
-                        
-                        let rangeOfLevels          = Object.keys(Accounts['free']);
-                        
-                        let previousLevels         = [...rangeOfLevels].filter(num => num <=  level);
-                        let previousPrivileges     = previousLevels.map(level => Accounts['free'][level].privilege);
-                        
-                        let lowClosestLevel        = Math.max(...rangeOfLevels.filter(num => num <= level));
-                        let highClosestLevel       = Math.min(...rangeOfLevels.filter(num => num >  level));
-                        let pointsLowClosestLevel  = Math.ceil(GetPointsLevel(lowClosestLevel));
-                        let pointsHighClosestLevel = Math.ceil(GetPointsLevel(highClosestLevel));
-                        let nextPrivilege          = Accounts['free'][highClosestLevel].privilege;
-                        
-                        let diff                   = pointsHighClosestLevel - pointsLowClosestLevel;
-                        let percentage             = Math.floor(100 * (points - lowClosestLevel)/(diff));
-                        
-                        setPreviousPrivileges(previousPrivileges);
-                        setNextPrivilege(nextPrivilege);
-                        setPointsNextPrivilege(pointsHighClosestLevel);
-                        setPercentage(percentage);
+                        nextPrivilege = 'Todos los privilegios desbloqueados';
+                        previousPrivileges = privileges;
+                        pointsHighClosestLevel = points;
+                        percentage = 100;
                         
                     }
                     
                 }
+                
+                setNextPrivilege(nextPrivilege);
+                setPreviousPrivileges(previousPrivileges);
+                setPointsNextPrivilege(pointsHighClosestLevel);
+                setPercentage(percentage);
                 
             });
             

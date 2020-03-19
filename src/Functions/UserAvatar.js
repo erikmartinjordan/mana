@@ -9,8 +9,8 @@ import '../Styles/UserAvatar.css';
 
 const UserAvatar = ({allowAnonymousUser, user}) => {  
     
-    const [picture, setPicture] = useState(null);
-    const [badge, setBadge]     = useState(null);
+    const [picture, setPicture] = useState(user.photoURL);
+    const [badge, setBadge]     = useState(false);
     
     const points     = GetPoints(user.uid);
     const level      = GetLevel(...points)[0];
@@ -32,10 +32,6 @@ const UserAvatar = ({allowAnonymousUser, user}) => {
                     
                     setPicture(capture.avatar);
                     
-                }
-                else{
-                    
-                    setPicture(user.photoURL);
                 }
                 
                 if(capture.account === 'premium'){
