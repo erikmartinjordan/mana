@@ -1,4 +1,9 @@
 var data = {
+    'coronavirus': {
+        'title': 'Pánico',
+        'date': [19, 'Marzo', 2020],
+        'description': 'Ayer fui al supermercado en Kuala Lumpur y me vi inmerso en una escena que bien podía ser un capítulo de Black Mirror. Salí del apartamento de AirBnB, una de las puertas de acceso a la comunidad estaba cerrada y los huéspedes estábamos obligados a pasar por la puerta principal, en la que se hallaba un guarda de seguridad con una pistola que controlaba la temperatura de toda persona que accediese al edificio.',
+    },
     'encuentros-piscina': {
         'title': 'Encuentros de piscina',
         'date': [22, 'Febrero', 2020],
