@@ -46,7 +46,7 @@ const Nav = () => {
 
             if(user) {
                 
-                firebase.database().ref('users/' + user.uid).on( 'value', snapshot => {
+                firebase.database().ref(`users/${user.uid}`).on( 'value', snapshot => {
                     
                     if(snapshot.val()){
                         
@@ -73,7 +73,6 @@ const Nav = () => {
         });
       
   }, []);
-  
   
     const menuNotUser = () => {
       
