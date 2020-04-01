@@ -5,6 +5,7 @@ import firebase, {auth, provider}     from '../Functions/Firebase';
 import Data                           from '../Posts/_data';
 import { Link }                       from 'react-router-dom';
 import '../Styles/Blog.css';
+import 'moment/locale/es';
 
 const Blog = () => {
 
@@ -133,7 +134,7 @@ const Posts = ({sortedPosts, displayPosts, timeLimitPrivateArticleInMonths, user
         
         let [day, month, year] = [Data[key].date[0], Data[key].date[1], Data[key].date[2]];
         
-        let fullDate = moment().year(year).month(month).date(day).format('YYYYMMDD');
+        let fullDate = moment().locale('es').year(year).month(month).date(day).format('YYYYMMDD');
         let today    = moment();
         
         let monthsSincePostWasPublished = today.diff(fullDate, 'months');
