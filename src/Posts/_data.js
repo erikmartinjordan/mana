@@ -1,4 +1,9 @@
 var data = {
+    'abandonado': {
+        'title': 'El lugar que no debiste abandonar',
+        'date': [1, 'Abril', 2020],
+        'description': 'La vida te cambia en pocos meses. En un momento dado, estás en tu lugar habitual de trabajo, haciendo más o menos las mismas cosas de siempre. Tu cerebro ya ha aprendido lo que tiene que hacer y el esfuerzo que dedica a realizar las tareas del día a día disminuye progresivamente. Estás más relajado y tus compañeros lo notan. Socializas más, sonríes más, es abril, está a punto de llegar el verano.',
+    },
     'coronavirus': {
         'title': 'Pánico',
         'date': [19, 'Marzo', 2020],
