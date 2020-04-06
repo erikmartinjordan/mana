@@ -17,9 +17,20 @@ const Login = ({hide}) => {
         
         let {user} = await auth.signInWithPopup(provider);
         firebase.database().ref(`users/${user.uid}/timeStampLastLogin`).transaction(value => Date.now());
+        updateProfilePic(user);
         hide();
       
     }  
+    
+    const updateProfilePic = async (user) => {
+        
+        let firebasePic = user.photoURL;
+        let providerPic = user.providerData[0].photoURL;
+        
+        if(firebasePic !== providerPic)
+            await auth.currentUser.updateProfile({'photoURL': providerPic});
+        
+    }
     
     return (
         <div className = 'Login'>
