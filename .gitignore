@@ -63,4 +63,4 @@ typings/
 # Firebase folder
 .firebase/
 functions/hosting/index.html
-functions/hosting/_data.js
+
