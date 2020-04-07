@@ -5,8 +5,6 @@ import '../Styles/Login.css';
 
 const Login = ({hide}) => {  
     
-    const [user, setUser] = useState(null);
-        
     useEffect( () => {
         
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'})
@@ -17,19 +15,57 @@ const Login = ({hide}) => {
         
         let {user} = await auth.signInWithPopup(provider);
         firebase.database().ref(`users/${user.uid}/timeStampLastLogin`).transaction(value => Date.now());
-        updateProfilePic(user);
+        checkProfilePic(user);
         hide();
       
     }  
     
-    const updateProfilePic = async (user) => {
+    const checkProfilePic = (user) => {
         
-        let firebasePic = user.photoURL;
-        let providerPic = user.providerData[0].photoURL;
+        let firebasePhotoURL = user.photoURL;
+        let providerPhotoURL = user.providerData[0].photoURL;
         
-        if(firebasePic !== providerPic)
-            await auth.currentUser.updateProfile({'photoURL': providerPic});
+        if(firebasePhotoURL !== providerPhotoURL){
+            
+            replaceProfilePicInPosts(firebasePhotoURL, providerPhotoURL);
+            updateProfilePic(providerPhotoURL);
+            
+        }
         
+    }
+    
+    const replaceProfilePicInPosts = async (photoURL1, photoURL2) => {
+        
+        let snapshot = await firebase.database().ref(`posts`).once('value');
+        let posts = snapshot.val();
+        
+        Object.entries(posts).map( ([postId, {userPhoto, replies}]) => {
+            
+            if(userPhoto === photoURL1) 
+                firebase.database().ref(`posts/${postId}/userPhoto`).transaction(photoURL1 => photoURL2);
+            
+            if(replies){
+                
+                Object.entries(replies).map( ([replyId, {userPhoto}]) => {
+                    
+                    if(userPhoto === photoURL1)
+                        firebase.database().ref(`posts/${postId}/replies/${replyId}/userPhoto`).transaction(photoURL1 => photoURL2);
+                });
+                
+            }
+            
+        });
+        
+    }
+    
+    const updateProfilePic = async (photoURL) => {
+        
+        let user = auth.currentUser;
+        
+        await user.updateProfile({'photoURL': photoURL});
+        
+        window.location.reload();
+       
     }
     
     return (
