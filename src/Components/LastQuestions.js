@@ -110,7 +110,10 @@ const LastQuestions = (props) => {
                     </Link>
                 </div>
             ))}
-            <button onClick = {() => setItems(prev => prev + 10)} className = 'bottom'>Mostrar más</button>
+            { lastQuestions.length === items
+            ? <button onClick = {() => setItems(prev => prev + 10)} className = 'bottom'>Mostrar más</button> 
+            : null
+            }
           </div>
         : <Loading type = 'Responses'/>  
         }
