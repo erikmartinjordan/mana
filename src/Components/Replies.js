@@ -25,7 +25,9 @@ const Replies = ({ admin, postId, uid }) => {
     
     useEffect( () => {
         
-        firebase.database().ref(`posts/${postId}/replies`).on('value', snapshot => { 
+        let ref = firebase.database().ref(`posts/${postId}/replies`);
+        
+        let listener = ref.on('value', snapshot => { 
             
             let replies = snapshot.val();
             
@@ -36,6 +38,8 @@ const Replies = ({ admin, postId, uid }) => {
             }
             
         });
+        
+        return () => ref.off('value', listener);
         
     }, [window.location.href]);
     
@@ -81,7 +85,9 @@ const Reply = ({ authorId, message }) => {
     
     useEffect( () => {
         
-        firebase.database().ref(`users/${authorId}`).on('value', snapshot => {
+        const fetchUser = async () => {
+            
+            let snapshot = await firebase.database().ref(`users/${authorId}`).once('value');
             
             let userInfo = snapshot.val();
             
@@ -103,7 +109,9 @@ const Reply = ({ authorId, message }) => {
                 
             }
             
-        });
+        }
+        
+        fetchUser();
         
     }, [level]);
     
