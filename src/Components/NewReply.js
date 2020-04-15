@@ -107,6 +107,8 @@ const NewReply = ({postId}) => {
         
         let now = Date.now();
         
+        console.time();
+        
         firebase.database().ref(`posts/${postId}/replies`).push({
             
             message:    message,
@@ -117,7 +119,13 @@ const NewReply = ({postId}) => {
             
         });
         
+        console.timeEnd();
+        
+        console.time();
+        
         firebase.database().ref(`users/${user.uid}/replies/timeStamp`).transaction(value => now);
+        
+        console.timeEnd();
         
         insertNotificationAndReputation(nickName ? nickName : user.uid, 'reply', 'add', points);
         
@@ -130,6 +138,7 @@ const NewReply = ({postId}) => {
     const reviewTimeLimits = async () => {
         
         let snapshot = await firebase.database().ref(`users/${user.uid}/replies/timeStamp`).once('value');
+        
         let lastUserMessage = snapshot.val();
         
         if(Date.now() - lastUserMessage < timeSpanReplies) 
@@ -187,12 +196,12 @@ export default NewReply;
 
 const Hints = ({mdFormat}) => {
     
-    let bold   = {'font-weight': 'bold'};
-    let italic = {'font-style': 'italic'};
+    let bold   = {fontWeight: 'bold'};
+    let italic = {fontStyle: 'italic'};
     
     return(
         
-        <div className = 'Hints' style = {{'font-size': 'small'}}>
+        <div className = 'Hints' style = {{fontSize: 'small'}}>
             {mdFormat 
                 ? <span>**<span style = {bold}>negrita</span>**, *<span style = {italic}>cursiva</span>*, > cita</span> 
             : null}

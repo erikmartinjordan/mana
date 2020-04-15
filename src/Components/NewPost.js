@@ -191,12 +191,12 @@ export default NewPost;
 
 const Hints = ({mdFormat}) => {
     
-    let bold   = {'font-weight': 'bold'};
-    let italic = {'font-style': 'italic'};
+    let bold   = {fontWeight: 'bold'};
+    let italic = {fontStyle: 'italic'};
     
     return(
         
-        <div className = 'Hints' style = {{'font-size': 'small'}}>
+        <div className = 'Hints' style = {{fontSize: 'small'}}>
             {mdFormat 
                 ? <span>**<span style = {bold}>negrita</span>**, *<span style = {italic}>cursiva</span>*, > cita</span> 
             : null}
