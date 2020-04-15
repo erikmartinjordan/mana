@@ -73,7 +73,7 @@ const LastQuestions = (props) => {
             
         }
         
-        let unique = [...new Set(imgArray)].map(elem => <img src = {elem}></img>);
+        let unique = [...new Set(imgArray)].map( (elem, key) => <img key = {key} src = {elem}></img>);
         
         return unique;
         

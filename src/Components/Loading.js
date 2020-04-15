@@ -10,7 +10,7 @@ const Loading = (props) => {
             let array = [];
             
             for(let i = 0; i < 10; i ++) 
-                array.push(<div className = 'Loading' style = {{height: '200px', marginBottom: '20px'}}></div>);
+                array.push(<div key = {i} className = 'Loading' style = {{height: '200px', marginBottom: '20px'}}></div>);
             
             return array;
         }
