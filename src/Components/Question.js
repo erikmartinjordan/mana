@@ -61,7 +61,6 @@ const Question = ({ admin, postId, setTitle, uid }) => {
                 <div className = 'Author-Name-Date'> 
                     <span className = 'Author-Info'>
                         <Link to = {'/@' + question.userUid}>{question.userName}</Link> 
-                        <PublicInfo uid = {question.userUid} canvas = 'title'/>
                         <Verified   uid = {question.userUid}/>
                     </span>
                     <TimeAgo formatter = {formatter} date = {question.timeStamp}/>

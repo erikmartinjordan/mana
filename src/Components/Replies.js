@@ -52,7 +52,6 @@ const Replies = ({ admin, postId, uid }) => {
                         <div className = 'Author-Name-Date'> 
                             <span className = 'Author-Info'>
                                 <Link to = {'/@' + reply.userUid}>{reply.userName}</Link>
-                                <PublicInfo uid = {reply.userUid} canvas = {index + 1}/>
                                 <Verified   uid = {reply.userUid}/>
                             </span>
                             <TimeAgo formatter = {formatter} date = {reply.timeStamp}/>
