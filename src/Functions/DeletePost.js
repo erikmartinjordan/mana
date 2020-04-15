@@ -69,8 +69,7 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
         ? firebase.database().ref(`posts/${postId}`).remove()
         : firebase.database().ref(`posts/${postId}/replies/${replyId}`).remove();
         
-        let urlRedirect = `/`;
-        history.push(urlRedirect);
+        if(type === 'post') history.push('/');
       
         setConfirmation(false);
        
