@@ -101,13 +101,13 @@ const Nav = () => {
                             </div>
                         </div>
                         <div className = 'Separator'></div>
-                        <div onClick = {() => setNotifications(true)}>
+                        <div className = 'NotificationsContainer' onClick = {() => setNotifications(true)}>
                             <span>Notificaciones</span>
                             <GetUnreadNotifications user = {user}/>
                         </div>
                         <Link to = '/'       onClick = {() => setMenu(false)}>Comunidad</Link>
                         <Link to = '/blog'   onClick = {() => setMenu(false)}>Blog</Link> 
-                        <Link to = '/acerca' onClick = {() => setMenu(false)} >Acerca</Link>
+                        <Link to = '/acerca' onClick = {() => setMenu(false)}>Acerca</Link>
                         <div className = 'Separator'></div>
                         <NightModeToggleButton></NightModeToggleButton>
                         <div className = 'Separator'></div>
@@ -144,7 +144,7 @@ const AirBnB = () => {
         
         var fingerprint = new Fingerprint().get();
         
-        firebase.database().ref('ads/' + fingerprint + '/clicks/').transaction(value => value + 1);
+        firebase.database().ref(`ads/${fingerprint}/clicks/`).transaction(value => value + 1);
     }
     
     return(

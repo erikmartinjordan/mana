@@ -35,18 +35,15 @@
 }
 .Notifications-Number{
     align-items: center;
-    animation: gradientBG 15s ease infinite;
-    background: linear-gradient(-45deg, var(--greenMint), var(--greenMint), var(--pastelPurple), var(--red));
-    background-size: 400% 400%;
-    border-radius: 50%;
+    background: var(--greenMint);
+    border-radius: 5px;
     color: white;
     display: inline-flex;
     font-size: xx-small;
-    height: 6px;
     justify-content: center;
-    margin-bottom: 7px;
     margin-left: 3px;
-    width: 6px;
+    padding: 1px 4px;
+    transition: 1s ease-in-out; 
 }
 .Notifications .Notifications-Content{
     align-items: center;

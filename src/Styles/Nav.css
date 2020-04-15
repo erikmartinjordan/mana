@@ -38,6 +38,10 @@
     padding: 20px;
     width: 100%;
 }
+.Nav .NotificationsContainer{
+    align-items: center;
+    display: flex;
+}
 .Nav .Menu a{
     color: var(--primaryFontColor);
     cursor: pointer;
