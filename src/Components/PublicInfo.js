@@ -19,76 +19,47 @@ const formatter = buildFormatter(spanishStrings);
 
 const PublicInfo = (props) => {
     
-    const [userUid, setUserUid]                 = useState(false);
-    const [profileViews, setProfileViews]       = useState(0);
-    const [profileLastSeen, setProfileLastSeen] = useState(null);
-    const name              = GetName(userUid);
-    const views             = GetNumberOfViews(userUid);
-    const photoURL          = GetProfileImg(userUid);
-    const points            = GetPoints(userUid);
-    const level             = GetLevel(...points)[0];
-    const pointsToNextLevel = GetLevel(...points)[1];
-    const percentage        = GetLevel(...points)[2];
-    const articles          = GetLastArticles(userUid, 10); 
-    const ranking           = GetRankingUser(userUid);
-    const user              = {uid: userUid, photoURL: photoURL};
+    const [userUid, setUserUid]                  = useState(props.match.params.string);
+    const [profileViews, setProfileViews]        = useState(0);
+    const [profileLastSeen, setProfileLastSeen]  = useState(null);
+    const name                                   = GetName(userUid);
+    const views                                  = GetNumberOfViews(userUid);
+    const photoURL                               = GetProfileImg(userUid);
+    const points                                 = GetPoints(userUid);
+    const [level, pointsToNextLevel, percentage] = GetLevel(...points);
+    const articles                               = GetLastArticles(userUid, 10); 
+    const ranking                                = GetRankingUser(userUid);
+    const user                                   = {uid: userUid, photoURL: photoURL};
     
     useEffect( () => {
         
-        // Component is mounted
-        let mounted = true;
-
-        // Getting UID of the user
-        var uid;
+        firebase.database().ref(`users/${userUid}/profileViews`).transaction( value => {
+            
+            setProfileViews(value ? value : 0);
+            
+            return value + 1;
+        });
         
-        // From props or from URL
-        uid = props.canvas ? props.uid : props.match.params.string;
-
-        // Setting state
-        if(mounted) setUserUid(uid);
+        firebase.database().ref(`users/${userUid}/profileLastSeen`).transaction( value => {
+            
+            setProfileLastSeen(value ? value : 0);
+            
+            return (new Date()).getTime();
+        });
         
-        // Unmounting
-        return () => {mounted = false};
-
-    });
+    }, []);
     
-    useEffect( () => {
+    const beautifyNumber = (number) => {
         
-        // Component is mounted
-        let mounted = true;
+        let beautyPoints;
         
-        if(userUid){
-            
-            // Adding profile visits to database
-            firebase.database().ref('users/' + userUid + '/profileViews' ).transaction( value => {
-                
-                // Setting profile views as state
-                if(mounted) setProfileViews(value ? value : 0);
-                
-                // If we are opening the profile of the user in a new URL 
-                // Then, we need to increment the number of visits by 1
-                // Otherwise, we don't modify the value
-                return props.uid ? value : value + 1;
-            });
-            
-            // Adding date last visit to profile
-            firebase.database().ref('users/' + userUid + '/profileLastSeen').transaction( value => {
-                
-                // Setting last date as state
-                if(mounted) setProfileLastSeen(value ? value : 0);
-                
-                // If we are opening the profile of the user in a new URL 
-                // Then, we need to update the date of last seen
-                // Otherwise, we don't modify the value
-                return props.uid ? value : (new Date()).getTime();
-            });
-            
-        }
+        if(number < 1000)                      beautyPoints = `${number}`;
+        if(number >= 1000 && number < 1000000) beautyPoints = `~${(number/1000).toFixed(1)}k`;
+        if(number >= 1000000)                  beautyPoints = `~${(number/1000000).toFixed(1)}m`;
         
-        // Unmounted component
-        return () => mounted = false;
+        return beautyPoints;
         
-    }, [userUid]);
+    }
     
     return (
           <div className = 'Public-Info'>
@@ -105,7 +76,7 @@ const PublicInfo = (props) => {
                     </div>
                     <div className = 'Bloque'>
                         <div className = 'Title'>Impacto</div>
-                        <div className = 'Num'>{views.toLocaleString()}</div>
+                        <div className = 'Num'>{beautifyNumber(views)}</div>
                         {!props.uid &&
                             <div className = 'Comment'>Número total de impresiones de publicaciones.</div>
                         }
