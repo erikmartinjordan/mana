@@ -1,4 +1,9 @@
 var data = {
+    'mal-2020': {
+        'title': 'Un mal 2020',
+        'date': [20, 'Abril', 2020],
+        'description': 'Joer... Si el 2019 fue un año redondo, el 2020 es uno de los peores años que he vivido hasta la fecha.',
+    },
     'abandonado': {
         'title': 'El lugar que no debiste abandonar',
         'date': [1, 'Abril', 2020],
