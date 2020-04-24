@@ -28,9 +28,9 @@ const App  = ({history}) => {
     let month = ('0' + (date.getMonth() + 1)).slice(-2);
     let year  = date.getFullYear();
     
+    let ref = firebase.database().ref(`analytics/${year}${month}${day}/${fingerprint}`);
+    
     useEffect( () => {
-        
-        let ref = firebase.database().ref(`analytics/${year}${month}${day}/${fingerprint}`);
         
         let branch = ref.push({
             
@@ -41,12 +41,6 @@ const App  = ({history}) => {
             
         ref.child(`${branch.key}/pageviews`).push({ url: history.location.pathname });
         
-        window.addEventListener('scroll', () => {
-            
-            ref.child(`${branch.key}/timeStampEnd`).transaction( value => (new Date()).getTime() );
-            
-        });
-        
         setBranchKey(branch.key);
         
     }, []);
@@ -55,13 +49,28 @@ const App  = ({history}) => {
         
         if(branchKey){
             
-            let ref = firebase.database().ref(`analytics/${year}${month}${day}/${fingerprint}/${branchKey}/pageviews`);
-            
-            ref.push({ url: history.location.pathname });
+            ref.child(`${fingerprint}/${branchKey}/pageviews`).push({ url: history.location.pathname });
             
         }
         
     }, [history.location.pathname]);
+    
+    useEffect( () => {
+        
+        let scrollListener;
+        
+        if(branchKey && history.location.pathname !== '/estadisticas'){
+            
+            scrollListener = window.addEventListener('scroll', () => {
+            
+                ref.child(`${branchKey}/timeStampEnd`).transaction( value => (new Date()).getTime() );
+            
+            });
+        }
+        
+        return () => window.removeEventListener('scroll', scrollListener); 
+        
+    }, [branchKey, history.location.pathname]);
     
     useEffect( () => {
         
