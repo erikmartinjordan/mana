@@ -78,11 +78,9 @@ const Stats = () => {
     
     useEffect( () => {
         
-        // Meta and title
         document.title = 'Estadísticas - Nomoresheet'; 
         document.querySelector('meta[name="description"]').content = 'Algunas estadísticas sobre Nomoresheet'; 
         
-        // Emojis in svg
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
         
     });
@@ -93,13 +91,11 @@ const Stats = () => {
         let ctx    = canvas.getContext('2d');
         let width  = window.innerWidth;
         
-        // Getting labels and data
         graph1.data.labels = days;
         graph1.data.datasets['0'].data = users;
         graph1.data.datasets['1'].data = sessions;
         graph1.data.datasets['2'].data = pageviews;
         
-        // Drawing chart 
         if(days && users && sessions && pageviews) {
             
             var chart = new Chart(ctx, graph1); 
@@ -111,7 +107,6 @@ const Stats = () => {
     
     useEffect( () => {
         
-        // Return name of the month
         const getMonth = (number) => {
             
             let name;
@@ -135,15 +130,12 @@ const Stats = () => {
             
         }
         
-        // Return number of users
         const getUsers = (data) => {
             
-            // [users_day1, users_day2, ... , users_dayN]
             let users = [];
             
             Object.keys(data).map(day => {
                 
-                // Pushing number of users per day
                 users.push(Object.keys(data[day]).length);
                 
             });
@@ -152,24 +144,20 @@ const Stats = () => {
             
         }
         
-        // Return number of sessions
         const getSessions = (data) => {
             
-            // [sessions_day1, sessions_day2, ... , sessions_dayN]
             let sessions = [];
             
             Object.keys(data).map(day => {
                 
                 let count = 0; 
                 
-                // Iteration over each day
                 Object.keys(data[day]).map(uid => {
                     
                     count = count + Object.keys(data[day][uid]).length;
                     
                 });
                 
-                // Pushing total number of sessions per day
                 sessions.push(count);
                 
             });
@@ -177,46 +165,38 @@ const Stats = () => {
             return sessions;
         }
         
-        // Return number of pageviews
         const getPageviews = (data) => {
             
-            // [pageviews_day1, pageviews_day2, ... , pageviews_dayN]
             let pageviews = [];
             
             Object.keys(data).map(day => {
                 
-                let count = 0; 
+                let dailyViews = 0; 
                 
-                // Iteration over each day
                 Object.keys(data[day]).map(uid => {
                     
                     Object.keys(data[day][uid]).map(session => {
                         
-                        count = count + Object.keys(data[day][uid][session].pageviews).length;
+                        dailyViews = dailyViews + Object.keys(data[day][uid][session].pageviews ?? {}).length;
                         
                     });
                     
                 });
                 
-                // Pushing total number of sessions per day
-                pageviews.push(count);
+                pageviews.push(dailyViews);
                 
             });
-            
             
             return pageviews;
             
         }
         
-        // Return average session duration in ms
         const getSessionDuration = (data) => {
             
             let duration = [];
             
             Object.keys(data).map(day => {
                 
-                // push data[day][user_1][session_1].timeStampEnd - data[day][user_1][session_1].timeStampIni
-                // push data[day][user_1][session_2].timeStampEnd - data[day][user_1][session_1].timeStampIni
                 Object.keys(data[day]).map(uid => {
                     
                     Object.keys(data[day][uid]).map(session => {
@@ -237,7 +217,6 @@ const Stats = () => {
             
         }
         
-        // Return real-time users
         const getRealTimeUsers = (data) => {
             
             let realTimeUsers = 0;
@@ -252,8 +231,6 @@ const Stats = () => {
                     
                     Object.keys(data[day][uid]).map(session => {
                         
-                        // We count as connected users all the sessions active within the last
-                        // 5 minutes
                         if(now - data[day][uid][session].timeStampEnd <= 5 * 60 * 1000)
                             realTimeSession = true
                         
@@ -269,7 +246,6 @@ const Stats = () => {
             
         }
         
-        // Return pageviews per session
         const getPageviewsSession = (pageviews, sessions) => {
             
             let res = 0;
@@ -281,7 +257,6 @@ const Stats = () => {
             
         }
         
-        // Return bounce rate
         const getBounceRate = (data) => {
             
             let bounced = 0;
@@ -293,7 +268,6 @@ const Stats = () => {
                     
                     Object.keys(data[day][uid]).map(session => {
                         
-                        // We count users who didn't do scrolling
                         if(data[day][uid][session].timeStampIni === data[day][uid][session].timeStampEnd)
                             bounced ++;
                         
@@ -310,7 +284,6 @@ const Stats = () => {
             
         }
         
-        // Return ranking of url's and pageviews
         const getRanking = (data) => {
             
             let array = [];
@@ -321,7 +294,7 @@ const Stats = () => {
                     
                     Object.keys(data[day][uid]).map(session => {
                         
-                        Object.keys(data[day][uid][session].pageviews).map(pid => {
+                        Object.keys(data[day][uid][session].pageviews ?? {}).map(pid => {
                             
                             array.push(data[day][uid][session].pageviews[pid].url);
                             
@@ -333,57 +306,45 @@ const Stats = () => {
                 
             });
             
-            // Remove duplicates
             let unique = [...new Set(array)];
             
-            // Counting duplicates
             let duplicates  = unique.map(value => [value, array.filter(url => url === value).length ]);
             
-            // Sort by second parameter
-            return duplicates.sort((a, b) => b[1] - a[1]);
+            duplicates.sort((a, b) => b[1] - a[1]);
+            
+            return array;
         }
         
-        // Reading info from the database
         let listener = firebase.database().ref(`analytics/`).limitToLast(interval).on('value', snapshot => {
             
             if(snapshot){
                 
-                // Getting the json
                 let data = snapshot.val();
                 
-                // Getting the days
                 let days = Object.keys(data).map(date => `${date.substr(6, 2)} ${getMonth(date.substr(4, 2))}`);
                 setDays(days);
                 
-                // Getting number of users
                 let users = getUsers(data);
                 setUsers(users);
                 
-                // Getting number of sessions
                 let sessions = getSessions(data);
                 setSessions(sessions);
                 
-                // Getting number of pageviews
                 let pageviews = getPageviews(data);
                 setPageviews(pageviews);
                 
-                // Getting average sessiond duration
                 let avg = getSessionDuration(data);
                 setDuration(avg);
                 
-                // Getting real-time users
                 let realTime = getRealTimeUsers(data);
                 setRealTimeUsers(realTime);
                 
-                // Getting pageviews/session
                 let pageviewsSession = getPageviewsSession(pageviews, sessions);
                 setPageviewsSession(pageviewsSession);
                 
-                // Getting bounce rate
                 let bounceRate = getBounceRate(data);
                 setBounceRate(bounceRate);
                 
-                // Get ranking
                 let ranking = getRanking(data);
                 setRanking(ranking);
             }
