@@ -1,4 +1,9 @@
 var data = {
+    'inadecuado': {
+        'title': 'Las redes sociales me hacen sentir inadecuado',
+        'date': [26, 'Abril', 2020],
+        'description': 'Un *unfollow* de una persona que consideraba importante me ha hecho sentir mal durante todo el fin de semana. Sé que es una enorme gilipollez —con la de problemas graves que hay en la vida—. Lo sé, coño, lo sé, pero aun siendo consciente de ello, no consigo dejar de pensar en por qué lo ha hecho.',
+    },
     'mal-2020': {
         'title': 'Un mal 2020',
         'date': [20, 'Abril', 2020],
