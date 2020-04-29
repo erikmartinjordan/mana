@@ -107,8 +107,6 @@ const NewReply = ({postId}) => {
         
         let now = Date.now();
         
-        console.time();
-        
         firebase.database().ref(`posts/${postId}/replies`).push({
             
             message:    message,
