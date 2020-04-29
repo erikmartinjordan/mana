@@ -119,13 +119,9 @@ const NewReply = ({postId}) => {
             
         });
         
-        console.timeEnd();
-        
-        console.time();
-        
         firebase.database().ref(`users/${user.uid}/replies/timeStamp`).transaction(value => now);
         
-        console.timeEnd();
+        firebase.database().ref(`users/${user.uid}/numReplies`).transaction(value => ~~value + 1);
         
         insertNotificationAndReputation(nickName ? nickName : user.uid, 'reply', 'add', points);
         

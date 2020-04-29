@@ -60,6 +60,9 @@ const Likes = (props) => {
         ? insertNotificationAndReputation(authorId, 'chili', 'add', points)
         : insertNotificationAndReputation(authorId, 'chili', 'sub', points);
         
+        usersIdsVotes.indexOf(user.uid) === -1
+        ? firebase.database().ref(`users/${authorId}/numSpicy`).transaction(value => ~~value + 1)
+        : firebase.database().ref(`users/${authorId}/numSpicy`).transaction(value => ~~value - 1);
     }
     
     return (
