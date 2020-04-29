@@ -1,54 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import firebase, {auth} from './Firebase.js';
+import firebase                       from './Firebase.js';
 
-//--------------------------------------------------------------/
-//
-//
-// This functions returns the number of chilis (spicy) of a user 
-// with a specific userUid
-//
-//
-//--------------------------------------------------------------/
 const GetNumberOfSpicy = (...userUids) => {
     
-    const [spicy, setSpicy]   = useState([]);
-
+    const [spicy, setSpicy] = useState([]);
+    
     // Using JSON.stringify to compare arrays passed as arguments
     // If I don't use it, React will make an infinite render
     useEffect( () => { 
         
-        firebase.database().ref('posts/').on('value', snapshot => { 
-
-            // Capturing data
-            var posts = snapshot.val();
+        firebase.database().ref('users/').on('value', snapshot => { 
             
-            // Declaring array to count the number of spicy for each user uid
-            var countSpicy = new Array(userUids.length).fill(0);
+            let users = snapshot.val(); 
             
-            // We sum spicy points of all the posts written by user with ID = uid
-            if(posts){
-                
-                for(let i = 0; i < userUids.length; i ++){
-                    
-                        Object.keys(posts).map( id => { 
-                            
-                            // Counting spicy -> counting length of voteUsers
-                            if(posts[id].userUid === userUids[i] && posts[id].voteUsers) {
-                                
-                                countSpicy[i] = countSpicy[i] + Object.keys(posts[id].voteUsers).length;
-                                
-                            } 
-                            
-                        });
-                }
-                
-                // Setting spicy
-                setSpicy(countSpicy);
-            }
+            let numSpicy = userUids.map( uid => ~~users[uid]?.numSpicy);
+            
+            setSpicy(numSpicy);
+            
         });
         
     }, [JSON.stringify(userUids)]);
-        
+    
     return spicy;
 }
 
