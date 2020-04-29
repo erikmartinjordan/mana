@@ -1,13 +1,14 @@
-const data       = require('./hosting/_data.js'); 
-const fs         = require('fs');
-const admin      = require('firebase-admin');
-const functions  = require('firebase-functions');
-const nodemailer = require('nodemailer');
-const cors       = require('cors')({origin: true});
-const user       = functions.config().gmail.user;
-const pass       = functions.config().gmail.pass;
-const dest       = functions.config().gmail.dest;
-const adminIds   = functions.config().admin.ids;
+const {getNumberOfPosts, getNumberOfReplies, getNumberOfSpicy, getNumberOfApplauses, getNumberOfViews} = require('./getUserStats');
+const data                 = require('./hosting/_data.js'); 
+const fs                   = require('fs');
+const admin                = require('firebase-admin');
+const functions            = require('firebase-functions');
+const nodemailer           = require('nodemailer');
+const cors                 = require('cors')({origin: true});
+const user                 = functions.config().gmail.user;
+const pass                 = functions.config().gmail.pass;
+const dest                 = functions.config().gmail.dest;
+const adminIds             = functions.config().admin.ids;
 // Remember to type command before deploying → firebase functions:config:set gmail.user="EMAIL"
 // Remember to type command before deploying → firebase functions:config:set gmail.pass="PASS"
 // Remember to type command before deploying → firebase functions:config:set gmail.dest="DEST"
@@ -105,7 +106,43 @@ exports.preRender = functions.https.onRequest(async (request, response) => {
     
 });
 
-// Stats
+// Users count of posts, replies, applause and spicy
+exports.getUserStats = functions.https.onRequest(async (request, response) => {
+    
+    // Getting snapshot of the users
+    let snapshotUsers = await admin.database().ref('/users').once('value');
+    let users         = snapshotUsers.val();
+    
+    // Getting snapshot of the posts
+    let snapshotPosts = await admin.database().ref('/posts').once('value');
+    let posts         = snapshotPosts.val();
+    
+    // Counting posts, replies, applause and spiciness for each user
+    Object.keys(users).map(uid => {
+       
+        let numPosts     = getNumberOfPosts(posts, uid);
+        let numReplies   = getNumberOfReplies(posts, uid);
+        let numSpicy     = getNumberOfSpicy(posts, uid);
+        let numApplauses = getNumberOfApplauses(posts, uid);
+        let numViews     = getNumberOfViews(posts, uid);
+        
+        admin.database().ref(`/users/${uid}`).update({
+            
+            numPosts: numPosts,
+            numReplies: numReplies,
+            numSpicy: numSpicy,
+            numApplauses: numApplauses,
+            numViews: numViews
+            
+        });
+        
+    });
+    
+    response.send(200);
+    
+})
+
+// Monthly stats of the blog
 exports.getStats  = functions.https.onRequest(async (request, response) => {
     
     // Getting the date of today
