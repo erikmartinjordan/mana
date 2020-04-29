@@ -26,6 +26,7 @@
     // Los usuarios no pueden modificar las cuentas verificadas
     "users":{
         ".read": "true",
+        ".write": "auth != null",
       	"$useruid":{
             "displayNotifications":{
               ".write": "auth != null"
