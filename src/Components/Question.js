@@ -69,7 +69,7 @@ const Question = ({ admin, postId, setTitle, uid }) => {
             <div className = 'Content'>
                     <QuestionContent authorId = {question.userUid} message = {question.message}/>
                     <div className = 'Meta'>
-                        <Likes user = {{uid: question.userUid}} post = {postId}></Likes>
+                        <Likes                    postId = {postId} authorId = {question.userUid}/>
                         <EditPost   type = 'post' postId = {postId} authorId = {question.userUid} admin = {admin} uid = {uid}/>
                         <DeletePost type = 'post' postId = {postId} authorId = {question.userUid} admin = {admin} uid = {uid}/>
                     </div>
