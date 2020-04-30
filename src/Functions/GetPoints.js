@@ -20,9 +20,9 @@ const GetPoints = (...userUids) => {
     const points = new Array(userUids.length).fill(0);
     
     for(let i = 0; i < userUids.length; i ++)
-        points[i] = (posts[i] * postValue) + (replies[i] * replyValue) + (spicy[i] * spicyValue) + (applauses[i] * applauseValue);
+        points[i] = (~~posts[i] * postValue) + (~~replies[i] * replyValue) + (~~spicy[i] * spicyValue) + (~~applauses[i] * applauseValue);
     
-    return points.some(isNaN) ? points.fill(0) : points;
+    return points;
 }
 
 export const GetPointsLevel = (level) => {
