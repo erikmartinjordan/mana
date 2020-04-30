@@ -3,53 +3,41 @@ import firebase, {auth} from './Firebase.js';
 
 const GetLastComments = (numberOfComments) => {
     
-    const [replies, setReplies] = useState([]);
+    const [comments, setComments] = useState([]);
    
     useEffect( () => {
       
         firebase.database().ref('posts/').on('value', snapshot => { 
             
-            var res = [];
-            var sorted = [];
-            var content = [];
-            
             var posts = snapshot.val(); 
             
             if(posts){
-                Object.keys(posts).map( pid => { 
+                
+                let postsWithReplies = Object.entries(posts).map( ([postId, {replies}]) => {
                     
-                    if(typeof posts[pid].replies !== 'undefined'){
+                    if(replies){
                         
-                        var replies = posts[pid].replies;
+                        let repliesWithPostIdAndReplyId = Object.entries(replies).map( ([replyId, reply]) => ({...reply, 'postId': postId, 'replyId': replyId}) );
                         
-                        Object.keys(replies).map( rid => {
-                               
-                            var object = {
-                                'pid': pid,
-                                'rid': rid,
-                                'author': replies[rid].userName,
-                                'userPhoto': replies[rid].userPhoto,
-                                'userUid': replies[rid].userUid,
-                                'claps': replies[rid].voteUsers ? Object.keys(replies[rid].voteUsers).length : 0,
-                                'timeStamp': replies[rid].timeStamp
-                            }
-                            
-                            res.push(object)
-                            
-                        });
+                        return repliesWithPostIdAndReplyId;
+                        
                     }
+                    
                 });
+                
+                let flatReplies = postsWithReplies.flat(Infinity).filter(elem => elem ? true : false);
+                
+                let sortedReplies = flatReplies.sort((a, b) => b.timeStamp - a.timeStamp);
+                
+                setComments(sortedReplies);
+                
             }
-            
-            sorted = res.sort( (a, b) => b.timeStamp - a.timeStamp );
-            
-            setReplies(sorted);
             
         });
      
     }, []);
-        
-    return replies.slice(0, numberOfComments);
+    
+    return comments.slice(0, numberOfComments);
   
 }
 

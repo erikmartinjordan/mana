@@ -27,15 +27,15 @@ const Comments = () => {
             <span className = 'Title'>Últimos comentarios</span>
             <div className = 'LastComments'>
                 {comments.map( (comment, key) =>
-                <Link to = {'/comunidad/post/' + comment.pid} key = {key} className = 'Info'>
+                <Link to = {`/comunidad/post/${comment.postId}`} key = {key} className = 'Info'>
                     <div className = 'Info-Wrap'>
                         <UserAvatar user = {{uid: comment.userUid, photoURL: comment.userPhoto}}/>
                         <div className = 'Author-Date'>
-                            <span>{comment.author}</span>
+                            <span>{comment.userName}</span>
                             <span><TimeAgo formatter = {formatter} date = {comment.timeStamp}/></span>
                         </div>
                     </div>
-                    <div className = 'Claps'>👏  {comment.claps}</div>
+                    <div className = 'Claps'>👏  {Object.keys(comment.voteUsers ?? []).length}</div>
                 </Link>
                 )}
                 <Link style = {{display: 'block', textAlign: 'center', width: '100%', marginTop: '20px'}} to = '/'>Ver más temas</Link>
