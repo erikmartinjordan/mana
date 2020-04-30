@@ -4,39 +4,35 @@ import GetPoints                        from './GetPoints.js';
 import insertNotificationAndReputation  from './InsertNotificationAndReputationIntoDatabase.js';
 import Login                            from '../Components/Login';
 
-const LikesComments = (props) => {  
+const LikesComments = ({ authorId, postId, replyId }) => {  
     
-    const [authorId, setAuthorId] = useState(null);
-    const [capture, setCapture]   = useState(null);
-    const [forbid, setForbid]     = useState(false);
-    const [render, setRender]     = useState(false);
+    const [modal, setModal]       = useState(false);
+    const [numVotes, setNumVotes] = useState(0);
     const [user, setUser]         = useState(null);
-    const [votes, setVotes]       = useState(0);
+    const [votes, setVotes]       = useState({});
     const points                  = GetPoints(authorId);
     
     useEffect( () => { 
         
-        let mounted = true;
-        
         auth.onAuthStateChanged( user => { user ? setUser(user) : setUser(null) }); 
         
-        firebase.database().ref('posts/' + props.post + '/replies/'  + props.reply).on('value', snapshot => { 
-
-            var capture = snapshot.val();            
+        firebase.database().ref(`posts/${postId}/replies/${replyId}/voteUsers`).on('value', snapshot => { 
             
-            if(capture && mounted) {
+            var votes = snapshot.val();            
+            
+            if(votes){
                 
-                let uid   = capture.userUid;
-                let votes = capture.voteUsers ? Object.keys(capture.voteUsers).length : 0;
-                
-                setCapture(capture);
-                setAuthorId(uid);
                 setVotes(votes);
+                setNumVotes(Object.keys(votes).length);
+                
+            }
+            else{
+                
+                setVotes({});
+                setNumVotes(0);
             }
             
         });
-        
-        return () => {mounted = false};
         
     }, []);
     
@@ -48,30 +44,45 @@ const LikesComments = (props) => {
     
     const handleVote = async (e) => {
         
-        let capture = await firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/').once('value');
+        let userDidntVote = Object.keys(votes).indexOf(user.uid) === -1 ? true : false;
         
-        let usersIdsVotes = capture.val() ? Object.keys(capture.val()) : [];
-        
-        usersIdsVotes.indexOf(user.uid) === -1
-        ? firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/' + user.uid).transaction( value => true)
-        : firebase.database().ref('posts/' + props.post + '/replies/' + props.reply + '/voteUsers/' + user.uid).remove();
-        
-        usersIdsVotes.indexOf(user.uid) === -1
-        ? insertNotificationAndReputation(authorId, 'applause', 'add', points)
-        : insertNotificationAndReputation(authorId, 'applause', 'sub', points);
-        
-        usersIdsVotes.indexOf(user.uid) === -1
-        ? firebase.database().ref(`users/${authorId}/numApplauses`).transaction(value => ~~value + 1)
-        : firebase.database().ref(`users/${authorId}/numApplauses`).transaction(value => ~~value - 1);
+        if(userDidntVote){
+            
+            firebase.database().ref(`posts/${postId}/replies/${replyId}/voteUsers/${user.uid}`).transaction(value => true);
+            firebase.database().ref(`users/${authorId}/numApplauses`).transaction(value => ~~value + 1)
+            insertNotificationAndReputation(authorId, 'applause', 'add', points);
+            
+        }
+        else{
+            
+            firebase.database().ref(`posts/${postId}/replies/${replyId}/voteUsers/${user.uid}`).remove();
+            firebase.database().ref(`users/${authorId}/numApplauses`).transaction(value => ~~value - 1);
+            insertNotificationAndReputation(authorId, 'applause', 'sub', points);
+            
+        }
         
     }
-
+    
+    
+    const displayLoginModal = () => {
+        
+        setModal(true);
+    }
+    
+    const hideLoginModal = () => {
+        
+        setModal(false);
+        
+    }
+    
     return (
       <div className = 'likes-comments'>
             <div className = 'votes'>
-                <span onClick = {user ? (e) => handleVote(e) : () => setRender(true)}>👏 {votes}</span>
+                <span onClick = {user ? handleVote : displayLoginModal}>👏 {numVotes}</span>
             </div>
-            {render && <Login hide = {() => setRender(false)}></Login>}
+            {modal
+            ? <Login hide = {hideLoginModal}/>
+            : null}
       </div>    
     );
 }
