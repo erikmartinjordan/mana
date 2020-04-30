@@ -23,7 +23,7 @@ const Privileges = () => {
                 setUser(user);
             }
             else{
-                setUser(null);
+                setUser({});
             }
             
         });
