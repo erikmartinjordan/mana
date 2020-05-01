@@ -5,6 +5,8 @@ import Fingerprint                               from 'fingerprintjs';
 import Default                                   from './Default';
 import Login                                     from './Login';
 import firebase, { auth, provider }              from '../Functions/Firebase';
+import GetLevel                                  from '../Functions/GetLevelAndPointsToNextLevel';
+import GetPoints                                 from '../Functions/GetPoints';
 import Data                                      from '../Posts/_data';
 import '../Styles/Post.css';
 
@@ -23,6 +25,9 @@ const Post = () => {
     const [url, setUrl]                         = useState(window.location.pathname.split('/').pop());
     const [user, setUser]                       = useState(false);
     const [views, setViews]                     = useState(0);
+    const points                                = GetPoints(user ? user.uid : 0);
+    const level                                 = GetLevel(...points)[0];
+    const levelLimit                            = 20;
     const timeLimitPrivateArticleInMonths       = 2;
     
     useEffect( () => {
@@ -182,6 +187,8 @@ const Post = () => {
                    handleSuperLikes = {handleSuperLikes}
                    setLogin         = {setLogin}
                    user             = {user}
+                   level            = {level}
+                   levelLimit       = {levelLimit}
               />
             </React.Fragment>
             }
@@ -213,7 +220,7 @@ const Header = ({title, date, user, views, likes, superlikes, handleLikes, handl
     
 }
 
-const Content = ({text, privateArticle, numPrivatePosts, user, setLogin}) => {
+const Content = ({text, privateArticle, numPrivatePosts, user, setLogin, level, levelLimit}) => {
     
     let twoParagraphs = text ? `${text.split('\n')[0]}\n\n${text.split('\n')[2]}\n\n` : null;
     
@@ -232,6 +239,20 @@ const Content = ({text, privateArticle, numPrivatePosts, user, setLogin}) => {
                     <h3>Lee la historia completa</h3>
                     <p>Para poder seguir leyendo este artículo y {numPrivatePosts} más, accede a Nomoresheet.</p>
                     <a className = 'login' onClick = {() => setLogin(true)}>Acceder</a>
+                </div>    
+              </React.Fragment>
+            : privateArticle && user && level < levelLimit
+            ? <React.Fragment>
+                <div className = 'Blur-Login'>
+                    <ReactMarkdown 
+                    source     = {twoParagraphs} 
+                    escapeHtml = {false} 
+                    renderers  = {{link : props => <a href = {props.href} target = '_blank' rel = 'noindex noreferrer noopener'>{props.children}</a>}}
+                    /> 
+                </div>
+                <div className = 'Login-Box'>
+                    <h3>Lee la historia completa</h3>
+                    <p>Necesitas tener nivel {levelLimit} para poder leer el artículo. También puedes desbloquearlo con una cuenta Premium.</p>
                 </div>    
               </React.Fragment>
             : <React.Fragment>
