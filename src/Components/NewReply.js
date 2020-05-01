@@ -121,9 +121,9 @@ const NewReply = ({postId}) => {
         
         console.timeLog('Enviando respuesta')
         
-        firebase.database().ref(`users/${user.uid}/replies/timeStamp`).transaction(value => now);
+        firebase.database().ref(`users/${nickName ? nickName : user.uid}/replies/timeStamp`).transaction(value => now);
         
-        firebase.database().ref(`users/${user.uid}/numReplies`).transaction(value => ~~value + 1);
+        firebase.database().ref(`users/${nickName ? nickName : user.uid}/numReplies`).transaction(value => ~~value + 1);
         
         console.timeLog('Enviando respuesta')
         
