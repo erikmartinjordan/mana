@@ -21,11 +21,11 @@ const insertNotificationAndReputation = (uid, type, operator, points) => {
     var points         = points[0];
     
     switch(type){
-            
+        
         case 'reply':   
             
             firebase.database().ref('notifications/' + uid).push({  
-                            
+                
                 points: replyPoints,
                 message: 'Has publicado una respuesta a una publicación.',
                 timeStamp: Date.now()

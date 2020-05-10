@@ -61,7 +61,7 @@ const Replies = ({ admin, postId, uid }) => {
                         <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
                         <Reply authorId = {reply.userUid} message = {reply.message}/>
                         <div className = 'Meta'>
-                            <LikesComments post = {postId} reply = {key} user = {{uid: reply.userUid}} />
+                            <LikesComments             postId = {postId} replyId = {key} authorId = {reply.userUid}/>
                             <EditPost   type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
                             <DeletePost type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
                         </div>

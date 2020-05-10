@@ -107,7 +107,7 @@ const NewReply = ({postId}) => {
         
         let now = Date.now();
         
-        console.time();
+        console.time('Enviando respuesta');
         
         firebase.database().ref(`posts/${postId}/replies`).push({
             
@@ -119,15 +119,17 @@ const NewReply = ({postId}) => {
             
         });
         
-        console.timeEnd();
+        console.timeLog('Enviando respuesta')
         
-        console.time();
+        firebase.database().ref(`users/${nickName ? nickName : user.uid}/replies/timeStamp`).transaction(value => now);
         
-        firebase.database().ref(`users/${user.uid}/replies/timeStamp`).transaction(value => now);
+        firebase.database().ref(`users/${nickName ? nickName : user.uid}/numReplies`).transaction(value => ~~value + 1);
         
-        console.timeEnd();
+        console.timeLog('Enviando respuesta')
         
         insertNotificationAndReputation(nickName ? nickName : user.uid, 'reply', 'add', points);
+        
+        console.timeEnd('Enviando respuesta');
         
         alert('Bien', '¡Mensaje enviado!');
         

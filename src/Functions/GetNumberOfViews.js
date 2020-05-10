@@ -1,38 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import firebase, {auth} from './Firebase.js';
+import firebase                       from './Firebase.js';
 
-const GetNumberOfViews = (uid) => {
+const GetNumberOfViews = (...userUids) => {
     
-    const [views, setViews] = useState(0);
+    const [views, setViews] = useState([]);
     
+    // Using JSON.stringify to compare arrays passed as arguments
+    // If I don't use it, React will make an infinite render
     useEffect( () => { 
         
-        if(uid){
+        firebase.database().ref('users/').on('value', snapshot => { 
             
-            firebase.database().ref('posts/').on('value', snapshot => { 
-               
-                let posts = snapshot.val(); 
-                
-                if(posts){
-                    
-                    let userPosts = Object.values(posts).filter(post => {
-                        
-                        let { replies = {}, userUid } = post;
-                        
-                        return post.userUid === uid || Object.values(replies).some(reply => reply.userUid === uid);
-                        
-                    });
-                    
-                    let totalViews = userPosts.reduce( (total, post) => total = total + post.views, 0); 
-                    
-                    setViews(totalViews);
-                }
-               
-            });
+            let users = snapshot.val(); 
             
-        }
+            let numViews = userUids.map( uid => ~~users[uid]?.numViews);
+            
+            setViews(numViews);
+            
+        });
         
-    }, [uid]);
+    }, [JSON.stringify(userUids)]);
     
     return views;
     

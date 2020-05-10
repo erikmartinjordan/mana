@@ -100,11 +100,14 @@
 .Nav .Img-Wrap,
 .Nav .Bar-Wrap{
     align-items: center;
+    background: var(--bgBox);
+    border-radius: 50px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
     cursor: pointer;
     display: flex;
     width: max-content;
+    padding: 10px 20px;
 }
-
 .Nav .User{
     align-items: center;
     cursor: pointer;

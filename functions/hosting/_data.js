@@ -1,4 +1,9 @@
 var data = {
+    'buscando-trabajo': {
+        'title': 'Buscando trabajo',
+        'date': [1, 'Mayo', 2020],
+        'description': 'Parece que el coronavirus está abandonando el país. Poco a poco, la situación volverá a la normalidad y, de cara al verano, espero que en este bendito país de pandereta estemos llevando una vida normal. Así que toca entrar otra vez en el mundo laboral (por cierto, momentazo para volver a poner la patita en él).',
+    },
     'inadecuado': {
         'title': 'Las redes sociales me hacen sentir inadecuado',
         'date': [26, 'Abril', 2020],

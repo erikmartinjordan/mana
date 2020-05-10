@@ -88,6 +88,7 @@
 }
 .Content img + em{
     color: var(--thirdFontColor);
+    display: block;
     font-size: small;
     font-style: normal;
 }

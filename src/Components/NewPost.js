@@ -118,7 +118,9 @@ const NewPost = ({hide}) => {
             
         });
         
-        firebase.database().ref(`users/${user.uid}/posts/timeStamp`).transaction(value => now);
+        firebase.database().ref(`users/${nickName ? nickName : user.uid}/posts/timeStamp`).transaction(value => now);
+        
+        firebase.database().ref(`users/${nickName ? nickName : user.uid}/numPosts`).transaction(value => ~~value + 1);
         
         insertNotificationAndReputation(nickName ? nickName : user.uid, 'newPost', 'add', points);
         

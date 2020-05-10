@@ -171,21 +171,22 @@ const Stats = () => {
             
             Object.keys(data).map(day => {
                 
-                let dailyViews = 0; 
+                let count = 0; 
                 
                 Object.keys(data[day]).map(uid => {
                     
                     Object.keys(data[day][uid]).map(session => {
                         
-                        dailyViews = dailyViews + Object.keys(data[day][uid][session].pageviews ?? {}).length;
+                        count = count + Object.keys(data[day][uid][session].pageviews).length;
                         
                     });
                     
                 });
                 
-                pageviews.push(dailyViews);
+                pageviews.push(count);
                 
             });
+            
             
             return pageviews;
             
@@ -294,7 +295,7 @@ const Stats = () => {
                     
                     Object.keys(data[day][uid]).map(session => {
                         
-                        Object.keys(data[day][uid][session].pageviews ?? {}).map(pid => {
+                        Object.keys(data[day][uid][session].pageviews).map(pid => {
                             
                             array.push(data[day][uid][session].pageviews[pid].url);
                             
@@ -310,9 +311,7 @@ const Stats = () => {
             
             let duplicates  = unique.map(value => [value, array.filter(url => url === value).length ]);
             
-            duplicates.sort((a, b) => b[1] - a[1]);
-            
-            return array;
+            return duplicates.sort((a, b) => b[1] - a[1]);
         }
         
         let listener = firebase.database().ref(`analytics/`).limitToLast(interval).on('value', snapshot => {

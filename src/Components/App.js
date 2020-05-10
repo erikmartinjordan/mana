@@ -19,7 +19,7 @@ ReactGA.initialize('UA-87406650-1');
 
 const App  = ({history}) => {
     
-    const [branchKey, setBranchKey] = useState(null);
+    const [sessionId, setSessionId] = useState(null);
     
     let fingerprint = new Fingerprint().get();
 
@@ -32,24 +32,35 @@ const App  = ({history}) => {
     
     useEffect( () => {
         
-        let branch = ref.push({
-            
-            timeStampIni: date.getTime(),
-            timeStampEnd: date.getTime()
-            
-        });
-            
-        ref.child(`${branch.key}/pageviews`).push({ url: history.location.pathname });
+        let sessionId  = ref.push().key;
+        let pageviewId = ref.child(sessionId).push().key;
         
-        setBranchKey(branch.key);
+        let timeStamp = { 
+            timeStampIni: date.getTime(), 
+            timeStampEnd: date.getTime()
+        };
+        
+        let url = { 
+            url: history.location.pathname
+        };
+        
+        let updates = {};
+        
+        updates = timeStamp;
+        updates.pageviews = {};
+        updates.pageviews[pageviewId] = url;
+        
+        ref.child(sessionId).update(updates);
+        
+        setSessionId(sessionId);
         
     }, []);
     
     useEffect( () => {
         
-        if(branchKey){
+        if(sessionId){
             
-            ref.child(`${fingerprint}/${branchKey}/pageviews`).push({ url: history.location.pathname });
+            ref.child(`${fingerprint}/${sessionId}/pageviews`).push({ url: history.location.pathname });
             
         }
         
@@ -59,18 +70,18 @@ const App  = ({history}) => {
         
         let scrollListener;
         
-        if(branchKey && history.location.pathname !== '/estadisticas'){
+        if(sessionId && history.location.pathname !== '/estadisticas'){
             
             scrollListener = window.addEventListener('scroll', () => {
             
-                ref.child(`${branchKey}/timeStampEnd`).transaction( value => (new Date()).getTime() );
+                ref.child(`${sessionId}/timeStampEnd`).transaction( value => (new Date()).getTime() );
             
             });
         }
         
         return () => window.removeEventListener('scroll', scrollListener); 
         
-    }, [branchKey, history.location.pathname]);
+    }, [sessionId, history.location.pathname]);
     
     useEffect( () => {
         
