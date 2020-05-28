@@ -46,6 +46,9 @@
     margin-bottom: 0.5em;
     text-align: left;
 }
+.Question .Content ul{
+    max-width: none;
+}
 .Question .Content p,
 .Question .Content li{
     font-size: inherit;
