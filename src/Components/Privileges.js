@@ -11,7 +11,7 @@ const Privileges = () => {
     const [percentage, setPercentage]                   = useState(null);
     const [previousPrivileges, setPreviousPrivileges]   = useState([]);
     const [pointsNextPrivilege, setPointsNextPrivilege] = useState(null);
-    const [user,setUser]                                = useState({});
+    const [user, setUser]                               = useState({});
     const points                                        = GetPoints(user.uid)[0];
     const level                                         = GetLevel(points)[0];
     
@@ -79,7 +79,7 @@ const Privileges = () => {
     
     return(
         <React.Fragment>
-        { user
+        { user.uid
         ? <div className = 'Privileges'>
             <span className = 'Title'>Privilegios</span>
             <div className = 'Next'>
