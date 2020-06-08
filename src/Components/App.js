@@ -60,7 +60,7 @@ const App  = ({history}) => {
         
         if(sessionId){
             
-            ref.child(`${fingerprint}/${sessionId}/pageviews`).push({ url: history.location.pathname });
+            ref.child(`${sessionId}/pageviews`).push({ url: history.location.pathname });
             
         }
         
