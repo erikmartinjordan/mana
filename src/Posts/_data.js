@@ -3,16 +3,19 @@ var data = {
         'title': 'Buscando trabajo',
         'date': [1, 'Mayo', 2020],
         'description': 'Parece que el coronavirus está abandonando el país. Poco a poco, la situación volverá a la normalidad y, de cara al verano, espero que en este bendito país de pandereta estemos llevando una vida normal. Así que toca entrar otra vez en el mundo laboral (por cierto, momentazo para volver a poner la patita en él).',
+        'privat': true
     },
     'inadecuado': {
         'title': 'Las redes sociales me hacen sentir inadecuado',
         'date': [26, 'Abril', 2020],
         'description': 'Un *unfollow* de una persona que consideraba importante me ha hecho sentir mal durante todo el fin de semana. Sé que es una enorme gilipollez —con la de problemas graves que hay en la vida—. Lo sé, coño, lo sé, pero aun siendo consciente de ello, no consigo dejar de pensar en por qué lo ha hecho.',
+        'privat': true
     },
     'mal-2020': {
         'title': 'Un mal 2020',
         'date': [20, 'Abril', 2020],
         'description': 'Joer... Si el 2019 fue un año redondo, el 2020 es uno de los peores años que he vivido hasta la fecha.',
+        'privat': true
     },
     'abandonado': {
         'title': 'El lugar que no debiste abandonar',
