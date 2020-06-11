@@ -1,4 +1,9 @@
 var data = {
+    'rechazos': {
+        'title': 'Primeros rechazos',
+        'date': [11, 'Junio', 2020],
+        'description': 'Siempre me sucede algo parecido. Empiezo con muchas ganas a aplicar a diferentes ofertas de trabajo hasta que llegan los primeros rechazos.',
+    },
     'buscando-trabajo': {
         'title': 'Buscando trabajo',
         'date': [1, 'Mayo', 2020],
