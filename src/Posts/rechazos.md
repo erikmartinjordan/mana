@@ -4,11 +4,15 @@ Dicen que uno se acaba acostumbrando a que le digan que no, pero para mí, cada 
 
 ## Recapitulemos
 
-La oferta más interesante a la que me he presentado ha sido una de Agoda para trabajar como desarrollador de *software* en Bangkok. Era el puesto ideal. Trabajaría utilizando React, que es el *framework* de JavaScript que uso para todas las webs que he creado, en una empresa dedicada al negocio de los hoteles, una web que conozco a la perfección porque he utilizado sus servicios hasta la saciedad, las oficinas están en Central World, a cinco minutos de donde trabaja Chiang Muhu, el equipo internacional, pagan la reubicación, etc.
+La oferta más interesante a la que me he presentado ha sido una de Agoda para trabajar como desarrollador de *software* en Bangkok. Era el puesto ideal. 
+
+Trabajaría utilizando React, que es el *framework* de JavaScript que uso para todas las webs que he creado, en una empresa dedicada al negocio de los hoteles, una web que conozco a la perfección porque he utilizado sus servicios hasta la saciedad, las oficinas están en Central World, a cinco minutos de donde trabaja Chiang Muhu, el equipo internacional, pagan la reubicación, etc.
 
 Pues resulta que hice el test de programación de ochenta minutos que me enviaron y me fue bien, pero me dijeron «no».
 
-Luego hice otra prueba para desarrollador de *software* en remoto en Codility y más de lo mismo. El test me fue bien, pero «no» es lo que querían. Por último, ayer recibí otro «no» de una empresa de desarrollo web que tiene varias oficinas en el Sudeste Asiático, una de ellas en Bangkok. Tampoco. *Hostiaputajodercagoentodo*. 
+Luego hice otra prueba para desarrollador de *software* en remoto en Codility y más de lo mismo. El test me fue bien, pero «no» es lo que querían. 
+
+Por último, ayer recibí otro «no» de una empresa de desarrollo web que tiene varias oficinas en el Sudeste Asiático, una de ellas en Bangkok. Tampoco. *Hostiaputajodercagoentodo*. 
 
 ## Ya le llamaremos
 
@@ -22,15 +26,14 @@ Después de casi cinco años de inestabilidad y de ir dando palos de ciego, me g
 
 ## Chiang Muhu
 
-Cambiando de tercio. Chiang Muhu. Creo que, como sucedió la [otra vez](https://nomoresheet.es/san-valentin), la relación se enfría por momentos. Tengo miedo de que, aunque no lo busque, encuentre algo mejor. Ya sabemos lo que sucede en la vida. Marido —o novio en este caso— lejos del país donde se conocieron, inestable a nivel laboral, viene y va, extranjero. Mujer acaba encontrando pareja en su ciudad natal, con trabajo estable y buena posición económica. La paella estuvo bien, pero el *somtam* tira demasiado.
+Cambiando de tercio. Chiang Muhu. Creo que, como sucedió la [otra vez](https://nomoresheet.es/san-valentin), la relación se enfría por momentos. Tengo miedo de que, aunque ella no lo busque, encuentre algo mejor. Ya sabemos lo que sucede en la vida. Marido —o novio en este caso— lejos del país donde se conocieron, inestable a nivel laboral, viene y va, extranjero. Mujer acaba encontrando pareja en su ciudad natal, con trabajo estable y buena posición económica. La paella estuvo bien, pero el *somtam* tira demasiado.
 
 Conozco bien a Chiang Muhu y sé que no me fallaría. Me ha demostrado estar ahí en varios momentos en que la cosa se ponía bien fea. Pero eso no quita que tenga miedo de perderla... Vuelvo a cruzar los dedos. 
 
 Ayer se compró un iPhone 11 después de haber estado ahorrando durante seis meses. Es una genial noticia, pues su antiguo iPhone 6 se caía a pedazos, literalmente. 
 
-A principios de año acordamos apuntar en una lista las cosas que queríamos para este 2020 y ella apuntó:
+A principios de año acordamos apuntar en una lista las cosas que queríamos para este 2020 y en su lista figuraba el siguiente ítem:
 
 *New phone before june*. 
 
-Pues lo ha conseguido. Es una mujer de palabra. 
-
+Lo ha conseguido. Si algo me gusta de ella, es que si dice algo, pone toda la carne el asador por cumplirlo. 
