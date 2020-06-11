@@ -1,54 +1,29 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { Link }             from 'react-router-dom';
 import '../Styles/Footer.css';
 
-class Footer extends Component {
-    
-  constructor(){
-      super();
-      let date = new Date();
-      this.state = {
-          day: date.getDay(),
-          year: date.getFullYear(),
-          message: ' '
-      }
-  }
-    
-  componentDidMount = () => {
-      
-      let icon = ['🍩', '🏄🏻', '🤘', '🍉', '🍷', '🍭', '🍪', '🙌🏻', '🎉'];
-      let day;
-        
-      switch(this.state.day){
-        case 0: day = 'domingo';    break;
-        case 1: day = 'lunes';      break;
-        case 2: day = 'martes';     break;
-        case 3: day = 'miércoles';  break;
-        case 4: day = 'jueves';     break;
-        case 5: day = 'viernes';    break;
-        case 6: day = 'sábado';     break;
-        default: break;
-      }
-            
-      icon = icon[Math.floor(Math.random() * icon.length)];
-      
-      this.setState({ message: day + ' ' + icon});
-      
-      window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-            
-  }
+const Footer = () => {
   
-  componentDidUpdate = () => window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-    
-  render() {       
     return (
       <div className = 'Footer'>
         <div className = 'Wrap'>
-            <p>2015 — {this.state.year}, <span className = 'Logo'>Nomoresheet</span> por <a href = 'https://twitter.com/ErikMarJor' className = 'Twitter'>@ErikMarJor</a></p>
-            <p>Que tengas un buen {this.state.message}</p>
+            <div className = 'Column'>
+                <p>© {(new Date()).getFullYear()} Nomoresheet</p>
+            </div>
+            <div className = 'Column'>
+                <Link to = {'/'}>Comunidad</Link>
+                <Link to = {'/blog'}>Blog</Link>
+                <Link to = {'/acerca'}>Acerca</Link>
+                <Link to = {'/estadisticas'}>Estadísticas</Link>
+            </div>
+            <div className = 'Column'>
+                <Link to = {'/guias'}>Guías de publicación</Link>
+                <Link to = {'/privacidad'}>Privacidad</Link>
+            </div>
         </div>
       </div>
     );
-  }
+    
 }
 
 export default Footer;

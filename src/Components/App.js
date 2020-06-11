@@ -13,6 +13,8 @@ import Footer                         from './Footer';
 import Acerca                         from './Acerca';
 import PublicInfo                     from './PublicInfo';
 import Stats                          from './Stats';
+import Privacy                        from './Privacy';
+import Guidelines                     from './Guidelines';
 import '../Styles/App.css';
 
 ReactGA.initialize('UA-87406650-1');
@@ -60,7 +62,7 @@ const App  = ({history}) => {
         
         if(sessionId){
             
-            ref.child(`${fingerprint}/${sessionId}/pageviews`).push({ url: history.location.pathname });
+            ref.child(`${sessionId}/pageviews`).push({ url: history.location.pathname });
             
         }
         
@@ -100,6 +102,8 @@ const App  = ({history}) => {
                     <Route exact path = '/blog'                component = {Blog}/>
                     <Route exact path = '/acerca'              component = {Acerca}/>
                     <Route exact path = '/estadisticas'        component = {Stats}/>
+                    <Route exact path = '/privacidad'          component = {Privacy}/>
+                    <Route exact path = '/guias'               component = {Guidelines}/>
                     <Route path = '/comunidad/post/:string'    component = {Detail}/>
                     <Route path = '/@:string'                  component = {PublicInfo}/>
                     <Route path = '/:string'                   component = {Post}/>

@@ -1,5 +1,6 @@
 .Post{
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: 20px;
     width: 100%;
 }
@@ -147,9 +148,6 @@
 }
 .Content .Login-Box h3{
     margin-top: 1em;
-}
-.Content .Login-Box p{
-    line-height: 1.5;
 }
 .Content .Login-Box a{
     font-size: 14px;

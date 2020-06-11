@@ -2,11 +2,20 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     background: url('../Assets/wave.svg');
     background-size: cover;
     background-position: 60%;
-    min-height: 350px;
+    min-height: 200px;
+    padding: 20px;
+}
+.Footer .Wrap{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.Footer .Wrap .Column{
+    display: flex;
 }
 .Footer .Wrap *{
     color: white;
@@ -20,11 +29,19 @@
     font-family: 'Gentium Book Basic', serif;
     letter-spacing: 0.05em;
 }
-.Footer .Wrap a.Twitter{
-    box-shadow: inset 0 -6px 0 var(--greenMint); 
-    padding: 0px 0px 5px 0px;
+.Footer .Wrap a{
+    margin: 5px;
 }
 .Footer .Wrap .Footer-Menu span{
     text-transform: uppercase;
     margin: 5px;
+}
+@media (max-width: 600px){
+    
+    .Footer .Wrap{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    
 }
