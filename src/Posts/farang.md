@@ -19,7 +19,6 @@ Al principio, no me hacía gracia escuchar esta palabreja. Que si *farang* esto
 
 Después me explicaron que *farang* es una palabra neutra. En un contexto normal, es tan inocente como un anuncio de Dodot.
 
-Un *farang* es blanco leche
 Cuando uno cambia de país, se da cuenta de lo mutable que es el canon estético. Si en Europa una tez bronceada cotiza alto, sucede lo contrario en el Sudeste Asiático.
 
 En Asia, tener una tez pálida significa trabajar pocas horas bajo el sol, y por tanto, es un símbolo de cierto estatus. Sucede al revés que en Europa, donde lucir una piel morena significa currar poco tiempo bajo la luz de los fluorescentes.
