@@ -117,7 +117,7 @@ const ListNotifications = ({notifications, user, hide}) => {
     
     return (
         <React.Fragment>
-            {notificationsList.map( ({points, message, read, date, url}, index) => 
+            {notificationsList.map( ({points, message, read, date, url, replyId}, index) => 
                 <div key = {index} className = 'Notification'>
                     {notificationTitle(index) 
                     ? <div className = 'Notifications-Ago'>{notificationTitle(index)}</div> 
@@ -134,7 +134,7 @@ const ListNotifications = ({notifications, user, hide}) => {
                             }
                         </span>
                         <span className = 'Notifications-Message'>
-                            {url ? <Link onClick = {hide} to = {`/comunidad/post/${url}`}>{message}</Link> : message}
+                            {url ? <Link onClick = {hide} to = {`/comunidad/post/${url}/#${replyId}`}>{message}</Link> : message}
                             <TimeAgo formatter = {formatter} date = {date}/>
                         </span>
                     </div>

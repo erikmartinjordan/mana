@@ -55,7 +55,7 @@ const LikesComments = ({ authorId, postId, replyId }) => {
             let message  = snapshot.val().slice(0, 50) + '...';
             let url      = postId;
             
-            insertNotificationAndReputation(authorId, 'applause', 'add', points, url, message);
+            insertNotificationAndReputation(authorId, 'applause', 'add', points, url, message, postId, replyId);
             
         }
         else{
@@ -67,7 +67,7 @@ const LikesComments = ({ authorId, postId, replyId }) => {
             let message  = snapshot.val().slice(0, 50) + '...';
             let url      = postId;
             
-            insertNotificationAndReputation(authorId, 'applause', 'sub', points, url, message);
+            insertNotificationAndReputation(authorId, 'applause', 'sub', points, url, message, postId, replyId);
             
         }
         

@@ -109,7 +109,7 @@ const NewReply = ({postId}) => {
         let slicedReply = message.slice(0, 50) + '...';
         let url = postId;
         
-        firebase.database().ref(`posts/${postId}/replies`).push({
+        let replyId = firebase.database().ref(`posts/${postId}/replies`).push({
             
             message:    message,
             timeStamp:  now,
@@ -117,13 +117,13 @@ const NewReply = ({postId}) => {
             userUid:    nickName ? nickName : user.uid,
             userPhoto:  avatar   ? avatar   : user.photoURL
             
-        });
+        }).key;
         
         firebase.database().ref(`users/${nickName ? nickName : user.uid}/replies/timeStamp`).transaction(value => now);
         
         firebase.database().ref(`users/${nickName ? nickName : user.uid}/numReplies`).transaction(value => ~~value + 1);
         
-        insertNotificationAndReputation(nickName ? nickName : user.uid, 'reply', 'add', points, url, slicedReply);
+        insertNotificationAndReputation(nickName ? nickName : user.uid, 'reply', 'add', points, url, slicedReply, postId, replyId);
         
         alert('Bien', '¡Mensaje enviado!');
         
