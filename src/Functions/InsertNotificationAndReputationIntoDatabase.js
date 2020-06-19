@@ -2,7 +2,7 @@ import React            from 'react';
 import firebase, {auth} from './Firebase.js';
 import Points           from './PointsAndValues.js';
 
-const insertNotificationAndReputation = (uid, type, operator, points, url, message) => {
+const insertNotificationAndReputation = (uid, type, operator, points, url, message, postId, replyId) => {
     
     var replyPoints    = Points.reply;
     var newPostPoints  = Points.post;
@@ -11,21 +11,6 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
     var points         = points[0];
     
     switch(type){
-        
-        case 'reply':   
-            
-            firebase.database().ref('notifications/' + uid).push({  
-                
-                points: replyPoints,
-                message: message,
-                timeStamp: Date.now(),
-                url: url
-                
-            });
-            
-            firebase.database().ref('users/' + uid + '/reputationData/' + Date.now()).transaction(value => points + replyPoints); 
-            
-            break;
             
         case 'newPost': 
             
@@ -34,11 +19,30 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
                 points: newPostPoints,
                 message: message,
                 timeStamp: Date.now(),
-                url: url
+                url: url,
+                postId: postId,
+                replyId: replyId
               
             });
             
             firebase.database().ref('users/' + uid + '/reputationData/' + Date.now()).transaction(value => points + newPostPoints);
+            
+            break;
+        
+        case 'reply':   
+            
+            firebase.database().ref('notifications/' + uid).push({  
+                
+                points: replyPoints,
+                message: message,
+                timeStamp: Date.now(),
+                url: url,
+                postId: postId,
+                replyId: replyId
+                
+            });
+            
+            firebase.database().ref('users/' + uid + '/reputationData/' + Date.now()).transaction(value => points + replyPoints); 
             
             break;
             
@@ -51,7 +55,9 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
                     points: chiliPoints,
                     message: message,
                     timeStamp: Date.now(),
-                    url: url
+                    url: url,
+                    postId: postId,
+                    replyId: replyId
                     
                 }); 
                 
@@ -64,7 +70,10 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
                     points: -1 * chiliPoints,
                     message: message,
                     timeStamp: Date.now(),
-                    url: url
+                    url: url,
+                    postId: postId,
+                    replyId: replyId
+                    
                     
                 });
                 
@@ -82,7 +91,9 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
                     points: applausePoints,
                     message: message,
                     timeStamp: Date.now(),
-                    url: url
+                    url: url,
+                    postId: postId,
+                    replyId: replyId
                     
                 });
                 
@@ -95,7 +106,9 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
                     points: -1 * applausePoints,
                     message: message,
                     timeStamp: Date.now(),
-                    url: url
+                    url: url,
+                    postId: postId,
+                    replyId: replyId
                   
                 });
                 
