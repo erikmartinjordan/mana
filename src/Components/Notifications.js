@@ -1,5 +1,6 @@
 import React, { useState, useEffect }   from 'react';
 import TimeAgo                          from 'react-timeago';
+import { Link }                         from 'react-router-dom';
 import firebase, {auth}                 from '../Functions/Firebase';
 import last30DaysOrOlder                from '../Functions/ReturnDifferenceBetweenTwoDates';
 import ToggleButton                     from '../Functions/ToggleButton';
@@ -55,7 +56,7 @@ const Notifications = ({hide, user}) => {
                     : notifications === 'empty'
                     ? <EmptyNotifications/>
                     : displayNotifications === true
-                    ? <ListNotifications notifications = {notifications} user = {user}/>
+                    ? <ListNotifications notifications = {notifications} user = {user} hide = {hide}/>
                     : <NoDisplayNotifications/>
                     }
                 </div>
@@ -83,7 +84,7 @@ const ToggleNotifications = ({displayNotifications, setDisplayNotifications, use
     );
 }
 
-const ListNotifications = ({notifications, user}) => {
+const ListNotifications = ({notifications, user, hide}) => {
     
     const [notificationsList, setNotificationsList] = useState([]);
     
@@ -116,7 +117,7 @@ const ListNotifications = ({notifications, user}) => {
     
     return (
         <React.Fragment>
-            {notificationsList.map( ({points, message, read, date}, index) => 
+            {notificationsList.map( ({points, message, read, date, url}, index) => 
                 <div key = {index} className = 'Notification'>
                     {notificationTitle(index) 
                     ? <div className = 'Notifications-Ago'>{notificationTitle(index)}</div> 
@@ -133,7 +134,7 @@ const ListNotifications = ({notifications, user}) => {
                             }
                         </span>
                         <span className = 'Notifications-Message'>
-                            {message}
+                            {url ? <Link onClick = {hide} to = {`/comunidad/post/${url}`}>{message}</Link> : message}
                             <TimeAgo formatter = {formatter} date = {date}/>
                         </span>
                     </div>

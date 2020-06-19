@@ -49,15 +49,25 @@ const Likes = ({ authorId, postId }) => {
         if(userDidntVote){
             
             firebase.database().ref(`posts/${postId}/voteUsers/${user.uid}`).transaction(value => true);
-            firebase.database().ref(`users/${authorId}/numSpicy`).transaction(value => ~~value + 1)
-            insertNotificationAndReputation(authorId, 'chili', 'add', points);
+            firebase.database().ref(`users/${authorId}/numSpicy`).transaction(value => ~~value + 1);
+            
+            let snapshot = await firebase.database().ref(`posts/${postId}/title`).once('value');
+            let title    = snapshot.val().slice(0, 50) + '...';
+            let url      = postId;
+            
+            insertNotificationAndReputation(authorId, 'chili', 'add', points, url, title);
             
         }
         else{
             
             firebase.database().ref(`posts/${postId}/voteUsers/${user.uid}`).remove();
             firebase.database().ref(`users/${authorId}/numSpicy`).transaction(value => ~~value - 1);
-            insertNotificationAndReputation(authorId, 'chili', 'sub', points);
+            
+            let snapshot = await firebase.database().ref(`posts/${postId}/title`).once('value');
+            let title    = snapshot.val().slice(0, 50) + '...';
+            let url      = postId;
+            
+            insertNotificationAndReputation(authorId, 'chili', 'sub', points, url, title);
             
         }
 
