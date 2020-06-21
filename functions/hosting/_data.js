@@ -1,8 +1,13 @@
 var data = {
+    'estranged': {
+        'title': '«Estranged»: ¿es siempre la familia lo primero?',
+        'date': [21, 'Junio', 2020],
+        'description': 'La noción de que los lazos familiares deben ser indestructibles e infinitos, es un mito. La realidad es otra cosa.',
+    },
     'montjuic': {
         'title': 'Montjuïc: la otra',
         'date': [19, 'Junio', 2020],
-        'description': 'En Barcelona tenemos dos montañas; Montjuïc es una de ellas. La más famosa es la del Tibidabo, que además tiene un parque de atracciones. Montjuïc también lo tuvo, pero lo cerraron cuando tenía doce años o así. Es una lástima porque pasé varias jornadas la mar de entretenidas en aquel mítico parque de atracciones.',
+        'description': 'Paso las horas entre búsquedas de empleo, mayoritariamente en Bangkok, aunque me presento a todo lo que encaje relacionado con desarrollo *software* o web.',
     },
     'rechazos': {
         'title': 'Primeros rechazos',
