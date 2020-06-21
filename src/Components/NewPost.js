@@ -106,8 +106,10 @@ const NewPost = ({hide}) => {
     const sendPost = () => {
         
         let now = Date.now();
+        let slicedTitle = title.slice(0, 50) + '...';
+        let url, postId;
         
-        firebase.database().ref('posts/').push({
+        url = postId = firebase.database().ref('posts/').push({
             
             title:      title,
             message:    message,
@@ -116,13 +118,13 @@ const NewPost = ({hide}) => {
             userUid:    nickName ? nickName : user.uid,
             userPhoto:  avatar   ? avatar   : user.photoURL
             
-        });
+        }).key;
         
         firebase.database().ref(`users/${nickName ? nickName : user.uid}/posts/timeStamp`).transaction(value => now);
         
         firebase.database().ref(`users/${nickName ? nickName : user.uid}/numPosts`).transaction(value => ~~value + 1);
         
-        insertNotificationAndReputation(nickName ? nickName : user.uid, 'newPost', 'add', points);
+        insertNotificationAndReputation(nickName ? nickName : user.uid, 'newPost', 'add', points, url, slicedTitle, postId, null);
         
         alert('Bien', '¡Mensaje enviado!');
         

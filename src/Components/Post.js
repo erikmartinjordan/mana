@@ -38,6 +38,8 @@ const Post = () => {
         
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
         
+        window.scrollTo(0, 0);
+        
     });
     
     useEffect( () => {

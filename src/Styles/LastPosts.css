@@ -10,13 +10,17 @@
     line-height: 1.5;
 }
 .LastPosts .Info{
+    align-items: center;
+    display: flex;
     margin-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
 }
-.LastPosts .Info a{
-    border-bottom: 1px dotted var(--thirdFontColor);
-}
-.LastPosts a{
-    margin-bottom: 20px;
+.LastPosts .New{
+    background: var(--greenMint);
+    border-radius: 5px;
+    color: white;
+    font-size: x-small;
+    margin-left: 5px;
+    padding: 3px 5px;
 }

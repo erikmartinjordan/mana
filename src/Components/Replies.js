@@ -1,4 +1,5 @@
 import React, { useEffect, useState }  from 'react';
+import { useRef }                      from 'react';
 import ReactMarkdown                   from 'react-markdown';
 import buildFormatter                  from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings                  from 'react-timeago/lib/language-strings/es';
@@ -22,6 +23,8 @@ const formatter = buildFormatter(spanishStrings);
 const Replies = ({ admin, postId, uid }) => {
     
     const [replies, setReplies] = useState([]);
+    const replyRef              = useRef();
+    const scrollToReplyId       = window.location.href.split('#').pop();
     
     useEffect( () => {
         
@@ -43,10 +46,17 @@ const Replies = ({ admin, postId, uid }) => {
         
     }, [window.location.href]);
     
+    useEffect( () => {
+        
+        if(replyRef.current)
+            replyRef.current.scrollIntoView({behavior: 'smooth', block: 'center'});;
+        
+    }, [replyRef.current]);
+    
     return(
         <div className = 'Replies'>
             {Object.entries(replies).map( ([key, reply], index) => (
-                <div className = 'Reply' key = {key}>
+                <div className = {key === scrollToReplyId ? 'Reply Flash' : 'Reply'}  key = {key} ref = {key === scrollToReplyId ? replyRef : null}>
                     <div className = 'Header'>
                         <UserAvatar user = {{uid: reply.userUid, photoURL: reply.userPhoto}}/>
                         <div className = 'Author-Name-Date'> 

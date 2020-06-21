@@ -49,15 +49,25 @@ const LikesComments = ({ authorId, postId, replyId }) => {
         if(userDidntVote){
             
             firebase.database().ref(`posts/${postId}/replies/${replyId}/voteUsers/${user.uid}`).transaction(value => true);
-            firebase.database().ref(`users/${authorId}/numApplauses`).transaction(value => ~~value + 1)
-            insertNotificationAndReputation(authorId, 'applause', 'add', points);
+            firebase.database().ref(`users/${authorId}/numApplauses`).transaction(value => ~~value + 1);
+            
+            let snapshot = await firebase.database().ref(`posts/${postId}/replies/${replyId}/message`).once('value');
+            let message  = snapshot.val().slice(0, 50) + '...';
+            let url      = postId;
+            
+            insertNotificationAndReputation(authorId, 'applause', 'add', points, url, message, postId, replyId);
             
         }
         else{
             
             firebase.database().ref(`posts/${postId}/replies/${replyId}/voteUsers/${user.uid}`).remove();
             firebase.database().ref(`users/${authorId}/numApplauses`).transaction(value => ~~value - 1);
-            insertNotificationAndReputation(authorId, 'applause', 'sub', points);
+            
+            let snapshot = await firebase.database().ref(`posts/${postId}/replies/${replyId}/message`).once('value');
+            let message  = snapshot.val().slice(0, 50) + '...';
+            let url      = postId;
+            
+            insertNotificationAndReputation(authorId, 'applause', 'sub', points, url, message, postId, replyId);
             
         }
         
