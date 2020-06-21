@@ -18,6 +18,7 @@ const Post = () => {
     const [likes, setLikes]                     = useState('');
     const [login, setLogin]                     = useState(false);
     const [numPrivatePosts, setNumPrivatePosts] = useState(0);
+    const [premium, setPremium]                 = useState(false);
     const [privateArticle, setPrivateArticle]   = useState(false);
     const [superlikes, setSuperlikes]           = useState('');
     const [text, setText]                       = useState('');
@@ -59,6 +60,22 @@ const Post = () => {
         });
         
     }, []);
+    
+    useEffect( () => {
+        
+        if(user){
+            
+            firebase.database().ref(`users/${user.uid}/account`).on('value', snapshot => {
+                
+                console.log(snapshot.val());
+                
+                if(snapshot.val() === 'premium') setPremium(true);
+                
+            });
+            
+        }
+        
+    }, [user]);
     
     useEffect( () => {
         
@@ -189,6 +206,7 @@ const Post = () => {
                    user             = {user}
                    level            = {level}
                    levelLimit       = {levelLimit}
+                   premium          = {premium}
               />
             </React.Fragment>
             }
@@ -220,7 +238,7 @@ const Header = ({title, date, user, views, likes, superlikes, handleLikes, handl
     
 }
 
-const Content = ({text, privateArticle, numPrivatePosts, user, setLogin, level, levelLimit}) => {
+const Content = ({text, privateArticle, numPrivatePosts, user, setLogin, level, levelLimit, premium}) => {
     
     let twoParagraphs = text ? `${text.split('\n')[0]}\n\n${text.split('\n')[2]}\n\n` : null;
     
@@ -241,7 +259,7 @@ const Content = ({text, privateArticle, numPrivatePosts, user, setLogin, level, 
                     <a className = 'login' onClick = {() => setLogin(true)}>Acceder</a>
                 </div>    
               </React.Fragment>
-            : privateArticle && user && level < levelLimit
+            : privateArticle && user && level < levelLimit && !premium
             ? <React.Fragment>
                 <div className = 'Blur-Login'>
                     <ReactMarkdown 
