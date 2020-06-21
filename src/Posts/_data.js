@@ -1,4 +1,9 @@
 var data = {
+    'estranged': {
+        'title': '«Estranged»: ¿es siempre la familia lo primero?',
+        'date': [21, 'Junio', 2020],
+        'description': 'La noción de que los lazos familiares deben ser indestructibles e infinitos, es un mito. La realidad es otra cosa.',
+    },
     'montjuic': {
         'title': 'Montjuïc: la otra',
         'date': [19, 'Junio', 2020],
