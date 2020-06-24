@@ -165,7 +165,7 @@ exports.getStats  = functions.https.onRequest(async (request, response) => {
     // Writing the number of posts
     admin.database().ref(`/stats/${year}${month}`).set({
         
-        posts: articles,
+        posts: posts,
         articles: articles,
         users: users,
         
