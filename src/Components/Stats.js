@@ -364,9 +364,9 @@ const Stats = () => {
             }
             
             <div className = 'Fecha'>
-                <button onClick = {() => setInterval(1)}   className = {interval === 1   ? 'Selected' : null}>Día</button>
-                <button onClick = {() => setInterval(30)}  className = {interval === 30  ? 'Selected' : null}>Mes</button>
-                <button onClick = {() => setInterval(365)} className = {interval === 365 ? 'Selected' : null}>Año</button>
+                <button onClick = {() => setInterval(1)}   className = {interval === 1  ? 'Selected' : null}>Día</button>
+                <button onClick = {() => setInterval(7)}   className = {interval === 7  ? 'Selected' : null}>Semana</button>
+                <button onClick = {() => setInterval(30)}  className = {interval === 30 ? 'Selected' : null}>Mes</button>
             </div>
             
             <div className = 'Parrilla'>

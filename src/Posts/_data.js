@@ -5,6 +5,11 @@ var data = {
         'description': 'No volverá. Mi hermana se ha ido de casa. De un mes para otro, la cosa ha ido bastante rápido. Me quedo mirando el vacío de la habitación. Se me hace raro..',
         'private': true
     },
+    'olvidar-a-alguien': {
+        'title': 'Cómo olvidar a alguien',
+        'date': [23, 'Junio', 2020],
+        'description': 'No puedes olvidar a alguien voluntariamente. Cuanto más quieres olvidar a una persona, más piensas en ella, más aparece en tu cabeza y más tiempo permanece ahí dando vueltas.',
+    },
     'estranged': {
         'title': '«Estranged»: ¿es siempre la familia lo primero?',
         'date': [21, 'Junio', 2020],
