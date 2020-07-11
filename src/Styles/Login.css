@@ -66,6 +66,7 @@
 }
 @media (max-width: 768px){
    .Login{
-        padding: 20px;
+        height: 100vh;
+        padding: 5px;
     } 
 }

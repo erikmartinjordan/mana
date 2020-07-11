@@ -73,7 +73,7 @@ const Login = ({hide}) => {
             <div className = 'Login-wrap'>
                 <div style = {{display: 'flex', justifyContent: 'center'}}><NomoresheetLogo/></div>
                 <h3>Hola de nuevo</h3>
-                <p>Nomoresheet es una comunidad privada. Si accedes, podrás:</p>
+                <p>Necesitas identificarte para continuar. Si accedes, podrás:</p>
                 <ul>
                     <li>Leer artículos privados.</li>
                     <li>Publicar entradas en la comunidad.</li>
