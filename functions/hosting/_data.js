@@ -1,4 +1,10 @@
 var data = {
+    'hermana': {
+        'title': 'Mi hermana se ha ido de casa',
+        'date': [11, 'Julio', 2020],
+        'description': 'No volverá. Mi hermana se ha ido de casa. De un mes para otro, la cosa ha ido bastante rápido. Me quedo mirando el vacío de la habitación. Se me hace raro..',
+        'private': true
+    },
     'olvidar-a-alguien': {
         'title': 'Cómo olvidar a alguien',
         'date': [23, 'Junio', 2020],
@@ -8,6 +14,7 @@ var data = {
         'title': '«Estranged»: ¿es siempre la familia lo primero?',
         'date': [21, 'Junio', 2020],
         'description': 'La noción de que los lazos familiares deben ser indestructibles e infinitos, es un mito. La realidad es otra cosa.',
+        'private': true
     },
     'montjuic': {
         'title': 'Montjuïc: la otra',
