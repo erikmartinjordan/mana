@@ -1,7 +1,9 @@
 .Footer{
     align-items: center;
+    color: white;
     display: flex;
     flex-direction: column;
+    font-size: 12px;
     justify-content: flex-end;
     background: url('../Assets/wave.svg');
     background-size: cover;
@@ -11,16 +13,18 @@
 }
 .Footer .Wrap{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
 }
-.Footer .Wrap .Column{
+.Footer .Wrap .Column:first-child{
     display: flex;
+    justify-content: flex-start;
+    width: 100%;
 }
-.Footer .Wrap *{
-    color: white;
-    font-size: 12px;
-    text-align: center;
+.Footer .Wrap .Column:last-child{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 }
 .Footer .Wrap p{
     margin: 5px;
@@ -30,6 +34,7 @@
     letter-spacing: 0.05em;
 }
 .Footer .Wrap a{
+    color: white;
     margin: 5px;
 }
 .Footer .Wrap .Footer-Menu span{
