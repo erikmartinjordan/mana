@@ -1,6 +1,6 @@
 var data = {
     'hermana': {
-        'title': 'Mi hermana se ha ido de casa',
+        'title': 'Ok...',
         'date': [11, 'Julio', 2020],
         'description': 'No volverá. Mi hermana se ha ido de casa. De un mes para otro, la cosa ha ido bastante rápido. Me quedo mirando el vacío de la habitación. Se me hace raro..',
         'private': true
