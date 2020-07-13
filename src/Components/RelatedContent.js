@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link }                       from 'react-router-dom';
+import Loading                        from './Loading';
 import firebase                       from '../Functions/Firebase';
+import '../Styles/RelatedContent.css';
 
 const RelatedContent = () => {
     
     const [combo,   setCombo]   = useState([]); 
     const [random,  setRandom]  = useState([]);
     const [related, setRelated] = useState([]);
+    const url                   = window.location.pathname.split('/').pop();
     
     useEffect( () => {
         
@@ -26,7 +29,8 @@ const RelatedContent = () => {
             
             if(snapshot_3.val()){
              
-                let posts = Object.entries(snapshot_3.val()).map(([url, {title}]) => ({url, title}));
+                let posts = Object.entries(snapshot_3.val()).map(([url, {title}]) => ({url, title})).reverse();
+                
                 setRandom(posts);
                 
             }
@@ -42,13 +46,13 @@ const RelatedContent = () => {
         const getRelatedPosts = async (num) => {
             
             let ref = firebase.database().ref('posts');
-            let url = window.location.pathname.split('/').pop();
             
             let snapshot_1 = await ref.child(`${url}/related`).orderByChild('hits').limitToFirst(num).once('value');
             
             if(snapshot_1.val()){
                 
-                let posts = Object.entries(snapshot_1.val()).map(([url, {title}]) => ({url, title}));
+                let posts = Object.entries(snapshot_1.val()).map(([url, {title}]) => ({url, title})).reverse();
+                
                 setRelated(posts);
                 
             }
@@ -59,21 +63,17 @@ const RelatedContent = () => {
         
     }, []);
     
-    useEffect( () => {
+    useEffect( () => {     
         
-        if(random.length > 0 && related.length > 0){
-            
-            let unique = [...new Set([...random, ...related])];            
-            setCombo(unique);
-            
-        }
+        let unique = [...new Set([...related, ...random])].filter(post => post.url !== url);
+        
+        setCombo(unique);
         
     }, [random, related]);
     
     const updateRelated = (title, relatedUrl) => {
         
         let ref = firebase.database().ref('posts');
-        let url = window.location.pathname.split('/').pop();
         
         ref.child(`${url}/related/${relatedUrl}/title`).transaction(value => title);
         ref.child(`${url}/related/${relatedUrl}/hits`) .transaction(value => value + 1);
@@ -81,9 +81,17 @@ const RelatedContent = () => {
     }
     
     return(
-        <div className = 'Related'>
-            {combo.map(({url, title}) => <div><Link onClick = {() => updateRelated(title, url)} to = {url} >{title}</Link></div>)}
-        </div>
+        <React.Fragment>
+        { combo.length !== 0
+        ? <div className = 'RelatedContent'>
+            <span className = 'Title'>Relacionado</span>
+            <div className = 'Links'>
+                {combo.map(({url, title}) => <Link onClick = {() => updateRelated(title, url)} to = {url} >{title}</Link>)}
+            </div>
+          </div>
+        : <Loading type = 'RelatedContent'/>
+        }
+        </React.Fragment>
     );
     
 }
