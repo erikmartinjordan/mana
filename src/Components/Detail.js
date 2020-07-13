@@ -2,7 +2,7 @@ import React, { useState, useEffect }      from 'react';
 import Question                            from './Question';
 import Replies                             from './Replies';
 import Norms                               from './Norms';
-import Comments                            from './Comments';
+import RelatedContent                      from './RelatedContent';
 import NewReply                            from './NewReply';
 import Default                             from './Default';
 import Privileges                          from './Privileges';
@@ -64,7 +64,7 @@ const Detail = (props) => {
                     <div className = 'Sidebar'>
                         <Norms/>
                         <Privileges/>
-                        <Comments/>
+                        <RelatedContent/>
                     </div>
                 </div>
               </div>   
