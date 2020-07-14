@@ -12,14 +12,13 @@
 .RelatedContent .Links{
     padding: 10px;
 }
-.RelatedContent .Links a{
-    align-items: center;
-    color: var(--primaryFontColor);
-    display: flex;
-    justify-content: space-between;
+.RelatedContent .Links div{
     line-height: 1.3;
     margin-bottom: 10px;
-    text-decoration-color: var(--pastelGreen);
-    text-decoration-line: underline;
-    text-decoration-style: wavy;
+}
+.RelatedContent .Links div a{
+    align-items: center;
+    border-bottom: solid var(--bgColor);
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
