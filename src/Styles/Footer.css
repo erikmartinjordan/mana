@@ -49,4 +49,9 @@
         flex-direction: column;
     }
     
+    .Footer .Wrap .Column:first-child,
+    .Footer .Wrap .Column:last-child{
+        justify-content: center;
+    }
+    
 }
