@@ -9,6 +9,7 @@ const RelatedContent = () => {
     const [combo,   setCombo]   = useState([]); 
     const [random,  setRandom]  = useState([]);
     const [related, setRelated] = useState([]);
+    const [update, setUpdate]   = useState(0);
     const url                   = window.location.pathname.split('/').pop();
     
     useEffect( () => {
@@ -39,7 +40,7 @@ const RelatedContent = () => {
         
         getRandomPosts(5);
         
-    }, []);
+    }, [update]);
     
     useEffect( () => {
         
@@ -61,11 +62,15 @@ const RelatedContent = () => {
         
         getRelatedPosts(5);
         
-    }, []);
+    }, [update]);
     
-    useEffect( () => {     
+    useEffect( () => {    
         
-        let unique = [...new Set([...related, ...random])].filter(post => post.url !== url);
+        let seen   = {};
+        
+        let union  = [...related, ...random];
+        
+        let unique = union.filter(post => !seen[post.url] && (seen[post.url] = true) && post.url !== url ? true : false);
         
         setCombo(unique);
         
@@ -78,6 +83,10 @@ const RelatedContent = () => {
         ref.child(`${url}/related/${relatedUrl}/title`).transaction(value => title);
         ref.child(`${url}/related/${relatedUrl}/hits`) .transaction(value => value + 1);
         
+        setUpdate(update + 1);
+        
+        window.scrollTo(0, 0);
+        
     }
     
     return(
@@ -86,7 +95,7 @@ const RelatedContent = () => {
         ? <div className = 'RelatedContent'>
             <span className = 'Title'>Relacionado</span>
             <div className = 'Links'>
-                {combo.map(({url, title}) => <Link onClick = {() => updateRelated(title, url)} to = {url} >{title}</Link>)}
+                {combo.map(({url, title}, key) => <Link key = {key} onClick = {() => updateRelated(title, url)} to = {url} >{title}</Link>)}
             </div>
           </div>
         : <Loading type = 'RelatedContent'/>
