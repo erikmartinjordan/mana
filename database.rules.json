@@ -20,6 +20,9 @@
           },
           "views":{
             ".write": "true"
+          },
+          "related":{
+            ".write": "true"  
           }
         }
       },
