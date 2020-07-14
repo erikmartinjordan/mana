@@ -66,11 +66,21 @@ const RelatedContent = () => {
     
     useEffect( () => {    
         
-        let seen   = {};
+        let group = new Set();
         
-        let union  = [...related, ...random];
+        let union = [...related, ...random];
         
-        let unique = union.filter(post => !seen[post.url] && (seen[post.url] = true) && post.url !== url ? true : false);
+        let unique = union.filter(post => {
+            
+            let urlTitle = JSON.stringify(post);
+            
+            let groupHasPost = group.has(urlTitle);
+            
+            group.add(urlTitle)
+            
+            return groupHasPost ? false : true;
+            
+        });
         
         setCombo(unique);
         
@@ -95,7 +105,9 @@ const RelatedContent = () => {
         ? <div className = 'RelatedContent'>
             <span className = 'Title'>Relacionado</span>
             <div className = 'Links'>
-                {combo.map(({url, title}, key) => <Link key = {key} onClick = {() => updateRelated(title, url)} to = {url} >{title}</Link>)}
+                {combo.map(({url, title}, key) => 
+                    <div><Link key = {key} onClick = {() => updateRelated(title, url)} to = {url} >{title}</Link></div>
+                )}
             </div>
           </div>
         : <Loading type = 'RelatedContent'/>
