@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ReactGA                        from 'react-ga';
 import { Switch, Route, withRouter }  from 'react-router-dom';
-import firebase                       from '../Functions/Firebase';
 import Fingerprint                    from 'fingerprintjs';
 import Forum                          from './Forum';
 import Detail                         from './Detail';
@@ -15,9 +13,8 @@ import PublicInfo                     from './PublicInfo';
 import Stats                          from './Stats';
 import Privacy                        from './Privacy';
 import Guidelines                     from './Guidelines';
+import firebase                       from '../Functions/Firebase';
 import '../Styles/App.css';
-
-ReactGA.initialize('UA-87406650-1');
 
 const App  = ({history}) => {
     
@@ -84,12 +81,6 @@ const App  = ({history}) => {
         return () => window.removeEventListener('scroll', scrollListener); 
         
     }, [sessionId, history.location.pathname]);
-    
-    useEffect( () => {
-        
-        ReactGA.pageview(window.location.pathname + window.location.search); 
-        
-    }, []);
    
     return (
         <React.Fragment>
