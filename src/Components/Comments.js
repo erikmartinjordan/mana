@@ -38,7 +38,6 @@ const Comments = () => {
                     <div className = 'Claps'>👏  {Object.keys(comment.voteUsers ?? []).length}</div>
                 </Link>
                 )}
-                <Link style = {{display: 'block', textAlign: 'center', width: '100%', marginTop: '20px'}} to = '/'>Ver más temas</Link>
             </div>
         </div>
         : <Loading type = 'Comments'/>
