@@ -7,7 +7,10 @@ const Privacy = () => {
     return (
         <div className = 'Privacy'>
             <h2>Datos generados</h2>
-            <p>Las estadísticas de tráfico de la web se pueden consultar en <Link to = '/estadisticas'>este enlace</Link>. Nomoresheet también guarda datos de tráfico en Google Analytics. Los datos no tienen carácter personal; son anónimos. En un futuro, Nomoresheet quiere dejar de depender de aplicaciones de terceros para generar estadísticas de tráfico y los datos que se recojan tendrán carácter público y se podrán consultar en <Link to = '/estadisticas'>este enlace</Link>. </p>
+            <p>Las estadísticas de tráfico de la web se pueden consultar en <Link to = '/estadisticas'>este enlace</Link>. Nomoresheet no utiliza aplicaciones de terceros ni <em>cookies</em> para guardar información de los usuarios ni  para mejorar su experiencia. No hay rastreadores ni se venden datos a terceros.</p>
+            
+            <h2>Anuncios</h2>
+            <p>Actualmente, hay un anuncio de AirBnB que aparece en la barra lateral izquierda de la web. El anuncio se muestra para usuarios que no hayan iniciado sesión. En el resto de la web no hay ningún anuncio, tampoco artículos patrocinados. Si detectas algún enlace sospechoso de contenter publicidad, por favor, ponte en contacto vía <a href = 'https://twitter.com/@ErikMarJor' target = '_blank'>Twitter</a>.</p>
             
             <h2>Publicaciones</h2>
             <p>Es necesario tener una cuenta de Google para publicar. El inicio de sesión con una cuenta de Google permite controlar los mensajes de <em>bots</em> y evitar el <em>spam</em>.</p> 
@@ -15,8 +18,9 @@ const Privacy = () => {
             <p>Como usuario tienes derecho a borrar tu cuenta y todos tus mensajes serán anonimizados. El contenido de tus publicaciones no se eliminará pues puede seguir siendo relevante para otros usuarios.</p>
             
             <h2>Pagos</h2>
-            <p>Una cuenta <em>premium</em> permite obtener todos los privilegios de Nomoresheet de forma inmediata. Los pagos se realizan de forma segura vía <Link to = 'https://stripe.com/es'>Stripe</Link>.</p>
-            <p>Ojo, no es necesario tener una cuenta de pago para obtener todos los privilegios de una cuenta <em>premium</em>, también se pueden obtener sumando puntos y aumentando de nivel en la comunidad.</p>
+            <p>Una cuenta <em>premium</em> permite obtener todos los privilegios de Nomoresheet de forma inmediata. </p>
+            <p>En cualquier momento los usuarios pueden volver a una cuenta gratuita. Además, no es necesario tener una cuenta de pago para obtener todos los privilegios de una cuenta <em>premium</em>, también se pueden obtener sumando puntos y aumentando de nivel en la comunidad.</p>
+            <p>Los pagos se realizan de forma segura vía <a href = 'https://stripe.com/es' target = '_blank'>Stripe</a>.</p>
         </div>
     );
     
