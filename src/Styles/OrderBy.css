@@ -8,12 +8,11 @@
 .OrderBy div{
     border-radius: 50px;
     cursor: pointer;
+    display: flex;
     font-size: small;
+    justify-content: center;
     padding: 5px 15px;
     text-align: center;
-}
-.OrderBy img.emoji{
-    margin-left: 5px;
 }
 .OrderBy .Selected{
     background: var(--lightBlue);
