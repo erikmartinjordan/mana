@@ -111,7 +111,7 @@ const Nav = () => {
                         <div className = 'Separator'></div>
                         <NightModeToggleButton></NightModeToggleButton>
                         <div className = 'Separator'></div>
-                        <Link to = '/' onClick = {() => setPost(true)} className = 'login'>Publicar </Link>
+                        <Link to = '/' onClick = {() => setPost(true)} className = 'login'>Publicar</Link>
                         <div className = 'Separator'></div>
                         <div onClick = {() => auth.signOut().then(setUser(null))} className = 'Logout'>Cerrar sesión</div>
                         <div className = 'SignIn'>{lastSignIn}</div>
