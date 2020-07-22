@@ -40,12 +40,14 @@
 .LastQuestions .Question .Meta-Post{
     color: var(--primaryFontColor);
     display: flex;
+    flex-direction: column;
 }
 .LastQuestions .Question .Meta-Post .Likes,
 .LastQuestions .Question .Meta-Post .Num-Comments{
     align-items: center;
     display: flex;
     font-size: small;
+    justify-content: center;
     margin-right: 5px;
 }
 .LastQuestions .Question .Bottom-Card{
