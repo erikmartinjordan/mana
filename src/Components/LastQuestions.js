@@ -101,8 +101,10 @@ const LastQuestions = (props) => {
                                 {uniquePics(question)}
                             </div>
                             <div className = 'Num-Comments'>
-                                {Object.keys(question.replies).length === 1 
-                                ? `1 comentario` 
+                                { Object.keys(question.replies).length === 0 
+                                ? ``
+                                : Object.keys(question.replies).length === 1
+                                ? `1 comentario`
                                 : `${Object.keys(question.replies).length} comentarios`}
                             </div>
                         </div>
