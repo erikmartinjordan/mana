@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Link }                       from 'react-router-dom';
-import buildFormatter                 from 'react-timeago/lib/formatters/buildFormatter';
-import spanishStrings                 from 'react-timeago/lib/language-strings/es';
-import TimeAgo                        from 'react-timeago';
-import Loading                        from './Loading.js';
-import UserAvatar                     from '../Functions/UserAvatar';
-import firebase                       from '../Functions/Firebase';
+import React, { useEffect, useState }       from 'react';
+import { Link }                             from 'react-router-dom';
+import buildFormatter                       from 'react-timeago/lib/formatters/buildFormatter';
+import spanishStrings                       from 'react-timeago/lib/language-strings/es';
+import TimeAgo                              from 'react-timeago';
+import Loading                              from './Loading.js';
+import UserAvatar                           from '../Functions/UserAvatar';
+import firebase                             from '../Functions/Firebase';
+import { HeartIcon, CommentDiscussionIcon } from '@primer/octicons-react'
 import '../Styles/LastQuestions.css';
 
 const formatter = buildFormatter(spanishStrings);
@@ -96,14 +97,13 @@ const LastQuestions = (props) => {
                             </span>
                         </div>
                             <div className = 'Meta-Post'>
-                            <div className = 'Likes'>   
-                                🌶️ {question.voteUsers ? Object.keys(question.voteUsers).length : 0}
-                            </div>
-                            <div className = 'Num-Comments'>
-                                💬 {question.replies   ? Object.keys(question.replies).length   : 0}
-                            </div>
                             <div className = 'Multi-Pic'>
                                 {uniquePics(question)}
+                            </div>
+                            <div className = 'Num-Comments'>
+                                {Object.keys(question.replies).length === 1 
+                                ? `1 comentario` 
+                                : `${Object.keys(question.replies).length} comentarios`}
                             </div>
                         </div>
                         </div>
