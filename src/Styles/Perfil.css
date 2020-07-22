@@ -47,9 +47,8 @@
     cursor: pointer;
     display: flex;
 }
-.Perfil .Sidebar .First-Menu .Item img.emoji{
-    margin-left: 0!important;
-    margin-right: 5px!important;
+.Perfil .Sidebar .First-Menu .Item svg{
+    margin-right: 5px;
 }
 .Perfil .Sidebar .Last-Menu{
     color: var(--thirdFontColor);
@@ -186,7 +185,16 @@
     width: max-content;
 }
 @media (max-width: 768px){
-   .Perfil{
+    .Perfil{
         padding: 20px;
+    }
+    .Perfil-Wrap{
+        flex-direction: column;
+    }
+    .Perfil .Sidebar{
+        width: 100%;
+    }
+    .Perfil .Premium{
+        flex-direction: column;
     }
 }
