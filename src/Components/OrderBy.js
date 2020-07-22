@@ -1,19 +1,16 @@
 import React, { useEffect } from 'react';
 import '../Styles/OrderBy.css';
 
-const OrderBy = (props) => {
-        
-    useEffect( () => { 
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-    }) 
+const OrderBy = ({timeline, setTimeline}) => {
     
     return (
         <div className = 'OrderBy'>
-            <div onClick = {() => props.setTimeline('nuevo')}   className = {props.timeline === 'nuevo'   ? 'Selected' : null}>Nuevo 🔥</div>
-            <div onClick = {() => props.setTimeline('picante')} className = {props.timeline === 'picante' ? 'Selected' : null}>Picante 🌶</div>
-            <div onClick = {() => props.setTimeline('comentarios')} className = {props.timeline === 'comentarios' ? 'Selected' : null}>Comentarios 💬</div>
+            <div onClick = {() => setTimeline('nuevo')}  className = {timeline === 'nuevo' ? 'Selected' : null}>Nuevo</div>
+            <div onClick = {() => setTimeline('picante')} className = {timeline === 'picante' ? 'Selected' : null}>Picante</div>
+            <div onClick = {() => setTimeline('comentarios')} className = {timeline === 'comentarios' ? 'Selected' : null}>Comentarios </div>
         </div>
     );
+    
 }
 
 export default OrderBy;
