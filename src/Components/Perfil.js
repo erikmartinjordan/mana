@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import Login                          from './Login.js';
-import PaymentModal                   from './PaymentModal.js';
-import Points                         from '../Functions/PointsAndValues.js';
-import firebase, { auth }             from '../Functions/Firebase.js';
-import GetNumberOfPosts               from '../Functions/GetNumberOfPosts.js';
-import GetNumberOfReplies             from '../Functions/GetNumberOfReplies.js';
-import GetNumberOfSpicy               from '../Functions/GetNumberOfSpicy.js';
-import GetPoints                      from '../Functions/GetPoints.js';
-import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel.js';
-import ToggleButton                   from '../Functions/ToggleButton.js';
-import AnonymImg                      from '../Functions/AnonymImg.js';
-import DeleteAccount                  from '../Functions/DeleteAccount.js';
-import DowngradeToFreePlan            from '../Functions/DowngradeToFreePlan.js';
-import UserAvatar                     from '../Functions/UserAvatar.js';
-import Accounts                       from '../Rules/Accounts.js';
+import React, { useState, useEffect }       from 'react';
+import Login                                from './Login.js';
+import PaymentModal                         from './PaymentModal.js';
+import Points                               from '../Functions/PointsAndValues.js';
+import firebase, { auth }                   from '../Functions/Firebase.js';
+import GetNumberOfPosts                     from '../Functions/GetNumberOfPosts.js';
+import GetNumberOfReplies                   from '../Functions/GetNumberOfReplies.js';
+import GetNumberOfSpicy                     from '../Functions/GetNumberOfSpicy.js';
+import GetPoints                            from '../Functions/GetPoints.js';
+import GetLevel                             from '../Functions/GetLevelAndPointsToNextLevel.js';
+import ToggleButton                         from '../Functions/ToggleButton.js';
+import AnonymImg                            from '../Functions/AnonymImg.js';
+import DeleteAccount                        from '../Functions/DeleteAccount.js';
+import DowngradeToFreePlan                  from '../Functions/DowngradeToFreePlan.js';
+import UserAvatar                           from '../Functions/UserAvatar.js';
+import Accounts                             from '../Rules/Accounts.js';
+import { SmileyIcon, GraphIcon, StarIcon }  from '@primer/octicons-react';
 import '../Styles/Perfil.css';
 import '../Styles/UserAvatar.css';
 import '../Styles/ToggleButton.css';
@@ -22,7 +23,6 @@ const Perfil = (props) => {
 
     const [confirmation, setConfirmation]   = useState(false);
     const [infoUser, setInfoUser]           = useState(null);
-    const [lastSignIn, setLastSignIn]       = useState(null);
     const [menu, setMenu]                   = useState('Cuenta');
     const [nextPayment, setNextPayment]     = useState('');
     const [paymentModal, setPaymentModal]   = useState(false);
@@ -84,9 +84,6 @@ const Perfil = (props) => {
                 setRender(false);
                 setUser(user);
                 setUid(user.uid);
-                setLastSignIn(`Has accedido por última vez: 
-                            ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} 
-                            a las ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`);
             }
         });
 
@@ -151,12 +148,9 @@ const Perfil = (props) => {
                 <div className = 'Sidebar'>
                     <div className = 'First-Menu'>
                         <div className = 'Menu-Title'>Menú</div>
-                        <div className = 'Item' onClick = {() => setMenu('Cuenta')}>🐨 Cuenta</div>
-                        <div className = 'Item' onClick = {() => setMenu('Datos')}>📈 Datos</div>
-                        <div className = 'Item' onClick = {() => setMenu('Premium')}>✨ Premium</div>
-                    </div>
-                    <div className = 'Last-Menu'>
-                        {lastSignIn}
+                        <div className = 'Item' onClick = {() => setMenu('Cuenta')}><SmileyIcon/>Cuenta</div>
+                        <div className = 'Item' onClick = {() => setMenu('Datos')}><GraphIcon/>Datos</div>
+                        <div className = 'Item' onClick = {() => setMenu('Premium')}><StarIcon/> Premium</div>
                     </div>
                 </div>
                 {menu === 'Cuenta' &&
