@@ -153,14 +153,14 @@ const Ad = () => {
             
             "campaign": 'Amazon',
             "link": 'https://amzn.to/39lC2sk',
-            "text": 'Auriculares inalámbricos por menos de 30 euros'
+            "text": 'Los auriculares inalámbricos de AUKEY cuestan menos de 30 euros'
             
         },
         {
             
             "campaign": 'Agoda',
             "link": 'https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1772106&city=9395',
-            "text": 'Agoda para hoteles baratos'
+            "text": '¿Conoces Agoda? Es igual que Booking pero las reservas son más baratas.'
             
         }
         
