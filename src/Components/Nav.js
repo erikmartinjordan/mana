@@ -1,6 +1,7 @@
 import React, { useState, useEffect }   from 'react';
 import { Link }                         from 'react-router-dom';
 import Fingerprint                      from 'fingerprintjs';
+import moment                           from 'moment';
 import Login                            from './Login';
 import Notifications                    from './Notifications';
 import Perfil                           from './Perfil';
@@ -82,7 +83,7 @@ const Nav = () => {
                     <Link to = '/acerca'>Acerca</Link>
                     <NightModeToggleButton></NightModeToggleButton>
                     <a onClick = {() => setLogin(true)} className = 'login'>Acceder</a>
-                    <AirBnB/>
+                    <Ad/>
                 </React.Fragment>;  
     }
   
@@ -138,22 +139,49 @@ const Nav = () => {
 export default Nav;
 
 
-const AirBnB = () => {
+const Ad = () => {
     
-     const handleAd = () => {
+    const ads = [
+        
+        {
+            "campaign": 'AirBnB',
+            "link": 'https://www.airbnb.es/c/erikm3737?currency=EUR',
+            "text": 'Obtén 34 euros de descuento en tu primera reserva de AirBnB'
+            
+        },
+        {
+            
+            "campaign": 'Amazon',
+            "link": 'https://amzn.to/39lC2sk',
+            "text": 'Auriculares inalámbricos por menos de 30 euros'
+            
+        },
+        {
+            
+            "campaign": 'Agoda',
+            "link": 'https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1772106&city=9395',
+            "text": 'Agoda para hoteles baratos'
+            
+        }
+        
+    ]
+    
+    const [random, setRandom] = useState(Math.floor(ads.length * Math.random()));
+    
+    const handleAd = (campaign) => {
         
         var fingerprint = new Fingerprint().get();
+        var date        = moment().format('YYYYMMDD');
         
-        firebase.database().ref(`ads/${fingerprint}/clicks/`).transaction(value => value + 1);
+        firebase.database().ref(`ads/${campaign}/${date}/${fingerprint}/clicks/`).transaction(value => value + 1);
     }
     
     return(
         
-        <a className = 'Ad' href = 'https://www.airbnb.es/c/erikm3737?currency=EUR' onClick = {() => handleAd()} target = '_blank' rel = 'noopener noreferrer nofollow'>
+        <a className = 'Ad' href = {ads[random].link} onClick = {() => handleAd(ads[random].campaign)} target = '_blank' rel = 'noopener noreferrer nofollow'>
             <span className = 'Title'>Anuncio</span>
-            <p>Obtén 34 euros de descuento en tu primera reserva de AirBnB.</p>
+            <p>{ads[random].text}</p>
         </a>
     );
-    
     
 }
