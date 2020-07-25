@@ -1,0 +1,26 @@
+.Welcome{
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 2;
+}
+.Welcome .Welcome-wrap{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
+                rgba(15, 15, 15, 0.2) 0px 5px 10px, 
+                rgba(15, 15, 15, 0.4) 0px 15px 40px;
+    padding: 20px;
+    width: 600px;
+    z-index: 2;
+}
+.Welcome .Progress{
+    height: 100px;
+    margin: auto;
+    width: 100px;
+}
