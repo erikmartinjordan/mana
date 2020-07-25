@@ -1,37 +1,50 @@
-import React, { useState, useEffect }   from 'react';
-import {CardElement, injectStripe}      from 'react-stripe-elements';
-import firebase, { auth }               from '../Functions/Firebase.js';
-import Loading                          from '../Components/Loading.js';
+import React, { useState, useEffect } from 'react';
+import {CardElement, injectStripe}    from 'react-stripe-elements';
+import moment                         from 'moment';
+import firebase, { auth }             from '../Functions/Firebase.js';
+import Loading                        from '../Components/Loading.js';
+import 'moment/locale/es';
 
 const CheckoutForm = (props) => {
     
     const [payment, setPayment] = useState(false);
-    const [price, setPrice] = useState('');
-    const [user, setUser] = useState(null);
-    const date = new Date();
+    const [price, setPrice]     = useState('');
+    const [user, setUser]       = useState(null);
     
-    useEffect( () => auth.onAuthStateChanged( user => { if(user) setUser(user) }), []);
+    useEffect(() => {
+        
+        auth.onAuthStateChanged(user => { 
             
+            if(user) 
+                setUser(user);
+            
+        });
+        
+    }, []);
+    
     const submit = async (ev) => {
         
         setPayment('processing');
-
-        let {token} = await props.stripe.createToken({name: user.uid});
-        let response = await fetch("https://us-central1-payment-hub-6543e.cloudfunctions.net/subscriptionNomoresheet", {
+        
+        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/subscriptionNomoresheet';
+        
+        let {token}  = await props.stripe.createToken({name: user.uid});
+        
+        let response = await fetch(fetchURL, {
+            
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({stripeToken: token.id, userEmail: user.email})
-        });
             
+        });
+        
         if (response.ok) {
             
             let data = await response.json();
+            
             let subscriptionId = data.subscriptionId;
             
-            // Push account = premium for user
             firebase.database().ref('users/' + user.uid  + '/account').transaction(value => 'premium');
-            
-            // Setting subscription id
             firebase.database().ref('users/' + user.uid + '/subscriptionId').transaction(value => subscriptionId);
             
             setPayment(true);
@@ -43,12 +56,11 @@ const CheckoutForm = (props) => {
         { payment === false || payment === 'processing'
         ? <div className = 'Modal-Wrap'>
                 <h2>{user && user.displayName}:</h2>
-                <p>Después de introducir el número de la tarjeta, pagarás un importe de {props.price} € y serás miembro <em>premium</em> de Nomoresheet hasta el {date.getDate() + '/' + (date.getMonth() + 1) + '/' + (date.getFullYear() + 1)}.</p>
+                <p>Después de suscribirte, serás miembro <em>premium</em> de Nomoresheet hasta el {moment().locale('es').add(1, 'year').format('LL')}.</p>
                 <CardElement hidePostalCode = {true}/>
                 <div className = 'Total'>
                     <div className = 'Price'>{props.price} € <span className = 'info'>anuales</span></div>
                     <button onClick = {props.hide} className = 'Cancel'>Cancelar</button>
-                    { /* Payment button shows loading bar after clicking it */}
                     { payment === 'processing'
                     ? <Loading/>
                     : <button onClick = {() => submit()}>Pagar</button>
