@@ -13,6 +13,7 @@ import PublicInfo                     from './PublicInfo';
 import Stats                          from './Stats';
 import Privacy                        from './Privacy';
 import Guidelines                     from './Guidelines';
+import Helper                         from './Helper';
 import firebase                       from '../Functions/Firebase';
 import '../Styles/App.css';
 
@@ -84,6 +85,7 @@ const App  = ({history}) => {
    
     return (
         <React.Fragment>
+            <Helper/>
             <div className = 'Title-Menu'>
                 <Switch key = 'A'>
                     <Route                                     component = {Nav}/>
