@@ -42,13 +42,9 @@ const Perfil = (props) => {
     
     useEffect( () => {
         
-        // Meta and title
         document.title = 'Perfil – Nomoresheet'; 
         document.querySelector('meta[name="description"]').content = 'Este es tu perfil en Nomoresheet...';   
         
-        // Drawing emojis in svg
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-                
     });
         
     useEffect( () => {
@@ -58,23 +54,19 @@ const Perfil = (props) => {
             if(user){
               
                 var date = new Date(parseInt(user.metadata.b));
-                                
+                
                 firebase.database().ref('users/' + user.uid).on( 'value', (snapshot) => {
                     
                     if(snapshot.val()){
                         
-                        // Getting info of the user
                         let infoUser = snapshot.val();
                         
-                        // Getting info of next Payment if user is Premium
                         if(infoUser.account === 'premium' && infoUser.subscriptionId) 
                             getNextPaymentInfo(infoUser.subscriptionId);
                         
-                        // If user hasn't subscription Id, he/she has an infinite premium account
                         if(infoUser.account === 'premium' && !infoUser.subscriptionId)
                             setNextPayment('∞');
                         
-                        // Seting info of the user
                         setInfoUser(snapshot.val());
                         
                     }
@@ -92,10 +84,8 @@ const Perfil = (props) => {
     
     const getNextPaymentInfo = async (subscriptionId) => {
         
-        // URL to fetch
         let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/nextPaymentNomoresheet';
-            
-        // Waiting for response
+        
         let response = await fetch(fetchURL, {
             
             method: 'POST',
@@ -103,17 +93,13 @@ const Perfil = (props) => {
             body: JSON.stringify({subscriptionId: subscriptionId})
             
         });
-            
-        // If response ok, update state
+        
         if(response.ok){
             
-            // Waiting for next Payment
             let data = await response.json();
             
-            // Setting date
             let date = (new Date(data.nextPaymentDate * 1000)).toLocaleDateString();
             
-            // Setting state
             setNextPayment(date);
             
         }
@@ -124,7 +110,6 @@ const Perfil = (props) => {
 
         firebase.database().ref('users/' + user.uid + '/anonimo/').transaction( (value) =>  {
 
-            // Anonymize name and avatar
             if(value === null || value === false){
                 
                 firebase.database().ref('users/' + user.uid + '/nickName/').transaction( (value) => {
@@ -136,9 +121,8 @@ const Perfil = (props) => {
                 
             }
             
-            // Returning res
             return value === null ? true : !value; 
-
+            
         });
     }
        
