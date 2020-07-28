@@ -73,6 +73,9 @@ const Replies = ({ admin, postId, uid }) => {
                         </div>
                         </Linkify>
                     </div>
+                    <div className = 'Info'>
+                        {reply.edited ? `Editado: ${moment(reply.edited).calendar()}` : null}
+                    </div>
                 </div>
             ))}
         </div> 

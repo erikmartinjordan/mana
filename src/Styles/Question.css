@@ -103,3 +103,7 @@
     align-items: center;
     justify-content: flex-end;
 }
+.Question .Info{
+    color: var(--thirdFontColor);
+    font-size: small;
+}

@@ -105,6 +105,10 @@
     align-items: center;
     justify-content: flex-end;
 }
+.Reply .Info{
+    color: var(--thirdFontColor);
+    font-size: small;
+}
 @keyframes backgroundSwap {
   from {background: var(--greenMint);}
   to   {background: var(--bgBox);}

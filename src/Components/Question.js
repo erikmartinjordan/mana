@@ -70,6 +70,9 @@ const Question = ({ admin, postId, setTitle, uid }) => {
                         <DeletePost type = 'post' postId = {postId} authorId = {question.userUid} admin = {admin} uid = {uid}/>
                     </div>
             </div>
+            <div className = 'Info'>
+                {question.edited ? `Editado: ${moment(question.edited).calendar()}` : null}
+            </div>
          </div> 
         : <Loading type = 'Question'/>
         }
