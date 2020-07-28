@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown                  from 'react-markdown';
 import { Link }                       from 'react-router-dom';
-import buildFormatter                 from 'react-timeago/lib/formatters/buildFormatter';
-import spanishStrings                 from 'react-timeago/lib/language-strings/es';
-import TimeAgo                        from 'react-timeago';
+import moment                         from 'moment';
 import Linkify                        from 'react-linkify';
 import Verified                       from './Verified';
 import PublicInfo                     from './PublicInfo';
@@ -17,8 +15,6 @@ import GetPoints                      from '../Functions/GetPoints';
 import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel';
 import Accounts                       from '../Rules/Accounts';
 import '../Styles/Question.css';
-
-const formatter = buildFormatter(spanishStrings);
 
 const Question = ({ admin, postId, setTitle, uid }) => {
 
@@ -63,7 +59,7 @@ const Question = ({ admin, postId, setTitle, uid }) => {
                         <Link to = {'/@' + question.userUid}>{question.userName}</Link> 
                         <Verified   uid = {question.userUid}/>
                     </span>
-                    <TimeAgo formatter = {formatter} date = {question.timeStamp}/>
+                    <time>{moment(question.timeStamp).fromNow()}</time>
                 </div>
             </div>
             <div className = 'Content'>
