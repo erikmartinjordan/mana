@@ -14,6 +14,7 @@ import AnonymName                           from '../Functions/AnonymName';
 import DeleteAccount                        from '../Functions/DeleteAccount';
 import DowngradeToFreePlan                  from '../Functions/DowngradeToFreePlan';
 import UserAvatar                           from '../Functions/UserAvatar';
+import { premium, infinita }                from '../Functions/Stripe';
 import Accounts                             from '../Rules/Accounts';
 import { SmileyIcon, GraphIcon, StarIcon }  from '@primer/octicons-react';
 import '../Styles/Perfil.css';
@@ -280,9 +281,11 @@ const Premium = ({user, infoUser}) => {
                         <span className = 'Quantity'>0 €</span>
                         <span className = 'Comment'></span>
                     </div>
-                    {infoUser?.account === 'premium' || infoUser?.account === 'infinita'
-                    ?   <button onClick = {() => {setConfirmation(true)}} className = 'send'>Apuntarse</button>
-                    :   <div className = 'current'>Plan actual</div>   
+                    { !infoUser?.account
+                    ? <div className = 'current'>Plan actual</div>
+                    : infoUser?.account === 'premium'
+                    ? <button onClick = {() => {setConfirmation(true)}} className = 'send'>Apuntarse</button>
+                    : <button disabled = {true} className = 'send'>Tienes tarifa infinita</button>
                     }
                     <ul className = 'Features'>
                         <li>Vota artículos</li>
@@ -294,12 +297,14 @@ const Premium = ({user, infoUser}) => {
                 <div className = 'Account-Block'>
                     <div className = 'Account-Type'>Premium</div>
                     <div className = 'Price'>
-                        <span className = 'Quantity'>19 €</span>
+                        <span className = 'Quantity'>{premium.value} €</span>
                         <span className = 'Comment'>anuales</span>
                     </div>
-                    {infoUser?.account === 'premium' && infoUser.subscriptionId
-                    ?   <div className = 'current'>Plan actual</div>
-                    :   <button onClick = {() => setPaymentModal('premium')} className = 'send'>Apuntarse</button>
+                    { !infoUser?.account
+                    ? <button onClick = {() => setPaymentModal('premium')} className = 'send'>Apuntarse</button>
+                    : infoUser?.account === 'premium'
+                    ? <div className = 'current'>Plan actual</div>
+                    : <button disabled = {true} className = 'send'>Tienes tarifa infinita</button>
                     }
                     <ul className = 'Features'>
                         <li>Vota artículos</li>
@@ -316,7 +321,7 @@ const Premium = ({user, infoUser}) => {
                 <div className = 'Account-Block'>
                     <div className = 'Account-Type'>Infinita</div>
                     <div className = 'Price'>
-                        <span className = 'Quantity'>29 €</span>
+                        <span className = 'Quantity'>{infinita.value} €</span>
                         <span className = 'Comment'>en un único pago</span>
                     </div>
                     {infoUser?.account === 'infinita' && !infoUser.subscriptionId
