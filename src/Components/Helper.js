@@ -60,7 +60,7 @@ const Helper = () => {
                 <div className = 'Welcome-wrap'>
                     <UserAvatar user = {user} allowAnonymousUser = {true}/>
                     <h2>{user.displayName}</h2>
-                    <p>Ahora eres un usuario PRO. Como tal, esta es tu nueva configuración:</p>
+                    <p>Ahora eres PRO. Como tal, esta es tu nueva configuración:</p>
                     {accounts.premium.privileges.map(privilege => <li>{privilege}</li>)}
                     <button className = 'bottom' onClick = {() => closeWelcome()}>Vale</button>
                 </div>
