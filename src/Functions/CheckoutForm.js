@@ -1,12 +1,13 @@
 import React, { useState, useEffect }  from 'react';
 import {CardElement, injectStripe}     from 'react-stripe-elements';
 import moment                          from 'moment';
-import firebase, { auth }              from '../Functions/Firebase';
 import Loading                         from '../Components/Loading';
 import { ReactComponent as Checkmark } from '../Assets/checkmark.svg';
+import firebase, { auth, environment } from '../Functions/Firebase';
+import { premium, infinita }           from '../Functions/Stripe';
 import 'moment/locale/es';
 
-const CheckoutForm = ({plan, environment, stripe, hide}) => {
+const CheckoutForm = ({hide, plan, stripe}) => {
     
     const [payment, setPayment] = useState(false);
     const [user, setUser]       = useState(null);
@@ -27,11 +28,24 @@ const CheckoutForm = ({plan, environment, stripe, hide}) => {
         setPayment('processing');
         
         let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/';
+        let price;
         
-        if(plan === 'premium')  fetchURL += 'subscriptionNomoresheet';
-        if(plan === 'infinita') fetchURL += 'oneTimePaymentNomoresheet';
+        if(plan === 'premium'){
+            
+            fetchURL += 'subscriptionNomoresheet';
+            price     = premium.id;
+            
+        }
+        if(plan === 'infinita'){
+            
+            fetchURL += 'oneTimePaymentNomoresheet';
+            price     = infinita.id;
+            
+        }
         
         let {token}  = await stripe.createToken({name: user.uid});
+        
+        console.log(environment, price, token.id, user.email);
         
         let response = await fetch(fetchURL, {
             
@@ -39,6 +53,7 @@ const CheckoutForm = ({plan, environment, stripe, hide}) => {
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({
                 environment: environment,
+                priceId: price,
                 stripeToken: token.id, 
                 userEmail: user.email
             })
@@ -76,20 +91,25 @@ const CheckoutForm = ({plan, environment, stripe, hide}) => {
                 <h2>{user?.displayName}</h2>
                 <p>Tendrás una tarifa <em>{plan}</em> hasta el
                 { plan === 'premium'
-                ? moment().locale('es').add(1, 'year').format('LL')
-                : '∞'
+                ? ` ${moment().locale('es').add(1, 'year').format('LL')}.`
+                : ' ∞.'
                 }
                 </p>
                 <CardElement hidePostalCode = {true}/>
                 <div className = 'Total'>
                     <div className = 'Price'>
                         { plan === 'premium' 
-                        ? <div>19 € <span className = 'info'>anuales</span></div>
-                        : <div>29 € <span className = 'info'>en un único pago</span></div>
+                        ? <div>{premium.value} €  <span className = 'info'>anuales</span></div>
+                        : <div>{infinita.value} € </div>
                         }
                     </div>
                     <button onClick = {hide} className = 'Cancel'>Cancelar</button>
-                    <button onClick = {submit}>Pagar</button>   
+                    <button onClick = {submit}>
+                        { payment === 'processing'
+                        ? <Loading/>
+                        : 'Pagar'
+                        }
+                    </button>   
                 </div>
                 <span className = 'Info-Payment'>
                     { plan === 'premium' 
