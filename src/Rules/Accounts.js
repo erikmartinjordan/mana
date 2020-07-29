@@ -161,6 +161,25 @@ var accounts = {
         'edit': true,
         'mdformat': true,
         'privileges': ['Sin anuncios', 'Publicaciones de 1100 caracteres', 'Publicaciones de 2200 caracteres', 'Publicaciones de 4400 caracteres', 'Publicaciones de longitud ∞', 'Tiempo ilimitado entre respuestas', 'Tiempo ilimitado entre publicaciones', 'Borrado de mensajes', 'Edición de mensajes', 'Publicaciones en formato md', `Badge de usuario 'Pro'`, 'Mensajes anónimos']
+    },
+    'infinita': {
+        'vote': true,
+        'messages': {
+            'maxLength': 99999,
+            'timeSpanPosts': 0,
+            'timeSpanReplies': 0,
+        },
+        'notifications': true,
+        'points': true,
+        'levels': true,
+        'anonymMessages': true,
+        'deleteMessages': true,
+        'profileViews': true,
+        'badge': true,
+        'nightMode': true,
+        'edit': true,
+        'mdformat': true,
+        'privileges': ['Sin anuncios', 'Publicaciones de 1100 caracteres', 'Publicaciones de 2200 caracteres', 'Publicaciones de 4400 caracteres', 'Publicaciones de longitud ∞', 'Tiempo ilimitado entre respuestas', 'Tiempo ilimitado entre publicaciones', 'Borrado de mensajes', 'Edición de mensajes', 'Publicaciones en formato md', `Badge de usuario 'Pro'`, 'Mensajes anónimos']
     }
 }
 
