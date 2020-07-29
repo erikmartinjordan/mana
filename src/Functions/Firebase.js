@@ -1,11 +1,11 @@
-import firebase from 'firebase'
+import firebase from 'firebase';
 
 ///////////////////////////////////////////////
 //Modify this line to set the environment
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
-let environment = 'PRO';
+export let environment = 'PRE';
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
@@ -18,8 +18,7 @@ var configPRE = {
     storageBucket: "nomoresheet-pre.appspot.com",
     messagingSenderId: "809572059318",
     appId: "1:809572059318:web:dcbab69066a1dddc"
-}
-
+};
 var configPRO = {
     apiKey: "AIzaSyCI6dpu54CeFd1NOH5s7B-sHeK3KdEH5KU",
     authDomain: "nomoresheet-forum.firebaseapp.com",
@@ -27,10 +26,9 @@ var configPRO = {
     projectId: "nomoresheet-forum",
     storageBucket: "nomoresheet-forum.appspot.com",
     messagingSenderId: "878815391785"
-  };
+};
 
 firebase.initializeApp(environment === 'PRE' ? configPRE : configPRO);
-
 
 export const fetchAdmin = async (user) => {
     
@@ -57,7 +55,7 @@ export const fetchAdmin = async (user) => {
     return isAdmin;
     
 }
-export const provider = new firebase.auth.GoogleAuthProvider();
-export const auth = firebase.auth();
+export const provider   = new firebase.auth.GoogleAuthProvider();
+export const auth       = firebase.auth();
 export const storageRef = firebase.storage().ref();
 export default firebase;
