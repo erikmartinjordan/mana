@@ -122,6 +122,7 @@
 .Perfil .Premium .Account-Block{
     display: flex;
     flex-direction: column;
+    width: 30%;
 }
 .Perfil .Premium .Account-Block ul.Features{
     background: var(--bgColor);
