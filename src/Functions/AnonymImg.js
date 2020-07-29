@@ -1,7 +1,5 @@
 import React from 'react';
-//
-// Returns a base64 img encoded random image
-//
+
 const AnonymImg = () => {
         
       var url = [];
@@ -13,7 +11,7 @@ const AnonymImg = () => {
       url[2] = 'https://lh3.googleusercontent.com/O5sWVH4x8Rtd4p0caen360NRy_indNGqkuojOMjqoHgvXMYKKOamg_DV7YVq3uJk9gQ_fjVaJAF73hgo3e7c9ApFYJ3iFwOecmqEwk29Ov3k4_LiqrqhJXJ4BRqRLbiKbWKNF3khGgbq_NOzjdMRegBcT6pY1ykQVMPaDT0bu1vzMbBMdLDeh6VdusQDxacHonR8viAldnMOEQTmj4U9Ut7KwS11-ll-H-Mx7PjXL6btas-dpxj3GYdkQRA3Nl41MK0xGq2XSKuYp8Mj2iM-gE0cp8HzM5tYNWxcUMvytNhUzezW0riuejtsBvJ9lzb6PZpc-1msHdsc3XJzO7W2vFycqJYJggv_yH9HITj3fW-VrEzjvY8jdBxTGy2hPWrA7Bx7Ztk1mhrMPLX6KpFqw3lYWWX1jb45a1vFndSpwIYHeh1NL9dNL4RONJmfW6QxtII8aTdF6Bumpk1V3nyI9NbxVzFYqCduYyKrLZnp7W410T75hzcuA91QvoXxsN5cIpIgqWuWLC0xxMiLzQZOp_MlAE3XepyNnFPPqAoO--E4gmia4uqJBhOBg8QE23L4PozB-iEb4_McSw10hcMCrEJwjL_sAc9C11m5lyYKQp01pHguWMk5hZ8cj05uMI7Sn27a6ep5Q7XXlrLiMKqkISOoJ2YaPj4_XjwDSZtIJaiEbOFlITg80sOunsYY7DRg8ICg-PzM4hOcaB8Taquv6S9_Sg=s700-no';
       
       return url[Math.floor(Math.random() * 3)];
-          
+  
 }
 
 export default AnonymImg; 
