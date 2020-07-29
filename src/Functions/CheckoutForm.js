@@ -45,8 +45,6 @@ const CheckoutForm = ({hide, plan, stripe}) => {
         
         let {token}  = await stripe.createToken({name: user.uid});
         
-        console.log(environment, price, token.id, user.email);
-        
         let response = await fetch(fetchURL, {
             
             method: 'POST',
@@ -121,7 +119,7 @@ const CheckoutForm = ({hide, plan, stripe}) => {
         : <div className = 'Modal-Wrap Succeed'>
                 <h2>¡Gracias!</h2>
                 <Checkmark/>
-                <p>Ahora ya eres miembro de Nomoresheet.</p>
+                <p>El pago se ha realizado de forma correcta.</p>
                 <button onClick = {hide}>Aceptar</button>
           </div> 
         }
