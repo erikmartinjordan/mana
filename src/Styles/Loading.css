@@ -19,8 +19,8 @@
     border: 5px solid var(--bgColor);
     border-radius: 50%;
     border-top: 5px solid var(--blue);
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     animation: spin 1s linear infinite;
 }
 @keyframes spin {

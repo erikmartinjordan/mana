@@ -62,6 +62,7 @@
 }
 .Modal .Checkout{
     margin-bottom: 40px;
+    min-width: 500px;
 }
 .Modal .Info-Payment{
     font-size: small;
