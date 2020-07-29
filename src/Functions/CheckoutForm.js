@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import {CardElement, injectStripe}    from 'react-stripe-elements';
-import moment                         from 'moment';
-import firebase, { auth }             from '../Functions/Firebase.js';
-import Loading                        from '../Components/Loading.js';
+import React, { useState, useEffect }  from 'react';
+import {CardElement, injectStripe}     from 'react-stripe-elements';
+import moment                          from 'moment';
+import firebase, { auth }              from '../Functions/Firebase';
+import Loading                         from '../Components/Loading';
+import { ReactComponent as Checkmark } from '../Assets/checkmark.svg';
 import 'moment/locale/es';
 
-const CheckoutForm = (props) => {
+const CheckoutForm = ({plan, environment, stripe, hide}) => {
     
     const [payment, setPayment] = useState(false);
-    const [price, setPrice]     = useState('');
     const [user, setUser]       = useState(null);
     
     useEffect(() => {
@@ -26,53 +26,83 @@ const CheckoutForm = (props) => {
         
         setPayment('processing');
         
-        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/subscriptionNomoresheet';
+        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/';
         
-        let {token}  = await props.stripe.createToken({name: user.uid});
+        if(plan === 'premium')  fetchURL += 'subscriptionNomoresheet';
+        if(plan === 'infinita') fetchURL += 'oneTimePaymentNomoresheet';
+        
+        let {token}  = await stripe.createToken({name: user.uid});
         
         let response = await fetch(fetchURL, {
             
             method: 'POST',
             headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({stripeToken: token.id, userEmail: user.email})
+            body: JSON.stringify({
+                environment: environment,
+                stripeToken: token.id, 
+                userEmail: user.email
+            })
             
         });
         
-        if (response.ok) {
+        if(response.ok) {
             
-            let data = await response.json();
+            if(plan === 'premium'){
+                
+                let data = await response.json();
+                let subscriptionId = data.subscriptionId; 
+                
+                firebase.database().ref(`users/${user.uid}/subscriptionId`).transaction(value => subscriptionId);
+                firebase.database().ref(`users/${user.uid}/account`).transaction(value => 'premium');
+                
+            }
             
-            let subscriptionId = data.subscriptionId;
+            if(plan === 'infinita'){
+                
+                firebase.database().ref(`users/${user.uid}/subscriptionId`).remove();
+                firebase.database().ref(`users/${user.uid}/account`).transaction(value => 'infinita');
+                
+            }
             
-            firebase.database().ref('users/' + user.uid  + '/account').transaction(value => 'premium');
-            firebase.database().ref('users/' + user.uid + '/subscriptionId').transaction(value => subscriptionId);
+            setPayment('success');
             
-            setPayment(true);
         }
     }
-
+    
     return (
       <div className = 'Checkout'>
-        { payment === false || payment === 'processing'
+        {payment !== 'success'
         ? <div className = 'Modal-Wrap'>
-                <h2>{user && user.displayName}:</h2>
-                <p>Después de suscribirte, serás miembro <em>premium</em> de Nomoresheet hasta el {moment().locale('es').add(1, 'year').format('LL')}.</p>
+                <h2>{user?.displayName}</h2>
+                <p>Tendrás una tarifa <em>{plan}</em> hasta el
+                { plan === 'premium'
+                ? moment().locale('es').add(1, 'year').format('LL')
+                : '∞'
+                }
+                </p>
                 <CardElement hidePostalCode = {true}/>
                 <div className = 'Total'>
-                    <div className = 'Price'>{props.price} € <span className = 'info'>anuales</span></div>
-                    <button onClick = {props.hide} className = 'Cancel'>Cancelar</button>
-                    { payment === 'processing'
-                    ? <Loading/>
-                    : <button onClick = {() => submit()}>Pagar</button>
-                    }   
+                    <div className = 'Price'>
+                        { plan === 'premium' 
+                        ? <div>19 € <span className = 'info'>anuales</span></div>
+                        : <div>29 € <span className = 'info'>en un único pago</span></div>
+                        }
+                    </div>
+                    <button onClick = {hide} className = 'Cancel'>Cancelar</button>
+                    <button onClick = {submit}>Pagar</button>   
                 </div>
-                <span className = 'Info-Payment'>🔒 Pago seguro con Stripe. Podrás cancelar tu suscripción en cualquier momento.</span>
+                <span className = 'Info-Payment'>
+                    { plan === 'premium' 
+                    ? 'Pago seguro vía Stripe. Podrás cancelar tu suscripción en cualquier momento.' 
+                    : 'Pago seguro vía Stripe.'
+                    }
+                </span>
           </div>
         : <div className = 'Modal-Wrap Succeed'>
                 <h2>¡Gracias!</h2>
-                <svg className = "checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle className = "checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path className = "checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+                <Checkmark/>
                 <p>Ahora ya eres miembro de Nomoresheet.</p>
-                <button onClick = {props.hide}>Aceptar</button>
+                <button onClick = {hide}>Aceptar</button>
           </div> 
         }
       </div>
