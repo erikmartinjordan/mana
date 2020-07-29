@@ -38,7 +38,7 @@ const Loading = ({type}) => {
                    </div>
         }
         else{
-            return <div className = 'Loading'>
+            return <div className = 'Wheel-Loading'>
                         <div className = 'Loading-Wrap'>
                             <div className = 'Loader'></div>
                         </div>
