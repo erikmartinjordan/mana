@@ -42,11 +42,11 @@ const NewPost = ({hide}) => {
                         let timeSpanPosts;
                         let maxLengthPost;
                         
-                        if(userInfo.account === 'premium'){
+                        if(userInfo.account){
                             
-                            timeSpanPosts = Accounts['premium'].messages.timeSpanPosts;
-                            maxLengthPost = Accounts['premium'].messages.maxLength;
-                            canWriteInMd  = Accounts['premium'].mdformat ? true : false;
+                            timeSpanPosts = Accounts[userInfo.account].messages.timeSpanPosts;
+                            maxLengthPost = Accounts[userInfo.account].messages.maxLength;
+                            canWriteInMd  = Accounts[userInfo.account].mdformat ? true : false;
                             
                         }
                         else{

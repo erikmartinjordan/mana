@@ -69,9 +69,11 @@ const Post = () => {
             
             firebase.database().ref(`users/${user.uid}/account`).on('value', snapshot => {
                 
-                console.log(snapshot.val());
-                
-                if(snapshot.val() === 'premium') setPremium(true);
+                if(snapshot.val()) {
+                    
+                    setPremium(true);
+                    
+                }
                 
             });
             

@@ -38,9 +38,9 @@ const Privileges = () => {
             
             if(userInfo){
                 
-                if(userInfo.account === 'premium'){
+                if(userInfo.account){
                     
-                    let privileges = Accounts['premium'].privileges;
+                    let privileges = Accounts[userInfo.account].privileges;
                     
                     setNextPrivilege('Todos los privilegios desbloqueados');
                     setPreviousPrivileges(privileges);

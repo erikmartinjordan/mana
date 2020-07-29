@@ -28,9 +28,10 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
                 let isPremium = false;
                 let canDeleteMessages = false;
                 
-                if(userInfo.account === 'premium'){
+                if(userInfo.account){
                     
                     isPremium = true;
+                    
                 }
                 else{
                     

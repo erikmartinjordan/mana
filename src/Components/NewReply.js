@@ -43,11 +43,11 @@ const NewReply = ({postId}) => {
                         let timeSpanReplies;
                         let maxLengthReply;
                         
-                        if(userInfo.account === 'premium'){
+                        if(userInfo.account){
                             
-                            timeSpanReplies = Accounts['premium'].messages.timeSpanReplies;
-                            maxLengthReply  = Accounts['premium'].messages.maxLength;
-                            canWriteInMd    = Accounts['premium'].mdformat ? true : false;
+                            timeSpanReplies = Accounts[userInfo.account].messages.timeSpanReplies;
+                            maxLengthReply  = Accounts[userInfo.account].messages.maxLength;
+                            canWriteInMd    = Accounts[userInfo.account].mdformat ? true : false;
                             
                         }
                         else{

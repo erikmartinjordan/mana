@@ -40,7 +40,7 @@ const UserAvatar = ({allowAnonymousUser, user}) => {
                     setPicture(user.photoURL);
                 }
                 
-                if(capture.account === 'premium'){
+                if(capture.account){
                     
                     setBadge(true);
                     

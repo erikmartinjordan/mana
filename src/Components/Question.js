@@ -97,7 +97,7 @@ const QuestionContent   = ({ authorId, message }) => {
             
             if(userInfo){
                 
-                if(userInfo.account === 'premium' || isAnonymous){
+                if(userInfo.account || isAnonymous){
                     
                     setMdFormat(true);
                 }

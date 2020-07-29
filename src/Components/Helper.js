@@ -26,7 +26,7 @@ const Helper = () => {
                  
                     let {welcomePremium, account} = snapshot.val();
                     
-                    if(account === 'premium' && !welcomePremium){
+                    if(account && !welcomePremium){
                         
                         setWelcome(true);
                         

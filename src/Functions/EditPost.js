@@ -35,7 +35,7 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
                 let isPremium = false;
                 let canEditMessages = false;
                 
-                if(userInfo.account === 'premium'){
+                if(userInfo.account){
                     
                     isPremium = true;
                 }
