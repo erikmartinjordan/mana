@@ -25,11 +25,13 @@ let config = {
         'plans': {
             'premium':{
                 'prices':{
+                    '12': {id: 'price_1HAdUoJPlUf3HGzJHqoW7kr7', value: 12},
                     '19': {id: 'price_1H9pebJPlUf3HGzJtOXxc5vn', value: 19}
                 }
             },
             'infinita':{
                 'prices':{
+                    '24': {id: 'price_1HAdVCJPlUf3HGzJQheBPLuV', value: 24},
                     '29': {id: 'price_1H9pd6JPlUf3HGzJX2pcdOKY', value: 29}
                 }
             }
@@ -44,8 +46,8 @@ export const apiKey  = environment === 'PRE'
 
 export const premium = environment === 'PRE' 
 ? config.PRE.plans.premium.prices['9'] 
-: config.PRO.plans.premium.prices['19'];
+: config.PRO.plans.premium.prices['12'];
 
 export const infinita = environment === 'PRE' 
 ? config.PRE.plans.infinita.prices['39'] 
-: config.PRO.plans.infinita.prices['29'];
+: config.PRO.plans.infinita.prices['24'];
