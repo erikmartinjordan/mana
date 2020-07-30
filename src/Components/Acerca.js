@@ -93,11 +93,11 @@ const Acerca = () => {
                 <img src = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg'></img>
                 <p>Hola, soy Erik, el creador de Nomoresheet.</p>
                 <h2>¿Qué es Nomoresheet?</h2>
-                <p>Nomoresheet es una comunidad sobre Tailandia, aunque cualquier tema que resulte de interés general también es bienvenido. Por ejemplo, desde el maldito coronavirus, hasta la bendita electrónica asiática u otros países del Sudeste Asiático.</p>
+                <p>Nomoresheet es una comunidad abierta; cualquier tema es bienvenido.</p>
                 <h2>Estructura de la web</h2>
                 <p>Dos grandes bloques:
                     <li>Comunidad: Preguntas, noticias, tonterías, miscelánea...</li>
-                    <li>Blog: Artículos personales sobre Tailandia y cosas que aprendo en el Sudeste Asiático.</li>
+                    <li>Blog: Artículos personales sobre cosas que voy aprendiendo.</li>
                 </p>
                 <p>El primer punto tiene más interés que el segundo, así que te animo a participar.</p>
                 <h2>Cómo contactar</h2>
