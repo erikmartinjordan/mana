@@ -7,7 +7,7 @@ const Norms = () => {
         <div className = 'Norms'>
             <span className = 'Title'>Antes de publicar</span>
             <ol>
-                <li className = 'Bien'>Puedes escribir sobre lo que te apetezca: desde Tailandia hasta cualquier otro tema que pueda resultar de interés para la comunidad.</li>
+                <li className = 'Bien'>Puedes escribir sobre lo que te apetezca: cualquier tema que pueda resultar de interés es bienvenido.</li>
                 <li className = 'Bien'>Escribe como si estuvieses tomándote un café con alguien: sé amable, supón buena fe por parte de los demás, no seas puntilloso. </li>
                 <li className = 'Bien'>Cita la fuente original de tu publicación poniendo la URL sin recortar al final del mensaje.</li>
                 <li className = 'Bien'>Cuida tu ortografía.</li>
