@@ -371,7 +371,10 @@ const Stats = () => {
             
             <div className = 'Parrilla'>
                 <div className = 'Datos'>
-                    <div className = 'Titulo'>Tiempo real</div>
+                    <div className = 'Titulo'>
+                        Tiempo real 
+                        <div className = 'Pulse'></div>
+                    </div>
                     <div className = 'Desc'>{realTimeUsers}</div>
                 </div>
                 <div className = 'Datos'>
