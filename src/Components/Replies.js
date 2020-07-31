@@ -101,7 +101,7 @@ const Reply = ({ authorId, message }) => {
             
             if(userInfo){
                 
-                if(userInfo.account === 'premium' || isAnonymous){
+                if(userInfo || isAnonymous){
                     
                     setMdFormat(true);
                 }
