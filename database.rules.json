@@ -88,7 +88,19 @@
     // No deben haber iniciado sesión en Nomoresheet
     "analytics":{
       ".read": "true",
-      ".write": "true"
+      ".write": "true",
+      "$date":{
+        "$session":{
+          "$fingerprint":{
+            "timeStampIni":{
+              ".validate": "newData.val() < now" 
+            },
+            "timeStampEnd":{
+              ".validate": "newData.val() < now" 
+            }
+          }
+        }
+      }
     },
     // Los usuarios pueden leer estadísticas
     // No deben haber iniciado sesión en Nomoresheet
