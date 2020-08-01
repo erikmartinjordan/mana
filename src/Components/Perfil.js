@@ -103,7 +103,10 @@ const Perfil = (props) => {
     return (
         <div className = 'Perfil'>
             <div className = 'Perfil-Wrap'>
-                <Sidebar setMenu = {setMenu}/>
+                <Sidebar 
+                    menu = {menu} 
+                    setMenu = {setMenu}
+                />
                 { menu === 'Cuenta' 
                 ? <Account 
                         user = {user} 
@@ -138,15 +141,17 @@ const Perfil = (props) => {
 
 export default Perfil;
 
-const Sidebar = ({setMenu}) => {
+const Sidebar = ({menu, setMenu}) => {
+
+    const selected = (item) => menu === item ? 'Item Selected' : 'Item';
     
     return(
         <div className = 'Sidebar'>
             <div className = 'First-Menu'>
                 <div className = 'Menu-Title'>Menú</div>
-                    <div className = 'Item' onClick = {() => setMenu('Cuenta')}><SmileyIcon/>Cuenta</div>
-                    <div className = 'Item' onClick = {() => setMenu('Datos')}><GraphIcon/>Datos</div>
-                    <div className = 'Item' onClick = {() => setMenu('Premium')}><StarIcon/> Premium</div>
+                    <div className = {selected('Cuenta')}  onClick = {() => setMenu('Cuenta')}><SmileyIcon/>Cuenta</div>
+                    <div className = {selected('Datos')}   onClick = {() => setMenu('Datos')}><GraphIcon/>Datos</div>
+                    <div className = {selected('Premium')} onClick = {() => setMenu('Premium')}><StarIcon/> Premium</div>
             </div>
         </div>
     );

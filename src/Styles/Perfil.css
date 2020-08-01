@@ -47,6 +47,10 @@
     cursor: pointer;
     display: flex;
 }
+.Perfil .Sidebar .First-Menu .Item.Selected{
+    color: var(--linkColor);
+    transition: 1s ease-in-out;
+}
 .Perfil .Sidebar .First-Menu .Item svg{
     margin-right: 5px;
 }
