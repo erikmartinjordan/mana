@@ -75,6 +75,7 @@ button.more{
     border-radius: 50px;
     box-shadow: none;
     color: var(--blue);
+    cursor: pointer;
     font-size: 12px;
     padding: 10px 20px;
 }
