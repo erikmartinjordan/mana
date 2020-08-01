@@ -24,7 +24,7 @@ import '../Styles/ToggleButton.css';
 const Perfil = (props) => {
 
     const [infoUser, setInfoUser]                = useState(null);
-    const [menu, setMenu]                        = useState('Cuenta');
+    const [menu, setMenu]                        = useState(props.menu ? props.menu : 'Cuenta');
     const [nextPayment, setNextPayment]          = useState('');
     const [user, setUser]                        = useState([]);
     const [uid, setUid]                          = useState(null);

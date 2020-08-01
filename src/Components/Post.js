@@ -4,6 +4,7 @@ import ReactMarkdown                             from 'react-markdown';
 import Fingerprint                               from 'fingerprintjs';
 import Default                                   from './Default';
 import Login                                     from './Login';
+import Perfil                                    from './Perfil';
 import firebase, { auth, provider }              from '../Functions/Firebase';
 import GetLevel                                  from '../Functions/GetLevelAndPointsToNextLevel';
 import GetPoints                                 from '../Functions/GetPoints';
@@ -18,6 +19,7 @@ const Post = () => {
     const [likes, setLikes]                     = useState('');
     const [login, setLogin]                     = useState(false);
     const [numPrivatePosts, setNumPrivatePosts] = useState(0);
+    const [perfil, setPerfil]                   = useState(false);
     const [premium, setPremium]                 = useState(false);
     const [privateArticle, setPrivateArticle]   = useState(false);
     const [superlikes, setSuperlikes]           = useState('');
@@ -211,10 +213,12 @@ const Post = () => {
                    level            = {level}
                    levelLimit       = {levelLimit}
                    premium          = {premium}
+                   setPerfil        = {setPerfil}
               />
             </React.Fragment>
             }
-            {login ? <Login hide = {() => setLogin(false)}/> : null}
+            {login  ? <Login  hide = {() => setLogin(false)}/> : null}
+            {perfil ? <Perfil hide = {() => setPerfil(false)} menu = {'Premium'} /> : null}
         </div>
     );
 }
@@ -242,7 +246,7 @@ const Header = ({title, date, user, views, likes, superlikes, handleLikes, handl
     
 }
 
-const Content = ({text, privateArticle, numPrivatePosts, user, setLogin, level, levelLimit, premium}) => {
+const Content = ({text, privateArticle, numPrivatePosts, user, setLogin, level, levelLimit, premium, setPerfil}) => {
     
     let twoParagraphs = text ? `${text.split('\n')[0]}\n\n${text.split('\n')[2]}\n\n` : null;
     
@@ -275,6 +279,7 @@ const Content = ({text, privateArticle, numPrivatePosts, user, setLogin, level, 
                 <div className = 'Login-Box'>
                     <h3>Lee la historia completa</h3>
                     <p>Necesitas tener nivel {levelLimit} para poder leer el artículo. También puedes desbloquearlo con una cuenta Premium.</p>
+                    <button className = 'more' onClick = {() => setPerfil(true)}>Saber más</button>
                 </div>    
               </React.Fragment>
             : <React.Fragment>
