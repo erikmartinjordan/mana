@@ -42,6 +42,6 @@ Es cierto que la comunidad no era la misma que cuando nos instalamos allí por p
 
 Además, Chiang Muhu dice que los vecinos hacen demasiado ruido y que la gente de seguridad es desagradable.
 
-Yo siempre había visto esta comunidad como un lugar de paso hasta encontrar algo mejor. Si puedo vivir en Bangkok de manera convencional, me gustaría hacerlo cerca del BTS. Me gusta una comunidad que se llama Base 77, en la misma zona donde hemos vivido hasta ahora, On Nut. Puedes ir caminando a la estación de tren y tienes un Big C en la puerta de casa y un Tesco a cinco minutos. 
+Yo siempre había visto esta comunidad como un lugar de paso hasta encontrar algo mejor. Si pudiese vivir en Bangkok de manera convencional, me gustaría que lo hiciésemo cerca del BTS. A ambos nos gusta una comunidad que se llama Base 77, en la misma zona donde hemos vivido hasta ahora, On Nut. Puedes ir caminando a la estación de tren y tienes un Big C en la puerta de casa y un Tesco a cinco minutos. 
 
 Pero puestos a escoger, viviría en un rascacielos de Chit Lom o Siam. Pero para eso hay que seguir soñando. 
