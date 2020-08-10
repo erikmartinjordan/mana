@@ -1,8 +1,13 @@
 var data = {
+    'verano-raro': {
+        'title': 'Un verano raro',
+        'date': [10, 'Agosto', 2020],
+        'description': 'Verano raro donde los alla. Yendo a entrenar a Montjuïc oigo una voz por detrás...'
+    },
     'hermana': {
         'title': 'Ok...',
         'date': [11, 'Julio', 2020],
-        'description': 'No volverá. Mi hermana se ha ido de casa. De un mes para otro, la cosa ha ido bastante rápido. Me quedo mirando el vacío de la habitación. Se me hace raro..',
+        'description': 'No volverá. Mi hermana se ha ido de casa. De un mes para otro, la cosa ha ido bastante rápido. Me quedo mirando el vacío de la habitación. Se me hace raro...',
         'private': true
     },
     'olvidar-a-alguien': {
