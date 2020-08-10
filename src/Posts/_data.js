@@ -2,7 +2,7 @@ var data = {
     'verano-raro': {
         'title': 'Un verano raro',
         'date': [10, 'Agosto', 2020],
-        'description': 'Verano raro donde los alla. Yendo a entrenar a Montjuïc oigo una voz por detrás...'
+        'description': 'Verano raro donde los haya. Yendo a entrenar a Montjuïc oigo una voz por detrás...'
     },
     'hermana': {
         'title': 'Ok...',

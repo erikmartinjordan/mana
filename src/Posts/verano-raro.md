@@ -1,4 +1,4 @@
-Verano raro donde los alla. Yendo a entrenar a Montjuïc oigo una voz por detrás:
+Verano raro donde los haya. Yendo a entrenar a Montjuïc oigo una voz por detrás:
 
 —¡Erik!
 
