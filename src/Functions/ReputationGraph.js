@@ -5,8 +5,7 @@ import Chart                          from 'chart.js';
 const ReputationGraph = (props) => {
     
     const [reputationGraph, setReputationGraph] = useState(null);
-        
-    // Properties
+    
     let statsProperties = {
           drive: null,
           type: 'line',
@@ -67,14 +66,13 @@ const ReputationGraph = (props) => {
         }
     };
     
-    //  Views Stats
     useEffect( () => {
         
         if(props.userUid){
             
             var ref = firebase.database().ref('users/' + props.userUid + '/reputationData');
             
-            var listener = ref.on('value', snapshot => {
+            var listener = ref.orderByKey().limitToLast(20).on('value', snapshot => {
                 
                 if(snapshot.val()){
                     
@@ -83,36 +81,27 @@ const ReputationGraph = (props) => {
                     let width = window.innerWidth;
                     let gradientStroke = ctx.createLinearGradient(0, 0, width, 0);
                     
-                    // Generating gradient color  
                     gradientStroke.addColorStop(0.0, '#48ac98');
                     gradientStroke.addColorStop(0.2, '#778dff');
                     gradientStroke.addColorStop(0.5, '#f39a9a');
                     
-                    // Setting gradient stroke  
                     statsProperties.data.datasets['0'].borderColor = gradientStroke;
                     
-                    // Modifiying labels and data
                     const dateArray = Object.keys(snapshot.val()).map( ts => {
                         
-                        // Getting the date
                         var date = new Date(parseInt(ts));
                         
-                        // Defining options
                         const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
                         
-                        // Formatting date
                         return date.toLocaleDateString('es-ES', options);
                         
                     });
                     
-                    // Adding x and y axes
                     statsProperties.data.labels = dateArray;
                     statsProperties.data.datasets['0'].data = Object.values(snapshot.val());
                     
-                    // Drawing chart  
                     new Chart(ctx, statsProperties);
                     
-                    // Display reputation graph
                     setReputationGraph(true);
                    
                 }
