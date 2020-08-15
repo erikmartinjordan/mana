@@ -133,7 +133,19 @@ const MarkDownMessage   = ({ message }) => {
     
     const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'};
     
-    return <ReactMarkdown source = {message} renderers = {{paragraph: props => <Linkify properties = {linkProperties}><p>{props.children}</p></Linkify>}}/>;
+    const renderers = {
+        
+        paragraph: props => <Linkify properties = {linkProperties}><p>{props.children}</p></Linkify>,
+        image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'}></img>
+        
+    }
+    
+    return (
+        <ReactMarkdown 
+            source    = {message} 
+            renderers = {renderers}
+        />
+    );
     
 }
 const NoMarkDownMessage = ({ message }) => {
