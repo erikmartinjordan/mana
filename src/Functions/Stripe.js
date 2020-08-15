@@ -17,6 +17,9 @@ let config = {
                     '39': {id: 'price_1HAH4hJPlUf3HGzJUJIvRu3O', value: 39}
                 }
             }
+        },
+        'OAuth': {
+            'clientId': 'ca_Hpd45DoCiQMAyqLPNYExDDAH8y6lwtV6'
         }
     },
     
@@ -35,14 +38,20 @@ let config = {
                     '29': {id: 'price_1H9pd6JPlUf3HGzJX2pcdOKY', value: 29}
                 }
             }
+        },
+        'OAuth': {
+            'clientId': 'ca_Hpd4QWyXWvrPisYlHkG4FFEMZq6Mlyll'
         }
     }
-    
 }
 
 export const apiKey  = environment === 'PRE' 
 ? config.PRE.apiKey 
 : config.PRO.apiKey;
+
+export const OAuth = environment === 'PRE'
+? config.PRE.OAuth
+: config.PRO.Oauth;
 
 export const premium = environment === 'PRE' 
 ? config.PRE.plans.premium.prices['9'] 
