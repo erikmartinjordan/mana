@@ -1,0 +1,64 @@
+.Donate{
+    position: relative;
+    text-align: center;
+}
+.Donate p{
+    line-height: 1.75;
+}
+.Donate button{
+    align-items: center;
+    background: var(--blue);
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    border: none;
+    border-radius: 50px;
+    color: white!important;
+    cursor: pointer;
+    display: flex;
+    font-size: small;
+    margin-bottom: 20px;
+    margin-left: 0;
+    margin-right: auto;
+    padding: 5px 10px;
+    text-align: center;
+    width: max-content;
+}
+.Donate button svg{
+    margin-left: 5px;
+}
+.Donate .DonationBox{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    line-height: 1;
+    margin-left: 0px;
+    padding: 20px;
+    position: absolute;
+    width: 300px;
+    z-index: 1;
+}
+.Donate .Quantity{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.Donate button.More,
+.Donate button.Less{
+    background: none;
+    color: var(--secondaryFontColor)!important;
+    border: 1px solid var(--secondaryFontColor);
+    border-radius: 5px;
+    margin: 10px;
+}
+.Donate button.Pay{
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Donate .DonationBox span{
+    color: var(--secondaryFontColor);
+    font-size: small;
+    line-height: 1;
+}
+.Donate .Invisible{
+    z-index: -1;
+}

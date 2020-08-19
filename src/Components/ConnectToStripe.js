@@ -58,7 +58,7 @@ const ConnectToStripe = ({user}) => {
         
     }
     
-    const disconnectStripe = async (user) => {
+    const disconnectStripe = async () => {
         
         let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/stripeAccountDisconnection';
         
@@ -82,7 +82,7 @@ const ConnectToStripe = ({user}) => {
         
     }
     
-    const completeStripeConnection = async (authorizationCode, user) => {
+    const completeStripeConnection = async (authorizationCode) => {
         
         let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/stripeAccountConnection';
         
