@@ -14,8 +14,6 @@ const Donate = ({ name, stripeUserId }) => {
     const [payment, setPayment]           = useState(false);
     const [quantity, setQuantity]         = useState(1);
     
-    console.log(environment);
-    
     const pay = async () => {
         
         setPayment('processing');
@@ -29,7 +27,8 @@ const Donate = ({ name, stripeUserId }) => {
             body: JSON.stringify({
                 environment: environment,
                 amount: quantity * 100,
-                stripeUserId: stripeUserId
+                stripeUserId: stripeUserId,
+                name: name
             })
             
         });
@@ -39,8 +38,6 @@ const Donate = ({ name, stripeUserId }) => {
             let stripe    = await stripePromise;
             let data      = await response.json();
             let sessionId = data.sessionId; 
-            
-            console.log(sessionId);
             
             const { error } = await stripe.redirectToCheckout({ sessionId: sessionId });
             
