@@ -77,7 +77,7 @@ const Perfil = (props) => {
     
     const getNextPaymentDate = async (subscriptionId) => {
         
-        /*let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/nextPaymentNomoresheet';
+        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/nextPaymentNomoresheet';
         
         let response = await fetch(fetchURL, {
             
@@ -98,7 +98,7 @@ const Perfil = (props) => {
             
             setNextPayment(date);
             
-        }*/
+        }
         
     }
  
