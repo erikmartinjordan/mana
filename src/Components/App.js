@@ -14,6 +14,8 @@ import Stats                          from './Stats';
 import Privacy                        from './Privacy';
 import Guidelines                     from './Guidelines';
 import Helper                         from './Helper';
+import DonateSuccess                  from './DonateSuccess';
+import DonateFail                     from './DonateFail';
 import firebase                       from '../Functions/Firebase';
 import '../Styles/App.css';
 
@@ -97,6 +99,8 @@ const App  = ({history}) => {
                     <Route exact path = '/estadisticas'        component = {Stats}/>
                     <Route exact path = '/privacidad'          component = {Privacy}/>
                     <Route exact path = '/guias'               component = {Guidelines}/>
+                    <Route exact path = '/donateSuccess'       component = {DonateSuccess}/>
+                    <Route exact path = '/donateFail'          component = {DonateFail}/>
                     <Route path = '/comunidad/post/:string'    component = {Detail}/>
                     <Route path = '/@:string'                  component = {PublicInfo}/>
                     <Route path = '/:string'                   component = {Post}/>

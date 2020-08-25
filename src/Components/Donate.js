@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GiftIcon }                   from '@primer/octicons-react';
 import { loadStripe }                 from '@stripe/stripe-js';
+import Loading                        from './Loading';
 import { environment }                from '../Functions/Firebase';
 import '../Styles/Donate.css';
 
@@ -9,9 +10,12 @@ const stripePromise = loadStripe('pk_test_6pnYp66tdBEK5pSfB1RU4tQw00LTl4BKQD');
 const Donate = ({ name, stripeUserId }) => {
     
     const [showDonation, setShowDonation] = useState(false);
+    const [payment, setPayment]           = useState(false);
     const [quantity, setQuantity]         = useState(1);
     
     const pay = async () => {
+        
+        setPayment('processing');
         
         let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/stripeCreateSession';
         
@@ -21,7 +25,7 @@ const Donate = ({ name, stripeUserId }) => {
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({
                 environment: environment,
-                amount: quantity * 1000,
+                amount: quantity * 100,
                 stripeUserId: stripeUserId
             })
             
@@ -34,6 +38,8 @@ const Donate = ({ name, stripeUserId }) => {
             let sessionId = data.sessionId; 
             
             const { error } = await stripe.redirectToCheckout({ sessionId: sessionId });
+            
+            setPayment('done');
             
         }
         
@@ -56,8 +62,10 @@ const Donate = ({ name, stripeUserId }) => {
                             <div>{quantity} €</div>
                             <button className = 'More' onClick = {handleMore}>+</button>
                         </div>
-                        <button className = 'Pay' onClick = {pay}>Aceptar</button>
-                        <span>El usuario recibirá tu aportación al instante. Nomoresheet no recibe ninguna comisión.</span>
+                        <button className = 'Pay' onClick = {pay}>
+                            {payment === 'processing' ? <Loading tag = {'Procesando...'}/> : 'Pagar'}
+                        </button>
+                        <span>El usuario recibirá tu aportación al instante. Nomoresheet no recibe ninguna comisión por la transacción.</span>
                     </div>
                     <div className = 'Invisible' onClick = {() => setShowDonation(false)}></div>
               </div>
