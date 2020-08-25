@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Styles/Loading.css';
 
-const Loading = ({type}) => {
+const Loading = ({type, tag}) => {
     
     const loading = () => {
         
@@ -40,6 +40,7 @@ const Loading = ({type}) => {
         else{
             return <div className = 'Wheel-Loading'>
                         <div className = 'Loading-Wrap'>
+                            {tag}
                             <div className = 'Loader'></div>
                         </div>
                     </div>

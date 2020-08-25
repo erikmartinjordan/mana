@@ -1,8 +1,10 @@
 import React, { useState, useEffect }       from 'react';
 import Login                                from './Login';
 import PaymentModal                         from './PaymentModal';
+import ConnectToStripe                      from './ConnectToStripe';
 import Points                               from '../Functions/PointsAndValues';
 import firebase, { auth, environment }      from '../Functions/Firebase';
+import { apiKey }                           from '../Functions/Stripe';
 import GetNumberOfPosts                     from '../Functions/GetNumberOfPosts';
 import GetNumberOfReplies                   from '../Functions/GetNumberOfReplies';
 import GetNumberOfSpicy                     from '../Functions/GetNumberOfSpicy';
@@ -75,7 +77,7 @@ const Perfil = (props) => {
     
     const getNextPaymentDate = async (subscriptionId) => {
         
-        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/nextPaymentNomoresheet';
+        /*let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/nextPaymentNomoresheet';
         
         let response = await fetch(fetchURL, {
             
@@ -96,7 +98,7 @@ const Perfil = (props) => {
             
             setNextPayment(date);
             
-        }
+        }*/
         
     }
  
@@ -227,6 +229,11 @@ const Account = ({user, infoUser, nextPayment}) => {
               </div>
             : null}
             <div className = 'Bloque'>
+                <div className = 'Title'>Donaciones</div>
+                <ConnectToStripe user = {user}/>
+                <div className = 'Comment'>Los usuarios podrán invitarte a un café virtual por tu buen hacer.</div>
+            </div>
+            <div className = 'Bloque'>
                 <div className = 'Title'>Zona de peligro</div>
                 <DeleteAccount></DeleteAccount>
             </div>
@@ -251,7 +258,7 @@ const Data = ({posts, replies, spicy, level, pointsToNextLevel, valuePost, value
             </div>
             <div className = 'Bloque'>
                 <div className = 'Title'>Picante</div>
-                <div className = 'Num'>{spicy}🌶️</div>
+                <div className = 'Num'>{spicy}</div>
                 <div className = 'Comment'>Se muestran el número de veces que te han dado picante. Por cada voto de picante, sumas {valueSpicy} puntos.</div>
             </div>
             <div className = 'Bloque'>

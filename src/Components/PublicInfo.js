@@ -3,16 +3,18 @@ import { Link }                                  from 'react-router-dom';
 import TimeAgo                                   from 'react-timeago';
 import buildFormatter                            from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings                            from 'react-timeago/lib/language-strings/es';
-import GetName                                   from '../Functions/GetName.js';
-import GetProfileImg                             from '../Functions/GetProfileImg.js';
-import GetNumberOfViews                          from '../Functions/GetNumberOfViews.js';
-import GetLevel                                  from '../Functions/GetLevelAndPointsToNextLevel.js';
-import GetPoints                                 from '../Functions/GetPoints.js';
-import GetLastArticles                           from '../Functions/GetLastArticles.js';
-import GetRankingUser                            from '../Functions/GetRankingUser.js';
-import GetNumberOfProfileViewsAndProfileLastSeen from '../Functions/GetNumberOfProfileViewsAndProfileLastSeen'
-import ReputationGraph                           from '../Functions/ReputationGraph.js';
-import UserAvatar                                from '../Functions/UserAvatar.js';
+import Donate                                    from './Donate';
+import GetName                                   from '../Functions/GetName';
+import GetProfileImg                             from '../Functions/GetProfileImg';
+import GetNumberOfViews                          from '../Functions/GetNumberOfViews';
+import GetLevel                                  from '../Functions/GetLevelAndPointsToNextLevel';
+import GetPoints                                 from '../Functions/GetPoints';
+import GetLastArticles                           from '../Functions/GetLastArticles';
+import GetRankingUser                            from '../Functions/GetRankingUser';
+import GetNumberOfProfileViewsAndProfileLastSeen from '../Functions/GetNumberOfProfileViewsAndProfileLastSeen';
+import GetStripeUserId                           from '../Functions/GetStripeUserId';
+import ReputationGraph                           from '../Functions/ReputationGraph';
+import UserAvatar                                from '../Functions/UserAvatar';
 import '../Styles/PublicInfo.css';
 
 const formatter = buildFormatter(spanishStrings);
@@ -28,6 +30,7 @@ const PublicInfo = (props) => {
     const [level, pointsToNextLevel, percentage] = GetLevel(...points);
     const articles                               = GetLastArticles(userUid, 10); 
     const ranking                                = GetRankingUser(userUid);
+    const stripeUserId                           = GetStripeUserId(userUid);
     const user                                   = {uid: userUid, photoURL: photoURL};
     
     const beautifyNumber = (number) => {
@@ -45,6 +48,7 @@ const PublicInfo = (props) => {
     return (
           <div className = 'Public-Info'>
                 <div className = 'Datos'>
+                    {stripeUserId ? <Donate name = {name} stripeUserId = {stripeUserId}/> : null}
                     <UserAvatar user = {user}/>
                     <h2>{name}</h2>
                     <div className = 'Bloque'>

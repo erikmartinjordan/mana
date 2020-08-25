@@ -73,7 +73,16 @@ const Nav = () => {
             
         });
       
-  }, []);
+    }, []);
+    
+    useEffect(() => {
+        
+        let currentUrl = window.location.href;
+        
+        if(user && currentUrl.includes('?'))
+            setPerfil(true);
+        
+    }, [user, window.location.href]);
   
     const menuNotUser = () => {
       
