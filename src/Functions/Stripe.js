@@ -51,7 +51,7 @@ export const apiKey  = environment === 'PRE'
 
 export const OAuth = environment === 'PRE'
 ? config.PRE.OAuth
-: config.PRO.Oauth;
+: config.PRO.OAuth;
 
 export const premium = environment === 'PRE' 
 ? config.PRE.plans.premium.prices['9'] 
