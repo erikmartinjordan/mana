@@ -3,15 +3,18 @@ import { GiftIcon }                   from '@primer/octicons-react';
 import { loadStripe }                 from '@stripe/stripe-js';
 import Loading                        from './Loading';
 import { environment }                from '../Functions/Firebase';
+import { apiKey }                     from '../Functions/Stripe';
 import '../Styles/Donate.css';
 
-const stripePromise = loadStripe('pk_test_6pnYp66tdBEK5pSfB1RU4tQw00LTl4BKQD');
+const stripePromise = loadStripe(apiKey);
 
 const Donate = ({ name, stripeUserId }) => {
     
     const [showDonation, setShowDonation] = useState(false);
     const [payment, setPayment]           = useState(false);
     const [quantity, setQuantity]         = useState(1);
+    
+    console.log(environment);
     
     const pay = async () => {
         
@@ -36,6 +39,8 @@ const Donate = ({ name, stripeUserId }) => {
             let stripe    = await stripePromise;
             let data      = await response.json();
             let sessionId = data.sessionId; 
+            
+            console.log(sessionId);
             
             const { error } = await stripe.redirectToCheckout({ sessionId: sessionId });
             
