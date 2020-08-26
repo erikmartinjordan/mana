@@ -1,9 +1,9 @@
 import React, { useState, useEffect }             from 'react';
 import { Link }                                   from 'react-router-dom';
 import ReactMarkdown                              from 'react-markdown';
+import Alert                                      from './Alert';
 import firebase, { auth, storageRef, fetchAdmin } from '../Functions/Firebase';
 import DeleteFeature                              from '../Functions/DeleteFeature.js';
-import Alert                                      from '../Functions/Alert.js';
 import '../Styles/Acerca.css';
 
 const Acerca = () => {

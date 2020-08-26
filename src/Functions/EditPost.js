@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import firebase, {auth}                       from './Firebase';
-import Alert                                  from './Alert';
+import Alert                                  from '../Components/Alert';
 import GetPoints                              from '../Functions/GetPoints';
 import GetLevel                               from '../Functions/GetLevelAndPointsToNextLevel';
 import Accounts                               from '../Rules/Accounts';

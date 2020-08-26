@@ -1,8 +1,8 @@
 import React, { useEffect, useState }    from 'react';
 import Login                             from './Login';
+import Alert                             from './Alert';
 import firebase, {auth}                  from '../Functions/Firebase';
 import UserAvatar                        from '../Functions/UserAvatar';
-import Alert                             from '../Functions/Alert';
 import GetPoints                         from '../Functions/GetPoints';
 import GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel';
 import insertNotificationAndReputation   from '../Functions/InsertNotificationAndReputationIntoDatabase';

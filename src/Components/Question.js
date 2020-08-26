@@ -6,7 +6,7 @@ import Linkify                        from 'react-linkify';
 import Verified                       from './Verified';
 import PublicInfo                     from './PublicInfo';
 import Loading                        from './Loading';
-import Likes                          from '../Functions/Likes';
+import Likes                          from './Likes';
 import firebase                       from '../Functions/Firebase';
 import EditPost                       from '../Functions/EditPost';
 import DeletePost                     from '../Functions/DeletePost';
