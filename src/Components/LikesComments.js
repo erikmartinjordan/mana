@@ -102,9 +102,9 @@ const LikesComments = ({ authorId, postId, replyId }) => {
     }
     
     return (
-      <div className = 'Likes-Comments'>
+      <div className = 'Likes-Comments' onClick = {user ? handleVote : displayLoginModal}>
             <div className = 'Votes'>
-                <span onClick = {user ? handleVote : displayLoginModal}>👏 {numVotes}</span>
+                <span>👏 {numVotes}</span>
             </div>
             {modal ? <Login hide  = {hideLoginModal}/> : null}
             <Alert 
