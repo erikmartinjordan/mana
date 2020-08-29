@@ -177,7 +177,8 @@ const Stats = () => {
                     
                     Object.keys(data[day][uid]).map(session => {
                         
-                        count = count + Object.keys(data[day][uid][session].pageviews).length;
+                        if(data[day][uid][session].pageviews)
+                            count = count + Object.keys(data[day][uid][session].pageviews).length;
                         
                     });
                     
@@ -295,11 +296,15 @@ const Stats = () => {
                     
                     Object.keys(data[day][uid]).map(session => {
                         
-                        Object.keys(data[day][uid][session].pageviews).map(pid => {
+                        if(data[day][uid][session].pageviews){
                             
-                            array.push(data[day][uid][session].pageviews[pid].url);
+                            Object.keys(data[day][uid][session].pageviews).map(pid => {
+                                
+                                array.push(data[day][uid][session].pageviews[pid].url);
+                                
+                            });
                             
-                        });
+                        }
                         
                     });
                     
