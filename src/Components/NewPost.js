@@ -1,10 +1,12 @@
 import React, { useEffect, useState }    from 'react';
+import TagInput                          from 'react-easy-tag-input';
 import Alert                             from './Alert';
 import firebase, {auth}                  from '../Functions/Firebase';
 import UserAvatar                        from '../Functions/UserAvatar';
 import GetPoints                         from '../Functions/GetPoints';
 import GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel';
 import insertNotificationAndReputation   from '../Functions/InsertNotificationAndReputationIntoDatabase';
+import normalize                         from '../Functions/NormalizeWord';
 import Accounts                          from '../Rules/Accounts';
 import '../Styles/NewPost.css';
 
@@ -18,6 +20,7 @@ const NewPost = ({hide}) => {
     const [mdFormat, setMdFormat]           = useState(false);
     const [message, setMessage]             = useState('');
     const [nickName, setNickName]           = useState(null);
+    const [tags, setTags]                   = useState([]);
     const [timeSpanPosts, setTimeSpanPosts] = useState(null);
     const [title, setTitle]                 = useState('');
     const [user, setUser]                   = useState([]);
@@ -107,12 +110,14 @@ const NewPost = ({hide}) => {
         
         let now = Date.now();
         let slicedTitle = title.slice(0, 50) + '...';
+        let normalizedTags = tags.map(tag => normalize(tag)); 
         let url, postId;
         
         url = postId = firebase.database().ref('posts/').push({
             
             title:      title,
             message:    message,
+            tags:       normalizedTags,
             timeStamp:  now,
             userName:   nickName ? nickName : user.displayName,
             userUid:    nickName ? nickName : user.uid,
@@ -182,6 +187,12 @@ const NewPost = ({hide}) => {
                     onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
                 />
                 <Hints mdFormat = {mdFormat}/>
+                <TagInput
+                    limit   = {5}
+                    tags    = {tags}
+                    setTags = {setTags}
+                    hint    = {'Añade hasta 5 etiquetas separadas por coma'}
+                />
                 <button className = 'bottom' onClick = {() => reviewTitleAndMessage()}>Enviar</button>
             </div>
             <div className = 'Invisible' onClick = {hide}></div>

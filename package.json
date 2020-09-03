@@ -13,6 +13,7 @@
     "react": "^16.8.6",
     "react-confetti": "^6.0.0",
     "react-dom": "^16.8.6",
+    "react-easy-tag-input": "^1.0.4",
     "react-linkify": "^0.2.2",
     "react-markdown": "^3.3.0",
     "react-router-dom": "^5.1.2",

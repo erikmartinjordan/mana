@@ -48,10 +48,20 @@
     font-size: medium;
     line-height: 2;
     margin-top: 20px;
+    min-height: 200px;
     max-height: calc(100vh - 400px);
     padding: 5px;
     resize: none;
     width: 100%;
+}
+.NewPost .TagInput{
+    margin-top: 20px;
+}
+.NewPost .TagInput .Tags{
+    border: none;
+}
+.NewPost .TagInput .Tags .Tag{
+    font-size: small;
 }
 .NewPost .Invisible{
     left: 0;
