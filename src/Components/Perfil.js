@@ -2,6 +2,7 @@ import React, { useState, useEffect }       from 'react';
 import Login                                from './Login';
 import PaymentModal                         from './PaymentModal';
 import ConnectToStripe                      from './ConnectToStripe';
+import Notifications                        from './Notifications';
 import Points                               from '../Functions/PointsAndValues';
 import firebase, { auth, environment }      from '../Functions/Firebase';
 import { apiKey }                           from '../Functions/Stripe';
@@ -18,7 +19,7 @@ import DowngradeToFreePlan                  from '../Functions/DowngradeToFreePl
 import UserAvatar                           from '../Functions/UserAvatar';
 import { premium, infinita }                from '../Functions/Stripe';
 import Accounts                             from '../Rules/Accounts';
-import { SmileyIcon, GraphIcon, StarIcon }  from '@primer/octicons-react';
+import { SmileyIcon, GraphIcon, StarIcon, InboxIcon }  from '@primer/octicons-react';
 import '../Styles/Perfil.css';
 import '../Styles/UserAvatar.css';
 import '../Styles/ToggleButton.css';
@@ -26,7 +27,7 @@ import '../Styles/ToggleButton.css';
 const Perfil = (props) => {
 
     const [infoUser, setInfoUser]                = useState(null);
-    const [menu, setMenu]                        = useState(props.menu ? props.menu : 'Cuenta');
+    const [menu, setMenu]                        = useState(props.menu ? props.menu : 'Notif');
     const [nextPayment, setNextPayment]          = useState('');
     const [user, setUser]                        = useState([]);
     const [uid, setUid]                          = useState(null);
@@ -109,7 +110,11 @@ const Perfil = (props) => {
                     menu = {menu} 
                     setMenu = {setMenu}
                 />
-                { menu === 'Cuenta' 
+                { menu === 'Notif'
+                ? <Notifications
+                        user = {user}
+                  />
+                : menu === 'Cuenta' 
                 ? <Account 
                         user = {user} 
                         infoUser = {infoUser} 
@@ -151,6 +156,7 @@ const Sidebar = ({menu, setMenu}) => {
         <div className = 'Sidebar'>
             <div className = 'First-Menu'>
                 <div className = 'Menu-Title'>Menú</div>
+                    <div className = {selected('Notif')}   onClick = {() => setMenu('Notif')}><InboxIcon/>Notificaciones</div>
                     <div className = {selected('Cuenta')}  onClick = {() => setMenu('Cuenta')}><SmileyIcon/>Cuenta</div>
                     <div className = {selected('Datos')}   onClick = {() => setMenu('Datos')}><GraphIcon/>Datos</div>
                     <div className = {selected('Premium')} onClick = {() => setMenu('Premium')}><StarIcon/> Premium</div>

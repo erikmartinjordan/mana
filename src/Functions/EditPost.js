@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import TagInput                               from 'react-easy-tag-input';
 import firebase, {auth}                       from './Firebase';
 import Alert                                  from '../Components/Alert';
 import GetPoints                              from '../Functions/GetPoints';
@@ -12,6 +13,7 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
     const [alert, setAlert]     = useState(null);
     const [message, setMessage] = useState(null);
     const [canEdit, setCanEdit] = useState(false);
+    const [tags, setTags]       = useState([]);
     const points                = GetPoints(authorId);
     const level                 = GetLevel(...points)[0];
     
@@ -65,16 +67,23 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
     
     const editMessage = async () => {
         
-        let reference;
-        
-        type === 'post'
-        ? reference = firebase.database().ref(`posts/${postId}/message`)
-        : reference = firebase.database().ref(`posts/${postId}/replies/${replyId}/message`);
-        
-        const snapshot = await reference.once('value');
-        const message  = snapshot.val();
-        
-        setMessage(message);
+        if(type === 'post'){
+            
+            let snapshot = await firebase.database().ref(`posts/${postId}`).once('value');
+            let { message, tags }  = snapshot.val();
+            
+            setMessage(message);
+            setTags(Object.keys(tags));
+            
+        }
+        else{
+            
+            let snapshot = await firebase.database().ref(`posts/${postId}/replies/${replyId}/message`).once('value');
+            let message  = snapshot.val();
+            
+            setMessage(message);
+            
+        }
         
     }
     
@@ -89,39 +98,50 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
     
     const submitMessage = () => {
         
-        let reference;
+        let tagsObject = tags.reduce((acc, tag) => (acc[tag] = true, acc), {});
         
-        type === 'post'
-        ? reference = firebase.database().ref(`posts/${postId}/message`)
-        : reference = firebase.database().ref(`posts/${postId}/replies/${replyId}/message`);
-        
-        reference.set(message);
-        
-        type === 'post'
-        ? reference = firebase.database().ref(`posts/${postId}/edited`)
-        : reference = firebase.database().ref(`posts/${postId}/replies/${replyId}/edited`);
-
-        
-        reference.transaction(value => Date.now());
+        if(type === 'post'){
+            
+            firebase.database().ref(`posts/${postId}/message`).set(message);
+            firebase.database().ref(`posts/${postId}/edited`).transaction(value => Date.now());
+            firebase.database().ref(`posts/${postId}/tags`).set(tagsObject);
+            
+        }
+        else{
+            
+            firebase.database().ref(`posts/${postId}/replies/${replyId}/message`).set(message);
+            firebase.database().ref(`posts/${postId}/replies/${replyId}/edited`).transaction(value => Date.now());
+            
+        }
         
         setAlert(true);
         
         setTimeout( () => setAlert(false), 1500);
         setTimeout( () => setMessage(null), 1500);
     }
-
+    
     return (
         <div className = 'Edit'>
             { message 
             ? <div className = 'Edit-Message'>
                 <div className = 'Edit-Message-Wrap'>
-                    <textarea ref      = {refTextarea} 
-                              value    = {message} 
-                              onChange = {(e) => handleMessage(e)} 
+                    <textarea 
+                        ref      = {refTextarea} 
+                        value    = {message} 
+                        onChange = {(e) => handleMessage(e)} 
                     />
+                    { type === 'post'
+                    ? <TagInput
+                        limit   = {5}
+                        tags    = {tags}
+                        setTags = {setTags}
+                        hint    = {'Añade hasta 5 etiquetas separadas por coma'}
+                      />
+                    : null   
+                    }
                     <button onClick = {() => submitMessage()} className = 'bottom'>Guardar</button>
                 </div>
-                {message && <div className = 'Invisible' onClick = {() => setMessage(null)} ></div>}
+                <div className = 'Invisible' onClick = {() => setMessage(null)} ></div>
               </div>
             : canEdit && <button onClick = {() => editMessage()} className = 'Edit'>Editar</button>
             }

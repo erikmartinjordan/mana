@@ -1,19 +1,18 @@
 import React, { useState, useEffect }   from 'react';
 import { Link }                         from 'react-router-dom';
-import Fingerprint                      from 'fingerprintjs';
 import moment                           from 'moment';
 import Login                            from './Login';
-import Notifications                    from './Notifications';
 import Perfil                           from './Perfil';
-import NewPost                          from './NewPost.js';
-import firebase, {auth}                 from '../Functions/Firebase.js';
-import NightModeToggleButton            from '../Functions/NightModeToggleButton.js';
-import GetUnreadNotifications           from '../Functions/GetUnreadNotifications.js';
-import GetPoints                        from '../Functions/GetPoints.js';
-import GetLevel                         from '../Functions/GetLevelAndPointsToNextLevel.js';
-import ToggleButton                     from '../Functions/ToggleButton.js';
-import UserAvatar                       from '../Functions/UserAvatar.js';
-import NomoresheetLogo                  from '../Functions/NomoresheetLogo.js';
+import NewPost                          from './NewPost';
+import firebase, {auth}                 from '../Functions/Firebase';
+import NightModeToggleButton            from '../Functions/NightModeToggleButton';
+import GetUnreadNotifications           from '../Functions/GetUnreadNotifications';
+import GetPoints                        from '../Functions/GetPoints';
+import GetLevel                         from '../Functions/GetLevelAndPointsToNextLevel';
+import ToggleButton                     from '../Functions/ToggleButton';
+import UserAvatar                       from '../Functions/UserAvatar';
+import NomoresheetLogo                  from '../Functions/NomoresheetLogo';
+import { ReactComponent as ThaiFlag }   from '../Assets/thailand.svg';
 import '../Styles/Nav.css';
 
 const Nav = () => {
@@ -87,12 +86,12 @@ const Nav = () => {
     const menuNotUser = () => {
       
         return  <React.Fragment>
-                    <Link to = '/'>Comunidad</Link>
-                    <Link to = '/blog'>Blog</Link>
-                    <Link to = '/acerca'>Acerca</Link>
+                    <Link to = '/tag/tailandia'  className = 'Tag'><div className = 'Icon'><ThaiFlag/></div>Tailandia</Link>
+                    <Link to = '/tag/actualidad' className = 'Tag'><div className = 'Icon'>#</div>Actualidad</Link>
+                    <Link to = '/tag/tecnologia' className = 'Tag'><div className = 'Icon'>#</div>Tecnología</Link>
+                    <Link to = '/tag/relaciones' className = 'Tag'><div className = 'Icon'>#</div>Relaciones</Link>
                     <NightModeToggleButton></NightModeToggleButton>
                     <a onClick = {() => setLogin(true)} className = 'login'>Acceder</a>
-                    <Ad/>
                 </React.Fragment>;  
     }
   
@@ -107,17 +106,14 @@ const Nav = () => {
                                     {user && userInfo  && !userInfo.anonimo && user.displayName}
                                     {user && !userInfo && user.displayName}
                                 </span>
-                                <span className = 'Points'>Nivel {level}</span>
+                                <span className = 'Points'>Nivel {level} <GetUnreadNotifications user = {user}/></span>
                             </div>
                         </div>
                         <div className = 'Separator'></div>
-                        <div className = 'NotificationsContainer' onClick = {() => setNotifications(true)}>
-                            <span>Notificaciones</span>
-                            <GetUnreadNotifications user = {user}/>
-                        </div>
-                        <Link to = '/'       onClick = {() => setMenu(false)}>Comunidad</Link>
-                        <Link to = '/blog'   onClick = {() => setMenu(false)}>Blog</Link> 
-                        <Link to = '/acerca' onClick = {() => setMenu(false)}>Acerca</Link>
+                        <Link to = '/tag/tailandia'  className = 'Tag'><div className = 'Icon'><ThaiFlag/></div>Tailandia</Link>
+                        <Link to = '/tag/actualidad' className = 'Tag'><div className = 'Icon'>#</div>Actualidad</Link>
+                        <Link to = '/tag/tecnologia' className = 'Tag'><div className = 'Icon'>#</div>Tecnología</Link>
+                        <Link to = '/tag/relaciones' className = 'Tag'><div className = 'Icon'>#</div>Relaciones</Link>
                         <div className = 'Separator'></div>
                         <NightModeToggleButton></NightModeToggleButton>
                         <div className = 'Separator'></div>
@@ -137,7 +133,6 @@ const Nav = () => {
                 <div className = {'Menu ' + menu} onClick = {() => setMenu('')}>
                     {user ? menuUser() : menuNotUser()}
                 </div>
-            {notifications  && <Notifications   hide = {() => setNotifications(false)} user = {user}/>}
             {perfil         && <Perfil          hide = {() => setPerfil(false)}/>}
             {login          && <Login           hide = {() => setLogin(false)}/>}
             {post           && <NewPost         hide = {() => setPost(false)}/>}
@@ -146,51 +141,3 @@ const Nav = () => {
 }
 
 export default Nav;
-
-
-const Ad = () => {
-    
-    const ads = [
-        
-        {
-            "campaign": 'AirBnB',
-            "link": 'https://www.airbnb.es/c/erikm3737?currency=EUR',
-            "text": 'Obtén 34 euros de descuento en tu primera reserva de AirBnB'
-            
-        },
-        {
-            
-            "campaign": 'Amazon',
-            "link": 'https://amzn.to/39lC2sk',
-            "text": 'Los auriculares inalámbricos de AUKEY cuestan menos de 30 euros'
-            
-        },
-        {
-            
-            "campaign": 'Agoda',
-            "link": 'https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1772106&city=9395',
-            "text": '¿Conoces Agoda? Es igual que Booking pero las reservas son más baratas.'
-            
-        }
-        
-    ]
-    
-    const [random, setRandom] = useState(Math.floor(ads.length * Math.random()));
-    
-    const handleAd = (campaign) => {
-        
-        var fingerprint = new Fingerprint().get();
-        var date        = moment().format('YYYYMMDD');
-        
-        firebase.database().ref(`ads/${campaign}/${date}/${fingerprint}/clicks/`).transaction(value => value + 1);
-    }
-    
-    return(
-        
-        <a className = 'Ad' href = {ads[random].link} onClick = {() => handleAd(ads[random].campaign)} target = '_blank' rel = 'noopener noreferrer nofollow'>
-            <span className = 'Title'>Anuncio</span>
-            <p>{ads[random].text}</p>
-        </a>
-    );
-    
-}

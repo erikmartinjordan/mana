@@ -12,22 +12,26 @@ const formatter = buildFormatter(spanishStrings);
 
 const Notifications = ({hide, user}) => {  
     
-    const [displayNotifications, setDisplayNotifications]   = useState(true);
-    const [keys, setKeys]                                   = useState([]);
-    const [notifications, setNotifications]                 = useState('loading');
-    const [points, setPoints]                               = useState(0);
-    const [show, setShow]                                   = useState(false);
+    const [displayNotifications, setDisplayNotifications] = useState(true);
+    const [keys, setKeys]                                 = useState([]);
+    const [notifications, setNotifications]               = useState('loading');
+    const [points, setPoints]                             = useState(0);
+    const [show, setShow]                                 = useState(false);
+    
+    console.log(user);
     
     useEffect( () => {
+        
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );  
+        
     });
 
     useEffect( () => {
-      
+        
         firebase.database().ref(`notifications/${user.uid}`).on('value', snapshot => { 
             
             if(snapshot.val()) 
-                setNotifications(snapshot.val())
+                setNotifications(snapshot.val());
             else               
                 setNotifications('empty');
             
@@ -38,9 +42,16 @@ const Notifications = ({hide, user}) => {
             if(snapshot.exists())    
                 setDisplayNotifications(snapshot.val());
             
-        });  
+        }); 
+        
+        return () => {
+            
+            firebase.database().ref(`notifications/${user.uid}`).off();
+            firebase.database().ref(`users/${user.uid}/displayNotifications`).off();
+            
+        }
       
-    }, []);
+    }, [user]);
     
     return (
         <div className = 'Notifications'>
@@ -61,7 +72,6 @@ const Notifications = ({hide, user}) => {
                     }
                 </div>
             </div>
-            <div onClick = {hide} className = 'Invisible'></div>
         </div>
     );
 }

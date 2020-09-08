@@ -108,22 +108,25 @@ const NewPost = ({hide}) => {
     
     const sendPost = () => {
         
-        let now = Date.now();
-        let slicedTitle = title.slice(0, 50) + '...';
+        let now            = Date.now();
+        let slicedTitle    = title.slice(0, 50) + '...';
         let normalizedTags = tags.map(tag => normalize(tag)); 
+        let tagsObject     = normalizedTags.reduce((acc, tag) => (acc[tag] = true, acc), {});
         let url, postId;
         
         url = postId = firebase.database().ref('posts/').push({
             
             title:      title,
             message:    message,
-            tags:       normalizedTags,
+            tags:       tagsObject,
             timeStamp:  now,
             userName:   nickName ? nickName : user.displayName,
             userUid:    nickName ? nickName : user.uid,
             userPhoto:  avatar   ? avatar   : user.photoURL
             
         }).key;
+        
+        normalizedTags.forEach(tag => firebase.database().ref(`tags/${tag}/counter`).transaction(value => ~~value + 1));
         
         firebase.database().ref(`users/${nickName ? nickName : user.uid}/posts/timeStamp`).transaction(value => now);
         

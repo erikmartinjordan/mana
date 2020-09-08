@@ -13,7 +13,8 @@ const formatter = buildFormatter(spanishStrings);
 
 const LastQuestions = (props) => {
     
-    const [items, setItems] = useState(props.items);
+    const [loading, setLoading]             = useState(true);
+    const [items, setItems]                 = useState(props.items);
     const [lastQuestions, setLastQuestions] = useState([]);
     
     useEffect( () => {
@@ -24,11 +25,13 @@ const LastQuestions = (props) => {
     
     useEffect( () => {
         
-        let ref = firebase.database().ref('posts/').limitToLast(items);
+        let ref = props.tag 
+        ? firebase.database().ref('posts/').orderByChild(`tags/${props.tag}`).equalTo(true).limitToLast(items)
+        : firebase.database().ref('posts/').limitToLast(items);
         
-        let listener = ref.on('value', snapshot => { 
+        let listener = ref.on('value', snapshot => {
             
-            if(snapshot){
+            if(snapshot.val()){
                 
                 let lastQuestions = snapshot.val();
                 
@@ -37,12 +40,19 @@ const LastQuestions = (props) => {
                 setLastQuestions(sortedQuestions);
                 
             }
+            else{
+                
+                setLastQuestions([]);
+                
+            }
+            
+            setLoading(false);
             
         });
         
         return () => ref.off('value', listener);
         
-    }, [items, props.timeline]);
+    }, [items, props.timeline, props.tag]);
     
     const sortQuestions = (questions, orderBy) => {
         
@@ -82,7 +92,9 @@ const LastQuestions = (props) => {
     
     return(
         <React.Fragment>
-        { lastQuestions.length !== 0
+        { loading
+        ? <Loading type = 'Responses'/> 
+        : lastQuestions.length > 0 
         ? <div className = 'LastQuestions'>
             {lastQuestions.map(question => (
                 <div className = 'Question' key = {question.key}>
@@ -117,7 +129,15 @@ const LastQuestions = (props) => {
             : null
             }
           </div>
-        : <Loading type = 'Responses'/>  
+        : <div>
+            <img style = {{width: '100%'}} src = {'https://media.giphy.com/media/wHB67Zkr63UP7RWJsj/giphy.gif'}/>
+            <p>No hay publicaciones en esta categoría...</p>
+            <ul>
+                <li>Puedes comentar a través del foro haciendo clic <Link to = '/'>aquí</Link>.</li>
+                <li>O puedes ver el archivo de entradas haciendo clic <Link to = '/blog'>aquí</Link>.</li>
+                <li>O puedes quedarte viendo a Elon Musk.</li>
+            </ul>
+          </div>
         }
         </React.Fragment>
     ); 

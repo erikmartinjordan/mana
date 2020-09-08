@@ -102,6 +102,7 @@ const App  = ({history}) => {
                     <Route exact path = '/donateSuccess'       component = {DonateSuccess}/>
                     <Route exact path = '/donateFail'          component = {DonateFail}/>
                     <Route path = '/comunidad/post/:string'    component = {Detail}/>
+                    <Route path = '/tag/:string'               component = {Forum}/>
                     <Route path = '/@:string'                  component = {PublicInfo}/>
                     <Route path = '/:string'                   component = {Post}/>
                     <Route                                     component = {Default}/>

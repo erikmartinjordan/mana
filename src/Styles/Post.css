@@ -167,7 +167,6 @@
     justify-content: space-between;
 }
 a.Community,
-a.Ad,
 a.Otro,
 a.Article{
     background: var(--bgBox);
@@ -186,7 +185,6 @@ a.Article{
     width: 200px;
 }
 a.Community:hover,
-a.Ad:hover,
 a.Otro:hover,
 a.Article:hover{
     transform: scale(1.1);

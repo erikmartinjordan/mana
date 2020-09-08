@@ -122,6 +122,12 @@
     "features":{
       	".read": "true",
         ".write":  "auth != null"
-    }  
+    },
+    // Los usuarios pueden leer las modificaciones en Nomoresheet
+    // No deben haber iniciado sesión en Nomoresheet
+    "tags":{
+        ".read":  "true",
+        ".write": "auth != null"
+    }
   }
 }

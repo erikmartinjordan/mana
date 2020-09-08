@@ -1,0 +1,17 @@
+a.Ad{
+    background: var(--bgBox);
+    border-radius: 5px;
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    color: var(--thirdFontColor);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    font-size: small;
+    justify-content: space-between;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    width: 100%;
+}
+a.Ad p{
+    padding: 10px;
+}

@@ -143,20 +143,30 @@
 .Nav i{
     display: none;
 }
-.Nav a.Ad{
-    background: transparent;
-    border-radius: 5px;
-    box-shadow: none;
-    color: var(--secondaryFontColor);
-    margin-top: 20px;
-    max-width: 100%;
-    padding: 0px;
-}
-.Nav a.Ad:hover{
-    transform: none;
-}
-.Nav a.Ad .Title{
+.Nav a.Tag{
+    align-items: center;
+    background: rgba(1, 1, 1, 0.1);
+    border-radius: 50px;
+    display: flex;
     margin-bottom: 5px;
+    padding: 3px 7px;
+}
+.Nav a.Tag .Icon{
+    align-items: center;
+    background: var(--nmsLogo);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    margin-right: 3px;
+    width: 30px;
+}
+.Nav a.Tag .Icon svg{
+    border-radius: 50px;
+    height: 60%;
+    width: 60%;
 }
 @keyframes bounce{
     0%    {opacity: 0;   transform: scale(1,1);}
