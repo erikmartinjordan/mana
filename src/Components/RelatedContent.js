@@ -106,7 +106,9 @@ const RelatedContent = () => {
             <span className = 'Title'>Relacionado</span>
             <div className = 'Links'>
                 {combo.map(({url, title}, key) => 
-                    <div><Link key = {key} onClick = {() => updateRelated(title, url)} to = {url} >{title}</Link></div>
+                    (<div key = {key} >
+                        <Link onClick = {() => updateRelated(title, url)} to = {url} >{title}</Link>
+                    </div>)
                 )}
             </div>
           </div>
