@@ -3,8 +3,11 @@
     width: 100%;
 }
 .Forum h1{
-    margin-bottom: 20px;
-    margin-top: 0px;
+    font-size: 40px;
+    line-height: 1.2;
+    margin: 0px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     text-align: left;
 }
 .Forum .Forum-TwoCol{
