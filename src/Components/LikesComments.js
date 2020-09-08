@@ -89,7 +89,6 @@ const LikesComments = ({ authorId, postId, replyId }) => {
         
     }
     
-    
     const displayLoginModal = () => {
         
         setModal(true);
@@ -102,19 +101,21 @@ const LikesComments = ({ authorId, postId, replyId }) => {
     }
     
     return (
-      <div className = 'Likes-Comments' onClick = {user ? handleVote : displayLoginModal}>
-            <div className = 'Votes'>
-                <span>👏 {numVotes}</span>
+        <React.Fragment>
+            <div className = 'Likes-Comments' onClick = {user ? handleVote : displayLoginModal}>
+                <div className = 'Votes'>
+                    <span>👏 {numVotes}</span>
+                </div>
+                <Alert 
+                    title      = {alertTitle} 
+                    message    = {alertMessage} 
+                    seconds    = {3} 
+                    setMessage = {setAlertMessage} 
+                    setTitle   = {setAlertTitle}
+                />
             </div>
             {modal ? <Login hide  = {hideLoginModal}/> : null}
-            <Alert 
-                title      = {alertTitle} 
-                message    = {alertMessage} 
-                seconds    = {3} 
-                setMessage = {setAlertMessage} 
-                setTitle   = {setAlertTitle}
-            />
-      </div>    
+        </React.Fragment>    
     );
 }
 

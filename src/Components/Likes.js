@@ -101,19 +101,21 @@ const Likes = ({ authorId, postId }) => {
     }
     
     return (
-      <div className = 'Likes' onClick = {user ? handleVote : displayLoginModal}>
-            <div className = 'Votes'>
-                <span>🌶️ {numVotes}</span>
-            </div>
+        <React.Fragment>
+            <div className = 'Likes' onClick = {user ? handleVote : displayLoginModal}>
+                <div className = 'Votes'>
+                    <span>🌶️ {numVotes}</span>
+                </div>
+                <Alert 
+                    title      = {alertTitle} 
+                    message    = {alertMessage} 
+                    seconds    = {3} 
+                    setMessage = {setAlertMessage} 
+                    setTitle   = {setAlertTitle}
+                />
+            </div> 
             {modal ? <Login hide = {hideLoginModal}/> : null}
-            <Alert 
-                title      = {alertTitle} 
-                message    = {alertMessage} 
-                seconds    = {3} 
-                setMessage = {setAlertMessage} 
-                setTitle   = {setAlertTitle}
-            />
-      </div>    
+        </React.Fragment>   
     );
 }
 
