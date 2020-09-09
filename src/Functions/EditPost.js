@@ -4,6 +4,7 @@ import firebase, {auth}                       from './Firebase';
 import Alert                                  from '../Components/Alert';
 import GetPoints                              from '../Functions/GetPoints';
 import GetLevel                               from '../Functions/GetLevelAndPointsToNextLevel';
+import normalize                              from '../Functions/NormalizeWord';
 import Accounts                               from '../Rules/Accounts';
 import '../Styles/EditPost.css';
 
@@ -73,7 +74,9 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
             let { message, tags }  = snapshot.val();
             
             setMessage(message);
-            setTags(Object.keys(tags));
+            
+            if(tags)
+                setTags(Object.keys(tags));
             
         }
         else{
@@ -98,13 +101,16 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
     
     const submitMessage = () => {
         
-        let tagsObject = tags.reduce((acc, tag) => (acc[tag] = true, acc), {});
-        
         if(type === 'post'){
+            
+            let normalizedTags = tags.map(tag => normalize(tag)); 
+            let tagsObject     = normalizedTags.reduce((acc, tag) => (acc[tag] = true, acc), {});
             
             firebase.database().ref(`posts/${postId}/message`).set(message);
             firebase.database().ref(`posts/${postId}/edited`).transaction(value => Date.now());
             firebase.database().ref(`posts/${postId}/tags`).set(tagsObject);
+            
+            normalizedTags.forEach(tag => firebase.database().ref(`tags/${tag}/counter`).transaction(value => ~~value + 1));
             
         }
         else{
@@ -118,6 +124,7 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
         
         setTimeout( () => setAlert(false), 1500);
         setTimeout( () => setMessage(null), 1500);
+        
     }
     
     return (
