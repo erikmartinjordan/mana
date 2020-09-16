@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@primer/octicons-react": "^10.0.0",
+    "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.9.0",
     "chart.js": "^2.8.0",
     "fingerprintjs": "^0.5.3",
@@ -18,7 +19,6 @@
     "react-markdown": "^3.3.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.1",
-    "react-stripe-elements": "^4.0.0",
     "react-timeago": "^3.4.3"
   },
   "scripts": {
