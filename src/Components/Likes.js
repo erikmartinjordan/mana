@@ -10,11 +10,11 @@ const Likes = ({ authorId, postId }) => {
     
     const [alertMessage, setAlertMessage] = useState(null);
     const [alertTitle, setAlertTitle]     = useState(null);
-    const [modal, setModal]       = useState(false);
-    const [numVotes, setNumVotes] = useState(0);
-    const [user, setUser]         = useState(null);
-    const [votes, setVotes]       = useState({});
-    const points                  = GetPoints(authorId);
+    const [modal, setModal]               = useState(false);
+    const [numVotes, setNumVotes]         = useState(0);
+    const [user, setUser]                 = useState(null);
+    const [votes, setVotes]               = useState({});
+    const points                          = GetPoints(authorId);
     
     useEffect( () => {
         
@@ -103,7 +103,7 @@ const Likes = ({ authorId, postId }) => {
     return (
         <React.Fragment>
             <div className = 'Likes' onClick = {user ? handleVote : displayLoginModal}>
-                <div className = 'Votes'>
+                <div className = {Object.keys(votes).some(voteId => voteId === user?.uid) ? `Votes Voted` : `Votes`}>
                     <span>🌶️ {numVotes}</span>
                 </div>
                 <Alert 

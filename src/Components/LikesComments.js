@@ -103,7 +103,7 @@ const LikesComments = ({ authorId, postId, replyId }) => {
     return (
         <React.Fragment>
             <div className = 'Likes-Comments' onClick = {user ? handleVote : displayLoginModal}>
-                <div className = 'Votes'>
+                <div className = {Object.keys(votes).some(voteId => voteId === user?.uid) ? `Votes Voted` : `Votes`}>
                     <span>👏 {numVotes}</span>
                 </div>
                 <Alert 

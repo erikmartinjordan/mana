@@ -7,8 +7,16 @@
     justify-content: center;
     width: 50px;
 }
+.Votes.Voted{
+    animation: fillLightBlue .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
 .Likes-Comments img.emoji{
     margin: 0;
+}
+@keyframes fillLightBlue{
+  100% {
+    box-shadow: inset 0px 0px 0px 30px var(--lightBlue);
+  }
 }
 @media (hover: hover) {
     .Votes:hover{
