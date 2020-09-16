@@ -1,4 +1,10 @@
 var data = {
+    'coronavirus-desesperanza': {
+        'title': 'Desesperanza',
+        'date': [14, 'Septiembre', 2020],
+        'description': 'La vida es rara a dos metros de distancia de los demás y con una mascarilla puesta. Cuando leo lo escrito durante los últimos meses, veo un atisbo de negatividad. Quizá la palabra ideal sea desesperanza.',
+        'privat': true
+    },
     'verano-raro': {
         'title': 'Un verano raro',
         'date': [10, 'Agosto', 2020],
