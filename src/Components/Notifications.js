@@ -18,8 +18,6 @@ const Notifications = ({hide, user}) => {
     const [points, setPoints]                             = useState(0);
     const [show, setShow]                                 = useState(false);
     
-    console.log(user);
-    
     useEffect( () => {
         
         window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );  
@@ -28,26 +26,23 @@ const Notifications = ({hide, user}) => {
 
     useEffect( () => {
         
-        firebase.database().ref(`notifications/${user.uid}`).on('value', snapshot => { 
+        if(user.uid){
             
-            if(snapshot.val()) 
-                setNotifications(snapshot.val());
-            else               
-                setNotifications('empty');
+            firebase.database().ref(`notifications/${user.uid}`).on('value', snapshot => { 
+                
+                if(snapshot.val()) 
+                    setNotifications(snapshot.val());
+                else               
+                    setNotifications('empty');
+                
+            }); 
             
-        }); 
-        
-        firebase.database().ref(`users/${user.uid}/displayNotifications`).on('value', snapshot => { 
-            
-            if(snapshot.exists())    
-                setDisplayNotifications(snapshot.val());
-            
-        }); 
-        
-        return () => {
-            
-            firebase.database().ref(`notifications/${user.uid}`).off();
-            firebase.database().ref(`users/${user.uid}/displayNotifications`).off();
+            firebase.database().ref(`users/${user.uid}/displayNotifications`).on('value', snapshot => { 
+                
+                if(snapshot.exists())    
+                    setDisplayNotifications(snapshot.val());
+                
+            }); 
             
         }
       
