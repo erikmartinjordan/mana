@@ -109,6 +109,7 @@ const Perfil = (props) => {
                 <Sidebar 
                     menu = {menu} 
                     setMenu = {setMenu}
+                    hide = {props.hide}
                 />
                 { menu === 'Notif'
                 ? <Notifications
@@ -141,20 +142,21 @@ const Perfil = (props) => {
                 : null
                 }
             </div>
-            <div className = 'Invisible' onClick = {() => props.hide()}></div>
+            <div className = 'Invisible' onClick = {props.hide}></div>
         </div>
     );
 }
 
 export default Perfil;
 
-const Sidebar = ({menu, setMenu}) => {
+const Sidebar = ({menu, setMenu, hide}) => {
 
     const selected = (item) => menu === item ? 'Item Selected' : 'Item';
     
     return(
         <div className = 'Sidebar'>
             <div className = 'First-Menu'>
+                <div className = 'BackButtonmobile'        onClick = {hide}>← Volver</div>
                 <div className = 'Menu-Title'>Menú</div>
                     <div className = {selected('Notif')}   onClick = {() => setMenu('Notif')}><InboxIcon/>Notificaciones</div>
                     <div className = {selected('Cuenta')}  onClick = {() => setMenu('Cuenta')}><SmileyIcon/>Cuenta</div>

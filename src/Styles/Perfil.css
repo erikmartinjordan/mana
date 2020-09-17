@@ -189,17 +189,37 @@
     text-align: center;
     width: max-content;
 }
+.Perfil .BackButtonmobile{
+    display: none;
+}
 @media (max-width: 768px){
     .Perfil{
-        padding: 20px;
+        padding: 0px;
     }
     .Perfil-Wrap{
+        border-radius: 0px;
         flex-direction: column;
+        height: 100%;
+        overflow: auto;
     }
     .Perfil .Sidebar{
         width: 100%;
     }
+    .Perfil .Notifications .Notifications-Menu{
+        border-radius: 0px;
+    }
     .Perfil .Premium{
         flex-direction: column;
+        padding: 0;
+    }
+    .Perfil .Premium .Account-Block{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .Perfil .BackButtonmobile{
+        display: flex;
+        font-size: small;
+        justify-content: flex-end;
     }
 }
