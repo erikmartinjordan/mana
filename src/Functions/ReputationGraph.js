@@ -112,7 +112,7 @@ const ReputationGraph = (props) => {
             
         }
         
-    }, [props.userUid]);
+    }, [props.userUid, props.canvas, statsProperties]);
     
     return (
         <div className = 'Reputation' style = {{height: reputationGraph ? 'auto' : '0px'}}>

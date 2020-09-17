@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { GiftIcon }                   from '@primer/octicons-react';
-import { loadStripe }                 from '@stripe/stripe-js';
-import Loading                        from './Loading';
-import { environment }                from '../Functions/Firebase';
-import { apiKey }                     from '../Functions/Stripe';
+import React, { useState }          from 'react';
+import { GiftIcon }                 from '@primer/octicons-react';
+import { loadStripe }               from '@stripe/stripe-js';
+import Loading                      from './Loading';
+import { environment }              from '../Functions/Firebase';
+import { apiKey }                   from '../Functions/Stripe';
 import '../Styles/Donate.css';
 
 const stripePromise = loadStripe(apiKey);

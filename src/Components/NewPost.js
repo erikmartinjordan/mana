@@ -111,7 +111,7 @@ const NewPost = ({hide}) => {
         let now            = Date.now();
         let slicedTitle    = title.slice(0, 50) + '...';
         let normalizedTags = tags.map(tag => normalize(tag)); 
-        let tagsObject     = normalizedTags.reduce((acc, tag) => (acc[tag] = true, acc), {});
+        let tagsObject     = normalizedTags.reduce((acc, tag) => ((acc[tag] = true, acc)), {});
         let url, postId;
         
         url = postId = firebase.database().ref('posts/').push({

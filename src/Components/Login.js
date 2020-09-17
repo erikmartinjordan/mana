@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import firebase, {auth, provider}     from '../Functions/Firebase.js';
-import NomoresheetLogo                from '../Functions/NomoresheetLogo.js';
+import React, { useEffect }         from 'react';
+import firebase, {auth, provider}   from '../Functions/Firebase.js';
+import NomoresheetLogo              from '../Functions/NomoresheetLogo.js';
 import '../Styles/Login.css';
 
 const Login = ({hide}) => {  
@@ -39,14 +39,14 @@ const Login = ({hide}) => {
         let snapshot = await firebase.database().ref(`posts`).once('value');
         let posts = snapshot.val();
         
-        Object.entries(posts).map( ([postId, {userPhoto, replies}]) => {
+        Object.entries(posts).forEach( ([postId, {userPhoto, replies}]) => {
             
             if(userPhoto === photoURL1) 
                 firebase.database().ref(`posts/${postId}/userPhoto`).transaction(photoURL1 => photoURL2);
             
             if(replies){
                 
-                Object.entries(replies).map( ([replyId, {userPhoto}]) => {
+                Object.entries(replies).forEach( ([replyId, {userPhoto}]) => {
                     
                     if(userPhoto === photoURL1)
                         firebase.database().ref(`posts/${postId}/replies/${replyId}/userPhoto`).transaction(photoURL1 => photoURL2);

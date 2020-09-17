@@ -10,7 +10,6 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
     
     const [canDelete, setCanDelete]       = useState(false);
     const [confirmation, setConfirmation] = useState(false);
-    const [id, setId]                     = useState(null);
     const history                         = useHistory();
     const points                          = GetPoints(authorId);
     const level                           = GetLevel(...points)[0];
@@ -87,7 +86,7 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
                 <div className = 'Confirmation'>
                     <div className = 'Confirmation-Wrap'>
                         <p>¿Estás seguro de que quieres eliminar el {type === 'post' ? 'artículo? Se borrarán todos los comentarios.' : 'comentario?'}</p>
-                        <button onClick = { () => handleDelete(id) }       className = 'Yes-Delete'>Sí, eliminar</button>
+                        <button onClick = { () => handleDelete() }         className = 'Yes-Delete'>Sí, eliminar</button>
                         <button onClick = { () => setConfirmation(false) } className = 'No-Delete'>Cancelar</button>
                     </div>
                 </div>
