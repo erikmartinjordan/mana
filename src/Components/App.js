@@ -100,7 +100,7 @@ const App  = ({history}) => {
                     <Route exact path = '/privacidad'          component = {Privacy}/>
                     <Route exact path = '/guias'               component = {Guidelines}/>
                     <Route exact path = '/donateSuccess'       component = {DonateSuccess}/>
-                    <Route exact path = '/donateFail'          component = {DonateFail}/>
+                    <Route exact path = '/donationFail'        component = {DonateFail}/>
                     <Route path = '/comunidad/post/:string'    component = {Detail}/>
                     <Route path = '/tag/:string'               component = {Forum}/>
                     <Route path = '/@:string'                  component = {PublicInfo}/>
