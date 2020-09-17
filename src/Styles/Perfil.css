@@ -200,9 +200,9 @@
         border-radius: 0px;
         flex-direction: column;
         height: 100%;
-        overflow: auto;
     }
     .Perfil .Sidebar{
+        height: 100%;
         width: 100%;
     }
     .Perfil .Notifications .Notifications-Menu{
