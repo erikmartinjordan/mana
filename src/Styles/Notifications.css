@@ -1,11 +1,9 @@
 .Notifications{
     align-items: center;
     background: rgba(15, 15, 15, 0.6);
-    display: flex;
+    border-radius: 0px 5px 5px 0px;
     justify-content: center;
-    left: 0;
-    overflow: scroll;
-    top: 0;
+    overflow-y: scroll;
     width: 100%;
 }
 .Notifications .Notifications-Wrap{
@@ -111,8 +109,12 @@
     100%  {opacity: 1;   transform: scale(1,1);}
 }
 @media(max-width: 768px){
+    .Notifications{
+        border-radius: 0px;
+    }
     .Notifications .Notifications-Wrap,
     .Notifications .Notifications-Menu{
+        overflow-x: hidden;
         width: 100%;
     }
     

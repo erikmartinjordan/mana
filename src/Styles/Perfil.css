@@ -219,4 +219,7 @@
         font-size: small;
         justify-content: flex-end;
     }
+    .Perfil .Faq{
+        padding: 0px;
+    }
 }
