@@ -113,31 +113,32 @@ const Perfil = (props) => {
                 />
                 { menu === 'Notif'
                 ? <Notifications
-                        user = {user}
+                    user = {user}
+                    hide = {props.hide}
                   />
                 : menu === 'Cuenta' 
                 ? <Account 
-                        user = {user} 
-                        infoUser = {infoUser} 
-                        nextPayment = {nextPayment}
+                    user = {user} 
+                    infoUser = {infoUser} 
+                    nextPayment = {nextPayment}
                   />
                 : menu === 'Datos'
                 ? <Data 
-                        posts = {posts} 
-                        replies = {replies} 
-                        spicy = {spicy} 
-                        level = {level} 
-                        percentage = {percentage}
-                        points = {points}
-                        pointsToNextLevel = {pointsToNextLevel} 
-                        valuePost = {valuePost}
-                        valueReply = {valueReply}
-                        valueSpicy = {valueSpicy}
+                    posts = {posts} 
+                    replies = {replies} 
+                    spicy = {spicy} 
+                    level = {level} 
+                    percentage = {percentage}
+                    points = {points}
+                    pointsToNextLevel = {pointsToNextLevel} 
+                    valuePost = {valuePost}
+                    valueReply = {valueReply}
+                    valueSpicy = {valueSpicy}
                   />
                 : menu === 'Premium'
                 ? <Premium
-                        user = {user}
-                        infoUser = {infoUser}
+                    user = {user}
+                    infoUser = {infoUser}
                   />
                 : null
                 }
