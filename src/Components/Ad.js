@@ -1,10 +1,31 @@
-import React, { useState } from 'react';
-import moment              from 'moment';
-import Fingerprint         from 'fingerprintjs';
-import firebase            from '../Functions/Firebase';
+import React, { useEffect, useState } from 'react';
+import moment                         from 'moment';
+import Fingerprint                    from 'fingerprintjs';
+import firebase, { auth }             from '../Functions/Firebase';
 import '../Styles/Ad.css';
 
 const Ad = () => {
+    
+    const [displayAds, setDisplayAds] = useState(false);
+    
+    useEffect(() => {
+        
+        auth.onAuthStateChanged(user => {
+            
+            if(user){
+              
+                setDisplayAds(false);
+                
+            }
+            else{
+                
+                setDisplayAds(true);
+                
+            }
+            
+        });
+        
+    }, []);
     
     const ads = [
         
@@ -16,7 +37,7 @@ const Ad = () => {
         },
         {
             
-            "campaign": 'Amazon',
+            "campaign": 'Amazon_Aukey',
             "link": 'https://amzn.to/39lC2sk',
             "text": 'Los auriculares inalámbricos de AUKEY cuestan menos de 30 euros'
             
@@ -25,9 +46,15 @@ const Ad = () => {
             
             "campaign": 'Agoda',
             "link": 'https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1772106&city=9395',
-            "text": '¿Conoces Agoda? Es igual que Booking pero las reservas son más baratas.'
+            "text": '¿Conoces Agoda? Es parecido a Booking pero las reservas son más baratas.'
             
+        },
+        {
+            "campaign": 'Amazon_AppleWatch',
+            "link": 'https://amzn.to/2FE7yrh',
+            "text": 'Nuevo Apple Watch SE. Más barato, más watch.'
         }
+        
         
     ]
     
@@ -42,11 +69,20 @@ const Ad = () => {
     }
     
     return(
-        
-        <a className = 'Ad' href = {ads[random].link} onClick = {() => handleAd(ads[random].campaign)} target = '_blank' rel = 'noopener noreferrer nofollow'>
-            <span className = 'Title'>Anuncio</span>
-            <p>{ads[random].text}</p>
-        </a>
+        <React.Fragment>
+            { displayAds
+            ? <a 
+                  className = 'Ad' 
+                  href      = {ads[random].link} 
+                  onClick   = {() => handleAd(ads[random].campaign)} 
+                  target    = '_blank' 
+                  rel       = 'noopener noreferrer nofollow'>
+                <span className = 'Title'>Anuncio</span>
+                <p>{ads[random].text}</p>
+            </a>
+            : null    
+            }
+        </React.Fragment>
     );
     
 }
