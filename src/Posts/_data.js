@@ -1,4 +1,10 @@
 var data = {
+    'rumbo-nomoresheet': {
+        'title': 'Rumbo de Nomoresheet',
+        'date': [23, 'Septiembre', 2020],
+        'description': 'Nomoresheet cuenta en este momento con 136 publicaciones de los usuarios y 139 artículos escritos por mí. La web continúa siendo un espacio pequeño y creo que refleja mi carácter: nunca me he sentido a gusto entre multitudes.',
+        'privat': true
+    },
     'coronavirus-desesperanza': {
         'title': 'Desesperanza',
         'date': [14, 'Septiembre', 2020],

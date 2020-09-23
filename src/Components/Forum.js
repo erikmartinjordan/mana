@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState }            from 'react';
 import OrderBy                        from './OrderBy';
 import LastQuestions                  from './LastQuestions';
 import Comments                       from './Comments';

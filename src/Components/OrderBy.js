@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../Styles/OrderBy.css';
 
 const OrderBy = ({timeline, setTimeline}) => {

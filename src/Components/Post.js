@@ -1,7 +1,6 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect }            from 'react';
 import moment                                    from 'moment';
 import ReactMarkdown                             from 'react-markdown';
-import Fingerprint                               from 'fingerprintjs';
 import Default                                   from './Default';
 import Login                                     from './Login';
 import Perfil                                    from './Perfil';
