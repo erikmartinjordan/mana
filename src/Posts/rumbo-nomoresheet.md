@@ -10,7 +10,7 @@ Si echo un vistazo a la portada, veo hilos sobre Tailandia, relaciones, tecnolog
 
 A medida que ha ido pasando el tiempo, me he vuelto más pudoroso con lo que publicar. Supongo que eso tiene su lado positivo y su lado negativo. Positivo porque mis conocidos no lo tienen fácil para leer lo que escribo (y puedo dar rienda suelta a mis dedos), negativo porque escribo menos de lo que debería.
 
-Pero no me voy a poner esquisito: la realidad es que la gente ha ido perdiendo interés por el blog y ganando interés en las publicaciones de la comunidad. Así lo reflejan las estadísticas del sitio. Y para muestra un botón, la publicación más visitada del último mes ha sido [esta](https://nomoresheet.es/comunidad/post/-LlX8Uk0MHzqoC-rBHEq). Donde, por cierto, no hay ni una línea escrita por mí. Es irónico que el artículo más visitado de tu web no sea tuyo.
+Pero no me voy a poner exquisito: la realidad es que la gente ha ido perdiendo interés por el blog y ganando interés en las publicaciones de la comunidad. Así lo reflejan las estadísticas del sitio. Y para muestra un botón, la publicación más visitada del último mes ha sido [esta](https://nomoresheet.es/comunidad/post/-LlX8Uk0MHzqoC-rBHEq). Donde, por cierto, no hay ni una línea escrita por mí. Es irónico que el artículo más visitado de tu web no sea tuyo.
 
 No me gustaría convertir Nomoresheet en una red social. De hecho, no quiero que la gente compita por seguidores o *likes*. Me gustaría incentivar la sinceridad y la buena escritura (y creo que de momento la cosa va bien). Me da igual el número de seguidores que tengas en otras redes o lo popular que seas. No es bueno que la gente haga/escriba cosas que no haría en la vida real. 
 
