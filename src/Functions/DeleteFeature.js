@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import firebase            from '../Functions/Firebase.js';
 import '../Styles/DeletePost.css';
 
-const DeletePost = (props) => {
+const DeleteFeature = (props) => {
     
     const [confirmation, setConfirmation] = useState(false);
     const [id, setId]                     = useState(null);
@@ -41,4 +41,4 @@ const DeletePost = (props) => {
     
 }
 
-export default DeletePost;
+export default DeleteFeature;
