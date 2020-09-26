@@ -7,7 +7,6 @@
         ".write": "true"
     },
     // Los usuarios registrados y no registrados pueden leer los datos del foro
-    // Los datos y respuestas no pueden ser modificables
     "posts":{
       	".read": "true",
         ".write": "auth != null",  
@@ -26,11 +25,19 @@
           }
         }
       },
+    // Los usuarios registrados y no registrados pueden leer los datos del foro
+    "replies":{
+      ".read": "true",
+      ".write": "auth != null"
+    },
     // Los usuarios no pueden modificar las cuentas verificadas
     "users":{
         ".read": "true",
         ".write": "auth != null",
       	"$useruid":{
+          	"lastPosts":{
+              ".write": "auth != null"
+            },
             "displayNotifications":{
               ".write": "auth != null"
             },
@@ -120,11 +127,9 @@
     // Los usuarios pueden leer las modificaciones en Nomoresheet
     // No deben haber iniciado sesión en Nomoresheet
     "features":{
-      	".read": "true",
-        ".write":  "auth != null"
+      	".read":  "true",
+        ".write": "auth != null"
     },
-    // Los usuarios pueden leer las modificaciones en Nomoresheet
-    // No deben haber iniciado sesión en Nomoresheet
     "tags":{
         ".read":  "true",
         ".write": "auth != null"
