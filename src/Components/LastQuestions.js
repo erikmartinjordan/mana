@@ -6,7 +6,7 @@ import TimeAgo                              from 'react-timeago';
 import Loading                              from './Loading.js';
 import UserAvatar                           from '../Functions/UserAvatar';
 import firebase                             from '../Functions/Firebase';
-import { HeartIcon, CommentDiscussionIcon } from '@primer/octicons-react'
+import { HeartIcon, CommentDiscussionIcon } from '@primer/octicons-react';
 import '../Styles/LastQuestions.css';
 
 const formatter = buildFormatter(spanishStrings);
