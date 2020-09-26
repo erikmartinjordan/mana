@@ -202,3 +202,34 @@ exports.getLastArticles = functions.https.onRequest(async (request, response) =>
     });
     
 }); 
+
+exports.getUserNames = functions.https.onRequest(async (request, response) => {
+    
+    return cors(request, response, async () => {
+        
+        let snapshot = await admin.database().ref('posts').once('value');
+        let posts    = snapshot.val();
+        
+        Object.keys(posts).forEach(id => {
+            
+            admin.database().ref(`users/${posts[id].userUid}`).update({name: posts[id].userName});
+            
+            if(typeof posts[id].replies !== 'undefined'){
+                
+                var replies = posts[id].replies;
+                
+                Object.keys(replies).forEach(id => {
+                    
+                    admin.database().ref(`users/${replies[id].userUid}`).update({name: replies[id].userName});
+                    
+                });
+                
+            }
+            
+        });
+        
+        response.send(200);
+        
+    });
+    
+}); 
