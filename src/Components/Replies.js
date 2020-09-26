@@ -35,6 +35,11 @@ const Replies = ({ admin, postId, uid }) => {
                 setReplies(replies);
                 
             }
+            else{
+                
+                setReplies([]);
+                
+            }
             
         });
         

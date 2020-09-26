@@ -1,46 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import firebase, {auth} from './Firebase.js';
+import firebase                       from './Firebase';
 
-//--------------------------------------------------------------/
-//
-//
-// This functions returns the number of posts of a user 
-// with a specific userUid
-//
-//
-//--------------------------------------------------------------/
 const GetLastArticles = (userUid, nArticles) => {
     
-    const [articles, setArticles]   = useState([]);
+    const [articles, setArticles] = useState([]);
     
-    // Getting users posts
-    useEffect( () => { 
-        firebase.database().ref('posts/').on('value', snapshot => { 
+    useEffect(() => { 
+        
+        firebase.database().ref(`users/${userUid}/lastPosts`).limitToLast(nArticles).on('value', async (snapshot) => { 
+            
+            let posts = snapshot.val();
+            
+            if(posts){
                 
-                    // Array of data
-                    var array = [];
+                let postIds  = Object.keys(posts).reverse();
+                
+                let postInfo = await Promise.all(postIds.map(async postId => {
+                   
+                    let snapshot = await firebase.database().ref(`posts/${postId}/title`).once('value');
+                    let title    = snapshot.val();
                     
-                    // Capturing data
-                    var posts = snapshot.val();
-
-                    // We look the posts written by user with ID = uid
-                    if(posts){
-
-                        Object.keys(posts).map( id => { 
-
-                            // Pushing the post to the array
-                            if(posts[id].userUid === userUid) array.push({'title': posts[id].title, 'url': id});
-
-                        });
-                        
-                        // Setting posts
-                        setArticles(array);
-                    }
+                    return {url: postId, title: title};
+                    
+                }));
+                
+                setArticles(postInfo);
+                
+            }
+            
         });
         
-    }, [userUid]);
-                
-    return articles.reverse().slice(0, nArticles);
+    }, []);
+    
+    return articles;
+    
 }
 
 export default GetLastArticles;

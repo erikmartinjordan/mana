@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import firebase, {auth} from './Firebase.js';
+import firebase, {auth}               from './Firebase.js';
 
 const GetLastComments = (numberOfComments) => {
     
@@ -7,37 +7,23 @@ const GetLastComments = (numberOfComments) => {
    
     useEffect( () => {
       
-        firebase.database().ref('posts/').on('value', snapshot => { 
+        firebase.database().ref('replies').limitToLast(numberOfComments).on('value', snapshot => { 
             
-            var posts = snapshot.val(); 
+            let replies = snapshot.val();
             
-            if(posts){
+            if(replies){
                 
-                let postsWithReplies = Object.entries(posts).map( ([postId, {replies}]) => {
-                    
-                    if(replies){
-                        
-                        let repliesWithPostIdAndReplyId = Object.entries(replies).map( ([replyId, reply]) => ({...reply, 'postId': postId, 'replyId': replyId}) );
-                        
-                        return repliesWithPostIdAndReplyId;
-                        
-                    }
-                    
-                });
-                
-                let flatReplies = postsWithReplies.flat(Infinity).filter(elem => elem ? true : false);
-                
-                let sortedReplies = flatReplies.sort((a, b) => b.timeStamp - a.timeStamp);
+                let sortedReplies = Object.values(replies).reverse();
                 
                 setComments(sortedReplies);
                 
-            }
+            } 
             
         });
      
     }, []);
     
-    return comments.slice(0, numberOfComments);
+    return comments;
   
 }
 

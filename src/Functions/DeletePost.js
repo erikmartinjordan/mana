@@ -65,15 +65,21 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
     
     const handleDelete = () => {
         
-        type === 'post'
-        ? firebase.database().ref(`posts/${postId}`).remove()
-        : firebase.database().ref(`posts/${postId}/replies/${replyId}`).remove();
+        if(type === 'post'){
+            
+            firebase.database().ref(`posts/${postId}`).remove();
+            firebase.database().ref(`users/${authorId}/lastPosts/${postId}`).remove();
+            firebase.database().ref(`users/${authorId}/numPosts`).transaction(value => ~~value - 1);
+            history.push('/');
+            
+        }
         
-        type === 'post'
-        ? firebase.database().ref(`users/${authorId}/numPosts`).transaction(value => ~~value - 1)
-        : firebase.database().ref(`users/${authorId}/numReplies`).transaction(value => ~~value - 1);
-        
-        if(type === 'post') history.push('/');
+        if(type === 'reply'){
+            
+            firebase.database().ref(`replies/${replyId}`).remove();
+            firebase.database().ref(`posts/${postId}/replies/${replyId}`).remove();
+            firebase.database().ref(`users/${authorId}/numReplies`).transaction(value => ~~value - 1);
+        }
       
         setConfirmation(false);
        

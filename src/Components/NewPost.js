@@ -112,9 +112,7 @@ const NewPost = ({hide}) => {
         let slicedTitle    = title.slice(0, 50) + '...';
         let normalizedTags = tags.map(tag => normalize(tag)); 
         let tagsObject     = normalizedTags.reduce((acc, tag) => ((acc[tag] = true, acc)), {});
-        let url, postId;
-        
-        url = postId = firebase.database().ref('posts/').push({
+        let post           = {
             
             title:      title,
             message:    message,
@@ -124,13 +122,20 @@ const NewPost = ({hide}) => {
             userUid:    nickName ? nickName : user.uid,
             userPhoto:  avatar   ? avatar   : user.photoURL
             
-        }).key;
+        }
         
-        normalizedTags.forEach(tag => firebase.database().ref(`tags/${tag}/counter`).transaction(value => ~~value + 1));
+        let url, postId;
+        let updates = {};
+
+        url = postId = firebase.database().ref().push().key;
         
+        updates[`posts/${postId}`]                                             = post;
+        updates[`users/${nickName ? nickName : user.uid}/lastPosts/${postId}`] = post;
+        
+        firebase.database().ref().update(updates);
         firebase.database().ref(`users/${nickName ? nickName : user.uid}/posts/timeStamp`).transaction(value => now);
-        
         firebase.database().ref(`users/${nickName ? nickName : user.uid}/numPosts`).transaction(value => ~~value + 1);
+        normalizedTags.forEach(tag => firebase.database().ref(`tags/${tag}/counter`).transaction(value => ~~value + 1));
         
         insertNotificationAndReputation(nickName ? nickName : user.uid, 'newPost', 'add', points, url, slicedTitle, postId, null);
         
