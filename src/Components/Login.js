@@ -13,9 +13,18 @@ const Login = ({hide}) => {
 
     const login = async () => {
         
-        let {user} = await auth.signInWithPopup(provider);
-        firebase.database().ref(`users/${user.uid}/timeStampLastLogin`).transaction(value => Date.now());
-        checkProfilePic(user);
+        let { user, additionalUserInfo } = await auth.signInWithPopup(provider);
+        
+        if(additionalUserInfo.isNewUser){
+            
+            firebase.database().ref(`users/${user.uid}/name`).transaction(value => additionalUserInfo.profile.name);
+            
+        }
+        else{
+            
+            checkProfilePic(user);
+        }
+        
         hide();
       
     }  
@@ -27,34 +36,9 @@ const Login = ({hide}) => {
         
         if(firebasePhotoURL !== providerPhotoURL){
             
-            replaceProfilePicInPosts(firebasePhotoURL, providerPhotoURL);
             updateProfilePic(providerPhotoURL);
             
         }
-        
-    }
-    
-    const replaceProfilePicInPosts = async (photoURL1, photoURL2) => {
-        
-        let snapshot = await firebase.database().ref(`posts`).once('value');
-        let posts = snapshot.val();
-        
-        Object.entries(posts).forEach( ([postId, {userPhoto, replies}]) => {
-            
-            if(userPhoto === photoURL1) 
-                firebase.database().ref(`posts/${postId}/userPhoto`).transaction(photoURL1 => photoURL2);
-            
-            if(replies){
-                
-                Object.entries(replies).forEach( ([replyId, {userPhoto}]) => {
-                    
-                    if(userPhoto === photoURL1)
-                        firebase.database().ref(`posts/${postId}/replies/${replyId}/userPhoto`).transaction(photoURL1 => photoURL2);
-                });
-                
-            }
-            
-        });
         
     }
     

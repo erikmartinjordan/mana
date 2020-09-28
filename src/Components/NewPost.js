@@ -133,6 +133,7 @@ const NewPost = ({hide}) => {
         updates[`users/${nickName ? nickName : user.uid}/lastPosts/${postId}`] = post;
         
         firebase.database().ref().update(updates);
+        firebase.database().ref(`users/${nickName ? nickName : user.uid}/name`).transaction(value => nickName ? nickName : user.displayName);
         firebase.database().ref(`users/${nickName ? nickName : user.uid}/posts/timeStamp`).transaction(value => now);
         firebase.database().ref(`users/${nickName ? nickName : user.uid}/numPosts`).transaction(value => ~~value + 1);
         normalizedTags.forEach(tag => firebase.database().ref(`tags/${tag}/counter`).transaction(value => ~~value + 1));

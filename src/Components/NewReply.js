@@ -125,6 +125,7 @@ const NewReply = ({postId}) => {
         updates[`replies/${replyId}`]                 = reply;
         
         firebase.database().ref().update(updates);
+        firebase.database().ref(`users/${nickName ? nickName : user.uid}/name`).transaction(value => nickName ? nickName : user.displayName);
         firebase.database().ref(`users/${nickName ? nickName : user.uid}/replies/timeStamp`).transaction(value => now);
         firebase.database().ref(`users/${nickName ? nickName : user.uid}/numReplies`).transaction(value => ~~value + 1);
         
