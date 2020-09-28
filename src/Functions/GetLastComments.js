@@ -7,13 +7,13 @@ const GetLastComments = (numberOfComments) => {
    
     useEffect( () => {
       
-        firebase.database().ref('replies').orderByChild('timeStamp').limitToLast(numberOfComments).on('value', snapshot => { 
+        firebase.database().ref('replies').limitToLast(numberOfComments).on('value', snapshot => { 
             
             let replies = snapshot.val();
             
             if(replies){
                 
-                let sortedReplies = Object.entries(replies).sort((a,b) => b[1].timeStamp - a[1].timeStamp);
+                let sortedReplies = Object.values(replies).reverse();
                 
                 setComments(sortedReplies);
                 

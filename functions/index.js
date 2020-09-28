@@ -168,11 +168,16 @@ exports.getReplies = functions.https.onRequest(async (request, response) => {
         let snapshot = await admin.database().ref('posts').once('value');
         let posts    = snapshot.val();
         
-        let postsWithReplies = Object.entries(posts).forEach( ([postId, {replies}]) => {
+        let postsWithReplies = Object.entries(posts).forEach(([postId, {replies}]) => {
             
             if(replies){
                 
-                Object.values(replies).forEach(reply => admin.database().ref(`replies/${postId}`).set(reply));
+                Object.entries(replies).forEach(([replyId, reply]) => {
+                    
+                    admin.database().ref(`replies/${replyId}`).update(reply);
+                    admin.database().ref(`replies/${replyId}`).update({postId: postId});
+                    
+                });
                 
             }
             
