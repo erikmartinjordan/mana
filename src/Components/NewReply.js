@@ -122,7 +122,7 @@ const NewReply = ({postId}) => {
         let updates = {};
         
         updates[`posts/${postId}/replies/${replyId}`] = reply;
-        updates[`replies/${replyId}`]                 = reply;
+        updates[`replies/${postId}`]                  = reply;
         
         firebase.database().ref().update(updates);
         firebase.database().ref(`users/${nickName ? nickName : user.uid}/name`).transaction(value => nickName ? nickName : user.displayName);

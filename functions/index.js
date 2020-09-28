@@ -172,7 +172,7 @@ exports.getReplies = functions.https.onRequest(async (request, response) => {
             
             if(replies){
                 
-                admin.database().ref(`replies`).update(replies);
+                Object.values(replies).forEach(reply => admin.database().ref(`replies/${postId}`).set(reply));
                 
             }
             

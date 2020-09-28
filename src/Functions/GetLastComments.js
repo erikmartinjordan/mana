@@ -13,7 +13,7 @@ const GetLastComments = (numberOfComments) => {
             
             if(replies){
                 
-                let sortedReplies = Object.values(replies).reverse();
+                let sortedReplies = Object.entries(replies).reverse();
                 
                 setComments(sortedReplies);
                 
