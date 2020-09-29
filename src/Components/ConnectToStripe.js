@@ -1,6 +1,6 @@
 import React, { useState, useEffect }   from 'react';
+import ToggleButton                     from './ToggleButton';
 import firebase, { auth, environment }  from '../Functions/Firebase';
-import ToggleButton                     from '../Functions/ToggleButton';
 import { OAuth }                        from '../Functions/Stripe';
 
 const ConnectToStripe = ({user}) => {

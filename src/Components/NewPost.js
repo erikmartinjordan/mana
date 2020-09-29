@@ -1,8 +1,8 @@
 import React, { useEffect, useState }    from 'react';
 import TagInput                          from 'react-easy-tag-input';
 import Alert                             from './Alert';
+import UserAvatar                        from './UserAvatar';
 import firebase, {auth}                  from '../Functions/Firebase';
-import UserAvatar                        from '../Functions/UserAvatar';
 import GetPoints                         from '../Functions/GetPoints';
 import GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel';
 import insertNotificationAndReputation   from '../Functions/InsertNotificationAndReputationIntoDatabase';

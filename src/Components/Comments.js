@@ -4,8 +4,8 @@ import buildFormatter           from 'react-timeago/lib/formatters/buildFormatte
 import spanishStrings           from 'react-timeago/lib/language-strings/es';
 import TimeAgo                  from 'react-timeago';
 import Loading                  from './Loading';
-import GetLastComments          from '../Functions/GetLastComments.js';
-import UserAvatar               from '../Functions/UserAvatar.js';
+import UserAvatar               from './UserAvatar';
+import GetLastComments          from '../Functions/GetLastComments';
 import '../Styles/Comments.css';
 
 const formatter = buildFormatter(spanishStrings);

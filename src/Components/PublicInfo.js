@@ -4,6 +4,7 @@ import TimeAgo                                   from 'react-timeago';
 import buildFormatter                            from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings                            from 'react-timeago/lib/language-strings/es';
 import Donate                                    from './Donate';
+import UserAvatar                                from './UserAvatar';
 import GetName                                   from '../Functions/GetName';
 import GetProfileImg                             from '../Functions/GetProfileImg';
 import GetNumberOfViews                          from '../Functions/GetNumberOfViews';
@@ -14,7 +15,6 @@ import GetRankingUser                            from '../Functions/GetRankingUs
 import GetNumberOfProfileViewsAndProfileLastSeen from '../Functions/GetNumberOfProfileViewsAndProfileLastSeen';
 import GetStripeUserId                           from '../Functions/GetStripeUserId';
 import ReputationGraph                           from '../Functions/ReputationGraph';
-import UserAvatar                                from '../Functions/UserAvatar';
 import '../Styles/PublicInfo.css';
 
 const formatter = buildFormatter(spanishStrings);

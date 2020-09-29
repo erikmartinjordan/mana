@@ -1,9 +1,9 @@
 import React, { useState, useEffect }   from 'react';
 import TimeAgo                          from 'react-timeago';
 import { Link }                         from 'react-router-dom';
+import ToggleButton                     from './ToggleButton';
 import firebase, {auth}                 from '../Functions/Firebase';
 import last30DaysOrOlder                from '../Functions/ReturnDifferenceBetweenTwoDates';
-import ToggleButton                     from '../Functions/ToggleButton';
 import buildFormatter                   from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings                   from 'react-timeago/lib/language-strings/es';
 import '../Styles/Notifications.css';
