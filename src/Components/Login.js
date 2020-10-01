@@ -17,7 +17,8 @@ const Login = ({hide}) => {
         
         if(additionalUserInfo.isNewUser){
             
-            firebase.database().ref(`users/${user.uid}/name`).transaction(value => additionalUserInfo.profile.name);
+            firebase.database().ref(`users/${user.uid}/name`)      .transaction(value => user.displayName);
+            firebase.database().ref(`users/${user.uid}/profilePic`).transaction(value => user.photoURL);
             
         }
         else{
@@ -47,6 +48,8 @@ const Login = ({hide}) => {
         let user = auth.currentUser;
         
         await user.updateProfile({'photoURL': photoURL});
+        
+        firebase.database().ref(`users/${user.uid}/profilePic`).transaction(value => user.photoURL);
         
         window.location.reload();
        
