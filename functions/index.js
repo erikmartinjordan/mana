@@ -238,3 +238,34 @@ exports.getUserNames = functions.https.onRequest(async (request, response) => {
     });
     
 }); 
+
+exports.getUserProfilePics = functions.https.onRequest(async (request, response) => {
+    
+    return cors(request, response, async () => {
+        
+        let snapshot = await admin.database().ref('posts').once('value');
+        let posts    = snapshot.val();
+        
+        Object.keys(posts).forEach(id => {
+            
+            admin.database().ref(`users/${posts[id].userUid}`).update({profilePic: posts[id].userPhoto});
+            
+            if(typeof posts[id].replies !== 'undefined'){
+                
+                var replies = posts[id].replies;
+                
+                Object.keys(replies).forEach(id => {
+                    
+                    admin.database().ref(`users/${replies[id].userUid}`).update({profilePic: replies[id].userPhoto});
+                    
+                });
+                
+            }
+            
+        });
+        
+        response.send(200);
+        
+    });
+    
+});
