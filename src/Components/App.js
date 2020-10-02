@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route, withRouter }  from 'react-router-dom';
 import Fingerprint                    from 'fingerprintjs';
+import moment                         from 'moment';
 import Forum                          from './Forum';
 import Detail                         from './Detail';
 import Post                           from './Post';
@@ -24,13 +25,10 @@ const App  = ({history}) => {
     const [sessionId, setSessionId] = useState(null);
     
     let fingerprint = new Fingerprint().get();
-
-    let date  = new Date();
-    let day   = ('0' + date.getDate()).slice(-2);
-    let month = ('0' + (date.getMonth() + 1)).slice(-2);
-    let year  = date.getFullYear();
     
-    let ref = firebase.database().ref(`analytics/${year}${month}${day}/${fingerprint}`);
+    let date = moment();
+    
+    let ref = firebase.database().ref(`analytics/${date.format('YYYYMMDD')}/${fingerprint}`);
     
     useEffect( () => {
         
@@ -38,8 +36,8 @@ const App  = ({history}) => {
         let pageviewId = ref.child(sessionId).push().key;
         
         let timeStamp = { 
-            timeStampIni: date.getTime(), 
-            timeStampEnd: date.getTime()
+            timeStampIni: date.valueOf(), 
+            timeStampEnd: date.valueOf()
         };
         
         let url = { 
