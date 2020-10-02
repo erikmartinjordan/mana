@@ -1,9 +1,8 @@
 import React, { useState, useEffect }   from 'react';
-import TimeAgo                          from 'react-timeago';
+import moment                           from 'moment';
 import { Link }                         from 'react-router-dom';
 import ToggleButton                     from './ToggleButton';
 import firebase, {auth}                 from '../Functions/Firebase';
-import last30DaysOrOlder                from '../Functions/ReturnDifferenceBetweenTwoDates';
 import buildFormatter                   from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings                   from 'react-timeago/lib/language-strings/es';
 import '../Styles/Notifications.css';
@@ -113,10 +112,19 @@ const ListNotifications = ({notifications, user, hide}) => {
     
     const notificationTitle = (index) => {
         
-        let thisTitle = last30DaysOrOlder(Date.now(), notificationsList[index].timeStamp);
-        let prevTitle = index > 0 ? last30DaysOrOlder(Date.now(), notificationsList[index - 1].timeStamp) : null;
+        let now = moment();
         
-        return thisTitle !== prevTitle ? thisTitle : null;
+        let currentTitle  = now.diff(moment(notificationsList[index    ]?.timeStamp), 'days') > 30 ? 'Más antiguo' : 'Últimos 30 días';
+        let previousTitle = now.diff(moment(notificationsList[index - 1]?.timeStamp), 'days') > 30 ? 'Más antiguo' : 'Últimos 30 días';
+     
+        if(index === 0) 
+            return currentTitle;
+         
+        else if(currentTitle !== previousTitle)
+            return currentTitle;
+            
+        else
+            return null;
         
     }
     
@@ -140,7 +148,6 @@ const ListNotifications = ({notifications, user, hide}) => {
                         </span>
                         <span className = 'Notifications-Message'>
                             {url ? <Link onClick = {hide} to = {`/comunidad/post/${url}/#${replyId}`}>{message}</Link> : message}
-                            <TimeAgo formatter = {formatter} date = {date}/>
                         </span>
                     </div>
                 </div>
