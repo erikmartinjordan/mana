@@ -13,7 +13,7 @@ const GetStripeUserId = (uid) => {
             
         });
      
-    }, []);
+    }, [uid]);
     
     return stripeUserId;
   

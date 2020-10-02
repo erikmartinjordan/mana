@@ -17,7 +17,7 @@ const Login = ({hide}) => {
         
         if(additionalUserInfo.isNewUser){
             
-            firebase.database().ref(`users/${user.uid}/name`)      .transaction(value => user.displayName);
+            firebase.database().ref(`users/${user.uid}/name`).transaction(value => user.displayName);
             firebase.database().ref(`users/${user.uid}/profilePic`).transaction(value => user.photoURL);
             
         }

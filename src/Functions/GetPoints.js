@@ -1,4 +1,3 @@
-import React                from 'react';
 import GetNumberOfPosts     from './GetNumberOfPosts.js';
 import GetNumberOfReplies   from './GetNumberOfReplies.js';
 import GetNumberOfSpicy     from './GetNumberOfSpicy.js';
