@@ -24,8 +24,8 @@ const NewPost = ({hide}) => {
     const [timeSpanPosts, setTimeSpanPosts] = useState(null);
     const [title, setTitle]                 = useState('');
     const [user, setUser]                   = useState([]);
-    const points                            = GetPoints(nickName ? nickName : user ? user.uid : null);
-    const level                             = GetLevel(...points)[0];
+    const points                            = GetPoints(nickName ? nickName : user ? user.uid : null)[0];
+    const level                             = GetLevel(points)[0];
     
     useEffect( () => {
         

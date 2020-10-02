@@ -1,6 +1,5 @@
-import React            from 'react';
-import firebase, {auth} from './Firebase.js';
-import Points           from './PointsAndValues.js';
+import firebase from './Firebase.js';
+import Points   from './PointsAndValues.js';
 
 const insertNotificationAndReputation = (uid, type, operator, points, url, message, postId, replyId) => {
     
@@ -8,7 +7,6 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
     var newPostPoints  = Points.post;
     var chiliPoints    = Points.spicy;
     var applausePoints = Points.applause;
-    var points         = points[0];
     
     switch(type){
             
@@ -116,7 +114,10 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
             }
             
             break;
-        
+            
+        default: 
+            
+            break;
     }
 }
 

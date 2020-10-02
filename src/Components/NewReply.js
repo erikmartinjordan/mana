@@ -22,8 +22,8 @@ const NewReply = ({postId}) => {
     const [showLogin, setShowLogin]               = useState(false);
     const [timeSpanReplies, setTimeSpanReplies]   = useState(null);
     const [user, setUser]                         = useState(null);
-    const points                                  = GetPoints(nickName ? nickName : user ? user.uid : null);
-    const level                                   = GetLevel(...points)[0];
+    const points                                  = GetPoints(nickName ? nickName : user ? user.uid : null)[0];
+    const level                                   = GetLevel(points)[0];
     
     useEffect( () => {
         

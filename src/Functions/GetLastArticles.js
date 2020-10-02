@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import firebase                       from './Firebase';
+import { useState, useEffect } from 'react';
+import firebase                from './Firebase';
 
 const GetLastArticles = (userUid, nArticles) => {
     

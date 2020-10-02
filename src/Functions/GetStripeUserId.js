@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import firebase                       from './Firebase.js';
+import { useState, useEffect } from 'react';
+import firebase                from './Firebase.js';
 
 const GetStripeUserId = (uid) => {
     

@@ -14,7 +14,7 @@ const Likes = ({ authorId, postId }) => {
     const [numVotes, setNumVotes]         = useState(0);
     const [user, setUser]                 = useState(null);
     const [votes, setVotes]               = useState({});
-    const points                          = GetPoints(authorId);
+    const points                          = GetPoints(authorId)[0];
     
     useEffect( () => {
         
