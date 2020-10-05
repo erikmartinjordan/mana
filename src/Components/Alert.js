@@ -21,7 +21,7 @@ const Alert = ({title, message, seconds, setTitle, setMessage}) => {
             
         }
         
-    }, [title, message, seconds]);
+    }, [title, message, seconds, setMessage, setTitle]);
     
     return(
         <React.Fragment>
