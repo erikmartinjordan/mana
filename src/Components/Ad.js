@@ -8,6 +8,13 @@ const Ad = () => {
     
     const [displayAds, setDisplayAds] = useState(false);
     
+    useEffect(() => { 
+        
+        if(displayAds && window.screen.width >= 768)
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+        
+    }, [displayAds]);
+    
     useEffect(() => {
         
         auth.onAuthStateChanged(user => {
@@ -27,64 +34,27 @@ const Ad = () => {
         
     }, []);
     
-    const ads = [
-        
-        {
-            "campaign": 'AirBnB',
-            "link": 'https://www.airbnb.es/c/erikm3737?currency=EUR',
-            "text": 'Obtén 34 euros de descuento en tu primera reserva de AirBnB'
-            
-        },
-        {
-            
-            "campaign": 'Amazon_Aukey',
-            "link": 'https://amzn.to/39lC2sk',
-            "text": 'Los auriculares inalámbricos de AUKEY cuestan menos de 30 euros'
-            
-        },
-        {
-            
-            "campaign": 'Agoda',
-            "link": 'https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1772106&city=9395',
-            "text": '¿Conoces Agoda? Es parecido a Booking pero las reservas son más baratas.'
-            
-        },
-        {
-            "campaign": 'Amazon_AppleWatch',
-            "link": 'https://amzn.to/2FE7yrh',
-            "text": 'Nuevo Apple Watch SE. Más barato, más watch.'
-        }
-        
-        
-    ]
-    
-    const [random, setRandom] = useState(Math.floor(ads.length * Math.random()));
-    
-    const handleAd = (campaign) => {
-        
-        var fingerprint = new Fingerprint().get();
-        var date        = moment().format('YYYYMMDD');
-        
-        firebase.database().ref(`ads/${campaign}/${date}/${fingerprint}/clicks/`).transaction(value => value + 1);
-    }
-    
     return(
         <React.Fragment>
             { displayAds
-            ? <a 
-                  className = 'Ad' 
-                  href      = {ads[random].link} 
-                  onClick   = {() => handleAd(ads[random].campaign)} 
-                  target    = '_blank' 
-                  rel       = 'noopener noreferrer nofollow'>
+            ? <div  className = 'Ad'>
                 <span className = 'Title'>Anuncio</span>
-                <p>{ads[random].text}</p>
-            </a>
+                <div className = 'Ad-Wrap'>
+                    <ins
+                        className = 'adsbygoogle'
+                        style = {{ display: 'block'}}
+                        data-ad-client = 'ca-pub-8817836333583401'
+                        data-ad-slot = '6658079014'
+                        data-ad-format = 'auto'
+                        data-full-width-responsive = 'true'>
+                    </ins>
+                </div>
+              </div>
             : null    
             }
         </React.Fragment>
     );
     
-}
+};
 
 export default Ad;

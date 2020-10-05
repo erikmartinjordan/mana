@@ -1,4 +1,4 @@
-a.Ad{
+.Ad{
     background: var(--bgBox);
     border-radius: 5px;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
@@ -12,6 +12,9 @@ a.Ad{
     margin-bottom: 10px;
     width: 100%;
 }
-a.Ad p{
+.Ad-Wrap{
+    padding: 20px;
+}
+.Ad p{
     padding: 10px;
 }
