@@ -38,7 +38,6 @@ const Ad = () => {
         <React.Fragment>
             { displayAds
             ? <div  className = 'Ad'>
-                <span className = 'Title'>Anuncio</span>
                 <div className = 'Ad-Wrap'>
                     <ins
                         className = 'adsbygoogle'
