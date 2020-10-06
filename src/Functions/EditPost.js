@@ -64,7 +64,7 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
             
         });
         
-    }, [level, uid]);
+    }, [level, uid, admin, authorId]);
     
     const editMessage = async () => {
         
@@ -104,7 +104,7 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
         if(type === 'post'){
             
             let normalizedTags = tags.map(tag => normalize(tag)); 
-            let tagsObject     = normalizedTags.reduce((acc, tag) => (acc[tag] = true, acc), {});
+            let tagsObject     = normalizedTags.reduce((acc, tag) => ((acc[tag] = true, acc)), {});
             
             firebase.database().ref(`posts/${postId}/message`).set(message);
             firebase.database().ref(`posts/${postId}/edited`).transaction(value => Date.now());

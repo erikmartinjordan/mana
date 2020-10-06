@@ -4,7 +4,6 @@ import { Link }                       from 'react-router-dom';
 import moment                         from 'moment';
 import Linkify                        from 'react-linkify';
 import Verified                       from './Verified';
-import PublicInfo                     from './PublicInfo';
 import Loading                        from './Loading';
 import Likes                          from './Likes';
 import UserAvatar                     from './UserAvatar';

@@ -25,9 +25,7 @@ const App  = ({history}) => {
     const [sessionId, setSessionId] = useState(null);
     
     let fingerprint = new Fingerprint().get();
-    
     let date = moment();
-    
     let ref = firebase.database().ref(`analytics/${date.format('YYYYMMDD')}/${fingerprint}`);
     
     useEffect( () => {
@@ -54,7 +52,7 @@ const App  = ({history}) => {
         
         setSessionId(sessionId);
         
-    }, [date, history.location.pathname, ref]);
+    }, [history.location.pathname]);
     
     useEffect( () => {
         
@@ -64,7 +62,7 @@ const App  = ({history}) => {
             
         }
         
-    }, [history.location.pathname]);
+    }, [history.location.pathname, ref, sessionId]);
     
     useEffect( () => {
         

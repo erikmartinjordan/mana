@@ -62,7 +62,7 @@ const RelatedContent = () => {
         
         getRelatedPosts(5);
         
-    }, [update]);
+    }, [update, url]);
     
     useEffect( () => {    
         

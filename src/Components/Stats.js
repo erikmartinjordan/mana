@@ -87,7 +87,6 @@ const Stats = () => {
         
         let canvas = document.getElementById('graph-1');
         let ctx    = canvas.getContext('2d');
-        let width  = window.innerWidth;
         
         graph1.data.labels = days;
         graph1.data.datasets['0'].data = users;
@@ -132,12 +131,12 @@ const Stats = () => {
             
             let users = [];
             
-            Object.keys(data).map(day => {
+            Object.keys(data).forEach(day => {
                 
                 users.push(Object.keys(data[day]).length);
                 
             });
-                
+            
             return users;
             
         }
@@ -146,11 +145,11 @@ const Stats = () => {
             
             let sessions = [];
             
-            Object.keys(data).map(day => {
+            Object.keys(data).forEach(day => {
                 
                 let count = 0; 
                 
-                Object.keys(data[day]).map(uid => {
+                Object.keys(data[day]).forEach(uid => {
                     
                     count = count + Object.keys(data[day][uid]).length;
                     
@@ -167,13 +166,13 @@ const Stats = () => {
             
             let pageviews = [];
             
-            Object.keys(data).map(day => {
+            Object.keys(data).forEach(day => {
                 
                 let count = 0; 
                 
-                Object.keys(data[day]).map(uid => {
+                Object.keys(data[day]).forEach(uid => {
                     
-                    Object.keys(data[day][uid]).map(session => {
+                    Object.keys(data[day][uid]).forEach(session => {
                         
                         if(data[day][uid][session].pageviews)
                             count = count + Object.keys(data[day][uid][session].pageviews).length;
@@ -195,11 +194,11 @@ const Stats = () => {
             
             let duration = [];
             
-            Object.keys(data).map(day => {
+            Object.keys(data).forEach(day => {
                 
-                Object.keys(data[day]).map(uid => {
+                Object.keys(data[day]).forEach(uid => {
                     
-                    Object.keys(data[day][uid]).map(session => {
+                    Object.keys(data[day][uid]).forEach(session => {
                         
                         let sec = (data[day][uid][session].timeStampEnd - data[day][uid][session].timeStampIni)/1000;
                         
@@ -223,13 +222,13 @@ const Stats = () => {
             
             let now = (new Date()).getTime();
             
-            Object.keys(data).map(day => {
+            Object.keys(data).forEach(day => {
                 
-                Object.keys(data[day]).map(uid => {
+                Object.keys(data[day]).forEach(uid => {
                     
                     let realTimeSession = false;
                     
-                    Object.keys(data[day][uid]).map(session => {
+                    Object.keys(data[day][uid]).forEach(session => {
                         
                         if(now - data[day][uid][session].timeStampEnd <= 5 * 60 * 1000)
                             realTimeSession = true
@@ -262,11 +261,11 @@ const Stats = () => {
             let bounced = 0;
             let total = 0;
             
-            Object.keys(data).map(day => {
+            Object.keys(data).forEach(day => {
                 
-                Object.keys(data[day]).map(uid => {
+                Object.keys(data[day]).forEach(uid => {
                     
-                    Object.keys(data[day][uid]).map(session => {
+                    Object.keys(data[day][uid]).forEach(session => {
                         
                         if(data[day][uid][session].timeStampIni === data[day][uid][session].timeStampEnd)
                             bounced ++;
@@ -281,22 +280,21 @@ const Stats = () => {
             
             return `${ (100 * bounced / total).toFixed(2) }%`;
             
-            
         }
         
         const getRanking = (data) => {
             
             let array = [];
             
-            Object.keys(data).map(day => {
+            Object.keys(data).forEach(day => {
                 
-                Object.keys(data[day]).map(uid => {
+                Object.keys(data[day]).forEach(uid => {
                     
-                    Object.keys(data[day][uid]).map(session => {
+                    Object.keys(data[day][uid]).forEach(session => {
                         
                         if(data[day][uid][session].pageviews){
                             
-                            Object.keys(data[day][uid][session].pageviews).map(pid => {
+                            Object.keys(data[day][uid][session].pageviews).forEach(pid => {
                                 
                                 array.push(data[day][uid][session].pageviews[pid].url);
                                 
@@ -356,7 +354,6 @@ const Stats = () => {
         
         return () => firebase.database().ref(`analytics/`).off('value', listener);
         
-        
     }, [interval]);
 
     return (
@@ -407,16 +404,15 @@ const Stats = () => {
                     <div className = 'Url'>URL</div>
                     <div className = 'Visitas'>Visitas</div>
                 </div>
-                {ranking.map( (elem, key) => <div className = 'Row' key = {key}>
-                                                <div className = 'Url'><Link to = {elem[0]}>{elem[0]}</Link></div>
-                                                <div className = 'Visitas'>{elem[1]}</div>
-                                            </div>)
-                }
+                {ranking.map( (elem, key) => (
+                    <div className = 'Row' key = {key}>
+                        <div className = 'Url'><Link to = {elem[0]}>{elem[0]}</Link></div>
+                        <div className = 'Visitas'>{elem[1]}</div>
+                    </div>)
+                )}
             </div>
-            
         </div>
     );
-
 }
 
 export default Stats;

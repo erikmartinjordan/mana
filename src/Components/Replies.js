@@ -44,14 +44,14 @@ const Replies = ({ admin, postId, uid }) => {
         
         return () => ref.off('value', listener);
         
-    }, [window.location.href]);
+    }, [postId]);
     
     useEffect( () => {
         
         if(replyRef.current)
             replyRef.current.scrollIntoView({behavior: 'smooth', block: 'center'});;
         
-    }, [replyRef.current]);
+    });
     
     return(
         <div className = 'Replies'>
@@ -125,7 +125,7 @@ const Reply = ({ authorId, message }) => {
         
         fetchUser();
         
-    }, [level]);
+    }, [level, authorId, isAnonymous]);
     
     return(
         
@@ -146,7 +146,7 @@ const MarkDownMessage   = ({ message }) => {
     const renderers = {
         
         paragraph: props => <Linkify properties = {linkProperties}><p>{props.children}</p></Linkify>,
-        image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'}></img>
+        image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Nomoresheet imagen'}></img>
         
     }
     
