@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React                          from 'react';
 import { Switch, Route, withRouter }  from 'react-router-dom';
-import Fingerprint                    from 'fingerprintjs';
-import moment                         from 'moment';
 import Forum                          from './Forum';
 import Detail                         from './Detail';
 import Post                           from './Post';
@@ -17,72 +15,14 @@ import Guidelines                     from './Guidelines';
 import Helper                         from './Helper';
 import DonateSuccess                  from './DonateSuccess';
 import DonateFail                     from './DonateFail';
-import firebase                       from '../Functions/Firebase';
+import TrafficStats                   from './TrafficStats';
 import '../Styles/App.css';
 
 const App  = ({history}) => {
-    
-    const [sessionId, setSessionId] = useState(null);
-    
-    let fingerprint = new Fingerprint().get();
-    let date = moment();
-    let ref = firebase.database().ref(`analytics/${date.format('YYYYMMDD')}/${fingerprint}`);
-    
-    useEffect( () => {
-        
-        let sessionId  = ref.push().key;
-        let pageviewId = ref.child(sessionId).push().key;
-        
-        let timeStamp = { 
-            timeStampIni: date.valueOf(), 
-            timeStampEnd: date.valueOf()
-        };
-        
-        let url = { 
-            url: history.location.pathname
-        };
-        
-        let updates = {};
-        
-        updates = timeStamp;
-        updates.pageviews = {};
-        updates.pageviews[pageviewId] = url;
-        
-        ref.child(sessionId).update(updates);
-        
-        setSessionId(sessionId);
-        
-    }, [history.location.pathname]);
-    
-    useEffect( () => {
-        
-        if(sessionId){
-            
-            ref.child(`${sessionId}/pageviews`).push({ url: history.location.pathname });
-            
-        }
-        
-    }, [history.location.pathname, ref, sessionId]);
-    
-    useEffect( () => {
-        
-        let scrollListener;
-        
-        if(sessionId && history.location.pathname !== '/estadisticas'){
-            
-            scrollListener = window.addEventListener('scroll', () => {
-            
-                ref.child(`${sessionId}/timeStampEnd`).transaction( value => (new Date()).getTime() );
-            
-            });
-        }
-        
-        return () => window.removeEventListener('scroll', scrollListener); 
-        
-    }, [sessionId, history.location.pathname]);
    
     return (
         <React.Fragment>
+            <TrafficStats/>
             <Helper/>
             <div className = 'Title-Menu'>
                 <Switch key = 'A'>
@@ -109,6 +49,7 @@ const App  = ({history}) => {
             </Switch>
         </React.Fragment>
     );
+
 }
 
 export default withRouter(App);
