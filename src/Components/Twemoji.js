@@ -4,13 +4,13 @@ const Twemoji = ({ emoji }) => {
     
     useEffect(() => {
         
-        window.twemoji.parse(document.getElementById('emoji'), {folder: 'svg', ext: '.svg'} );  
+        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );  
         
     });
     
     return(
         
-        <span id = 'emoji'>{emoji}</span>
+        <span className = 'Twemoji'>{emoji}</span>
         
     );
     
