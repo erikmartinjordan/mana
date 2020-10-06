@@ -38,7 +38,7 @@ const LikesComments = ({ authorId, postId, replyId }) => {
             
         });
         
-    }, []);
+    }, [postId, replyId]);
     
     useEffect( () => {
         

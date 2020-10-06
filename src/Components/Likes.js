@@ -38,7 +38,7 @@ const Likes = ({ authorId, postId }) => {
             
         });
         
-    },[]);
+    },[postId]);
     
     useEffect( () => {
         

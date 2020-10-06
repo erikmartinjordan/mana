@@ -15,7 +15,7 @@ const GetNumberOfPosts = (...uids) => {
             
             let users = snapshot.val(); 
             
-            let numPosts = uids.map(uid => ~~users[uid]?.numPosts);
+            let numPosts = JSON.parse(stringUids).map(uid => ~~users[uid]?.numPosts);
             
             setPosts(numPosts);
             

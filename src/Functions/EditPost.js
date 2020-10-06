@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import TagInput                               from 'react-easy-tag-input';
-import firebase, {auth}                       from './Firebase';
+import firebase                               from './Firebase';
 import Alert                                  from '../Components/Alert';
 import GetPoints                              from '../Functions/GetPoints';
 import GetLevel                               from '../Functions/GetLevelAndPointsToNextLevel';

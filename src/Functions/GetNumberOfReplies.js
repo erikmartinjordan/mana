@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import firebase                       from './Firebase.js';
+import firebase                from './Firebase.js';
 
 const GetNumberOfReplies = (...uids) => {
     
@@ -15,7 +15,7 @@ const GetNumberOfReplies = (...uids) => {
             
             let users = snapshot.val(); 
             
-            let numReplies = uids.map(uid => ~~users[uid]?.numReplies);
+            let numReplies = JSON.parse(stringUids).map(uid => ~~users[uid]?.numReplies);
             
             setReplies(numReplies);
             

@@ -15,7 +15,7 @@ const GetNumberOfSpicy = (...uids) => {
             
             let users = snapshot.val(); 
             
-            let numSpicy = uids.map(uid => ~~users[uid]?.numSpicy);
+            let numSpicy = JSON.parse(stringUids).map(uid => ~~users[uid]?.numSpicy);
             
             setSpicy(numSpicy);
             

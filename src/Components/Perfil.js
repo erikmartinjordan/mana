@@ -1,5 +1,4 @@
 import React, { useState, useEffect }       from 'react';
-import Login                                from './Login';
 import PaymentModal                         from './PaymentModal';
 import ConnectToStripe                      from './ConnectToStripe';
 import Notifications                        from './Notifications';

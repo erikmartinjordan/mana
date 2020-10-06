@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import moment                         from 'moment';
-import Fingerprint                    from 'fingerprintjs';
-import firebase, { auth }             from '../Functions/Firebase';
+import { auth }                       from '../Functions/Firebase';
 import '../Styles/Ad.css';
 
 const Ad = () => {

@@ -7,30 +7,34 @@ const GetLastArticles = (userUid, nArticles) => {
     
     useEffect(() => { 
         
-        firebase.database().ref(`users/${userUid}/lastPosts`).limitToLast(nArticles).on('value', async (snapshot) => { 
-            
-            let posts = snapshot.val();
-            
-            if(posts){
+        if(userUid && nArticles){
+           
+            firebase.database().ref(`users/${userUid}/lastPosts`).limitToLast(nArticles).on('value', async (snapshot) => { 
                 
-                let postIds  = Object.keys(posts).reverse();
+                let posts = snapshot.val();
                 
-                let postInfo = await Promise.all(postIds.map(async postId => {
-                   
-                    let snapshot = await firebase.database().ref(`posts/${postId}/title`).once('value');
-                    let title    = snapshot.val();
+                if(posts){
                     
-                    return {url: postId, title: title};
+                    let postIds  = Object.keys(posts).reverse();
                     
-                }));
+                    let postInfo = await Promise.all(postIds.map(async postId => {
+                        
+                        let snapshot = await firebase.database().ref(`posts/${postId}/title`).once('value');
+                        let title    = snapshot.val();
+                        
+                        return {url: postId, title: title};
+                        
+                    }));
+                    
+                    setArticles(postInfo);
+                    
+                }
                 
-                setArticles(postInfo);
-                
-            }
+            });
             
-        });
+        }
         
-    }, []);
+    }, [userUid, nArticles]);
     
     return articles;
     

@@ -1,6 +1,6 @@
 import React, { useState, useEffect }   from 'react';
 import ToggleButton                     from './ToggleButton';
-import firebase, { auth, environment }  from '../Functions/Firebase';
+import firebase, {  environment }       from '../Functions/Firebase';
 import { OAuth }                        from '../Functions/Stripe';
 
 const ConnectToStripe = ({user}) => {
@@ -18,9 +18,37 @@ const ConnectToStripe = ({user}) => {
         
     }, [user]);
     
+    
     useEffect(() => {
         
         let url = window.location.href;
+        
+        const completeStripeConnection = async (authorizationCode) => {
+            
+            let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/stripeAccountConnection';
+            
+            let response = await fetch(fetchURL, {
+                
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({
+                    authorizationCode: authorizationCode,
+                    environment: environment
+                })
+                
+            });
+            
+            if(response.ok){
+                
+                let data = await response.json();
+                
+                let stripeUserId = data.stripeUserId;
+                
+                firebase.database().ref(`users/${user.uid}/stripeUserId`).transaction(value => stripeUserId);
+                
+            }
+            
+        }
         
         if(url.includes('?') && user.uid){
          
@@ -28,7 +56,7 @@ const ConnectToStripe = ({user}) => {
             
             if(res.code){
                 
-                completeStripeConnection(res.code, user.uid);
+                completeStripeConnection(res.code);
                 
             }
             
@@ -77,33 +105,6 @@ const ConnectToStripe = ({user}) => {
         if(response.ok){
             
             firebase.database().ref(`users/${user.uid}/stripeUserId`).remove();
-            
-        }
-        
-    }
-    
-    const completeStripeConnection = async (authorizationCode) => {
-        
-        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/stripeAccountConnection';
-        
-        let response = await fetch(fetchURL, {
-            
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({
-                authorizationCode: authorizationCode,
-                environment: environment
-            })
-            
-        });
-        
-        if(response.ok){
-            
-            let data = await response.json();
-            
-            let stripeUserId = data.stripeUserId;
-            
-            firebase.database().ref(`users/${user.uid}/stripeUserId`).transaction(value => stripeUserId);
             
         }
         

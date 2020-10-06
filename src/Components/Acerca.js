@@ -1,20 +1,16 @@
 import React, { useState, useEffect }             from 'react';
-import { Link }                                   from 'react-router-dom';
+import moment                                     from 'moment';
 import ReactMarkdown                              from 'react-markdown';
-import Alert                                      from './Alert';
 import firebase, { auth, storageRef, fetchAdmin } from '../Functions/Firebase';
 import DeleteFeature                              from '../Functions/DeleteFeature.js';
 import '../Styles/Acerca.css';
 
 const Acerca = () => {
     
-    const today = new Date();
-    const month = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+    const today                     = moment();
     const [admin, setAdmin]         = useState(null);
-    const [alert, setAlert]         = useState(false);
     const [content, setContent]     = useState(null);
     const [data, setData]           = useState(null);
-    const [date, setDate]           = useState(`${today.getDate()} de ${month[today.getMonth()]} del ${today.getFullYear()}`);
     const [imgUrl, setImgUrl]       = useState(null);
     const [title, setTitle]         = useState(null);
     
@@ -65,16 +61,12 @@ const Acerca = () => {
         
         firebase.database().ref('features/').push({
             
-            date: [today.getDate(), month[today.getMonth()], today.getFullYear()],
+            date: [today.format('DD'), today.format('MMMM'), today.format('YYYY')],
             description: content,
             pic: imgUrl,
             title: title
-
-        })
-        
-        setAlert(true);
-        
-        setTimeout( () => setAlert(false), 2000 );
+            
+        });
         
     }
     
@@ -107,29 +99,32 @@ const Acerca = () => {
             </div>
             {admin &&
                 [<div className = 'Block'>
-                    <input      onChange = {(e) => setTitle(e.target.value)} 
-                                className = 'Title' 
-                                placeholder = 'Título...' 
-                                value = {title}>
+                    <input     
+                        onChange    = {(e) => setTitle(e.target.value)} 
+                        className   = 'Title' 
+                        placeholder = 'Título...' 
+                        value       = {title}>
                     </input>
                     <div className = 'Date'>
-                        {date}
+                        {`${today.format('DD')} de ${today.format('MMMM')} del ${today.format('YYYY')}`}
                     </div>
-                    <textarea   onChange = {(e) => handleTextArea(e)}
-                                className = 'Content'
-                                placeholder = 'Contenido...'
-                                value = {content}>
+                    <textarea   
+                        onChange    = {(e) => handleTextArea(e)}
+                        className   = 'Content'
+                        placeholder = 'Contenido...'
+                        value       = {content}>
                     </textarea>
                     {imgUrl && <img src = {imgUrl}></img>}
                     <div className = 'Buttons'>
                         <div className = 'Upload-Wrap'>
-                            <input  onChange = {(e) => handleImageChange(e)}
-                                    className = 'Upload' 
-                                    type = 'file'>
+                            <input  
+                                onChange  = {(e) => handleImageChange(e)}
+                                className = 'Upload' 
+                                type      = 'file'>
                             </input>
                             <div>📸</div>
                         </div>
-                        <button onClick = {() => upload()}className = 'send'>Añadir</button>
+                        <button onClick = {upload} className = 'send'>Añadir</button>
                     </div>
                 </div>,
                 <div className = 'Separator'></div>]           
@@ -150,7 +145,7 @@ const Acerca = () => {
             }
         </div>
     );
-
+    
 }
 
 export default Acerca;

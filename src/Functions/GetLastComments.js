@@ -21,7 +21,7 @@ const GetLastComments = (numberOfComments) => {
             
         });
      
-    }, []);
+    }, [numberOfComments]);
     
     return comments;
   

@@ -1,6 +1,5 @@
 import React, { useState, useEffect }   from 'react';
 import { Link }                         from 'react-router-dom';
-import moment                           from 'moment';
 import Login                            from './Login';
 import Perfil                           from './Perfil';
 import NewPost                          from './NewPost';

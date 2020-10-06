@@ -15,7 +15,7 @@ const GetNumberOfViews = (...uids) => {
             
             let users = snapshot.val(); 
             
-            let numViews = uids.map( uid => ~~users[uid]?.numViews);
+            let numViews = JSON.parse(stringUids).map( uid => ~~users[uid]?.numViews);
             
             setViews(numViews);
             

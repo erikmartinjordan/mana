@@ -24,13 +24,14 @@ const Post = () => {
     const [superlikes, setSuperlikes]           = useState('');
     const [text, setText]                       = useState('');
     const [title, setTitle]                     = useState('');
-    const [url, setUrl]                         = useState(window.location.pathname.split('/').pop());
     const [user, setUser]                       = useState(false);
     const [views, setViews]                     = useState(0);
     const points                                = GetPoints(user ? user.uid : 0);
+    
     const level                                 = GetLevel(...points)[0];
     const levelLimit                            = 20;
     const timeLimitPrivateArticleInMonths       = 2;
+    const url                                   = window.location.pathname.split('/').pop();
     
     useEffect( () => {
         
@@ -161,7 +162,7 @@ const Post = () => {
         
         fetchData();
         
-    }, []);
+    }, [url]);
     
     const handleLikes = () => {
         
@@ -172,12 +173,6 @@ const Post = () => {
     const handleSuperLikes  = () => {
         
         firebase.database().ref(`articles/${url}/superlikes/`).transaction(value => value + 1);
-        
-    }
-    
-    const loginUser = async () => { 
-        
-        await auth.signInWithPopup(provider);
         
     }
     

@@ -15,7 +15,7 @@ const GetNumberOfApplauses = (...uids) => {
             
             let users = snapshot.val(); 
             
-            let numApplauses = uids.map(uid => ~~users[uid]?.numApplauses);
+            let numApplauses = JSON.parse(stringUids).map(uid => ~~users[uid]?.numApplauses);
             
             setApplauses(numApplauses);
             

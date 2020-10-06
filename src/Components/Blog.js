@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment                         from 'moment';
-import Login                          from './Login';
-import firebase, {auth, provider}     from '../Functions/Firebase';
+import firebase, { auth }             from '../Functions/Firebase';
 import Data                           from '../Posts/_data';
 import { Link }                       from 'react-router-dom';
 import '../Styles/Blog.css';
@@ -9,11 +8,7 @@ import 'moment/locale/es';
 
 const Blog = () => {
 
-    const [archive, setArchive]           = useState([]);
-    const [abstract, setAbstract]         = useState(null);
     const [displayPosts, setDisplayPosts] = useState(10);
-    const [img, setImg]                   = useState({});
-    const [login, setLogin]               = useState(false);
     const [sortedPosts, setSortedPosts]   = useState([]);
     const [user, setUser]                 = useState(null);
     const timeLimitPrivateArticleInMonths = 2;
@@ -114,7 +109,7 @@ const Filter = ({setSortedPosts}) => {
         
         setSortedPosts(sortedKeys);
         
-    }, [filter]);
+    }, [articleData, setSortedPosts, filter]);
     
     return(
         <div className = 'Filter-Blog'>
