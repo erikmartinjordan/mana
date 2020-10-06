@@ -1,11 +1,12 @@
 import React, { useState, useEffect }            from 'react';
+import { Link }                                  from 'react-router-dom';
 import moment                                    from 'moment';
 import ReactMarkdown                             from 'react-markdown';
 import Default                                   from './Default';
 import Login                                     from './Login';
 import Perfil                                    from './Perfil';
 import Twemoji                                   from './Twemoji';
-import firebase, { auth, provider }              from '../Functions/Firebase';
+import firebase, { auth }                        from '../Functions/Firebase';
 import GetLevel                                  from '../Functions/GetLevelAndPointsToNextLevel';
 import GetPoints                                 from '../Functions/GetPoints';
 import Data                                      from '../Posts/_data';
@@ -201,7 +202,6 @@ const Post = () => {
                    superlikes       = {superlikes}
                    handleLikes      = {handleLikes}
                    handleSuperLikes = {handleSuperLikes}
-                   setLogin         = {setLogin}
                    user             = {user}
                    level            = {level}
                    levelLimit       = {levelLimit}
@@ -227,10 +227,10 @@ const Header = ({title, date, user, views, likes, superlikes, handleLikes, handl
             <h1>{title}</h1>
             <div className = 'Infopost'>
                 <p className = 'Author'>
-                    <img id = 'Erik' src = {profilePic}></img>
+                    <img id = 'Erik' src = {profilePic} alt = {'Erik Martín Jordán'}></img>
                     <span>{`Erik Martín Jordán, ${date[1]} ${date[2]}`}</span>
                 </p>
-                <div className = 'i'>👀 {parseInt(views).toLocaleString('es')}</div>
+                <div className = 'i'><Twemoji emoji = {'👀'}/> {parseInt(views).toLocaleString('es')}</div>
                 <div className = 'i' onClick = {user ? handleLikes      : () => setLogin(true)}><Twemoji emoji = {'👏'}/> {likes}</div>
                 <div className = 'i' onClick = {user ? handleSuperLikes : () => setLogin(true)}><Twemoji emoji = {'🎉'}/> {superlikes}</div>
             </div>
@@ -257,7 +257,7 @@ const Content = ({text, privateArticle, numPrivatePosts, user, setLogin, level, 
                 <div className = 'Login-Box'>
                     <h3>Lee la historia completa</h3>
                     <p>Para poder seguir leyendo este artículo y {numPrivatePosts} más, accede a Nomoresheet.</p>
-                    <a className = 'login' onClick = {() => setLogin(true)}>Acceder</a>
+                    <Link to = '/' className = 'login' onClick = {() => setLogin(true)}>Acceder</Link>
                 </div>    
               </React.Fragment>
             : privateArticle && user && level < levelLimit && !premium
