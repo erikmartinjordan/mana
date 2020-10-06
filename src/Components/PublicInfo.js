@@ -46,46 +46,46 @@ const PublicInfo = (props) => {
     }
     
     return (
-          <div className = 'Public-Info'>
-                <div className = 'Datos'>
-                    {stripeUserId ? <Donate name = {name} stripeUserId = {stripeUserId}/> : null}
-                    <UserAvatar user = {user}/>
-                    <h2>{name}</h2>
-                    <div className = 'Bloque'>
-                        <div className = 'Title'>Reputación {ranking && <span className = 'Ranking'>{ranking}</span>}</div>
-                        <div className = 'Num'>{points.toLocaleString()}</div>
-                        <div className = 'Comment'>Puntos totales hasta el momento.</div>
-                        <ReputationGraph userUid = {userUid} canvas = {1}/>
-                    </div>
-                    <div className = 'Bloque'>
-                        <div className = 'Title'>Impacto</div>
-                        <div className = 'Num'>{beautifyNumber(views)}</div>
-                        <div className = 'Comment'>Número total de impresiones de publicaciones.</div>
-                    </div>
-                    <div className = 'Bloque'>
-                        <div className = 'Title'>Visitas al perfil</div>
-                        <div className = 'Num'>{profileViews}</div>
-                        <div className = 'Comment'>
-                            {profileLastSeen 
-                            ? <div>Última visita a tu perfil <TimeAgo formatter = {formatter} date = {profileLastSeen}/>.</div>
-                            : 'Tu perfil no tiene visitas.'
-                            }           
-                        </div>
-                    </div>
-                    <div className = 'Bloque'>
-                        <div className = 'Title'>Nivel</div>
-                        <div className = 'Num'>{level}</div>
-                        <div className = 'Bar'>
-                            <div className = 'Completed' style = {{width: percentage + '%'}}></div>
-                        </div>
-                        <div className = 'Comment'>{pointsToNextLevel} puntos para el siguiente nivel ({percentage}% completado).</div>
-                    </div>
-                    <div className = 'Last-Articles'>
-                        <div className = 'Title'>Últimas publicaciones</div>
-                        {articles.map( (article, key) => <div key = {key}><Link to = {'/comunidad/post/' + article.url}>{article.title}</Link></div>)}
+        <div className = 'Public-Info'>
+            <div className = 'Datos'>
+                {stripeUserId ? <Donate name = {name} stripeUserId = {stripeUserId}/> : null}
+                <UserAvatar user = {user}/>
+                <h2>{name}</h2>
+                <div className = 'Bloque'>
+                    <div className = 'Title'>Reputación {ranking && <span className = 'Ranking'>{ranking}</span>}</div>
+                    <div className = 'Num'>{points.toLocaleString()}</div>
+                    <div className = 'Comment'>Puntos totales hasta el momento.</div>
+                    <ReputationGraph userUid = {userUid} canvas = {1}/>
+                </div>
+                <div className = 'Bloque'>
+                    <div className = 'Title'>Impacto</div>
+                    <div className = 'Num'>{beautifyNumber(views)}</div>
+                    <div className = 'Comment'>Número total de impresiones de publicaciones.</div>
+                </div>
+                <div className = 'Bloque'>
+                    <div className = 'Title'>Visitas al perfil</div>
+                    <div className = 'Num'>{profileViews}</div>
+                    <div className = 'Comment'>
+                        {profileLastSeen 
+                        ? <div>Última visita a tu perfil <TimeAgo formatter = {formatter} date = {profileLastSeen}/>.</div>
+                        : 'Tu perfil no tiene visitas.'
+                        }           
                     </div>
                 </div>
+                <div className = 'Bloque'>
+                    <div className = 'Title'>Nivel</div>
+                    <div className = 'Num'>{level}</div>
+                    <div className = 'Bar'>
+                        <div className = 'Completed' style = {{width: percentage + '%'}}></div>
+                    </div>
+                    <div className = 'Comment'>{pointsToNextLevel} puntos para el siguiente nivel ({percentage}% completado).</div>
+                </div>
+                <div className = 'Last-Articles'>
+                    <div className = 'Title'>Últimas publicaciones</div>
+                    {articles.map( (article, key) => <div key = {key}><Link to = {'/comunidad/post/' + article.url}>{article.title}</Link></div>)}
+                </div>
             </div>
+        </div>
     );
 }
 
