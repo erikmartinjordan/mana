@@ -65,13 +65,13 @@ const UserAvatar = ({allowAnonymousUser, user}) => {
         
         return () => ref.off('value', listener);
         
-    }, [user]);
+    }, [allowAnonymousUser, user, level, randomImg]);
         
     return (
         <React.Fragment>
             { picture
             ? <div className = {`Progress ProgressBar-${percentage}`}>
-                <img src = {picture}></img>
+                <img src = {picture} alt = {'Avatar'}></img>
                 {badge ? <ProBadge/> : null}
               </div>
             : <Loading type = 'Avatar'/> 

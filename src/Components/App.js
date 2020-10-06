@@ -54,7 +54,7 @@ const App  = ({history}) => {
         
         setSessionId(sessionId);
         
-    }, []);
+    }, [date, history.location.pathname, ref]);
     
     useEffect( () => {
         

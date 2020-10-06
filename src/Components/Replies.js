@@ -4,7 +4,6 @@ import ReactMarkdown                   from 'react-markdown';
 import moment                          from 'moment';
 import Linkify                         from 'react-linkify';
 import { Link }                        from 'react-router-dom';
-import PublicInfo                      from './PublicInfo';
 import Verified                        from './Verified';
 import LikesComments                   from './LikesComments';
 import UserAvatar                      from './UserAvatar';

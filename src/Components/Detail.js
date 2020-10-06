@@ -18,21 +18,25 @@ const Detail = (props) => {
     const [title, setTitle]         = useState(null);
     const url                       = props.match.params.string;
     
-    auth.onAuthStateChanged( async user => {
-
-        if(user){
-            
-            let admin = await fetchAdmin(user);
-            
-            setAdmin(admin);
-            setUid(user.uid);
-        }
-        else{
-            setAdmin(false);
-            setUid(null);
-        }
+    useEffect(() => {
         
-    });
+        auth.onAuthStateChanged( async user => {
+            
+            if(user){
+                
+                let admin = await fetchAdmin(user);
+                
+                setAdmin(admin);
+                setUid(user.uid);
+            }
+            else{
+                setAdmin(false);
+                setUid(null);
+            }
+            
+        });
+        
+    }, []);
     
     useEffect( () => {
         

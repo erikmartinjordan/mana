@@ -3,20 +3,13 @@ import moment                           from 'moment';
 import { Link }                         from 'react-router-dom';
 import ToggleButton                     from './ToggleButton';
 import Twemoji                          from './Twemoji';
-import firebase, {auth}                 from '../Functions/Firebase';
-import buildFormatter                   from 'react-timeago/lib/formatters/buildFormatter';
-import spanishStrings                   from 'react-timeago/lib/language-strings/es';
+import firebase                         from '../Functions/Firebase';
 import '../Styles/Notifications.css';
-
-const formatter = buildFormatter(spanishStrings);
 
 const Notifications = ({hide, user}) => {  
     
     const [displayNotifications, setDisplayNotifications] = useState(true);
-    const [keys, setKeys]                                 = useState([]);
     const [notifications, setNotifications]               = useState('loading');
-    const [points, setPoints]                             = useState(0);
-    const [show, setShow]                                 = useState(false);
     
     useEffect( () => {
         

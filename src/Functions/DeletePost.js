@@ -55,7 +55,7 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
             
         });
         
-    }, [level, uid]);
+    }, [level, uid, admin, authorId]);
     
     const handleConfirmation = () => {
         
@@ -86,7 +86,6 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
     }
     
     return(
-        
         <React.Fragment>
             {confirmation &&
                 <div className = 'Confirmation'>
@@ -99,7 +98,6 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
             }
             {canDelete && <button className = 'Delete' onClick = { (e) => handleConfirmation() }>Eliminar</button>}
         </React.Fragment>
-        
     );
     
 }
