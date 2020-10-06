@@ -43,7 +43,7 @@ const Question = ({ admin, postId, setTitle, uid }) => {
             
         });
         
-    }, [window.location.href]);
+    }, [postId, setTitle]);
     
     return(
         <React.Fragment>
@@ -112,7 +112,7 @@ const QuestionContent   = ({ authorId, message }) => {
             
         });
         
-    }, [level]);
+    }, [level, authorId, isAnonymous]);
     
     return(
         
@@ -133,7 +133,7 @@ const MarkDownMessage   = ({ message }) => {
     const renderers = {
         
         paragraph: props => <Linkify properties = {linkProperties}><p>{props.children}</p></Linkify>,
-        image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'}></img>
+        image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Imagen de artículo'}></img>
         
     }
     

@@ -10,6 +10,7 @@
     "posts":{
       	".read": "true",
         ".write": "auth != null",  
+        ".indexOn": ["timeStamp"],
         "$postsuid":{
           "message":{
             ".validate" : "newData.val().length <= 99999"

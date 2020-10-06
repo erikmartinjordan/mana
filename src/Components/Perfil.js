@@ -6,7 +6,6 @@ import UserAvatar                           from './UserAvatar';
 import ToggleButton                         from './ToggleButton';
 import Points                               from '../Functions/PointsAndValues';
 import firebase, { auth, environment }      from '../Functions/Firebase';
-import { apiKey }                           from '../Functions/Stripe';
 import GetNumberOfPosts                     from '../Functions/GetNumberOfPosts';
 import GetNumberOfReplies                   from '../Functions/GetNumberOfReplies';
 import GetNumberOfSpicy                     from '../Functions/GetNumberOfSpicy';
@@ -177,7 +176,7 @@ const Account = ({user, infoUser, nextPayment}) => {
             if(!anonimo){
                 
                 firebase.database().ref(`users/${user.uid}/nickName/`).transaction(value => AnonymName());
-                firebase.database().ref(`users/${user.uid}/avatar/`)  .transaction(value => AnonymImg());
+                firebase.database().ref(`users/${user.uid}/avatar/`).transaction(value => AnonymImg());
                 
             }
             

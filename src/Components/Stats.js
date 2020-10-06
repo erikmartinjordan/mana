@@ -100,7 +100,7 @@ const Stats = () => {
         
         return () => chart.destroy();
         
-    }, [days, users, sessions, pageviews]);
+    }, [days, users, sessions, pageviews, graph1]);
     
     useEffect( () => {
         
@@ -121,6 +121,7 @@ const Stats = () => {
                 case 10: name ='oct'; break;
                 case 11: name ='nov'; break;
                 case 12: name ='dic'; break;
+                default: break;
             }
             
             return name;

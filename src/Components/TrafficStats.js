@@ -4,13 +4,13 @@ import Fingerprint             from 'fingerprintjs';
 import moment                  from 'moment';
 import firebase                from '../Functions/Firebase';
 
+let fingerprint = new Fingerprint().get();
+let date  = moment();
+
 const TrafficStats = () => {    
     
     const [sessionId, setSessionId] = useState(null);
     const history                   = useHistory();
-    
-    let fingerprint = new Fingerprint().get();
-    let date        = moment();
     
     useEffect( () => {
         

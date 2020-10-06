@@ -91,7 +91,7 @@ const RelatedContent = () => {
         let ref = firebase.database().ref('posts');
         
         ref.child(`${url}/related/${relatedUrl}/title`).transaction(value => title);
-        ref.child(`${url}/related/${relatedUrl}/hits`) .transaction(value => value + 1);
+        ref.child(`${url}/related/${relatedUrl}/hits`).transaction(value => value + 1);
         
         setUpdate(update + 1);
         

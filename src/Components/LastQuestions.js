@@ -6,7 +6,6 @@ import TimeAgo                              from 'react-timeago';
 import Loading                              from './Loading';
 import UserAvatar                           from './UserAvatar';
 import firebase                             from '../Functions/Firebase';
-import { HeartIcon, CommentDiscussionIcon } from '@primer/octicons-react';
 import '../Styles/LastQuestions.css';
 
 const formatter = buildFormatter(spanishStrings);
@@ -50,7 +49,7 @@ const LastQuestions = (props) => {
     
     const sortQuestions = (questions, orderBy) => {
         
-        Object.keys(questions).map(key => {
+        Object.keys(questions).forEach(key => {
             
             questions[key].key = key;
             if(!questions[key].voteUsers) questions[key].voteUsers = {};
@@ -63,6 +62,8 @@ const LastQuestions = (props) => {
             if(orderBy === 'nuevo')        return b.timeStamp - a.timeStamp;
             if(orderBy === 'comentarios')  return Object.keys(b.replies).length   - Object.keys(a.replies).length;
             if(orderBy === 'picante')      return Object.keys(b.voteUsers).length - Object.keys(a.voteUsers).length;
+            
+            return null;
             
         });
         
@@ -78,7 +79,7 @@ const LastQuestions = (props) => {
             
         }
         
-        let unique = [...new Set(imgArray)].map( (elem, key) => <img key = {key} src = {elem}></img>);
+        let unique = [...new Set(imgArray)].map( (elem, key) => <img key = {key} src = {elem} alt = {'Profile pic'}></img>);
         
         return unique;
         
@@ -124,7 +125,7 @@ const LastQuestions = (props) => {
             }
           </div>
         : <div>
-            <img style = {{width: '100%'}} src = {'https://media.giphy.com/media/wHB67Zkr63UP7RWJsj/giphy.gif'}/>
+            <img style = {{width: '100%'}} src = {'https://media.giphy.com/media/wHB67Zkr63UP7RWJsj/giphy.gif'} alt = {'Elon Musk smoking'}/>
             <p>No hay publicaciones en esta categoría...</p>
             <ul>
                 <li>Puedes comentar a través del foro haciendo clic <Link to = '/'>aquí</Link>.</li>

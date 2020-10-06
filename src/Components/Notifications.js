@@ -88,7 +88,7 @@ const ListNotifications = ({notifications, user, hide}) => {
             
         });
         
-    }, []);
+    }, [user, notifications]);
     
     useEffect( () => {
        
@@ -96,7 +96,7 @@ const ListNotifications = ({notifications, user, hide}) => {
         
         setNotificationsList(sortedNotificationsArray);
         
-    }, []);
+    }, [notifications]);
     
     const notificationTitle = (index) => {
         
@@ -126,7 +126,7 @@ const ListNotifications = ({notifications, user, hide}) => {
                     }
                     <div className = 'Notifications-Content'>
                         <span className = 'Notifications-Photo'>
-                            <img src = {user.photoURL}></img>
+                            <img src = {user.photoURL} alt = {'Foto de perfil'}></img>
                         </span>
                         <span className = 'Notifications-Points'>
                             {points > 0 

@@ -1,4 +1,4 @@
-import React                          from 'react';
+import React, { useEffect }           from 'react';
 import { Switch, Route, withRouter }  from 'react-router-dom';
 import Forum                          from './Forum';
 import Detail                         from './Detail';
@@ -18,7 +18,25 @@ import DonateFail                     from './DonateFail';
 import TrafficStats                   from './TrafficStats';
 import '../Styles/App.css';
 
-const App  = ({history}) => {
+const App  = () => {
+    
+    useEffect(() => {
+        
+        console.log(`
+        
+        ███╗   ██╗███╗   ███╗███████╗
+        ████╗  ██║████╗ ████║██╔════╝
+        ██╔██╗ ██║██╔████╔██║███████╗
+        ██║╚██╗██║██║╚██╔╝██║╚════██║
+        ██║ ╚████║██║ ╚═╝ ██║███████║
+        ╚═╝  ╚═══╝╚═╝     ╚═╝╚══════╝ 
+        
+        Creado desde Barcelona.
+        © ${(new Date().getFullYear())}, Erik Martín Jordán. 
+        
+        `);
+        
+    }, []);
    
     return (
         <React.Fragment>

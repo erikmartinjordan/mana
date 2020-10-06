@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Twemoji                        from './Twemoji';
 import Accounts                       from '../Rules/Accounts';
 import GetPoints, { GetPointsLevel }  from '../Functions/GetPoints';
 import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel';
@@ -75,7 +76,7 @@ const Privileges = () => {
             
         });
         
-    }, [user, points]);
+    }, [user, points, level]);
     
     return(
         <React.Fragment>
@@ -83,7 +84,7 @@ const Privileges = () => {
         ? <div className = 'Privileges'>
             <span className = 'Title'>Privilegios</span>
             <div className = 'Next'>
-                <span>🏆 {nextPrivilege}</span>
+                <span><Twemoji emoji = {'🏆'}/> {nextPrivilege}</span>
                 <div className = 'Bar'>
                     <div className = 'Completed' style = {{width: percentage + '%'}}></div>
                 </div>
