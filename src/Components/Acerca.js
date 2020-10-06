@@ -1,6 +1,7 @@
 import React, { useState, useEffect }             from 'react';
 import moment                                     from 'moment';
 import ReactMarkdown                              from 'react-markdown';
+import Twemoji                                    from './Twemoji';
 import firebase, { auth, storageRef, fetchAdmin } from '../Functions/Firebase';
 import DeleteFeature                              from '../Functions/DeleteFeature.js';
 import '../Styles/Acerca.css';
@@ -18,8 +19,6 @@ const Acerca = () => {
         
         document.title = 'Acerca - Nomoresheet'; 
         document.querySelector('meta[name="description"]').content = 'De cómo nació el sitio web y los diferentes hitos hasta la fecha.'; 
-        
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
         
     })
     
@@ -122,7 +121,7 @@ const Acerca = () => {
                                 className = 'Upload' 
                                 type      = 'file'>
                             </input>
-                            <div>📸</div>
+                            <div><Twemoji emoji = {'📸'}/></div>
                         </div>
                         <button onClick = {upload} className = 'send'>Añadir</button>
                     </div>

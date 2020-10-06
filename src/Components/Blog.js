@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment                         from 'moment';
+import Twemoji                        from './Twemoji';
 import firebase, { auth }             from '../Functions/Firebase';
 import Data                           from '../Posts/_data';
 import { Link }                       from 'react-router-dom';
@@ -18,9 +19,7 @@ const Blog = () => {
         document.title = 'Blog - Nomoresheet'; 
         document.querySelector(`meta[name = 'description']`).content = 'Artículos de Nomoresheet.'; 
         
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );  
     })
-    
     
     useEffect( () => {
         
@@ -159,8 +158,8 @@ const Posts = ({sortedPosts, displayPosts, timeLimitPrivateArticleInMonths, user
                         <div className = 'Content'>
                             <p>{Data[key].description}</p>
                             <div className = 'Privat'>
-                                {isPrivat(key) && !user ? <div>🔒</div>  : null}
-                                {isPrivat(key) && user  ? <div>🔓</div> : null}
+                                {isPrivat(key) && !user ? <Twemoji emoji = {'🔒'}/>  : null}
+                                {isPrivat(key) && user  ? <Twemoji emoji = {'🔓'}/> : null}
                             </div>
                         </div>
                     </article>

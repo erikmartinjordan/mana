@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Twemoji                        from '../Components/Twemoji';
 import firebase, {auth}               from '../Functions/Firebase.js';
 import AnonymImg                      from '../Functions/AnonymImg.js';
 import { Link }                       from 'react-router-dom';
@@ -22,8 +23,6 @@ const DeleteAccount = () => {
                 setUser(null);
             
         });
-        
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
         
     });
     
@@ -104,7 +103,7 @@ const DeleteAccount = () => {
             {confirmation && !goodbye
                 ? <div className = 'Delete Account Confirmation'>
                     <div className = 'Delete Account Confirmation-Wrap'>
-                        <h2>Oh, vaya... 😿</h2>
+                        <h2>Oh, vaya... <Twemoji emoji = {'😿'}/></h2>
                         <p>Tu cuenta se borrará, pero el contenido seguirá publicado con un nombre aleatorio.</p>
                         <p>Eliminar una cuenta es irreversible, perderás las publicaciones y todos tus puntos.</p>
                         <p>Escribe tu correo electrónico para eliminar la cuenta:</p>
@@ -123,7 +122,7 @@ const DeleteAccount = () => {
             {goodbye
             ?   <div className = 'Delete Account Confirmation'>
                     <div className = 'Delete Account Confirmation-Wrap'>
-                    <h2>Hasta pronto 😺</h2>
+                    <h2>Hasta pronto <Twemoji emoji = {'😺'}/></h2>
                         <p>Tus mensajes han sido anonimizados y tu cuenta ha sido borrada.</p>
                         <p>Gracias por el tiempo que has dedicado a Nomoresheet. El tiempo es lo más valioso que tenemos.</p> 
                         <p>Cuídate, mucho. </p>

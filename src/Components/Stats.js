@@ -81,8 +81,6 @@ const Stats = () => {
         document.title = 'Estadísticas - Nomoresheet'; 
         document.querySelector('meta[name="description"]').content = 'Algunas estadísticas sobre Nomoresheet'; 
         
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-        
     });
     
     useEffect( () => {

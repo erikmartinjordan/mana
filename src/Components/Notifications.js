@@ -2,6 +2,7 @@ import React, { useState, useEffect }   from 'react';
 import moment                           from 'moment';
 import { Link }                         from 'react-router-dom';
 import ToggleButton                     from './ToggleButton';
+import Twemoji                          from './Twemoji';
 import firebase, {auth}                 from '../Functions/Firebase';
 import buildFormatter                   from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings                   from 'react-timeago/lib/language-strings/es';
@@ -17,12 +18,6 @@ const Notifications = ({hide, user}) => {
     const [points, setPoints]                             = useState(0);
     const [show, setShow]                                 = useState(false);
     
-    useEffect( () => {
-        
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );  
-        
-    });
-
     useEffect( () => {
         
         if(user.uid){
@@ -161,7 +156,7 @@ const LoadingNotifications = () => {
     
     return(
         <div className = 'Notifications-Content-Empty'>
-            <div className = 'Big-Emoji'>😼</div>
+            <div className = 'Big-Emoji'><Twemoji emoji = {'😼'}/></div>
             <div className = 'Empty-Message'>Cargando notificaciones...</div>
         </div>
     );
@@ -172,7 +167,7 @@ const EmptyNotifications = () => {
     
     return (
         <div className = 'Notifications-Content-Empty'>
-            <div className = 'Big-Emoji'>😼</div>
+            <div className = 'Big-Emoji'><Twemoji emoji = {'😼'}/></div>
             <div className = 'Empty-Message'>¡Miaaaaau! Aún no tienes notificaciones.</div>
         </div>
     );
@@ -183,7 +178,7 @@ const NoDisplayNotifications = () => {
     
     return (
         <div className = 'Notifications-Content-Empty'>
-            <div className = 'Big-Emoji'>😼</div>
+            <div className = 'Big-Emoji'><Twemoji emoji = {'😼'}/></div>
             <div className = 'Empty-Message'>¡Miaaaaau! Las notificaciones están desactivadas.</div>
         </div>
     );

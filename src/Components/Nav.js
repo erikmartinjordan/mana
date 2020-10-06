@@ -32,12 +32,6 @@ const Nav = () => {
     const points                            = GetPoints(uid);
     const level                             = GetLevel(...points)[0];
     const percentage                        = GetLevel(...points)[2];
-    
-    useEffect( () => {
-        
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-        
-    });
 
     useEffect ( () => {
       

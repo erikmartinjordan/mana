@@ -19,12 +19,6 @@ const LastQuestions = (props) => {
     
     useEffect( () => {
         
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-        
-    });
-    
-    useEffect( () => {
-        
         let ref = props.tag 
         ? firebase.database().ref('posts/').orderByChild(`tags/${props.tag}`).equalTo(true).limitToLast(items)
         : firebase.database().ref('posts/').limitToLast(items);

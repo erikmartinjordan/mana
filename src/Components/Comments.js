@@ -5,6 +5,7 @@ import spanishStrings           from 'react-timeago/lib/language-strings/es';
 import TimeAgo                  from 'react-timeago';
 import Loading                  from './Loading';
 import UserAvatar               from './UserAvatar';
+import Twemoji                  from './Twemoji';
 import GetLastComments          from '../Functions/GetLastComments';
 import '../Styles/Comments.css';
 
@@ -13,12 +14,6 @@ const formatter = buildFormatter(spanishStrings);
 const Comments = () => {
     
     const comments = GetLastComments(10);
-    
-    useEffect( () => {
-        
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
-        
-    });
     
     return(
         <React.Fragment>
@@ -35,7 +30,7 @@ const Comments = () => {
                             <span><TimeAgo formatter = {formatter} date = {comment.timeStamp}/></span>
                         </div>
                     </div>
-                    <div className = 'Claps'>👏  {Object.keys(comment.voteUsers ?? []).length}</div>
+                    <div className = 'Claps'><Twemoji emoji = '👏'/> {Object.keys(comment.voteUsers ?? []).length}</div>
                 </Link>
                 )}
             </div>

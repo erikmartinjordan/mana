@@ -4,6 +4,7 @@ import ReactMarkdown                             from 'react-markdown';
 import Default                                   from './Default';
 import Login                                     from './Login';
 import Perfil                                    from './Perfil';
+import Twemoji                                   from './Twemoji';
 import firebase, { auth, provider }              from '../Functions/Firebase';
 import GetLevel                                  from '../Functions/GetLevelAndPointsToNextLevel';
 import GetPoints                                 from '../Functions/GetPoints';
@@ -37,8 +38,6 @@ const Post = () => {
         
         document.title = `${title} - Nomoresheet`; 
         document.querySelector(`meta[name = 'description']`).content = description; 
-        
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );
         
         window.scrollTo(0, 0);
         
@@ -232,8 +231,8 @@ const Header = ({title, date, user, views, likes, superlikes, handleLikes, handl
                     <span>{`Erik Martín Jordán, ${date[1]} ${date[2]}`}</span>
                 </p>
                 <div className = 'i'>👀 {parseInt(views).toLocaleString('es')}</div>
-                <div className = 'i' onClick = {user ? handleLikes      : () => setLogin(true)}>👏 {likes}</div>
-                <div className = 'i' onClick = {user ? handleSuperLikes : () => setLogin(true)}>🎉 {superlikes}</div>
+                <div className = 'i' onClick = {user ? handleLikes      : () => setLogin(true)}><Twemoji emoji = {'👏'}/> {likes}</div>
+                <div className = 'i' onClick = {user ? handleSuperLikes : () => setLogin(true)}><Twemoji emoji = {'🎉'}/> {superlikes}</div>
             </div>
         </div>
     );

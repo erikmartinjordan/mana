@@ -25,9 +25,7 @@ const Question = ({ admin, postId, setTitle, uid }) => {
         if(question){
             document.title = question.title + ' - Nomoresheet'; 
             document.querySelector('meta[name="description"]').content = question.message; 
-        }     
-        
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );      
+        }      
         
     });
     
