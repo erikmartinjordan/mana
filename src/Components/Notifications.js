@@ -82,7 +82,7 @@ const ListNotifications = ({notifications, user, hide}) => {
     
     useEffect( () => {
         
-        Object.keys(notifications).map(key => {
+        Object.keys(notifications).forEach(key => {
             
             firebase.database().ref(`notifications/${user.uid}/${key}/read`).transaction(value => true); 
             
