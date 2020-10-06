@@ -48,10 +48,9 @@ const Acerca = () => {
     
     const handleImageChange = async (e) => {
         
-        var reader = new FileReader();
         var file = e.target.files[0];
         
-        let snapshot = await storageRef.child(`acerca/${file.name}`).put(file)
+        let snapshot = await storageRef.child(`acerca/${file.name}`).put(file);
         
         setImgUrl(snapshot.downloadURL);
     }
@@ -60,7 +59,7 @@ const Acerca = () => {
         
         firebase.database().ref('features/').push({
             
-            date: [today.format('DD'), today.format('MMMM'), today.format('YYYY')],
+            date: [today.format('D'), today.format('MMMM'), today.format('YYYY')],
             description: content,
             pic: imgUrl,
             title: title
@@ -81,7 +80,7 @@ const Acerca = () => {
         <div className = 'Acerca'>
             <h1>Acerca</h1>
             <div className = 'Intro'>
-                <img src = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg'></img>
+                <img src = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg' alt = {'Erik Martín Jordán'}></img>
                 <p>Hola, soy Erik, el creador de Nomoresheet.</p>
                 <h2>¿Qué es Nomoresheet?</h2>
                 <p>Nomoresheet es una comunidad abierta; cualquier tema es bienvenido.</p>
@@ -105,7 +104,7 @@ const Acerca = () => {
                         value       = {title}>
                     </input>
                     <div className = 'Date'>
-                        {`${today.format('DD')} de ${today.format('MMMM')} del ${today.format('YYYY')}`}
+                        {`${today.format('D')} de ${today.format('MMMM')} del ${today.format('YYYY')}`}
                     </div>
                     <textarea   
                         onChange    = {(e) => handleTextArea(e)}
@@ -113,7 +112,7 @@ const Acerca = () => {
                         placeholder = 'Contenido...'
                         value       = {content}>
                     </textarea>
-                    {imgUrl && <img src = {imgUrl}></img>}
+                    {imgUrl && <img src = {imgUrl} alt = {'Imagen subida'}></img>}
                     <div className = 'Buttons'>
                         <div className = 'Upload-Wrap'>
                             <input  
@@ -135,7 +134,7 @@ const Acerca = () => {
                     <div className = 'Content'>
                         <div className = 'Text'>
                             {data[key].description && <ReactMarkdown source = {data[key].description}></ReactMarkdown>}
-                            {data[key].pic  && <img src = {data[key].pic}></img>}
+                            {data[key].pic  && <img src = {data[key].pic} alt = {'Imagen de actualización'}></img>}
                         </div>
                     </div>
                     {admin && <DeleteFeature id = {key}></DeleteFeature>}

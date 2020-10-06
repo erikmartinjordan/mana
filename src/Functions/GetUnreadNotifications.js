@@ -42,7 +42,7 @@ const GetUnreadNotifications = ({user}) => {
         
         if(displayNotifications){
             
-            unread.map(([key, value]) => { 
+            unread.forEach(([key, value]) => { 
                 
                 firebase.database().ref(`notifications/${user.uid}/${key}/read`).transaction(value => true);
                 
@@ -50,7 +50,7 @@ const GetUnreadNotifications = ({user}) => {
             
         }
         
-    }, [displayNotifications]);
+    }, [displayNotifications, unread, user]);
     
     return displayNotifications && unread.length > 0 ? <NotificationsPoints points = {newPoints}/> : null;
     

@@ -1,4 +1,4 @@
-import React, { useEffect }     from 'react';
+import React                    from 'react';
 import { Link }                 from 'react-router-dom';
 import buildFormatter           from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings           from 'react-timeago/lib/language-strings/es';

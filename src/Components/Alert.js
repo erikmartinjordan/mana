@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Twemoji                        from './Twemoji';
 import '../Styles/Alert.css';
 
 const Alert = ({title, message, seconds, setTitle, setMessage}) => {
@@ -27,7 +28,7 @@ const Alert = ({title, message, seconds, setTitle, setMessage}) => {
         <React.Fragment>
             { display
             ? <div className = 'Alert'>
-                <div className = 'Alert-Emoji'>📮</div>
+                <div className = 'Alert-Emoji'><Twemoji emoji = {'📮'}/></div>
                 <div>
                     <div className = 'Title'>{title ? title : 'Ups...'}</div>
                     <div className = 'Message'>{message}</div>  

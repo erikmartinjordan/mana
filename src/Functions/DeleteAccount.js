@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Twemoji                        from '../Components/Twemoji';
 import firebase, {auth}               from '../Functions/Firebase.js';
 import AnonymImg                      from '../Functions/AnonymImg.js';
-import { Link }                       from 'react-router-dom';
 import '../Styles/DeleteAccount.css';
 
 const DeleteAccount = () => {
@@ -44,9 +43,9 @@ const DeleteAccount = () => {
                 
                 if(posts[pid].userUid === user.uid) {
                     
-                    firebase.database().ref(`posts/${pid}/userName`) .transaction(value => nickName);
+                    firebase.database().ref(`posts/${pid}/userName`).transaction(value => nickName);
                     firebase.database().ref(`posts/${pid}/userPhoto`).transaction(value => randomImg);
-                    firebase.database().ref(`posts/${pid}/userUid`)  .transaction(value => deletedUid);
+                    firebase.database().ref(`posts/${pid}/userUid`).transaction(value => deletedUid);
                     
                 }
                 
@@ -58,9 +57,9 @@ const DeleteAccount = () => {
                         
                         if(replies[rid].userUid === user.uid){
                             
-                            firebase.database().ref(`posts/${pid}/replies/${rid}/userName`) .transaction(value => nickName);
+                            firebase.database().ref(`posts/${pid}/replies/${rid}/userName`).transaction(value => nickName);
                             firebase.database().ref(`posts/${pid}/replies/${rid}/userPhoto`).transaction(value => randomImg);
-                            firebase.database().ref(`posts/${pid}/replies/${rid}/userUid`)  .transaction(value => deletedUid);
+                            firebase.database().ref(`posts/${pid}/replies/${rid}/userUid`).transaction(value => deletedUid);
                             
                         }
                         
@@ -77,9 +76,9 @@ const DeleteAccount = () => {
                
                 if(replies[rid].userUid === user.uid){
                     
-                    firebase.database().ref(`replies/${rid}/userName`) .transaction(value => nickName);
+                    firebase.database().ref(`replies/${rid}/userName`).transaction(value => nickName);
                     firebase.database().ref(`replies/${rid}/userPhoto`).transaction(value => randomImg);
-                    firebase.database().ref(`replies/${rid}/userUid`)  .transaction(value => deletedUid);
+                    firebase.database().ref(`replies/${rid}/userUid`).transaction(value => deletedUid);
                     
                 }
                 

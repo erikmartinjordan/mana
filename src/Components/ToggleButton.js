@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import Twemoji              from './Twemoji';
+import React   from 'react';
+import Twemoji from './Twemoji';
 import '../Styles/ToggleButton.css';
 
 const ToggleButton = ({status, icon}) => {

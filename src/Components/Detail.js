@@ -16,6 +16,7 @@ const Detail = (props) => {
     const [uid, setUid]             = useState(null);
     const [validPost, setValidPost] = useState(true);
     const [title, setTitle]         = useState(null);
+    const url                       = props.match.params.string;
     
     auth.onAuthStateChanged( async user => {
 
@@ -37,19 +38,19 @@ const Detail = (props) => {
         
         const fetchPost = async () => {
             
-            let snapshot = await firebase.database().ref(`posts/${props.match.params.string}`).once('value');
+            let snapshot = await firebase.database().ref(`posts/${url}`).once('value');
             
             let capture  = snapshot.val();
             
             capture
-            ? firebase.database().ref(`posts/${props.match.params.string}/views`).transaction( value =>  value + 1 )
+            ? firebase.database().ref(`posts/${url}/views`).transaction( value =>  value + 1 )
             : setValidPost(false);
             
         }
         
         fetchPost();
         
-    }, []);
+    }, [url]);
         
     return (
         <React.Fragment>
@@ -58,9 +59,9 @@ const Detail = (props) => {
                 <h1>{title}</h1>
                 <div className = 'Forum-TwoCol'>
                     <div className = 'Main'>
-                        <Question postId = {props.match.params.string} admin = {admin} uid = {uid} setTitle = {setTitle} />
-                        <Replies  postId = {props.match.params.string} admin = {admin} uid = {uid}/>
-                        <NewReply postId = {props.match.params.string}/>
+                        <Question postId = {url} admin = {admin} uid = {uid} setTitle = {setTitle} />
+                        <Replies  postId = {url} admin = {admin} uid = {uid}/>
+                        <NewReply postId = {url}/>
                     </div>
                     <div className = 'Sidebar'>
                         <Norms/>

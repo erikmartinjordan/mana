@@ -41,7 +41,8 @@ const Donate = ({ name, stripeUserId }) => {
             
             const { error } = await stripe.redirectToCheckout({ sessionId: sessionId });
             
-            setPayment('done');
+            if(!error)
+                setPayment('done');
             
         }
         
