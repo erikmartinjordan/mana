@@ -7,7 +7,6 @@ const NomoresheetLogo = () => {
         background: 'var(--nmsLogo)',
         borderRadius: '5px',
         color: 'white',
-        fontFamily: 'Gentium Book Basic, serif',
         fontSize: '30px',
         fontWeight: 'bold',
         letterSpacing: '0.05em',
