@@ -11,7 +11,9 @@ const GetNumberOfSpicy = (...uids) => {
     
     useEffect( () => { 
         
-        firebase.database().ref('users/').on('value', snapshot => { 
+        let ref = firebase.database().ref('users/');
+        
+        let listener = ref.on('value', snapshot => { 
             
             let users = snapshot.val(); 
             
@@ -20,6 +22,8 @@ const GetNumberOfSpicy = (...uids) => {
             setSpicy(numSpicy);
             
         });
+      
+        return () => ref.off('value', listener);
         
     }, [stringUids]);
     

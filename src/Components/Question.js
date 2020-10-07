@@ -30,7 +30,9 @@ const Question = ({ admin, postId, setTitle, uid }) => {
     
     useEffect( () => {
         
-        firebase.database().ref(`posts/${postId}`).on('value', snapshot => { 
+        let ref = firebase.database().ref(`posts/${postId}`);
+        
+        let listener = ref.on('value', snapshot => { 
             
             let question = snapshot.val();
             
@@ -42,6 +44,8 @@ const Question = ({ admin, postId, setTitle, uid }) => {
             }
             
         });
+        
+        return () => ref.off('value', listener);
         
     }, [postId, setTitle]);
     

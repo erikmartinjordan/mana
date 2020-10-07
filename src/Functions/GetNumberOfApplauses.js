@@ -11,7 +11,9 @@ const GetNumberOfApplauses = (...uids) => {
     
     useEffect( () => { 
         
-        firebase.database().ref('users/').on('value', snapshot => { 
+        let ref = firebase.database().ref('users/');
+        
+        let listener = ref.on('value', snapshot => { 
             
             let users = snapshot.val(); 
             
@@ -20,6 +22,8 @@ const GetNumberOfApplauses = (...uids) => {
             setApplauses(numApplauses);
             
         });
+        
+        return () => ref.off('value', listener);
         
     }, [stringUids]);
     

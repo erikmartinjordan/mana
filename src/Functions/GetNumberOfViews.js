@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import firebase                       from './Firebase.js';
+import firebase                from './Firebase.js';
 
 const GetNumberOfViews = (...uids) => {
     
@@ -11,7 +11,9 @@ const GetNumberOfViews = (...uids) => {
     
     useEffect( () => { 
         
-        firebase.database().ref('users/').on('value', snapshot => { 
+        let ref = firebase.database().ref('users/');
+        
+        let listener = ref.on('value', snapshot => { 
             
             let users = snapshot.val(); 
             
@@ -20,6 +22,8 @@ const GetNumberOfViews = (...uids) => {
             setViews(numViews);
             
         });
+        
+        return () => ref.off('value', listener); 
         
     }, [stringUids]);
     

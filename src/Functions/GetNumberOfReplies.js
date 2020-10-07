@@ -11,7 +11,9 @@ const GetNumberOfReplies = (...uids) => {
     
     useEffect( () => { 
         
-        firebase.database().ref('users/').on('value', snapshot => { 
+        let ref = firebase.database().ref('users/');
+        
+        let listener = ref.on('value', snapshot => { 
             
             let users = snapshot.val(); 
             
@@ -20,6 +22,8 @@ const GetNumberOfReplies = (...uids) => {
             setReplies(numReplies);
             
         });
+        
+        return () => ref.off('value', listener);
         
     }, [stringUids]);
     
