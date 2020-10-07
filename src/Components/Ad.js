@@ -38,12 +38,10 @@ const Ad = () => {
             ? <div  className = 'Ad'>
                 <div className = 'Ad-Wrap'>
                     <ins
-                        className = 'adsbygoogle'
-                        style = {{ display: 'inline-block', width: '260px', height: '260px'}}
+                        className      = 'adsbygoogle'
+                        style          = {{ display: 'inline-block', width: '280px', height: '280px'}}
                         data-ad-client = 'ca-pub-8817836333583401'
-                        data-ad-slot = '6658079014'
-                        data-ad-format = 'auto'
-                        data-full-width-responsive = 'true'>
+                        data-ad-slot   = '6658079014'>
                     </ins>
                 </div>
               </div>
