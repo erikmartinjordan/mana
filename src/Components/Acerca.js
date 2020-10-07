@@ -126,19 +126,21 @@ const Acerca = () => {
             { data
             ? <React.Fragment>
                 {Object.keys(data).reverse().map(key =>
-                    (<div className = 'Block' key = {key}>
-                        {data[key].title && <h3>{data[key].title}</h3>}
-                        <div className = 'Date'>{data[key].date[0] + ' de ' + data[key].date[1] + ' del '  + data[key].date[2]}</div>
-                        <div className = 'Content'>
-                            <div className = 'Text'>
-                                {data[key].description && <ReactMarkdown source = {data[key].description}></ReactMarkdown>}
-                                {data[key].pic  && <img src = {data[key].pic} alt = {'Imagen de actualización'}></img>}
+                    <React.Fragment>
+                        <div className = 'Block' key = {key}>
+                            {data[key].title && <h3>{data[key].title}</h3>}
+                            <div className = 'Date'>{data[key].date[0] + ' de ' + data[key].date[1] + ' del '  + data[key].date[2]}</div>
+                            <div className = 'Content'>
+                                <div className = 'Text'>
+                                    {data[key].description && <ReactMarkdown source = {data[key].description}></ReactMarkdown>}
+                                    {data[key].pic  && <img src = {data[key].pic} alt = {'Imagen de actualización'}></img>}
+                                </div>
                             </div>
+                            {admin && <DeleteFeature id = {key}></DeleteFeature>}
                         </div>
-                        {admin && <DeleteFeature id = {key}></DeleteFeature>}
-                    </div>)
+                        <div className = 'Separator'></div>
+                    </React.Fragment>
                 )}
-                <div className = 'Separator'></div>
               </React.Fragment>
             : null}
         </div>
