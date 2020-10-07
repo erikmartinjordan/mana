@@ -1,26 +1,50 @@
-import React, { useEffect }           from 'react';
-import { Switch, Route, withRouter }  from 'react-router-dom';
-import Forum                          from './Forum';
-import Detail                         from './Detail';
-import Post                           from './Post';
-import Default                        from './Default';
-import Blog                           from './Blog';
-import Nav                            from './Nav';
-import Footer                         from './Footer';
-import Acerca                         from './Acerca';
-import PublicInfo                     from './PublicInfo';
-import Stats                          from './Stats';
-import Privacy                        from './Privacy';
-import Guidelines                     from './Guidelines';
-import Helper                         from './Helper';
-import DonateSuccess                  from './DonateSuccess';
-import DonateFail                     from './DonateFail';
-import TrafficStats                   from './TrafficStats';
+import React, { useEffect, useState }   from 'react';
+import { Switch, Route, withRouter }    from 'react-router-dom';
+import Forum                            from './Forum';
+import Detail                           from './Detail';
+import Post                             from './Post';
+import Default                          from './Default';
+import Blog                             from './Blog';
+import Nav                              from './Nav';
+import Footer                           from './Footer';
+import Acerca                           from './Acerca';
+import PublicInfo                       from './PublicInfo';
+import Stats                            from './Stats';
+import Privacy                          from './Privacy';
+import Guidelines                       from './Guidelines';
+import Helper                           from './Helper';
+import DonateSuccess                    from './DonateSuccess';
+import DonateFail                       from './DonateFail';
+import TrafficStats                     from './TrafficStats';
+import UserContext                      from '../Functions/UserContext';
+import { auth, fetchAdmin }             from '../Functions/Firebase';
 import '../Styles/App.css';
 
 const App  = () => {
     
+    const [user, setUser]   = useState(null);
+    const [admin, setAdmin] = useState(null);
+    
     useEffect(() => {
+        
+        auth.onAuthStateChanged(async user => {
+            
+            if(user){
+                
+                let admin = await fetchAdmin(user);
+                
+                setAdmin(admin);
+                setUser(user);
+                
+            }
+            else{
+                
+                setAdmin(false);
+                setUser(false);
+                
+            }
+            
+        });
         
         console.log(`
         
@@ -32,14 +56,14 @@ const App  = () => {
         ╚═╝  ╚═══╝╚═╝     ╚═╝╚══════╝ 
         
         Creado desde Barcelona.
-        © ${(new Date().getFullYear())}, Erik Martín Jordán. 
+        © 2015 – ${(new Date().getFullYear())}, Erik Martín Jordán. 
         
         `);
         
     }, []);
    
     return (
-        <React.Fragment>
+        <UserContext.Provider value = {{admin, user}}>
             <TrafficStats/>
             <Helper/>
             <div className = 'Title-Menu'>
@@ -65,7 +89,7 @@ const App  = () => {
             <Switch key = 'C'>
                 <Route                                         component = {Footer}/>
             </Switch>
-        </React.Fragment>
+        </UserContext.Provider>
     );
     
 }

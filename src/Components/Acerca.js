@@ -1,15 +1,16 @@
-import React, { useState, useEffect }             from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import moment                                     from 'moment';
 import ReactMarkdown                              from 'react-markdown';
 import Twemoji                                    from './Twemoji';
-import firebase, { auth, storageRef, fetchAdmin } from '../Functions/Firebase';
-import DeleteFeature                              from '../Functions/DeleteFeature.js';
+import firebase, { storageRef }                   from '../Functions/Firebase';
+import DeleteFeature                              from '../Functions/DeleteFeature';
+import UserContext                                from '../Functions/UserContext';
 import '../Styles/Acerca.css';
 
 const Acerca = () => {
     
     const today                     = moment();
-    const [admin, setAdmin]         = useState(null);
+    const { admin }                 = useContext(UserContext);
     const [content, setContent]     = useState(null);
     const [data, setData]           = useState(null);
     const [imgUrl, setImgUrl]       = useState(null);
@@ -24,25 +25,18 @@ const Acerca = () => {
     
     useEffect( () => {
         
-        auth.onAuthStateChanged( async user => {
+        let ref = firebase.database().ref('features');
+        
+        let listener = ref.on('value', snapshot => { 
             
-            if(user){
+            if(snapshot.val()){
                 
-                let admin = await fetchAdmin(user);
-                
-                setAdmin(admin);
-            }
-            else{
-                setAdmin(false);
+                setData(snapshot.val());
             }
             
         });
         
-        firebase.database().ref('features/').on('value', snapshot => { 
-            
-            if(snapshot.val())
-                setData(snapshot.val());
-        });
+        return () => ref.off('value', listener);
         
     }, []);
     
@@ -95,8 +89,9 @@ const Acerca = () => {
                 <h2>Mutaciones</h2>
                 <p>La web va evolucionando con el paso del tiempo, lo que antes veía con buenos ojos, mañana me parece que está mal. Aquí encontrarás los cambios más relevantes hasta la fecha.</p>
             </div>
-            {admin &&
-                [<div className = 'Block'>
+            { admin
+            ? <React.Fragment>
+                <div className = 'Block'>
                     <input     
                         onChange    = {(e) => setTitle(e.target.value)} 
                         className   = 'Title' 
@@ -124,23 +119,28 @@ const Acerca = () => {
                         </div>
                         <button onClick = {upload} className = 'send'>Añadir</button>
                     </div>
-                </div>,
-                <div className = 'Separator'></div>]           
-            }
-            {data && Object.keys(data).reverse().map( key =>
-                [<div className = 'Block'>
-                    {data[key].title && <h3>{data[key].title}</h3>}
-                    <div className = 'Date'>{data[key].date[0] + ' de ' + data[key].date[1] + ' del '  + data[key].date[2]}</div>
-                    <div className = 'Content'>
-                        <div className = 'Text'>
-                            {data[key].description && <ReactMarkdown source = {data[key].description}></ReactMarkdown>}
-                            {data[key].pic  && <img src = {data[key].pic} alt = {'Imagen de actualización'}></img>}
+                </div>
+                <div className = 'Separator'></div>
+              </React.Fragment>
+            : null}
+            { data
+            ? <React.Fragment>
+                {Object.keys(data).reverse().map(key =>
+                    (<div className = 'Block' key = {key}>
+                        {data[key].title && <h3>{data[key].title}</h3>}
+                        <div className = 'Date'>{data[key].date[0] + ' de ' + data[key].date[1] + ' del '  + data[key].date[2]}</div>
+                        <div className = 'Content'>
+                            <div className = 'Text'>
+                                {data[key].description && <ReactMarkdown source = {data[key].description}></ReactMarkdown>}
+                                {data[key].pic  && <img src = {data[key].pic} alt = {'Imagen de actualización'}></img>}
+                            </div>
                         </div>
-                    </div>
-                    {admin && <DeleteFeature id = {key}></DeleteFeature>}
-                </div>,
-                <div className = 'Separator'></div>])
-            }
+                        {admin && <DeleteFeature id = {key}></DeleteFeature>}
+                    </div>)
+                )}
+                <div className = 'Separator'></div>
+              </React.Fragment>
+            : null}
         </div>
     );
     
