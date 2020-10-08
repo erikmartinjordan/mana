@@ -24,7 +24,7 @@ const Ad = () => {
             }
             else{
                 
-                setDisplayAds(true);
+                setDisplayAds(false);
                 
             }
             
