@@ -15,7 +15,7 @@ export let environment = 'PRO';
 
 var configPRE = {
     apiKey: "AIzaSyCUBpYspYtPSoNKjFx86Y5xHJkXp3dPcO0",
-    authDomain: "nomoresheet-pre.firebaseapp.com",
+    authDomain: "nomoresheet.es",
     databaseURL: "https://nomoresheet-pre.firebaseio.com",
     projectId: "nomoresheet-pre",
     storageBucket: "nomoresheet-pre.appspot.com",
@@ -24,7 +24,7 @@ var configPRE = {
 };
 var configPRO = {
     apiKey: "AIzaSyCI6dpu54CeFd1NOH5s7B-sHeK3KdEH5KU",
-    authDomain: "nomoresheet-forum.firebaseapp.com",
+    authDomain: "nomoresheet.es",
     databaseURL: "https://nomoresheet-forum.firebaseio.com",
     projectId: "nomoresheet-forum",
     storageBucket: "nomoresheet-forum.appspot.com",
