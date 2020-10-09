@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import Confetti                       from 'react-confetti';
-import UserAvatar                     from './UserAvatar';
-import firebase, { auth }             from '../Functions/Firebase';
-import accounts                       from '../Rules/Accounts';
+import React, { useContext, useEffect, useState } from 'react';
+import Confetti                                   from 'react-confetti';
+import UserAvatar                                 from './UserAvatar';
+import firebase                                   from '../Functions/Firebase';
+import UserContext                                from '../Functions/UserContext';
+import accounts                                   from '../Rules/Accounts';
 import '../Styles/Helper.css';
 
 const Helper = () => {
     
-    const [user, setUser]       = useState(null);
     const [welcome, setWelcome] = useState(false);
-    
-    useEffect(() => {
-        
-        auth.onAuthStateChanged(user => user ? setUser(user) : setUser(null));
-        
-    }, []);
+    const { user }              = useContext(UserContext);
     
     useEffect(() => {
         

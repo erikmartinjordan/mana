@@ -20,6 +20,20 @@ import UserContext                      from '../Functions/UserContext';
 import { auth, fetchAdmin }             from '../Functions/Firebase';
 import '../Styles/App.css';
 
+console.log(`
+
+███╗   ██╗███╗   ███╗███████╗
+████╗  ██║████╗ ████║██╔════╝
+██╔██╗ ██║██╔████╔██║███████╗
+██║╚██╗██║██║╚██╔╝██║╚════██║
+██║ ╚████║██║ ╚═╝ ██║███████║
+╚═╝  ╚═══╝╚═╝     ╚═╝╚══════╝ 
+
+Creado desde Barcelona.
+© 2015 – ${(new Date().getFullYear())}, Erik Martín Jordán. 
+
+`);
+
 const App  = () => {
     
     const [user, setUser]   = useState(null);
@@ -45,20 +59,6 @@ const App  = () => {
             }
             
         });
-        
-        console.log(`
-        
-        ███╗   ██╗███╗   ███╗███████╗
-        ████╗  ██║████╗ ████║██╔════╝
-        ██╔██╗ ██║██╔████╔██║███████╗
-        ██║╚██╗██║██║╚██╔╝██║╚════██║
-        ██║ ╚████║██║ ╚═╝ ██║███████║
-        ╚═╝  ╚═══╝╚═╝     ╚═╝╚══════╝ 
-        
-        Creado desde Barcelona.
-        © 2015 – ${(new Date().getFullYear())}, Erik Martín Jordán. 
-        
-        `);
         
     }, []);
    

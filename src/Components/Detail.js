@@ -1,42 +1,36 @@
-import React, { useState, useEffect }      from 'react';
-import Question                            from './Question';
-import Replies                             from './Replies';
-import Norms                               from './Norms';
-import RelatedContent                      from './RelatedContent';
-import NewReply                            from './NewReply';
-import Default                             from './Default';
-import Privileges                          from './Privileges';
-import Ad                                  from './Ad';
-import firebase, { auth, fetchAdmin }      from '../Functions/Firebase';
+import React, { useContext, useState, useEffect } from 'react';
+import Question                                   from './Question';
+import Replies                                    from './Replies';
+import Norms                                      from './Norms';
+import RelatedContent                             from './RelatedContent';
+import NewReply                                   from './NewReply';
+import Default                                    from './Default';
+import Privileges                                 from './Privileges';
+import Ad                                         from './Ad';
+import firebase                                   from '../Functions/Firebase';
+import UserContext                                from '../Functions/UserContext';
 import '../Styles/Forum.css';
 
 const Detail = (props) => {
     
-    const [admin, setAdmin]         = useState(false);
     const [uid, setUid]             = useState(null);
     const [validPost, setValidPost] = useState(true);
     const [title, setTitle]         = useState(null);
     const url                       = props.match.params.string;
+    const { user, admin }           = useContext(UserContext);
     
     useEffect(() => {
         
-        auth.onAuthStateChanged( async user => {
+        if(user){
             
-            if(user){
-                
-                let admin = await fetchAdmin(user);
-                
-                setAdmin(admin);
-                setUid(user.uid);
-            }
-            else{
-                setAdmin(false);
-                setUid(null);
-            }
+            setUid(user.uid);
+        }
+        else{
             
-        });
+            setUid(null);
+        }
         
-    }, []);
+    }, [user]);
     
     useEffect( () => {
         

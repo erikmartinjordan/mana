@@ -1,4 +1,4 @@
-import React, { useState, useEffect }            from 'react';
+import React, { useContext, useState, useEffect }from 'react';
 import { Link }                                  from 'react-router-dom';
 import moment                                    from 'moment';
 import ReactMarkdown                             from 'react-markdown';
@@ -6,9 +6,10 @@ import Default                                   from './Default';
 import Login                                     from './Login';
 import Perfil                                    from './Perfil';
 import Twemoji                                   from './Twemoji';
-import firebase, { auth }                        from '../Functions/Firebase';
+import firebase                                  from '../Functions/Firebase';
 import GetLevel                                  from '../Functions/GetLevelAndPointsToNextLevel';
 import GetPoints                                 from '../Functions/GetPoints';
+import UserContext                               from '../Functions/UserContext';
 import Data                                      from '../Posts/_data';
 import '../Styles/Post.css';
 
@@ -26,8 +27,8 @@ const Post = () => {
     const [superlikes, setSuperlikes]           = useState('');
     const [text, setText]                       = useState('');
     const [title, setTitle]                     = useState('');
-    const [user, setUser]                       = useState(false);
     const [views, setViews]                     = useState(0);
+    const { user }                              = useContext(UserContext);
     const points                                = GetPoints(user ? user.uid : 0);
     
     const level                                 = GetLevel(...points)[0];
@@ -51,19 +52,6 @@ const Post = () => {
         }
         
     }, [privateArticle]);
-    
-    useEffect( () => {
-        
-        auth.onAuthStateChanged( user => {
-            
-            if(user)
-                setUser(user);
-            else
-                setUser(null);
-            
-        });
-        
-    }, []);
     
     useEffect( () => {
         

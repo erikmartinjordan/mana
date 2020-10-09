@@ -1,11 +1,12 @@
-import React, { useState, useEffect }                    from 'react';
+import React, { useContext, useState }                   from 'react';
 import moment                                            from 'moment';
 import { loadStripe }                                    from '@stripe/stripe-js';
 import { CardElement, Elements, useStripe, useElements } from '@stripe/react-stripe-js';
 import Loading                                           from '../Components/Loading';
 import { apiKey }                                        from '../Functions/Stripe';
-import firebase, { auth, environment }                   from '../Functions/Firebase';
+import firebase, { environment }                         from '../Functions/Firebase';
 import { premium, infinita }                             from '../Functions/Stripe';
+import UserContext                                       from '../Functions/UserContext';
 import { ReactComponent as Checkmark }                   from '../Assets/checkmark.svg';
 import 'moment/locale/es';
 import '../Styles/PaymentModal.css';
@@ -29,20 +30,9 @@ export default PaymentModal;
 const CheckoutForm = ({hide, plan}) => {
     
     const [payment, setPayment] = useState(false);
-    const [user, setUser]       = useState(null);
     const stripe                = useStripe();
     const elements              = useElements();
-    
-    useEffect(() => {
-        
-        auth.onAuthStateChanged(user => { 
-            
-            if(user) 
-                setUser(user);
-            
-        });
-        
-    }, []);
+    const { user }              = useContext(UserContext);
     
     const submit = async (ev) => {
         

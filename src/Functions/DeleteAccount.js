@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import Twemoji                        from '../Components/Twemoji';
-import firebase, {auth}               from '../Functions/Firebase.js';
-import AnonymImg                      from '../Functions/AnonymImg.js';
+import React, { useContext, useState } from 'react';
+import Twemoji                         from '../Components/Twemoji';
+import firebase, { auth }              from '../Functions/Firebase';
+import AnonymImg                       from '../Functions/AnonymImg';
+import UserContext                     from '../Functions/UserContext';
 import '../Styles/DeleteAccount.css';
 
 const DeleteAccount = () => {
@@ -10,20 +11,7 @@ const DeleteAccount = () => {
     const [error, setError]               = useState(null);
     const [goodbye, setGoodbye]           = useState(null);
     const [input, setInput]               = useState(null);
-    const [user, setUser]                 = useState(null);
-    
-    useEffect( () => {
-        
-        auth.onAuthStateChanged( user => {
-            
-            if(user)
-                setUser(user) 
-            else
-                setUser(null);
-            
-        });
-        
-    });
+    const { user }                        = useContext(UserContext);
     
     const handleDelete = async () => {
         
@@ -90,7 +78,6 @@ const DeleteAccount = () => {
             await auth.signOut();
             
             setGoodbye(true);
-            setUser(null);
             setConfirmation(false);
             
         }

@@ -1,12 +1,13 @@
-import React, { useEffect, useState }    from 'react';
-import Login                             from './Login';
-import Alert                             from './Alert';
-import UserAvatar                        from './UserAvatar';
-import firebase, {auth}                  from '../Functions/Firebase';
-import GetPoints                         from '../Functions/GetPoints';
-import GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel';
-import insertNotificationAndReputation   from '../Functions/InsertNotificationAndReputationIntoDatabase';
-import Accounts                          from '../Rules/Accounts';
+import React, { useContext, useEffect, useState } from 'react';
+import Login                                      from './Login';
+import Alert                                      from './Alert';
+import UserAvatar                                 from './UserAvatar';
+import UserContext                                from '../Functions/UserContext';
+import firebase                                   from '../Functions/Firebase';
+import GetPoints                                  from '../Functions/GetPoints';
+import GetLevel                                   from '../Functions/GetLevelAndPointsToNextLevel';
+import insertNotificationAndReputation            from '../Functions/InsertNotificationAndReputationIntoDatabase';
+import Accounts                                   from '../Rules/Accounts';
 import '../Styles/NewReply.css';
 
 const NewReply = ({postId}) => {
@@ -21,72 +22,64 @@ const NewReply = ({postId}) => {
     const [nickName, setNickName]                 = useState(null);
     const [showLogin, setShowLogin]               = useState(false);
     const [timeSpanReplies, setTimeSpanReplies]   = useState(null);
-    const [user, setUser]                         = useState(null);
+    const { user }                                = useContext(UserContext);
     const points                                  = GetPoints(nickName ? nickName : user ? user.uid : null)[0];
     const level                                   = GetLevel(points)[0];
     
     useEffect( () => {
         
-        auth.onAuthStateChanged(user => {
+        if(user){
             
-            if(user){
+            firebase.database().ref(`users/${user.uid}`).on( 'value', snapshot => {
                 
-                firebase.database().ref(`users/${user.uid}`).on( 'value', snapshot => {
+                let userInfo = snapshot.val();
+                
+                if(userInfo){
                     
-                    let userInfo = snapshot.val();
-
-                    if(userInfo){
+                    let nickName;
+                    let avatar;
+                    let canWriteInMd;
+                    let timeSpanReplies;
+                    let maxLengthReply;
+                    
+                    if(userInfo.account){
                         
-                        let nickName;
-                        let avatar;
-                        let canWriteInMd;
-                        let timeSpanReplies;
-                        let maxLengthReply;
+                        timeSpanReplies = Accounts[userInfo.account].messages.timeSpanReplies;
+                        maxLengthReply  = Accounts[userInfo.account].messages.maxLength;
+                        canWriteInMd    = Accounts[userInfo.account].mdformat ? true : false;
                         
-                        if(userInfo.account){
-                            
-                            timeSpanReplies = Accounts[userInfo.account].messages.timeSpanReplies;
-                            maxLengthReply  = Accounts[userInfo.account].messages.maxLength;
-                            canWriteInMd    = Accounts[userInfo.account].mdformat ? true : false;
-                            
-                        }
-                        else{
-                            
-                            let rangeOfLevels = Object.keys(Accounts['free']);
-                            let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
-                            
-                            timeSpanReplies = Accounts['free'][closestLevel].messages.timeSpanReplies;
-                            maxLengthReply  = Accounts['free'][closestLevel].messages.maxLength;
-                            canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false;
-                            
-                        }
+                    }
+                    else{
                         
-                        if(userInfo.anonimo){
-                            
-                            nickName = userInfo.nickName;
-                            avatar   = userInfo.avatar;  
-                            
-                        }
+                        let rangeOfLevels = Object.keys(Accounts['free']);
+                        let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
                         
-                        setMdFormat(canWriteInMd);
-                        setTimeSpanReplies(timeSpanReplies);
-                        setMaxLengthReply(maxLengthReply);
-                        setNickName(nickName);
-                        setAvatar(avatar);
+                        timeSpanReplies = Accounts['free'][closestLevel].messages.timeSpanReplies;
+                        maxLengthReply  = Accounts['free'][closestLevel].messages.maxLength;
+                        canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false;
                         
                     }
                     
-                });
+                    if(userInfo.anonimo){
+                        
+                        nickName = userInfo.nickName;
+                        avatar   = userInfo.avatar;  
+                        
+                    }
+                    
+                    setMdFormat(canWriteInMd);
+                    setTimeSpanReplies(timeSpanReplies);
+                    setMaxLengthReply(maxLengthReply);
+                    setNickName(nickName);
+                    setAvatar(avatar);
+                    
+                }
                 
-                setUser(user);
-            }
-            else{
-                setUser(null);
-            }
-        });
+            });
+            
+        }
         
-        
-    }, [level]);
+    }, [level, user]);
     
     const alert = (title, message) => {
         

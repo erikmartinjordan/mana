@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { auth }                       from '../Functions/Firebase';
+import React, { useContext, useEffect, useState } from 'react';
+import UserContext                                from '../Functions/UserContext';
 import '../Styles/Ad.css';
 
 const Ad = () => {
     
     const [displayAds, setDisplayAds] = useState(false);
+    const { user } = useContext(UserContext);
     
     useEffect(() => { 
         
@@ -14,23 +15,19 @@ const Ad = () => {
     }, [displayAds]);
     
     useEffect(() => {
-        
-        auth.onAuthStateChanged(user => {
+       
+        if(user){
             
-            if(user){
-              
-                setDisplayAds(false);
-                
-            }
-            else{
-                
-                setDisplayAds(false);
-                
-            }
+            setDisplayAds(false);
             
-        });
+        }
+        else{
+            
+            setDisplayAds(false);
+            
+        }
         
-    }, []);
+    }, [user]);
     
     return(
         <React.Fragment>

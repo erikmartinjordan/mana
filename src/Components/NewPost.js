@@ -1,13 +1,14 @@
-import React, { useEffect, useState }    from 'react';
-import TagInput                          from 'react-easy-tag-input';
-import Alert                             from './Alert';
-import UserAvatar                        from './UserAvatar';
-import firebase, {auth}                  from '../Functions/Firebase';
-import GetPoints                         from '../Functions/GetPoints';
-import GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel';
-import insertNotificationAndReputation   from '../Functions/InsertNotificationAndReputationIntoDatabase';
-import normalize                         from '../Functions/NormalizeWord';
-import Accounts                          from '../Rules/Accounts';
+import React, { useContext, useEffect, useState } from 'react';
+import TagInput                                   from 'react-easy-tag-input';
+import Alert                                      from './Alert';
+import UserAvatar                                 from './UserAvatar';
+import firebase                                   from '../Functions/Firebase';
+import GetPoints                                  from '../Functions/GetPoints';
+import GetLevel                                   from '../Functions/GetLevelAndPointsToNextLevel';
+import insertNotificationAndReputation            from '../Functions/InsertNotificationAndReputationIntoDatabase';
+import normalize                                  from '../Functions/NormalizeWord';
+import UserContext                                from '../Functions/UserContext';
+import Accounts                                   from '../Rules/Accounts';
 import '../Styles/NewPost.css';
 
 const NewPost = ({hide}) => {
@@ -23,17 +24,18 @@ const NewPost = ({hide}) => {
     const [tags, setTags]                   = useState([]);
     const [timeSpanPosts, setTimeSpanPosts] = useState(null);
     const [title, setTitle]                 = useState('');
-    const [user, setUser]                   = useState([]);
-    const points                            = GetPoints(nickName ? nickName : user ? user.uid : null)[0];
+    const [uid, setUid]                     = useState(null);
+    const { user }                          = useContext(UserContext);
+    const points                            = GetPoints(nickName ? nickName : uid)[0];
     const level                             = GetLevel(points)[0];
     
     useEffect( () => {
         
-        auth.onAuthStateChanged( user => { 
+        if(user){
             
-            if(user){
-                
-                firebase.database().ref(`users/${user.uid}`).on('value', snapshot => {
+            setUid(user.uid);
+            
+            firebase.database().ref(`users/${user.uid}`).on('value', snapshot => {
                     
                     let userInfo = snapshot.val();
                     
@@ -79,17 +81,10 @@ const NewPost = ({hide}) => {
                     }
                     
                 });
-                
-                setUser(user);
-                
-            } 
-            else{
-                setUser(null);
-            }
             
-        });
+        } 
         
-    }, [level]);
+    }, [user, level]);
     
     const alert = (title, message) => {
         
@@ -186,12 +181,12 @@ const NewPost = ({hide}) => {
                 </div>
                 <input  
                     placeholder = 'Título...' 
-                    maxlength   = {140}
+                    maxLength   = {140}
                     onChange    = {(e) => setTitle(e.target.value)}
                 />
                 <textarea   
                     placeholder = 'Mensaje...'
-                    maxlength   = {maxLengthPost}
+                    maxLength   = {maxLengthPost}
                     onChange    = {(e) => setMessage(e.target.value)}
                     onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
                 />
@@ -222,7 +217,7 @@ const Hints = ({mdFormat}) => {
         
         <div className = 'Hints' style = {{fontSize: 'small'}}>
             {mdFormat 
-                ? <span>**<span style = {bold}>negrita</span>**, *<span style = {italic}>cursiva</span>*, > cita</span> 
+            ? <span>**<span style = {bold}>negrita</span>**, *<span style = {italic}>cursiva</span>*, > cita</span> 
             : null}
         </div>
         

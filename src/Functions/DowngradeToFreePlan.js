@@ -1,24 +1,14 @@
-import React, { useState, useEffect }  from 'react';
-import Loading                         from '../Components/Loading';
-import firebase, { auth, environment } from '../Functions/Firebase';
+import React, { useContext, useState }  from 'react';
+import Loading                          from '../Components/Loading';
+import firebase, { environment }        from '../Functions/Firebase';
+import UserContext                      from '../Functions/UserContext';
 import '../Styles/DeletePost.css';
 
 const DownGradeToFreePlan = (props) => {
     
     const [confirmation, setConfirmation] = useState(true);
     const [downgrade, setDowngrade]       = useState(false);
-    const [user, setUser]                 = useState(null);
-        
-    useEffect(() => {
-        
-        auth.onAuthStateChanged(user => { 
-            
-            if(user) 
-                setUser(user);
-            
-        });
-        
-    }, []);
+    const { user }                        = useContext(UserContext);
     
     const handleDowngrade = async () => {
         

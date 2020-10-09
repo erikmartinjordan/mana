@@ -1,16 +1,17 @@
-import React, { useState, useEffect }   from 'react';
-import { Link }                         from 'react-router-dom';
-import Login                            from './Login';
-import Perfil                           from './Perfil';
-import NewPost                          from './NewPost';
-import UserAvatar                       from './UserAvatar';
-import NightModeToggleButton            from './NightModeToggleButton';
-import firebase, {auth}                 from '../Functions/Firebase';
-import GetUnreadNotifications           from '../Functions/GetUnreadNotifications';
-import GetPoints                        from '../Functions/GetPoints';
-import GetLevel                         from '../Functions/GetLevelAndPointsToNextLevel';
-import NomoresheetLogo                  from '../Functions/NomoresheetLogo';
-import { ReactComponent as ThaiFlag }   from '../Assets/thailand.svg';
+import React, { useContext, useState, useEffect } from 'react';
+import { Link }                                   from 'react-router-dom';
+import Login                                      from './Login';
+import Perfil                                     from './Perfil';
+import NewPost                                    from './NewPost';
+import UserAvatar                                 from './UserAvatar';
+import NightModeToggleButton                      from './NightModeToggleButton';
+import firebase, {auth}                           from '../Functions/Firebase';
+import GetUnreadNotifications                     from '../Functions/GetUnreadNotifications';
+import GetPoints                                  from '../Functions/GetPoints';
+import GetLevel                                   from '../Functions/GetLevelAndPointsToNextLevel';
+import NomoresheetLogo                            from '../Functions/NomoresheetLogo';
+import UserContext                                from '../Functions/UserContext';
+import { ReactComponent as ThaiFlag }             from '../Assets/thailand.svg';
 import '../Styles/Nav.css';
 
 const Nav = () => {
@@ -21,40 +22,34 @@ const Nav = () => {
     const [login, setLogin]                 = useState(false);
     const [perfil, setPerfil]               = useState(false);
     const [uid, setUid]                     = useState(null);
-    const [user, setUser]                   = useState(null);
     const [userInfo, setUserInfo]           = useState(null);
+    const { user }                          = useContext(UserContext);
     const points                            = GetPoints(uid);
     const level                             = GetLevel(...points)[0];
 
     useEffect ( () => {
       
-        auth.onAuthStateChanged( user => {
+        if(user) {
             
-            if(user) {
+            firebase.database().ref(`users/${user.uid}`).on( 'value', snapshot => {
                 
-                firebase.database().ref(`users/${user.uid}`).on( 'value', snapshot => {
+                if(snapshot.val()){
                     
-                    if(snapshot.val()){
-                        
-                        let date    = new Date(parseInt(user.metadata.b));
-                        let day     = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-                        let hour    = `${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`;
-                        let capture = snapshot.val();
-                        
-                        setUserInfo(capture);
-                        setLastSignIn(`Accediste el ${day} a las ${hour}`);
-                    }
-                });
-                
-                setUid(user.uid);
-                
-            }
+                    let date    = new Date(parseInt(user.metadata.b));
+                    let day     = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+                    let hour    = `${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`;
+                    let capture = snapshot.val();
+                    
+                    setUserInfo(capture);
+                    setLastSignIn(`Accediste el ${day} a las ${hour}`);
+                }
+            });
             
-            setUser(user);
+            setUid(user.uid);
             
-        });
+        }
       
-    }, []);
+    }, [user]);
     
     useEffect(() => {
         
@@ -104,7 +99,7 @@ const Nav = () => {
                 <div className = 'Separator'></div>
                 <Link to = '/' onClick = {() => setPost(true)} className = 'login'>Publicar</Link>
                 <div className = 'Separator'></div>
-                <div onClick = {() => auth.signOut().then(setUser(null))} className = 'Logout'>Cerrar sesión</div>
+                <div onClick = {() => auth.signOut()} className = 'Logout'>Cerrar sesión</div>
                 <div className = 'SignIn'>{lastSignIn}</div>
             </React.Fragment>
         );

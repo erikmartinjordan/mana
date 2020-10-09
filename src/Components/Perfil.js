@@ -1,23 +1,24 @@
-import React, { useState, useEffect }       from 'react';
-import PaymentModal                         from './PaymentModal';
-import ConnectToStripe                      from './ConnectToStripe';
-import Notifications                        from './Notifications';
-import UserAvatar                           from './UserAvatar';
-import ToggleButton                         from './ToggleButton';
-import Points                               from '../Functions/PointsAndValues';
-import firebase, { auth, environment }      from '../Functions/Firebase';
-import GetNumberOfPosts                     from '../Functions/GetNumberOfPosts';
-import GetNumberOfReplies                   from '../Functions/GetNumberOfReplies';
-import GetNumberOfSpicy                     from '../Functions/GetNumberOfSpicy';
-import GetPoints                            from '../Functions/GetPoints';
-import GetLevel                             from '../Functions/GetLevelAndPointsToNextLevel';
-import AnonymImg                            from '../Functions/AnonymImg';
-import AnonymName                           from '../Functions/AnonymName';
-import DeleteAccount                        from '../Functions/DeleteAccount';
-import DowngradeToFreePlan                  from '../Functions/DowngradeToFreePlan';
-import { premium, infinita }                from '../Functions/Stripe';
-import Accounts                             from '../Rules/Accounts';
+import React, { useContext, useState, useEffect }      from 'react';
 import { SmileyIcon, GraphIcon, StarIcon, InboxIcon }  from '@primer/octicons-react';
+import PaymentModal                                    from './PaymentModal';
+import ConnectToStripe                                 from './ConnectToStripe';
+import Notifications                                   from './Notifications';
+import UserAvatar                                      from './UserAvatar';
+import ToggleButton                                    from './ToggleButton';
+import UserContext                                     from '../Functions/UserContext';
+import Points                                          from '../Functions/PointsAndValues';
+import firebase, { environment }                       from '../Functions/Firebase';
+import GetNumberOfPosts                                from '../Functions/GetNumberOfPosts';
+import GetNumberOfReplies                              from '../Functions/GetNumberOfReplies';
+import GetNumberOfSpicy                                from '../Functions/GetNumberOfSpicy';
+import GetPoints                                       from '../Functions/GetPoints';
+import GetLevel                                        from '../Functions/GetLevelAndPointsToNextLevel';
+import AnonymImg                                       from '../Functions/AnonymImg';
+import AnonymName                                      from '../Functions/AnonymName';
+import DeleteAccount                                   from '../Functions/DeleteAccount';
+import DowngradeToFreePlan                             from '../Functions/DowngradeToFreePlan';
+import { premium, infinita }                           from '../Functions/Stripe';
+import Accounts                                        from '../Rules/Accounts';
 import '../Styles/Perfil.css';
 import '../Styles/UserAvatar.css';
 import '../Styles/ToggleButton.css';
@@ -27,15 +28,14 @@ const Perfil = (props) => {
     const [infoUser, setInfoUser]                = useState(null);
     const [menu, setMenu]                        = useState(props.menu ? props.menu : 'Notif');
     const [nextPayment, setNextPayment]          = useState('');
-    const [user, setUser]                        = useState([]);
     const [uid, setUid]                          = useState(null);
     const posts                                  = GetNumberOfPosts(uid);
     const replies                                = GetNumberOfReplies(uid);
     const spicy                                  = GetNumberOfSpicy(uid);
     const points                                 = GetPoints(uid)[0];
-    const {valuePost, valueReply, valueSpicy}    = Points;
+    const { valuePost, valueReply, valueSpicy }  = Points;
     const [level, pointsToNextLevel, percentage] = GetLevel(points);
-
+    const { user }                               = useContext(UserContext);
     
     useEffect(() => {
         
@@ -46,33 +46,28 @@ const Perfil = (props) => {
     
     useEffect(() => {
         
-        auth.onAuthStateChanged(user => {
+        if(user){
             
-            if(user){
-              
-                firebase.database().ref(`users/${user.uid}`).on('value', snapshot => {
-                    
-                    if(snapshot.val()){
-                        
-                        let {account, subscriptionId} = snapshot.val();
-                        
-                        if(account === 'premium')  getNextPaymentDate(subscriptionId);
-                        if(account === 'infinita') setNextPayment('∞');
-                        
-                        setInfoUser(snapshot.val());
-                        
-                    }
-                    
-                });    
+            firebase.database().ref(`users/${user.uid}`).on('value', snapshot => {
                 
-                setUser(user);
-                setUid(user.uid);
+                if(snapshot.val()){
+                    
+                    let {account, subscriptionId} = snapshot.val();
+                    
+                    if(account === 'premium')  getNextPaymentDate(subscriptionId);
+                    if(account === 'infinita') setNextPayment('∞');
+                    
+                    setInfoUser(snapshot.val());
+                    
+                }
                 
-            }
+            });    
             
-        });
+            setUid(user.uid);
+            
+        }    
         
-    }, []);
+    }, [user]);
     
     const getNextPaymentDate = async (subscriptionId) => {
         

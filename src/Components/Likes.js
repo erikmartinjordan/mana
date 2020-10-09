@@ -1,10 +1,11 @@
-import React, { useState, useEffect }   from 'react';
-import Login                            from './Login';
-import Alert                            from './Alert';
-import Twemoji                          from './Twemoji';
-import firebase , { auth }              from '../Functions/Firebase';
-import GetPoints                        from '../Functions/GetPoints';
-import insertNotificationAndReputation  from '../Functions/InsertNotificationAndReputationIntoDatabase';
+import React, { useContext, useState, useEffect }   from 'react';
+import Login                                        from './Login';
+import Alert                                        from './Alert';
+import Twemoji                                      from './Twemoji';
+import firebase                                     from '../Functions/Firebase';
+import GetPoints                                    from '../Functions/GetPoints';
+import insertNotificationAndReputation              from '../Functions/InsertNotificationAndReputationIntoDatabase';
+import UserContext                                  from '../Functions/UserContext';
 import '../Styles/LikesComments.css';
 
 const Likes = ({ authorId, postId }) => {  
@@ -13,16 +14,14 @@ const Likes = ({ authorId, postId }) => {
     const [alertTitle, setAlertTitle]     = useState(null);
     const [modal, setModal]               = useState(false);
     const [numVotes, setNumVotes]         = useState(0);
-    const [user, setUser]                 = useState(null);
     const [votes, setVotes]               = useState({});
     const points                          = GetPoints(authorId)[0];
+    const { user }                        = useContext(UserContext);
     
     useEffect( () => {
         
-        auth.onAuthStateChanged( user => { user ? setUser(user) : setUser(null) }); 
-        
         firebase.database().ref(`posts/${postId}/voteUsers`).on('value', snapshot => { 
-
+            
             var votes = snapshot.val();            
             
             if(votes){

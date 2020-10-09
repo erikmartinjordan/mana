@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import moment                         from 'moment';
-import Twemoji                        from './Twemoji';
-import firebase, { auth }             from '../Functions/Firebase';
-import Data                           from '../Posts/_data';
-import { Link }                       from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import { Link }                                   from 'react-router-dom';
+import moment                                     from 'moment';
+import Twemoji                                    from './Twemoji';
+import firebase                                   from '../Functions/Firebase';
+import UserContext                                from '../Functions/UserContext';
+import Data                                       from '../Posts/_data';
 import '../Styles/Blog.css';
 import 'moment/locale/es';
 
@@ -11,8 +12,8 @@ const Blog = () => {
 
     const [displayPosts, setDisplayPosts] = useState(10);
     const [sortedPosts, setSortedPosts]   = useState([]);
-    const [user, setUser]                 = useState(null);
     const timeLimitPrivateArticleInMonths = 2;
+    const { user }                        = useContext(UserContext);
     
     useEffect( () => {
         
@@ -20,19 +21,6 @@ const Blog = () => {
         document.querySelector(`meta[name = 'description']`).content = 'Artículos de Nomoresheet.'; 
         
     })
-    
-    useEffect( () => {
-        
-        auth.onAuthStateChanged( user => { 
-            
-            if(user) 
-                setUser(user);
-            else
-                setUser(null);
-            
-        });
-        
-    }, []);
     
     return (
         <div className = 'Blog'>
