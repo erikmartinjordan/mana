@@ -218,7 +218,6 @@ const Header = ({title, date, user, views, likes, superlikes, handleLikes, handl
                     <img id = 'Erik' src = {profilePic} alt = {'Erik Martín Jordán'}></img>
                     <span>{`Erik Martín Jordán, ${date[1]} ${date[2]}`}</span>
                 </p>
-                <div className = 'i'><Twemoji emoji = {'👀'}/> {parseInt(views).toLocaleString('es')}</div>
                 <div className = 'i' onClick = {user ? handleLikes      : () => setLogin(true)}><Twemoji emoji = {'👏'}/> {likes}</div>
                 <div className = 'i' onClick = {user ? handleSuperLikes : () => setLogin(true)}><Twemoji emoji = {'🎉'}/> {superlikes}</div>
             </div>

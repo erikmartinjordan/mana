@@ -30,7 +30,6 @@ const Comments = () => {
                             <span><TimeAgo formatter = {formatter} date = {comment.timeStamp}/></span>
                         </div>
                     </div>
-                    <div className = 'Claps'><Twemoji emoji = '👏'/> {Object.keys(comment.voteUsers ?? []).length}</div>
                 </Link>
                 )}
             </div>
