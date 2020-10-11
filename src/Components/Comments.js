@@ -36,7 +36,8 @@ const Comments = () => {
         </div>
         : <Loading type = 'Comments'/>
         }
-        </React.Fragment>);
+        </React.Fragment>
+    );
 }
 
 export default Comments;
