@@ -216,10 +216,8 @@ const Header = ({title, date, user, views, likes, superlikes, handleLikes, handl
             <div className = 'Infopost'>
                 <p className = 'Author'>
                     <img id = 'Erik' src = {profilePic} alt = {'Erik Martín Jordán'}></img>
-                    <span>{`Erik Martín Jordán, ${date[1]} ${date[2]}`}</span>
+                    <span>Erik Martín Jordán, {date[1]} {date[2]}, {views} visitas</span>
                 </p>
-                <div className = 'i' onClick = {user ? handleLikes      : () => setLogin(true)}><Twemoji emoji = {'👏'}/> {likes}</div>
-                <div className = 'i' onClick = {user ? handleSuperLikes : () => setLogin(true)}><Twemoji emoji = {'🎉'}/> {superlikes}</div>
             </div>
         </div>
     );

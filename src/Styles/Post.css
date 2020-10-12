@@ -5,44 +5,38 @@
     width: 100%;
 }
 .Post h1{
-    margin-bottom: 20px;
+    line-height: 1;
+    margin: 0;
+    text-align: left;
+}
+.Post .Header{
+    margin: auto;
     margin-top: 20px;
+    margin-bottom: 20px;
+    max-width: 620px;
 }
 .Post .Header img#Erik{
     border-radius: 50%;
-    height: 30px;
+    height: 20px;
     margin: 5px;
-    width: 30px;
-}
-.Post .Infopost{
-    text-align: center;
+    width: 20px;
 }
 .Post .Infopost .i{
+    cursor: pointer;
+    display: inline-block;
     font-size: medium;
     margin: 10px;
-}
-.Post .Infopost .i{
-    display: inline-block;
 }
 .Post .Infopost .i:hover{
     transform: scale(1.5);
     transition: 0.2s ease-in-out;
 }
-.Post .Infopost .i:nth-child(2){
-    cursor: default;
-}
-.Post .Infopost .i:nth-child(3),
-.Post .Infopost .i:nth-child(4){
-    cursor: pointer;
-}
 .Post .Infopost .Author{
     align-items: center;
     color: var(--gray);
     display: flex;
-    font-size: x-small;
-    justify-content: center;
-    letter-spacing: 0.75px;
-    text-transform: uppercase;
+    font-size: small;
+    margin: 0;
 }
 .Post .Infopost .Author span{
     margin: 5px;
