@@ -35,18 +35,19 @@
     align-items: center;
     background: white;
     border: 1px solid var(--thirdFontColor);
-    border-radius: 50px;
+    border-radius: 5px;
     box-shadow: none;
     color: var(--secondaryFontColor);
     cursor: pointer;
     display: flex;
     font-size: 12px;
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
     margin-bottom: 30px;
     padding: 5px 10px;
-
+    width: 200px;
 }
 .Login button.Google:hover{
     transition: 0.2s ease-in-out;
@@ -59,10 +60,16 @@
     color: var(--thirdFontColor);
     font-size: small;
     line-height: 1.3;
+    margin-top: 50px;
     text-align: center;
 }
 .Login .Invisible{
     z-index: 1;
+}
+.Login hr{
+    border: 1px solid var(--thirdFontColor);
+    border-bottom: none;
+    max-width: 200px;
 }
 @media (max-width: 768px){
    .Login{
