@@ -5,7 +5,6 @@ import ReactMarkdown                             from 'react-markdown';
 import Default                                   from './Default';
 import Login                                     from './Login';
 import Perfil                                    from './Perfil';
-import Twemoji                                   from './Twemoji';
 import firebase                                  from '../Functions/Firebase';
 import GetLevel                                  from '../Functions/GetLevelAndPointsToNextLevel';
 import GetPoints                                 from '../Functions/GetPoints';

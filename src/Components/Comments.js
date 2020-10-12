@@ -5,7 +5,6 @@ import spanishStrings           from 'react-timeago/lib/language-strings/es';
 import TimeAgo                  from 'react-timeago';
 import Loading                  from './Loading';
 import UserAvatar               from './UserAvatar';
-import Twemoji                  from './Twemoji';
 import GetLastComments          from '../Functions/GetLastComments';
 import '../Styles/Comments.css';
 
