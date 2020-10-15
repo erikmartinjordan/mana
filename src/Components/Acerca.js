@@ -75,17 +75,17 @@ const Acerca = () => {
             <h1>Acerca</h1>
             <div className = 'Intro'>
                 <img src = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg' alt = {'Erik Martín Jordán'}></img>
-                <p>Hola, soy Erik, el creador de Nomoresheet.</p>
+                <p>Hola, soy Erik, el creador de Nomoresheet. Hasta hace poco vivía en Bangkok, pero con el coronavirus se complicaron las cosas y ahora estoy viviendo en Barcelona hasta nuevo aviso.</p>
                 <h2>¿Qué es Nomoresheet?</h2>
-                <p>Nomoresheet es una comunidad abierta; cualquier tema es bienvenido.</p>
+                <p>Nomoresheet empezó siendo un blog donde escribía sobre mis aventuras en el Sudeste Asiático allá por el 2016. Fueron buenos tiempos. Con el tiempo se ha convertido en una comunidad abierta de preguntas y respuestas donde cualquier tema es bienvenido.</p>
                 <h2>Estructura de la web</h2>
                 <p>Dos grandes bloques:
-                    <li>Comunidad: Preguntas, noticias, tonterías, miscelánea...</li>
-                    <li>Blog: Artículos personales sobre cosas que voy aprendiendo.</li>
+                    <li>Comunidad: Preguntas, noticias, miscelánea sobre cualquier tema que pueda incitar la curiosidad de los demás.</li>
+                    <li>Blog: Artículos personales sobre cosas que voy aprendiendo o me van sucediendo.</li>
                 </p>
                 <p>El primer punto tiene más interés que el segundo, así que te animo a participar.</p>
                 <h2>Cómo contactar</h2>
-                <p>Para cualquier cuestión, puedes utilizar la propia comunidad, si es algo más personal, mi cuenta de Twitter es <a href = 'https://twitter.com/ErikMarJor' target = '_blank' rel = 'nofollow noreferrer noopener' >@ErikMarJor</a>.</p>
+                <p>En 2020 he decidido apartarme de las redes sociales. Para cualquier cuestión, puedes utilizar la propia comunidad, si es algo más personal, mi cuenta de correo es <a href = 'mailto:hola@erikmartinjordan.com' target = '_blank' rel = 'nofollow noreferrer noopener' >hola@erikmartinjordan.com</a>.</p>
                 <h2>Mutaciones</h2>
                 <p>La web va evolucionando con el paso del tiempo, lo que antes veía con buenos ojos, mañana me parece que está mal. Aquí encontrarás los cambios más relevantes hasta la fecha.</p>
             </div>
