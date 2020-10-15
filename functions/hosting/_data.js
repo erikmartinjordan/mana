@@ -1,4 +1,10 @@
 var data = {
+    'joder-hostia-puta': {
+        'title': 'Joder. Hostia. Puta.',
+        'date': [12, 'Octubre', 2020],
+        'description': 'No sé qué será lo siguiente. No sé qué cojones más puede pasar este año. Quién será el siguiente.',
+        'privat': true
+    },
     'rumbo-nomoresheet': {
         'title': 'Rumbo de Nomoresheet',
         'date': [23, 'Septiembre', 2020],
@@ -14,7 +20,8 @@ var data = {
     'verano-raro': {
         'title': 'Un verano raro',
         'date': [10, 'Agosto', 2020],
-        'description': 'Verano raro donde los haya. Yendo a entrenar a Montjuïc oigo una voz por detrás...'
+        'description': 'Verano raro donde los haya. Yendo a entrenar a Montjuïc oigo una voz por detrás...',
+        'privat': true
     },
     'hermana': {
         'title': 'Ok...',
@@ -42,11 +49,13 @@ var data = {
         'title': 'Primeros rechazos',
         'date': [11, 'Junio', 2020],
         'description': 'Siempre me sucede algo parecido. Empiezo con muchas ganas a aplicar a diferentes ofertas de trabajo hasta que llegan los primeros rechazos.',
+        'privat': true
     },
     'buscando-trabajo': {
         'title': 'Buscando trabajo',
         'date': [1, 'Mayo', 2020],
         'description': 'Parece que el coronavirus está abandonando el país. Poco a poco, la situación volverá a la normalidad y, de cara al verano, espero que en este bendito país de pandereta estemos llevando una vida normal. Así que toca entrar otra vez en el mundo laboral (por cierto, momentazo para volver a poner la patita en él).',
+        'privat': true
     },
     'inadecuado': {
         'title': 'Las redes sociales me hacen sentir inadecuado',
@@ -57,6 +66,7 @@ var data = {
         'title': 'Un mal 2020',
         'date': [20, 'Abril', 2020],
         'description': 'Joer... Si el 2019 fue un año redondo, el 2020 es uno de los peores años que he vivido hasta la fecha.',
+        'privat': true
     },
     'abandonado': {
         'title': 'El lugar que no debiste abandonar',
