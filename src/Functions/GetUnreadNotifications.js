@@ -3,15 +3,17 @@ import firebase from './Firebase.js';
 
 const GetUnreadNotifications = ({user}) => {
     
-    const [displayNotifications, setDisplayNotifications]   = useState(true);
-    const [newPoints, setNewPoints]                         = useState(null);
-    const [unread, setUnread]                               = useState([]);
+    const [displayNotifications, setDisplayNotifications] = useState(true);
+    const [newPoints, setNewPoints]                       = useState(null);
+    const [unread, setUnread]                             = useState([]);
     
     useEffect( () => {
         
-        if(user.uid){
+        if(user){
             
-            firebase.database().ref(`notifications/${user.uid}`).on('value', snapshot => { 
+            var ref = firebase.database().ref(`notifications/${user.uid}`);
+            
+            var listener = ref.on('value', snapshot => { 
                 
                 if(snapshot.val()){
                     
@@ -27,7 +29,19 @@ const GetUnreadNotifications = ({user}) => {
                 
             });
             
-            firebase.database().ref(`users/${user.uid}/displayNotifications`).on('value', snapshot => { 
+        }
+        
+        return () => ref.off(listener, 'value');
+        
+    }, [user]);
+    
+    useEffect(() => {
+        
+        if(user){
+            
+            var ref = firebase.database().ref(`users/${user.uid}/displayNotifications`);
+            
+            var listener = ref.on('value', snapshot => { 
                 
                 if(snapshot.exists())    
                     setDisplayNotifications(snapshot.val());
@@ -36,23 +50,18 @@ const GetUnreadNotifications = ({user}) => {
             
         }
         
-    }, [user]);
-    
-    useEffect( () => {
+        return () => ref.off(listener, 'value');
         
-        if(displayNotifications){
-            
-            unread.forEach(([key, value]) => { 
-                
-                firebase.database().ref(`notifications/${user.uid}/${key}/read`).transaction(value => true);
-                
-            });
-            
-        }
-        
-    }, [displayNotifications, unread, user]);
+    }, [user])
     
-    return displayNotifications && unread.length > 0 ? <NotificationsPoints points = {newPoints}/> : null;
+    return (
+        <React.Fragment>
+            { displayNotifications && unread.length > 0 
+            ? <NotificationsPoints points = {newPoints}/> 
+            : null
+            }
+        </React.Fragment>
+    );
     
 }
 
