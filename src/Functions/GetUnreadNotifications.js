@@ -31,7 +31,7 @@ const GetUnreadNotifications = ({user}) => {
             
         }
         
-        return () => ref.off(listener, 'value');
+        return () => ref.off('value', listener);
         
     }, [user]);
     
@@ -50,7 +50,7 @@ const GetUnreadNotifications = ({user}) => {
             
         }
         
-        return () => ref.off(listener, 'value');
+        return () => ref.off('value', listener);
         
     }, [user])
     
