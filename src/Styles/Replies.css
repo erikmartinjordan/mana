@@ -39,6 +39,9 @@
     width: 100%;
     word-wrap: break-word;
 }
+.Reply .Content a{
+    word-break: break-all;
+}
 .Reply .Content h1,
 .Reply .Content h2,
 .Reply .Content h3,

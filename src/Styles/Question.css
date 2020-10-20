@@ -36,6 +36,9 @@
     width: 100%;
     word-wrap: break-word;
 }
+.Question .Content a{
+    word-break: break-all;
+}
 .Question .Content h1,
 .Question .Content h2,
 .Question .Content h3,
