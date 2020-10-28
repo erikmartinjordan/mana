@@ -1,4 +1,10 @@
 var data = {
+    'treinta': {
+        'title': 'Treinta',
+        'date': [27, 'Octubre', 2020],
+        'description': 'Hoy he cumplido treinta otoños. Cambio de década y me sitúo en la última capa que me queda de juventud. Estoy saboreando la última onza de chocolate Milka, la última cucharada de yogur natural azucarado, el último bocadillo triple de Nutella.',
+        'privat': true
+    },
     'joder-hostia-puta': {
         'title': 'Joder. Hostia. Puta.',
         'date': [12, 'Octubre', 2020],
