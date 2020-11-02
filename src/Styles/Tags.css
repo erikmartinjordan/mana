@@ -1,0 +1,43 @@
+.Tags .Tag{
+    align-items: center;
+    background: rgba(1, 1, 1, 0.1);
+    border-radius: 50px;
+    display: flex;
+    margin-bottom: 7px;
+    padding: 4px 7px;
+}
+.Tags .Tag .Icon{
+    align-items: center;
+    background: var(--nmsLogo);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    margin-right: 3px;
+    width: 30px;
+}
+.Tags .Tag .Icon svg{
+    border-radius: 50px;
+    height: 60%;
+    width: 60%;
+}
+.Tags .Tag .NameCounter{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.Tags .Tag .Name{
+    max-width: 150px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.Tags .Tag .Counter{
+    color: var(--secondaryFontColor);
+    font-size: x-small;
+}
