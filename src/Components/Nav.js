@@ -5,13 +5,13 @@ import Perfil                                     from './Perfil';
 import NewPost                                    from './NewPost';
 import UserAvatar                                 from './UserAvatar';
 import NightModeToggleButton                      from './NightModeToggleButton';
+import Tags                                       from './Tags';
 import firebase, {auth}                           from '../Functions/Firebase';
 import GetUnreadNotifications                     from '../Functions/GetUnreadNotifications';
 import GetPoints                                  from '../Functions/GetPoints';
 import GetLevel                                   from '../Functions/GetLevelAndPointsToNextLevel';
 import NomoresheetLogo                            from '../Functions/NomoresheetLogo';
 import UserContext                                from '../Functions/UserContext';
-import { ReactComponent as ThaiFlag }             from '../Assets/thailand.svg';
 import '../Styles/Nav.css';
 
 const Nav = () => {
@@ -64,11 +64,8 @@ const Nav = () => {
       
         return(
             <React.Fragment>
-                <Link to = '/tag/tailandia'  className = 'Tag'><div className = 'Icon'><ThaiFlag/></div>Tailandia</Link>
-                <Link to = '/tag/actualidad' className = 'Tag'><div className = 'Icon'>#</div>Actualidad</Link>
-                <Link to = '/tag/tecnologia' className = 'Tag'><div className = 'Icon'>#</div>Tecnología</Link>
-                <Link to = '/tag/relaciones' className = 'Tag'><div className = 'Icon'>#</div>Relaciones</Link>
-                <NightModeToggleButton></NightModeToggleButton>
+                <Tags numberOfTags = {10}/>
+                <NightModeToggleButton/>
                 <Link to = '/' onClick = {() => setLogin(true)} className = 'login'>Acceder</Link>
             </React.Fragment>
         );  
@@ -90,10 +87,7 @@ const Nav = () => {
                     </div>
                 </div>
                 <div className = 'Separator'></div>
-                <Link to = '/tag/tailandia'  className = 'Tag'><div className = 'Icon'><ThaiFlag/></div>Tailandia</Link>
-                <Link to = '/tag/actualidad' className = 'Tag'><div className = 'Icon'>#</div>Actualidad</Link>
-                <Link to = '/tag/tecnologia' className = 'Tag'><div className = 'Icon'>#</div>Tecnología</Link>
-                <Link to = '/tag/relaciones' className = 'Tag'><div className = 'Icon'>#</div>Relaciones</Link>
+                <Tags numberOfTags = {10}/>
                 <div className = 'Separator'></div>
                 <NightModeToggleButton></NightModeToggleButton>
                 <div className = 'Separator'></div>
