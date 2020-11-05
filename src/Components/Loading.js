@@ -14,7 +14,7 @@ const Loading = ({type, tag}) => {
             
             return array;
         }
-        else if(type === 'Comments' || type === 'RelatedContent'){
+        else if(type === 'Comments' || type === 'RelatedContent' || type === 'OneYearAgo'){
             
             return  <div className = 'Loading' style = {{height: '400px', marginBottom: '20px'}}></div>
             
