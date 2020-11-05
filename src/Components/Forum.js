@@ -2,7 +2,7 @@ import React, { useState }            from 'react';
 import OrderBy                        from './OrderBy';
 import LastQuestions                  from './LastQuestions';
 import Comments                       from './Comments';
-import Ad                             from './Ad';
+import OneYearAgo                     from './OneYearAgo';
 import '../Styles/Forum.css';
 
 const Front = () => {
@@ -18,7 +18,7 @@ const Front = () => {
                 </div>
                 <div className = 'Sidebar'>
                     <Comments/>
-                    <Ad/>
+                    <OneYearAgo/>
                 </div>
             </div>
       </div> 
