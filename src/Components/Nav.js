@@ -64,7 +64,7 @@ const Nav = () => {
       
         return(
             <React.Fragment>
-                <Tags numberOfTags = {10}/>
+                <Tags numberOfTags = {5}/>
                 <NightModeToggleButton/>
                 <Link to = '/' onClick = {() => setLogin(true)} className = 'login'>Acceder</Link>
             </React.Fragment>
@@ -87,7 +87,7 @@ const Nav = () => {
                     </div>
                 </div>
                 <div className = 'Separator'></div>
-                <Tags numberOfTags = {10}/>
+                <Tags numberOfTags = {5}/>
                 <div className = 'Separator'></div>
                 <NightModeToggleButton></NightModeToggleButton>
                 <div className = 'Separator'></div>
