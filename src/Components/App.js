@@ -45,16 +45,14 @@ const App  = () => {
             
             if(user){
                 
-                let admin = await fetchAdmin(user);
-                
-                setAdmin(admin);
-                setUser(user);
+                setUser(user);    
+                setAdmin(await fetchAdmin(user));
                 
             }
             else{
                 
-                setAdmin(false);
                 setUser(false);
+                setAdmin(false);
                 
             }
             
