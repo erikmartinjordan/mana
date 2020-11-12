@@ -42,6 +42,8 @@ const Likes = ({ authorId, postId }) => {
     
     const handleVote = async (e) => {
         
+        e.preventDefault();
+        
         let autoVote = user.uid === authorId ? true : false;
         
         if(autoVote){
