@@ -25,16 +25,12 @@ jobs:
 
       # Install npm
       - name: Installing npm 
-        run: npm install
+        run: npm install && cd functions && npm install
 
       # Build the project
       - name: Build project
         run: npm run build
         
       # Firebase deploy
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Firebase deploy
+        run: npm install -g firebase-tools && firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
