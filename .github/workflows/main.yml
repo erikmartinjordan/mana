@@ -30,6 +30,10 @@ jobs:
       # Build the project
       - name: Build project
         run: npm run build
+        
+      # Firebase CLI install
+      - name: GitHub Action for Firebase
+        uses: w9jds/firebase-action@v2.0.0
 
       # Deploy to Firebase
       - name: Deploy to Firebase
