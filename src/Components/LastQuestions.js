@@ -3,7 +3,9 @@ import { Link }                             from 'react-router-dom';
 import buildFormatter                       from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings                       from 'react-timeago/lib/language-strings/es';
 import TimeAgo                              from 'react-timeago';
+import { CommentDiscussionIcon }            from '@primer/octicons-react';
 import Loading                              from './Loading';
+import Likes                                from './Likes';
 import UserAvatar                           from './UserAvatar';
 import firebase                             from '../Functions/Firebase';
 import '../Styles/LastQuestions.css';
@@ -71,20 +73,6 @@ const LastQuestions = (props) => {
         
     }
     
-    const uniquePics = (question) => {
-        
-        if(question.replies){
-            
-            var imgArray = Object.keys(question.replies).map(key => question.replies[key].userPhoto);         
-            
-        }
-        
-        let unique = [...new Set(imgArray)].map( (elem, key) => <img key = {key} src = {elem} alt = {'Profile pic'}></img>);
-        
-        return unique;
-        
-    }
-    
     return(
         <React.Fragment>
         { loading
@@ -94,26 +82,19 @@ const LastQuestions = (props) => {
             {lastQuestions.map(question => (
                 <div className = 'Question' key = {question.key}>
                     <Link to = {`/comunidad/post/${question.key}`}>
-                        <h3>{question.title}</h3>
+                        <div className = 'Top-Card'>
+                            <h3>{question.title}</h3>
+                            <Likes authorId = {question.userUid} postId = {question.key}/>
+                        </div>
                         <div className = 'Bottom-Card'>
                             <div className = 'Author-Name-Date'> 
                             <UserAvatar user = {{uid: question.userUid, photoURL: question.userPhoto}}/>
                             <span className = 'Author-Date'>
                                 {question.userName}
-                                <TimeAgo formatter = {formatter} date = {question.timeStamp}/>
+                                <div>
+                                    <TimeAgo formatter = {formatter} date = {question.timeStamp}/>, {Object.keys(question.replies).length} <CommentDiscussionIcon/>
+                                </div>
                             </span>
-                        </div>
-                            <div className = 'Meta-Post'>
-                            <div className = 'Multi-Pic'>
-                                {uniquePics(question)}
-                            </div>
-                            <div className = 'Num-Comments'>
-                                { Object.keys(question.replies).length === 0 
-                                ? ``
-                                : Object.keys(question.replies).length === 1
-                                ? `1 comentario`
-                                : `${Object.keys(question.replies).length} comentarios`}
-                            </div>
                         </div>
                         </div>
                     </Link>
