@@ -8,7 +8,7 @@
     "@stripe/stripe-js": "^1.11.0",
     "chart.js": "^2.9.4",
     "fingerprintjs": "^0.5.3",
-    "firebase": "^4.13.1",
+    "firebase": "^8.0.1",
     "firebase-tools": "^8.16.0",
     "moment": "^2.29.1",
     "react": "^16.14.0",
