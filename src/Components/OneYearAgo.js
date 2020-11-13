@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link }                       from 'react-router-dom';
 import moment                         from 'moment';
 import Loading                        from './Loading';
-import { CommentDiscussionIcon }      from '@primer/octicons-react';
 import firebase                       from '../Functions/Firebase';
 import '../Styles/OneYearAgo.css';
 
@@ -44,10 +43,10 @@ const OneYearAgo = () => {
             ? <div className = 'OneYearAgo'>
                 <span className = 'Title'>Hace un año...</span>
                 <div className = 'Articles'>
-                {posts.map(([url, {title, replies, votes, views}]) => (
+                {posts.map(([url, {title, replies = {}, votes, views}]) => (
                     <div className = 'Article' key = {url}>
                         <Link to = {`/comunidad/post/${url}`}>{title}</Link>    
-                        <p>{replies ? Object.keys(replies).length : '0'} <CommentDiscussionIcon/>, {views} visitas</p>
+                        <p>{Object.keys(replies).length} {Object.keys(replies).length === 1 ? 'comentario' : 'comentarios'}</p>
                     </div>
                 ))}
                 </div>

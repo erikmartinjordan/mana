@@ -85,12 +85,17 @@ const Likes = ({ authorId, postId }) => {
         
     }
     
-    const displayLoginModal = () => {
+    const displayLoginModal = (e) => {
+        
+        e.preventDefault();
         
         setModal(true);
+        
     }
     
-    const hideLoginModal = () => {
+    const hideLoginModal = (e) => {
+        
+        e.preventDefault();
         
         setModal(false);
         

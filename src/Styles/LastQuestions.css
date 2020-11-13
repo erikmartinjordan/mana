@@ -4,7 +4,7 @@
     box-shadow: 0px 2px 6px rgba(0,0,0,.1);
     padding: 20px;
 }
-.LastQuestions .Question a{
+.LastQuestions .Question > a{
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -42,20 +42,17 @@
     font-size: small;
     font-weight: 400;
 }
-.LastQuestions .Question .Meta-Post{
-    color: var(--primaryFontColor);
-    display: flex;
-    flex-direction: column;
-}
-.LastQuestions .Question .Meta-Post .Likes,
-.LastQuestions .Question .Meta-Post .Num-Comments{
+.LastQuestions .Question .Num-Comments{
     align-items: center;
+    color: var(--thirdFontColor);
     display: flex;
     font-size: small;
     justify-content: center;
+    line-height: 1;
     margin-right: 5px;
 }
 .LastQuestions .Question .Bottom-Card{
+    align-items: flex-end;
     display: flex;
     justify-content: space-between;
 }
@@ -65,10 +62,12 @@
     display: flex;
     font-size: large;
     flex-direction: column;
-    height: 100px;
+    height: 75px;
+    margin: 0px 0px 20px 20px;
     justify-content: center;
-    right: 20px;
-    top: 20px;
+    right: 0;
+    top: 0x;
+    width: 75px;
 }
 .LastQuestions .Votes span{
     align-items: center;

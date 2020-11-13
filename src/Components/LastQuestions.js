@@ -3,7 +3,6 @@ import { Link }                             from 'react-router-dom';
 import buildFormatter                       from 'react-timeago/lib/formatters/buildFormatter';
 import spanishStrings                       from 'react-timeago/lib/language-strings/es';
 import TimeAgo                              from 'react-timeago';
-import { CommentDiscussionIcon }            from '@primer/octicons-react';
 import Loading                              from './Loading';
 import Likes                                from './Likes';
 import UserAvatar                           from './UserAvatar';
@@ -88,14 +87,17 @@ const LastQuestions = (props) => {
                         </div>
                         <div className = 'Bottom-Card'>
                             <div className = 'Author-Name-Date'> 
-                            <UserAvatar user = {{uid: question.userUid, photoURL: question.userPhoto}}/>
-                            <span className = 'Author-Date'>
-                                {question.userName}
-                                <div>
-                                    <TimeAgo formatter = {formatter} date = {question.timeStamp}/>, {Object.keys(question.replies).length} <CommentDiscussionIcon/>
-                                </div>
-                            </span>
-                        </div>
+                                <UserAvatar user = {{uid: question.userUid, photoURL: question.userPhoto}}/>
+                                <span className = 'Author-Date'>
+                                    {question.userName}
+                                    <div>
+                                        <TimeAgo formatter = {formatter} date = {question.timeStamp}/>
+                                    </div>
+                                </span>
+                            </div>
+                            <div className = 'Num-Comments'>
+                                {Object.keys(question.replies).length} {Object.keys(question.replies).length === 1 ? 'comentario' : 'comentarios'}
+                            </div>
                         </div>
                     </Link>
                 </div>

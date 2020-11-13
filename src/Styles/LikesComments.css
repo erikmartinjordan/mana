@@ -15,7 +15,7 @@
 }
 @keyframes fillLightBlue{
   100% {
-    box-shadow: inset 0px 0px 0px 30px var(--lightBlue);
+    box-shadow: inset 0px 0px 0px 50px var(--lightBlue);
   }
 }
 @media (hover: hover) {
