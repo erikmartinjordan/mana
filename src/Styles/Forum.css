@@ -34,7 +34,9 @@
     text-transform: uppercase;
 }
 @media(max-width: 768px){
-    
+    .Forum{
+        padding: 0px 20px 0px 20px;
+    }
     .Forum .Forum-TwoCol .Sidebar{
         display: none;
     }
