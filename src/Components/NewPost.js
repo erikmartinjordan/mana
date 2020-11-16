@@ -103,42 +103,56 @@ const NewPost = ({hide}) => {
     
     const sendPost = () => {
         
-        let now            = Date.now();
-        let slicedTitle    = title.slice(0, 50) + '...';
+        let now = Date.now();
+        let slicedTitle = title.slice(0, 50) + '...';
+        
         let normalizedTags = tags.map(tag => normalize(tag)); 
         let tagsObject     = normalizedTags.reduce((acc, tag) => ((acc[tag] = true, acc)), {});
-        let post           = {
+        
+        let userName  = nickName ? nickName : user.displayName;
+        let userUid   = nickName ? nickName : user.uid;
+        let userPhoto = nickName ? avatar   : user.photoURL;
+        
+        let postId = firebase.database().ref().push().key;
+        
+        let post = {
             
             title:      title,
             message:    message,
             tags:       tagsObject,
             timeStamp:  now,
-            userName:   nickName ? nickName : user.displayName,
-            userUid:    nickName ? nickName : user.uid,
-            userPhoto:  avatar   ? avatar   : user.photoURL
+            userName:   userName,
+            userUid:    userUid,
+            userPhoto:  userPhoto
             
-        }
+        };
         
-        let url, postId;
-        let updates = {};
-
-        url = postId = firebase.database().ref().push().key;
+        let userProps = {
+            
+            name: userName,
+            profilePic: userPhoto,
+            numPosts: firebase.database.ServerValue.increment(1),
+            [`lastPosts/${postId}`]: post,
+            [`posts/timeStamp`]: now
+            
+        };
         
-        updates[`posts/${postId}`]                                             = post;
-        updates[`users/${nickName ? nickName : user.uid}/lastPosts/${postId}`] = post;
+        firebase.database().ref(`posts/${postId}` ).update(post);
+        firebase.database().ref(`users/${userUid}`).update(userProps);
         
-        firebase.database().ref().update(updates);
-        firebase.database().ref(`users/${nickName ? nickName : user.uid}/name`).transaction(value => nickName ? nickName : user.displayName);
-        firebase.database().ref(`users/${nickName ? nickName : user.uid}/posts/timeStamp`).transaction(value => now);
-        firebase.database().ref(`users/${nickName ? nickName : user.uid}/numPosts`).transaction(value => ~~value + 1);
-        normalizedTags.forEach(tag => firebase.database().ref(`tags/${tag}/counter`).transaction(value => ~~value + 1));
-        
-        insertNotificationAndReputation(nickName ? nickName : user.uid, 'newPost', 'add', points, url, slicedTitle, postId, null);
+        insertTagsIntoDatabase(normalizedTags);
+        insertNotificationAndReputation(userUid, 'newPost', 'add', points, postId, slicedTitle, postId, null);
         
         alert('Bien', '¡Mensaje enviado!');
         
         closeNewPost(2);
        
+    }
+    
+    const insertTagsIntoDatabase = (normalizedTags) => {
+        
+        normalizedTags.forEach(tag => firebase.database().ref(`tags/${tag}/counter`).transaction(value => ~~value + 1));
+        
     }
     
     const reviewTimeLimits = async () => {
@@ -197,7 +211,7 @@ const NewPost = ({hide}) => {
                     setTags = {setTags}
                     hint    = {'Añade hasta 5 etiquetas separadas por coma'}
                 />
-                <button className = 'bottom' onClick = {() => reviewTitleAndMessage()}>Enviar</button>
+                <button className = 'bottom' onClick = {reviewTitleAndMessage}>Enviar</button>
             </div>
             <div className = 'Invisible' onClick = {hide}></div>
             {displayAlert && <Alert title = {alertTitle} message = {alertMessage}/>}

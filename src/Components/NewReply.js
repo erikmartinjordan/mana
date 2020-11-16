@@ -98,31 +98,39 @@ const NewReply = ({postId}) => {
     
     const sendPost = () => {
         
-        let now         = Date.now();
+        let now = Date.now();
         let slicedReply = message.slice(0, 50) + '...';
-        let url         = postId;
-        let reply       = {
+        
+        let userName  = nickName ? nickName : user.displayName;
+        let userUid   = nickName ? nickName : user.uid;
+        let userPhoto = nickName ? avatar   : user.photoURL;
+        
+        let url     = postId;
+        let replyId = firebase.database().ref().push().key;
+        
+        let reply = {
             
             message:    message,
             timeStamp:  now,
-            userName:   nickName ? nickName : user.displayName,
-            userUid:    nickName ? nickName : user.uid,
-            userPhoto:  avatar   ? avatar   : user.photoURL
+            userName:   userName,
+            userUid:    userUid,
+            userPhoto:  userPhoto
             
         };
         
-        let replyId = firebase.database().ref().push().key;
-        let updates = {};
+        let userProps = {
+            
+            name: userName,
+            profilePic: userPhoto,
+            numReplies: firebase.database.ServerValue.increment(1),
+            [`replies/timeStamp`]: now
+        };
         
-        updates[`posts/${postId}/replies/${replyId}`] = reply;
-        updates[`replies/${replyId}`]                 = {...reply, ...{postId: postId}};
+        firebase.database().ref(`posts/${postId}/replies/${replyId}`).update(reply);
+        firebase.database().ref(`replies/${replyId}`).update({...reply, ...{postId: postId}});
+        firebase.database().ref(`users/${userUid}`).update(userProps);
         
-        firebase.database().ref().update(updates);
-        firebase.database().ref(`users/${nickName ? nickName : user.uid}/name`).transaction(value => nickName ? nickName : user.displayName);
-        firebase.database().ref(`users/${nickName ? nickName : user.uid}/replies/timeStamp`).transaction(value => now);
-        firebase.database().ref(`users/${nickName ? nickName : user.uid}/numReplies`).transaction(value => ~~value + 1);
-        
-        insertNotificationAndReputation(nickName ? nickName : user.uid, 'reply', 'add', points, url, slicedReply, postId, replyId);
+        insertNotificationAndReputation(userUid, 'reply', 'add', points, url, slicedReply, postId, replyId);
         
         alert('Bien', '¡Mensaje enviado!');
         
@@ -173,7 +181,7 @@ const NewReply = ({postId}) => {
                             onChange    = {(e) => setMessage(e.target.value)}
                             onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
                         />
-                        <button className = 'bottom' onClick = {() => reviewMessage()}>Enviar</button>
+                        <button className = 'bottom' onClick = {reviewMessage}>Enviar</button>
                     </div>
                 </div>
                 <Hints mdFormat = {mdFormat}/>
