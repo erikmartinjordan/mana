@@ -33,7 +33,7 @@ jobs:
 
       # Running tests
       - name: Running tests
-        run: npm run tests
+        run: npm run test
         
       # Firebase deploy
       - name: Firebase deploy
