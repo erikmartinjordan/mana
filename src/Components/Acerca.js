@@ -11,19 +11,23 @@ const Acerca = () => {
     
     const today                     = moment();
     const { admin }                 = useContext(UserContext);
-    const [content, setContent]     = useState(null);
+    const [content, setContent]     = useState('');
     const [data, setData]           = useState(null);
     const [imgUrl, setImgUrl]       = useState(null);
-    const [title, setTitle]         = useState(null);
+    const [title, setTitle]         = useState('');
     
-    useEffect( () => {
+    useEffect(() => {
         
         document.title = 'Acerca - Nomoresheet'; 
-        document.querySelector('meta[name="description"]').content = 'De cómo nació el sitio web y los diferentes hitos hasta la fecha.'; 
         
-    })
+        let el = document.querySelector('meta[name="description"]'); 
+        
+        if(el)
+            el.content = 'De cómo nació el sitio web y los diferentes hitos hasta la fecha.';
+        
+    });
     
-    useEffect( () => {
+    useEffect(() => {
         
         let ref = firebase.database().ref('features');
         

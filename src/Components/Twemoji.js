@@ -4,7 +4,8 @@ const Twemoji = ({ emoji }) => {
     
     useEffect(() => {
         
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );  
+        if(window.twemoji)
+            window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'} );  
         
     });
     
