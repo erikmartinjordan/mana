@@ -30,6 +30,10 @@ jobs:
       # Build the project
       - name: Build project
         run: npm run build
+
+      # Running tests
+      - name: Running tests
+        run: npm run tests
         
       # Firebase deploy
       - name: Firebase deploy
