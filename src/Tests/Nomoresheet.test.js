@@ -6,10 +6,16 @@ import firebase                           from '../Functions/Firebase';
 import Acerca                             from '../Components/Acerca';
 
 let container = null;
+let description = document.createElement('meta');
 
 beforeEach(() => {
     
     container = document.createElement("div");
+    document.title = 'Test';
+    description.setAttribute('name', 'description');
+    description.content = 'Test';
+    
+    document.head.appendChild(description);
     document.body.appendChild(container);
     
 });
@@ -23,7 +29,7 @@ afterEach(() => {
     
 });
 
-it("Acerca -> title", () => {
+it("Acerca -> title and description", () => {
     
     act(() => {
       
@@ -39,7 +45,6 @@ it("Acerca -> title", () => {
     expect(document.querySelector('title').textContent).toBe('Acerca - Nomoresheet');
     
 });
-
 it("Acerca -> displays admin box to write updates if admin connected", () => {
     
     act(() => {
@@ -55,7 +60,6 @@ it("Acerca -> displays admin box to write updates if admin connected", () => {
     expect(container.querySelector('input').placeholder).toBe('Título...');
     
 });
-
 it("Acerca -> doesn't display admin box to write updates if admin not connected", () => {
     
     act(() => {
@@ -71,26 +75,32 @@ it("Acerca -> doesn't display admin box to write updates if admin not connected"
     expect(container.querySelector('input')).toBe(null);
     
 });
-
-/*
-it("Acerca -> display feature", async () => {
+it("Acerca -> displays feature", async () => {
     
     const data = { 
         
-        title: "New feature",
-        date: [25, 12, 2020],
-        description: "Nomoresheet new cool feature",
-        pic: "https://nomoresheet.es/feature.jpg"
+        feature: {
+            
+            title: "New feature",
+            date: [25, 12, 2020],
+            description: "Nomoresheet new cool feature",
+            pic: "https://nomoresheet.es/feature.jpg"
+            
+        }
         
     };
     
-    jest.spyOn(firebase.database().ref('features'), "on").mockImplementation(() => {
-        
-        jest.fn((event, callback) => callback(data));
-        
-    });
+    const snapshot = { val: () => data };    
     
-    act(() => {
+    jest.spyOn(firebase, 'database').mockImplementation(() => ({
+        
+        ref: jest.fn().mockReturnThis(),
+        on:  jest.fn((event, callback) => callback(snapshot)),
+        off: jest.fn().mockReturnThis()
+        
+    }));
+    
+    await act(async () => {
       
         render(
             <UserContext.Provider value = {{admin: false}}>
@@ -100,6 +110,6 @@ it("Acerca -> display feature", async () => {
       
     });
     
-    expect(container.querySelector('h3').textContent).toBe(data.title);
+    expect(container.querySelector('h3').textContent).toBe(data.feature.title);
     
-});*/
+});
