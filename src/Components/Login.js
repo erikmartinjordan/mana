@@ -4,12 +4,6 @@ import NomoresheetLogo                from '../Functions/NomoresheetLogo';
 import '../Styles/Login.css';
 
 const Login = ({hide}) => {  
-    
-    useEffect( () => {
-        
-        window.twemoji.parse(document.getElementById('root'), {folder: 'svg', ext: '.svg'})
-        
-    });
 
     const loginOAuth = async () => {
         
