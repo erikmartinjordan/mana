@@ -18,9 +18,7 @@ const Post = () => {
     const [description, setDescription]         = useState(null);
     const [error, setError]                     = useState(false);
     const [likes, setLikes]                     = useState('');
-    const [login, setLogin]                     = useState(false);
     const [numPrivatePosts, setNumPrivatePosts] = useState(0);
-    const [perfil, setPerfil]                   = useState(false);
     const [premium, setPremium]                 = useState(false);
     const [privateArticle, setPrivateArticle]   = useState(false);
     const [superlikes, setSuperlikes]           = useState('');
@@ -177,11 +175,9 @@ const Post = () => {
                    superlikes       = {superlikes}
                    handleLikes      = {handleLikes}
                    handleSuperLikes = {handleSuperLikes}
-                   setLogin         = {setLogin}
                />
               <Content
                    text             = {text}
-                   setLogin         = {setLogin}
                    privateArticle   = {privateArticle}
                    numPrivatePosts  = {numPrivatePosts}
                    views            = {views}
@@ -193,19 +189,16 @@ const Post = () => {
                    level            = {level}
                    levelLimit       = {levelLimit}
                    premium          = {premium}
-                   setPerfil        = {setPerfil}
               />
             </React.Fragment>
             }
-            {login  ? <Login  hide = {() => setLogin(false)}/> : null}
-            {perfil ? <Perfil hide = {() => setPerfil(false)} menu = {'Premium'} /> : null}
         </div>
     );
 }
 
 export default Post;
 
-const Header = ({title, date, user, views, likes, superlikes, handleLikes, handleSuperLikes, setLogin}) => {
+export const Header = ({title, date, user, views, likes, superlikes, handleLikes, handleSuperLikes}) => {
     
     let profilePic = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg';
     
@@ -223,7 +216,10 @@ const Header = ({title, date, user, views, likes, superlikes, handleLikes, handl
     
 }
 
-const Content = ({text, privateArticle, numPrivatePosts, user, setLogin, level, levelLimit, premium, setPerfil}) => {
+export const Content = ({text, privateArticle, numPrivatePosts, user, level, levelLimit, premium}) => {
+    
+    const [login, setLogin]   = useState(false);
+    const [perfil, setPerfil] = useState(false);
     
     let twoParagraphs = text ? `${text.split('\n')[0]}\n\n${text.split('\n')[2]}\n\n` : null;
     
@@ -241,7 +237,7 @@ const Content = ({text, privateArticle, numPrivatePosts, user, setLogin, level, 
                 <div className = 'Login-Box'>
                     <h3>Lee la historia completa</h3>
                     <p>Para poder seguir leyendo este artículo y {numPrivatePosts} más, accede a Nomoresheet.</p>
-                    <Link to = '/' className = 'login' onClick = {() => setLogin(true)}>Acceder</Link>
+                    <button className = 'login' onClick = {() => setLogin(true)}>Acceder</button>
                 </div>    
               </React.Fragment>
             : privateArticle && user && level < levelLimit && !premium
@@ -267,6 +263,8 @@ const Content = ({text, privateArticle, numPrivatePosts, user, setLogin, level, 
                 /> 
               </React.Fragment>
             }
+            {login  ? <Login  hide = {() => setLogin(false)}/> : null}
+            {perfil ? <Perfil hide = {() => setPerfil(false)} menu = {'Premium'} /> : null}
         </div>
     );
     
