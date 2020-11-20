@@ -124,15 +124,18 @@ button.delete{
     margin-top: 20px;
 }
 a.login,
+button.login,
 a.New-Post{
     animation: gradientBG 15s ease infinite;
     background: linear-gradient(-45deg, var(--greenMint), var(--greenMint), var(--pastelPurple), var(--red));
     background-size: 400% 400%;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    border: none;
     border-radius: 50px;
     color: white!important;
     cursor: pointer;
     font-size: medium;
+    line-height: 2;
     padding: 5px 10px;
     text-align: center;
     width: max-content;
