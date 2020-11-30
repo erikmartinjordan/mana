@@ -30,6 +30,8 @@ jobs:
       # Build the project
       - name: Build project
         run: npm run build
+        env: 
+          CI: ""
 
       # Running tests
       - name: Running tests
