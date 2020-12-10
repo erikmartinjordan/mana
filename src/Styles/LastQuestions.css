@@ -13,6 +13,7 @@
 .LastQuestions .Top-Card{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 .LastQuestions .Question h3{
     font-size: large;
