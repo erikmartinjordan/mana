@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import firebase                       from '../Functions/Firebase.js';
+import firebase                       from '../Functions/Firebase';
 import '../Styles/VerifiedTag.css';
 
-const Verified = (props) => {
+const Verified = ({uid}) => {
     
     const [verified, setVerified] = useState(false);
     
@@ -10,26 +10,27 @@ const Verified = (props) => {
         
         const fetchData = async () => {
             
-            let snapshot = await firebase.database().ref(`users/${props.uid}/verified`).once('value');
+            let snapshot = await firebase.database().ref(`users/${uid}/verified`).once('value');
             let verified = snapshot.val();
             
             setVerified(verified);
         }
         
-        if(props.uid) fetchData();
+        if(uid) 
+            fetchData();
         
-    }, [props.uid]);
+    }, [uid]);
     
     return(
-            <React.Fragment>
-                {verified 
-                ? <div className = 'Verified'>
-                    <div className = 'Tilde'>✓</div>
-                    <div className = 'Tooltip'>Cuenta verificada</div>
-                  </div> 
-                : null}
-            </React.Fragment>
-        );
+        <React.Fragment>
+            {verified 
+            ? <div className = 'Verified'>
+                <div className = 'Tilde'>✓</div>
+                <div className = 'Tooltip'>Cuenta verificada</div>
+              </div> 
+            : null}
+        </React.Fragment>
+    );
 }
 
 export default Verified;
