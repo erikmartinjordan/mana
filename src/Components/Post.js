@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect }from 'react';
-import { Link }                                  from 'react-router-dom';
 import moment                                    from 'moment';
 import ReactMarkdown                             from 'react-markdown';
 import Default                                   from './Default';

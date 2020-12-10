@@ -1,4 +1,4 @@
-import React, { useEffect }           from 'react';
+import React                          from 'react';
 import firebase, {auth, provider}     from '../Functions/Firebase';
 import NomoresheetLogo                from '../Functions/NomoresheetLogo';
 import '../Styles/Login.css';
