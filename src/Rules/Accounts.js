@@ -4,7 +4,7 @@ var accounts = {
             'vote': true,
             'messages': {
                 'maxLength': 550,
-                'timeSpanPosts': 86400000,
+                'timeSpanPosts': Infinity,
                 'timeSpanReplies': 300000,
             },
             'notifications': true,
@@ -16,7 +16,7 @@ var accounts = {
             'vote': true,
             'messages': {
                 'maxLength': 1100,
-                'timeSpanPosts': 86400000,
+                'timeSpanPosts': Infinity,
                 'timeSpanReplies': 300000,
             },
             'notifications': true,
@@ -28,7 +28,7 @@ var accounts = {
             'vote': true,
             'messages': {
                 'maxLength': 2200,
-                'timeSpanPosts': 86400000,
+                'timeSpanPosts': Infinity,
                 'timeSpanReplies': 300000,
             },
             'notifications': true,
