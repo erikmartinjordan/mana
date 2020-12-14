@@ -33,7 +33,7 @@ var configPRO = {
 
 firebase.initializeApp(environment === 'PRE' ? configPRE : configPRO);
 
-export const fetchAdmin = async (user) => {
+export const fetchAdmin  = async (user) => {
     
     let idToken = await firebase.auth().currentUser.getIdToken(true);
     
@@ -58,7 +58,8 @@ export const fetchAdmin = async (user) => {
     return isAdmin;
     
 }
-export const provider   = new firebase.auth.GoogleAuthProvider();
-export const auth       = firebase.auth();
-export const storageRef = firebase.storage().ref();
+export const provider    = new firebase.auth.GoogleAuthProvider();
+export const auth        = firebase.auth();
+export const storageRef  = firebase.storage().ref();
+export const firebaseServerValue = firebase.database.ServerValue;
 export default firebase;
