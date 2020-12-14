@@ -126,8 +126,8 @@ const Acerca = () => {
             { data
             ? <React.Fragment>
                 {Object.keys(data).reverse().map(key =>
-                    <React.Fragment>
-                        <div className = 'Block' key = {key}>
+                    <React.Fragment key = {key}>
+                        <div className = 'Block'>
                             {data[key].title && <h3>{data[key].title}</h3>}
                             <div className = 'Date'>{data[key].date[0] + ' de ' + data[key].date[1] + ' del '  + data[key].date[2]}</div>
                             <div className = 'Content'>
