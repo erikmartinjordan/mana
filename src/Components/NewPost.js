@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import TagInput                                   from 'react-easy-tag-input';
 import Alert                                      from './Alert';
 import UserAvatar                                 from './UserAvatar';
-import firebase                                   from '../Functions/Firebase';
+import firebase, { firebaseServerValue }          from '../Functions/Firebase';
 import GetPoints                                  from '../Functions/GetPoints';
 import GetLevel                                   from '../Functions/GetLevelAndPointsToNextLevel';
 import insertNotificationAndReputation            from '../Functions/InsertNotificationAndReputationIntoDatabase';
@@ -36,51 +36,51 @@ const NewPost = ({hide}) => {
             setUid(user.uid);
             
             firebase.database().ref(`users/${user.uid}`).on('value', snapshot => {
+                
+                let userInfo = snapshot.val();
+                
+                if(userInfo){
                     
-                    let userInfo = snapshot.val();
+                    let nickName;
+                    let avatar;
+                    let canWriteInMd;
+                    let timeSpanPosts;
+                    let maxLengthPost;
                     
-                    if(userInfo){
+                    if(userInfo.account === 'premium' || userInfo.account === 'infinita'){
                         
-                        let nickName;
-                        let avatar;
-                        let canWriteInMd;
-                        let timeSpanPosts;
-                        let maxLengthPost;
+                        timeSpanPosts = Accounts[userInfo.account].messages.timeSpanPosts;
+                        maxLengthPost = Accounts[userInfo.account].messages.maxLength;
+                        canWriteInMd  = Accounts[userInfo.account].mdformat ? true : false;
                         
-                        if(userInfo.account){
-                            
-                            timeSpanPosts = Accounts[userInfo.account].messages.timeSpanPosts;
-                            maxLengthPost = Accounts[userInfo.account].messages.maxLength;
-                            canWriteInMd  = Accounts[userInfo.account].mdformat ? true : false;
-                            
-                        }
-                        else{
-                            
-                            let rangeOfLevels = Object.keys(Accounts['free']);
-                            let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
-                            
-                            timeSpanPosts = Accounts['free'][closestLevel].messages.timeSpanPosts;
-                            maxLengthPost = Accounts['free'][closestLevel].messages.maxLength;
-                            canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false;
-                            
-                        }
+                    }
+                    else{
                         
-                        if(userInfo.anonimo){
-                            
-                            nickName = userInfo.nickName;
-                            avatar   = userInfo.avatar;  
-                            
-                        } 
+                        let rangeOfLevels = Object.keys(Accounts['free']);
+                        let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
                         
-                        setMdFormat(canWriteInMd);
-                        setTimeSpanPosts(timeSpanPosts);
-                        setMaxLengthPost(maxLengthPost);
-                        setNickName(nickName);
-                        setAvatar(avatar);
+                        timeSpanPosts = Accounts['free'][closestLevel].messages.timeSpanPosts;
+                        maxLengthPost = Accounts['free'][closestLevel].messages.maxLength;
+                        canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false;
                         
                     }
                     
-                });
+                    if(userInfo.anonimo){
+                        
+                        nickName = userInfo.nickName;
+                        avatar   = userInfo.avatar;  
+                        
+                    } 
+                    
+                    setMdFormat(canWriteInMd);
+                    setTimeSpanPosts(timeSpanPosts);
+                    setMaxLengthPost(maxLengthPost);
+                    setNickName(nickName);
+                    setAvatar(avatar);
+                    
+                }
+                
+            });
             
         } 
         
@@ -131,7 +131,7 @@ const NewPost = ({hide}) => {
             
             name: userName,
             profilePic: userPhoto,
-            numPosts: firebase.database.ServerValue.increment(1),
+            numPosts: firebaseServerValue.increment(1),
             [`lastPosts/${postId}`]: post,
             [`posts/timeStamp`]: now
             
@@ -158,9 +158,14 @@ const NewPost = ({hide}) => {
     const reviewTimeLimits = async () => {
         
         let snapshot = await firebase.database().ref(`users/${user.uid}/posts/timeStamp`).once('value');
+        
         let lastUserMessage = snapshot.val();
         
-        if(Date.now() - lastUserMessage < timeSpanPosts) 
+        let levelToPublish = Object.keys(Accounts['free']).filter(key => Accounts['free'][key].messages.timeSpanPosts !== Infinity)[0];
+        
+        if(timeSpanPosts === Infinity)
+            alert('Ups...', `Necesitas subir hasta el nivel ${levelToPublish} para poder publicar`);
+        else if(Date.now() - lastUserMessage < timeSpanPosts) 
             alert('Ups...', `Se permite un mensaje cada ${timeSpanPosts/(1000 * 60 *60)} para una cuenta gratuita. Sube a Premium.`);
         else
             sendPost();
