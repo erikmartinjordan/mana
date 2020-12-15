@@ -1,5 +1,5 @@
-!(License)[https://img.shields.io/github/license/erikmartinjordan/nomoresheet]
-!(Test)[https://img.shields.io/github/workflow/status/erikmartinjordan/nomoresheet/deployToFirebase]
+![License](https://img.shields.io/github/license/erikmartinjordan/nomoresheet)
+![Test](https://img.shields.io/github/workflow/status/erikmartinjordan/nomoresheet/deployToFirebase)
 
 # Nomoresheet
 
