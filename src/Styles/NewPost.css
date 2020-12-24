@@ -27,7 +27,7 @@
     display: flex;
 }
 .NewPost input{
-    background: var(--bgBox);
+    background: var(--bgBox)!important;
     border: none;
     border-radius: 5px;
     box-sizing: border-box;
