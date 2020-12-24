@@ -78,12 +78,6 @@ const Acerca = () => {
                 <p>Hola, soy Erik, el creador de Nomoresheet. Hasta hace poco vivía en Bangkok, pero con el coronavirus se complicaron las cosas y ahora estoy viviendo en Barcelona hasta nuevo aviso.</p>
                 <h2>¿Qué es Nomoresheet?</h2>
                 <p>Nomoresheet empezó siendo un blog donde escribía sobre mis aventuras en el Sudeste Asiático allá por el 2016. Fueron buenos tiempos. Con el tiempo se ha convertido en una comunidad abierta de preguntas y respuestas donde cualquier tema es bienvenido.</p>
-                <h2>Estructura de la web</h2>
-                <p>Dos grandes bloques:
-                    <li>Comunidad: Preguntas, noticias, miscelánea sobre cualquier tema que pueda incitar la curiosidad de los demás.</li>
-                    <li>Blog: Artículos personales sobre cosas que voy aprendiendo o me van sucediendo.</li>
-                </p>
-                <p>El primer punto tiene más interés que el segundo, así que te animo a participar.</p>
                 <h2>Cómo contactar</h2>
                 <p>En 2020 he decidido apartarme de las redes sociales. Para cualquier cuestión, puedes utilizar la propia comunidad, si es algo más personal, mi cuenta de correo es <a href = 'mailto:hola@erikmartinjordan.com' target = '_blank' rel = 'nofollow noreferrer noopener' >hola@erikmartinjordan.com</a>.</p>
                 <h2>Mutaciones</h2>
@@ -128,15 +122,17 @@ const Acerca = () => {
                 {Object.keys(data).reverse().map(key =>
                     <React.Fragment key = {key}>
                         <div className = 'Block'>
-                            {data[key].title && <h3>{data[key].title}</h3>}
+                            {<h3>{data[key].title}</h3>}
                             <div className = 'Date'>{data[key].date[0] + ' de ' + data[key].date[1] + ' del '  + data[key].date[2]}</div>
                             <div className = 'Content'>
                                 <div className = 'Text'>
-                                    {data[key].description && <ReactMarkdown source = {data[key].description}></ReactMarkdown>}
-                                    {data[key].pic  && <img src = {data[key].pic} alt = {'Imagen de actualización'}></img>}
+                                    {<ReactMarkdown source = {data[key].description}></ReactMarkdown>}
+                                    {<img src = {data[key].pic} alt = {'Imagen de actualización'}></img>}
                                 </div>
                             </div>
-                            {admin && <DeleteFeature id = {key}></DeleteFeature>}
+                            { admin
+                            ? <DeleteFeature id = {key}></DeleteFeature>
+                            : null}
                         </div>
                         <div className = 'Separator'></div>
                     </React.Fragment>
