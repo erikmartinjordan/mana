@@ -5,6 +5,7 @@ import buildFormatter                            from 'react-timeago/lib/formatt
 import spanishStrings                            from 'react-timeago/lib/language-strings/es';
 import Donate                                    from './Donate';
 import UserAvatar                                from './UserAvatar';
+import ReputationGraph                           from './ReputationGraph';
 import GetName                                   from '../Functions/GetName';
 import GetProfileImg                             from '../Functions/GetProfileImg';
 import GetNumberOfViews                          from '../Functions/GetNumberOfViews';
@@ -14,7 +15,6 @@ import GetLastArticles                           from '../Functions/GetLastArtic
 import GetRankingUser                            from '../Functions/GetRankingUser';
 import GetNumberOfProfileViewsAndProfileLastSeen from '../Functions/GetNumberOfProfileViewsAndProfileLastSeen';
 import GetStripeUserId                           from '../Functions/GetStripeUserId';
-import ReputationGraph                           from '../Functions/ReputationGraph';
 import '../Styles/PublicInfo.css';
 
 const formatter = buildFormatter(spanishStrings);
@@ -55,7 +55,7 @@ const PublicInfo = (props) => {
                     <div className = 'Title'>Reputación {ranking && <span className = 'Ranking'>{ranking}</span>}</div>
                     <div className = 'Num'>{points.toLocaleString()}</div>
                     <div className = 'Comment'>Puntos totales hasta el momento.</div>
-                    <ReputationGraph userUid = {userUid} canvas = {1}/>
+                    <ReputationGraph uid = {userUid}/>
                 </div>
                 <div className = 'Bloque'>
                     <div className = 'Title'>Impacto</div>
