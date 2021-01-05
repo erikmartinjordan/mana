@@ -63,6 +63,12 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
         
     }
     
+    const handleCancellation = () => {
+        
+        setConfirmation(false);
+        
+    }
+    
     const handleDelete = () => {
         
         if(type === 'post'){
@@ -87,16 +93,20 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
     
     return(
         <React.Fragment>
-            {confirmation &&
-                <div className = 'Confirmation'>
+            { confirmation
+            ? <div className = 'Confirmation'>
                     <div className = 'Confirmation-Wrap'>
                         <p>¿Estás seguro de que quieres eliminar el {type === 'post' ? 'artículo? Se borrarán todos los comentarios.' : 'comentario?'}</p>
-                        <button onClick = { () => handleDelete() }         className = 'Yes-Delete'>Sí, eliminar</button>
-                        <button onClick = { () => setConfirmation(false) } className = 'No-Delete'>Cancelar</button>
+                        <button onClick = {handleDelete}       className = 'Yes-Delete'>Sí, eliminar</button>
+                        <button onClick = {handleCancellation} className = 'No-Delete'>Cancelar</button>
                     </div>
-                </div>
+                  </div>
+            : null
             }
-            {canDelete && <button className = 'Delete' onClick = { (e) => handleConfirmation() }>Eliminar</button>}
+            { canDelete
+            ? <button className = 'Delete' onClick = {handleConfirmation}>Eliminar</button>
+            : null 
+            }
         </React.Fragment>
     );
     
