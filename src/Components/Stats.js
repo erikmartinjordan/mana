@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link }                       from 'react-router-dom';
-import firebase                       from '../Functions/Firebase';
+import moment                         from 'moment';
 import Chart                          from 'chart.js'; 
+import firebase                       from '../Functions/Firebase';
 import '../Styles/Stats.css';
 
 const Stats = () => {
@@ -10,8 +11,10 @@ const Stats = () => {
     const [days, setDays]                         = useState([]);
     const [duration, setDuration]                 = useState(0);
     const [interval, setInterval]                 = useState(1);
+    const [months, setMonths]                     = useState(null);
     const [pageviews, setPageviews]               = useState([]);
     const [pageviewsSession, setPageviewsSession] = useState(0);
+    const [posts, setPosts]                       = useState(null);
     const [ranking, setRanking]                   = useState([]);
     const [realTimeUsers, setRealTimeUsers]       = useState(0);
     const [sessions, setSessions]                 = useState([]);
@@ -76,14 +79,30 @@ const Stats = () => {
       }
     }
     
-    useEffect( () => {
+    let graph2 = {
+      type: 'bar',
+      data: {
+        labels: [],
+        datasets: [{
+          label: 'Publicaciones',
+          borderColor: '#48ac98',
+          borderWidth: 2,
+          backgroundColor: 'rgba(72, 172, 152, 0.6)',
+          data: []         
+        }],
+        responsive: true
+      },
+        
+    }
+    
+    useEffect(() => {
         
         document.title = 'Estadísticas - Nomoresheet'; 
         document.querySelector('meta[name="description"]').content = 'Algunas estadísticas sobre Nomoresheet'; 
         
     });
     
-    useEffect( () => {
+    useEffect(() => {
         
         let canvas = document.getElementById('graph-1');
         let ctx    = canvas.getContext('2d');
@@ -96,13 +115,30 @@ const Stats = () => {
         if(days && users && sessions && pageviews) {
             
             var chart = new Chart(ctx, graph1); 
-        } 
+        }
         
-        return () => chart.destroy();
+        return () => chart ? chart.destroy() : null;
         
     }, [days, users, sessions, pageviews, graph1]);
     
-    useEffect( () => {
+    useEffect(() => {
+        
+        let canvas = document.getElementById('graph-2');
+        let ctx    = canvas.getContext('2d');
+        
+        graph2.data.labels = months;
+        graph2.data.datasets['0'].data = posts;
+        
+        if(months && posts){
+            
+            var chart = new Chart(ctx, graph2); 
+        } 
+        
+        return () => chart ? chart.destroy() : null;
+        
+    }, [months, posts]);
+    
+    useEffect(() => {
         
         const getMonth = (number) => {
             
@@ -356,6 +392,31 @@ const Stats = () => {
         return () => firebase.database().ref(`analytics/`).off('value', listener);
         
     }, [interval]);
+    
+    useEffect(() => {
+        
+        let ref = firebase.database().ref(`stats`);
+        
+        let listener = ref.on('value', snapshot => {
+            
+            if(snapshot.val()){
+                
+                let stats = snapshot.val();
+                
+                let months = Object.keys(stats).map(e => moment(e).format('MMM YYYY'));
+                let posts  = Object.values(stats).map(e => e.posts);
+                
+                setMonths(months);
+                setPosts(posts);
+                
+            }
+                
+        });
+        
+        return () => ref.off('value', listener);
+        
+        
+    }, []);
 
     return (
         <div className = 'Estadisticas'>
@@ -412,6 +473,12 @@ const Stats = () => {
                     </div>)
                 )}
             </div>
+            
+            <h3>Publicaciones totales</h3>
+            <div className = 'Publicaciones'>
+                <canvas id = 'graph-2'/>
+            </div>
+            
         </div>
     );
 }
