@@ -91,8 +91,7 @@ const Stats = () => {
           data: []         
         }],
         responsive: true
-      },
-        
+      } 
     }
     
     useEffect(() => {
@@ -103,42 +102,10 @@ const Stats = () => {
     });
     
     useEffect(() => {
-        
+
         let canvas = document.getElementById('graph-1');
-        let ctx    = canvas.getContext('2d');
-        
-        graph1.data.labels = days;
-        graph1.data.datasets['0'].data = users;
-        graph1.data.datasets['1'].data = sessions;
-        graph1.data.datasets['2'].data = pageviews;
-        
-        if(days && users && sessions && pageviews) {
-            
-            var chart = new Chart(ctx, graph1); 
-        }
-        
-        return () => chart ? chart.destroy() : null;
-        
-    }, [days, users, sessions, pageviews, graph1]);
-    
-    useEffect(() => {
-        
-        let canvas = document.getElementById('graph-2');
-        let ctx    = canvas.getContext('2d');
-        
-        graph2.data.labels = months;
-        graph2.data.datasets['0'].data = posts;
-        
-        if(months && posts){
-            
-            var chart = new Chart(ctx, graph2); 
-        } 
-        
-        return () => chart ? chart.destroy() : null;
-        
-    }, [months, posts]);
-    
-    useEffect(() => {
+        let ctx = canvas.getContext('2d');
+        let chart = new Chart(ctx, graph1);
         
         const getMonth = (number) => {
             
@@ -384,8 +351,15 @@ const Stats = () => {
                 
                 let ranking = getRanking(data);
                 setRanking(ranking);
+                
+                graph1.data.labels = days;
+                graph1.data.datasets['0'].data = users;
+                graph1.data.datasets['1'].data = sessions;
+                graph1.data.datasets['2'].data = pageviews;
+                
+                chart.update();
+                
             }
-            
             
         });
         
@@ -394,6 +368,10 @@ const Stats = () => {
     }, [interval]);
     
     useEffect(() => {
+        
+        let canvas = document.getElementById('graph-2');
+        let ctx = canvas.getContext('2d');
+        let chart = new Chart(ctx, graph2);
         
         let ref = firebase.database().ref(`stats`);
         
@@ -406,8 +384,10 @@ const Stats = () => {
                 let months = Object.keys(stats).map(e => moment(e).format('MMM YYYY'));
                 let posts  = Object.values(stats).map(e => e.posts);
                 
-                setMonths(months);
-                setPosts(posts);
+                graph2.data.labels = months;
+                graph2.data.datasets['0'].data = posts;
+
+                chart.update();
                 
             }
                 
