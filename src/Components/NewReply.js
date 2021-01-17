@@ -3,7 +3,7 @@ import Login                                      from './Login';
 import Alert                                      from './Alert';
 import UserAvatar                                 from './UserAvatar';
 import UserContext                                from '../Functions/UserContext';
-import firebase                                   from '../Functions/Firebase';
+import firebase, { firebaseServerValue }          from '../Functions/Firebase';
 import GetPoints                                  from '../Functions/GetPoints';
 import GetLevel                                   from '../Functions/GetLevelAndPointsToNextLevel';
 import insertNotificationAndReputation            from '../Functions/InsertNotificationAndReputationIntoDatabase';
@@ -122,7 +122,7 @@ const NewReply = ({postId}) => {
             
             name: userName,
             profilePic: userPhoto,
-            numReplies: firebase.database.ServerValue.increment(1),
+            numReplies: firebaseServerValue.increment(1),
             [`replies/timeStamp`]: now
         };
         
