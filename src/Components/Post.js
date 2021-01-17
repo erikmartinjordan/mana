@@ -94,9 +94,8 @@ const Post = () => {
          
             try{
                 
-                const readmePath = require(`../Posts/${url}.md`); 
-                
-                let resp = await fetch(readmePath);
+                let file = await import(`../Posts/${url}.md`); 
+                let resp = await fetch(file.default);
                 let text = await resp.text();
                 
                 let [title, date, description] = [Data[url].title, Data[url].date, Data[url].description];
