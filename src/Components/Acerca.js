@@ -127,7 +127,7 @@ const Acerca = () => {
                             <div className = 'Content'>
                                 <div className = 'Text'>
                                     {<ReactMarkdown source = {data[key].description}></ReactMarkdown>}
-                                    {<img src = {data[key].pic} alt = {'Imagen de actualización'}></img>}
+                                    {<img src = {data[key].pic} alt = {'Imagen de actualización'} onError = {(e) => e.target.style.display = 'none'}></img>}
                                 </div>
                             </div>
                             { admin
