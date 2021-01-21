@@ -126,8 +126,10 @@ const Acerca = () => {
                             <div className = 'Date'>{data[key].date[0] + ' de ' + data[key].date[1] + ' del '  + data[key].date[2]}</div>
                             <div className = 'Content'>
                                 <div className = 'Text'>
-                                    {<ReactMarkdown source = {data[key].description}></ReactMarkdown>}
-                                    {<img src = {data[key].pic} alt = {'Imagen de actualización'} onError = {(e) => e.target.style.display = 'none'}></img>}
+                                    { <ReactMarkdown source = {data[key].description}></ReactMarkdown>}
+                                    { data[key].pic 
+                                    ? <img src = {data[key].pic} alt = {'Imagen de actualización'}/> 
+                                    : null}
                                 </div>
                             </div>
                             { admin
