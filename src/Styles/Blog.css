@@ -12,8 +12,7 @@
 }
 .Blog a{
     background: var(--bgBox);
-    border-radius: 5px;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    border-radius: 12px;
     display: flex;
     margin-bottom: 20px;
     min-height: 250px;
@@ -104,8 +103,7 @@
     animation: gradientBG 15s ease infinite;
     background: linear-gradient(-45deg, var(--greenMint), var(--greenMint), var(--pastelPurple), var(--red));
     background-size: 400% 400%;
-    border-radius: 5px;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    border-radius: 12px;
     color: white;
     font-size: xx-large;
     line-height: 1.5;
@@ -116,7 +114,7 @@
 }
 .Blog span.Nms-Logo{
     background: var(--nmsLogo);
-    border-radius: 5px;
+    border-radius: 12px;
     color: white;
     font-size: 30px;
     font-weight: bold;

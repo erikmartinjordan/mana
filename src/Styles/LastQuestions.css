@@ -1,7 +1,6 @@
 .LastQuestions .Question{
     background: var(--bgBox);
-    border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0,0,0,.1);
+    border-radius: 12px;
     padding: 20px;
 }
 .LastQuestions .Question > a{
@@ -57,7 +56,7 @@
     justify-content: space-between;
 }
 .LastQuestions .Votes{
-    border-radius: 5px;
+    border-radius: 12px;
     color: var(--thirdFontColor);
     display: flex;
     font-size: large;

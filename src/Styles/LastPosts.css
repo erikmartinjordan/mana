@@ -1,7 +1,6 @@
 .LastPosts{
     background: var(--bgBox);
-    border-radius: 5px;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    border-radius: 12px;
     color: var(--textBlog);
     display: flex;
     font-size: small;
@@ -18,7 +17,7 @@
 }
 .LastPosts .New{
     background: var(--greenMint);
-    border-radius: 5px;
+    border-radius: 12px;
     color: white;
     font-size: x-small;
     margin-left: 5px;

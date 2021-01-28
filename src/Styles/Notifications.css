@@ -28,7 +28,7 @@
 .Notifications-Number{
     align-items: center;
     background: var(--greenMint);
-    border-radius: 5px;
+    border-radius: 12px;
     color: white;
     display: inline-flex;
     font-size: xx-small;

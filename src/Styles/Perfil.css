@@ -12,7 +12,7 @@
 }
 .Perfil-Wrap{
     background: var(--bgBox);
-    border-radius: 5px;
+    border-radius: 12px;
     box-shadow: 0px 2px 6px rgba(0,0,0,.1);
     cursor: default;
     display: flex;
@@ -35,7 +35,7 @@
 }
 .Perfil .Sidebar{
     background: var(--bgColor);
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 12px 0px 0px 5px;
     padding: 20px;
     width: 300px;
 }
@@ -75,14 +75,14 @@
 }
 .Perfil .Bar{
     background: var(--bgColor);
-    border-radius: 5px;
+    border-radius: 12px;
     display: flex;
     height: 5px;
     width: 100%;
 }
 .Perfil .Completed{
     background: var(--greenMint);
-    border-radius: 5px;
+    border-radius: 12px;
 }
 .Perfil .Datos span.Nombre{
     font-size: large;
@@ -103,7 +103,7 @@
 }
 .Perfil .Datos .Num{
     background: var(--bgColor);
-    border-radius: 5px;
+    border-radius: 12px;
     margin-bottom: 5px;
     margin-top: 5px;
     padding: 5px;
@@ -127,7 +127,7 @@
 }
 .Perfil .Premium .Account-Block ul.Features{
     background: var(--bgColor);
-    border-radius: 5px;
+    border-radius: 12px;
     color: var(--thirdFontColor);
     font-size: small;
     line-height: 1.5;

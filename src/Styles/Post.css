@@ -103,7 +103,7 @@
 }
 .Content table{
     border-collapse: collapse;
-    border-radius: 5px;
+    border-radius: 12px;
     box-shadow: 0px 2px 6px rgba(0,0,0,.1);
 }
 .Content table thead tr{
@@ -134,7 +134,7 @@
 }
 .Content .Login-Box{
     background: var(--bgBox);
-    border-radius: 5px;
+    border-radius: 12px;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
     margin: auto;
     padding: 20px;
@@ -164,7 +164,7 @@ a.Community,
 a.Otro,
 a.Article{
     background: var(--bgBox);
-    border-radius: 5px;
+    border-radius: 12px;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06), 
                 1px 3px 8px rgba(39,44,49,.03);
     color: var(--thirdFontColor);
@@ -198,7 +198,7 @@ a.Article p img{
     margin: 0 !important;
 }
 a.Article .Lines{
-    border-radius: 5px;
+    border-radius: 12px;
     height: 40px;
 }
 a.Article .Lines div{

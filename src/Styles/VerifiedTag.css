@@ -23,7 +23,7 @@
 }
 .Verified .Tooltip{
     background: var(--secondaryFontColor);
-    border-radius: 5px;
+    border-radius: 12px;
     color: white;
     font-size: xx-small;
     display: none;

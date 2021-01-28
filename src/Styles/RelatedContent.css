@@ -1,7 +1,6 @@
 .RelatedContent{
     background: var(--bgBox);
-    border-radius: 5px;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+    border-radius: 12px;
     color: var(--textBlog);
     display: flex;
     font-size: small;

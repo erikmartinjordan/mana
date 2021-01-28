@@ -2,7 +2,7 @@
     align-items: center;
     animation: bounce 0.2s;
     background: var(--bgColor);
-    border-radius: 5px;
+    border-radius: 12px;
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.2) 0px 5px 10px, rgba(15, 15, 15, 0.4) 0px 15px 40px;
     color: var(--primaryFontColor);
     display: flex;
