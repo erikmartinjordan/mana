@@ -77,9 +77,9 @@ const Acerca = () => {
                 <img src = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg' alt = {'Erik Martín Jordán'}></img>
                 <p>Hola, soy Erik, el creador de Nomoresheet. Hasta hace poco vivía en Bangkok, pero con el coronavirus se complicaron las cosas y ahora estoy viviendo en Barcelona hasta nuevo aviso.</p>
                 <h2>¿Qué es Nomoresheet?</h2>
-                <p>Nomoresheet empezó siendo un blog donde escribía sobre mis aventuras en el Sudeste Asiático allá por el 2016. Fueron buenos tiempos. Con el tiempo se ha convertido en una comunidad abierta de preguntas y respuestas donde cualquier tema es bienvenido.</p>
+                <p>Nomoresheet empezó siendo un blog donde escribía sobre mis aventuras en el Sudeste Asiático allá por el 2016. Fueron buenos tiempos. Con el tiempo se ha convertido en una comunidad abierta de preguntas y respuestas donde cualquier tema es bienvenido. Algunas personas publican noticias, otras curiosidades, otras reflexiones... Por encima de todo, Nomoresheet deja vía libre a cualquier tema, siempre que se publique con buenas formas.</p>
                 <h2>Cómo contactar</h2>
-                <p>En 2020 he decidido apartarme de las redes sociales. Para cualquier cuestión, puedes utilizar la propia comunidad, si es algo más personal, mi cuenta de correo es <a href = 'mailto:hola@erikmartinjordan.com' target = '_blank' rel = 'nofollow noreferrer noopener' >hola@erikmartinjordan.com</a>.</p>
+                <p>Para cualquier cuestión, puedes utilizar la propia comunidad, si es algo más personal, mi cuenta de correo es <a href = 'mailto:hola@erikmartinjordan.com' target = '_blank' rel = 'nofollow noreferrer noopener' >hola@erikmartinjordan.com</a>.</p>
                 <h2>Mutaciones</h2>
                 <p>La web va evolucionando con el paso del tiempo, lo que antes veía con buenos ojos, mañana me parece que está mal. Aquí encontrarás los cambios más relevantes hasta la fecha.</p>
             </div>
