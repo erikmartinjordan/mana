@@ -10,10 +10,10 @@ const GetLastComments = (numberOfComments) => {
         firebase.database().ref('replies').limitToLast(numberOfComments).on('value', snapshot => { 
             
             let replies = snapshot.val();
-            
+           
             if(replies){
                 
-                let sortedReplies = Object.values(replies).reverse();
+                let sortedReplies = Object.entries(replies).reverse();
                 
                 setComments(sortedReplies);
                 
