@@ -9,13 +9,14 @@ import '../Styles/Notifications.css';
 const Notifications = ({hide, user}) => {  
     
     const [displayNotifications, setDisplayNotifications] = useState(true);
+    const [maxNotifications, setMaxNotifications]         = useState(20);
     const [notifications, setNotifications]               = useState('loading');
     
     useEffect( () => {
         
         if(user.uid){
             
-            firebase.database().ref(`notifications/${user.uid}`).on('value', snapshot => { 
+            firebase.database().ref(`notifications/${user.uid}`).limitToLast(maxNotifications).on('value', snapshot => { 
                 
                 if(snapshot.val()) 
                     setNotifications(snapshot.val());
@@ -49,7 +50,13 @@ const Notifications = ({hide, user}) => {
                     : notifications === 'empty'
                     ? <EmptyNotifications/>
                     : displayNotifications === true
-                    ? <ListNotifications notifications = {notifications} user = {user} hide = {hide}/>
+                    ? <ListNotifications 
+                        notifications = {notifications} 
+                        user = {user} 
+                        hide = {hide} 
+                        maxNotifications = {maxNotifications}
+                        setMaxNotifications = {setMaxNotifications}
+                    />
                     : <NoDisplayNotifications/>
                     }
                 </div>
@@ -76,7 +83,7 @@ const ToggleNotifications = ({displayNotifications, setDisplayNotifications, use
     );
 }
 
-const ListNotifications = ({notifications, user, hide}) => {
+const ListNotifications = ({notifications, user, hide, maxNotifications, setMaxNotifications}) => {
     
     const [notificationsList, setNotificationsList] = useState([]);
     
@@ -140,6 +147,12 @@ const ListNotifications = ({notifications, user, hide}) => {
                     </div>
                 </div>
             )}
+            <div className = 'DisplayMore'>
+                { maxNotifications !== Infinity 
+                  ? <span onClick = {() => setMaxNotifications(Infinity)}>Mostrar todas las notificaciones</span>
+                  : null
+                }
+            </div>
         </React.Fragment>
     );
     

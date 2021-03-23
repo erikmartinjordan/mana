@@ -102,6 +102,15 @@
 .Notifications .DisplayNotifications{
     padding: 20px;
 }
+.Notifications .DisplayMore{
+    margin-top: auto;
+    padding: 20px;
+    text-decoration: underline;
+}
+.Notifications .DisplayMore span{
+    color: var(--secondaryFontColor);
+    cursor: pointer;
+}
 @keyframes bounce{
     0%    {opacity: 0;   transform: scale(1,1);}
     50%   {opacity: 0.5; transform: scale(1.1, 1.1);}
