@@ -5,6 +5,7 @@ const admin                = require('firebase-admin');
 const functions            = require('firebase-functions');
 const nodemailer           = require('nodemailer');
 const cors                 = require('cors')({origin: true});
+const moment               = require('moment');
 const user                 = functions.config().gmail.user;
 const pass                 = functions.config().gmail.pass;
 const dest                 = functions.config().gmail.dest;
@@ -24,7 +25,7 @@ const mailTransport = nodemailer.createTransport({
 });
 
 
-exports.sendEmail = functions.database.ref('/posts/{postId}/{label}').onWrite( async (change, context) => {
+exports.sendEmail = functions.database.ref('/posts/{postId}/{label}').onWrite(async (change, context) => {
     
     const ref = change.after.ref;
     
@@ -117,31 +118,37 @@ exports.getUserStats = functions.https.onRequest(async (request, response) => {
     
     response.send(200);
     
-})
+});
 
-exports.getStats  = functions.https.onRequest(async (request, response) => {
+exports.incrementPosts = functions.database.ref('/posts/{postId}').onCreate(async () => {
     
-    let today     = new Date();
+    let date = moment().format('YYYYMM');
     
-    let year      = today.getFullYear();
-    let month     = ('0' + (today.getMonth() + 1)).slice(-2);
+    admin.database().ref(`/stats/${date}/posts`).set(admin.database.ServerValue.increment(1));
     
-    let snapshot  = await admin.database().ref().once('value');
-    let json      = snapshot.val();
+});
+
+exports.decrementPosts = functions.database.ref('/posts/{postId}').onDelete(async () => {
     
-    let posts     = Object.keys(json.posts).length;
-    let articles  = Object.keys(json.articles).length;
-    let users     = Object.keys(json.users).length;
+    let date = moment().format('YYYYMM');
     
-    admin.database().ref(`/stats/${year}${month}`).set({
-        
-        posts: posts,
-        articles: articles,
-        users: users,
-        
-    });
+    admin.database().ref(`/stats/${date}/posts`).set(admin.database.ServerValue.increment(-1));
     
-    response.send(200);
+});
+
+exports.incrementUsers = functions.database.ref('/users/{userId}').onCreate(async () => {
+    
+    let date = moment().format('YYYYMM');
+    
+    admin.database().ref(`/stats/${date}/users`).set(admin.database.ServerValue.increment(1));
+    
+});
+
+exports.decrementUsers = functions.database.ref('/users/{userId}').onDelete(async () => {
+    
+    let date = moment().format('YYYYMM');
+    
+    admin.database().ref(`/stats/${date}/users`).set(admin.database.ServerValue.increment(-1));
     
 });
 
