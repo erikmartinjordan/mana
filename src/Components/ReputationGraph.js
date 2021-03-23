@@ -58,7 +58,7 @@ const ReputationGraph = ({uid}) => {
           }],
           yAxes: [{
             type: 'linear',
-            display: true,
+            display: false,
             position: 'left',
             gridLines: {
                 drawTicks: false,

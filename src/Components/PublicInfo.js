@@ -54,21 +54,24 @@ const PublicInfo = (props) => {
                 <div className = 'Bloque'>
                     <div className = 'Title'>Reputación {ranking && <span className = 'Ranking'>{ranking}</span>}</div>
                     <div className = 'Num'>{points.toLocaleString()}</div>
-                    <div className = 'Comment'>Puntos totales hasta el momento.</div>
+                    <div className = 'Comment'>Puntos totales hasta el momento</div>
+                </div>
+                <div className = 'Bloque'>
+                    <div className = 'Title'>Gráfico de reputación</div>
                     <ReputationGraph uid = {userUid}/>
                 </div>
                 <div className = 'Bloque'>
                     <div className = 'Title'>Impacto</div>
                     <div className = 'Num'>{beautifyNumber(views)}</div>
-                    <div className = 'Comment'>Número total de impresiones de publicaciones.</div>
+                    <div className = 'Comment'>Número total de impresiones de publicaciones</div>
                 </div>
                 <div className = 'Bloque'>
                     <div className = 'Title'>Visitas al perfil</div>
                     <div className = 'Num'>{profileViews}</div>
                     <div className = 'Comment'>
                         {profileLastSeen 
-                        ? <div>Última visita a tu perfil <TimeAgo formatter = {formatter} date = {profileLastSeen}/>.</div>
-                        : 'Tu perfil no tiene visitas.'
+                        ? <div>Última visita al perfil <TimeAgo formatter = {formatter} date = {profileLastSeen}/></div>
+                        : 'Tu perfil no tiene visitas'
                         }           
                     </div>
                 </div>
@@ -78,7 +81,7 @@ const PublicInfo = (props) => {
                     <div className = 'Bar'>
                         <div className = 'Completed' style = {{width: percentage + '%'}}></div>
                     </div>
-                    <div className = 'Comment'>{pointsToNextLevel} puntos para el siguiente nivel ({percentage}% completado).</div>
+                    <div className = 'Comment'>{pointsToNextLevel} puntos para el siguiente nivel ({percentage}% completado)</div>
                 </div>
                 <div className = 'Last-Articles'>
                     <div className = 'Title'>Últimas publicaciones</div>

@@ -1,7 +1,6 @@
 .Public-Info{
-    margin: auto;
-    margin-top: 10px;
     padding: 20px;
+    width: 100%;
 }
 .Public-Info .Datos{
     background: var(--bgBox);
