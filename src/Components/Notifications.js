@@ -34,7 +34,7 @@ const Notifications = ({hide, user}) => {
             
         }
       
-    }, [user]);
+    }, [user, maxNotifications]);
     
     return (
         <div className = 'Notifications'>
