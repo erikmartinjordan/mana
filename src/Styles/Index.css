@@ -4,6 +4,9 @@
     -webkit-font-smoothing: antialiased;
     outline: none;
 }
+code{
+    font-family: Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+}
 body {
     background: var(--bgColor);
     color: var(--primaryFontColor);
@@ -145,6 +148,7 @@ img.emoji {
     --nmsLogo: #30363b;
     --bgColor: #f4f8fb;
     --bgColorRGB: 244, 248, 251;
+    --boxShadow: 0 8px 24px rgba(149,157,165,0.2);
     --primaryFontColor: #30363b;
     --secondaryFontColor: #555; 
     --thirdFontColor: #828c99;
@@ -180,4 +184,19 @@ img.emoji {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+@keyframes bounce{
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

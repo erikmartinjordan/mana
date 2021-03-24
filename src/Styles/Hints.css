@@ -1,0 +1,29 @@
+.Hints svg{
+    margin-right: 5px;
+}
+.Hints span{
+    cursor: pointer;
+}
+.Hints .Cheatsheet{
+    animation: bounce 0.1s ease-in-out;
+    background: var(--bgBox);
+    border-radius: 12px;
+    box-shadow: var(--boxShadow);
+    max-height: 400px;
+    overflow: hidden auto;
+    padding: 20px;
+    position: absolute;
+    white-space: pre;
+}
+.Hints .Cheatsheet hr{
+    border: none;
+    border-top: 1px solid var(--bgColor);
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+.Hints .Cheatsheet .Title{
+    font-weight: bold;
+    text-transform: uppercase;
+}

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Login                                      from './Login';
 import Alert                                      from './Alert';
 import UserAvatar                                 from './UserAvatar';
+import Hints                                      from './Hints';
 import UserContext                                from '../Functions/UserContext';
 import firebase, { firebaseServerValue }          from '../Functions/Firebase';
 import GetPoints                                  from '../Functions/GetPoints';
@@ -196,20 +197,3 @@ const NewReply = ({postId}) => {
 }
 
 export default NewReply;
-
-const Hints = ({mdFormat}) => {
-    
-    let bold   = {fontWeight: 'bold'};
-    let italic = {fontStyle: 'italic'};
-    
-    return(
-        
-        <div className = 'Hints' style = {{fontSize: 'small'}}>
-            {mdFormat 
-                ? <span>**<span style = {bold}>negrita</span>**, *<span style = {italic}>cursiva</span>*, > cita</span> 
-            : null}
-        </div>
-        
-    );
-    
-}
