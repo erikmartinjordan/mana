@@ -25,28 +25,46 @@ const mailTransport = nodemailer.createTransport({
 });
 
 
-exports.sendEmail = functions.database.ref('/posts/{postId}/{label}').onWrite(async (change, context) => {
+exports.sendEmailNewPost = functions.database.ref('/posts/{postId}').onCreate(async (snapshot, context) => {
     
-    const ref = change.after.ref;
+    let post = snapshot.val();
     
-    const refPostId = ref.parent;
-    
-    const snapshot =  await refPostId.once('value');
-    
-    const message = snapshot.val().message;
-    
-    const subject = context.params.label === 'message' ? 'Nuevo post' : 'Nuevo comentario';
-    const text    = context.params.label === 'message' ? `Nuevo post: ${message}.` : `Nuevo comentario en: ${message}`;
+    let author  = post.userName;
+    let title   = post.title;
+    let message = post.message
     
     const mailOptions = {
         from: 'Erik',
         to: dest,
-        subject: subject,
-        text: text
+        subject: `Nueva publicación: ${post.title} (${author})`,
+        html: message
     };
     
-    if(context.params.label === 'message' || context.params.label === 'replies') 
-        await mailTransport.sendMail(mailOptions);
+   
+    await mailTransport.sendMail(mailOptions);
+    
+    return null;
+    
+});
+
+exports.sendEmailNewReply = functions.database.ref('/posts/{postId}/replies/{replyId}').onCreate(async (snapshot, context) => {
+    
+    let reply = snapshot.val();
+    
+    let author  = reply.userName;
+    let message = reply.message;
+    
+    let post = (await admin.database().ref(`/posts/${context.params.postId}`).once('value')).val();
+    let title = post.title;
+    
+    const mailOptions = {
+        from: 'Erik',
+        to: dest,
+        subject: `Nuevo comentario en: ${title} (${author})`,
+        html: message
+    };
+    
+    await mailTransport.sendMail(mailOptions);
     
     return null;
     

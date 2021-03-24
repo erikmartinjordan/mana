@@ -1,5 +1,6 @@
 .Login{
     align-items: center;
+    animation: bounce 0.1s ease-in-out;
     display: flex;
     height: 100vh;
     justify-content: center;
