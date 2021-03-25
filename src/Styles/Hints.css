@@ -10,9 +10,9 @@
     border-radius: 12px;
     box-shadow: var(--boxShadow);
     max-height: 400px;
+    max-width: 350px;
     overflow: hidden auto;
     padding: 20px;
-    position: absolute;
     white-space: pre;
 }
 .Hints .Cheatsheet hr{
