@@ -24,7 +24,7 @@ const EmojiTextarea = ({message, setMessage, maxLength}) => {
     const handleMessage = (e) => {
       
         let textarea = document.getElementById('textarea');
-        let message  = textarea.value.replaceAll('\n', ' ');
+        let message  = textarea.value.replace('/\n/g', ' ');
         let caret    = textarea.selectionEnd;
         let l        = message.length;
         
@@ -48,7 +48,7 @@ const EmojiTextarea = ({message, setMessage, maxLength}) => {
                 maxLength   = {maxLength}
                 onChange    = {handleMessage}
                 onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
-                placeholder = 'Message...'
+                placeholder = 'Mensaje...'
                 value       = {message}
             />
             <EmojiPicker 
