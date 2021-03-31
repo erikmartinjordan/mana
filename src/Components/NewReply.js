@@ -3,6 +3,7 @@ import Login                                      from './Login';
 import Alert                                      from './Alert';
 import UserAvatar                                 from './UserAvatar';
 import Hints                                      from './Hints';
+import EmojiTextarea                              from './EmojiTextarea';
 import UserContext                                from '../Functions/UserContext';
 import firebase, { firebaseServerValue }          from '../Functions/Firebase';
 import GetPoints                                  from '../Functions/GetPoints';
@@ -175,12 +176,10 @@ const NewReply = ({postId}) => {
                             <UserAvatar user = {user} allowAnonymousUser = {true}/>
                             <span>{nickName ? nickName : user.displayName}</span>
                         </div>
-                        <textarea   
-                            placeholder = 'Mensaje...'
-                            value       = {message}
+                        <EmojiTextarea   
+                            message     = {message}
+                            setMessage  = {setMessage}
                             maxLength   = {maxLengthReply}
-                            onChange    = {(e) => setMessage(e.target.value)}
-                            onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
                         />
                         <button className = 'bottom' onClick = {reviewMessage}>Enviar</button>
                     </div>

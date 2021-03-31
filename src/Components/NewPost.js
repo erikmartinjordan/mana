@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import TagInput                                   from 'react-easy-tag-input';
 import Alert                                      from './Alert';
 import UserAvatar                                 from './UserAvatar';
+import Hints                                      from './Hints';
+import EmojiTextarea                              from './EmojiTextarea';
 import firebase, { firebaseServerValue }          from '../Functions/Firebase';
 import GetPoints                                  from '../Functions/GetPoints';
 import GetLevel                                   from '../Functions/GetLevelAndPointsToNextLevel';
@@ -203,11 +205,10 @@ const NewPost = ({hide}) => {
                     maxLength   = {140}
                     onChange    = {(e) => setTitle(e.target.value)}
                 />
-                <textarea   
-                    placeholder = 'Mensaje...'
+                <EmojiTextarea   
+                    message     = {message}
+                    setMessage  = {setMessage}
                     maxLength   = {maxLengthPost}
-                    onChange    = {(e) => setMessage(e.target.value)}
-                    onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
                 />
                 <Hints mdFormat = {mdFormat}/>
                 <TagInput
@@ -226,20 +227,3 @@ const NewPost = ({hide}) => {
 }
 
 export default NewPost;
-
-const Hints = ({mdFormat}) => {
-    
-    let bold   = {fontWeight: 'bold'};
-    let italic = {fontStyle: 'italic'};
-    
-    return(
-        
-        <div className = 'Hints' style = {{fontSize: 'small'}}>
-            {mdFormat 
-            ? <span>**<span style = {bold}>negrita</span>**, *<span style = {italic}>cursiva</span>*, > cita</span> 
-            : null}
-        </div>
-        
-    );
-    
-}

@@ -1,6 +1,22 @@
-const EmojiTextarea = () => {
+import React, { useEffect, useState } from 'react';
+import '../Styles/EmojiTextarea.css';
+
+var emojis = {
+    
+    ':corazón': '❤️',
+    ':brillante': '✨',
+    ':suplicar': '🥺',
+    ':fuego': '🔥',
+    ':carcajada': '😂',
+    ':sonrisa': '😊',
+    ':validado': '✔️',
+    ':encantado': '🥰',
+    ':ok': '👍'
+    
+}
+
+const EmojiTextarea = ({message, setMessage, maxLength}) => {
   
-    const [message,     setMessage]     = useState(''); 
     const [display,     setDisplay]     = useState(false);
     const [lastwordIni, setLastwordIni] = useState('');
     const [lastwordEnd, setLastwordEnd] = useState('');
@@ -8,7 +24,7 @@ const EmojiTextarea = () => {
     const handleMessage = (e) => {
       
         let textarea = document.getElementById('textarea');
-        let message  = textarea.value.replace('\n', ' ');
+        let message  = textarea.value.replaceAll('\n', ' ');
         let caret    = textarea.selectionEnd;
         let l        = message.length;
         
@@ -16,20 +32,22 @@ const EmojiTextarea = () => {
         for(var end   = 0, i = caret - 1; message[i] !== ' ' && i <= l; i ++) end   = i + 1;
         
         let lastWord = message.substring(start, end);
-      
-        lastWord.startsWith(':') ? setDisplay(lastWord) : setDisplay(false);
         
         setMessage(e.target.value);
         setLastwordIni(start);
         setLastwordEnd(end);
+      
+        lastWord.startsWith(':') ? setDisplay(lastWord) : setDisplay(false);
         
     }
   
     return (
-        <React.Fragment>
+        <div className = 'EmojiTextarea'>
             <textarea 
                 id          = 'textarea'
+                maxLength   = {maxLength}
                 onChange    = {handleMessage}
+                onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
                 placeholder = 'Message...'
                 value       = {message}
             />
@@ -40,61 +58,54 @@ const EmojiTextarea = () => {
                 setMessage  = {setMessage}
                 lastwordIni = {lastwordIni}
                 lastwordEnd = {lastwordEnd}
+                numEmojis   = {10}
             />
-        </React.Fragment>
+        </div>
     );
   
 }
 
-const EmojiPicker = ({display, setDisplay, message, setMessage, lastwordIni, lastwordEnd}) => {
+const EmojiPicker = ({display, setDisplay, message, setMessage, lastwordIni, lastwordEnd, numEmojis}) => {
     
-    const [list, setList] = useState([]);
+    const [dummy, setDummy]       = useState(false);
+    const [pos, setPos]           = useState({x: 0, y: 0});
+    const [list, setList]         = useState([]);
     const [replaced, setReplaced] = useState(false);
     const [selected, setSelected] = useState(0);
     
-    console.log(selected);
-    
-    const emojis = {
-        
-        ':risa:': '😊',
-        ':lloro:': '😢',
-        ':enfado:': '😠'
-        
-    }
-    
     useEffect(() => {
-        
-        const handleKeydown = (e) => {
-            
-            let filtered = Object.entries(emojis).filter(([key, value]) => key.startsWith(display));
-
-            if(e.key === 'ArrowDown'){
-                e.preventDefault();
-                setSelected((selected + 1) % filtered.length);
-            }
-            if(e.key === 'ArrowUp'){
-                e.preventDefault();
-                setSelected((selected + filtered.length - 1) % filtered.length);
-            }
-
-            if(e.key === 'Enter'){
-                e.preventDefault();
-                replaceWord(Object.values(emojis)[selected]);
-            }
-            
-            setList(filtered);
-        }
         
         if(display){
             
-            window.addEventListener('keydown', handleKeydown);
+            let filtered = Object.entries(emojis).filter(([key, value]) => key.startsWith(display)).slice(0, numEmojis);
+            
+            setList(filtered);
+            setSelected(0);
+            setDummy(true);
             
         }
         
-        return () => removeEventListener('keydown', handleKeydown);
+    }, [display]);
+    
+    useEffect(() => {
         
-    }, [display, selected]);   
+        if(dummy){
+            
+            let rectangle  = document.getElementById('dummy').getBoundingClientRect();
+            let rectangles = document.getElementById('dummy').getClientRects();
+            
+            let last = rectangles[rectangles.length - 1];
+            
+            let x = last.width;
+            let y = rectangle.height; 
+            
+            setPos({x: x, y: y});
+            setDummy(false);
+            
+        }
         
+    }, [dummy]);
+    
     useEffect(() => {
         
         if(replaced){
@@ -114,18 +125,81 @@ const EmojiPicker = ({display, setDisplay, message, setMessage, lastwordIni, las
         
         setMessage(replaced);
         setReplaced(true);
-     
+        setDisplay(false);
+        
     }
   
     return(
         <React.Fragment>
-            { display
-                ? <ul>
-                    {list.map(([key, emoji]) => <li onClick = {() => replaceWord(emoji)}>{emoji}</li>)}
-                  </ul>
-                : null
+            { display && list.length > 0
+            ? <div className = 'EmojiPicker' style = {{position: 'absolute', left: pos.x, top: pos.y}}>
+                <ul>
+                    {list.map(([key, emoji], index) => 
+                        <li key = {index} className = {index === selected ? 'Selected' : null} onClick = {() => replaceWord(emoji)}>{emoji} {key}</li>)
+                    }
+                </ul>
+                <KeyboardController 
+                    display     = {display}
+                    setDisplay  = {setDisplay}
+                    list        = {list}
+                    selected    = {selected}
+                    setSelected = {setSelected}
+                    replaceWord = {replaceWord}
+                />
+            </div>
+            : null    
             }
+            { dummy ? <span id = 'dummy'>{message.substring(0, lastwordEnd)}</span> : null}
         </React.Fragment>
     );
   
 }
+
+const KeyboardController = ({display, setDisplay, list, selected, setSelected, replaceWord}) => {
+    
+    useEffect(() => {
+        
+        const handleKeydown = (e) => {
+            
+            if(e.key === 'ArrowDown'){
+                
+                e.preventDefault();
+                setSelected((selected + 1) % list.length);
+                
+            }
+            if(e.key === 'ArrowUp'){
+                
+                e.preventDefault();
+                setSelected((selected + list.length - 1) % list.length);
+                
+            }
+            if(e.key === 'Enter'){
+                
+                e.preventDefault();
+                replaceWord(list[selected][1]);
+                
+            }
+            if(e.key === 'Escape'){
+                
+                e.preventDefault();
+                setDisplay(false);
+                
+            }
+            
+        }
+        
+        if(display){
+            
+            window.addEventListener('keydown', handleKeydown);
+            
+        }
+        
+        return () => removeEventListener('keydown', handleKeydown);
+        
+    }, [list, selected]); 
+    
+    return null;
+    
+}
+
+export default EmojiTextarea;

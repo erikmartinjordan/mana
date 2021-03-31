@@ -1,0 +1,34 @@
+.EmojiTextarea{
+    position: relative;
+    width: 100%;
+}
+.EmojiTextarea #dummy{
+    white-space: pre-wrap;
+    width: 100%;
+}
+.EmojiPicker{
+    animation: 0.2s bounce;
+    background: var(--bgBox);
+    border-radius: 12px;
+    box-shadow: var(--boxShadow);
+    font-size: small;
+    left: 20px;
+    overflow: hidden;
+    position: absolute;
+    width: max-content;
+    z-index: 1;
+}
+.EmojiPicker ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+}
+.EmojiPicker ul li{
+    cursor: pointer;
+    padding: 5px 10px;
+}
+.EmojiPicker .Selected,
+.EmojiPicker ul li:hover{
+    background: #1e99e6;
+    color: white;
+}
