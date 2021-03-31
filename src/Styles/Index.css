@@ -7,6 +7,14 @@
 code{
     font-family: Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
 }
+kbd{
+    background: var(--bgColor);
+    border-radius: 5px;
+    color: var(--primaryFontColor);
+    font-family: monospace;
+    font-weight: 700;
+    padding: 2px 5px;
+}
 body {
     background: var(--bgColor);
     color: var(--primaryFontColor);
@@ -148,7 +156,7 @@ img.emoji {
     --nmsLogo: #30363b;
     --bgColor: #f4f8fb;
     --bgColorRGB: 244, 248, 251;
-    --boxShadow: 0 8px 24px rgba(149,157,165,0.2);
+    --boxShadow: rgb(15 15 15 / 10%) 0px 0px 0px 1px, rgb(15 15 15 / 20%) 0px 5px 10px, rgb(15 15 15 / 40%) 0px 15px 40px;
     --primaryFontColor: #30363b;
     --secondaryFontColor: #555; 
     --thirdFontColor: #828c99;
