@@ -1,5 +1,8 @@
 .Title-Menu{
     display: flex;
+    max-width: 1250px;
+    margin: auto;
+    width: 100%;
 }
 @media (max-width: 768px){
     .Title-Menu{
