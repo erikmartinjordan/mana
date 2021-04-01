@@ -46,7 +46,9 @@ const Acerca = () => {
         
         let snapshot = await storageRef.child(`acerca/${file.name}`).put(file);
         
-        setImgUrl(snapshot.downloadURL);
+        let url = await storageRef.child(`acerca/${file.name}`).getDownloadURL();
+        
+        setImgUrl(url);
     }
     
     const upload = () => {

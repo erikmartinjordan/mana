@@ -83,7 +83,8 @@
     margin-top: 20px;
     padding-left: 10px;
 }
-.Acerca .Content img{
+.Acerca .Content img,
+.Acerca .Block img{
     max-width: 100%;
 }
 .Acerca .Block .Emoji img{
