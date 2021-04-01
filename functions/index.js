@@ -24,7 +24,6 @@ const mailTransport = nodemailer.createTransport({
   },
 });
 
-
 exports.sendEmailNewPost = functions.database.ref('/posts/{postId}').onCreate(async (snapshot, context) => {
     
     let post = snapshot.val();
@@ -140,9 +139,26 @@ exports.getUserStats = functions.https.onRequest(async (request, response) => {
 
 exports.incrementPosts = functions.database.ref('/posts/{postId}').onCreate(async () => {
     
-    let date = moment().format('YYYYMM');
+    let date  = moment().format('YYYYMM');
     
-    admin.database().ref(`/stats/${date}/posts`).set(admin.database.ServerValue.increment(1));
+    let snap  = await admin.database().ref(`/stats/${date}/posts`).once('value');
+    let posts = snap.val();
+    
+    if(posts){
+        
+        admin.database().ref(`/stats/${date}/posts`).set(admin.database.ServerValue.increment(1));
+        
+    }
+    else{
+        
+        let previous = moment().subtract(1, 'months').format('YYYYMM');
+        
+        snap  = await admin.database().ref(`/stats/${previous}/posts`).once('value');
+        posts = snap.val();
+        
+        admin.database().ref(`/stats/${date}/posts`).set(posts + 1);
+        
+    }
     
 });
 
@@ -156,9 +172,26 @@ exports.decrementPosts = functions.database.ref('/posts/{postId}').onDelete(asyn
 
 exports.incrementUsers = functions.database.ref('/users/{userId}').onCreate(async () => {
     
-    let date = moment().format('YYYYMM');
+    let date  = moment().format('YYYYMM');
     
-    admin.database().ref(`/stats/${date}/users`).set(admin.database.ServerValue.increment(1));
+    let snap  = await admin.database().ref(`/stats/${date}/users`).once('value');
+    let users = snap.val();
+    
+    if(users){
+        
+        admin.database().ref(`/stats/${date}/users`).set(admin.database.ServerValue.increment(1));
+        
+    }
+    else{
+        
+        let previous = moment().subtract(1, 'months').format('YYYYMM');
+        
+        snap  = await admin.database().ref(`/stats/${previous}/users`).once('value');
+        users = snap.val();
+        
+        admin.database().ref(`/stats/${date}/users`).set(users + 1);
+        
+    }
     
 });
 
