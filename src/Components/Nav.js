@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link }                                   from 'react-router-dom';
+import { ArrowRightIcon }                         from '@primer/octicons-react';
 import Login                                      from './Login';
 import Perfil                                     from './Perfil';
 import NewPost                                    from './NewPost';
@@ -66,7 +67,14 @@ const Nav = () => {
             <React.Fragment>
                 <Tags numberOfTags = {5}/>
                 <NightModeToggleButton/>
-                <Link to = '/' onClick = {() => setLogin(true)} className = 'login'>Acceder</Link>
+                <div className = 'Access'>
+                    <span className = 'Title'>¡Únete a la comunidad!</span>
+                    <p>Publica sin censura y consigue reputación compartiendo tu saber hacer con otros usuarios.</p>
+                    <div className = 'Decide'>
+                        <Link to = '/' onClick = {() => setLogin(true)} className = 'login'>Acceder</Link>
+                        <Link to = '/acerca'>o saber más <ArrowRightIcon/></Link>
+                    </div>
+                </div>
             </React.Fragment>
         );  
     }

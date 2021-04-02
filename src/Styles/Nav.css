@@ -138,6 +138,27 @@
 .Nav i{
     display: none;
 }
+.Nav .Access{
+    background: var(--bgBox);
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-right: -20px;
+    padding: 20px;
+}
+.Nav .Access .Title{
+    font-size: large;
+    font-weight: 900;
+}
+.Nav .Access a{
+    display: block;
+    margin-top: 20px;
+}
+.Nav .Decide{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
 @keyframes bounce{
     0%    {opacity: 0;   transform: scale(1,1);}
     50%   {opacity: 0.5; transform: scale(1.1, 1.1);}
@@ -188,4 +209,8 @@
     .Nav i.Up{
         transform: rotate(-135deg);
     }
+    .Nav .Access{
+        margin-top: auto;
+        margin-right: 0px;
+    }   
 }
