@@ -146,7 +146,8 @@ const MarkDownMessage   = ({ message }) => {
     const renderers = {
         
         paragraph: props => <Linkify properties = {linkProperties}><p>{props.children}</p></Linkify>,
-        image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Nomoresheet imagen'}></img>
+        image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Nomoresheet imagen'}></img>,
+        table:     props => <div className = 'TableWrap'><table>{props.children}</table></div>
         
     }
     

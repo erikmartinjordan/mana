@@ -60,6 +60,10 @@
 .Question .Content p{
     margin-bottom: 20px;
 }
+.Question .Content .TableWrap{
+    max-width: 620px;
+    overflow-x: auto;
+}
 .Question .Content table{
     margin-bottom: 20px;
 }

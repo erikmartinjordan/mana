@@ -63,6 +63,10 @@
 .Reply .Content p{
     margin-bottom:20px;
 }
+.Reply .Content .TableWrap{
+    max-width: 620px;
+    overflow-x: auto;
+}
 .Reply .Content table{
     margin-bottom: 20px;
 }
