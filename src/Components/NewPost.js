@@ -18,6 +18,7 @@ const NewPost = ({hide}) => {
     const [alertTitle, setAlertTitle]       = useState(null);
     const [alertMessage, setAlertMessage]   = useState(null);
     const [avatar, setAvatar]               = useState(null);
+    const [confirmation, setConfirmation]   = useState(false);
     const [displayAlert, setDisplayAlert]   = useState(false);
     const [maxLengthPost, setMaxLengthPost] = useState(null);
     const [mdFormat, setMdFormat]           = useState(false);
@@ -219,7 +220,17 @@ const NewPost = ({hide}) => {
                 />
                 <button className = 'bottom' onClick = {reviewTitleAndMessage}>Enviar</button>
             </div>
-            <div className = 'Invisible' onClick = {hide}></div>
+            <div className = 'Invisible' onClick = {() => setConfirmation(true)}></div>
+            { confirmation
+            ? <div className = 'Confirmation'>
+                    <div className = 'Confirmation-Wrap'>
+                        <p>¿Estás seguro de que quieres salir? Se eliminará tu publicación.</p>
+                        <button onClick = {hide}                         className = 'Yes-Delete'>Sí, salir y eliminar publicación</button>
+                        <button onClick = {() => setConfirmation(false)} className = 'No-Delete'>Cancelar</button>
+                    </div>
+                  </div>
+            : null
+            }
             {displayAlert && <Alert title = {alertTitle} message = {alertMessage}/>}
         </div>
     );
