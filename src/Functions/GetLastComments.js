@@ -6,8 +6,10 @@ const GetLastComments = (numberOfComments) => {
     const [comments, setComments] = useState([]);
    
     useEffect( () => {
+        
+        let ref = firebase.database().ref('replies');
       
-        firebase.database().ref('replies').limitToLast(numberOfComments).on('value', snapshot => { 
+        let listener = ref.limitToLast(numberOfComments).on('value', snapshot => { 
             
             let replies = snapshot.val();
            
@@ -20,6 +22,8 @@ const GetLastComments = (numberOfComments) => {
             } 
             
         });
+        
+        return () => ref.off('value', listener);
      
     }, [numberOfComments]);
     
