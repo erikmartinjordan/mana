@@ -17,16 +17,6 @@
 .Nav .Nomoresheet.Mobile{
     display: none;
 }
-.Nav .Nomoresheet a{
-    background: var(--nmsLogo);
-    border-radius: 12px;
-    color: white !important;
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 0.05em;
-    line-height: 1;
-    padding: 5px 10px 5px 10px;
-}
 .Nav .Menu{
     display: flex;
     flex-direction: column;
