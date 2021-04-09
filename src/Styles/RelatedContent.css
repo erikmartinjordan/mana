@@ -14,10 +14,17 @@
 .RelatedContent .Links div{
     line-height: 1.3;
     margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .RelatedContent .Links div a{
     align-items: center;
-    border-bottom: solid var(--bgColor);
     justify-content: space-between;
     margin-bottom: 10px;
+    max-width: 100%;
+}
+.RelatedContent p{
+    color: var(--thirdFontColor);
+    margin: 0;
 }

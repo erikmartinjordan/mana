@@ -30,7 +30,7 @@ const RelatedContent = () => {
             
             if(snapshot_3.val()){
              
-                let posts = Object.entries(snapshot_3.val()).map(([url, {title}]) => ({url, title})).reverse();
+                let posts = Object.entries(snapshot_3.val()).map(([url, {title, replies}]) => ({url, title, replies})).reverse();
                 
                 setRandom(posts);
                 
@@ -52,7 +52,7 @@ const RelatedContent = () => {
             
             if(snapshot_1.val()){
                 
-                let posts = Object.entries(snapshot_1.val()).map(([url, {title}]) => ({url, title})).reverse();
+                let posts = Object.entries(snapshot_1.val()).map(([url, {title, replies}]) => ({url, title, replies})).reverse();
                 
                 setRelated(posts);
                 
@@ -105,9 +105,10 @@ const RelatedContent = () => {
         ? <div className = 'RelatedContent'>
             <span className = 'Title'>Relacionado</span>
             <div className = 'Links'>
-                {combo.map(({url, title}, key) => 
+                {combo.map(({url, title, replies = {}}, key) => 
                     (<div key = {key} >
                         <Link onClick = {() => updateRelated(title, url)} to = {url} >{title}</Link>
+                        <p>{Object.keys(replies).length} {Object.keys(replies).length === 1 ? 'comentario' : 'comentarios'}</p>
                     </div>)
                 )}
             </div>

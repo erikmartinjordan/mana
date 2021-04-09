@@ -37,7 +37,12 @@
     .Forum{
         padding: 0px 20px 0px 20px;
     }
+    .Forum .Forum-TwoCol{
+        flex-direction: column;
+    }
     .Forum .Forum-TwoCol .Sidebar{
-        display: none;
+        margin-left: 0;
+        margin-top: 50px;
+        max-width: 100%
     }
 }
