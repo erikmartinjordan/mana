@@ -6,7 +6,7 @@ const NomoresheetLogo = () => {
     let linkStyle = {
         background: 'none',
         color: 'white',
-        display: 'flex',
+        display: 'block',
         fontWeight: '900',
         fontSize: '30px',
         height: '70px',
