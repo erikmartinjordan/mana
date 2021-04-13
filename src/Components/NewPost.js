@@ -144,7 +144,7 @@ const NewPost = ({hide}) => {
         firebase.database().ref(`users/${userUid}`).update(userProps);
         
         insertTagsIntoDatabase(normalizedTags);
-        insertNotificationAndReputation(userUid, 'newPost', 'add', points, postId, slicedTitle, postId, null);
+        insertNotificationAndReputation(userUid, 'post', 'add', points, postId, slicedTitle, postId, null);
         
         alert('Bien', '¡Mensaje enviado!');
         
