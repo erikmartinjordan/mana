@@ -86,9 +86,7 @@ const Nav = () => {
                     <UserAvatar user = {user} allowAnonymousUser = {true}/>
                     <div className = 'Name-Points'>
                         <span className = 'Name'>
-                            {user && userInfo  && userInfo.anonimo  && userInfo.nickName}
-                            {user && userInfo  && !userInfo.anonimo && user.displayName}
-                            {user && !userInfo && user.displayName}
+                            {userInfo?.anonimo ? userInfo.nickName : user.displayName}
                         </span>
                         <span className = 'Points'>Nivel {level} <GetUnreadNotifications user = {user}/></span>
                     </div>
