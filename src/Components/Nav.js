@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link }                                   from 'react-router-dom';
 import { ArrowRightIcon }                         from '@primer/octicons-react';
+import moment                                     from 'moment';
 import Login                                      from './Login';
 import Perfil                                     from './Perfil';
 import NewPost                                    from './NewPost';
@@ -36,13 +37,11 @@ const Nav = () => {
                 
                 if(snapshot.val()){
                     
-                    let date    = new Date(parseInt(user.metadata.b));
-                    let day     = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-                    let hour    = `${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '')}${date.getMinutes()}`;
+                    let lastAccess = moment(parseInt(user.metadata.b)).calendar();
                     let capture = snapshot.val();
                     
                     setUserInfo(capture);
-                    setLastSignIn(`Accediste el ${day} a las ${hour}`);
+                    setLastSignIn(`Accediste el ${lastAccess}`);
                 }
             });
             
