@@ -17,6 +17,7 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
         });
         
         firebase.database().ref('users/' + uid + '/reputationData/' + Date.now()).transaction(value => points + Points[type]);
+        firebase.database().ref('users/' + uid + '/numPoints'                   ).transaction(value => points + Points[type]);
         
     }
     
@@ -34,6 +35,7 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
         });
         
         firebase.database().ref('users/' + uid + '/reputationData/' + Date.now()).transaction(value => points - Points[type]);
+        firebase.database().ref('users/' + uid + '/numPoints'                   ).transaction(value => points - Points[type]);
         
     }
     
