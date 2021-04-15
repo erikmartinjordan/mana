@@ -9,7 +9,7 @@ const GetLastComments = (numberOfComments) => {
         
         let ref = firebase.database().ref('replies');
       
-        let listener = ref.limitToLast(numberOfComments).on('value', snapshot => { 
+        let listener = ref.orderByKey().limitToLast(numberOfComments).on('value', snapshot => { 
             
             let replies = snapshot.val();
            
