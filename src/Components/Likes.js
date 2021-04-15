@@ -65,7 +65,7 @@ const Likes = ({ authorId, postId }) => {
                 let title    = snapshot.val().slice(0, 50) + '...';
                 let url      = postId;
                 
-                insertNotificationAndReputation(authorId, 'chili', 'add', points, url, title, postId, null);
+                insertNotificationAndReputation(authorId, 'spicy', 'add', points, url, title, postId, null);
                 
             }
             else{
@@ -77,7 +77,7 @@ const Likes = ({ authorId, postId }) => {
                 let title    = snapshot.val().slice(0, 50) + '...';
                 let url      = postId;
                 
-                insertNotificationAndReputation(authorId, 'chili', 'sub', points, url, title, postId, null);
+                insertNotificationAndReputation(authorId, 'spicy', 'sub', points, url, title, postId, null);
                 
             }
             
