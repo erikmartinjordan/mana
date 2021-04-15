@@ -107,6 +107,15 @@ exports.preRender = functions.https.onRequest(async (request, response) => {
 
 exports.getUserStats = functions.https.onRequest(async (request, response) => {
     
+    const Points = {
+    
+        post:     30,
+        reply:    40,
+        spicy:    50,
+        applause: 60
+    
+    }
+    
     let snapshotUsers = await admin.database().ref('/users').once('value');
     let users         = snapshotUsers.val();
     
@@ -121,13 +130,16 @@ exports.getUserStats = functions.https.onRequest(async (request, response) => {
         let numApplauses = getNumberOfApplauses(posts, uid);
         let numViews     = getNumberOfViews(posts, uid);
         
+        let numPoints = (Points.post * ~~numPosts) + (Points.reply * ~~numReplies) + (Points.spicy * ~~numSpicy) + (Points.applause * ~~numApplauses);
+        
         admin.database().ref(`/users/${uid}`).update({
             
             numPosts: numPosts,
             numReplies: numReplies,
             numSpicy: numSpicy,
             numApplauses: numApplauses,
-            numViews: numViews
+            numViews: numViews,
+            numPoints: numPoints
             
         });
         
