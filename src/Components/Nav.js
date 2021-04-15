@@ -1,19 +1,19 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Link }                                   from 'react-router-dom';
-import { ArrowRightIcon }                         from '@primer/octicons-react';
-import moment                                     from 'moment';
-import Login                                      from './Login';
-import Perfil                                     from './Perfil';
-import NewPost                                    from './NewPost';
-import UserAvatar                                 from './UserAvatar';
-import NightModeToggleButton                      from './NightModeToggleButton';
-import Tags                                       from './Tags';
-import firebase, {auth}                           from '../Functions/Firebase';
-import GetUnreadNotifications                     from '../Functions/GetUnreadNotifications';
-import GetPoints                                  from '../Functions/GetPoints';
-import GetLevel                                   from '../Functions/GetLevelAndPointsToNextLevel';
-import NomoresheetLogo                            from '../Functions/NomoresheetLogo';
-import UserContext                                from '../Functions/UserContext';
+import React, { useContext, useState, useEffect }              from 'react';
+import { Link }                                                from 'react-router-dom';
+import { ArrowRightIcon, HomeIcon, NumberIcon, TelescopeIcon } from '@primer/octicons-react';
+import moment                                                  from 'moment';
+import Login                                                   from './Login';
+import Perfil                                                  from './Perfil';
+import NewPost                                                 from './NewPost';
+import UserAvatar                                              from './UserAvatar';
+import NightModeToggleButton                                   from './NightModeToggleButton';
+import Tags                                                    from './Tags';
+import firebase, {auth}                                        from '../Functions/Firebase';
+import GetUnreadNotifications                                  from '../Functions/GetUnreadNotifications';
+import GetPoints                                               from '../Functions/GetPoints';
+import GetLevel                                                from '../Functions/GetLevelAndPointsToNextLevel';
+import NomoresheetLogo                                         from '../Functions/NomoresheetLogo';
+import UserContext                                             from '../Functions/UserContext';
 import '../Styles/Nav.css';
 
 const Nav = () => {
@@ -64,7 +64,9 @@ const Nav = () => {
       
         return(
             <React.Fragment>
-                <Tags numberOfTags = {5}/>
+                <Link to = '/'><HomeIcon/>Inicio</Link>
+                <Link to = '/tags'><NumberIcon/>Temas</Link>
+                <Link to = '/usuarios'><TelescopeIcon/>Descubre</Link>
                 <NightModeToggleButton/>
                 <div className = 'Access'>
                     <span className = 'Title'>¡Únete a la comunidad!</span>
@@ -92,7 +94,9 @@ const Nav = () => {
                     </div>
                 </div>
                 <div className = 'Separator'></div>
-                <Tags numberOfTags = {5}/>
+                <Link to = '/'><HomeIcon/>Inicio</Link>
+                <Link to = '/tags'><NumberIcon/>Temas</Link>
+                <Link to = '/usuarios'><TelescopeIcon/>Descubre</Link>
                 <div className = 'Separator'></div>
                 <NightModeToggleButton></NightModeToggleButton>
                 <div className = 'Separator'></div>

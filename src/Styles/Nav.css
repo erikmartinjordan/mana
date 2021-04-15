@@ -29,9 +29,14 @@
     display: flex;
 }
 .Nav .Menu a{
+    align-items: center;
+    display: flex;
     color: var(--primaryFontColor);
     cursor: pointer;
     width: max-content;
+}
+.Nav .Menu a svg{
+    margin-right: 5px;
 }
 .Nav .Menu span{
     cursor: pointer;
