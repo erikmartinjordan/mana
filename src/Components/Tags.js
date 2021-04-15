@@ -5,7 +5,7 @@ import firebase                       from '../Functions/Firebase';
 import { ReactComponent as ThaiFlag } from '../Assets/thailand.svg';
 import '../Styles/Tags.css';
 
-const Tags = ({numberOfTags}) => {
+const Tags = ({numberOfTags = 10}) => {
     
     const [tags, setTags] = useState([]);
     
@@ -17,7 +17,9 @@ const Tags = ({numberOfTags}) => {
             
             if(snapshot.val()){
                 
-                setTags(Object.entries(snapshot.val()));
+                let sorted = Object.entries(snapshot.val()).sort((a, b) => b[1].counter  - a[1].counter);
+                
+                setTags(sorted);
                 
             }
             else{
@@ -34,6 +36,8 @@ const Tags = ({numberOfTags}) => {
     
     return(
         <div className = 'Tags'>
+            <h2>¿De qué se habla aquí?</h2>
+            <p>Los temas más comentados en la comunidad.</p>
             {tags.map(([tag, {counter}], key) => (
                 <Link to = {`/tag/${tag}`} className = 'Tag' key = {key}>
                     <div className = 'Icon'>

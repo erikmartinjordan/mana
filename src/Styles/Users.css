@@ -1,0 +1,49 @@
+.Users{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+    padding: 20px;
+    width: 100%;
+}
+.Users a{
+    color: var(--primaryFontColor);
+}
+.Users .User{
+    align-items: center;
+    background: var(--bgBox);
+    border-radius: 12px;
+    display: flex;
+    margin-bottom: 20px;
+    padding: 20px;
+    position: relative;
+}
+.Users .User .Rank{
+    border-radius: 50%;
+    font-size: x-large;
+    font-weight: 900;
+    height: 50px;
+    right: 0px;
+    padding: 2px;
+    position: absolute;
+    top: 0px;
+    width: 50px;
+}
+.Users .User .Progress{
+    height: 70px;
+    margin-right: 20px;
+    width: 70px;
+}
+.Users .User .Points{
+    font-weight: bold;
+}
+.Users .NamePoints{
+    line-height: 1.7;
+}
+@media (hover: hover){
+    
+    .Users a:hover{
+        transition: 0.2s;
+        transform: scale(1.01);   
+    }
+    
+}

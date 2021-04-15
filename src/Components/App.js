@@ -16,6 +16,8 @@ import Helper                           from './Helper';
 import DonateSuccess                    from './DonateSuccess';
 import DonateFail                       from './DonateFail';
 import TrafficStats                     from './TrafficStats';
+import Tags                             from './Tags';
+import Users                            from './Users';
 import UserContext                      from '../Functions/UserContext';
 import { auth, fetchAdmin }             from '../Functions/Firebase';
 import '../Styles/App.css';
@@ -77,6 +79,8 @@ const App  = () => {
                     <Route exact path = '/guias'               component = {Guidelines}/>
                     <Route exact path = '/donateSuccess'       component = {DonateSuccess}/>
                     <Route exact path = '/donationFail'        component = {DonateFail}/>
+                    <Route exact path = '/tags'                component = {Tags}/>
+                    <Route exact path = '/usuarios'            component = {Users}/>
                     <Route path = '/comunidad/post/:string'    component = {Detail}/>
                     <Route path = '/tag/:string'               component = {Forum}/>
                     <Route path = '/@:string'                  component = {PublicInfo}/>
