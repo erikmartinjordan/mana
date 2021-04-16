@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import firebase from './Firebase.js';
+import firebase                       from '../Functions/Firebase';
+import '../Styles/UnreadNotifications.css';
 
-const GetUnreadNotifications = ({user}) => {
+const UnreadNotifications = ({user}) => {
     
     const [displayNotifications, setDisplayNotifications] = useState(true);
     const [newPoints, setNewPoints]                       = useState(null);
-    const [unread, setUnread]                             = useState([]);
+    const [unread, setUnread]                             = useState([1]);
     
     useEffect( () => {
         
@@ -56,8 +57,8 @@ const GetUnreadNotifications = ({user}) => {
     
     return (
         <React.Fragment>
-            { displayNotifications && unread.length > 0 
-            ? <NotificationsPoints points = {newPoints}/> 
+            { newPoints > 0
+            ? <NotificationsPoints points = {newPoints}/>
             : null
             }
         </React.Fragment>
@@ -65,12 +66,16 @@ const GetUnreadNotifications = ({user}) => {
     
 }
 
-export default GetUnreadNotifications;
+export default UnreadNotifications;
 
 const NotificationsPoints = ({points}) => {
     
-    if(points > 0)   return <span className = 'Notifications-Number' style = {{background: 'var(--greenMint)'}}>{`+${points}`}</span>;
-    if(points < 0)   return <span className = 'Notifications-Number' style = {{background: 'var(--red)'}}>{`${points}`}</span>;
-    if(points === 0) return null;
+    return(
+        <React.Fragment>
+            <span className = 'NotificationPoints'>
+                <span className = 'Green'>{points > 0 ? `+${points}` : points}</span>
+            </span>
+        </React.Fragment>
+    );
     
 }

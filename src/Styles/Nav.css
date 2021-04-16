@@ -124,6 +124,7 @@
 .Nav span.Points{
     color: var(--thirdFontColor);
     font-size: x-small;
+    margin-top: 2px;
 }
 .Nav .SignIn{
     color: var(--thirdFontColor);
@@ -147,6 +148,7 @@
 }
 .Nav .Access a{
     display: block;
+    font-size: 14px;
     margin-top: 20px;
 }
 .Nav .Decide{

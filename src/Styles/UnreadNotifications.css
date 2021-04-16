@@ -1,0 +1,16 @@
+.NotificationPoints{
+    animation: 0.2s slicedown ease-in-out;
+    color: white;
+    display: inline-block;
+}
+.NotificationPoints .Green{
+    background: var(--pastelGreen);  
+    border-radius: 3px;
+    color: var(--greenMint);
+    padding: 1px;
+}
+@keyframes slicedown{
+    0%    {transform: translate3d(0, -20px, 0) scale(1);}
+    50%   {transform: translate3d(0,  10px, 0) scale(1.05);}
+    100%  {transform: translate3d(0,   0px, 0) scale(1);}
+}

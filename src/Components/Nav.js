@@ -8,8 +8,8 @@ import NewPost                                                 from './NewPost';
 import UserAvatar                                              from './UserAvatar';
 import NightModeToggleButton                                   from './NightModeToggleButton';
 import Tags                                                    from './Tags';
+import UnreadNotifications                                     from './UnreadNotifications';
 import firebase, {auth}                                        from '../Functions/Firebase';
-import GetUnreadNotifications                                  from '../Functions/GetUnreadNotifications';
 import GetPoints                                               from '../Functions/GetPoints';
 import GetLevel                                                from '../Functions/GetLevelAndPointsToNextLevel';
 import NomoresheetLogo                                         from '../Functions/NomoresheetLogo';
@@ -90,7 +90,7 @@ const Nav = () => {
                         <span className = 'Name'>
                             {userInfo?.anonimo ? userInfo.nickName : user.displayName}
                         </span>
-                        <span className = 'Points'>Nivel {level} <GetUnreadNotifications user = {user}/></span>
+                        <span className = 'Points'>Nivel {level} <UnreadNotifications user = {user}/></span>
                     </div>
                 </div>
                 <div className = 'Separator'></div>
