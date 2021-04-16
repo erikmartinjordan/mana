@@ -124,6 +124,7 @@
 .Nav span.Points{
     color: var(--thirdFontColor);
     font-size: x-small;
+    margin-top: 2px;
 }
 .Nav .SignIn{
     color: var(--thirdFontColor);
