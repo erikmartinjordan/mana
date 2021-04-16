@@ -200,13 +200,17 @@ export const Header = ({title, date, user, views, likes, superlikes, handleLikes
     
     let profilePic = 'https://lh6.googleusercontent.com/-WwLYxZDTcu8/AAAAAAAAAAI/AAAAAAAAZF4/6lngnHRUX7c/photo.jpg';
     
+    let [day, month, year] = date;
+    
+    let articleDate = moment().year(year).month(month).date(day);
+    
     return(
         <div className = 'Header'>
             <h1>{title}</h1>
             <div className = 'Infopost'>
                 <p className = 'Author'>
                     <img id = 'Erik' src = {profilePic} alt = {'Erik Martín Jordán'}></img>
-                    <span>Erik Martín Jordán, {date[1]} {date[2]}, {views} visitas</span>
+                    <span>Erik Martín Jordán, {articleDate.fromNow()}, {views} visitas</span>
                 </p>
             </div>
         </div>
