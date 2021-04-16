@@ -7,11 +7,14 @@
 }
 .Tags .Tag{
     align-items: center;
-    background: rgba(1, 1, 1, 0.1);
-    border-radius: 50px;
+    background: var(--bgBox);
+    border-radius: 12px;
     display: flex;
-    margin-bottom: 7px;
-    padding: 4px 7px;
+    margin-bottom: 10px;
+    padding: 12px;
+}
+.Tags a{
+    color: var(--primaryFontColor);
 }
 .Tags .Tag .Icon{
     align-items: center;
@@ -47,6 +50,9 @@
     text-overflow: ellipsis; 
 }
 .Tags .Tag .Counter{
-    color: var(--secondaryFontColor);
+    background: var(--lightBlue);
+    border-radius: 50px;
+    color: var(--blue);
     font-size: x-small;
+    padding: 5px;
 }
