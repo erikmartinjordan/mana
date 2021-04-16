@@ -37,7 +37,7 @@ const Tags = ({numberOfTags = 10}) => {
     return(
         <div className = 'Tags'>
             <h2>¿De qué se habla aquí?</h2>
-            <p>Los temas más comentados en la comunidad.</p>
+            <p>Los temas más comentados en la comunidad:</p>
             {tags.map(([tag, {counter}], key) => (
                 <Link to = {`/tag/${tag}`} className = 'Tag' key = {key}>
                     <div className = 'Icon'>

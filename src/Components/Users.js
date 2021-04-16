@@ -33,7 +33,7 @@ const Users = ({numberOfUsers = 10}) => {
     return(
         <div className = 'Users'>
             <h2>Ranking</h2>
-            <p>Los 10 usuarios con más reputación:</p>
+            <p>Los usuarios con más reputación:</p>
             {users.map(([id, user], index) => 
                 <Link to = {'/@' + id} className = 'User' key = {index}>
                     <div className = 'Rank'>#{index + 1}</div>
