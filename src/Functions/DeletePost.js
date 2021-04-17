@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory }                 from 'react-router-dom';
-import firebase                       from '../Functions/Firebase';
-import GetPoints                      from '../Functions/GetPoints';
-import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel';
+import Points                         from './PointsAndValues';
+import firebase                       from './Firebase';
+import GetPoints                      from './GetPoints';
+import GetLevel                       from './GetLevelAndPointsToNextLevel';
 import Accounts                       from '../Rules/Accounts';
 import '../Styles/DeletePost.css';
 
@@ -76,6 +77,7 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
             firebase.database().ref(`posts/${postId}`).remove();
             firebase.database().ref(`users/${authorId}/lastPosts/${postId}`).remove();
             firebase.database().ref(`users/${authorId}/numPosts`).transaction(value => ~~value - 1);
+            firebase.database().ref(`users/${authorId}/numPoints`).transaction(value => ~~value - Points.post)
             history.push('/');
             
         }
@@ -85,6 +87,7 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
             firebase.database().ref(`replies/${replyId}`).remove();
             firebase.database().ref(`posts/${postId}/replies/${replyId}`).remove();
             firebase.database().ref(`users/${authorId}/numReplies`).transaction(value => ~~value - 1);
+            firebase.database().ref(`users/${authorId}/numPoints`).transaction(value => ~~value - Points.reply);
         }
       
         setConfirmation(false);
