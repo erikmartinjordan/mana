@@ -13,7 +13,6 @@ const Likes = ({ authorId, postId }) => {
     const [alertMessage, setAlertMessage] = useState(null);
     const [alertTitle, setAlertTitle]     = useState(null);
     const [modal, setModal]               = useState(false);
-    const [numVotes, setNumVotes]         = useState(0);
     const [votes, setVotes]               = useState({});
     const points                          = GetPoints(authorId)[0];
     const { user }                        = useContext(UserContext);
@@ -27,59 +26,69 @@ const Likes = ({ authorId, postId }) => {
             if(votes){
                 
                 setVotes(votes);
-                setNumVotes(Object.keys(votes).length);
                 
             }
             else{
                 
                 setVotes({});
-                setNumVotes(0);
             }
             
         });
         
     },[postId]);
     
+    const autoVote = () => {
+        
+        return user.uid === authorId ? true : false;
+        
+    }
+    
+    const persistentVote = async (mins) => {
+        
+        let snapshot  = await firebase.database().ref(`posts/${postId}/voteUsers/${user.uid}`).once('value');
+        let timeStamp = snapshot.val() || Date.now();
+        let current   = Date.now();
+        
+        return (timeStamp + (mins * 60) < current) ? true : false;
+        
+    }
+    
+    const vote = (title, url, timeStamp) => {
+        
+        let userDidntVote = Object.keys(votes).indexOf(user.uid) === -1 ? true : false;
+        
+        let [vote, numSpicy, type] = userDidntVote ? [timeStamp, 1, 'add'] : [null, -1, 'sub'];
+     
+        firebase.database().ref(`posts/${postId}/voteUsers/${user.uid}`).transaction(value => vote);
+        firebase.database().ref(`users/${authorId}/numSpicy`).transaction(value => ~~value + numSpicy);
+        
+        insertNotificationAndReputation(authorId, 'spicy', type, points, url, title, postId, null);    
+        
+    }
+    
     const handleVote = async (e) => {
         
         e.preventDefault();
         
-        let autoVote = user.uid === authorId ? true : false;
+        let snapshot = await firebase.database().ref(`posts/${postId}/title`).once('value');
+        let title    = snapshot.val().slice(0, 50) + '...';
+        let url      = postId;
         
-        if(autoVote){
+        if(autoVote()){
             
             setAlertTitle('Ups...');
             setAlertMessage('No puedes votar tu propio comentario.');
             
         }
+        else if(await persistentVote(5)){
+            
+            setAlertTitle('Ups...');
+            setAlertMessage(`Debes esperar 5 minutos para poder votar de nuevo.`);
+            
+        }
         else{
             
-            let userDidntVote = Object.keys(votes).indexOf(user.uid) === -1 ? true : false;
-            
-            if(userDidntVote){
-                
-                firebase.database().ref(`posts/${postId}/voteUsers/${user.uid}`).transaction(value => true);
-                firebase.database().ref(`users/${authorId}/numSpicy`).transaction(value => ~~value + 1);
-                
-                let snapshot = await firebase.database().ref(`posts/${postId}/title`).once('value');
-                let title    = snapshot.val().slice(0, 50) + '...';
-                let url      = postId;
-                
-                insertNotificationAndReputation(authorId, 'spicy', 'add', points, url, title, postId, null);
-                
-            }
-            else{
-                
-                firebase.database().ref(`posts/${postId}/voteUsers/${user.uid}`).remove();
-                firebase.database().ref(`users/${authorId}/numSpicy`).transaction(value => ~~value - 1);
-                
-                let snapshot = await firebase.database().ref(`posts/${postId}/title`).once('value');
-                let title    = snapshot.val().slice(0, 50) + '...';
-                let url      = postId;
-                
-                insertNotificationAndReputation(authorId, 'spicy', 'sub', points, url, title, postId, null);
-                
-            }
+            vote(title, url, Date.now());
             
         }
         
@@ -105,7 +114,7 @@ const Likes = ({ authorId, postId }) => {
         <React.Fragment>
             <div className = 'Likes' onClick = {user ? handleVote : displayLoginModal}>
                 <div className = {Object.keys(votes).some(voteId => voteId === user?.uid) ? `Votes Voted` : `Votes`}>
-                    <span><Twemoji emoji = {'🌶️'}/> {numVotes}</span>
+                    <span><Twemoji emoji = {'🌶️'}/> {Object.keys(votes).length}</span>
                 </div>
                 <Alert 
                     title      = {alertTitle} 
