@@ -21,7 +21,7 @@ const Likes = ({ authorId, postId }) => {
         
         firebase.database().ref(`posts/${postId}/voteUsers`).on('value', snapshot => { 
             
-            var votes = snapshot.val();            
+            let votes = snapshot.val();            
             
             if(votes){
                 
@@ -31,64 +31,42 @@ const Likes = ({ authorId, postId }) => {
             else{
                 
                 setVotes({});
+                
             }
             
         });
         
     },[postId]);
     
-    const autoVote = () => {
-        
-        return user.uid === authorId ? true : false;
-        
-    }
-    
-    const persistentVote = async (mins) => {
-        
-        let snapshot  = await firebase.database().ref(`posts/${postId}/voteUsers/${user.uid}`).once('value');
-        let timeStamp = snapshot.val() || Date.now();
-        let current   = Date.now();
-        
-        return (timeStamp + (mins * 60) < current) ? true : false;
-        
-    }
-    
-    const vote = (title, url, timeStamp) => {
-        
-        let userDidntVote = Object.keys(votes).indexOf(user.uid) === -1 ? true : false;
-        
-        let [vote, numSpicy, type] = userDidntVote ? [timeStamp, 1, 'add'] : [null, -1, 'sub'];
-     
-        firebase.database().ref(`posts/${postId}/voteUsers/${user.uid}`).transaction(value => vote);
-        firebase.database().ref(`users/${authorId}/numSpicy`).transaction(value => ~~value + numSpicy);
-        
-        insertNotificationAndReputation(authorId, 'spicy', type, points, url, title, postId, null);    
-        
-    }
-    
     const handleVote = async (e) => {
         
-        e.preventDefault();
+        e.preventDefault(); 
         
-        let snapshot = await firebase.database().ref(`posts/${postId}/title`).once('value');
-        let title    = snapshot.val().slice(0, 50) + '...';
-        let url      = postId;
-        
-        if(autoVote()){
+        if(user.uid === authorId){
             
             setAlertTitle('Ups...');
-            setAlertMessage('No puedes votar tu propio comentario.');
+            setAlertMessage('No puedes votar tu propia publicación.');
             
         }
-        else if(await persistentVote(5)){
+        else if(Number.isInteger(votes[user.uid]) && votes[user.uid] + (5 * 60 * 1000) > Date.now()){
             
             setAlertTitle('Ups...');
-            setAlertMessage(`Debes esperar 5 minutos para poder votar de nuevo.`);
-            
+            setAlertMessage(`No puedes votar tan seguido, espera unos minutos...`);    
+           
         }
         else{
             
-            vote(title, url, Date.now());
+            let [timeStamp, numSpicy, type] = votes[user.uid] ? [null, -1, 'sub'] : [Date.now(), 1, 'add'];
+            
+            let ref_1 = firebase.database().ref(`users/${authorId}/numSpicy`);
+            let ref_2 = firebase.database().ref(`posts/${postId}/voteUsers/${user.uid}`);
+            
+            ref_1.transaction(value => ~~value + numSpicy);
+            ref_2.transaction(value => timeStamp);
+            
+            let title = (await firebase.database().ref(`posts/${postId}/title`).once('value')).val().slice(0, 50) + '...';
+            
+            insertNotificationAndReputation(authorId, 'spicy', type, points, postId, title, postId, null);
             
         }
         
