@@ -54,6 +54,14 @@ const Stats = () => {
         legend:{
           display: true  
         },
+        tooltips: {
+          mode: 'index',
+          intersect: false,
+        },
+        hover: {
+          mode: 'nearest',
+          intersect: true
+        },
         scales: {
           xAxes: [{
             display: true,
@@ -61,9 +69,10 @@ const Stats = () => {
                 display: false,
             },
             ticks: {
-                autoSkip: false,
+                autoSkip: true,
                 maxRotation: 45,
-                minRotation: 45
+                minRotation: 45,
+                callback: (value, index, values) => values.length > 7 && index % 2 !== 0 ? null : value
             }  
           }],
           yAxes: [{
@@ -102,7 +111,7 @@ const Stats = () => {
     });
     
     useEffect(() => {
-
+        
         let canvas = document.getElementById('graph-1');
         let ctx = canvas.getContext('2d');
         let chart = new Chart(ctx, graph1);
@@ -363,7 +372,13 @@ const Stats = () => {
             
         });
         
-        return () => firebase.database().ref(`analytics/`).off('value', listener);
+        return () => {
+            
+            firebase.database().ref(`analytics/`).off('value', listener);
+            
+            chart.destroy();
+            
+        }
         
     }, [interval]);
     
@@ -386,11 +401,11 @@ const Stats = () => {
                 
                 graph2.data.labels = months;
                 graph2.data.datasets['0'].data = posts;
-
+                
                 chart.update();
                 
             }
-                
+            
         });
         
         return () => ref.off('value', listener);
