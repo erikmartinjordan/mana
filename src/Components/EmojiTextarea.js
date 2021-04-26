@@ -9,10 +9,11 @@ var emojis = {
     ':fuego': '🔥',
     ':carcajada': '😂',
     ':sonrisa': '😊',
-    ':validado': '✔️',
     ':encantado': '🥰',
-    ':ok': '👍'
-    
+    ':ok': '👍',
+    ':confundido': '😕',
+    ':gracias': '🙏',
+    ':validado': '✔️'
 }
 
 const EmojiTextarea = ({message, setMessage, maxLength}) => {
