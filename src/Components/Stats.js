@@ -243,8 +243,11 @@ const Stats = () => {
                     
                     Object.keys(data[day][uid]).forEach(session => {
                         
-                        if(now - data[day][uid][session].timeStampEnd <= 5 * 60 * 1000)
-                            realTimeSession = true
+                        if(now - data[day][uid][session].timeStampEnd <= 5 * 60 * 1000){
+                            
+                            realTimeSession = true;
+                            
+                        }
                         
                     });
                     
@@ -328,7 +331,7 @@ const Stats = () => {
             return duplicates.sort((a, b) => b[1] - a[1]);
         }
         
-        let listener = firebase.database().ref(`analytics/`).limitToLast(interval).on('value', snapshot => {
+        let listener = firebase.database().ref(`analytics/`).orderByKey().limitToLast(interval).on('value', snapshot => {
             
             if(snapshot){
                 
