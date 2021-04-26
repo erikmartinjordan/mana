@@ -464,7 +464,7 @@ const Stats = () => {
                     <div className = 'Url'>URL</div>
                     <div className = 'Visitas'>Visitas</div>
                 </div>
-                {ranking.map( (elem, key) => (
+                {ranking.slice(0, 10).map((elem, key) => (
                     <div className = 'Row' key = {key}>
                         <div className = 'Url'><Link to = {elem[0]}>{elem[0]}</Link></div>
                         <div className = 'Visitas'>{elem[1]}</div>
