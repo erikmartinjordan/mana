@@ -36,7 +36,7 @@
     width: max-content;
 }
 .Nav .Menu a svg{
-    margin-right: 5px;
+    margin-right: 10px;
 }
 .Nav .Menu span{
     cursor: pointer;
@@ -156,10 +156,9 @@
     display: flex;
     justify-content: space-between;
 }
-@keyframes bounce{
-    0%    {opacity: 0;   transform: scale(1,1);}
-    50%   {opacity: 0.5; transform: scale(1.1, 1.1);}
-    100%  {opacity: 1;   transform: scale(1,1);}
+.Nav a.New-Post svg{
+    animation: 0.3s swirl_out ease-in-out;
+
 }
 @media (max-width: 768px){
     .Nav .Menu{
@@ -210,4 +209,30 @@
         margin-top: 20px;
         margin-right: 0px;
     }   
+}
+@media (hover: hover){
+    .Nav a.New-Post:hover svg{
+        animation: 0.3s swirl_in ease-in-out;
+    
+    }
+    .Nav .Menu a:hover svg{
+        animation: tilt 0.5s ease-in-out; 
+    }
+}
+@keyframes swirl_in{
+    0%    {transform: rotate(0deg);}
+    100%  {transform: rotate(360deg);}
+}
+@keyframes swirl_out{
+    0%    {transform: rotate(360deg);}
+    100%  {transform: rotate(0);}
+}
+@keyframes bounce{
+    0%    {opacity: 0;   transform: scale(1,1);}
+    50%   {opacity: 0.5; transform: scale(1.1, 1.1);}
+    100%  {opacity: 1;   transform: scale(1,1);}
+}
+@keyframes tilt{
+    50%  {transform: rotate(20deg);}
+    100% {transform: rotate(0deg);}
 }

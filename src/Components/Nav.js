@@ -1,33 +1,33 @@
-import React, { useContext, useState, useEffect }              from 'react';
-import { Link }                                                from 'react-router-dom';
-import { ArrowRightIcon, HomeIcon, NumberIcon, TelescopeIcon } from '@primer/octicons-react';
-import moment                                                  from 'moment';
-import Login                                                   from './Login';
-import Perfil                                                  from './Perfil';
-import NewPost                                                 from './NewPost';
-import UserAvatar                                              from './UserAvatar';
-import NightModeToggleButton                                   from './NightModeToggleButton';
-import Tags                                                    from './Tags';
-import UnreadNotifications                                     from './UnreadNotifications';
-import firebase, {auth}                                        from '../Functions/Firebase';
-import GetPoints                                               from '../Functions/GetPoints';
-import GetLevel                                                from '../Functions/GetLevelAndPointsToNextLevel';
-import NomoresheetLogo                                         from '../Functions/NomoresheetLogo';
-import UserContext                                             from '../Functions/UserContext';
+import React, { useContext, useState, useEffect }                                 from 'react';
+import { Link }                                                                   from 'react-router-dom';
+import { ArrowRightIcon, HomeIcon, NumberIcon, TelescopeIcon, PaperAirplaneIcon } from '@primer/octicons-react';
+import moment                                                                     from 'moment';
+import Login                                                                      from './Login';
+import Perfil                                                                     from './Perfil';
+import NewPost                                                                    from './NewPost';
+import UserAvatar                                                                 from './UserAvatar';
+import NightModeToggleButton                                                      from './NightModeToggleButton';
+import Tags                                                                       from './Tags';
+import UnreadNotifications                                                        from './UnreadNotifications';
+import firebase, {auth}                                                           from '../Functions/Firebase';
+import GetPoints                                                                  from '../Functions/GetPoints';
+import GetLevel                                                                   from '../Functions/GetLevelAndPointsToNextLevel';
+import NomoresheetLogo                                                            from '../Functions/NomoresheetLogo';
+import UserContext                                                                from '../Functions/UserContext';
 import '../Styles/Nav.css';
 
 const Nav = () => {
     
-    const [lastSignIn, setLastSignIn]       = useState(null)
-    const [menu, setMenu]                   = useState('');
-    const [post, setPost]                   = useState(false);
-    const [login, setLogin]                 = useState(false);
-    const [perfil, setPerfil]               = useState(false);
-    const [uid, setUid]                     = useState(null);
-    const [userInfo, setUserInfo]           = useState(null);
-    const { user }                          = useContext(UserContext);
-    const points                            = GetPoints(uid);
-    const level                             = GetLevel(...points)[0];
+    const [lastSignIn, setLastSignIn] = useState(null)
+    const [menu, setMenu]             = useState('');
+    const [post, setPost]             = useState(false);
+    const [login, setLogin]           = useState(false);
+    const [perfil, setPerfil]         = useState(false);
+    const [uid, setUid]               = useState(null);
+    const [userInfo, setUserInfo]     = useState(null);
+    const { user }                    = useContext(UserContext);
+    const points                      = GetPoints(uid);
+    const level                       = GetLevel(...points)[0];                     
 
     useEffect ( () => {
       
@@ -100,7 +100,7 @@ const Nav = () => {
                 <div className = 'Separator'></div>
                 <NightModeToggleButton></NightModeToggleButton>
                 <div className = 'Separator'></div>
-                <Link to = '/' onClick = {() => setPost(true)} className = 'login'>Publicar</Link>
+                <Link to = '/' onClick = {() => setPost(true)} className = 'New-Post'><PaperAirplaneIcon/>Publicar</Link>
                 <div className = 'Separator'></div>
                 <div onClick = {() => auth.signOut()} className = 'Logout'>Cerrar sesión</div>
                 <div className = 'SignIn'>{lastSignIn}</div>
