@@ -330,8 +330,11 @@ const Stats = () => {
             
             return duplicates.sort((a, b) => b[1] - a[1]);
         }
+
+        let iniDate = moment().subtract(interval - 1, 'days').format('YYYYMMDD');
+        let endDate = moment().subtract(0,            'days').format('YYYYMMDD');
         
-        let listener = firebase.database().ref(`analytics/`).orderByKey().limitToLast(interval).on('value', snapshot => {
+        let listener = firebase.database().ref(`analytics/`).orderByKey().startAt(iniDate).endAt(endDate).on('value', snapshot => {
             
             if(snapshot){
                 
