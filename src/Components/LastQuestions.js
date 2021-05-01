@@ -1,15 +1,11 @@
 import React, { useEffect, useState }       from 'react';
 import { Link }                             from 'react-router-dom';
-import buildFormatter                       from 'react-timeago/lib/formatters/buildFormatter';
-import spanishStrings                       from 'react-timeago/lib/language-strings/es';
-import TimeAgo                              from 'react-timeago';
+import moment                               from 'moment';
 import Loading                              from './Loading';
 import Likes                                from './Likes';
 import UserAvatar                           from './UserAvatar';
 import firebase                             from '../Functions/Firebase';
 import '../Styles/LastQuestions.css';
-
-const formatter = buildFormatter(spanishStrings);
 
 const LastQuestions = (props) => {
     
@@ -90,9 +86,7 @@ const LastQuestions = (props) => {
                                 <UserAvatar user = {{uid: question.userUid, photoURL: question.userPhoto}}/>
                                 <span className = 'Author-Date'>
                                     {question.userName}
-                                    <div>
-                                        <TimeAgo formatter = {formatter} date = {question.timeStamp}/>
-                                    </div>
+                                    <time>{moment(question.timeStamp).fromNow()}</time>
                                 </span>
                             </div>
                             <div className = 'Num-Comments'>

@@ -1,8 +1,6 @@
 import React                                     from 'react';
 import { Link }                                  from 'react-router-dom';
-import TimeAgo                                   from 'react-timeago';
-import buildFormatter                            from 'react-timeago/lib/formatters/buildFormatter';
-import spanishStrings                            from 'react-timeago/lib/language-strings/es';
+import moment                                    from 'moment';
 import Donate                                    from './Donate';
 import UserAvatar                                from './UserAvatar';
 import ReputationGraph                           from './ReputationGraph';
@@ -16,8 +14,6 @@ import GetRankingUser                            from '../Functions/GetRankingUs
 import GetNumberOfProfileViewsAndProfileLastSeen from '../Functions/GetNumberOfProfileViewsAndProfileLastSeen';
 import GetStripeUserId                           from '../Functions/GetStripeUserId';
 import '../Styles/PublicInfo.css';
-
-const formatter = buildFormatter(spanishStrings);
 
 const PublicInfo = (props) => {
     
@@ -70,7 +66,7 @@ const PublicInfo = (props) => {
                     <div className = 'Num'>{profileViews}</div>
                     <div className = 'Comment'>
                         { profileLastSeen 
-                        ? <div>Última visita al perfil <TimeAgo formatter = {formatter} date = {profileLastSeen}/></div>
+                        ? <div>Última visita al perfil {moment(profileLastSeen).fromNow()}</div>
                         : 'Tu perfil no tiene visitas'
                         }           
                     </div>
