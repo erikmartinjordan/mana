@@ -69,7 +69,7 @@ const PublicInfo = (props) => {
                     <div className = 'Title'>Visitas al perfil</div>
                     <div className = 'Num'>{profileViews}</div>
                     <div className = 'Comment'>
-                        {profileLastSeen 
+                        { profileLastSeen 
                         ? <div>Última visita al perfil <TimeAgo formatter = {formatter} date = {profileLastSeen}/></div>
                         : 'Tu perfil no tiene visitas'
                         }           
@@ -84,8 +84,11 @@ const PublicInfo = (props) => {
                     <div className = 'Comment'>{pointsToNextLevel} puntos para el siguiente nivel ({percentage}% completado)</div>
                 </div>
                 <div className = 'Last-Articles'>
-                    <div className = 'Title'>Últimas publicaciones</div>
-                    {articles.map( (article, key) => <div key = {key}><Link to = {'/comunidad/post/' + article.url}>{article.title}</Link></div>)}
+                    { articles.length > 0
+                    ? <div className = 'Title'>Últimas publicaciones</div>
+                    : null
+                    }
+                    {articles.map((article, key) => <div key = {key}><Link to = {'/comunidad/post/' + article.url}>{article.title}</Link></div>)}
                 </div>
             </div>
         </div>
