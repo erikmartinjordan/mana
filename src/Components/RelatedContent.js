@@ -12,7 +12,7 @@ const RelatedContent = () => {
     const [update, setUpdate]   = useState(0);
     const url                   = window.location.pathname.split('/').pop();
     
-    useEffect( () => {
+    useEffect(() => {
         
         const getRandomPosts = async (num) => {
             
@@ -42,7 +42,7 @@ const RelatedContent = () => {
         
     }, [update]);
     
-    useEffect( () => {
+    useEffect(() => {
         
         const getRelatedPosts = async (num) => {
             
@@ -52,7 +52,22 @@ const RelatedContent = () => {
             
             if(snapshot_1.val()){
                 
-                let posts = Object.entries(snapshot_1.val()).map(([url, {title, replies}]) => ({url, title, replies})).reverse();
+                let posts = Object.keys(snapshot_1.val()).map(async url => {
+
+                    let title   = (await ref.child(`${url}/title`).once('value')).val();
+                    let replies = (await ref.child(`${url}/replies`).once('value')).val();
+                    
+                    return {
+
+                        url: url,
+                        title: title,
+                        replies: replies
+
+                    }
+
+                });
+
+                posts = await Promise.all(posts);
                 
                 setRelated(posts);
                 
@@ -64,7 +79,7 @@ const RelatedContent = () => {
         
     }, [update, url]);
     
-    useEffect( () => {    
+    useEffect(() => {    
         
         let group = new Set();
         
@@ -90,7 +105,6 @@ const RelatedContent = () => {
         
         let ref = firebase.database().ref('posts');
         
-        ref.child(`${url}/related/${relatedUrl}/title`).transaction(value => title);
         ref.child(`${url}/related/${relatedUrl}/hits`).transaction(value => value + 1);
         
         setUpdate(update + 1);
