@@ -10,7 +10,7 @@ const Privacy = () => {
             <p>Las estadísticas de tráfico de la web se pueden consultar en <Link to = '/estadisticas'>este enlace</Link>. Nomoresheet no utiliza aplicaciones de terceros ni <em>cookies</em> para guardar información de los usuarios ni  para mejorar su experiencia. No hay rastreadores ni se venden datos a terceros.</p>
             
             <h2>Anuncios</h2>
-            <p>Actualmente, no hay ningún anuncio en la web. Si detectas algún enlace sospechoso de contenter publicidad, por favor, ponte en contacto vía <a href = 'mailto:hola@erikmartinjordan.com'>hola@erikmartinjordan.com</a>.</p>
+            <p>Actualmente, se muestra un anuncio de AdSense para usuarios que no hayan hecho *login*. Si detectas algún enlace sospechoso de contenter publicidad, por favor, ponte en contacto vía <a href = 'mailto:hola@erikmartinjordan.com'>hola@erikmartinjordan.com</a>.</p>
             
             <h2>Publicaciones</h2>
             <p>Es necesario tener una cuenta de Google para publicar. El inicio de sesión con una cuenta de Google permite controlar los mensajes de <em>bots</em> y evitar el <em>spam</em>.</p> 

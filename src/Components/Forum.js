@@ -3,6 +3,7 @@ import OrderBy                        from './OrderBy';
 import LastQuestions                  from './LastQuestions';
 import Comments                       from './Comments';
 import OneYearAgo                     from './OneYearAgo';
+import Ad                             from './Ad';
 import '../Styles/Forum.css';
 
 const Front = () => {
@@ -19,6 +20,7 @@ const Front = () => {
                 <div className = 'Sidebar'>
                     <Comments/>
                     <OneYearAgo/>
+                    <Ad/>
                 </div>
             </div>
       </div> 
