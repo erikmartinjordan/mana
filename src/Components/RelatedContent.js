@@ -48,11 +48,11 @@ const RelatedContent = () => {
             
             let ref = firebase.database().ref('posts');
             
-            let snapshot_1 = await ref.child(`${url}/related`).orderByChild('hits').limitToFirst(num).once('value');
+            let related = (await ref.child(`${url}/related`).orderByChild('hits').limitToFirst(num).once('value')).val();
             
-            if(snapshot_1.val()){
+            if(related){
                 
-                let posts = Object.keys(snapshot_1.val()).map(async url => {
+                let posts = Object.keys(related).map(async url => {
 
                     let title   = (await ref.child(`${url}/title`).once('value')).val();
                     let replies = (await ref.child(`${url}/replies`).once('value')).val();
