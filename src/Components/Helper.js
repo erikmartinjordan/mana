@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Confetti                                   from 'react-confetti';
+import moment                                     from 'moment';
 import UserAvatar                                 from './UserAvatar';
 import firebase                                   from '../Functions/Firebase';
 import UserContext                                from '../Functions/UserContext';
@@ -35,6 +36,8 @@ const Helper = () => {
                 }
                 
             });
+
+            firebase.database().ref(`users/${user.uid}/lastAccess`).transaction(value => moment().format('LLLL'));
             
         }
         
