@@ -71,7 +71,7 @@ const UserAvatar = ({allowAnonymousUser, user}) => {
         <React.Fragment>
             { picture
             ? <div className = {`Progress ProgressBar-${percentage}`}>
-                <img src = {picture} alt = {'Avatar'}></img>
+                <img loading = 'lazy' src = {picture} alt = {'Avatar'}></img>
                 {badge ? <ProBadge/> : null}
               </div>
             : <Loading type = 'Avatar'/> 
