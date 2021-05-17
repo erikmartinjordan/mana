@@ -1,27 +1,34 @@
-import GetNumberOfPosts     from './GetNumberOfPosts.js';
-import GetNumberOfReplies   from './GetNumberOfReplies.js';
-import GetNumberOfSpicy     from './GetNumberOfSpicy.js';
-import GetNumberOfApplauses from './GetNumberOfApplauses.js';
-import Points               from './PointsAndValues.js';
+import { useEffect, useState } from 'react';
+import firebase                from './Firebase';
 
-const GetPoints = (...userUids) => {
-   
-    const postValue     = Points.post;
-    const replyValue    = Points.reply;
-    const spicyValue    = Points.spicy;
-    const applauseValue = Points.applause;
+const GetPoints = (...uids) => {
     
-    const posts     = GetNumberOfPosts(...userUids);
-    const replies   = GetNumberOfReplies(...userUids);
-    const spicy     = GetNumberOfSpicy(...userUids);
-    const applauses = GetNumberOfApplauses(...userUids);
+    const [points, setPoints] = useState([]);
+
+    // Using JSON.stringify to compare arrays passed as arguments
+    // If I don't use it, React will make an infinite render
+    let stringUids = JSON.stringify(uids);
     
-    const points = new Array(userUids.length).fill(0);
-    
-    for(let i = 0; i < userUids.length; i ++)
-        points[i] = (~~posts[i] * postValue) + (~~replies[i] * replyValue) + (~~spicy[i] * spicyValue) + (~~applauses[i] * applauseValue);
+    useEffect( () => { 
+        
+        let ref = firebase.database().ref('users/');
+        
+        let listener = ref.on('value', snapshot => { 
+            
+            let users = snapshot.val(); 
+            
+            let numPoints = JSON.parse(stringUids).map(uid => ~~users[uid]?.numPoints);
+            
+            setPoints(numPoints);
+            
+        });
+        
+        return () => ref.off('value', listener);
+        
+    }, [stringUids]);
     
     return points;
+    
 }
 
 export const GetPointsLevel = (level) => {
