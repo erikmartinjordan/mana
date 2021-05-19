@@ -18,8 +18,10 @@ const LikesComments = ({ authorId, postId, replyId }) => {
     const { user }                        = useContext(UserContext);
     
     useEffect( () => { 
+
+        let ref = firebase.database().ref(`posts/${postId}/replies/${replyId}/voteUsers`);
         
-        firebase.database().ref(`posts/${postId}/replies/${replyId}/voteUsers`).on('value', snapshot => { 
+        let listener = ref.on('value', snapshot => { 
             
             var votes = snapshot.val();            
             
@@ -35,6 +37,8 @@ const LikesComments = ({ authorId, postId, replyId }) => {
             }
             
         });
+
+        return () => ref.off('value', listener);
         
     }, [postId, replyId]);
 
