@@ -1,4 +1,5 @@
-import React from 'react';
+import React                 from 'react';
+import { PaperAirplaneIcon } from '@primer/octicons-react';
 import '../Styles/Loading.css';
 
 const Loading = ({type, tag}) => {
@@ -29,12 +30,10 @@ const Loading = ({type, tag}) => {
             return  <div className = 'Loading' style = {{height: '30px', width: '30px', borderRadius: '50%', margin: '0 5px 0 0'}}></div>
             
         }
-        else if(type === 'Button'){
+        else if(type === 'Reply'){
             
             return <div className = 'Button-Loader'>
-                        <div className = 'Dot'></div>
-                        <div className = 'Dot'></div>
-                        <div className = 'Dot'></div>
+                        <PaperAirplaneIcon/>
                    </div>
         }
         else{
