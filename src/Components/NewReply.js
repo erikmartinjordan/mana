@@ -4,6 +4,7 @@ import Alert                                      from './Alert';
 import UserAvatar                                 from './UserAvatar';
 import Hints                                      from './Hints';
 import EmojiTextarea                              from './EmojiTextarea';
+import Loading                                    from './Loading';
 import UserContext                                from '../Functions/UserContext';
 import firebase, { firebaseServerValue }          from '../Functions/Firebase';
 import GetPoints                                  from '../Functions/GetPoints';
@@ -22,6 +23,7 @@ const NewReply = ({postId}) => {
     const [mdFormat, setMdFormat]                 = useState(false);
     const [message, setMessage]                   = useState('');
     const [nickName, setNickName]                 = useState(null);
+    const [sending, setSending]                   = useState(false);
     const [showLogin, setShowLogin]               = useState(false);
     const [timeSpanReplies, setTimeSpanReplies]   = useState(null);
     const { user }                                = useContext(UserContext);
@@ -88,12 +90,13 @@ const NewReply = ({postId}) => {
         setDisplayAlert(true);
         setAlertTitle(title);
         setAlertMessage(message);
-        setTimeout( () => setDisplayAlert(false), 2000);
+        setTimeout(() => setDisplayAlert(false), 2000);
         
     }
     
     const resetReply = (secondsToClose) => {
         
+        setSending(false);
         setTimeout(() => setMessage(''), secondsToClose * 1000);
         
     }
@@ -133,7 +136,7 @@ const NewReply = ({postId}) => {
         firebase.database().ref(`users/${userUid}`).update(userProps);
         
         insertNotificationAndReputation(userUid, 'reply', 'add', points, url, slicedReply, postId, replyId);
-        
+
         alert('Bien', '¡Mensaje enviado!');
         
         resetReply(2);
@@ -149,11 +152,13 @@ const NewReply = ({postId}) => {
         if(Date.now() - lastUserMessage < timeSpanReplies) 
             alert('Ups...', `Se permite un mensaje cada ${timeSpanReplies/(1000 * 60)} minutos para una cuenta gratuita. Sube a Premium.`);
         else
-            sendPost();
+            setTimeout(() => sendPost(), 50);
         
     }
     
     const reviewMessage = () => {
+
+        setSending(true);
         
         if(message === '')                 
             alert('Ups...', 'El mensaje no puede estar vacío.');
@@ -181,7 +186,7 @@ const NewReply = ({postId}) => {
                             setMessage  = {setMessage}
                             maxLength   = {maxLengthReply}
                         />
-                        <button className = 'bottom' onClick = {reviewMessage}>Enviar</button>
+                        <button className = 'bottom' onClick = {reviewMessage} disabled = {sending}>{sending ? <Loading type = {'Reply'}/> : 'Enviar'}</button>
                     </div>
                 </div>
                 <Hints mdFormat = {mdFormat}/>
