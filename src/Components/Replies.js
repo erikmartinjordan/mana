@@ -69,13 +69,13 @@ const Replies = ({ admin, postId, uid }) => {
                     </div> 
                     <div className = 'Content'>
                         <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
-                        <Reply authorId = {reply.userUid} message = {reply.message}/>
+                            <Reply authorId = {reply.userUid} message = {reply.message}/>
+                        </Linkify>
                         <div className = 'Meta'>
                             <LikesComments             postId = {postId} replyId = {key} authorId = {reply.userUid}/>
                             <EditPost   type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
                             <DeletePost type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
                         </div>
-                        </Linkify>
                     </div>
                     <div className = 'Info'>
                         {reply.edited ? `Editado: ${moment(reply.edited).calendar()}` : null}
