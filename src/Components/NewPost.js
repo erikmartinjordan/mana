@@ -10,6 +10,7 @@ import GetLevel                                   from '../Functions/GetLevelAnd
 import insertNotificationAndReputation            from '../Functions/InsertNotificationAndReputationIntoDatabase';
 import normalize                                  from '../Functions/NormalizeWord';
 import UserContext                                from '../Functions/UserContext';
+import NomoresheetLogo                            from '../Functions/NomoresheetLogo';
 import Accounts                                   from '../Rules/Accounts';
 import '../Styles/NewPost.css';
 
@@ -224,7 +225,8 @@ const NewPost = ({hide}) => {
             { confirmation
             ? <div className = 'Confirmation'>
                     <div className = 'Confirmation-Wrap'>
-                        <p>¿Estás seguro de que quieres salir? Se eliminará tu publicación.</p>
+                        <p><b>¿Estás seguro de que quieres salir?</b></p>
+                        <p>Si te marchas, se eliminará tu publicación y perderás lo escrito.</p>
                         <button onClick = {hide}                         className = 'Yes-Delete'>Sí, salir y eliminar publicación</button>
                         <button onClick = {() => setConfirmation(false)} className = 'No-Delete'>Cancelar</button>
                     </div>
