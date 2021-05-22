@@ -100,6 +100,11 @@ const Stats = () => {
           data: []         
         }],
         responsive: true
+      },
+      options:{
+        legend:{
+            display: false
+        }
       } 
     }
     
@@ -396,7 +401,7 @@ const Stats = () => {
         
         let ref = firebase.database().ref(`stats`);
         
-        let listener = ref.on('value', snapshot => {
+        let listener = ref.orderByKey().limitToLast(12).on('value', snapshot => {
             
             if(snapshot.val()){
                 
