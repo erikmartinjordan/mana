@@ -9,7 +9,7 @@ import UserAvatar                                                               
 import NightModeToggleButton                                                      from './NightModeToggleButton';
 import Tags                                                                       from './Tags';
 import UnreadNotifications                                                        from './UnreadNotifications';
-import firebase, {auth}                                                           from '../Functions/Firebase';
+import firebase                                                                   from '../Functions/Firebase';
 import GetPoints                                                                  from '../Functions/GetPoints';
 import GetLevel                                                                   from '../Functions/GetLevelAndPointsToNextLevel';
 import NomoresheetLogo                                                            from '../Functions/NomoresheetLogo';
@@ -18,7 +18,6 @@ import '../Styles/Nav.css';
 
 const Nav = () => {
     
-    const [lastSignIn, setLastSignIn] = useState(null)
     const [menu, setMenu]             = useState('');
     const [post, setPost]             = useState(false);
     const [login, setLogin]           = useState(false);
@@ -37,11 +36,9 @@ const Nav = () => {
                 
                 if(snapshot.val()){
                     
-                    let lastAccess = moment(parseInt(user.metadata.b)).calendar();
                     let capture = snapshot.val();
                     
                     setUserInfo(capture);
-                    setLastSignIn(`Accediste el ${lastAccess}`);
                 }
             });
             
@@ -101,9 +98,6 @@ const Nav = () => {
                 <NightModeToggleButton></NightModeToggleButton>
                 <div className = 'Separator'></div>
                 <Link to = '/' onClick = {() => setPost(true)} className = 'New-Post'><PaperAirplaneIcon/>Publicar</Link>
-                <div className = 'Separator'></div>
-                <div onClick = {() => auth.signOut()} className = 'Logout'>Cerrar sesión</div>
-                <div className = 'SignIn'>{lastSignIn}</div>
             </React.Fragment>
         );
     }
