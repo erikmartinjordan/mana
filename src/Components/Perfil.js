@@ -1,24 +1,24 @@
-import React, { useContext, useState, useEffect }      from 'react';
-import { SmileyIcon, GraphIcon, StarIcon, InboxIcon }  from '@primer/octicons-react';
-import PaymentModal                                    from './PaymentModal';
-import ConnectToStripe                                 from './ConnectToStripe';
-import Notifications                                   from './Notifications';
-import UserAvatar                                      from './UserAvatar';
-import ToggleButton                                    from './ToggleButton';
-import DeleteAccount                                   from './DeleteAccount';
-import UserContext                                     from '../Functions/UserContext';
-import Points                                          from '../Functions/PointsAndValues';
-import firebase, { environment }                       from '../Functions/Firebase';
-import GetNumberOfPosts                                from '../Functions/GetNumberOfPosts';
-import GetNumberOfReplies                              from '../Functions/GetNumberOfReplies';
-import GetNumberOfSpicy                                from '../Functions/GetNumberOfSpicy';
-import GetPoints                                       from '../Functions/GetPoints';
-import GetLevel                                        from '../Functions/GetLevelAndPointsToNextLevel';
-import AnonymImg                                       from '../Functions/AnonymImg';
-import AnonymName                                      from '../Functions/AnonymName';
-import DowngradeToFreePlan                             from '../Functions/DowngradeToFreePlan';
-import { premium, infinita }                           from '../Functions/Stripe';
-import Accounts                                        from '../Rules/Accounts';
+import React, { useContext, useState, useEffect }                   from 'react';
+import { SmileyIcon, GraphIcon, StarIcon, InboxIcon, SignOutIcon }  from '@primer/octicons-react';
+import PaymentModal                                                 from './PaymentModal';
+import ConnectToStripe                                              from './ConnectToStripe';
+import Notifications                                                from './Notifications';
+import UserAvatar                                                   from './UserAvatar';
+import ToggleButton                                                 from './ToggleButton';
+import DeleteAccount                                                from './DeleteAccount';
+import UserContext                                                  from '../Functions/UserContext';
+import Points                                                       from '../Functions/PointsAndValues';
+import firebase, { environment, auth }                              from '../Functions/Firebase';
+import GetNumberOfPosts                                             from '../Functions/GetNumberOfPosts';
+import GetNumberOfReplies                                           from '../Functions/GetNumberOfReplies';
+import GetNumberOfSpicy                                             from '../Functions/GetNumberOfSpicy';
+import GetPoints                                                    from '../Functions/GetPoints';
+import GetLevel                                                     from '../Functions/GetLevelAndPointsToNextLevel';
+import AnonymImg                                                    from '../Functions/AnonymImg';
+import AnonymName                                                   from '../Functions/AnonymName';
+import DowngradeToFreePlan                                          from '../Functions/DowngradeToFreePlan';
+import { premium, infinita }                                        from '../Functions/Stripe';
+import Accounts                                                     from '../Rules/Accounts';
 import '../Styles/Perfil.css';
 import '../Styles/UserAvatar.css';
 import '../Styles/ToggleButton.css';
@@ -146,6 +146,13 @@ export default Perfil;
 const Sidebar = ({menu, setMenu, hide}) => {
 
     const selected = (item) => menu === item ? 'Item Selected' : 'Item';
+
+    const logout = () => {
+
+        window.location.href = '/';
+
+        auth.signOut();
+    }
     
     return(
         <div className = 'Sidebar'>
@@ -155,7 +162,8 @@ const Sidebar = ({menu, setMenu, hide}) => {
                     <div className = {selected('Notif')}   onClick = {() => setMenu('Notif')}><InboxIcon/>Notificaciones</div>
                     <div className = {selected('Cuenta')}  onClick = {() => setMenu('Cuenta')}><SmileyIcon/>Cuenta</div>
                     <div className = {selected('Datos')}   onClick = {() => setMenu('Datos')}><GraphIcon/>Datos</div>
-                    <div className = {selected('Premium')} onClick = {() => setMenu('Premium')}><StarIcon/> Premium</div>
+                    <div className = {selected('Premium')} onClick = {() => setMenu('Premium')}><StarIcon/>Premium</div>
+                    <div className = 'Item'                onClick = {logout}><SignOutIcon/>Cerrar sesión</div>
             </div>
         </div>
     );
