@@ -2,39 +2,28 @@ import { useState, useEffect }   from 'react';
 import GetPoints                 from './GetPoints';
 import firebase                  from './Firebase';
 
-const GetRankingUser = (userUid) => {
+const GetRankingUser = (uid) => {
     
-    const [users, setUsers] = useState([]);
+    const [ranking, setRanking] = useState(null);
     
-    useEffect( () => { 
+    useEffect(() => { 
         
-        firebase.database().ref('users/').once('value').then( snapshot => {
+        let ref = firebase.database().ref(`users/${uid}/numRanking`);
+        
+        let listener = ref.on('value', snapshot => { 
             
-            if(snapshot) {
-                
-                let userUids = Object.keys(snapshot.val());
-                setUsers(userUids);
-                
-            }
-        }) 
+            let numRanking = snapshot.val(); 
+
+            if(numRanking)
+                setRanking(`Top ${numRanking}%`);
+            
+        });
         
-    }, []);
-    
-    const points = GetPoints(...users);
-    
-    const array = users.map( (_, i) => [users[i], points[i]] );
-    
-    const sorted = array.sort( (a, b) => a[1] > b[1] ? -1 : 1);
-    
-    const sortedUids = sorted.map(array => array[0]);
-    
-    const index = sortedUids.indexOf(userUid);
-    
-    let rank = ( (index + 1) / users.length);
-    
-    var res = (isFinite(rank) && rank > 0 && rank < 0.3) ? `top ${Math.round(rank * 100)} %` : null ;
+        return () => ref.off('value', listener);
+        
+    }, [uid]);
  
-    return res ;
+    return ranking;
 }
 
 export default GetRankingUser;

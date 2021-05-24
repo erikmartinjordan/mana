@@ -23,7 +23,7 @@ const PublicInfo = (props) => {
     const views                                  = GetNumberOfViews(userUid);
     const photoURL                               = GetProfileImg(userUid);
     const points                                 = GetPoints(userUid);
-    const [level, pointsToNextLevel, percentage] = GetLevel(...points);
+    const [level, pointsToNextLevel, percentage] = GetLevel(points);
     const articles                               = GetLastArticles(userUid, 10); 
     const ranking                                = GetRankingUser(userUid);
     const stripeUserId                           = GetStripeUserId(userUid);

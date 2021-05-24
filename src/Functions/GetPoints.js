@@ -1,31 +1,26 @@
 import { useEffect, useState } from 'react';
 import firebase                from './Firebase';
 
-const GetPoints = (...uids) => {
+const GetPoints = (uid) => {
     
     const [points, setPoints] = useState([]);
-
-    // Using JSON.stringify to compare arrays passed as arguments
-    // If I don't use it, React will make an infinite render
-    let stringUids = JSON.stringify(uids);
     
-    useEffect( () => { 
+    useEffect(() => { 
         
-        let ref = firebase.database().ref('users/');
+        let ref = firebase.database().ref(`users/${uid}/numPoints`);
         
         let listener = ref.on('value', snapshot => { 
             
-            let users = snapshot.val(); 
-            
-            let numPoints = JSON.parse(stringUids).map(uid => ~~users[uid]?.numPoints);
-            
-            setPoints(numPoints);
+            let numPoints = snapshot.val(); 
+
+            if(numPoints)
+                setPoints(numPoints);
             
         });
         
         return () => ref.off('value', listener);
         
-    }, [stringUids]);
+    }, [uid]);
     
     return points;
     

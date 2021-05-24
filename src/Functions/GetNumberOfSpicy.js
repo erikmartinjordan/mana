@@ -1,31 +1,26 @@
 import { useState, useEffect } from 'react';
 import firebase                from './Firebase';
 
-const GetNumberOfSpicy = (...uids) => {
+const GetNumberOfSpicy = (uid) => {
     
     const [spicy, setSpicy] = useState([]);
     
-    // Using JSON.stringify to compare arrays passed as arguments
-    // If I don't use it, React will make an infinite render
-    let stringUids = JSON.stringify(uids);
-    
-    useEffect( () => { 
+    useEffect(() => { 
         
-        let ref = firebase.database().ref('users/');
+        let ref = firebase.database().ref(`users/${uid}/numSpicy`);
         
         let listener = ref.on('value', snapshot => { 
             
-            let users = snapshot.val(); 
-            
-            let numSpicy = JSON.parse(stringUids).map(uid => ~~users[uid]?.numSpicy);
-            
-            setSpicy(numSpicy);
+            let numSpicy = snapshot.val(); 
+
+            if(numSpicy)
+                setSpicy(numSpicy);
             
         });
-      
+        
         return () => ref.off('value', listener);
         
-    }, [stringUids]);
+    }, [uid]);
     
     return spicy;
 }

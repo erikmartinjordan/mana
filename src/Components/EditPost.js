@@ -16,7 +16,7 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
     const [canEdit, setCanEdit] = useState(false);
     const [tags, setTags]       = useState([]);
     const points                = GetPoints(authorId);
-    const level                 = GetLevel(...points)[0];
+    const level                 = GetLevel(points)[0];
     
     useEffect( () => {
         

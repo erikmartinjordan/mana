@@ -1,31 +1,26 @@
 import { useState, useEffect } from 'react';
-import firebase                from './Firebase.js';
+import firebase                from './Firebase';
 
-const GetNumberOfReplies = (...uids) => {
+const GetNumberOfReplies = (uid) => {
     
     const [replies, setReplies] = useState([]);
     
-    // Using JSON.stringify to compare arrays passed as arguments
-    // If I don't use it, React will make an infinite render
-    let stringUids = JSON.stringify(uids);
-    
-    useEffect( () => { 
+    useEffect(() => { 
         
-        let ref = firebase.database().ref('users/');
+        let ref = firebase.database().ref(`users/${uid}/numReplies`);
         
         let listener = ref.on('value', snapshot => { 
             
-            let users = snapshot.val(); 
-            
-            let numReplies = JSON.parse(stringUids).map(uid => ~~users[uid]?.numReplies);
-            
-            setReplies(numReplies);
+            let numReplies = snapshot.val(); 
+
+            if(numReplies)
+                setReplies(numReplies);
             
         });
         
         return () => ref.off('value', listener);
         
-    }, [stringUids]);
+    }, [uid]);
     
     return replies;
 }

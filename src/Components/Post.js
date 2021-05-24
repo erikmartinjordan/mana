@@ -27,7 +27,7 @@ const Post = () => {
     const { user }                              = useContext(UserContext);
     const points                                = GetPoints(user ? user.uid : 0);
     
-    const level                                 = GetLevel(...points)[0];
+    const level                                 = GetLevel(points)[0];
     const levelLimit                            = 20;
     const timeLimitPrivateArticleInMonths       = 2;
     const url                                   = window.location.pathname.split('/').pop();

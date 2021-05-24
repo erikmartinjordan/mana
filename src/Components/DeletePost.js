@@ -13,7 +13,7 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
     const [confirmation, setConfirmation] = useState(false);
     const history                         = useHistory();
     const points                          = GetPoints(authorId);
-    const level                           = GetLevel(...points)[0];
+    const level                           = GetLevel(points)[0];
     
     useEffect( () => {
         

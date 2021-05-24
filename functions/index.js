@@ -339,3 +339,23 @@ exports.getUserProfilePics = functions.https.onRequest(async (request, response)
     });
     
 });
+
+exports.getRankingUsers = functions.database.ref('/analytics/{date}').onCreate(async (snapshot, context) => {
+            
+    let ranking = (await admin.database().ref('users').once('value')).val();
+            
+    let sortedRanking = Object.entries(ranking).sort((a, b) => b[1].numPoints > a[1].numPoints ? 1 : b[1].numPoints < a[1].numPoints ? -1 : 0);
+            
+    sortedRanking.forEach(([uid, _]) => {
+
+        let position = sortedRanking.findIndex(a => a.includes(uid));
+
+        let percentage = (100 * position/sortedRanking.length).toFixed(2);
+
+        admin.database().ref(`users/${uid}`).update({numRanking: percentage});
+
+    });
+        
+    return null;
+    
+});

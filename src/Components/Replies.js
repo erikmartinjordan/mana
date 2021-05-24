@@ -92,7 +92,7 @@ const Reply = ({ authorId, message }) => {
     
     const [mdFormat, setMdFormat] = useState(null);
     const points                  = GetPoints(authorId);
-    const level                   = GetLevel(...points)[0];
+    const level                   = GetLevel(points)[0];
     const isAnonymous             = authorId.length === 5;
     
     useEffect( () => {

@@ -14,8 +14,8 @@ const UserAvatar = ({allowAnonymousUser, user}) => {
     const [badge, setBadge]     = useState(null);
     
     const points     = GetPoints(user.uid);
-    const level      = GetLevel(...points)[0];
-    const percentage = GetLevel(...points)[2];
+    const level      = GetLevel(points)[0];
+    const percentage = GetLevel(points)[2];
     const randomImg  = AnonymImg();
     
     useEffect( () => {
