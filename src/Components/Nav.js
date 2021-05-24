@@ -26,7 +26,7 @@ const Nav = () => {
     const [userInfo, setUserInfo]     = useState(null);
     const { user }                    = useContext(UserContext);
     const points                      = GetPoints(uid);
-    const level                       = GetLevel(...points)[0];                     
+    const level                       = GetLevel(points)[0];                     
 
     useEffect ( () => {
       
