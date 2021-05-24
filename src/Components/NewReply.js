@@ -87,6 +87,7 @@ const NewReply = ({postId}) => {
     
     const alert = (title, message) => {
         
+        setSending(false);
         setDisplayAlert(true);
         setAlertTitle(title);
         setAlertMessage(message);
