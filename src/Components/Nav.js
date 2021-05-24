@@ -45,10 +45,10 @@ const Nav = () => {
             });
             
             setUid(user.uid);
+
+            return () => ref.off('value', listener);
             
         }
-
-        return () => ref.off('value', listener);
       
     }, [user]);
     

@@ -66,10 +66,10 @@ const Profile = (props) => {
             });    
             
             setUid(user.uid);
+
+            return () => ref.off('value', listener);
             
         }    
-
-        return () => ref.off('value', listener);
         
     }, [user]);
     
