@@ -1,6 +1,6 @@
 import React                          from 'react';
+import NomoresheetLogo                from './NomoresheetLogo';
 import firebase, {auth, provider}     from '../Functions/Firebase';
-import NomoresheetLogo                from '../Functions/NomoresheetLogo';
 import '../Styles/Login.css';
 
 const Login = ({hide}) => {  

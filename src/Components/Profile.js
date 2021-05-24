@@ -6,6 +6,7 @@ import Notifications                                                from './Noti
 import UserAvatar                                                   from './UserAvatar';
 import ToggleButton                                                 from './ToggleButton';
 import DeleteAccount                                                from './DeleteAccount';
+import DowngradeToFreePlan                                          from './DowngradeToFreePlan';
 import UserContext                                                  from '../Functions/UserContext';
 import Points                                                       from '../Functions/PointsAndValues';
 import firebase, { environment, auth }                              from '../Functions/Firebase';
@@ -16,7 +17,6 @@ import GetPoints                                                    from '../Fun
 import GetLevel                                                     from '../Functions/GetLevelAndPointsToNextLevel';
 import AnonymImg                                                    from '../Functions/AnonymImg';
 import AnonymName                                                   from '../Functions/AnonymName';
-import DowngradeToFreePlan                                          from '../Functions/DowngradeToFreePlan';
 import { premium, infinita }                                        from '../Functions/Stripe';
 import Accounts                                                     from '../Rules/Accounts';
 import '../Styles/Perfil.css';

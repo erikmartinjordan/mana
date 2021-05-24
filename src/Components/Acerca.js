@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import moment                                     from 'moment';
 import ReactMarkdown                              from 'react-markdown';
 import Twemoji                                    from './Twemoji';
+import DeleteFeature                              from './DeleteFeature';
 import firebase, { storageRef }                   from '../Functions/Firebase';
-import DeleteFeature                              from '../Functions/DeleteFeature';
 import UserContext                                from '../Functions/UserContext';
 import '../Styles/Acerca.css';
 

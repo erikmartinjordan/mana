@@ -1,8 +1,8 @@
 import React                                  from 'react';
 import { BrowserRouter }                      from 'react-router-dom';
 import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import DeletePost                             from '../Components/DeletePost';
 import firebase                               from '../Functions/Firebase';
-import DeletePost                             from '../Functions/DeletePost';
 
 test('Shows confirmation box to delete post/reply', async () => {
     

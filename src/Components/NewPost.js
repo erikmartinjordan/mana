@@ -4,13 +4,13 @@ import Alert                                      from './Alert';
 import UserAvatar                                 from './UserAvatar';
 import Hints                                      from './Hints';
 import EmojiTextarea                              from './EmojiTextarea';
+import NomoresheetLogo                            from './NomoresheetLogo';
 import firebase, { firebaseServerValue }          from '../Functions/Firebase';
 import GetPoints                                  from '../Functions/GetPoints';
 import GetLevel                                   from '../Functions/GetLevelAndPointsToNextLevel';
 import insertNotificationAndReputation            from '../Functions/InsertNotificationAndReputationIntoDatabase';
 import normalize                                  from '../Functions/NormalizeWord';
 import UserContext                                from '../Functions/UserContext';
-import NomoresheetLogo                            from '../Functions/NomoresheetLogo';
 import Accounts                                   from '../Rules/Accounts';
 import '../Styles/NewPost.css';
 

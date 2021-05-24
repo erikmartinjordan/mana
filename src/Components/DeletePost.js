@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory }                 from 'react-router-dom';
-import Points                         from './PointsAndValues';
-import firebase                       from './Firebase';
-import GetPoints                      from './GetPoints';
-import GetLevel                       from './GetLevelAndPointsToNextLevel';
+import Points                         from '../Functions/PointsAndValues';
+import firebase                       from '../Functions/Firebase';
+import GetPoints                      from '../Functions/GetPoints';
+import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel';
 import Accounts                       from '../Rules/Accounts';
 import '../Styles/DeletePost.css';
 

@@ -1,5 +1,5 @@
 import React, { useContext, useState }  from 'react';
-import Loading                          from '../Components/Loading';
+import Loading                          from './Loading';
 import firebase, { environment }        from '../Functions/Firebase';
 import UserContext                      from '../Functions/UserContext';
 import '../Styles/DeletePost.css';

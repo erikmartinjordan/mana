@@ -8,11 +8,11 @@ import NewPost                                                                  
 import UserAvatar                                                                 from './UserAvatar';
 import NightModeToggleButton                                                      from './NightModeToggleButton';
 import Tags                                                                       from './Tags';
+import NomoresheetLogo                                                            from './NomoresheetLogo';
 import UnreadNotifications                                                        from './UnreadNotifications';
 import firebase                                                                   from '../Functions/Firebase';
 import GetPoints                                                                  from '../Functions/GetPoints';
 import GetLevel                                                                   from '../Functions/GetLevelAndPointsToNextLevel';
-import NomoresheetLogo                                                            from '../Functions/NomoresheetLogo';
 import UserContext                                                                from '../Functions/UserContext';
 import '../Styles/Nav.css';
 
