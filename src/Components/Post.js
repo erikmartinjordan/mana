@@ -3,7 +3,7 @@ import moment                                    from 'moment';
 import ReactMarkdown                             from 'react-markdown';
 import Default                                   from './Default';
 import Login                                     from './Login';
-import Perfil                                    from './Perfil';
+import Profile                                   from './Profile';
 import firebase                                  from '../Functions/Firebase';
 import GetLevel                                  from '../Functions/GetLevelAndPointsToNextLevel';
 import GetPoints                                 from '../Functions/GetPoints';
@@ -265,8 +265,8 @@ export const Content = ({text, privateArticle, numPrivatePosts, user, level, lev
                 /> 
               </React.Fragment>
             }
-            {login  ? <Login  hide = {() => setLogin(false)}/> : null}
-            {perfil ? <Perfil hide = {() => setPerfil(false)} menu = {'Premium'} /> : null}
+            {login  ? <Login   hide = {() => setLogin(false)}/> : null}
+            {perfil ? <Profile hide = {() => setPerfil(false)} menu = {'Premium'} /> : null}
         </div>
     );
     
