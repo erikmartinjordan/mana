@@ -3,7 +3,7 @@ import { Link }                                                                 
 import { ArrowRightIcon, HomeIcon, NumberIcon, TelescopeIcon, PaperAirplaneIcon } from '@primer/octicons-react';
 import moment                                                                     from 'moment';
 import Login                                                                      from './Login';
-import Perfil                                                                     from './Perfil';
+import Profile                                                                    from './Profile';
 import NewPost                                                                    from './NewPost';
 import UserAvatar                                                                 from './UserAvatar';
 import NightModeToggleButton                                                      from './NightModeToggleButton';
@@ -31,8 +31,10 @@ const Nav = () => {
     useEffect ( () => {
       
         if(user) {
+
+            let ref = firebase.database().ref(`users/${user.uid}`);
             
-            firebase.database().ref(`users/${user.uid}`).on( 'value', snapshot => {
+            let listener = ref.on( 'value', snapshot => {
                 
                 if(snapshot.val()){
                     
@@ -45,6 +47,8 @@ const Nav = () => {
             setUid(user.uid);
             
         }
+
+        return () => ref.off('value', listener);
       
     }, [user]);
     
@@ -111,9 +115,9 @@ const Nav = () => {
             <div className = {'Menu ' + menu} onClick = {() => setMenu('')}>
                 {user ? menuUser() : menuNotUser()}
             </div>
-            {perfil         && <Perfil          hide = {() => setPerfil(false)}/>}
-            {login          && <Login           hide = {() => setLogin(false)}/>}
-            {post           && <NewPost         hide = {() => setPost(false)}/>}
+            {perfil && <Profile  hide = {() => setPerfil(false)}/>}
+            {login  && <Login    hide = {() => setLogin(false)}/>}
+            {post   && <NewPost  hide = {() => setPost(false)}/>}
         </div>
     );
 }
