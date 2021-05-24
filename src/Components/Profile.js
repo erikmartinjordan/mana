@@ -32,7 +32,7 @@ const Profile = (props) => {
     const posts                                  = GetNumberOfPosts(uid);
     const replies                                = GetNumberOfReplies(uid);
     const spicy                                  = GetNumberOfSpicy(uid);
-    const points                                 = GetPoints(uid)[0];
+    const points                                 = GetPoints(uid);
     const { valuePost, valueReply, valueSpicy }  = Points;
     const [level, pointsToNextLevel, percentage] = GetLevel(points);
     const { user }                               = useContext(UserContext);

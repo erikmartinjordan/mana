@@ -30,7 +30,7 @@ const NewPost = ({hide}) => {
     const [title, setTitle]                 = useState('');
     const [uid, setUid]                     = useState(null);
     const { user }                          = useContext(UserContext);
-    const points                            = GetPoints(nickName ? nickName : uid)[0];
+    const points                            = GetPoints(nickName ? nickName : uid);
     const level                             = GetLevel(points)[0];
     
     useEffect( () => {

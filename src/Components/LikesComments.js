@@ -14,7 +14,7 @@ const LikesComments = ({ authorId, postId, replyId }) => {
     const [alertTitle, setAlertTitle]     = useState(null);
     const [modal, setModal]               = useState(false);
     const [votes, setVotes]               = useState({});
-    const points                          = GetPoints(authorId)[0];
+    const points                          = GetPoints(authorId);
     const { user }                        = useContext(UserContext);
     
     useEffect( () => { 

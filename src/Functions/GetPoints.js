@@ -3,7 +3,7 @@ import firebase                from './Firebase';
 
 const GetPoints = (uid) => {
     
-    const [points, setPoints] = useState([]);
+    const [points, setPoints] = useState(0);
     
     useEffect(() => { 
         

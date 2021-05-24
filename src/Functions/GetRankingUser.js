@@ -1,5 +1,4 @@
 import { useState, useEffect }   from 'react';
-import GetPoints                 from './GetPoints';
 import firebase                  from './Firebase';
 
 const GetRankingUser = (uid) => {
