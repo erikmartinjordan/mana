@@ -23,7 +23,7 @@ import '../Styles/Perfil.css';
 import '../Styles/UserAvatar.css';
 import '../Styles/ToggleButton.css';
 
-const Perfil = (props) => {
+const Profile = (props) => {
 
     const [infoUser, setInfoUser]                = useState(null);
     const [menu, setMenu]                        = useState(props.menu ? props.menu : 'Notif');
@@ -47,8 +47,10 @@ const Perfil = (props) => {
     useEffect(() => {
         
         if(user){
+
+            let ref = firebase.database().ref(`users/${user.uid}`);
             
-            firebase.database().ref(`users/${user.uid}`).on('value', snapshot => {
+            let listener = ref.on('value', snapshot => {
                 
                 if(snapshot.val()){
                     
@@ -66,6 +68,8 @@ const Perfil = (props) => {
             setUid(user.uid);
             
         }    
+
+        return () => ref.off('value', listener);
         
     }, [user]);
     
@@ -141,7 +145,7 @@ const Perfil = (props) => {
     );
 }
 
-export default Perfil;
+export default Profile;
 
 const Sidebar = ({menu, setMenu, hide}) => {
 
@@ -149,9 +153,10 @@ const Sidebar = ({menu, setMenu, hide}) => {
 
     const logout = () => {
 
-        window.location.href = '/';
+        hide();
 
         auth.signOut();
+
     }
     
     return(
