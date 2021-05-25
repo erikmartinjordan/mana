@@ -344,13 +344,22 @@ exports.getRankingUsers = functions.database.ref('/analytics/{date}').onCreate(a
             
     let ranking = (await admin.database().ref('users').once('value')).val();
             
-    let sortedRanking = Object.entries(ranking).sort((a, b) => b[1].numPoints > a[1].numPoints ? 1 : b[1].numPoints < a[1].numPoints ? -1 : 0);
+    let sortedRanking = Object.entries(ranking).sort((a, b) => {
+
+        let first  = a[1].numPoints || 0;
+        let second = b[1].numPoints || 0;
+
+        return second > first ? 1 : second < first ? -1 : 0;
+    
+    });
             
     sortedRanking.forEach(([uid, _]) => {
 
         let position = sortedRanking.findIndex(a => a.includes(uid));
 
-        let percentage = (100 * position/sortedRanking.length).toFixed(2);
+        let percentage = 100 * position/sortedRanking.length;
+
+        percentage = percentage > 1 ? ~~percentage : percentage.toFixed(5);
 
         admin.database().ref(`users/${uid}`).update({numRanking: percentage});
 
