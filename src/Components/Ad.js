@@ -54,7 +54,7 @@ const Ad = () => {
             <div className = 'Ad-Wrap'>
                 <img src = {random?.img}/>
             </div>
-            <span className = 'Author'>Photo by <a href = {random?.profile}>{random?.author}</a></span>
+            <span className = 'Author'>📸 Foto por <a href = {random?.profile}>{random?.author}</a></span>
         </a>
     );
     
