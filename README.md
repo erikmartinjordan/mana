@@ -9,13 +9,11 @@ Nomoresheet es una comunidad abierta de preguntas y respuestas donde cualquier t
 
 Nomoresheet es de código abierto, cualquier usuario puede crear una réplica de la comunidad y modificarla a su antojo.
 
-Nomoresheet es una comunidad sin ánimo de lucro; todos los beneficios que se recogen a través de Nomoresheet, se reinvierten de nuevo en la compañía, de tal forma que nadie puede venderla en el futuro. 
+Nomoresheet es una comunidad sin ánimo de lucro; todos los beneficios que se recogen a través de Nomoresheet, se reinvierten de nuevo en la compañía.
 
 ## Puntuación
 
-Los usuarios obtienen mayores privilegios a medida que aumenta su reputación en la web. 
-
-La reputación se consigue sumando puntos que están repartidos del siguiente modo:
+Los usuarios obtienen mayores privilegios a medida que aumenta su reputación en la web. La reputación se consigue sumando puntos que se reparten del siguiente modo:
 
 | Tipo        | Puntos |
 |-------------|--------|
@@ -24,23 +22,21 @@ La reputación se consigue sumando puntos que están repartidos del siguiente mo
 | Picante     | 50     |
 | Aplauso     | 60     |
 
-Por publicaciones nuevas, un usuario obtiene 30 puntos, por una respuesta 40, si la publicación recibe picante, se obtienen 50 y, por un aplauso, se obtienen 60 puntos.
-
 ## Niveles
 
 Los niveles dependen del número de puntos y siguen una curva logarítmica:
 
-<img src="https://render.githubusercontent.com/render/math?math=level=\lfloor{log_1.5(points%2B1)}\rfloor">
+<img src="https://render.githubusercontent.com/render/math?math=nivel=\lfloor{log_1.5(puntos%2B1)}\rfloor">
 
 
-Por ejemplo, vamos a ver unos cuantos valores:
+Por ejemplo, para llegar al nivel 25 hacen falta 25250,16829 puntos, mientras que para llegar al nivel 100, hacen falta 4,06561E+17 puntos.
 
-| Nivel | Puntos         |
-|-------|----------------|
-| 25    | 25250,16829    |
-| 50    | 637621499,2    |
-| 75    | 16100687809804 |
-| 100   | 4,06561E+17    |
+
+## Privilegios
+
+Los privilegios se consiguen sumando puntos en Nomoresheet. A medida que aumenta el nivel de un usuario en la comunidad, se desbloquean opciones. 
+
+También se pueden desbloquear las opciones y límites de publicación mediante una cuenta *premium*, pero no es estrictamente necesario.
 
 
 ## Copyright y licencia
