@@ -6,6 +6,7 @@ import RelatedContent                             from './RelatedContent';
 import NewReply                                   from './NewReply';
 import Default                                    from './Default';
 import Privileges                                 from './Privileges';
+import Ad                                         from './Ad';
 import firebase                                   from '../Functions/Firebase';
 import UserContext                                from '../Functions/UserContext';
 import '../Styles/Forum.css';
@@ -64,6 +65,7 @@ const Detail = (props) => {
                         <Norms/>
                         <Privileges/>
                         <RelatedContent/>
+                        <Ad/>
                     </div>
                 </div>
               </div>   
