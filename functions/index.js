@@ -357,7 +357,7 @@ exports.getRankingUsers = functions.database.ref('/analytics/{date}').onCreate(a
 
         let position = sortedRanking.findIndex(a => a.includes(uid));
 
-        let percentage = 100 * position/sortedRanking.length;
+        let percentage = 100 * (position + 1)/sortedRanking.length;
 
         percentage = percentage > 1 ? ~~percentage : percentage.toFixed(5);
 
