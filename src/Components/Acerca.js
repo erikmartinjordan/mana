@@ -9,12 +9,12 @@ import '../Styles/Acerca.css';
 
 const Acerca = () => {
     
-    const today                     = moment();
-    const { admin }                 = useContext(UserContext);
-    const [content, setContent]     = useState('');
-    const [data, setData]           = useState(null);
-    const [imgUrl, setImgUrl]       = useState(null);
-    const [title, setTitle]         = useState('');
+    const today                 = moment();
+    const { admin }             = useContext(UserContext);
+    const [content, setContent] = useState('');
+    const [data, setData]       = useState(null);
+    const [imgUrl, setImgUrl]   = useState(null);
+    const [title, setTitle]     = useState('');
     
     useEffect(() => {
         
