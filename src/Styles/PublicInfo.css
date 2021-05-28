@@ -2,15 +2,26 @@
     padding: 20px;
     width: 100%;
 }
+.Public-Info .Header::before{
+    border-radius: 12px 12px 0px 0px;
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.25);
+}
 .Public-Info .Header{
     margin: -20px -20px 0px -20px;
     border-radius: 12px 12px 0px 0px;
     padding: 50px;
     background-size: cover;
+    position: relative;
 }
 .Public-Info .Header h2{
     color: white;
-    mix-blend-mode: difference;
+    position: relative;
 }
 .Public-Info .Datos{
     background: var(--bgBox);
