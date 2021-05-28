@@ -4,8 +4,10 @@ import moment                                    from 'moment';
 import Donate                                    from './Donate';
 import UserAvatar                                from './UserAvatar';
 import ReputationGraph                           from './ReputationGraph';
+import firebase                                  from '../Functions/Firebase';
 import GetName                                   from '../Functions/GetName';
 import GetProfileImg                             from '../Functions/GetProfileImg';
+import GetBackgroundImg                          from '../Functions/GetBackgroundImg';
 import GetNumberOfViews                          from '../Functions/GetNumberOfViews';
 import GetLevel                                  from '../Functions/GetLevelAndPointsToNextLevel';
 import GetPoints                                 from '../Functions/GetPoints';
@@ -13,40 +15,32 @@ import GetLastArticles                           from '../Functions/GetLastArtic
 import GetRankingUser                            from '../Functions/GetRankingUser';
 import GetNumberOfProfileViewsAndProfileLastSeen from '../Functions/GetNumberOfProfileViewsAndProfileLastSeen';
 import GetStripeUserId                           from '../Functions/GetStripeUserId';
+import beautifyNumber                            from '../Functions/BeautifyNumber';
 import '../Styles/PublicInfo.css';
 
 const PublicInfo = (props) => {
     
-    const userUid                                = props.match.params.string;
-    const [profileViews, profileLastSeen]        = GetNumberOfProfileViewsAndProfileLastSeen(userUid);
-    const name                                   = GetName(userUid);
-    const views                                  = GetNumberOfViews(userUid);
-    const photoURL                               = GetProfileImg(userUid);
-    const points                                 = GetPoints(userUid);
+    const uid                                    = props.match.params.string;
+    const [profileViews, profileLastSeen]        = GetNumberOfProfileViewsAndProfileLastSeen(uid);
+    const name                                   = GetName(uid);
+    const views                                  = GetNumberOfViews(uid);
+    const backgroundURL                          = GetBackgroundImg(uid);
+    const photoURL                               = GetProfileImg(uid);
+    const points                                 = GetPoints(uid);
     const [level, pointsToNextLevel, percentage] = GetLevel(points);
-    const articles                               = GetLastArticles(userUid, 10); 
-    const ranking                                = GetRankingUser(userUid);
-    const stripeUserId                           = GetStripeUserId(userUid);
-    const user                                   = {uid: userUid, photoURL: photoURL};
-    
-    const beautifyNumber = (number) => {
-        
-        let beautyPoints;
-        
-        if(number < 1000)                      beautyPoints = `${number}`;
-        if(number >= 1000 && number < 1000000) beautyPoints = `~${(number/1000).toFixed(1)}k`;
-        if(number >= 1000000)                  beautyPoints = `~${(number/1000000).toFixed(1)}m`;
-        
-        return beautyPoints;
-        
-    }
+    const articles                               = GetLastArticles(uid, 10); 
+    const ranking                                = GetRankingUser(uid);
+    const stripeUserId                           = GetStripeUserId(uid);
+    const user                                   = {uid: uid, photoURL: photoURL};
     
     return (
         <div className = 'Public-Info'>
             <div className = 'Datos'>
-                {stripeUserId ? <Donate name = {name} stripeUserId = {stripeUserId}/> : null}
-                <UserAvatar user = {user}/>
-                <h2>{name}</h2>
+                <div className = 'Header' style = {{backgroundImage: `url('${backgroundURL}')`}}>
+                    {stripeUserId ? <Donate name = {name} stripeUserId = {stripeUserId}/> : null}
+                    <UserAvatar user = {user}/>
+                    <h2>{name}</h2>
+                </div>
                 <div className = 'Bloque'>
                     <div className = 'Title'>Reputación {ranking && <span className = 'Ranking'>{ranking}</span>}</div>
                     <div className = 'Num'>{points.toLocaleString()}</div>
@@ -54,7 +48,7 @@ const PublicInfo = (props) => {
                 </div>
                 <div className = 'Bloque'>
                     <div className = 'Title'>Gráfico de reputación</div>
-                    <ReputationGraph uid = {userUid}/>
+                    <ReputationGraph uid = {uid}/>
                 </div>
                 <div className = 'Bloque'>
                     <div className = 'Title'>Impacto</div>

@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect }                   from 'react';
+import { Link }                                                     from 'react-router-dom';
 import { SmileyIcon, GraphIcon, StarIcon, InboxIcon, SignOutIcon }  from '@primer/octicons-react';
 import PaymentModal                                                 from './PaymentModal';
 import ConnectToStripe                                              from './ConnectToStripe';
@@ -7,6 +8,7 @@ import UserAvatar                                                   from './User
 import ToggleButton                                                 from './ToggleButton';
 import DeleteAccount                                                from './DeleteAccount';
 import DowngradeToFreePlan                                          from './DowngradeToFreePlan';
+import ChangeBackgroundImage                                        from './ChangeBackgroundImage';
 import UserContext                                                  from '../Functions/UserContext';
 import Points                                                       from '../Functions/PointsAndValues';
 import firebase, { environment, auth }                              from '../Functions/Firebase';
@@ -107,6 +109,7 @@ const Profile = (props) => {
                     menu = {menu} 
                     setMenu = {setMenu}
                     hide = {props.hide}
+                    infoUser = {infoUser}
                 />
                 { menu === 'Notif'
                 ? <Notifications
@@ -118,6 +121,7 @@ const Profile = (props) => {
                     user = {user} 
                     infoUser = {infoUser} 
                     nextPayment = {nextPayment}
+                    uid = {uid}
                   />
                 : menu === 'Datos'
                 ? <Data 
@@ -147,7 +151,7 @@ const Profile = (props) => {
 
 export default Profile;
 
-const Sidebar = ({menu, setMenu, hide}) => {
+const Sidebar = ({menu, setMenu, hide, infoUser}) => {
 
     const selected = (item) => menu === item ? 'Item Selected' : 'Item';
 
@@ -164,8 +168,8 @@ const Sidebar = ({menu, setMenu, hide}) => {
             <div className = 'First-Menu'>
                 <div className = 'BackButtonmobile'        onClick = {hide}>← Volver</div>
                 <div className = 'Menu-Title'>Menú</div>
+                    <div className = {selected('Cuenta')}  onClick = {() => setMenu('Cuenta')}><img src = {infoUser?.profilePic}/>Cuenta</div>
                     <div className = {selected('Notif')}   onClick = {() => setMenu('Notif')}><InboxIcon/>Notificaciones</div>
-                    <div className = {selected('Cuenta')}  onClick = {() => setMenu('Cuenta')}><SmileyIcon/>Cuenta</div>
                     <div className = {selected('Datos')}   onClick = {() => setMenu('Datos')}><GraphIcon/>Datos</div>
                     <div className = {selected('Premium')} onClick = {() => setMenu('Premium')}><StarIcon/>Premium</div>
                     <div className = 'Item'                onClick = {logout}><SignOutIcon/>Cerrar sesión</div>
@@ -175,7 +179,7 @@ const Sidebar = ({menu, setMenu, hide}) => {
     
 }
 
-const Account = ({user, infoUser, nextPayment}) => {
+const Account = ({user, infoUser, nextPayment, uid}) => {
     
     const anonimizar = () => {
         
@@ -207,9 +211,21 @@ const Account = ({user, infoUser, nextPayment}) => {
                 <div className = 'Comment'>Nombre que se muestra públicamente.</div>
             </div>
             <div className = 'Bloque'>
+                <div className = 'Title'>Enlace público</div>
+                <div className = 'Num'>
+                    <a href = {`@${uid}`}>@{uid}</a>
+                </div>
+                <div className = 'Comment'>Enlace a tu perfil público.</div>
+            </div>
+            <div className = 'Bloque'>
                 <div className = 'Title'>Correo</div>
                 <div className = 'Num'>{user?.email}</div>
-                <div className = 'Comment'>Tu correo no se muestra ni se utiliza en ningún momento.</div>
+                <div className = 'Comment'>Tu correo no se muestra públicamente ni se utiliza en ningún momento.</div>
+            </div>
+            <div className = 'Bloque'>
+                <div className = 'Title'>Fondo</div>
+                {infoUser?.backgroundPic ? <img className = 'Background' src = {infoUser.backgroundPic}/> : null}
+                <ChangeBackgroundImage user = {user}/>
             </div>
             <div className = 'Bloque'>
                 <div className = 'Title'>Tipo de cuenta</div>

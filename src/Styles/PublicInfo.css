@@ -2,6 +2,16 @@
     padding: 20px;
     width: 100%;
 }
+.Public-Info .Header{
+    margin: -20px -20px 0px -20px;
+    border-radius: 12px 12px 0px 0px;
+    padding: 50px;
+    background-size: cover;
+}
+.Public-Info .Header h2{
+    color: white;
+    mix-blend-mode: difference;
+}
 .Public-Info .Datos{
     background: var(--bgBox);
     border-radius: 12px;

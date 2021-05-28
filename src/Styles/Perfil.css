@@ -51,6 +51,12 @@
 .Perfil .Sidebar .First-Menu .Item svg{
     margin-right: 5px;
 }
+.Perfil .Sidebar .First-Menu .Item img{
+    border-radius: 50%;
+    height: 16px;
+    margin-right: 5px;
+    width: 16px;
+}
 .Perfil .Sidebar .Last-Menu{
     color: var(--thirdFontColor);
     font-size: small;
@@ -91,6 +97,10 @@
 }
 .Perfil .Datos .Bloque {
     margin-bottom: 20px;
+}
+.Perfil .Datos .Bloque img.Background{
+    border-radius: 6px;
+    width: 200px;
 }
 .Perfil .Datos .Title{
     font-size: small;
