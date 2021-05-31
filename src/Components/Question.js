@@ -9,6 +9,7 @@ import Likes                          from './Likes';
 import UserAvatar                     from './UserAvatar';
 import EditPost                       from './EditPost';
 import DeletePost                     from './DeletePost';
+import CopyLink                       from './CopyLink';
 import firebase                       from '../Functions/Firebase';
 import GetPoints                      from '../Functions/GetPoints';
 import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel';
@@ -66,6 +67,7 @@ const Question = ({ admin, postId, setTitle, uid }) => {
             <div className = 'Content'>
                     <QuestionContent authorId = {question.userUid} message = {question.message}/>
                     <div className = 'Meta'>
+                        <CopyLink                 postId = {postId} authorId = {question.userUid}/>
                         <Likes                    postId = {postId} authorId = {question.userUid}/>
                         <EditPost   type = 'post' postId = {postId} authorId = {question.userUid} admin = {admin} uid = {uid}/>
                         <DeletePost type = 'post' postId = {postId} authorId = {question.userUid} admin = {admin} uid = {uid}/>

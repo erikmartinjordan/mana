@@ -9,6 +9,7 @@ import LikesComments                   from './LikesComments';
 import UserAvatar                      from './UserAvatar';
 import EditPost                        from './EditPost';
 import DeletePost                      from './DeletePost';
+import CopyLink                        from './CopyLink';
 import firebase                        from '../Functions/Firebase';
 import GetPoints                       from '../Functions/GetPoints';
 import GetLevel                        from '../Functions/GetLevelAndPointsToNextLevel';
@@ -72,6 +73,7 @@ const Replies = ({ admin, postId, uid }) => {
                             <Reply authorId = {reply.userUid} message = {reply.message}/>
                         </Linkify>
                         <div className = 'Meta'>
+                            <CopyLink                  postId = {postId} replyId = {key} authorId = {reply.userUid}/>
                             <LikesComments             postId = {postId} replyId = {key} authorId = {reply.userUid}/>
                             <EditPost   type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
                             <DeletePost type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
