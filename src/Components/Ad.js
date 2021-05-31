@@ -49,13 +49,13 @@ const Ad = () => {
     }, []);
     
     return(
-        <a className = 'Ad' href = {random?.url}>
+        <div className = 'Ad' onClick = {() => window.location.href = random?.url}>
             <span className = 'Title'>Anuncio</span>
             <div className = 'Ad-Wrap'>
                 <img src = {random?.img}/>
             </div>
             <span className = 'Author'>📸 Foto por <a href = {random?.profile}>{random?.author}</a></span>
-        </a>
+        </div>
     );
     
 };
