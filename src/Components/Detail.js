@@ -9,6 +9,7 @@ import Privileges                                 from './Privileges';
 import Ad                                         from './Ad';
 import firebase                                   from '../Functions/Firebase';
 import UserContext                                from '../Functions/UserContext';
+import updateNumberOfViews                        from '../Functions/UpdateNumberOfViews';
 import '../Styles/Forum.css';
 
 const Detail = (props) => {
@@ -32,17 +33,22 @@ const Detail = (props) => {
         
     }, [user]);
     
-    useEffect( () => {
+    useEffect(() => {
         
         const fetchPost = async () => {
             
-            let snapshot = await firebase.database().ref(`posts/${url}`).once('value');
+            let post = (await firebase.database().ref(`posts/${url}`).once('value')).val();
             
-            let capture  = snapshot.val();
-            
-            capture
-            ? firebase.database().ref(`posts/${url}/views`).transaction( value =>  value + 1 )
-            : setValidPost(false);
+            if(post){
+
+                updateNumberOfViews(post, url);
+
+            }
+            else{
+
+                setValidPost(false);
+
+            }
             
         }
         
