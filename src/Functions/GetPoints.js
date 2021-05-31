@@ -5,7 +5,7 @@ const GetPoints = (uid) => {
     
     const [points, setPoints] = useState(0);
     
-    useEffect(() => { 
+    useEffect(() => {
         
         let ref = firebase.database().ref(`users/${uid}/numPoints`);
         
@@ -13,9 +13,9 @@ const GetPoints = (uid) => {
             
             let numPoints = snapshot.val(); 
 
-            if(numPoints)
+            if(numPoints >= 0)
                 setPoints(numPoints);
-            
+    
         });
         
         return () => ref.off('value', listener);
