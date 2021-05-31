@@ -217,3 +217,20 @@ img.emoji {
         transform: scale(1);
     }
 }
+@keyframes swirl_in{
+    0%    {transform: rotate(0deg);}
+    100%  {transform: rotate(360deg);}
+}
+@keyframes swirl_out{
+    0%    {transform: rotate(360deg);}
+    100%  {transform: rotate(0);}
+}
+@keyframes bounce{
+    0%    {opacity: 0;   transform: scale(1,1);}
+    50%   {opacity: 0.5; transform: scale(1.1, 1.1);}
+    100%  {opacity: 1;   transform: scale(1,1);}
+}
+@keyframes tilt{
+    50%  {transform: rotate(20deg);}
+    100% {transform: rotate(0deg);}
+}
