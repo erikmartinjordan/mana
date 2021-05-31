@@ -1,11 +1,14 @@
 import React                                     from 'react';
 import { Link }                                  from 'react-router-dom';
 import moment                                    from 'moment';
+import { LocationIcon, LinkIcon }                from '@primer/octicons-react';
 import Donate                                    from './Donate';
 import UserAvatar                                from './UserAvatar';
 import ReputationGraph                           from './ReputationGraph';
-import firebase                                  from '../Functions/Firebase';
 import GetName                                   from '../Functions/GetName';
+import GetBio                                    from '../Functions/GetBio';
+import GetCity                                   from '../Functions/GetCity';
+import GetWebsite                                from '../Functions/GetWebsite';
 import GetProfileImg                             from '../Functions/GetProfileImg';
 import GetBackgroundImg                          from '../Functions/GetBackgroundImg';
 import GetNumberOfViews                          from '../Functions/GetNumberOfViews';
@@ -31,6 +34,9 @@ const PublicInfo = (props) => {
     const articles                               = GetLastArticles(uid, 10); 
     const ranking                                = GetRankingUser(uid);
     const stripeUserId                           = GetStripeUserId(uid);
+    const bio                                    = GetBio(uid);
+    const city                                   = GetCity(uid);
+    const web                                    = GetWebsite(uid);
     const user                                   = {uid: uid, photoURL: photoURL};
     
     return (
@@ -40,6 +46,11 @@ const PublicInfo = (props) => {
                     {stripeUserId ? <Donate name = {name} stripeUserId = {stripeUserId}/> : null}
                     <UserAvatar user = {user}/>
                     <h2>{name}</h2>
+                </div>
+                <div className = 'Bio' style = {{marginTop: '20px', marginBottom: '20px'}}>
+                    <div>{bio}</div>
+                    <div className = 'City'>{city ? <><LocationIcon/> {city}</> : null}</div>
+                    <div className = 'Web'>{web ? <><LinkIcon/> <a rel = "nofollow me" href = {`https://${web}`}>{web}</a></> : null}</div>
                 </div>
                 <div className = 'Bloque'>
                     <div className = 'Title'>Reputación {ranking && <span className = 'Ranking'>{ranking}</span>}</div>

@@ -9,6 +9,9 @@ import ToggleButton                                                 from './Togg
 import DeleteAccount                                                from './DeleteAccount';
 import DowngradeToFreePlan                                          from './DowngradeToFreePlan';
 import ChangeBackgroundImage                                        from './ChangeBackgroundImage';
+import ChangeBio                                                    from './ChangeBio';
+import ChangeLocation                                               from './ChangeLocation';
+import ChangeWebsite                                                from './ChangeWebsite';
 import UserContext                                                  from '../Functions/UserContext';
 import Points                                                       from '../Functions/PointsAndValues';
 import firebase, { environment, auth }                              from '../Functions/Firebase';
@@ -209,6 +212,18 @@ const Account = ({user, infoUser, nextPayment, uid}) => {
                     {infoUser?.anonimo ? infoUser.nickName : user.displayName}
                 </div>
                 <div className = 'Comment'>Nombre que se muestra públicamente.</div>
+            </div>
+            <div className = 'Bloque'>
+                <div className = 'Title'>Bio</div>
+                <ChangeBio user = {user}/>
+            </div>
+            <div className = 'Bloque'>
+                <div className = 'Title'>Ciudad</div>
+                <ChangeLocation user = {user}/>
+            </div>
+            <div className = 'Bloque'>
+                <div className = 'Title'>Web</div>
+                <ChangeWebsite user = {user}/>
             </div>
             <div className = 'Bloque'>
                 <div className = 'Title'>Enlace público</div>

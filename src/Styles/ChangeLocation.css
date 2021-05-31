@@ -1,0 +1,9 @@
+.ChangeLocation input{
+    background: var(--bgColor);
+    border: none;
+    border-radius: 6px;
+    color: var(--primaryFontColor);
+    font-size: 16px;
+    padding: 5px;
+    width: 100%;
+}
