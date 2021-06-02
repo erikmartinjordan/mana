@@ -72,7 +72,6 @@ button.Delete{
     color: var(--red);
     cursor: pointer;
     font-size: small;
-    margin: 5px;
     padding: 5px;
     transition: all 0.2s ease-in-out;
 }

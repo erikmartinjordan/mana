@@ -111,6 +111,12 @@
     align-items: center;
     justify-content: flex-end;
 }
+.Reply .Meta > .CopyLink,
+.Reply .Meta > .Likes-Comments,
+.Reply .Meta > .Edit,
+.Reply .Meta > .Delete{
+    margin-left: 5px;
+}
 .Reply .Info{
     color: var(--thirdFontColor);
     font-size: small;

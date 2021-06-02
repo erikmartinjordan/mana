@@ -18,14 +18,14 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
     const points                = GetPoints(authorId);
     const level                 = GetLevel(points)[0];
     
-    useEffect( () => {
+    useEffect(() => {
         
         if(refTextarea.current)
             refTextarea.current.style.height = `${refTextarea.current.scrollHeight}px`;    
         
     }, [message]);
     
-    useEffect( () => {
+    useEffect(() => {
         
         firebase.database().ref(`users/${uid}`).on('value', snapshot => {
             
@@ -135,7 +135,7 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
                     <textarea 
                         ref      = {refTextarea} 
                         value    = {message} 
-                        onChange = {(e) => handleMessage(e)} 
+                        onChange = {handleMessage} 
                     />
                     { type === 'post'
                     ? <TagInput
@@ -146,13 +146,20 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
                       />
                     : null   
                     }
-                    <button onClick = {() => submitMessage()} className = 'bottom'>Guardar</button>
+                    <button onClick = {submitMessage} className = 'bottom'>Guardar</button>
                 </div>
                 <div className = 'Invisible' onClick = {() => setMessage(null)} ></div>
               </div>
-            : canEdit && <button onClick = {() => editMessage()} className = 'Edit'>Editar</button>
+            :  null
             }
-            {alert && <Alert title = 'Genial' message = 'Mensaje editado'></Alert>}
+            { canEdit
+            ? <button onClick = {editMessage} className = 'Edit'>Editar</button>
+            : null
+            }
+            { alert
+            ? <Alert title = 'Genial' message = 'Mensaje editado'></Alert>
+            : null
+            }
         </div>
     );
     

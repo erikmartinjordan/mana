@@ -106,10 +106,12 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
                   </div>
             : null
             }
-            { canDelete
-            ? <button className = 'Delete' onClick = {handleConfirmation}>Eliminar</button>
-            : null 
-            }
+            <div className = 'Delete'>
+                { canDelete
+                ? <button className = 'Delete' onClick = {handleConfirmation}>Eliminar</button>
+                : null
+                }
+            </div>
         </React.Fragment>
     );
     

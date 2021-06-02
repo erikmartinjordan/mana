@@ -109,6 +109,12 @@
     align-items: center;
     justify-content: flex-end;
 }
+.Question .Meta > .CopyLink,
+.Question .Meta > .Likes,
+.Question .Meta > .Edit,
+.Question .Meta > .Delete{
+    margin-left: 5px;
+}
 .Question .Info{
     color: var(--thirdFontColor);
     font-size: small;
