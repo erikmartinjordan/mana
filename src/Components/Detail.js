@@ -7,6 +7,7 @@ import NewReply                                   from './NewReply';
 import Default                                    from './Default';
 import Privileges                                 from './Privileges';
 import Ad                                         from './Ad';
+import Participants                               from './Participants';
 import firebase                                   from '../Functions/Firebase';
 import UserContext                                from '../Functions/UserContext';
 import updateNumberOfViews                        from '../Functions/UpdateNumberOfViews';
@@ -69,6 +70,7 @@ const Detail = (props) => {
                     </div>
                     <div className = 'Sidebar'>
                         <Norms/>
+                        <Participants/>
                         <Privileges/>
                         <RelatedContent/>
                         <Ad/>

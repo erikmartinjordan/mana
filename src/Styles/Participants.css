@@ -1,0 +1,20 @@
+.Participants{
+    background: var(--bgBox);
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+.Participants-Wrap{
+    display: flex;
+    padding: 10px;
+}
+.Participants img{
+    border: 2px solid white;
+    border-radius: 50%;
+    height: 30px;
+    margin-right: -10px;
+    width: 30px;
+}
+.Participants .More{
+    font-size: small;
+    margin-left: 20px;
+}
