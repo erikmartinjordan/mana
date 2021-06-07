@@ -56,7 +56,7 @@ const LastQuestions = ({number, from, to, filter}) => {
         
         return () => ref.off('value', listener);
         
-    }, [filter, number, from, to]);
+    }, [filter, items, number, from, to]);
     
     const sortQuestions = (questions, orderBy) => {
         
