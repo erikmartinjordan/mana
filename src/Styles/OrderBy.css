@@ -19,12 +19,32 @@
     border-radius: 50px;
     color: var(--blue);
 }
+.OrderBy .Selector{
+    align-items: center;
+    background: var(--bgBox);
+    border: 1px solid var(--lightBlue);
+    border-radius: 6px;
+    display: flex;
+    margin-left: 10px;
+}
+.OrderBy select{
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--primaryFontColor);
+    font-weight: 500;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
 @media(max-width: 768px){
     
     .OrderBy div{
         align-items: center;
         display: flex;
         width: 100%;
+    }
+    .OrderBy{
+        overflow-x: auto;
     }
     
 }

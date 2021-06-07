@@ -7,17 +7,31 @@ import UserAvatar                           from './UserAvatar';
 import firebase                             from '../Functions/Firebase';
 import '../Styles/LastQuestions.css';
 
-const LastQuestions = (props) => {
+const LastQuestions = ({number, from, to, filter}) => {
     
     const [loading, setLoading]             = useState(true);
-    const [items, setItems]                 = useState(props.items);
+    const [items, setItems]                 = useState(number);
     const [lastQuestions, setLastQuestions] = useState([]);
+    const tag                               = window.location.pathname.split('/').pop();
     
-    useEffect( () => {
+    useEffect(() => {
         
-        let ref = props.tag 
-        ? firebase.database().ref('posts/').orderByChild(`tags/${props.tag}`).equalTo(true).limitToLast(items)
-        : firebase.database().ref('posts/').limitToLast(items);
+        if(tag){
+
+            var ref = firebase.database().ref('posts').orderByChild(`tags/${tag}`).equalTo(true).limitToLast(items);
+
+        }
+        else if(from && to){
+
+            var ref = firebase.database().ref('posts').orderByChild('timeStamp').startAt(from).endAt(to);
+
+        }
+        else{
+
+            var ref = firebase.database().ref('posts').limitToLast(items);
+
+
+        }
         
         let listener = ref.on('value', snapshot => {
             
@@ -25,7 +39,7 @@ const LastQuestions = (props) => {
                 
                 let lastQuestions = snapshot.val();
                 
-                let sortedQuestions = sortQuestions(lastQuestions, props.timeline);
+                let sortedQuestions = sortQuestions(lastQuestions, filter);
                 
                 setLastQuestions(sortedQuestions);
                 
@@ -42,7 +56,7 @@ const LastQuestions = (props) => {
         
         return () => ref.off('value', listener);
         
-    }, [items, props.timeline, props.tag]);
+    }, [filter, number, from, to]);
     
     const sortQuestions = (questions, orderBy) => {
         

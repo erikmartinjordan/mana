@@ -7,14 +7,26 @@ import '../Styles/Forum.css';
 
 const Front = () => {
     
-    const [timeline, setTimeline] = useState('nuevo');
+    const [filter, setFilter] = useState('nuevo');
+    const [from , setFrom]    = useState(null);
+    const [to, setTo]         = useState(null);
  
     return (
         <div className = 'Forum'>
             <div className = 'Forum-TwoCol'>
                 <div className = 'Main'>
-                    <OrderBy       timeline = {timeline} setTimeline = {setTimeline}/>
-                    <LastQuestions timeline = {timeline} items = {10} tag = {window.location.pathname.split('/').pop()}/>
+                    <OrderBy       
+                        filter    = {filter}
+                        setFilter = {setFilter}
+                        setFrom   = {setFrom} 
+                        setTo     = {setTo}
+                    />
+                    <LastQuestions 
+                        number    = {10} 
+                        from      = {from} 
+                        to        = {to} 
+                        filter    = {filter} 
+                    />
                 </div>
                 <div className = 'Sidebar'>
                     <Comments/>

@@ -28,7 +28,7 @@ const Blog = () => {
             <div style = {{textAlign: 'center'}}>El archivo contiene una colección de {Object.keys(Data).length} artículos. ☕</div>
             <Filter 
                 setSortedPosts = {setSortedPosts}
-                />
+            />
             <Posts  
                 sortedPosts = {sortedPosts} 
                 displayPosts = {displayPosts}
