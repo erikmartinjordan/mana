@@ -13,7 +13,7 @@ const GetPoints = (uid) => {
             
             let numPoints = snapshot.val(); 
 
-            if(numPoints >= 0)
+            if(numPoints > 0)
                 setPoints(numPoints);
     
         });

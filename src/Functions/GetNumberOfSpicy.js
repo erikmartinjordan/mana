@@ -3,7 +3,7 @@ import firebase                from './Firebase';
 
 const GetNumberOfSpicy = (uid) => {
     
-    const [spicy, setSpicy] = useState([]);
+    const [spicy, setSpicy] = useState(0);
     
     useEffect(() => { 
         

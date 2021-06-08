@@ -3,7 +3,7 @@ import firebase                from './Firebase';
 
 const GetNumberOfReplies = (uid) => {
     
-    const [replies, setReplies] = useState([]);
+    const [replies, setReplies] = useState(0);
     
     useEffect(() => { 
         

@@ -3,7 +3,7 @@ import firebase                from './Firebase';
 
 const GetNumberOfPosts = (uid) => {
     
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(0);
     
     useEffect(() => { 
         
