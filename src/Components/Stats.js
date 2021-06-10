@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link }                       from 'react-router-dom';
 import moment                         from 'moment';
-import Chart                          from 'chart.js'; 
+import Chart                          from 'chart.js/auto';
 import firebase                       from '../Functions/Firebase';
 import '../Styles/Stats.css';
 
@@ -10,7 +10,7 @@ const Stats = () => {
     const [bounceRate, setBounceRate]             = useState('0%');
     const [days, setDays]                         = useState([]);
     const [duration, setDuration]                 = useState(0);
-    const [interval, setInterval]                 = useState(1);
+    const [interval, setInterval]                 = useState(7);
     const [months, setMonths]                     = useState(null);
     const [pageviews, setPageviews]               = useState([]);
     const [pageviewsSession, setPageviewsSession] = useState(0);
@@ -27,64 +27,80 @@ const Stats = () => {
         datasets: [{
           label: 'Usuarios',
           borderColor: '#48ac98',
-          borderWidth: 2,
-          backgroundColor: 'rgba(72, 172, 152, 0.6)',
+          borderWidth: 4,
+          backgroundColor: 'rgba(72, 172, 152, 1)',
+          borderRadius: 10,
+          pointRadius: 0,
           data: []
         },{
           label: 'Sesiones',
           borderColor: '#778dff',
-          borderWidth: 2,
-          backgroundColor: 'rgba(119, 141, 255, 0.6)',
+          borderWidth: 4,
+          backgroundColor: 'rgba(119, 141, 255, 1)',
+          borderRadius: 10,
+          pointRadius: 0,
           data: []  
         },{
           label: 'Visitas',
           borderColor: '#1e99e6',
-          borderWidth: 2,
-          backgroundColor: 'rgba(30, 153, 230, 0.6)',
+          borderWidth: 4,
+          backgroundColor: 'rgba(30, 153, 230, 1)',
+          borderRadius: 10,
+          pointRadius: 0,
           data: []           
         }]
       },
       options: {
-        animation: false,
-        title: {
-          display: false,
-          text: 'Visitantes',
-          fontSize: 20
+        responsive: true,
+        plugins: {
+          title: {
+            display: false
+          },
+          legend: {
+            display: false
+          }
         },
-        legend:{
-          display: true  
-        },
-        tooltips: {
-          mode: 'index',
+        interaction: {
           intersect: false,
-        },
-        hover: {
-          mode: 'nearest',
-          intersect: true
+          mode: 'index'
         },
         scales: {
-          xAxes: [{
+          x: {
             display: true,
-            gridLines: {
+            grid: {
                 display: false,
+                drawBorder: false
             },
+            offset: true,
             ticks: {
                 autoSkip: true,
                 maxRotation: 45,
                 minRotation: 45,
-                callback: (value, index, values) => values.length > 7 && index % 2 !== 0 ? null : value
+                callback: function(value, index, values){ 
+                        
+                    return values.length > 7 && index % 2 !== 0 ? null : this.getLabelForValue(value);
+
+                }
             }  
-          }],
-          yAxes: [{
+          },
+          y: {
             type: "linear",
             display: true,
             position: "left",
-            gridLines: {
-                display: true
+            grid: {
+                display: false,
+                drawBorder: false
+            },
+            ticks: {
+                rotation: 0,
+                callback: function(value, index, values){ 
+                    
+                    return index % 2 === 0 ? value : null;
+
+                }
             }
-          }]
-        },
-        responsive: true
+          }
+        }
       }
     }
     
@@ -94,16 +110,50 @@ const Stats = () => {
         labels: [],
         datasets: [{
           label: 'Publicaciones',
-          borderColor: '#48ac98',
+          borderColor: 'transparent',
+          backgroundColor: 'rgba(72, 172, 152, 1)',
           borderWidth: 2,
-          backgroundColor: 'rgba(72, 172, 152, 0.6)',
+          borderRadius: 10,
+          borderSkipped: false,
           data: []         
         }],
-        responsive: true
       },
       options:{
-        legend:{
-            display: false
+        responsive: true,
+        plugins:{
+            legend:{
+                display: false
+            }
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false,
+                    drawBorder: false
+                },
+                ticks: {
+                    rotation: 0,
+                    callback: function(value, index, values){ 
+                        
+                        return index % 2 === 0 ? this.getLabelForValue(value) : null;
+
+                    }
+                } 
+            },
+            y: {
+                grid: {
+                    display: false,
+                    drawBorder: false
+                },
+                ticks: {
+                    rotation: 0,
+                    callback: function(value, index, values){ 
+                        
+                        return index % 2 === 0 ? value : null;
+
+                    }
+                }  
+            }
         }
       } 
     }
@@ -376,6 +426,10 @@ const Stats = () => {
                 graph1.data.datasets['0'].data = users;
                 graph1.data.datasets['1'].data = sessions;
                 graph1.data.datasets['2'].data = pageviews;
+
+                if(interval === 1)  graph1.type = 'bar';
+                if(interval === 7)  graph1.type = 'line';
+                if(interval === 30) graph1.type = 'line';
                 
                 chart.update();
                 
@@ -419,7 +473,13 @@ const Stats = () => {
             
         });
         
-        return () => ref.off('value', listener);
+        return () => {
+            
+            ref.off('value', listener);
+
+            chart.destroy();
+
+        }
         
         
     }, []);

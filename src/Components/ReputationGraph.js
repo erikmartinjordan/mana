@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment                         from 'moment';
-import Chart                          from 'chart.js';
+import Chart                          from 'chart.js/auto';
 import firebase                       from '../Functions/Firebase';
 
 const ReputationGraph = ({uid}) => {
@@ -24,24 +24,21 @@ const ReputationGraph = ({uid}) => {
         }]
         },
         options: {
-        title: {
-            display: false,
-            text: 'Visitors',
-            fontSize: 20
-        },
-        legend:{
-            display: false  
-        },
-        tooltips: {
-              mode: 'index',
+            responsive: true,
+            plugins: {
+              title: {
+                display: false
+              },
+              legend: {
+                display: false
+              }
+            },
+            interaction: {
               intersect: false,
-            },
-            hover: {
-              mode: 'nearest',
-              intersect: true
-            },
+              mode: 'index'
+        },
         scales: {
-          xAxes: [{
+          x: {
             display: false,
             gridLines: {
                 drawTicks: false,
@@ -55,8 +52,8 @@ const ReputationGraph = ({uid}) => {
                 maxTicksLimit: 4,
                 padding: 5
             }  
-          }],
-          yAxes: [{
+          },
+          y: {
             type: 'linear',
             display: false,
             position: 'left',
@@ -69,7 +66,7 @@ const ReputationGraph = ({uid}) => {
                 maxTicksLimit: 3,
                 padding: 20
             }
-          }]
+          }
         },
         responsive: true
         }
@@ -110,7 +107,13 @@ const ReputationGraph = ({uid}) => {
                 
             });
             
-            return () => ref.off('value', listener);
+            return () => {
+                
+                ref.off('value', listener);
+
+                chart.destroy();
+
+            }
             
         }
         

@@ -72,6 +72,13 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.Estadisticas .Publicaciones,
+.Estadisticas .Graficos{
+    background: var(--bgBox);
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+}
 @media (max-width: 768px){
     
     .Estadisticas{
