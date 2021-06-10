@@ -112,7 +112,7 @@ const Profile = (props) => {
                     menu = {menu} 
                     setMenu = {setMenu}
                     hide = {props.hide}
-                    infoUser = {infoUser}
+                    user = {user}
                 />
                 { menu === 'Notif'
                 ? <Notifications
@@ -154,7 +154,7 @@ const Profile = (props) => {
 
 export default Profile;
 
-const Sidebar = ({menu, setMenu, hide, infoUser}) => {
+const Sidebar = ({menu, setMenu, hide, user}) => {
 
     const selected = (item) => menu === item ? 'Item Selected' : 'Item';
 
@@ -171,7 +171,7 @@ const Sidebar = ({menu, setMenu, hide, infoUser}) => {
             <div className = 'First-Menu'>
                 <div className = 'BackButtonmobile'        onClick = {hide}>← Volver</div>
                 <div className = 'Menu-Title'>Menú</div>
-                    <div className = {selected('Cuenta')}  onClick = {() => setMenu('Cuenta')}><img src = {infoUser?.profilePic}/>Cuenta</div>
+                    <div className = {selected('Cuenta')}  onClick = {() => setMenu('Cuenta')}><img src = {user.photoURL}/>Cuenta</div>
                     <div className = {selected('Notif')}   onClick = {() => setMenu('Notif')}><InboxIcon/>Notificaciones</div>
                     <div className = {selected('Datos')}   onClick = {() => setMenu('Datos')}><GraphIcon/>Datos</div>
                     <div className = {selected('Premium')} onClick = {() => setMenu('Premium')}><StarIcon/>Premium</div>

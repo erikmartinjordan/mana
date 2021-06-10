@@ -33,7 +33,7 @@ const TrafficStats = () => {
         
         let ref = firebase.database().ref(`analytics/${date.format('YYYYMMDD')}/${fingerprint}`);
         
-        if(sessionId){
+        if(sessionId && !history.location.pathname.includes('token')){
             
             ref.child(`${sessionId}/pageviews`).push({ url: history.location.pathname });
             

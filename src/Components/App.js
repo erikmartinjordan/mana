@@ -18,6 +18,7 @@ import DonateFail                       from './DonateFail';
 import TrafficStats                     from './TrafficStats';
 import Tags                             from './Tags';
 import Users                            from './Users';
+import Verify                           from './Verify';
 import UserContext                      from '../Functions/UserContext';
 import { auth, fetchAdmin }             from '../Functions/Firebase';
 import '../Styles/App.css';
@@ -81,6 +82,7 @@ const App  = () => {
                     <Route exact path = '/donationFail'        component = {DonateFail}/>
                     <Route exact path = '/tags'                component = {Tags}/>
                     <Route exact path = '/usuarios'            component = {Users}/>
+                    <Route path = '/v/:string'                 component = {Verify}/>
                     <Route path = '/comunidad/post/:string'    component = {Detail}/>
                     <Route path = '/tag/:string'               component = {Forum}/>
                     <Route path = '/@:string'                  component = {PublicInfo}/>

@@ -32,30 +32,10 @@
 .Login .Login-wrap ul{
     list-style: disc;
 }
-.Login button.Google{
+.Login .Auth{
     align-items: center;
-    background: white;
-    border: 1px solid var(--thirdFontColor);
-    border-radius: 12px;
-    box-shadow: none;
-    color: var(--secondaryFontColor);
-    cursor: pointer;
     display: flex;
-    font-size: 12px;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 5px 10px;
-    width: 200px;
-}
-.Login button.Google:hover{
-    transition: 0.2s ease-in-out;
-    transform: scale(1.01); 
-}
-.Login button.Google svg{
-    margin-right: 10px;
+    flex-direction: column;
 }
 .Login .info{
     color: var(--thirdFontColor);
@@ -68,9 +48,27 @@
     z-index: 1;
 }
 .Login hr{
-    border: 1px solid var(--thirdFontColor);
-    border-bottom: none;
-    max-width: 200px;
+    border: none;
+    border-top: 1px solid rgba(1, 1, 1, 0.2);
+    width: 200px;
+}
+.Login form input{
+    background: rgba(1, 1, 1, 0.1);
+    border-radius: 6px;
+    border: 1px solid rgba(1, 1, 1, 0.2);
+    padding: 5px;
+    width: 200px;
+}
+.Login form button{
+    align-items: center;
+    background: var(--greenMint);
+    color: white;
+    display: flex;
+    font-weight: 500;
+    height: 30px;
+    justify-content: center;
+    margin-top: 10px;
+    width: 200px;
 }
 @media (max-width: 768px){
    .Login{

@@ -6,6 +6,7 @@ const functions            = require('firebase-functions');
 const nodemailer           = require('nodemailer');
 const cors                 = require('cors')({origin: true});
 const moment               = require('moment');
+const crypto               = require('crypto');
 const user                 = functions.config().gmail.user;
 const pass                 = functions.config().gmail.pass;
 const dest                 = functions.config().gmail.dest;
@@ -366,5 +367,42 @@ exports.getRankingUsers = functions.database.ref('/analytics/{date}').onCreate(a
     });
         
     return null;
+    
+});
+
+exports.sendMagicLink = functions.https.onRequest(async (request, response) => {
+    
+    return cors(request, response, async () => {
+        
+        let email = request.body.email;
+        let url   = request.body.url;
+
+        let token = await admin.auth().createCustomToken(crypto.createHash('md5').update(email).digest('hex'));
+        
+        let magicLink = `${url}/v/email=${email}&token=${token}`;
+        
+        const mailTransport = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: user,
+                pass: pass,
+            }
+        });
+        
+        const mailOptions = {
+            from: 'hola@erikmartinjordan.com',
+            to: email,
+            subject: '👋 Nomoresheet',
+            html: `<p>Hola,</p>
+                   <p>Haz clic en <a href = '${magicLink}'>este enlace</a> para verificar tu cuenta.</p>
+                   <p>Gracias,</p>
+                   <p>~Erik</p>`
+        };
+        
+        await mailTransport.sendMail(mailOptions);
+        
+        response.sendStatus(200);
+        
+    });
     
 });
