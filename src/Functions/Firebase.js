@@ -58,8 +58,8 @@ export const fetchAdmin  = async (user) => {
     return isAdmin;
     
 }
-export const provider    = new firebase.auth.GoogleAuthProvider();
-export const auth        = firebase.auth();
-export const storageRef  = firebase.storage().ref();
+export const googleProvider      = new firebase.auth.GoogleAuthProvider();
+export const auth                = firebase.auth();
+export const storageRef          = firebase.storage().ref();
 export const firebaseServerValue = firebase.database.ServerValue;
 export default firebase;
