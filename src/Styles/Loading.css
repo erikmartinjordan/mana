@@ -15,12 +15,12 @@
     justify-content: center;
 }
 .Loader{
-    border: 5px solid var(--bgColor);
+    border: 3px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    border-top: 5px solid var(--blue);
+    border-top: 3px solid rgba(1, 1, 1, 0.2);
     width: 20px;
     height: 20px;
-    animation: spin 1s linear infinite;
+    animation: spin 0.5s linear infinite;
 }
 .Button-Loader{
     animation: spin 0.5s infinite;
