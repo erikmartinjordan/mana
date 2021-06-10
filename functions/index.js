@@ -390,10 +390,10 @@ exports.sendMagicLink = functions.https.onRequest(async (request, response) => {
         });
         
         const mailOptions = {
-            from: 'hola@erikmartinjordan.com',
+            from: 'erik@nomoresheet.es',
             to: email,
             subject: '👋 Nomoresheet',
-            html: `<p>Hola,</p>
+            html: `<p>Hola:</p>
                    <p>Haz clic en <a href = '${magicLink}'>este enlace</a> para verificar tu cuenta.</p>
                    <p>Gracias,</p>
                    <p>~Erik</p>`
