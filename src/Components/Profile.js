@@ -359,7 +359,7 @@ const Premium = ({user, infoUser}) => {
                         <span className = 'Comment'>anuales</span>
                     </div>
                     { !infoUser?.account
-                    ? <button onClick = {() => setPaymentModal('premium')} className = 'send'>Apuntarse</button>
+                    ? <button onClick = {() => setPaymentModal('premium')} className = 'send' disabled = {user?.isAnonymous}>Apuntarse</button>
                     : infoUser?.account === 'premium'
                     ? <div className = 'current'>Plan actual</div>
                     : <button disabled = {true} className = 'send'>Tienes tarifa infinita</button>
@@ -384,7 +384,7 @@ const Premium = ({user, infoUser}) => {
                     </div>
                     {infoUser?.account === 'infinita' && !infoUser.subscriptionId
                     ?   <div className = 'current'>Plan actual</div>
-                    :   <button onClick = {() => setPaymentModal('infinita')} className = 'send'>Apuntarse</button>
+                    :   <button onClick = {() => setPaymentModal('infinita')} className = 'send' disabled = {user?.isAnonymous}>Apuntarse</button>
                     }
                     <ul className = 'Features'>
                         <li>Vota artículos</li>

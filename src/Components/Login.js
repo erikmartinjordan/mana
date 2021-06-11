@@ -109,6 +109,7 @@ const Login = ({hide}) => {
                 <p>Necesitas hacer <em>log in</em> para continuar. Podrás publicar, comentar, votar y leer publicaciones privadas.</p>
                 <div className = 'Auth'>
                     <GoogleButton  logIn = {logInGoogle}/>
+                    <AnonymButton  logIn = {logInAnonymous}/>
                     <hr></hr>
                     <form onSubmit = {logInMagic}>
                         <input placeholder = 'jeff.bezos@amazon.com' onChange = {(e) => setEmail(e.target.value)}></input>
