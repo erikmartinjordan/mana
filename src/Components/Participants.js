@@ -6,11 +6,11 @@ import '../Styles/Participants.css';
 const Participants = () => {
 
     const [participants, setParticipants] = useState([]);
-    const url = window.location.pathname.split('/').pop();
+    const postId = window.location.pathname.split('/').find(e => e.startsWith('-'));
 
     useEffect(() => {
 
-        let ref = firebase.database().ref(`posts/${url}`);
+        let ref = firebase.database().ref(`posts/${postId}`);
 
         let listener = ref.on('value', snapshot => {
 
@@ -46,7 +46,7 @@ const Participants = () => {
 
         return () => ref.off('value', listener);
 
-    }, [url]);
+    }, [postId]);
 
     return(
         <React.Fragment>
