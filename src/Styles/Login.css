@@ -72,7 +72,11 @@
 }
 @media (max-width: 768px){
    .Login{
+        align-items: flex-end;
         height: 100vh;
-        padding: 5px;
+        padding: 0px;
     } 
+    .Login .Login-wrap{
+        border-radius: 12px 12px 0px 0px;
+    }
 }
