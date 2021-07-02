@@ -264,7 +264,7 @@ const Account = ({user, infoUser, nextPayment, uid}) => {
             {Accounts[infoUser?.account]?.anonymMessages
             ? <div className = 'Bloque'>
                     <div className = 'Title'>Anonimizar</div>
-                    <div className = 'Toggle' onClick = {() => anonimizar()}>
+                    <div className = 'Toggle' onClick = {anonimizar}>
                         <div className = 'Tag'>Tu nombre real no se mostrará.</div>
                         { infoUser?.anonimo 
                         ? <ToggleButton status = 'on' /> 
