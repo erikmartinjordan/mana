@@ -41,8 +41,6 @@
         flex-direction: column;
     }
     .Forum .Forum-TwoCol .Sidebar{
-        margin-left: 0;
-        margin-top: 50px;
-        max-width: 100%
+        display: none;
     }
 }
