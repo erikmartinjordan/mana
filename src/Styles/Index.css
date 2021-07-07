@@ -234,6 +234,11 @@ img.emoji {
     50%  {transform: rotate(20deg);}
     100% {transform: rotate(0deg);}
 }
+@keyframes slide_up{
+    0%    {transform: translateY(1000px);}
+    50%  {transform: translateY(-5px);}
+    100%  {transform: translateY(0);}
+}
 @media(max-width: 768px){
     body{
         font-size: 14px;

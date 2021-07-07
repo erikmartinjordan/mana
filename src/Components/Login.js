@@ -106,7 +106,6 @@ const Login = ({hide}) => {
             <div className = 'Login-wrap'>
                 <div style = {{display: 'flex', justifyContent: 'center'}}><NomoresheetLogo/></div>
                 <h3>Log in</h3>
-                <p>Necesitas hacer <em>log in</em> para continuar. Podrás publicar, comentar, votar y leer publicaciones privadas.</p>
                 <div className = 'Auth'>
                     <GoogleButton  logIn = {logInGoogle}/>
                     <AnonymButton  logIn = {logInAnonymous}/>

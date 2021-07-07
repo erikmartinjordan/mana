@@ -13,9 +13,7 @@
 .Login .Login-wrap{
     background: var(--bgBox);
     border-radius: 12px;
-    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
-                rgba(15, 15, 15, 0.2) 0px 5px 10px, 
-                rgba(15, 15, 15, 0.4) 0px 15px 40px;
+    box-shadow: var(--boxShadow);
     padding: 20px;
     width: 600px;
     z-index: 2;
@@ -72,6 +70,7 @@
 }
 @media (max-width: 768px){
    .Login{
+        animation: slide_up 0.5s ease-in-out;
         align-items: flex-end;
         height: 100vh;
         padding: 0px;
