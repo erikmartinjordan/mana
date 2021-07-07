@@ -24,7 +24,7 @@
     width: 100%;
 }
 .Detail .Forum-TwoCol .Sidebar{
-    padding-top: 35px;
+    padding-top: 0px;
 }
 .Forum .Forum-TwoCol .Sidebar .Title{
     color: var(--secondaryFontColor);
@@ -35,10 +35,7 @@
 }
 @media(max-width: 768px){
     .Forum{
-        padding: 0px;
-    }
-    .Forum h1{
-        padding: 20px;
+        padding: 0px 20px 0px 20px;
     }
     .Forum .Forum-TwoCol{
         flex-direction: column;

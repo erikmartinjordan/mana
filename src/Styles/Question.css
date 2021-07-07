@@ -1,7 +1,10 @@
 .Question{
+    background: var(--bgBox);
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    padding: 20px;
 }
 .Question .Header{
     align-items: center;
@@ -26,12 +29,10 @@
     color: var(--thirdFontColor);
 }
 .Question .Content{
-    background: var(--bgBox);
-    border-radius: 12px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 20px;
+    margin-top: 20px;
     width: 100%;
     word-wrap: break-word;
 }
