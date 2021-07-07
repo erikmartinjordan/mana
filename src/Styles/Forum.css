@@ -35,7 +35,10 @@
 }
 @media(max-width: 768px){
     .Forum{
-        padding: 0px 20px 0px 20px;
+        padding: 0px;
+    }
+    .Forum h1{
+        padding: 20px;
     }
     .Forum .Forum-TwoCol{
         flex-direction: column;
