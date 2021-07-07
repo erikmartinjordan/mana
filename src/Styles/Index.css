@@ -18,7 +18,7 @@ kbd{
 body {
     background: var(--bgColor);
     color: var(--primaryFontColor);
-    line-height: 2;
+    line-height: 1.75;
     margin: 0;
     overflow-x: hidden;
     transition: all 0.1s ease-out;
@@ -233,4 +233,10 @@ img.emoji {
 @keyframes tilt{
     50%  {transform: rotate(20deg);}
     100% {transform: rotate(0deg);}
+}
+@media(max-width: 768px){
+    body{
+        font-size: 14px;
+        line-height: 1.75;
+    }
 }
