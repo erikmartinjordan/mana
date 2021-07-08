@@ -74,8 +74,7 @@ const Stats = () => {
             offset: true,
             ticks: {
                 autoSkip: true,
-                maxRotation: 45,
-                minRotation: 45,
+                rotation: 0,
                 callback: function(value, index, values){ 
                         
                     return values.length > 7 && index % 2 !== 0 ? null : this.getLabelForValue(value);
@@ -164,6 +163,12 @@ const Stats = () => {
         document.querySelector('meta[name="description"]').content = 'Algunas estadísticas sobre Nomoresheet'; 
         
     });
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, []);
     
     useEffect(() => {
         
@@ -492,9 +497,10 @@ const Stats = () => {
             }
             
             <div className = 'Fecha'>
-                <button onClick = {() => setInterval(1)}   className = {interval === 1  ? 'Selected' : null}>Día</button>
-                <button onClick = {() => setInterval(7)}   className = {interval === 7  ? 'Selected' : null}>Semana</button>
-                <button onClick = {() => setInterval(30)}  className = {interval === 30 ? 'Selected' : null}>Mes</button>
+                <button onClick = {() => setInterval(1)}   className = {interval === 1   ? 'Selected' : null}>Día</button>
+                <button onClick = {() => setInterval(7)}   className = {interval === 7   ? 'Selected' : null}>Semana</button>
+                <button onClick = {() => setInterval(30)}  className = {interval === 30  ? 'Selected' : null}>Mes</button>
+                <button onClick = {() => setInterval(365)} className = {interval === 365 ? 'Selected' : null}>Año</button>
             </div>
             
             <div className = 'Parrilla'>
