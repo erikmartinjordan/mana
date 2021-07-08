@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ToggleButton                   from './ToggleButton';
+import { SunIcon, MoonIcon }          from '@primer/octicons-react';
 
 const NightModeToggleButton = () => {
     
@@ -37,7 +38,7 @@ const NightModeToggleButton = () => {
     
     return  (
         <div className = 'Toggle-Button' onClick = {changeTheme} style = {{width: 'max-content'}}>
-            <ToggleButton status = {theme === 'dark' ? 'on' : 'off'}  icon = {theme === 'dark' ? '🌙' : '🌞'}/> 
+            <ToggleButton status = {theme === 'dark' ? 'on' : 'off'}  icon = {theme === 'dark' ? <MoonIcon/> : <SunIcon/>}/> 
         </div>
     );
     
