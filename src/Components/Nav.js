@@ -18,7 +18,6 @@ import '../Styles/Nav.css';
 
 const Nav = () => {
     
-    const [menu, setMenu]             = useState('');
     const [post, setPost]             = useState(false);
     const [login, setLogin]           = useState(false);
     const [perfil, setPerfil]         = useState(false);
@@ -64,7 +63,7 @@ const Nav = () => {
     const menuNotUser = () => {
       
         return(
-            <React.Fragment>
+            <div className = 'Menu' key = 'b'>
                 <Link to = '/'><HomeIcon/>Inicio</Link>
                 <Link to = '/tags'><NumberIcon/>Temas</Link>
                 <Link to = '/usuarios'><TelescopeIcon/>Descubre</Link>
@@ -77,14 +76,14 @@ const Nav = () => {
                         <Link to = '/acerca'>o saber más <ArrowRightIcon/></Link>
                     </div>
                 </div>
-            </React.Fragment>
+            </div>
         );  
     }
   
     const menuUser = () => {
       
         return(      
-            <React.Fragment>
+            <div className = 'Menu' key = 'a'>
                 <div onClick = {() => setPerfil(true)} className = 'Img-Wrap'>
                     <UserAvatar user = {user} allowAnonymousUser = {true}/>
                     <div className = 'Name-Points'>
@@ -102,19 +101,35 @@ const Nav = () => {
                 <NightModeToggleButton></NightModeToggleButton>
                 <div className = 'Separator'></div>
                 <Link to = '/' onClick = {() => setPost(true)} className = 'New-Post'><PaperAirplaneIcon/>Publicar</Link>
-            </React.Fragment>
+            </div>
         );
+
     }
+
+
+    const menuMobile = () => {
+
+        return(      
+            <div className = 'Mobile' key = 'c'>
+                <Link to = '/'><HomeIcon/>Inicio</Link>
+                <Link to = '/tags'><NumberIcon/>Temas</Link>
+                <Link to = '/usuarios'><TelescopeIcon/>Descubre</Link>
+                <Link to = '/' onClick = {() => setPost(true)}><PaperAirplaneIcon/>Publicar</Link>
+                <div onClick = {() => setPerfil(true)} className = 'Img-Wrap'>
+                    <UserAvatar user = {user} allowAnonymousUser = {true}/>
+                    <UnreadNotifications user = {user}/>
+                </div>
+            </div>
+        );
+
+    }
+
+    const loginButton = () => <button key = 'd' className = 'login' onClick = {() => setLogin(true)}>Acceder</button>
     
-    return (
-        <div className = {'Nav ' + menu}>
-            <div className = 'Nomoresheet' onClick = {() => menu === 'Mobile' ? setMenu(''): setMenu('Mobile')}>
-                <NomoresheetLogo/>
-                <i className = {menu === 'Mobile' ? 'Up' : 'Down'}></i>
-            </div>
-            <div className = {'Menu ' + menu} onClick = {() => setMenu('')}>
-                {user ? menuUser() : menuNotUser()}
-            </div>
+    return(
+        <div className = 'Nav'>
+            <NomoresheetLogo/>
+            {user   ? [menuUser(), menuMobile()] : [loginButton(), menuNotUser()]}
             {perfil && <Profile  hide = {() => setPerfil(false)}/>}
             {login  && <Login    hide = {() => setLogin(false)}/>}
             {post   && <NewPost  hide = {() => setPost(false)}/>}

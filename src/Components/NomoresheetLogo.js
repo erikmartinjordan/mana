@@ -8,10 +8,13 @@ const NomoresheetLogo = () => {
     let linkStyle = {
         background: 'none',
         color: 'white',
+        cursor: 'pointer',
         display: 'block',
         fontWeight: '900',
         fontSize: '30px',
         height: '70px',
+        marginBottom: '15px',
+        marginTop: '15px',
         position: 'relative',
         width: '70px'
     }

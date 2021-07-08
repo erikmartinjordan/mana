@@ -36,9 +36,15 @@
     border-radius: 12px;
     box-sizing: border-box;
     color: var(--primaryFontColor);
+    font-size: 16px;
     line-height: 2;
     margin-top: 20px;
     padding: 0;
     resize: none;
     width: 100%;
+}
+@media (max-width: 768px){
+    .NewReply textarea{
+        font-size: 14px;
+    }
 }

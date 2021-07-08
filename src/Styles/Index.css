@@ -244,4 +244,7 @@ img.emoji {
         font-size: 14px;
         line-height: 1.75;
     }
+    #root{
+        margin-bottom: 48px;
+    }
 }

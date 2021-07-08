@@ -1,141 +1,30 @@
 .Nav{
-    background: none;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
     max-width: 250px;
     padding: 20px;
-    top: 0;
-    width: 100%;
-    z-index: 1;
 }
-.Nav .Nomoresheet{
-    align-items: center;
-    display: flex;
-    height: 100px;
-}
-.Nav .Nomoresheet div{
-    cursor: pointer;
-}
-.Nav .Nomoresheet.Mobile{
-    display: none;
-}
-.Nav .Menu{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 0;
-    width: 100%;
-}
-.Nav .NotificationsContainer{
-    align-items: center;
-    display: flex;
-}
-.Nav .Menu a{
-    align-items: center;
-    display: flex;
+.Nav a{
     color: var(--primaryFontColor);
-    cursor: pointer;
-    width: max-content;
 }
 .Nav .Menu a svg{
     margin-right: 10px;
 }
-.Nav .Menu span{
-    cursor: pointer;
-}
-.Nav .Menu .Progress{
-    align-items: center;
+.Nav .Menu{
     display: flex;
-    height: 34px;
-    margin-right: 5px;
-    width: 34px;
-    justify-content: center;
-    position: relative;
+    flex-direction: column;
 }
-.Nav .Menu img{
-    border-radius: 50%;
-    height: 30px;
-    width: 30px;
+.Nav .Mobile{
+    display: none;
 }
-.Nav .Avatar-Menu{
-    animation: bounce 0.2s;
-    background: var(--bgBox);
-    border-radius: 12px;
-    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
-                rgba(15, 15, 15, 0.2) 0px 5px 10px, 
-                rgba(15, 15, 15, 0.4) 0px 15px 40px;
-    color: var(--darkGray);
-    font-size: small;
-    margin-left: -80px;
-    margin-top: 10px;
-    position: absolute;
-    z-index: 1;
-}
-.Nav .Avatar-Menu a{
-    align-items: center;
-    color: var(--primaryFontColor);
-    display: flex;
-    font-size: small;
-    margin: 0;
-    padding: 5px 20px 5px 20px; 
-}
-.Nav .Avatar-Menu a:hover{
-    background: var(--bgColor);
-    color: var(--primaryFontColor);
-    transition: 0.2s ease-in-out;
-}
-.Nav .Separator{
+.Nav .Separator {
     height: 1px;
     margin-bottom: 10px;
     margin-top: 10px;
     width: 100%;
 }
-.Nav .Img-Wrap,
-.Nav .Bar-Wrap{
+.Nav .Decide {
     align-items: center;
-    background: var(--bgBox);
-    border-radius: 50px;
-    cursor: pointer;
     display: flex;
-    width: max-content;
-    padding: 10px 20px;
-}
-.Nav .User{
-    align-items: center;
-    cursor: pointer;
-}
-.Nav .Logout{
-    border: 1px solid var(--red);
-    border-radius: 50px;
-    color: var(--red);
-    cursor: pointer;
-    font-size: small;
-    margin-bottom: 5px;
-    margin-top: auto;
-    padding: 0px 10px;
-    width: max-content;
-}
-.Nav .Name-Points{
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-}
-.Nav span.Name{
-    font-size: small;
-}
-.Nav span.Points{
-    color: var(--thirdFontColor);
-    font-size: x-small;
-    margin-top: 2px;
-}
-.Nav .SignIn{
-    color: var(--thirdFontColor);
-    line-height: 1;
-    font-size: x-small;
-}
-.Nav i{
-    display: none;
+    justify-content: space-between;
 }
 .Nav .Access{
     background: var(--bgBox);
@@ -146,77 +35,91 @@
     padding: 20px;
 }
 .Nav .Access .Title{
-    font-size: large;
+    font-size: 18px;
     font-weight: 900;
+    line-height: 1.5;
 }
-.Nav .Access a{
+.Nav .Access a {
     display: block;
     font-size: 14px;
     margin-top: 20px;
 }
-.Nav .Decide{
+.Nav .Menu .Img-Wrap{
     align-items: center;
+    background: var(--bgBox);
+    border-radius: 50px;
+    cursor: pointer;
     display: flex;
-    justify-content: space-between;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    padding: 10px 20px;
 }
-.Nav a.New-Post svg{
-    animation: 0.3s swirl_out ease-in-out;
-
+.Nav .Menu .Name-Points {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+.Nav .Menu span.Name{
+    font-size: 12px;
+}
+.Nav .Menu span.Points{
+    color: var(--thirdFontColor);
+    font-size: 10px;
+    margin-top: 2px;
+}
+.Nav button.login{
+    display: none;
 }
 @media (max-width: 768px){
+    .Nav{
+        align-items: center;
+        display: flex;
+        max-width: 100%;
+    }
     .Nav .Menu{
         display: none;
     }
-    .Nav .Menu.Mobile{
-        display: flex;
-        padding: 20px;
-    }
-    .Nav{
-        height: auto;
-        max-width: 100%;
-        padding: 0;
-        position: relative;
-        width: max-content;
-    }
-    .Nav .Logout{
-        margin-top: 20px;
-    }
-    .Nav .Nomoresheet{
-        padding: 20px;
-        width: max-content;
-    }
-    .Nav.Mobile{
+    .Nav .Mobile{
         background: var(--bgColor);
+        border-top: 1px solid rgba(1, 1, 1, 0.1);
+        bottom: 0;
+        display: flex;
+        font-size: 12px;
+        left: 0;
+        justify-content: space-between;
+        padding: 5px 20px;
+        position: fixed;
+        width: 100%;
+        z-index: 99999999999;
+    } 
+    .Nav .Mobile a{
+        align-items: center;
         display: flex;
         flex-direction: column;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-        width: 100vw;
     }
-    .Nav i{
-        border: solid var(--primaryFontColor);
-        border-width: 0 1px 1px 0;
-        display: inline-block;
-        margin: 10px;
-        padding: 3px;
-        transition-duration: 0.8s;
+    .Nav .Mobile .Img-Wrap{
+        position: relative;
     }
-    .Nav i.Down {
-        transform: rotate(45deg);
+    .Nav .Mobile .NotificationPoints{
+        font-size: 10px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
     }
-    .Nav i.Up{
-        transform: rotate(-135deg);
+    .Nav button.login{
+        display: block;
+        font-size: 14px;
+        margin: 0;
+        margin-left: auto;
     }
-    .Nav .Access{
-        margin-top: 20px;
-        margin-right: 0px;
-    }   
 }
 @media (hover: hover){
     .Nav a.New-Post:hover svg{
         animation: 0.3s swirl_in ease-in-out;
-    
+    }
+    .Nav .Mobile .Img-Wrap{
+        position: relative;
     }
     .Nav .Menu a:hover svg{
         animation: tilt 0.5s ease-in-out; 

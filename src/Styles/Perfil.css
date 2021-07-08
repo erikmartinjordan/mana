@@ -209,6 +209,9 @@
         justify-content: flex-start;
         height: 100%;
     }
+    .Perfil .Datos{
+        margin-bottom: 48px;
+    }
     .Perfil .Sidebar{
         width: 100%;
     }
