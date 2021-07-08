@@ -24,3 +24,8 @@
     left: 10px;
     position: absolute;
 }
+@media(max-width: 768px){
+    .Ad{
+        display: none;
+    }
+}

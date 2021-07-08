@@ -24,7 +24,6 @@
     border-radius: 12px;
     box-sizing: border-box;
     color: var(--primaryFontColor);
-    font-size: medium;
     line-height: 2;
     margin-top: 10px;
     padding: 5px;
@@ -37,7 +36,6 @@
     border-radius: 12px;
     box-sizing: border-box;
     color: var(--primaryFontColor);
-    font-size: medium;
     line-height: 2;
     margin-top: 20px;
     padding: 0;
