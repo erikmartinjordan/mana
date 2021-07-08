@@ -210,7 +210,7 @@
         height: 100%;
     }
     .Perfil .Datos{
-        margin-bottom: 48px;
+        margin-bottom: calc(48px + env(safe-area-inset-bottom));
     }
     .Perfil .Sidebar{
         width: 100%;

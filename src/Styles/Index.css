@@ -245,6 +245,6 @@ img.emoji {
         line-height: 1.75;
     }
     #root{
-        margin-bottom: 48px;
+        margin-bottom: calc(48px + env(safe-area-inset-bottom));
     }
 }

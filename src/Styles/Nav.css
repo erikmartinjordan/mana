@@ -86,6 +86,7 @@
         bottom: 0;
         display: flex;
         font-size: 12px;
+        height: calc(48px + env(safe-area-inset-bottom));
         left: 0;
         justify-content: space-between;
         padding: 5px 20px;
