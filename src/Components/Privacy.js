@@ -13,9 +13,10 @@ const Privacy = () => {
             <p>Actualmente, se muestra un anuncio en la barra lateral derecha de la web. Si detectas algún otro enlace sospechoso de contenter publicidad, por favor, ponte en contacto vía <a href = 'mailto:hola@erikmartinjordan.com'>hola@erikmartinjordan.com</a>.</p>
             
             <h2>Publicaciones</h2>
-            <p>Es necesario tener una cuenta de Google para publicar. El inicio de sesión con una cuenta de Google permite controlar los mensajes de <em>bots</em> y evitar el <em>spam</em>.</p> 
+            <p>El inicio de sesión con una cuenta de Google permite controlar los mensajes de <em>bots</em> y evitar el <em>spam</em>.</p> 
             <p>Los mensajes que se publiquen serán visibles para todos aquellos usuarios que visiten la web y serán publicados con el mismo nombre que figura en la cuenta de Google asociada. Los usuarios obtienen más privilegios a medida que aumenta su reputación en la web. Así la comunidad puede crecer de forma sana.</p>
             <p>Como usuario tienes derecho a borrar tu cuenta y todos tus mensajes serán anonimizados. El contenido de tus publicaciones no se eliminará pues puede seguir siendo relevante para otros usuarios.</p>
+            <p>A partir del 2021, los usuarios pueden acceder con todo tipo de direcciones de correo, o de forma anónima.</p>
             
             <h2>Pagos</h2>
             <p>Una cuenta <em>premium</em> permite obtener todos los privilegios de Nomoresheet de forma inmediata. </p>
