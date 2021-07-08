@@ -37,6 +37,9 @@
     .Forum{
         padding: 0px 20px 0px 20px;
     }
+    .Forum h1{
+        font-size: 22px;
+    }
     .Forum .Forum-TwoCol{
         flex-direction: column;
     }
