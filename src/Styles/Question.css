@@ -102,6 +102,7 @@
     width: max-content;
 }
 .Question span.Author-Info{
+    align-items: center;
     display: flex;
 }
 

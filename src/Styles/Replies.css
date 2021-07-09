@@ -107,6 +107,7 @@
     width: max-content;
 }
 .Reply span.Author-Info{
+    align-items: center;
     display: flex;
 }
 .Reply .Meta{

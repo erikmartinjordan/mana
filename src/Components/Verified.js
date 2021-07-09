@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import firebase                       from '../Functions/Firebase';
+import { VerifiedIcon }               from '@primer/octicons-react';
 import '../Styles/VerifiedTag.css';
 
 const Verified = ({uid}) => {
@@ -22,14 +23,9 @@ const Verified = ({uid}) => {
     }, [uid]);
     
     return(
-        <React.Fragment>
-            {verified 
-            ? <div className = 'Verified'>
-                <div className = 'Tilde'>✓</div>
-                <div className = 'Tooltip'>Cuenta verificada</div>
-              </div> 
-            : null}
-        </React.Fragment>
+        <div className = 'Verified'>
+            {verified ? <VerifiedIcon/> : null}
+        </div>
     );
 }
 

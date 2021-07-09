@@ -168,6 +168,7 @@
     font-size: large;
     font-weight: 600;
     line-height: 1.5;
+    padding: 0;
 }
 .Perfil .Faq p.Answer{
     color: var(--thirdFontColor);
