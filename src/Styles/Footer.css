@@ -39,13 +39,14 @@
     margin: 5px;
 }
 @media (max-width: 600px){
-    
+    .Footer{
+        padding-bottom: calc(48px + env(safe-area-inset-bottom));
+    }
     .Footer .Wrap{
         align-items: center;
         display: flex;
         flex-direction: column;
     }
-    
     .Footer .Wrap .Column:first-child,
     .Footer .Wrap .Column:last-child{
         justify-content: center;

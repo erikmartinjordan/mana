@@ -71,11 +71,14 @@
 @media (max-width: 768px){
    .Login{
         animation: slide_up 0.5s ease-in-out;
-        align-items: flex-end;
         height: 100vh;
         padding: 0px;
     } 
     .Login .Login-wrap{
         border-radius: 12px 12px 0px 0px;
+        bottom: calc(0px + env(safe-area-inset-bottom));
+        padding: 20px;
+        position: absolute;
+        width: 100vw;
     }
 }

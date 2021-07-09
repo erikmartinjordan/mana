@@ -76,6 +76,11 @@
         align-items: center;
         display: flex;
         max-width: 100%;
+        padding: 20px 20px 0 20px;
+    }
+    .Nav .NomoresheetLogo{
+        margin-bottom: 0!important;
+        margin-top: 0!important;
     }
     .Nav .Menu{
         display: none;
