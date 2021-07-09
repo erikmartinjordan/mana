@@ -373,7 +373,6 @@ const Premium = ({user, infoUser}) => {
                         <li>Edita y elimina mensajes</li>
                         <li>Añade formato a tus mensajes</li>
                         <li><em>Badge</em> identificativo</li>
-                        <li>Lee artículos privados</li>
                     </ul>
                 </div>
                 <div className = 'Account-Block'>
@@ -395,7 +394,6 @@ const Premium = ({user, infoUser}) => {
                         <li>Edita y elimina mensajes</li>
                         <li>Añade formato a tus mensajes</li>
                         <li><em>Badge</em> identificativo</li>
-                        <li>Lee artículos privados</li>
                         <li>Paga una única vez y disfruta de Nomoresheet para siempre</li>
                     </ul>
                 </div>
