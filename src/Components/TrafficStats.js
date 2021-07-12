@@ -47,7 +47,7 @@ const TrafficStats = () => {
         
         let ref = firebase.database().ref(`analytics/${date.format('YYYYMMDD')}/${fingerprint}`);
         
-        if(sessionId && history.location.pathname !== '/estadisticas'){
+        if(sessionId){
             
             scrollListener = window.addEventListener('scroll', () => {
                 

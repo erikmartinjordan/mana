@@ -1,24 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Link }                       from 'react-router-dom';
-import moment                         from 'moment';
-import Chart                          from 'chart.js/auto';
-import firebase                       from '../Functions/Firebase';
+import React, { useState, useEffect }                                                                                                from 'react';
+import { Link }                                                                                                                      from 'react-router-dom';
+import moment                                                                                                                        from 'moment';
+import Chart                                                                                                                         from 'chart.js/auto';
+import firebase                                                                                                                      from '../Functions/Firebase';
+import { getUsers, getSessions, getPageviews, getSessionDuration, getRealTimeUsers, getPageviewsSession, getBounceRate, getRanking } from '../Functions/Analytics';
 import '../Styles/Stats.css';
 
 const Stats = () => {
     
     const [bounceRate, setBounceRate]             = useState('0%');
-    const [days, setDays]                         = useState([]);
     const [duration, setDuration]                 = useState(0);
     const [interval, setInterval]                 = useState(7);
-    const [months, setMonths]                     = useState(null);
-    const [pageviews, setPageviews]               = useState([]);
     const [pageviewsSession, setPageviewsSession] = useState(0);
-    const [posts, setPosts]                       = useState(null);
     const [ranking, setRanking]                   = useState([]);
     const [realTimeUsers, setRealTimeUsers]       = useState(0);
-    const [sessions, setSessions]                 = useState([]);
-    const [users, setUsers]                       = useState([]);
     
     let graph1 = {
       type: 'line',
@@ -169,249 +164,64 @@ const Stats = () => {
         window.scrollTo(0, 0);
 
     }, []);
+
+    useEffect(() => {
+
+        let today = moment().format('YYYYMMDD');
+
+        let listener = firebase.database().ref(`analytics/${today}`).on('value', snapshot => {
+
+            if(snapshot){
+
+                let data = snapshot.val();
+                
+                let realTime = getRealTimeUsers(data);
+                setRealTimeUsers(realTime);
+
+            }
+
+        });
+
+        return () => firebase.database().ref(`analytics/${today}`).off('value', listener);
+
+    }, []);
     
     useEffect(() => {
         
         let canvas = document.getElementById('graph-1');
         let ctx = canvas.getContext('2d');
         let chart = new Chart(ctx, graph1);
-        
-        const getUsers = (data) => {
-            
-            let users = [];
-            
-            Object.keys(data).forEach(day => {
-                
-                users.push(Object.keys(data[day]).length);
-                
-            });
-            
-            return users;
-            
-        }
-        
-        const getSessions = (data) => {
-            
-            let sessions = [];
-            
-            Object.keys(data).forEach(day => {
-                
-                let count = 0; 
-                
-                Object.keys(data[day]).forEach(uid => {
-                    
-                    count = count + Object.keys(data[day][uid]).length;
-                    
-                });
-                
-                sessions.push(count);
-                
-            });
-            
-            return sessions;
-        }
-        
-        const getPageviews = (data) => {
-            
-            let pageviews = [];
-            
-            Object.keys(data).forEach(day => {
-                
-                let count = 0; 
-                
-                Object.keys(data[day]).forEach(uid => {
-                    
-                    Object.keys(data[day][uid]).forEach(session => {
-                        
-                        if(data[day][uid][session].pageviews)
-                            count = count + Object.keys(data[day][uid][session].pageviews).length;
-                        
-                    });
-                    
-                });
-                
-                pageviews.push(count);
-                
-            });
-            
-            
-            return pageviews;
-            
-        }
-        
-        const getSessionDuration = (data) => {
-            
-            let duration = [];
-            
-            Object.keys(data).forEach(day => {
-                
-                Object.keys(data[day]).forEach(uid => {
-                    
-                    Object.keys(data[day][uid]).forEach(session => {
-                        
-                        let sec = (data[day][uid][session].timeStampEnd - data[day][uid][session].timeStampIni)/1000;
-                        
-                        if(!isNaN(sec)) duration.push(sec);
-                    
-                    });
-                    
-                });
-                
-            });
-            
-            let avg = duration.reduce( (a,b) => a + b)/duration.length;
-            
-            return `${Math.floor(avg / 60)} min ${Math.floor(avg % 60)} seg`;
-            
-        }
-        
-        const getRealTimeUsers = (data) => {
-            
-            let realTimeUsers = 0;
-            
-            let now = (new Date()).getTime();
-            
-            Object.keys(data).forEach(day => {
-                
-                Object.keys(data[day]).forEach(uid => {
-                    
-                    let realTimeSession = false;
-                    
-                    Object.keys(data[day][uid]).forEach(session => {
-                        
-                        if(now - data[day][uid][session].timeStampEnd <= 5 * 60 * 1000){
-                            
-                            realTimeSession = true;
-                            
-                        }
-                        
-                    });
-                    
-                    if(realTimeSession) realTimeUsers ++;
-                    
-                });
-                
-            });
-            
-            return realTimeUsers;
-            
-        }
-        
-        const getPageviewsSession = (pageviews, sessions) => {
-            
-            let res = 0;
-            
-            if(pageviews && sessions)
-                res = pageviews.reduce( (a, b) => a + b, 0) / sessions.reduce( (a, b) => a + b, 0);
-            
-            return res.toFixed(2);
-            
-        }
-        
-        const getBounceRate = (data) => {
-            
-            let bounced = 0;
-            let total = 0;
-            
-            Object.keys(data).forEach(day => {
-                
-                Object.keys(data[day]).forEach(uid => {
-                    
-                    Object.keys(data[day][uid]).forEach(session => {
-                        
-                        if(data[day][uid][session].timeStampIni === data[day][uid][session].timeStampEnd)
-                            bounced ++;
-                        
-                        total ++;
-                        
-                    });
-                    
-                });
-                
-            });
-            
-            return `${ (100 * bounced / total).toFixed(2) }%`;
-            
-        }
-        
-        const getRanking = (data) => {
-            
-            let array = [];
-            
-            Object.keys(data).forEach(day => {
-                
-                Object.keys(data[day]).forEach(uid => {
-                    
-                    Object.keys(data[day][uid]).forEach(session => {
-                        
-                        if(data[day][uid][session].pageviews){
-                            
-                            Object.keys(data[day][uid][session].pageviews).forEach(pid => {
-                                
-                                array.push(data[day][uid][session].pageviews[pid].url);
-                                
-                            });
-                            
-                        }
-                        
-                    });
-                    
-                });
-                
-            });
-            
-            let unique = [...new Set(array)];
-            
-            let duplicates  = unique.map(value => [value, array.filter(url => url === value).length ]);
-            
-            return duplicates.sort((a, b) => b[1] - a[1]);
-        }
 
         let iniDate = moment().subtract(interval - 1, 'days').format('YYYYMMDD');
         let endDate = moment().subtract(0,            'days').format('YYYYMMDD');
         
-        let listener = firebase.database().ref(`analytics/`).orderByKey().startAt(iniDate).endAt(endDate).on('value', snapshot => {
+        firebase.database().ref(`analytics/`).orderByKey().startAt(iniDate).endAt(endDate).once('value').then(snapshot => {
             
             if(snapshot){
                 
                 let data = snapshot.val();
                 
                 let days = Object.keys(data).map(date => moment(date).format('DD MMM'));
-                setDays(days);
                 
                 let users = getUsers(data);
-                setUsers(users);
-                
                 let sessions = getSessions(data);
-                setSessions(sessions);
-                
                 let pageviews = getPageviews(data);
-                setPageviews(pageviews);
-                
-                let avg = getSessionDuration(data);
-                setDuration(avg);
-                
-                let realTime = getRealTimeUsers(data);
-                setRealTimeUsers(realTime);
-                
                 let pageviewsSession = getPageviewsSession(pageviews, sessions);
-                setPageviewsSession(pageviewsSession);
-                
+                let avg = getSessionDuration(data);
                 let bounceRate = getBounceRate(data);
-                setBounceRate(bounceRate);
-                
                 let ranking = getRanking(data);
+
+                setDuration(avg);
+                setPageviewsSession(pageviewsSession);
+                setBounceRate(bounceRate);
                 setRanking(ranking);
-                
+
                 graph1.data.labels = days;
                 graph1.data.datasets['0'].data = users;
                 graph1.data.datasets['1'].data = sessions;
                 graph1.data.datasets['2'].data = pageviews;
 
-                if(interval === 1)   graph1.type = 'bar';
-                if(interval === 7)   graph1.type = 'line';
-                if(interval === 30)  graph1.type = 'line';
-                if(interval === 365) graph1.type = 'line';
+                graph1.type = interval === 1 ? 'bar' : 'line';
                 
                 chart.update();
                 
@@ -420,8 +230,6 @@ const Stats = () => {
         });
         
         return () => {
-            
-            firebase.database().ref(`analytics/`).off('value', listener);
             
             chart.destroy();
             
