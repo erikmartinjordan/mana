@@ -16,7 +16,7 @@
     box-shadow: var(--boxShadow);
     padding: 20px;
     width: 600px;
-    z-index: 2;
+    z-index: 99999999999;
 }
 .Login .Login-wrap h3{
     margin-bottom: 30px !important;
@@ -76,7 +76,7 @@
     } 
     .Login .Login-wrap{
         border-radius: 12px 12px 0px 0px;
-        bottom: calc(0px + env(safe-area-inset-bottom));
+        bottom: 0px;
         padding: 20px;
         position: absolute;
         width: 100vw;
