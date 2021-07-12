@@ -176,30 +176,6 @@ const Stats = () => {
         let ctx = canvas.getContext('2d');
         let chart = new Chart(ctx, graph1);
         
-        const getMonth = (number) => {
-            
-            let name;
-            
-            switch(parseInt(number)){
-                case 1: name = 'ene'; break;
-                case 2: name = 'feb'; break;
-                case 3: name = 'mar'; break;
-                case 4: name = 'abr'; break;
-                case 5: name = 'may'; break;
-                case 6: name = 'jun'; break;
-                case 7: name = 'jul'; break;
-                case 8: name = 'ago'; break;
-                case 9: name = 'sep'; break;
-                case 10: name ='oct'; break;
-                case 11: name ='nov'; break;
-                case 12: name ='dic'; break;
-                default: break;
-            }
-            
-            return name;
-            
-        }
-        
         const getUsers = (data) => {
             
             let users = [];
@@ -400,7 +376,7 @@ const Stats = () => {
                 
                 let data = snapshot.val();
                 
-                let days = Object.keys(data).map(date => `${date.substr(6, 2)} ${getMonth(date.substr(4, 2))}`);
+                let days = Object.keys(data).map(date => moment(date).format('DD MMM'));
                 setDays(days);
                 
                 let users = getUsers(data);
@@ -432,9 +408,10 @@ const Stats = () => {
                 graph1.data.datasets['1'].data = sessions;
                 graph1.data.datasets['2'].data = pageviews;
 
-                if(interval === 1)  graph1.type = 'bar';
-                if(interval === 7)  graph1.type = 'line';
-                if(interval === 30) graph1.type = 'line';
+                if(interval === 1)   graph1.type = 'bar';
+                if(interval === 7)   graph1.type = 'line';
+                if(interval === 30)  graph1.type = 'line';
+                if(interval === 365) graph1.type = 'line';
                 
                 chart.update();
                 
