@@ -85,6 +85,7 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
         if(type === 'reply'){
             
             firebase.database().ref(`replies/${replyId}`).remove();
+            firebase.database().ref(`users/${authorId}/lastReplies/${replyId}`).remove();
             firebase.database().ref(`posts/${postId}/replies/${replyId}`).remove();
             firebase.database().ref(`users/${authorId}/numReplies`).transaction(value => ~~value - 1);
             firebase.database().ref(`users/${authorId}/numPoints`).transaction(value => ~~value - Points.reply);

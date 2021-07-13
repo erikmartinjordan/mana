@@ -260,7 +260,7 @@ exports.getReplies = functions.https.onRequest(async (request, response) => {
     
 });
 
-exports.getLastArticles = functions.https.onRequest(async (request, response) => {
+exports.getLastPosts = functions.https.onRequest(async (request, response) => {
     
     return cors(request, response, async () => {
         
@@ -270,6 +270,31 @@ exports.getLastArticles = functions.https.onRequest(async (request, response) =>
         Object.entries(posts).forEach( ([postId, {userUid}]) => {
             
             admin.database().ref(`users/${userUid}/lastPosts/${postId}`).set(true);
+            
+        });
+        
+        response.send(200);
+        
+    });
+    
+}); 
+
+exports.getLastReplies = functions.https.onRequest(async (request, response) => {
+    
+    return cors(request, response, async () => {
+        
+        let snapshot = await admin.database().ref('posts').once('value');
+        let posts    = snapshot.val();
+        
+        Object.keys(posts).forEach(postId => {
+
+            let replies = posts[postId].replies || {};
+
+            Object.entries(replies).forEach( ([replyId, {userUid}]) => {
+            
+                admin.database().ref(`users/${userUid}/lastReplies/${replyId}`).set(postId);
+
+            });
             
         });
         

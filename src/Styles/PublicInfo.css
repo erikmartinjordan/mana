@@ -70,9 +70,33 @@
     background: var(--greenMint);
     border-radius: 12px;
 }
-.Public-Info .Last-Articles a{
+.Public-Info .Activity{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.Public-Info .Activity .Menu{
     border-bottom: 3px solid var(--bgColor);
-    font-size: small;
+    display: flex;
+    font-size: 12px;
+}
+.Public-Info .Activity .Menu div{
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 15px;
+}
+.Public-Info .Activity .Menu .Selected{
+    border-bottom: 4px solid var(--blue);
+}
+.Public-Info .Activity a{
+    font-size: 12px;
+    margin-top: 5px;
+}
+.Public-Info .Activity button{
+    color: var(--blue);
+    margin: 0;
+    margin-top: 10px;
+    width: max-content;
 }
 .Public-Info .Ranking{
     background: var(--blue);

@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import firebase                from './Firebase';
 
-const GetLastArticles = (userUid, nArticles) => {
+const GetLastPosts = (userUid, nPosts) => {
     
-    const [articles, setArticles] = useState([]);
+    const [posts, setPosts] = useState([]);
     
     useEffect(() => { 
         
-        if(userUid && nArticles){
+        if(userUid && nPosts){
            
-            firebase.database().ref(`users/${userUid}/lastPosts`).limitToLast(nArticles).on('value', async (snapshot) => { 
+            firebase.database().ref(`users/${userUid}/lastPosts`).limitToLast(nPosts).on('value', async (snapshot) => { 
                 
                 let posts = snapshot.val();
                 
@@ -26,7 +26,7 @@ const GetLastArticles = (userUid, nArticles) => {
                         
                     }));
                     
-                    setArticles(postInfo);
+                    setPosts(postInfo);
                     
                 }
                 
@@ -34,10 +34,10 @@ const GetLastArticles = (userUid, nArticles) => {
             
         }
         
-    }, [userUid, nArticles]);
+    }, [userUid, nPosts]);
     
-    return articles;
+    return posts;
     
 }
 
-export default GetLastArticles;
+export default GetLastPosts;

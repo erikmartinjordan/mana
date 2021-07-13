@@ -1,4 +1,4 @@
-import React                                     from 'react';
+import React, { useState }                       from 'react';
 import { Link }                                  from 'react-router-dom';
 import moment                                    from 'moment';
 import { LocationIcon, LinkIcon }                from '@primer/octicons-react';
@@ -12,9 +12,12 @@ import GetWebsite                                from '../Functions/GetWebsite';
 import GetProfileImg                             from '../Functions/GetProfileImg';
 import GetBackgroundImg                          from '../Functions/GetBackgroundImg';
 import GetNumberOfViews                          from '../Functions/GetNumberOfViews';
+import GetNumberOfPosts                          from '../Functions/GetNumberOfPosts';
+import GetNumberOfReplies                        from '../Functions/GetNumberOfReplies';
 import GetLevel                                  from '../Functions/GetLevelAndPointsToNextLevel';
 import GetPoints                                 from '../Functions/GetPoints';
-import GetLastArticles                           from '../Functions/GetLastArticles';
+import GetLastPosts                              from '../Functions/GetLastPosts';
+import GetLastReplies                            from '../Functions/GetLastReplies';
 import GetRankingUser                            from '../Functions/GetRankingUser';
 import GetNumberOfProfileViewsAndProfileLastSeen from '../Functions/GetNumberOfProfileViewsAndProfileLastSeen';
 import GetStripeUserId                           from '../Functions/GetStripeUserId';
@@ -24,6 +27,7 @@ import '../Styles/PublicInfo.css';
 const PublicInfo = (props) => {
     
     const uid                                    = props.match.params.string;
+    const [activity, setActivity]                = useState('publicaciones');
     const [profileViews, profileLastSeen]        = GetNumberOfProfileViewsAndProfileLastSeen(uid);
     const name                                   = GetName(uid);
     const views                                  = GetNumberOfViews(uid);
@@ -31,7 +35,12 @@ const PublicInfo = (props) => {
     const photoURL                               = GetProfileImg(uid);
     const points                                 = GetPoints(uid);
     const [level, pointsToNextLevel, percentage] = GetLevel(points);
-    const articles                               = GetLastArticles(uid, 10); 
+    const [numPosts, setNumPosts]                = useState(10);
+    const [numReplies, setNumReplies]            = useState(10);
+    const posts                                  = GetLastPosts(uid, numPosts); 
+    const replies                                = GetLastReplies(uid, numReplies);
+    const totalPosts                             = GetNumberOfPosts(uid);
+    const totalReplies                           = GetNumberOfReplies(uid);
     const ranking                                = GetRankingUser(uid);
     const stripeUserId                           = GetStripeUserId(uid);
     const bio                                    = GetBio(uid);
@@ -84,12 +93,17 @@ const PublicInfo = (props) => {
                     </div>
                     <div className = 'Comment'>{pointsToNextLevel} puntos para el siguiente nivel ({percentage}% completado)</div>
                 </div>
-                <div className = 'Last-Articles'>
-                    { articles.length > 0
-                    ? <div className = 'Title'>Últimas publicaciones</div>
-                    : null
+                <div className = 'Activity'>
+                    <div className = 'Menu'>
+                        <div onClick = {() => setActivity('publicaciones')} className = {activity === 'publicaciones' ? 'Selected' : null}>Publicaciones ({totalPosts})</div>
+                        <div onClick = {() => setActivity('respuestas')}    className = {activity === 'respuestas'    ? 'Selected' : null}>Respuestas ({totalReplies})</div>
+                    </div>
+                    { activity === 'publicaciones'
+                    ? posts.map((article, key) => <Link key = {key} to = {`/comunidad/post/${article.url}`}>{article.title}</Link>)
+                    : replies.map((reply, key) => <Link key = {key} to = {`/comunidad/post/${reply.url}`}>{reply.title}</Link>)
                     }
-                    {articles.map((article, key) => <div key = {key}><Link to = {'/comunidad/post/' + article.url}>{article.title}</Link></div>)}
+                    { activity === 'publicaciones' && numPosts < totalPosts     ? <button onClick = {() => setNumPosts(numPosts + 10)}>Ver más</button> : null}
+                    { activity === 'respuestas'    && numReplies < totalReplies ? <button onClick = {() => setNumReplies(numReplies + 10)}>Ver más</button> : null}
                 </div>
             </div>
         </div>

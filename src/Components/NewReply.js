@@ -129,6 +129,7 @@ const NewReply = ({postId}) => {
             name: userName,
             profilePic: userPhoto,
             numReplies: firebaseServerValue.increment(1),
+            [`lastReplies/${replyId}`]: postId,
             [`replies/timeStamp`]: now
         };
         

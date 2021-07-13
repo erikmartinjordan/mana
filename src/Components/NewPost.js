@@ -136,7 +136,7 @@ const NewPost = ({hide}) => {
             name: userName,
             profilePic: userPhoto,
             numPosts: firebaseServerValue.increment(1),
-            [`lastPosts/${postId}`]: post,
+            [`lastPosts/${postId}`]: true,
             [`posts/timeStamp`]: now
             
         };
