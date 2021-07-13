@@ -61,7 +61,7 @@ const Question = ({ admin, postId, setTitle, uid }) => {
                         <Link to = {'/@' + question.userUid}>{question.userName}</Link> 
                         <Verified   uid = {question.userUid}/>
                     </span>
-                    <time>{moment(question.timeStamp).fromNow()}</time>
+                    <time>{moment(question.timeStamp).fromNow()} {question.edited ? `(editado el ${moment(question.edited).calendar()})` : null}</time>
                 </div>
             </div>
             <div className = 'Content'>
@@ -72,9 +72,6 @@ const Question = ({ admin, postId, setTitle, uid }) => {
                         <EditPost   type = 'post' postId = {postId} authorId = {question.userUid} admin = {admin} uid = {uid}/>
                         <DeletePost type = 'post' postId = {postId} authorId = {question.userUid} admin = {admin} uid = {uid}/>
                     </div>
-            </div>
-            <div className = 'Info'>
-                {question.edited ? `Editado: ${moment(question.edited).calendar()}` : null}
             </div>
          </div> 
         : <Loading type = 'Question'/>
