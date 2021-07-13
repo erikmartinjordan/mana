@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect }from 'react';
 import moment                                    from 'moment';
 import ReactMarkdown                             from 'react-markdown';
+import { Link }                                  from 'react-router-dom';
 import Default                                   from './Default';
 import Login                                     from './Login';
 import Profile                                   from './Profile';
@@ -203,6 +204,7 @@ export const Header = ({title, date, user, views, likes, superlikes, handleLikes
     let [day, month, year] = date;
     
     let articleDate = moment().year(year).month(month).date(day);
+    let now = moment();
     
     return(
         <div className = 'Header'>
@@ -213,6 +215,10 @@ export const Header = ({title, date, user, views, likes, superlikes, handleLikes
                     <span>Erik Martín Jordán, {articleDate.fromNow()}, {views} visitas</span>
                 </p>
             </div>
+            {now.diff(articleDate, 'years') >= 1
+            ? <div className = 'OldArticle'>👋 Este artículo lo escribí hace 1 año (o más) y la información podría estar desactualizada. Utiliza la información con sentido común; si tienes dudas, pregunta en la <Link to = '/'>comunidad</Link>.</div>
+            : null
+            }
         </div>
     );
     
