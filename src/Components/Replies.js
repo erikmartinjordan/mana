@@ -11,9 +11,7 @@ import EditPost                        from './EditPost';
 import DeletePost                      from './DeletePost';
 import CopyLink                        from './CopyLink';
 import firebase                        from '../Functions/Firebase';
-import GetPoints                       from '../Functions/GetPoints';
-import GetLevel                        from '../Functions/GetLevelAndPointsToNextLevel';
-import Accounts                        from '../Rules/Accounts';
+import { highlightMentions }           from '../Functions/Highlight';
 import '../Styles/Replies.css';
 
 const Replies = ({ admin, postId, uid }) => {
@@ -70,7 +68,7 @@ const Replies = ({ admin, postId, uid }) => {
                     </div> 
                     <div className = 'Content'>
                         <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
-                            <Reply authorId = {reply.userUid} message = {reply.message}/>
+                            <Reply message = {reply.message}/>
                         </Linkify>
                         <div className = 'Meta'>
                             <CopyLink                  postId = {postId} replyId = {key} authorId = {reply.userUid}/>
@@ -87,64 +85,13 @@ const Replies = ({ admin, postId, uid }) => {
 
 export default Replies;
 
-const Reply = ({ authorId, message }) => {
-    
-    const [mdFormat, setMdFormat] = useState(null);
-    const points                  = GetPoints(authorId);
-    const level                   = GetLevel(points)[0];
-    const isAnonymous             = authorId.length === 5;
-    
-    useEffect( () => {
-        
-        const fetchUser = async () => {
-            
-            let snapshot = await firebase.database().ref(`users/${authorId}`).once('value');
-            
-            let userInfo = snapshot.val();
-            
-            if(userInfo){
-                
-                if(userInfo || isAnonymous){
-                    
-                    setMdFormat(true);
-                }
-                else{
-                    
-                    let rangeOfLevels = Object.keys(Accounts['free']);
-                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
-                    let canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false;
-                    
-                    setMdFormat(canWriteInMd);
-                    
-                }
-                
-            }
-            
-        }
-        
-        fetchUser();
-        
-    }, [level, authorId, isAnonymous]);
-    
-    return(
-        
-        <React.Fragment>
-            { mdFormat
-            ? <MarkDownMessage   message = { message }/>
-            : <NoMarkDownMessage message = { message }/>    
-            }
-        </React.Fragment>
-        
-    );
-    
-}
-const MarkDownMessage   = ({ message }) => {
+const Reply = ({ message }) => {
     
     const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'};
     
     const renderers = {
         
-        paragraph: props => <Linkify properties = {linkProperties}><p>{props.children}</p></Linkify>,
+        paragraph: props => <Linkify properties = {linkProperties}><p>{highlightMentions(props.children[0])}</p></Linkify>,
         image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Nomoresheet imagen'}></img>,
         table:     props => <div className = 'TableWrap'><table>{props.children}</table></div>
         
@@ -156,12 +103,5 @@ const MarkDownMessage   = ({ message }) => {
             renderers = {renderers}
         />
     );
-    
-}
-const NoMarkDownMessage = ({ message }) => {
-    
-    const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'}; 
-    
-    return message.split("\n").map((text, key) => <Linkify key = {key} properties = {linkProperties}><p>{text}</p></Linkify>)
     
 }

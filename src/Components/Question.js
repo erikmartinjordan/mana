@@ -11,9 +11,7 @@ import EditPost                       from './EditPost';
 import DeletePost                     from './DeletePost';
 import CopyLink                       from './CopyLink';
 import firebase                       from '../Functions/Firebase';
-import GetPoints                      from '../Functions/GetPoints';
-import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel';
-import Accounts                       from '../Rules/Accounts';
+import { highlightMentions }          from '../Functions/Highlight';
 import '../Styles/Question.css';
 
 const Question = ({ admin, postId, setTitle, uid }) => {
@@ -65,7 +63,7 @@ const Question = ({ admin, postId, setTitle, uid }) => {
                 </div>
             </div>
             <div className = 'Content'>
-                    <QuestionContent authorId = {question.userUid} message = {question.message}/>
+                    <QuestionContent  message = {question.message}/>
                     <div className = 'Meta'>
                         <CopyLink                 postId = {postId} authorId = {question.userUid}/>
                         <Likes                    postId = {postId} authorId = {question.userUid}/>
@@ -82,60 +80,13 @@ const Question = ({ admin, postId, setTitle, uid }) => {
 
 export default Question;
 
-const QuestionContent   = ({ authorId, message }) => {
-    
-    const [mdFormat, setMdFormat] = useState(null);
-    const points                  = GetPoints(authorId);
-    const level                   = GetLevel(points)[0];
-    const isAnonymous             = authorId.length === 5;
-    
-    useEffect( () => {
-        
-        firebase.database().ref(`users/${authorId}`).on('value', snapshot => {
-            
-            let userInfo = snapshot.val();
-            
-            if(userInfo){
-                
-                if(userInfo.account || isAnonymous){
-                    
-                    setMdFormat(true);
-                }
-                else{
-                    
-                    let rangeOfLevels = Object.keys(Accounts['free']);
-                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
-                    let canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false;
-                    
-                    setMdFormat(canWriteInMd);
-                    
-                }
-                
-            }
-            
-        });
-        
-    }, [level, authorId, isAnonymous]);
-    
-    return(
-        
-        <React.Fragment>
-            { mdFormat
-            ? <MarkDownMessage   message = { message }/>
-            : <NoMarkDownMessage message = { message }/>    
-            }
-        </React.Fragment>
-        
-    );
-    
-}
-const MarkDownMessage   = ({ message }) => {
+const QuestionContent = ({ message }) => {
     
     const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'};
     
     const renderers = {
         
-        paragraph: props => <Linkify properties = {linkProperties}><p>{props.children}</p></Linkify>,
+        paragraph: props => <Linkify properties = {linkProperties}><p>{highlightMentions(props.children[0])}</p></Linkify>,
         image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Imagen de artículo'}></img>,
         table:     props => <div className = 'TableWrap'><table>{props.children}</table></div>
         
@@ -147,12 +98,5 @@ const MarkDownMessage   = ({ message }) => {
             renderers = {renderers}
         />
     );
-    
-}
-const NoMarkDownMessage = ({ message }) => {
-    
-    const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'}; 
-    
-    return message.split("\n").map((text, key) => <Linkify key = {key} properties = {linkProperties}><p>{text}</p></Linkify>)
     
 }
