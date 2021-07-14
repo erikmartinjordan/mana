@@ -61,7 +61,7 @@ const Question = ({ admin, postId, setTitle, uid }) => {
                         <Link to = {'/@' + question.userUid}>{question.userName}</Link> 
                         <Verified   uid = {question.userUid}/>
                     </span>
-                    <time>{moment(question.timeStamp).fromNow()} {question.edited ? `(editado el ${moment(question.edited).calendar()})` : null}</time>
+                    <time>{moment(question.timeStamp).fromNow()} {question.edited ? `(editado el ${moment(question.edited).format('DD/MM/YYYY [a las] hh:mm')})` : null}</time>
                 </div>
             </div>
             <div className = 'Content'>

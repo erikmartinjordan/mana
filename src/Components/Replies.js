@@ -65,7 +65,7 @@ const Replies = ({ admin, postId, uid }) => {
                                 <Link to = {'/@' + reply.userUid}>{reply.userName}</Link>
                                 <Verified   uid = {reply.userUid}/>
                             </span>
-                            <time>{moment(reply.timeStamp).fromNow()} {reply.edited ? `(editado el ${moment(reply.edited).calendar()})` : null}</time>
+                            <time>{moment(reply.timeStamp).fromNow()} {reply.edited ? `(editado el ${moment(reply.edited).format('DD/MM/YYYY [a las] hh:mm')})` : null}</time>
                         </div>
                     </div> 
                     <div className = 'Content'>
