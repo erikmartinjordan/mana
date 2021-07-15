@@ -86,7 +86,7 @@ const QuestionContent = ({ message }) => {
     
     const renderers = {
         
-        paragraph: props => <Linkify properties = {linkProperties}><p>{highlightMentions(props.children[0])}</p></Linkify>,
+        paragraph: props => <Linkify properties = {linkProperties}><p>{props.children}</p></Linkify>,
         image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Imagen de artículo'}></img>,
         table:     props => <div className = 'TableWrap'><table>{props.children}</table></div>
         
