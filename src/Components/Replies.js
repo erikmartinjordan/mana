@@ -2,7 +2,6 @@ import React, { useEffect, useState }  from 'react';
 import { useRef }                      from 'react';
 import ReactMarkdown                   from 'react-markdown';
 import moment                          from 'moment';
-import Linkify                         from 'react-linkify';
 import { Link }                        from 'react-router-dom';
 import Verified                        from './Verified';
 import LikesComments                   from './LikesComments';
@@ -10,8 +9,8 @@ import UserAvatar                      from './UserAvatar';
 import EditPost                        from './EditPost';
 import DeletePost                      from './DeletePost';
 import CopyLink                        from './CopyLink';
+import Highlight                       from './Highlight';
 import firebase                        from '../Functions/Firebase';
-import { highlightMentions }           from '../Functions/Highlight';
 import '../Styles/Replies.css';
 
 const Replies = ({ admin, postId, uid }) => {
@@ -67,9 +66,7 @@ const Replies = ({ admin, postId, uid }) => {
                         </div>
                     </div> 
                     <div className = 'Content'>
-                        <Linkify properties={{target: '_blank', rel: 'nofollow noopener noreferrer'}}>
-                            <Reply message = {reply.message}/>
-                        </Linkify>
+                        <Reply message = {reply.message}/>
                         <div className = 'Meta'>
                             <CopyLink                  postId = {postId} replyId = {key} authorId = {reply.userUid}/>
                             <LikesComments             postId = {postId} replyId = {key} authorId = {reply.userUid}/>
@@ -87,11 +84,9 @@ export default Replies;
 
 const Reply = ({ message }) => {
     
-    const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'};
-    
     const renderers = {
         
-        paragraph: props => <Linkify properties = {linkProperties}><p>{props.children}</p></Linkify>,
+        paragraph: props => <Highlight text = {props.children}></Highlight>,
         image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Nomoresheet imagen'}></img>,
         table:     props => <div className = 'TableWrap'><table>{props.children}</table></div>
         

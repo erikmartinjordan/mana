@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ReactMarkdown                  from 'react-markdown';
 import { Link }                       from 'react-router-dom';
 import moment                         from 'moment';
-import Linkify                        from 'react-linkify';
 import Verified                       from './Verified';
 import Loading                        from './Loading';
 import Likes                          from './Likes';
@@ -10,8 +9,8 @@ import UserAvatar                     from './UserAvatar';
 import EditPost                       from './EditPost';
 import DeletePost                     from './DeletePost';
 import CopyLink                       from './CopyLink';
+import Highlight                      from './Highlight';
 import firebase                       from '../Functions/Firebase';
-import { highlightMentions }          from '../Functions/Highlight';
 import '../Styles/Question.css';
 
 const Question = ({ admin, postId, setTitle, uid }) => {
@@ -82,11 +81,9 @@ export default Question;
 
 const QuestionContent = ({ message }) => {
     
-    const linkProperties = {target: '_blank', rel: 'nofollow noopener noreferrer'};
-    
     const renderers = {
         
-        paragraph: props => <Linkify properties = {linkProperties}><p>{props.children}</p></Linkify>,
+        paragraph: props => <Highlight text = {props.children}></Highlight>,
         image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Imagen de artículo'}></img>,
         table:     props => <div className = 'TableWrap'><table>{props.children}</table></div>
         
