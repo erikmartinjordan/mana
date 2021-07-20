@@ -15,21 +15,21 @@ const addRichResultSchema = (post, url) => {
             "author": {
                 "@type": "Person",
                 "name": post.userName
-            }
-        },
-        "suggestedAnswer": Object.keys(post.replies || {}).map(key => (
-            {
-                "@type": "Answer",
-                "text": post.replies[key].message,
-                "dateCreated": moment(post.replies[key].timeStamp).format(),
-                "upvoteCount": Object.keys(post.replies[key].voteUsers || {}).length,
-                "url": `https://nomoresheet.es/${url}/#${key}`,
-                "author": {
-                    "@type": "Person",
-                    "name": post.replies[key].userName
+            },
+            "suggestedAnswer": Object.keys(post.replies || {}).map(key => (
+                {
+                    "@type": "Answer",
+                    "text": post.replies[key].message,
+                    "dateCreated": moment(post.replies[key].timeStamp).format(),
+                    "upvoteCount": Object.keys(post.replies[key].voteUsers || {}).length,
+                    "url": `https://nomoresheet.es/${url}/#${key}`,
+                    "author": {
+                        "@type": "Person",
+                        "name": post.replies[key].userName
+                    }
                 }
-            }
-        ))
+            ))
+        }
     }
 
     let script = document.getElementById('schema') || document.createElement('script')
