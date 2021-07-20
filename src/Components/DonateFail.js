@@ -3,15 +3,6 @@ import '../Styles/Default.css';
 
 const DonateFail = () => {
     
-    useEffect(() => {
-        
-        let meta = document.createElement('meta'); 
-        meta.name = 'robots'; 
-        meta.content = 'noindex, nofollow';
-        document.querySelector('meta[name="description"]').after(meta);
-        
-    }, [])
-    
     return (
         <div className = 'Default'>
             <h2>Ups...</h2>
