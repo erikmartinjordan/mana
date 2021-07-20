@@ -42,6 +42,13 @@ const Post = () => {
         
     });
     
+    useEffect( () => {
+        
+        if(privateArticle){
+            document.querySelector(`meta[name = 'robots']`).content = 'noindex';
+        }
+        
+    }, [privateArticle]);
     
     useEffect( () => {
         
