@@ -11,6 +11,7 @@ import Participants                               from './Participants';
 import firebase                                   from '../Functions/Firebase';
 import UserContext                                from '../Functions/UserContext';
 import updateNumberOfViews                        from '../Functions/UpdateNumberOfViews';
+import addRichResultSchema                        from '../Functions/AddRichResultSchema';
 import '../Styles/Forum.css';
 
 const Detail = (props) => {
@@ -43,6 +44,7 @@ const Detail = (props) => {
             if(post){
 
                 updateNumberOfViews(post, url);
+                addRichResultSchema(post, url);
 
             }
             else{
