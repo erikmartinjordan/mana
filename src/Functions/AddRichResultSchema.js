@@ -8,7 +8,7 @@ const addRichResultSchema = (post, url) => {
         "mainEntity": {
             "@type": "Question",
             "name": post.title,
-            "text": post.message,
+            "text": post.message.split(/\.|\n/)[0],
             "answerCount": Object.keys(post.replies   || {}).length,
             "upvoteCount": Object.keys(post.voteUsers || {}).length,
             "dateCreated": moment(post.timeStamp).format(),
@@ -19,7 +19,7 @@ const addRichResultSchema = (post, url) => {
             "suggestedAnswer": Object.keys(post.replies || {}).map(key => (
                 {
                     "@type": "Answer",
-                    "text": post.replies[key].message,
+                    "text": post.replies[key].message.split(/\.|\n/)[0],
                     "dateCreated": moment(post.replies[key].timeStamp).format(),
                     "upvoteCount": Object.keys(post.replies[key].voteUsers || {}).length,
                     "url": `https://nomoresheet.es/${url}/#${key}`,
