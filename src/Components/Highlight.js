@@ -1,5 +1,5 @@
-import React    from 'react';
-import Linkify  from 'react-linkify';
+import React    from 'react'
+import Linkify  from 'react-linkify'
 
 const Highlight = ({ text }) => {
 
@@ -14,29 +14,32 @@ const Highlight = ({ text }) => {
 
     let res = text.map(paragraph => {
 
-        let aux = [''];
+        let aux = ['']
 
         if(typeof paragraph === 'string'){
     
-            let arr = paragraph.split(' ');
+            let arr = paragraph.split(' ')
     
             arr.forEach((el, i) => {
                 
-                if(el.startsWith('@'))
-                    aux = [...aux, <span key = {i} style = {mentions}>{el}</span>, ' '];
-                
+                if(el.startsWith('@')){
+
+                    const separators = new RegExp(/(\.|\,|\:|\;)/)
+                    aux = [...aux, <span key = {i} style = {mentions}>{el.split(separators)[0]}</span>, (el.split(separators)[1] || '') + ' ']
+
+                }
                 else
-                    aux[aux.length - 1] += (i !== arr.length - 1) ? el + ' ' : el;
+                    aux[aux.length - 1] += (i !== arr.length - 1) ? el + ' ' : el
             
             })
         }
         else{
     
-            aux = paragraph;
+            aux = paragraph
     
         }
 
-        return aux;
+        return aux
 
     });
 
@@ -48,4 +51,4 @@ const Highlight = ({ text }) => {
 
 }
 
-export default Highlight;
+export default Highlight
