@@ -1,5 +1,5 @@
-import firebase from './Firebase';
-import Points   from './PointsAndValues';
+import firebase from './Firebase'
+import Points   from './PointsAndValues'
 
 const insertNotificationAndReputation = (uid, type, operator, points, url, message, postId, replyId) => {
     
@@ -12,12 +12,13 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
             timeStamp: Date.now(),
             url: url,
             postId: postId,
-            replyId: replyId
+            replyId: replyId,
+            read: type === 'post' || type === 'reply'
             
-        });
+        })
         
-        firebase.database().ref('users/' + uid + '/reputationData/' + Date.now()).transaction(value => points + Points[type]);
-        firebase.database().ref('users/' + uid + '/numPoints'                   ).transaction(value => points + Points[type]);
+        firebase.database().ref('users/' + uid + '/reputationData/' + Date.now()).transaction(value => points + Points[type])
+        firebase.database().ref('users/' + uid + '/numPoints'                   ).transaction(value => points + Points[type])
         
     }
     
@@ -30,15 +31,16 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
             timeStamp: Date.now(),
             url: url,
             postId: postId,
-            replyId: replyId
+            replyId: replyId,
+            read: type === 'post' || type === 'reply'
             
-        });
+        })
         
-        firebase.database().ref('users/' + uid + '/reputationData/' + Date.now()).transaction(value => points - Points[type]);
-        firebase.database().ref('users/' + uid + '/numPoints'                   ).transaction(value => points - Points[type]);
+        firebase.database().ref('users/' + uid + '/reputationData/' + Date.now()).transaction(value => points - Points[type])
+        firebase.database().ref('users/' + uid + '/numPoints'                   ).transaction(value => points - Points[type])
         
     }
     
 }
 
-export default insertNotificationAndReputation;
+export default insertNotificationAndReputation
