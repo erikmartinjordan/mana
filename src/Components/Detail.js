@@ -6,7 +6,6 @@ import RelatedContent                             from './RelatedContent';
 import NewReply                                   from './NewReply';
 import Default                                    from './Default';
 import Privileges                                 from './Privileges';
-import Ad                                         from './Ad';
 import Participants                               from './Participants';
 import firebase                                   from '../Functions/Firebase';
 import UserContext                                from '../Functions/UserContext';
@@ -75,7 +74,6 @@ const Detail = (props) => {
                         <Participants/>
                         <Privileges/>
                         <RelatedContent/>
-                        <Ad/>
                     </div>
                 </div>
               </div>   
