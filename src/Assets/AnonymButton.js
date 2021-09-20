@@ -8,10 +8,10 @@ const AnonymButton = ({logIn}) => {
         background: 'black',
         color: 'white',
         display: 'flex',
-        height: '30px',
+        justifyContent: 'center',
         margin: '5px',
         whiteSpace: 'nowrap',
-        width: '200px'
+        width: '300px'
         
     }
     

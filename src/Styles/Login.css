@@ -48,14 +48,17 @@
 .Login hr{
     border: none;
     border-top: 1px solid rgba(1, 1, 1, 0.2);
+    margin-bottom: 20px;
+    margin-top: 20px;
     width: 200px;
 }
 .Login form input{
     background: rgba(1, 1, 1, 0.1);
     border-radius: 6px;
     border: 1px solid rgba(1, 1, 1, 0.2);
+    height: 42px;
     padding: 5px;
-    width: 200px;
+    width: 300px;
 }
 .Login form button{
     align-items: center;
@@ -63,10 +66,10 @@
     color: white;
     display: flex;
     font-weight: 500;
-    height: 30px;
+    height: 42px;
     justify-content: center;
     margin-top: 10px;
-    width: 200px;
+    width: 300px;
 }
 @media (max-width: 768px){
    .Login{

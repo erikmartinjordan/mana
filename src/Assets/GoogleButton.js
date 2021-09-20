@@ -8,9 +8,9 @@ const GoogleButton = ({logIn}) => {
         background: 'white',
         color: 'black',
         display: 'flex',
-        height: '30px',
+        justifyContent: 'center',
         margin: '5px',
-        width: '200px'
+        width: '300px'
         
     }
     
