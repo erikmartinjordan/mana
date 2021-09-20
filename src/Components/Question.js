@@ -10,6 +10,7 @@ import EditPost                       from './EditPost';
 import DeletePost                     from './DeletePost';
 import CopyLink                       from './CopyLink';
 import Highlight                      from './Highlight';
+import EditionTime                    from './EditionTime';
 import firebase                       from '../Functions/Firebase';
 import '../Styles/Question.css';
 
@@ -58,12 +59,13 @@ const Question = ({ admin, postId, setTitle, uid }) => {
                         <Link to = {'/@' + question.userUid}>{question.userName}</Link> 
                         <Verified   uid = {question.userUid}/>
                     </span>
-                    <time>{moment(question.timeStamp).fromNow()} {question.edited ? `(editado el ${moment(question.edited).format('DD/MM/YYYY [a las] hh:mm')})` : null}</time>
+                    <time>{moment(question.timeStamp).fromNow()}</time>
                 </div>
             </div>
             <div className = 'Content'>
                     <QuestionContent  message = {question.message}/>
                     <div className = 'Meta'>
+                        <EditionTime              date = {question.edited}/>
                         <CopyLink                 postId = {postId} authorId = {question.userUid}/>
                         <Likes                    postId = {postId} authorId = {question.userUid}/>
                         <EditPost   type = 'post' postId = {postId} authorId = {question.userUid} admin = {admin} uid = {uid}/>

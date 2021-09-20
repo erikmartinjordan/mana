@@ -10,6 +10,7 @@ import EditPost                        from './EditPost';
 import DeletePost                      from './DeletePost';
 import CopyLink                        from './CopyLink';
 import Highlight                       from './Highlight';
+import EditionTime                     from './EditionTime';
 import firebase                        from '../Functions/Firebase';
 import '../Styles/Replies.css';
 
@@ -62,12 +63,13 @@ const Replies = ({ admin, postId, uid }) => {
                                 <Link to = {'/@' + reply.userUid}>{reply.userName}</Link>
                                 <Verified   uid = {reply.userUid}/>
                             </span>
-                            <time>{moment(reply.timeStamp).fromNow()} {reply.edited ? `(editado el ${moment(reply.edited).format('DD/MM/YYYY [a las] hh:mm')})` : null}</time>
+                            <time>{moment(reply.timeStamp).fromNow()}</time>
                         </div>
                     </div> 
                     <div className = 'Content'>
                         <Reply message = {reply.message}/>
                         <div className = 'Meta'>
+                            <EditionTime               date = {reply.edited}/>
                             <CopyLink                  postId = {postId} replyId = {key} authorId = {reply.userUid}/>
                             <LikesComments             postId = {postId} replyId = {key} authorId = {reply.userUid}/>
                             <EditPost   type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
