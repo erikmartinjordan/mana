@@ -1,48 +1,46 @@
-import React, { useState }               from 'react';
-import NomoresheetLogo                   from './NomoresheetLogo';
-import Loading                           from './Loading';
-import firebase, { auth, environment }   from '../Functions/Firebase';
-import { googleProvider }                from '../Functions/Firebase';
-import AnonymImg                         from '../Functions/AnonymImg';
-import AnonymName                        from '../Functions/AnonymName';
-import GoogleButton                      from '../Assets/GoogleButton';
-import AnonymButton                      from '../Assets/AnonymButton';
-import '../Styles/Login.css';
+import React, { useState }                                                                                from 'react'
+import NomoresheetLogo                                                                                    from './NomoresheetLogo'
+import Loading                                                                                            from './Loading'
+import firebase, { auth, environment, googleProvider, signInWithPopup, signInAnonymously, updateProfile } from '../Functions/Firebase'
+import AnonymImg                                                                                          from '../Functions/AnonymImg'
+import AnonymName                                                                                         from '../Functions/AnonymName'
+import GoogleButton                                                                                       from '../Assets/GoogleButton'
+import AnonymButton                                                                                       from '../Assets/AnonymButton'
+import '../Styles/Login.css'
 
-const Login = ({hide}) => {  
+const Login = ({ hide }) => {  
 
-    const [alert, setAlert]   = useState(null);
-    const [email, setEmail]   = useState('');
-    const [status, setStatus] = useState('initial');
+    const [email, setEmail]   = useState('')
+    const [status, setStatus] = useState('initial')
 
     const logInGoogle = async () => {
         
-        let { user, additionalUserInfo } = await auth.signInWithPopup(googleProvider);
+        let { user } = await signInWithPopup(auth, googleProvider)
         
-        if(additionalUserInfo.isNewUser){
+        if(user.metadata.createdAt === user.metadata.lastLoginAt){
             
-            firebase.database().ref(`users/${user.uid}/name`).transaction(value => user.displayName);
-            firebase.database().ref(`users/${user.uid}/profilePic`).transaction(value => user.photoURL);
+            firebase.database().ref(`users/${user.uid}/name`).transaction(_ => user.displayName)
+            firebase.database().ref(`users/${user.uid}/profilePic`).transaction(_ => user.photoURL)
             
         }
         else{
             
-            checkProfilePic(user);
+            checkProfilePic(user)
         }
         
-        hide();
+        hide()
       
     }  
 
     const logInMagic = async (e) => {
 
-        e.preventDefault();
+        e.preventDefault()
 
-        setStatus('processing');
+        setStatus('processing')
         
         let url = environment === 'PRE' 
         ? 'https://us-central1-nomoresheet-pre.cloudfunctions.net/sendMagicLink' 
-        : 'https://us-central1-nomoresheet-forum.cloudfunctions.net/sendMagicLink';
+        : 'https://us-central1-nomoresheet-forum.cloudfunctions.net/sendMagicLink'
         
         let response = await fetch(url, {
             
@@ -50,11 +48,11 @@ const Login = ({hide}) => {
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({email: email, url: `${window.location.protocol}//${window.location.host}`})
             
-        });
+        })
         
         if(response.ok){
             
-            setStatus('processed');
+            setStatus('processed')
             
         }
 
@@ -62,28 +60,28 @@ const Login = ({hide}) => {
 
     const logInAnonymous = async () => {
 
-        let { user, additionalUserInfo } = await auth.signInAnonymously();
+        let { user } = await signInAnonymously(auth)
 
-        await user.updateProfile({
+        await updateProfile(user, {
             'displayName': AnonymName(),
             'photoURL': AnonymImg()
-        });
+        })
 
-        firebase.database().ref(`users/${user.uid}/name`).transaction(value => user.displayName);
-        firebase.database().ref(`users/${user.uid}/profilePic`).transaction(value => user.photoURL);
+        firebase.database().ref(`users/${user.uid}/name`).transaction(_ => user.displayName)
+        firebase.database().ref(`users/${user.uid}/profilePic`).transaction(_ => user.photoURL)
 
-        hide();
+        hide()
 
     }
     
     const checkProfilePic = (user) => {
         
-        let firebasePhotoURL = user.photoURL;
-        let providerPhotoURL = user.providerData[0].photoURL;
+        let firebasePhotoURL = user.photoURL
+        let providerPhotoURL = user.providerData[0].photoURL
         
         if(firebasePhotoURL !== providerPhotoURL){
             
-            updateProfilePic(providerPhotoURL);
+            updateProfilePic(providerPhotoURL)
             
         }
         
@@ -91,13 +89,13 @@ const Login = ({hide}) => {
     
     const updateProfilePic = async (photoURL) => {
         
-        let user = auth.currentUser;
+        let user = auth.currentUser
         
-        await user.updateProfile({'photoURL': photoURL});
+        await user.updateProfile({'photoURL': photoURL})
         
-        firebase.database().ref(`users/${user.uid}/profilePic`).transaction(value => user.photoURL);
+        firebase.database().ref(`users/${user.uid}/profilePic`).transaction(_ => user.photoURL)
         
-        window.location.reload();
+        window.location.reload()
        
     }
     
@@ -119,8 +117,8 @@ const Login = ({hide}) => {
             </div>
             <div className = 'Invisible' onClick = {hide}></div>
         </div>  
-    );
+    )
   
 }
 
-export default Login;
+export default Login

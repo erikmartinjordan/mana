@@ -1,26 +1,27 @@
-import React, { useEffect, useState }   from 'react';
-import { Switch, Route, withRouter }    from 'react-router-dom';
-import Forum                            from './Forum';
-import Detail                           from './Detail';
-import Post                             from './Post';
-import Default                          from './Default';
-import Blog                             from './Blog';
-import Nav                              from './Nav';
-import Footer                           from './Footer';
-import Acerca                           from './Acerca';
-import PublicInfo                       from './PublicInfo';
-import Stats                            from './Stats';
-import Privacy                          from './Privacy';
-import Guidelines                       from './Guidelines';
-import Helper                           from './Helper';
-import DonateSuccess                    from './DonateSuccess';
-import DonateFail                       from './DonateFail';
-import TrafficStats                     from './TrafficStats';
-import Tags                             from './Tags';
-import Users                            from './Users';
-import Verify                           from './Verify';
-import UserContext                      from '../Functions/UserContext';
-import { auth, fetchAdmin }             from '../Functions/Firebase';
+import React, { useEffect, useState }     from 'react';
+import { Switch, Route, withRouter }      from 'react-router-dom';
+import Forum                              from './Forum';
+import Detail                             from './Detail';
+import Post                               from './Post';
+import Default                            from './Default';
+import Blog                               from './Blog';
+import Nav                                from './Nav';
+import Footer                             from './Footer';
+import Acerca                             from './Acerca';
+import PublicInfo                         from './PublicInfo';
+import Stats                              from './Stats';
+import Privacy                            from './Privacy';
+import Guidelines                         from './Guidelines';
+import Helper                             from './Helper';
+import DonateSuccess                      from './DonateSuccess';
+import DonateFail                         from './DonateFail';
+import TrafficStats                       from './TrafficStats';
+import Tags                               from './Tags';
+import Users                              from './Users';
+import Verify                             from './Verify';
+import UserContext                        from '../Functions/UserContext';
+import { onAuthStateChanged, auth }       from '../Functions/Firebase';
+import FetchAdmin                         from '../Functions/FetchAdmin';
 import '../Styles/App.css';
 
 console.log(`
@@ -44,12 +45,12 @@ const App  = () => {
     
     useEffect(() => {
         
-        auth.onAuthStateChanged(async user => {
+        onAuthStateChanged(auth, async user => {
             
             if(user){
                 
                 setUser(user);    
-                setAdmin(await fetchAdmin(user));
+                setAdmin(await FetchAdmin(user));
                 
             }
             else{

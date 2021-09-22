@@ -1,7 +1,17 @@
-import firebase from 'firebase/app';
-import 'firebase/database';
-import 'firebase/auth';
-import 'firebase/storage';
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/database'
+import 'firebase/compat/storage'
+
+import { 
+    getAuth,
+    GoogleAuthProvider, 
+    onAuthStateChanged, 
+    signInAnonymously, 
+    signInWithCustomToken, 
+    signInWithPopup, 
+    updateEmail,
+    updateProfile, 
+} from 'firebase/auth'
 
 ///////////////////////////////////////////////
 //Modify this line to set the environment
@@ -33,33 +43,21 @@ var configPRO = {
 
 firebase.initializeApp(environment === 'PRE' ? configPRE : configPRO);
 
-export const fetchAdmin  = async (user) => {
-    
-    let idToken = await firebase.auth().currentUser.getIdToken(true);
-    
-    let url = environment === 'PRE' 
-    ? 'https://us-central1-nomoresheet-pre.cloudfunctions.net/isAdmin' 
-    : 'https://us-central1-nomoresheet-forum.cloudfunctions.net/isAdmin';
-    
-    let response = await fetch(url, {
-        "method":  "POST",
-        "headers": { "Content-Type": "application/json" },
-        "body":    JSON.stringify({ "idToken": idToken })
-    });
-    
-    if(response.ok){
-        
-        let json    = await response.json();
-        
-        var isAdmin = json.isAdmin;
-        
-    } 
-    
-    return isAdmin;
-    
+const googleProvider      = new GoogleAuthProvider()
+const auth                = getAuth()
+const storageRef          = firebase.storage().ref()
+const firebaseServerValue = firebase.database.ServerValue
+
+export { 
+    auth, 
+    googleProvider, 
+    onAuthStateChanged, 
+    signInAnonymously, 
+    signInWithCustomToken, 
+    signInWithPopup, 
+    storageRef, 
+    firebaseServerValue, 
+    updateEmail,
+    updateProfile, 
 }
-export const googleProvider      = new firebase.auth.GoogleAuthProvider();
-export const auth                = firebase.auth();
-export const storageRef          = firebase.storage().ref();
-export const firebaseServerValue = firebase.database.ServerValue;
-export default firebase;
+export default firebase
