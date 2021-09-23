@@ -1,54 +1,56 @@
-import React, { useContext, useState, useEffect } from 'react';
-import moment                                     from 'moment';
-import ReactMarkdown                              from 'react-markdown';
-import Twemoji                                    from './Twemoji';
-import DeleteFeature                              from './DeleteFeature';
-import firebase, { storageRef }                   from '../Functions/Firebase';
-import UserContext                                from '../Functions/UserContext';
-import '../Styles/Acerca.css';
+import React, { useContext, useState, useEffect }                       from 'react'
+import moment                                                           from 'moment'
+import ReactMarkdown                                                    from 'react-markdown'
+import Twemoji                                                          from './Twemoji'
+import DeleteFeature                                                    from './DeleteFeature'
+import firebase, { getDownloadURL, ref, storage, uploadBytesResumable } from '../Functions/Firebase'
+import UserContext                                                      from '../Functions/UserContext'
+import '../Styles/Acerca.css'
 
 const Acerca = () => {
     
-    const today                 = moment();
-    const { admin }             = useContext(UserContext);
-    const [content, setContent] = useState('');
-    const [data, setData]       = useState(null);
-    const [imgUrl, setImgUrl]   = useState(null);
-    const [title, setTitle]     = useState('');
+    const today                 = moment()
+    const { admin }             = useContext(UserContext)
+    const [content, setContent] = useState('')
+    const [data, setData]       = useState(null)
+    const [imgUrl, setImgUrl]   = useState(null)
+    const [title, setTitle]     = useState('')
     
     useEffect(() => {
         
-        document.title = 'Acerca - Nomoresheet'; 
-        document.querySelector('meta[name="description"]').content = 'De cómo nació el sitio web y los diferentes hitos hasta la fecha.';
+        document.title = 'Acerca - Nomoresheet' 
+        document.querySelector('meta[name="description"]').content = 'De cómo nació el sitio web y los diferentes hitos hasta la fecha.'
         
-    });
+    })
     
     useEffect(() => {
         
-        let ref = firebase.database().ref('features');
+        let ref = firebase.database().ref('features')
         
         let listener = ref.on('value', snapshot => { 
             
             if(snapshot.val()){
                 
-                setData(snapshot.val());
+                setData(snapshot.val())
             }
             
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => ref.off('value', listener)
         
-    }, []);
+    }, [])
     
     const handleImageChange = async (e) => {
         
-        var file = e.target.files[0];
+        let file = e.target.files[0]
+
+        let imageRef = ref(storage, `acerca/${file.name}`)
         
-        let snapshot = await storageRef.child(`acerca/${file.name}`).put(file);
+        let snapshot = await uploadBytesResumable(imageRef, file)
         
-        let url = await storageRef.child(`acerca/${file.name}`).getDownloadURL();
+        let url = await getDownloadURL(snapshot.ref)
         
-        setImgUrl(url);
+        setImgUrl(url)
     }
     
     const upload = () => {
@@ -60,16 +62,16 @@ const Acerca = () => {
             pic: imgUrl,
             title: title
             
-        });
+        })
         
     }
     
     const handleTextArea = (e) => {
         
-        e.target.style.height = 'inherit';
-        e.target.style.height = `${e.target.scrollHeight}px`; 
+        e.target.style.height = 'inherit'
+        e.target.style.height = `${e.target.scrollHeight}px` 
         
-        setContent(e.target.value);
+        setContent(e.target.value)
     }
 
     return (
@@ -144,8 +146,8 @@ const Acerca = () => {
               </React.Fragment>
             : null}
         </div>
-    );
+    )
     
 }
 
-export default Acerca;
+export default Acerca

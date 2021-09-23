@@ -1,7 +1,11 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/database'
-import 'firebase/compat/storage'
-
+import { 
+    getDownloadURL,
+    getStorage, 
+    ref,
+    uploadBytesResumable
+} from 'firebase/storage'
 import { 
     getAuth,
     GoogleAuthProvider, 
@@ -13,51 +17,51 @@ import {
     updateProfile, 
 } from 'firebase/auth'
 
-///////////////////////////////////////////////
-//Modify this line to set the environment
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-export let environment = 'PRO';
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-///////////////////////////////////////////////
+let environment = location.hostname === 'localhost' ? 'PRE' : 'PRO'
 
-var configPRE = {
-    apiKey: "AIzaSyCUBpYspYtPSoNKjFx86Y5xHJkXp3dPcO0",
-    authDomain: "nomoresheet.es",
-    databaseURL: "https://nomoresheet-pre.firebaseio.com",
-    projectId: "nomoresheet-pre",
-    storageBucket: "nomoresheet-pre.appspot.com",
-    messagingSenderId: "809572059318",
-    appId: "1:809572059318:web:dcbab69066a1dddc"
-};
-var configPRO = {
-    apiKey: "AIzaSyCI6dpu54CeFd1NOH5s7B-sHeK3KdEH5KU",
-    authDomain: "nomoresheet.es",
-    databaseURL: "https://nomoresheet-forum.firebaseio.com",
-    projectId: "nomoresheet-forum",
-    storageBucket: "nomoresheet-forum.appspot.com",
-    messagingSenderId: "878815391785"
-};
+let config = {
 
-firebase.initializeApp(environment === 'PRE' ? configPRE : configPRO);
+    'PRE': {
+        apiKey: "AIzaSyCUBpYspYtPSoNKjFx86Y5xHJkXp3dPcO0",
+        authDomain: "nomoresheet.es",
+        databaseURL: "https://nomoresheet-pre.firebaseio.com",
+        projectId: "nomoresheet-pre",
+        storageBucket: "nomoresheet-pre.appspot.com",
+        messagingSenderId: "809572059318",
+        appId: "1:809572059318:web:dcbab69066a1dddc"
+    },
+    'PRO': {
+        apiKey: "AIzaSyCI6dpu54CeFd1NOH5s7B-sHeK3KdEH5KU",
+        authDomain: "nomoresheet.es",
+        databaseURL: "https://nomoresheet-forum.firebaseio.com",
+        projectId: "nomoresheet-forum",
+        storageBucket: "nomoresheet-forum.appspot.com",
+        messagingSenderId: "878815391785"
+    }
+
+}
+
+firebase.initializeApp(config[environment])
 
 const googleProvider      = new GoogleAuthProvider()
 const auth                = getAuth()
-const storageRef          = firebase.storage().ref()
+const storage             = getStorage()
 const firebaseServerValue = firebase.database.ServerValue
 
 export { 
     auth, 
+    environment,
+    getDownloadURL,
     googleProvider, 
     onAuthStateChanged, 
+    ref,
     signInAnonymously, 
     signInWithCustomToken, 
     signInWithPopup, 
-    storageRef, 
+    storage, 
     firebaseServerValue, 
     updateEmail,
-    updateProfile, 
+    updateProfile,
+    uploadBytesResumable
 }
 export default firebase
