@@ -1,9 +1,20 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/database'
+import {
+    getDatabase,
+    increment,
+    onValue,
+    ref,
+    set,
+    push,
+    remove,
+    runTransaction,
+    update
+} from 'firebase/database'
 import { 
     getDownloadURL,
     getStorage, 
-    ref,
+    ref as storageRef,
     uploadBytesResumable
 } from 'firebase/storage'
 import { 
@@ -46,20 +57,28 @@ firebase.initializeApp(config[environment])
 const googleProvider      = new GoogleAuthProvider()
 const auth                = getAuth()
 const storage             = getStorage()
-const firebaseServerValue = firebase.database.ServerValue
+const db                  = getDatabase()
 
 export { 
     auth, 
+    db,
     environment,
     getDownloadURL,
     googleProvider, 
+    increment,
     onAuthStateChanged, 
+    onValue,
     ref,
+    push,
+    remove,
+    runTransaction,
+    set,
     signInAnonymously, 
     signInWithCustomToken, 
     signInWithPopup, 
     storage, 
-    firebaseServerValue, 
+    storageRef,
+    update,
     updateEmail,
     updateProfile,
     uploadBytesResumable

@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect }                       from 'react'
-import moment                                                           from 'moment'
-import ReactMarkdown                                                    from 'react-markdown'
-import Twemoji                                                          from './Twemoji'
-import DeleteFeature                                                    from './DeleteFeature'
-import firebase, { getDownloadURL, ref, storage, uploadBytesResumable } from '../Functions/Firebase'
-import UserContext                                                      from '../Functions/UserContext'
+import React, { useContext, useState, useEffect }                                            from 'react'
+import moment                                                                                from 'moment'
+import ReactMarkdown                                                                         from 'react-markdown'
+import Twemoji                                                                               from './Twemoji'
+import DeleteFeature                                                                         from './DeleteFeature'
+import { db, onValue, getDownloadURL, push, ref, storage, storageRef, uploadBytesResumable } from '../Functions/Firebase'
+import UserContext                                                                           from '../Functions/UserContext'
 import '../Styles/Acerca.css'
 
 const Acerca = () => {
@@ -25,9 +25,9 @@ const Acerca = () => {
     
     useEffect(() => {
         
-        let ref = firebase.database().ref('features')
+        let featuresRef = ref(db, 'features')
         
-        let listener = ref.on('value', snapshot => { 
+        let unsubscribe = onValue(featuresRef, snapshot => { 
             
             if(snapshot.val()){
                 
@@ -36,7 +36,7 @@ const Acerca = () => {
             
         })
         
-        return () => ref.off('value', listener)
+        return () => unsubscribe()
         
     }, [])
     
@@ -44,7 +44,7 @@ const Acerca = () => {
         
         let file = e.target.files[0]
 
-        let imageRef = ref(storage, `acerca/${file.name}`)
+        let imageRef = storageRef(storage, `acerca/${file.name}`)
         
         let snapshot = await uploadBytesResumable(imageRef, file)
         
@@ -55,7 +55,7 @@ const Acerca = () => {
     
     const upload = () => {
         
-        firebase.database().ref('features/').push({
+        push(ref(db, 'features'), {
             
             date: [today.format('D'), today.format('MMMM'), today.format('YYYY')],
             description: content,

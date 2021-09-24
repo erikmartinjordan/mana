@@ -1,24 +1,24 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Link }                                   from 'react-router-dom';
-import moment                                     from 'moment';
-import Twemoji                                    from './Twemoji';
-import firebase                                   from '../Functions/Firebase';
-import UserContext                                from '../Functions/UserContext';
-import Data                                       from '../Posts/_data';
-import '../Styles/Blog.css';
-import 'moment/locale/es';
+import React, { useContext, useState, useEffect } from 'react'
+import { Link }                                   from 'react-router-dom'
+import moment                                     from 'moment'
+import Twemoji                                    from './Twemoji'
+import { db, onValue, ref }                       from '../Functions/Firebase'
+import UserContext                                from '../Functions/UserContext'
+import Data                                       from '../Posts/_data'
+import '../Styles/Blog.css'
+import 'moment/locale/es'
 
 const Blog = () => {
 
-    const [displayPosts, setDisplayPosts] = useState(10);
-    const [sortedPosts, setSortedPosts]   = useState([]);
-    const timeLimitPrivateArticleInMonths = 2;
-    const { user }                        = useContext(UserContext);
+    const [displayPosts, setDisplayPosts] = useState(10)
+    const [sortedPosts, setSortedPosts]   = useState([])
+    const timeLimitPrivateArticleInMonths = 2
+    const { user }                        = useContext(UserContext)
     
     useEffect( () => {
         
-        document.title = 'Blog - Nomoresheet'; 
-        document.querySelector(`meta[name = 'description']`).content = 'Artículos de Nomoresheet.'; 
+        document.title = 'Blog - Nomoresheet' 
+        document.querySelector(`meta[name = 'description']`).content = 'Artículos de Nomoresheet.' 
         
     })
     
@@ -40,63 +40,63 @@ const Blog = () => {
                 setDisplayPosts = {setDisplayPosts}
             />
         </div>
-    );
+    )
 }
 
-export default Blog;
+export default Blog
 
-const Filter = ({setSortedPosts}) => {
+const Filter = ({ setSortedPosts }) => {
     
-    const [articleData, setArticleData] = useState([]);
-    const [filter, setFilter]           = useState('Nuevo');
+    const [articleData, setArticleData] = useState([])
+    const [filter, setFilter]           = useState('Nuevo')
     
-    useEffect( () => {
+    useEffect(() => {
         
-        let ref = firebase.database().ref('articles');
+        let articlesRef = ref(db, 'articles')
         
-        let listener = ref.on('value', snapshot => {
+        let unsubscribe = onValue(articlesRef, snapshot => {
             
-            let articleData = snapshot.val();
+            let articleData = snapshot.val()
             
             if(articleData) 
-                setArticleData(articleData);
+                setArticleData(articleData)
             
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
-    }, []);
+    }, [])
     
     useEffect( () => {
         
-        let sortedKeys;
+        let sortedKeys
         
         if(filter === 'Visitas'){ 
             
-            sortedKeys = Object.keys(articleData).sort( (a, b) => articleData[b].views - articleData[a].views);
+            sortedKeys = Object.keys(articleData).sort( (a, b) => articleData[b].views - articleData[a].views)
             
         }
         if(filter === 'Aplausos'){
             
             sortedKeys = Object.keys(articleData).sort( (a, b) => {
             
-            	if (articleData[a].likes === articleData[b].likes) return 0;
-                if (articleData[b].likes === undefined) return -1;
-                if (articleData[a].likes === undefined) return  1;
+            	if (articleData[a].likes === articleData[b].likes) return 0
+                if (articleData[b].likes === undefined) return -1
+                if (articleData[a].likes === undefined) return  1
             
-                return articleData[b].likes - articleData[a].likes;
+                return articleData[b].likes - articleData[a].likes
         
-            }); 
+            }) 
             
         }
         if(filter === 'Nuevo'){
             
-            sortedKeys = Object.keys(Data); 
+            sortedKeys = Object.keys(Data) 
         }
         
-        setSortedPosts(sortedKeys);
+        setSortedPosts(sortedKeys)
         
-    }, [articleData, setSortedPosts, filter]);
+    }, [articleData, setSortedPosts, filter])
     
     return(
         <div className = 'Filter-Blog'>
@@ -104,7 +104,7 @@ const Filter = ({setSortedPosts}) => {
             <div className = {filter === 'Visitas'  ? 'Active' : null} onClick = {() => setFilter('Visitas')}>Visitas</div>
             <div className = {filter === 'Aplausos' ? 'Active' : null} onClick = {() => setFilter('Aplausos')}>Aplausos</div>
         </div>
-    );
+    )
     
 }
 
@@ -112,23 +112,23 @@ const Posts = ({sortedPosts, displayPosts, timeLimitPrivateArticleInMonths, user
     
     const isPrivat = (key) => {
         
-        let privat;
+        let privat
         
-        let [day, month, year] = [Data[key].date[0], Data[key].date[1], Data[key].date[2]];
+        let [day, month, year] = [Data[key].date[0], Data[key].date[1], Data[key].date[2]]
         
-        let fullDate = moment().locale('es').year(year).month(month).date(day).format('YYYYMMDD');
-        let today    = moment();
+        let fullDate = moment().locale('es').year(year).month(month).date(day).format('YYYYMMDD')
+        let today    = moment()
         
-        let monthsSincePostWasPublished = today.diff(fullDate, 'months');
+        let monthsSincePostWasPublished = today.diff(fullDate, 'months')
         
         if('privat' in Data[key]){
-            privat = Data[key].privat;
+            privat = Data[key].privat
         }
         else if(monthsSincePostWasPublished < timeLimitPrivateArticleInMonths){
-            privat = true;
+            privat = true
         }
         
-        return privat;
+        return privat
         
     }
     
@@ -154,7 +154,7 @@ const Posts = ({sortedPosts, displayPosts, timeLimitPrivateArticleInMonths, user
                 </Link>
             )}
         </div>
-    );
+    )
     
 }
 
@@ -166,6 +166,6 @@ const ShowMorePosts = ({displayPosts, setDisplayPosts}) => {
             ? <div className = 'Active' onClick = {() => setDisplayPosts(displayPosts + 10)}>Ver más</div>
             : null}
         </div>
-    );
+    )
     
 }

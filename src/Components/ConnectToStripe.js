@@ -1,31 +1,33 @@
-import React, { useState, useEffect }   from 'react';
-import ToggleButton                     from './ToggleButton';
-import firebase, {  environment }       from '../Functions/Firebase';
-import { OAuth }                        from '../Functions/Stripe';
+import React, { useState, useEffect }                             from 'react'
+import ToggleButton                                               from './ToggleButton'
+import {  db, environment, onValue, ref, remove, runTransaction } from '../Functions/Firebase'
+import { OAuth }                                                  from '../Functions/Stripe'
 
-const ConnectToStripe = ({user}) => {
+const ConnectToStripe = ({ user }) => {
     
-    const [stripeUserId, setStripeUserId] = useState(null);
+    const [stripeUserId, setStripeUserId] = useState(null)
     
     useEffect(() => {
+
+        let refStripeUserId = ref(db, `users/${user.uid}/stripeUserId`)
         
-        firebase.database().ref(`users/${user.uid}/stripeUserId`).on('value', snapshot => {
-           
-            if(snapshot.val()) setStripeUserId(snapshot.val());
-            else               setStripeUserId(null);
+        let unsubscribe = onValue(refStripeUserId, snapshot => {
+
+            setStripeUserId(snapshot.val() || null)
             
-        });
+        })
+
+        return () => unsubscribe()
         
-    }, [user]);
-    
+    }, [user])
     
     useEffect(() => {
         
-        let url = window.location.href;
+        let url = window.location.href
         
         const completeStripeConnection = async (authorizationCode) => {
             
-            let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/stripeAccountConnection';
+            let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/stripeAccountConnection'
             
             let response = await fetch(fetchURL, {
                 
@@ -36,15 +38,17 @@ const ConnectToStripe = ({user}) => {
                     environment: environment
                 })
                 
-            });
+            })
             
             if(response.ok){
                 
-                let data = await response.json();
+                let data = await response.json()
                 
-                let stripeUserId = data.stripeUserId;
+                let stripeUserId = data.stripeUserId
+
+                let refStripeUserId = ref(db, `users/${user.uid}/stripeUserId`)
                 
-                firebase.database().ref(`users/${user.uid}/stripeUserId`).transaction(value => stripeUserId);
+                runTransaction(refStripeUserId, _ => stripeUserId)
                 
             }
             
@@ -52,43 +56,43 @@ const ConnectToStripe = ({user}) => {
         
         if(url.includes('?') && user.uid){
          
-            let res = transformURLparametersToObject(url);
+            let res = transformURLparametersToObject(url)
             
             if(res.code){
                 
-                completeStripeConnection(res.code);
+                completeStripeConnection(res.code)
                 
             }
             
         }
         
-    }, [user]);
+    }, [user])
     
     const transformURLparametersToObject = (url) => {
         
-        let str = url.split('?')[1];
+        let str = url.split('?')[1]
         
-        let arr = str.split('&');
+        let arr = str.split('&')
         
-        let entries = arr.map(str => [str.split('=')[0], str.split('=')[1]]);
+        let entries = arr.map(str => [str.split('=')[0], str.split('=')[1]])
         
-        let res = Object.fromEntries(entries);
+        let res = Object.fromEntries(entries)
         
-        return res;
+        return res
         
     }
     
     const connectToStripe = () => {
         
-        let url = 'https://connect.stripe.com/oauth/authorize';
+        let url = 'https://connect.stripe.com/oauth/authorize'
         
-        window.location.href = `${url}?response_type=code&client_id=${OAuth.clientId}&scope=read_write`;
+        window.location.href = `${url}?response_type=code&client_id=${OAuth.clientId}&scope=read_write`
         
     }
     
     const disconnectStripe = async () => {
         
-        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/stripeAccountDisconnection';
+        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/stripeAccountDisconnection'
         
         let response = await fetch(fetchURL, {
             
@@ -100,11 +104,13 @@ const ConnectToStripe = ({user}) => {
                 stripeUserId: stripeUserId
             })
             
-        });
+        })
         
         if(response.ok){
+
+            let refStripeUserId = ref(db, `users/${user.uid}/stripeUserId`)
             
-            firebase.database().ref(`users/${user.uid}/stripeUserId`).remove();
+            remove(refStripeUserId)
             
         }
         
@@ -118,8 +124,8 @@ const ConnectToStripe = ({user}) => {
                 : <ToggleButton status = 'off'/>
                 }
         </div>
-    );
+    )
     
 }
 
-export default ConnectToStripe;
+export default ConnectToStripe

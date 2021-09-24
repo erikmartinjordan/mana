@@ -1,47 +1,49 @@
-import React, { useEffect, useState }  from 'react';
-import firebase                        from '../Functions/Firebase';
-import '../Styles/ChangeLocation.css';
+import React, { useEffect, useState }      from 'react'
+import { db, ref, onValue, runTransaction} from '../Functions/Firebase'
+import '../Styles/ChangeLocation.css'
 
-const ChangeLocation = ({user}) => {
+const ChangeLocation = ({ user }) => {
 
-    const [city, setCity] = useState('');
+    const [city, setCity] = useState('')
 
     useEffect(() => {
 
         if(user){
 
-            let ref = firebase.database().ref(`users/${user.uid}/city`);
+            let cityRef = ref(db, `users/${user.uid}/city`)
 
-            let listener = ref.on('value', snapshot => {
+            let unsubscribe = onValue(cityRef, snapshot => {
 
-                let city = snapshot.val();
+                let city = snapshot.val()
 
                 if(city){
                     
-                    setCity(city);
+                    setCity(city)
 
                 }
                 else{
 
-                    setCity('');
+                    setCity('')
 
                 }
 
-            });
+            })
 
-            return () => ref.off('value', listener);
+            return () => unsubscribe()
 
         }
 
-    }, [user]);
+    }, [user])
 
     const handleCity = (e) => {
 
-        let text = e.target.value;
+        let text = e.target.value
 
         if(text.length <= 50){
 
-            firebase.database().ref(`users/${user.uid}/city`).transaction(value => text);
+            let cityRef = ref(db, `users/${user.uid}/city`)
+
+            runTransaction(cityRef, _ => text)
 
         }
 
@@ -51,8 +53,8 @@ const ChangeLocation = ({user}) => {
         <div className = 'ChangeLocation'>
             <input value = {city} onChange = {handleCity}></input>
         </div>
-    );
+    )
 
 }
 
-export default ChangeLocation;
+export default ChangeLocation

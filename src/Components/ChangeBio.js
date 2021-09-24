@@ -1,51 +1,53 @@
-import React, { useEffect, useState }  from 'react';
-import firebase                        from '../Functions/Firebase';
-import '../Styles/ChangeBio.css';
+import React, { useEffect, useState }       from 'react'
+import { db, onValue, ref, runTransaction } from '../Functions/Firebase'
+import '../Styles/ChangeBio.css'
 
-const ChangeBio = ({user}) => {
+const ChangeBio = ({ user }) => {
 
-    const [bio, setBio]     = useState('');
-    const [chars, setChars] = useState(250);
+    const [bio, setBio]     = useState('')
+    const [chars, setChars] = useState(250)
 
     useEffect(() => {
 
         if(user){
 
-            let ref = firebase.database().ref(`users/${user.uid}/bio`);
+            let bioRef = ref(db, `users/${user.uid}/bio`)
 
-            let listener = ref.on('value', snapshot => {
+            let unsubscribe = onValue(bioRef, snapshot => {
 
-                let bio = snapshot.val();
+                let bio = snapshot.val()
 
                 if(bio){
                     
-                    setBio(bio);
-                    setChars(250 - bio.length);
+                    setBio(bio)
+                    setChars(250 - bio.length)
 
                 }
                 else{
 
-                    setBio('');
-                    setChars(250);
+                    setBio('')
+                    setChars(250)
                 }
 
-            });
+            })
 
-            return () => ref.off('value', listener);
+            return () => unsubscribe()
 
         }
 
-    }, [user]);
+    }, [user])
 
     const handleBio = (e) => {
 
-        let text = e.target.value;
+        let text = e.target.value
 
         if(text.length <= 250){
 
-            firebase.database().ref(`users/${user.uid}/bio`).transaction(value => text);
+            let bioRef = ref(db, `users/${user.uid}/bio`)
 
-            setChars(250 - text.length);
+            runTransaction(bioRef, _ => text)
+
+            setChars(250 - text.length)
 
         }
 
@@ -56,8 +58,8 @@ const ChangeBio = ({user}) => {
             <textarea rows = '4' onChange = {handleBio} value = {bio} maxLength = {250}/>
             <div className = 'CharsLeft'>{chars}</div>
         </div>
-    );
+    )
 
 }
 
-export default ChangeBio;
+export default ChangeBio
