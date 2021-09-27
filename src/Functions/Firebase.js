@@ -1,8 +1,10 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/database'
 import {
+    get,
     getDatabase,
     increment,
+    limitToLast,
     onValue,
     ref,
     set,
@@ -63,9 +65,11 @@ export {
     auth, 
     db,
     environment,
+    get,
     getDownloadURL,
     googleProvider, 
     increment,
+    limitToLast,
     onAuthStateChanged, 
     onValue,
     ref,

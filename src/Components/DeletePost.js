@@ -1,56 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory }                 from 'react-router-dom';
-import Points                         from '../Functions/PointsAndValues';
-import firebase                       from '../Functions/Firebase';
-import GetPoints                      from '../Functions/GetPoints';
-import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel';
-import Accounts                       from '../Rules/Accounts';
+import React, { useState, useEffect }               from 'react'
+import { useHistory }                               from 'react-router-dom'
+import Points                                       from '../Functions/PointsAndValues'
+import { db, ref, onValue, remove, runTransaction } from '../Functions/Firebase'
+import GetPoints                                    from '../Functions/GetPoints'
+import GetLevel                                     from '../Functions/GetLevelAndPointsToNextLevel'
+import Accounts                                     from '../Rules/Accounts'
 import '../Styles/DeletePost.css';
 
 const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
     
-    const [canDelete, setCanDelete]       = useState(false);
-    const [confirmation, setConfirmation] = useState(false);
-    const history                         = useHistory();
-    const points                          = GetPoints(authorId);
-    const level                           = GetLevel(points)[0];
+    const [canDelete, setCanDelete]       = useState(false)
+    const [confirmation, setConfirmation] = useState(false)
+    const history                         = useHistory()
+    const points                          = GetPoints(authorId)
+    const level                           = GetLevel(points)[0]
     
     useEffect( () => {
-        
-        firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+
+        let usersRef = ref(db, `users/${uid}`)
+
+        onValue(usersRef, snapshot => {
             
-            let userInfo = snapshot.val();
+            let userInfo = snapshot.val()
             
             if(userInfo){
                 
-                let isAdmin   = admin;
-                let isAuthor  = authorId === uid; 
-                let isPremium = false;
-                let canDeleteMessages = false;
+                let isAdmin   = admin
+                let isAuthor  = authorId === uid
+                let isPremium = false
+                let canDeleteMessages = false
                 
                 if(userInfo.account){
                     
-                    isPremium = true;
+                    isPremium = true
                     
                 }
                 else{
                     
-                    let rangeOfLevels = Object.keys(Accounts['free']);
-                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
+                    let rangeOfLevels = Object.keys(Accounts['free'])
+                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level))
                     
-                    canDeleteMessages = Accounts['free'][closestLevel].deleteMessages ? true : false;
+                    canDeleteMessages = Accounts['free'][closestLevel].deleteMessages ? true : false
                     
                 }
                 
-                if(isAdmin)                      setCanDelete(true);
-                else if(isPremium && isAuthor)   setCanDelete(true);
-                else if(canDeleteMessages)       setCanDelete(true);
-                else                             setCanDelete(false);
+                if(isAdmin)                      setCanDelete(true)
+                else if(isPremium && isAuthor)   setCanDelete(true)
+                else if(canDeleteMessages)       setCanDelete(true)
+                else                             setCanDelete(false)
                 
             }
             else{
                 
-                setCanDelete(false);
+                setCanDelete(false)
                 
             }
             
@@ -60,38 +62,40 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
     
     const handleConfirmation = () => {
         
-        setConfirmation(true);
+        setConfirmation(true)
         
     }
     
     const handleCancellation = () => {
         
-        setConfirmation(false);
+        setConfirmation(false)
         
     }
     
     const handleDelete = () => {
         
         if(type === 'post'){
-            
-            firebase.database().ref(`posts/${postId}`).remove();
-            firebase.database().ref(`users/${authorId}/lastPosts/${postId}`).remove();
-            firebase.database().ref(`users/${authorId}/numPosts`).transaction(value => ~~value - 1);
-            firebase.database().ref(`users/${authorId}/numPoints`).transaction(value => ~~value - Points.post)
-            history.push('/');
+
+            remove(ref(db, `posts/${postId}`))
+            remove(ref(db, `users/${authorId}/lastPosts/${postId}`))
+            runTransaction(ref(db, `users/${authorId}/numPosts`),  value => ~~value - 1)
+            runTransaction(ref(db, `users/${authorId}/numPoints`), value => ~~value - Points.post)
+            history.push('/')
             
         }
         
         if(type === 'reply'){
-            
-            firebase.database().ref(`replies/${replyId}`).remove();
-            firebase.database().ref(`users/${authorId}/lastReplies/${replyId}`).remove();
-            firebase.database().ref(`posts/${postId}/replies/${replyId}`).remove();
-            firebase.database().ref(`users/${authorId}/numReplies`).transaction(value => ~~value - 1);
-            firebase.database().ref(`users/${authorId}/numPoints`).transaction(value => ~~value - Points.reply);
+
+            remove(ref(db, `replies/${replyId}`))
+            remove(ref(db, `users/${authorId}/lastReplies/${replyId}`))
+            remove(ref(db, `posts/${postId}/replies/${replyId}`))
+            runTransaction(ref(db, `users/${authorId}/numReplies`), value => ~~value - 1)
+            runTransaction(ref(db, `users/${authorId}/numPoints`),  value => ~~value - Points.reply)
+
+
         }
       
-        setConfirmation(false);
+        setConfirmation(false)
        
     }
     
@@ -114,8 +118,8 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
                 }
             </div>
         </React.Fragment>
-    );
+    )
     
 }
 
-export default DeletePost;
+export default DeletePost

@@ -1,84 +1,85 @@
-import React, { useContext, useState } from 'react';
-import Twemoji                         from '../Components/Twemoji';
-import firebase, { auth }              from '../Functions/Firebase';
-import AnonymImg                       from '../Functions/AnonymImg';
-import UserContext                     from '../Functions/UserContext';
+import React, { useContext, useState }       from 'react'
+import Twemoji                               from '../Components/Twemoji'
+import { auth, db, onValue, runTransaction } from '../Functions/Firebase'
+import AnonymName                            from '../Functions/AnonymName'
+import AnonymImg                             from '../Functions/AnonymImg'
+import UserContext                           from '../Functions/UserContext'
 import '../Styles/DeleteAccount.css';
 
 const DeleteAccount = () => {
     
-    const [confirmation, setConfirmation] = useState(false);
-    const [error, setError]               = useState(null);
-    const [goodbye, setGoodbye]           = useState(null);
-    const [input, setInput]               = useState(null);
-    const { user }                        = useContext(UserContext);
+    const [confirmation, setConfirmation] = useState(false)
+    const [error, setError]               = useState(null)
+    const [goodbye, setGoodbye]           = useState(null)
+    const [input, setInput]               = useState(null)
+    const { user }                        = useContext(UserContext)
     
     const handleDelete = async () => {
         
-        var nickName   = Math.random().toString(36).substr(2, 5);
-        var randomImg  = AnonymImg();
-        var deletedUid = 'deletedUser' + user.uid;
+        var nickName   = AnonymName()
+        var randomImg  = AnonymImg()
+        var deletedUid = 'deletedUser' + user.uid
         
-        if(!input)                    setError('Debes introducir tu dirección de correo para poder eliminar la cuenta.');
-        else if(input !== user.email) setError('El correo introducido con coincide con tu dirección de correo...');
+        if(!input)                    {
+            
+            setError('Debes introducir tu dirección de correo para poder eliminar la cuenta.')
+        
+        }
+        else if(input !== user.email) {
+            
+            setError('El correo introducido con coincide con tu dirección de correo...')
+        
+        }
         else if(input === user.email){
-            
-            let snapshot_1 = await firebase.database().ref('posts').once('value');
-            
-            let posts = snapshot_1.val(); 
-            
-            Object.keys(posts).forEach(pid => { 
+
+            let postsRef = ref(db, 'posts')
+
+            onValue(postsRef, snapshot => {
+
+                let posts = snapshot.val()
+
+                Object.keys(posts).forEach(pid => { 
                 
-                if(posts[pid].userUid === user.uid) {
-                    
-                    firebase.database().ref(`posts/${pid}/userName`).transaction(value => nickName);
-                    firebase.database().ref(`posts/${pid}/userPhoto`).transaction(value => randomImg);
-                    firebase.database().ref(`posts/${pid}/userUid`).transaction(value => deletedUid);
-                    
-                }
-                
-                if(typeof posts[pid].replies !== 'undefined'){
-                    
-                    let replies = posts[pid].replies;
-                    
-                    Object.keys(replies).forEach( rid => {
+                    if(posts[pid].userUid === user.uid) {
+
+                        runTransaction(ref(db, `posts/${pid}/userName`),  _ => nickName)
+                        runTransaction(ref(db, `posts/${pid}/userPhoto`), _ => randomImg)
+                        runTransaction(ref(db, `posts/${pid}/userUid`),   _ => deletedUid)
                         
-                        if(replies[rid].userUid === user.uid){
-                            
-                            firebase.database().ref(`posts/${pid}/replies/${rid}/userName`).transaction(value => nickName);
-                            firebase.database().ref(`posts/${pid}/replies/${rid}/userPhoto`).transaction(value => randomImg);
-                            firebase.database().ref(`posts/${pid}/replies/${rid}/userUid`).transaction(value => deletedUid);
-                            
-                        }
+                    }
+                    
+                    if(typeof posts[pid].replies !== 'undefined'){
                         
-                    });
-                }
-                
-            });
-            
-            let snapshot_2 = await firebase.database().ref('replies').limitToLast(10).once('value');
-            
-            let replies = snapshot_2.val();
-            
-            Object.keys(replies).forEach(rid => {
-               
-                if(replies[rid].userUid === user.uid){
+                        let replies = posts[pid].replies;
+                        
+                        Object.keys(replies).forEach( rid => {
+                            
+                            if(replies[rid].userUid === user.uid){
+
+                                runTransaction(ref(db, `posts/${pid}/replies/${rid}/userName`),  _ => nickName)
+                                runTransaction(ref(db, `posts/${pid}/replies/${rid}/userPhoto`), _ => randomImg)
+                                runTransaction(ref(db, `posts/${pid}/replies/${rid}/userUid`),   _ => deletedUid)
+
+                                runTransaction(ref(db, `replies/${rid}/userName`),  _ => nickName)
+                                runTransaction(ref(db, `replies/${rid}/userPhoto`), _ => randomImg)
+                                runTransaction(ref(db, `replies/${rid}/userUid`),   _ => deletedUid)
+                                
+                            }
+                            
+                        });
+                    }
                     
-                    firebase.database().ref(`replies/${rid}/userName`).transaction(value => nickName);
-                    firebase.database().ref(`replies/${rid}/userPhoto`).transaction(value => randomImg);
-                    firebase.database().ref(`replies/${rid}/userUid`).transaction(value => deletedUid);
-                    
-                }
-                
-            });
+                })
+
+            }, { onlyOnce: true })
+
+            runTransaction(ref(db, `users/${deletedUid}/name`), _ => nickName)
             
-            firebase.database().ref(`users/${deletedUid}/name`).transaction(value => nickName);
+            await auth.currentUser.delete()
+            await auth.signOut()
             
-            await auth.currentUser.delete();
-            await auth.signOut();
-            
-            setGoodbye(true);
-            setConfirmation(false);
+            setGoodbye(true)
+            setConfirmation(false)
             
         }
        
@@ -119,8 +120,8 @@ const DeleteAccount = () => {
             }
             <button className = 'Delete Account' onClick = {() => setConfirmation(true) }>Eliminar cuenta</button>
         </React.Fragment>
-    );
+    )
     
 }
 
-export default DeleteAccount;
+export default DeleteAccount

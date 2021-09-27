@@ -1,25 +1,24 @@
-import React, { useState } from 'react';
-import firebase            from '../Functions/Firebase.js';
-import '../Styles/DeletePost.css';
+import React, { useState } from 'react'
+import { db, ref, remove } from '../Functions/Firebase'
+import '../Styles/DeletePost.css'
 
 const DeleteFeature = (props) => {
     
-    const [confirmation, setConfirmation] = useState(false);
-    const [id, setId]                     = useState(null);
+    const [confirmation, setConfirmation] = useState(false)
+    const [id, setId]                     = useState(null)
     
     
     const handleConfirmation = (e) => {
         
-        setId(e.target.getAttribute('id'));
-        setConfirmation(true);
+        setId(e.target.getAttribute('id'))
+        setConfirmation(true)
         
     }
     
     const handleDelete = (id) => {
       
-        firebase.database().ref('features/' + id).remove();
-      
-        setConfirmation(false);
+        remove(ref(db, `features/${id}`))
+        setConfirmation(false)
        
     }
     
@@ -37,8 +36,8 @@ const DeleteFeature = (props) => {
             }
             <button className = 'Delete' id = {props.id} onClick = {handleConfirmation}>Eliminar</button>
         </React.Fragment>
-    );
+    )
     
 }
 
-export default DeleteFeature;
+export default DeleteFeature
