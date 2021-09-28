@@ -1,17 +1,22 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/database'
 import {
+    endAt,
+    equalTo,
     get,
     getDatabase,
     increment,
     limitToLast,
     onValue,
+    orderByChild,
     ref,
     set,
     push,
     remove,
     runTransaction,
-    update
+    startAt,
+    update,
+    query
 } from 'firebase/database'
 import { 
     getDownloadURL,
@@ -64,7 +69,9 @@ const db                  = getDatabase()
 export { 
     auth, 
     db,
+    endAt,
     environment,
+    equalTo,
     get,
     getDownloadURL,
     googleProvider, 
@@ -72,8 +79,10 @@ export {
     limitToLast,
     onAuthStateChanged, 
     onValue,
+    orderByChild,
     ref,
     push,
+    query,
     remove,
     runTransaction,
     set,
@@ -81,6 +90,7 @@ export {
     signInWithCustomToken, 
     signInWithPopup, 
     storage, 
+    startAt,
     storageRef,
     update,
     updateEmail,

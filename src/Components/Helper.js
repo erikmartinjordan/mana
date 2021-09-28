@@ -1,51 +1,51 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Confetti                                   from 'react-confetti';
-import moment                                     from 'moment';
-import UserAvatar                                 from './UserAvatar';
-import firebase                                   from '../Functions/Firebase';
-import UserContext                                from '../Functions/UserContext';
-import accounts                                   from '../Rules/Accounts';
-import '../Styles/Helper.css';
+import React, { useContext, useEffect, useState } from 'react'
+import Confetti                                   from 'react-confetti'
+import moment                                     from 'moment'
+import UserAvatar                                 from './UserAvatar'
+import { db, onValue, ref, runTransaction }       from '../Functions/Firebase'
+import UserContext                                from '../Functions/UserContext'
+import accounts                                   from '../Rules/Accounts'
+import '../Styles/Helper.css'
 
 const Helper = () => {
     
-    const [welcome, setWelcome] = useState(false);
-    const { user }              = useContext(UserContext);
+    const [welcome, setWelcome] = useState(false)
+    const { user }              = useContext(UserContext)
     
     useEffect(() => {
         
         if(user){
             
-            firebase.database().ref(`users/${user.uid}`).on('value', snapshot => {
+            onValue(ref(db, `users/${user.uid}`), snapshot => {
                 
                 if(snapshot.val()){
                  
-                    let {welcomePremium, account} = snapshot.val();
+                    let {welcomePremium, account} = snapshot.val()
                     
                     if(account && !welcomePremium){
                         
-                        setWelcome(true);
+                        setWelcome(true)
                         
                     }
                     else{
                         
-                        setWelcome(false);
+                        setWelcome(false)
                         
                     }
                     
                 }
                 
-            });
+            })
 
-            firebase.database().ref(`users/${user.uid}/lastAccess`).transaction(value => moment().format('LLLL'));
+            runTransaction(ref(db, `users/${user.uid}/lastAccess`), _ => moment().format('LLLL'))
             
         }
         
-    }, [user]);
+    }, [user])
     
     const closeWelcome = () => {
         
-        firebase.database().ref(`users/${user.uid}/welcomePremium`).transaction(value => true);
+        runTransaction(ref(db, `users/${user.uid}/welcomePremium`), _ => true)
         
     }
     
@@ -67,8 +67,8 @@ const Helper = () => {
             }
         </React.Fragment>
         
-    );
+    )
     
 }
 
-export default Helper;
+export default Helper

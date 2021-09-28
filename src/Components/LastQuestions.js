@@ -1,84 +1,83 @@
-import React, { useEffect, useState }       from 'react';
-import { Link }                             from 'react-router-dom';
-import moment                               from 'moment';
-import Loading                              from './Loading';
-import Likes                                from './Likes';
-import UserAvatar                           from './UserAvatar';
-import firebase                             from '../Functions/Firebase';
-import '../Styles/LastQuestions.css';
+import React, { useEffect, useState }                                                  from 'react'
+import { Link }                                                                        from 'react-router-dom'
+import moment                                                                          from 'moment'
+import Loading                                                                         from './Loading'
+import Likes                                                                           from './Likes'
+import UserAvatar                                                                      from './UserAvatar'
+import { db, endAt, equalTo, limitToLast, onValue, orderByChild, query, ref, startAt } from '../Functions/Firebase'
+import '../Styles/LastQuestions.css'
 
-const LastQuestions = ({number, from, to, filter}) => {
+const LastQuestions = ({ number, from, to, filter }) => {
     
-    const [loading, setLoading]             = useState(true);
-    const [items, setItems]                 = useState(number);
-    const [lastQuestions, setLastQuestions] = useState([]);
-    const tag                               = window.location.pathname.split('/').pop();
+    const [loading, setLoading]             = useState(true)
+    const [items, setItems]                 = useState(number)
+    const [lastQuestions, setLastQuestions] = useState([])
+    const tag                               = window.location.pathname.split('/').pop()
     
     useEffect(() => {
         
         if(tag){
 
-            var ref = firebase.database().ref('posts').orderByChild(`tags/${tag}`).equalTo(true).limitToLast(items);
+            var _query = query(ref(db, 'posts'), orderByChild(`tags/${tag}`), equalTo(true), limitToLast(items))
 
         }
         else if(from && to){
 
-            var ref = firebase.database().ref('posts').orderByChild('timeStamp').startAt(from).endAt(to);
+            var _query = query(ref(db, 'posts'), orderByChild('timeStamp'), startAt(from), endAt(to))
 
         }
         else{
 
-            var ref = firebase.database().ref('posts').limitToLast(items);
-
+            var _query = query(ref(db, 'posts'), limitToLast(items))
 
         }
         
-        let listener = ref.on('value', snapshot => {
+        let unsubscribe = onValue(_query, snapshot => {
             
             if(snapshot.val()){
                 
-                let lastQuestions = snapshot.val();
+                let lastQuestions = snapshot.val()
                 
-                let sortedQuestions = sortQuestions(lastQuestions, filter);
+                let sortedQuestions = sortQuestions(lastQuestions, filter)
                 
-                setLastQuestions(sortedQuestions);
+                setLastQuestions(sortedQuestions)
                 
             }
             else{
                 
-                setLastQuestions([]);
+                setLastQuestions([])
                 
             }
             
-            setLoading(false);
+            setLoading(false)
             
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
-    }, [filter, items, number, from, to]);
+    }, [filter, items, number, from, to])
     
     const sortQuestions = (questions, orderBy) => {
         
         Object.keys(questions).forEach(key => {
             
-            questions[key].key = key;
-            if(!questions[key].voteUsers) questions[key].voteUsers = {};
-            if(!questions[key].replies)   questions[key].replies = {};
+            questions[key].key = key
+            if(!questions[key].voteUsers) questions[key].voteUsers = {}
+            if(!questions[key].replies)   questions[key].replies = {}
         
-        });
+        })
         
         let sorted = Object.values(questions).sort( (a, b) => {
             
-            if(orderBy === 'nuevo')        return b.timeStamp - a.timeStamp;
-            if(orderBy === 'comentarios')  return Object.keys(b.replies).length   - Object.keys(a.replies).length;
-            if(orderBy === 'picante')      return Object.keys(b.voteUsers).length - Object.keys(a.voteUsers).length;
+            if(orderBy === 'nuevo')        return b.timeStamp - a.timeStamp
+            if(orderBy === 'comentarios')  return Object.keys(b.replies).length   - Object.keys(a.replies).length
+            if(orderBy === 'picante')      return Object.keys(b.voteUsers).length - Object.keys(a.voteUsers).length
             
-            return null;
+            return null
             
-        });
+        })
         
-        return sorted;
+        return sorted
         
     }
     
@@ -126,8 +125,8 @@ const LastQuestions = ({number, from, to, filter}) => {
           </div>
         }
         </React.Fragment>
-    ); 
+    ) 
     
 }
 
-export default LastQuestions;
+export default LastQuestions

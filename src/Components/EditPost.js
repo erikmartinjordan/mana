@@ -1,90 +1,90 @@
-import React, { useState, useEffect, useRef } from 'react';
-import TagInput                               from 'react-easy-tag-input';
-import Alert                                  from './Alert';
-import firebase                               from '../Functions/Firebase';
-import GetPoints                              from '../Functions/GetPoints';
-import GetLevel                               from '../Functions/GetLevelAndPointsToNextLevel';
-import normalize                              from '../Functions/NormalizeWord';
-import Accounts                               from '../Rules/Accounts';
-import '../Styles/EditPost.css';
+import React, { useState, useEffect, useRef }         from 'react'
+import TagInput                                       from 'react-easy-tag-input'
+import Alert                                          from './Alert'
+import { db, get, onValue, ref, runTransaction, set } from '../Functions/Firebase'
+import GetPoints                                      from '../Functions/GetPoints'
+import GetLevel                                       from '../Functions/GetLevelAndPointsToNextLevel'
+import normalize                                      from '../Functions/NormalizeWord'
+import Accounts                                       from '../Rules/Accounts'
+import '../Styles/EditPost.css'
 
 const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
     
-    const refTextarea           = useRef(null);
-    const [alert, setAlert]     = useState(null);
-    const [message, setMessage] = useState(null);
-    const [canEdit, setCanEdit] = useState(false);
-    const [tags, setTags]       = useState([]);
-    const points                = GetPoints(authorId);
-    const level                 = GetLevel(points)[0];
+    const refTextarea           = useRef(null)
+    const [alert, setAlert]     = useState(null)
+    const [message, setMessage] = useState(null)
+    const [canEdit, setCanEdit] = useState(false)
+    const [tags, setTags]       = useState([])
+    const points                = GetPoints(authorId)
+    const level                 = GetLevel(points)[0]
     
     useEffect(() => {
         
         if(refTextarea.current)
-            refTextarea.current.style.height = `${refTextarea.current.scrollHeight}px`;    
+            refTextarea.current.style.height = `${refTextarea.current.scrollHeight}px`    
         
-    }, [message]);
+    }, [message])
     
     useEffect(() => {
+
+        let refUid = ref(db, `users/${uid}`)
         
-        firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+        onValue(refUid, snapshot => {
             
-            let userInfo = snapshot.val();
+            let userInfo = snapshot.val()
             
             if(userInfo){
                 
-                let isAdmin   = admin;
-                let isAuthor  = authorId === uid; 
-                let isPremium = false;
-                let canEditMessages = false;
+                let isAdmin   = admin
+                let isAuthor  = authorId === uid 
+                let isPremium = false
+                let canEditMessages = false
                 
                 if(userInfo.account){
                     
-                    isPremium = true;
+                    isPremium = true
                 }
                 else{
                     
-                    let rangeOfLevels = Object.keys(Accounts['free']);
-                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level));
+                    let rangeOfLevels = Object.keys(Accounts['free'])
+                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level))
                     
-                    canEditMessages = Accounts['free'][closestLevel].edit ? true : false;
+                    canEditMessages = Accounts['free'][closestLevel].edit ? true : false
                     
                 }
                 
-                if(isAdmin)                      setCanEdit(true);
-                else if(isPremium && isAuthor)   setCanEdit(true);
-                else if(canEditMessages)         setCanEdit(true);
-                else                             setCanEdit(false);
+                if(isAdmin)                      setCanEdit(true)
+                else if(isPremium && isAuthor)   setCanEdit(true)
+                else if(canEditMessages)         setCanEdit(true)
+                else                             setCanEdit(false)
                 
             }
             else{
                 
-                setCanEdit(false);
+                setCanEdit(false)
             }
             
-        });
+        })
         
-    }, [level, uid, admin, authorId]);
+    }, [level, uid, admin, authorId])
     
     const editMessage = async () => {
         
         if(type === 'post'){
+
+            let { message, tags } = (await get(ref(db, `posts/${postId}`))).val()
             
-            let snapshot = await firebase.database().ref(`posts/${postId}`).once('value');
-            let { message, tags }  = snapshot.val();
-            
-            setMessage(message);
+            setMessage(message)
             
             if(tags)
-                setTags(Object.keys(tags));
+                setTags(Object.keys(tags))
             
         }
         else{
+
+            let { message } = (await get(ref(db, `posts/${postId}/replies/${replyId}`))).val()
             
-            let snapshot = await firebase.database().ref(`posts/${postId}/replies/${replyId}/message`).once('value');
-            let message  = snapshot.val();
-            
-            setMessage(message);
+            setMessage(message)
             
         }
         
@@ -92,10 +92,10 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
     
     const handleMessage = (e) => {
         
-        e.target.style.height = 'inherit';
-        e.target.style.height = `${e.target.scrollHeight}px`; 
+        e.target.style.height = 'inherit'
+        e.target.style.height = `${e.target.scrollHeight}px` 
         
-        setMessage(e.target.value);
+        setMessage(e.target.value)
         
     }
     
@@ -103,27 +103,27 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
         
         if(type === 'post'){
             
-            let normalizedTags = tags.map(tag => normalize(tag)); 
-            let tagsObject     = normalizedTags.reduce((acc, tag) => ((acc[tag] = true, acc)), {});
+            let normalizedTags = tags.map(tag => normalize(tag)) 
+            let tagsObject     = normalizedTags.reduce((acc, tag) => ((acc[tag] = true, acc)), {})
+
+            set(ref(db, `posts/${postId}/message`), message)
+            set(ref(db, `posts/${postId}/tags`), tagsObject)
+            runTransaction(ref(db, `posts/${postId}/edited`), _ => Date.now())
             
-            firebase.database().ref(`posts/${postId}/message`).set(message);
-            firebase.database().ref(`posts/${postId}/edited`).transaction(value => Date.now());
-            firebase.database().ref(`posts/${postId}/tags`).set(tagsObject);
-            
-            normalizedTags.forEach(tag => firebase.database().ref(`tags/${tag}/counter`).transaction(value => ~~value + 1));
+            normalizedTags.forEach(tag => runTransaction(ref(db, `tags/${tag}/counter`), value => ~~value + 1))
             
         }
         else{
-            
-            firebase.database().ref(`posts/${postId}/replies/${replyId}/message`).set(message);
-            firebase.database().ref(`posts/${postId}/replies/${replyId}/edited`).transaction(value => Date.now());
+
+            set(ref(db, `posts/${postId}/replies/${replyId}/message`), message)
+            runTransaction(ref(db, `posts/${postId}/replies/${replyId}/edited`), _ => Date.now())
             
         }
         
-        setAlert(true);
+        setAlert(true)
         
-        setTimeout( () => setAlert(false), 1500);
-        setTimeout( () => setMessage(null), 1500);
+        setTimeout( () => setAlert(false), 1500)
+        setTimeout( () => setMessage(null), 1500)
         
     }
     
@@ -161,8 +161,8 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
             : null
             }
         </div>
-    );
+    )
     
 }
 
-export default EditPost;
+export default EditPost
