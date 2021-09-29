@@ -1,11 +1,11 @@
-import React, { useState }                                                                                from 'react'
-import NomoresheetLogo                                                                                    from './NomoresheetLogo'
-import Loading                                                                                            from './Loading'
-import firebase, { auth, environment, googleProvider, signInWithPopup, signInAnonymously, updateProfile } from '../Functions/Firebase'
-import AnonymImg                                                                                          from '../Functions/AnonymImg'
-import AnonymName                                                                                         from '../Functions/AnonymName'
-import GoogleButton                                                                                       from '../Assets/GoogleButton'
-import AnonymButton                                                                                       from '../Assets/AnonymButton'
+import React, { useState }                                                                                               from 'react'
+import NomoresheetLogo                                                                                                   from './NomoresheetLogo'
+import Loading                                                                                                           from './Loading'
+import { auth, db, environment, googleProvider, ref, runTransaction, signInWithPopup, signInAnonymously, updateProfile } from '../Functions/Firebase'
+import AnonymImg                                                                                                         from '../Functions/AnonymImg'
+import AnonymName                                                                                                        from '../Functions/AnonymName'
+import GoogleButton                                                                                                      from '../Assets/GoogleButton'
+import AnonymButton                                                                                                      from '../Assets/AnonymButton'
 import '../Styles/Login.css'
 
 const Login = ({ hide }) => {  
@@ -18,9 +18,9 @@ const Login = ({ hide }) => {
         let { user } = await signInWithPopup(auth, googleProvider)
         
         if(user.metadata.createdAt === user.metadata.lastLoginAt){
-            
-            firebase.database().ref(`users/${user.uid}/name`).transaction(_ => user.displayName)
-            firebase.database().ref(`users/${user.uid}/profilePic`).transaction(_ => user.photoURL)
+
+            runTransaction(ref(db, `users/${user.uid}/name`), _ => user.displayName)
+            runTransaction(ref(db, `users/${user.uid}/profilePic`), _ => user.photoURL)
             
         }
         else{
@@ -67,8 +67,8 @@ const Login = ({ hide }) => {
             'photoURL': AnonymImg()
         })
 
-        firebase.database().ref(`users/${user.uid}/name`).transaction(_ => user.displayName)
-        firebase.database().ref(`users/${user.uid}/profilePic`).transaction(_ => user.photoURL)
+        runTransaction(ref(db, `users/${user.uid}/name`), _ => user.displayName)
+        runTransaction(ref(db, `users/${user.uid}/profilePic`), _ => user.photoURL)
 
         hide()
 
@@ -92,8 +92,8 @@ const Login = ({ hide }) => {
         let user = auth.currentUser
         
         await user.updateProfile({'photoURL': photoURL})
-        
-        firebase.database().ref(`users/${user.uid}/profilePic`).transaction(_ => user.photoURL)
+
+        runTransaction(ref(db, `users/${user.uid}/profilePic`), _ => user.photoURL)
         
         window.location.reload()
        

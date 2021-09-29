@@ -1,62 +1,62 @@
-import React, { useContext, useState }                   from 'react';
-import moment                                            from 'moment';
-import { loadStripe }                                    from '@stripe/stripe-js';
-import { CardElement, Elements, useStripe, useElements } from '@stripe/react-stripe-js';
-import Loading                                           from '../Components/Loading';
-import { apiKey }                                        from '../Functions/Stripe';
-import firebase, { environment }                         from '../Functions/Firebase';
-import { premium, infinita }                             from '../Functions/Stripe';
-import UserContext                                       from '../Functions/UserContext';
-import { ReactComponent as Checkmark }                   from '../Assets/checkmark.svg';
-import 'moment/locale/es';
-import '../Styles/PaymentModal.css';
+import React, { useContext, useState }                   from 'react'
+import moment                                            from 'moment'
+import { loadStripe }                                    from '@stripe/stripe-js'
+import { CardElement, Elements, useStripe, useElements } from '@stripe/react-stripe-js'
+import Loading                                           from '../Components/Loading'
+import { apiKey }                                        from '../Functions/Stripe'
+import { db, environment, ref, remove, runTransaction }  from '../Functions/Firebase'
+import { premium, infinita }                             from '../Functions/Stripe'
+import UserContext                                       from '../Functions/UserContext'
+import { ReactComponent as Checkmark }                   from '../Assets/checkmark.svg'
+import 'moment/locale/es'
+import '../Styles/PaymentModal.css'
 
 const PaymentModal = (props) => {
     
-    const stripePromise = loadStripe(apiKey);
+    const stripePromise = loadStripe(apiKey)
     
-    return  (
+    return(
         <div className = 'Modal'>
             <Elements stripe = {stripePromise}>
                 <CheckoutForm account = {props.account} hide = {props.hide}  plan = {props.plan}/>
             </Elements>
         </div>
-    );
+    )
     
 }
 
-export default PaymentModal;
+export default PaymentModal
 
-const CheckoutForm = ({hide, plan}) => {
+const CheckoutForm = ({ hide, plan }) => {
     
-    const [payment, setPayment] = useState(false);
-    const stripe                = useStripe();
-    const elements              = useElements();
-    const { user }              = useContext(UserContext);
+    const [payment, setPayment] = useState(false)
+    const stripe                = useStripe()
+    const elements              = useElements()
+    const { user }              = useContext(UserContext)
     
     const submit = async (ev) => {
         
-        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/';
-        let price;
+        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/'
+        let price
         
         if(plan === 'premium'){
             
-            fetchURL += 'subscriptionNomoresheet';
-            price     = premium.id;
+            fetchURL += 'subscriptionNomoresheet'
+            price     = premium.id
             
         }
         if(plan === 'infinita'){
             
-            fetchURL += 'oneTimePaymentNomoresheet';
-            price     = infinita.id;
+            fetchURL += 'oneTimePaymentNomoresheet'
+            price     = infinita.id
             
         }
         
-        const { error, token } = await stripe.createToken(elements.getElement(CardElement));
+        const { error, token } = await stripe.createToken(elements.getElement(CardElement))
         
         if(!error){
             
-            setPayment('processing');
+            setPayment('processing')
             
             let response = await fetch(fetchURL, {
                 
@@ -69,28 +69,28 @@ const CheckoutForm = ({hide, plan}) => {
                     userEmail: user.email
                 })
                 
-            });
+            })
             
             if(response.ok) {
                 
                 if(plan === 'premium'){
                     
-                    let data = await response.json();
-                    let subscriptionId = data.subscriptionId; 
-                    
-                    firebase.database().ref(`users/${user.uid}/subscriptionId`).transaction(value => subscriptionId);
-                    firebase.database().ref(`users/${user.uid}/account`).transaction(value => 'premium');
+                    let data = await response.json()
+                    let subscriptionId = data.subscriptionId 
+
+                    runTransaction(ref(db, `users/${user.uid}/subscriptionId`), _ => subscriptionId)
+                    runTransaction(ref(db, `users/${user.uid}/account`), _ => 'premium')
                     
                 }
                 
                 if(plan === 'infinita'){
-                    
-                    firebase.database().ref(`users/${user.uid}/subscriptionId`).remove();
-                    firebase.database().ref(`users/${user.uid}/account`).transaction(value => 'infinita');
+
+                    remove(ref(db, `users/${user.uid}/subscriptionId`))
+                    runTransaction(ref(db, `users/${user.uid}/account`), _ => 'infinita')
                     
                 }
                 
-                setPayment('success');
+                setPayment('success')
                 
             }
             
@@ -140,5 +140,5 @@ const CheckoutForm = ({hide, plan}) => {
           </div> 
         }
       </div>
-    );
+    )
 }

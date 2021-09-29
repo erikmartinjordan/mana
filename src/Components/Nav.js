@@ -1,64 +1,57 @@
-import React, { useContext, useState, useEffect }                                 from 'react';
-import { Link }                                                                   from 'react-router-dom';
-import { ArrowRightIcon, HomeIcon, NumberIcon, TelescopeIcon, PaperAirplaneIcon } from '@primer/octicons-react';
-import moment                                                                     from 'moment';
-import Login                                                                      from './Login';
-import Profile                                                                    from './Profile';
-import NewPost                                                                    from './NewPost';
-import UserAvatar                                                                 from './UserAvatar';
-import NightModeToggleButton                                                      from './NightModeToggleButton';
-import Tags                                                                       from './Tags';
-import NomoresheetLogo                                                            from './NomoresheetLogo';
-import UnreadNotifications                                                        from './UnreadNotifications';
-import firebase                                                                   from '../Functions/Firebase';
-import GetPoints                                                                  from '../Functions/GetPoints';
-import GetLevel                                                                   from '../Functions/GetLevelAndPointsToNextLevel';
-import UserContext                                                                from '../Functions/UserContext';
-import '../Styles/Nav.css';
+import React, { useContext, useState, useEffect }                                 from 'react'
+import { Link }                                                                   from 'react-router-dom'
+import { ArrowRightIcon, HomeIcon, NumberIcon, TelescopeIcon, PaperAirplaneIcon } from '@primer/octicons-react'
+import Login                                                                      from './Login'
+import Profile                                                                    from './Profile'
+import NewPost                                                                    from './NewPost'
+import UserAvatar                                                                 from './UserAvatar'
+import NightModeToggleButton                                                      from './NightModeToggleButton'
+import NomoresheetLogo                                                            from './NomoresheetLogo'
+import UnreadNotifications                                                        from './UnreadNotifications'
+import { db, onValue, ref }                                                       from '../Functions/Firebase'
+import GetPoints                                                                  from '../Functions/GetPoints'
+import GetLevel                                                                   from '../Functions/GetLevelAndPointsToNextLevel'
+import UserContext                                                                from '../Functions/UserContext'
+import '../Styles/Nav.css'
 
 const Nav = () => {
     
-    const [post, setPost]             = useState(false);
-    const [login, setLogin]           = useState(false);
-    const [perfil, setPerfil]         = useState(false);
-    const [uid, setUid]               = useState(null);
-    const [userInfo, setUserInfo]     = useState(null);
-    const { user }                    = useContext(UserContext);
-    const points                      = GetPoints(uid);
-    const level                       = GetLevel(points)[0];                     
+    const [post, setPost]             = useState(false)
+    const [login, setLogin]           = useState(false)
+    const [perfil, setPerfil]         = useState(false)
+    const [uid, setUid]               = useState(null)
+    const [userInfo, setUserInfo]     = useState(null)
+    const { user }                    = useContext(UserContext)
+    const points                      = GetPoints(uid)
+    const level                       = GetLevel(points)[0]                     
 
-    useEffect ( () => {
+    useEffect (() => {
       
-        if(user) {
+        if(user){
 
-            let ref = firebase.database().ref(`users/${user.uid}`);
+            let uidRef = ref(db, `users/${user.uid}`)
             
-            let listener = ref.on( 'value', snapshot => {
-                
-                if(snapshot.val()){
-                    
-                    let capture = snapshot.val();
-                    
-                    setUserInfo(capture);
-                }
-            });
-            
-            setUid(user.uid);
+            let unsubscribe = onValue(uidRef, snapshot => {
 
-            return () => ref.off('value', listener);
+                setUserInfo(snapshot.val() || null)
+                setUid(user.uid)
+
+            })
+
+            return () => unsubscribe()
             
         }
       
-    }, [user]);
+    }, [user])
     
     useEffect(() => {
         
-        let currentUrl = window.location.href;
+        let currentUrl = window.location.href
         
         if(user && currentUrl.includes('?'))
-            setPerfil(true);
+            setPerfil(true)
         
-    }, [user]);
+    }, [user])
   
     const menuNotUser = () => {
       
@@ -77,7 +70,7 @@ const Nav = () => {
                     </div>
                 </div>
             </div>
-        );  
+        )  
     }
   
     const menuUser = () => {
@@ -102,7 +95,7 @@ const Nav = () => {
                 <div className = 'Separator'></div>
                 <Link to = '/' onClick = {() => setPost(true)} className = 'New-Post'><PaperAirplaneIcon/>Publicar</Link>
             </div>
-        );
+        )
 
     }
 
@@ -120,7 +113,7 @@ const Nav = () => {
                     <UnreadNotifications user = {user}/>
                 </div>
             </div>
-        );
+        )
 
     }
 
@@ -134,7 +127,7 @@ const Nav = () => {
             {login  && <Login    hide = {() => setLogin(false)}/>}
             {post   && <NewPost  hide = {() => setPost(false)}/>}
         </div>
-    );
+    )
 }
 
-export default Nav;
+export default Nav

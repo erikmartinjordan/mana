@@ -1,56 +1,43 @@
-import React, { useEffect, useState }  from 'react';
-import { useRef }                      from 'react';
-import ReactMarkdown                   from 'react-markdown';
-import moment                          from 'moment';
-import { Link }                        from 'react-router-dom';
-import Verified                        from './Verified';
-import LikesComments                   from './LikesComments';
-import UserAvatar                      from './UserAvatar';
-import EditPost                        from './EditPost';
-import DeletePost                      from './DeletePost';
-import CopyLink                        from './CopyLink';
-import Highlight                       from './Highlight';
-import EditionTime                     from './EditionTime';
-import firebase                        from '../Functions/Firebase';
-import '../Styles/Replies.css';
+import React, { useEffect, useState }  from 'react'
+import { useRef }                      from 'react'
+import ReactMarkdown                   from 'react-markdown'
+import moment                          from 'moment'
+import { Link }                        from 'react-router-dom'
+import Verified                        from './Verified'
+import LikesComments                   from './LikesComments'
+import UserAvatar                      from './UserAvatar'
+import EditPost                        from './EditPost'
+import DeletePost                      from './DeletePost'
+import CopyLink                        from './CopyLink'
+import Highlight                       from './Highlight'
+import EditionTime                     from './EditionTime'
+import { db, onValue, ref }            from '../Functions/Firebase'
+import '../Styles/Replies.css'
 
 const Replies = ({ admin, postId, uid }) => {
     
-    const [replies, setReplies] = useState([]);
-    const replyRef              = useRef();
-    const scrollToReplyId       = window.location.href.split('#').pop();
+    const [replies, setReplies] = useState([])
+    const replyRef              = useRef()
+    const scrollToReplyId       = window.location.href.split('#').pop()
     
-    useEffect( () => {
+    useEffect(() => {
         
-        let ref = firebase.database().ref(`posts/${postId}/replies`);
-        
-        let listener = ref.on('value', snapshot => { 
+        let unsubscribe = onValue(ref(db, `posts/${postId}/replies`), snapshot => { 
+
+            setReplies(snapshot.val() || [])
             
-            let replies = snapshot.val();
-            
-            if(replies){
-                
-                setReplies(replies);
-                
-            }
-            else{
-                
-                setReplies([]);
-                
-            }
-            
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
-    }, [postId]);
+    }, [postId])
     
     useEffect( () => {
         
         if(replyRef.current)
-            replyRef.current.scrollIntoView({behavior: 'smooth', block: 'center'});;
+            replyRef.current.scrollIntoView({behavior: 'smooth', block: 'center'})
         
-    });
+    })
     
     return(
         <div className = 'Replies'>
@@ -79,10 +66,10 @@ const Replies = ({ admin, postId, uid }) => {
                 </div>
             ))}
         </div> 
-    );
+    )
 }
 
-export default Replies;
+export default Replies
 
 const Reply = ({ message }) => {
     
@@ -99,6 +86,6 @@ const Reply = ({ message }) => {
             source    = {message} 
             renderers = {renderers}
         />
-    );
+    )
     
 }

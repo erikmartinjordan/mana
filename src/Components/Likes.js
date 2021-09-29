@@ -17,13 +17,17 @@ const Likes = ({ authorId, postId }) => {
     const points                          = GetPoints(authorId)
     const { user }                        = useContext(UserContext)
     
-    useEffect( () => {
+    useEffect(() => {
 
-        onValue(ref(db,`posts/${postId}/voteUsers` ), snapshot => {
+        let votesRef = ref(db,`posts/${postId}/voteUsers`)
+
+        let unsubscribe = onValue(votesRef, snapshot => {
 
             setVotes(snapshot.val() || {})
 
         })
+
+        return () => unsubscribe()
         
     },[postId])
     

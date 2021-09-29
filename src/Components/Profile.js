@@ -1,86 +1,83 @@
-import React, { useContext, useState, useEffect }                   from 'react';
-import { Link }                                                     from 'react-router-dom';
-import { SmileyIcon, GraphIcon, StarIcon, InboxIcon, SignOutIcon }  from '@primer/octicons-react';
-import PaymentModal                                                 from './PaymentModal';
-import ConnectToStripe                                              from './ConnectToStripe';
-import Notifications                                                from './Notifications';
-import UserAvatar                                                   from './UserAvatar';
-import ToggleButton                                                 from './ToggleButton';
-import DeleteAccount                                                from './DeleteAccount';
-import DowngradeToFreePlan                                          from './DowngradeToFreePlan';
-import ChangeBackgroundImage                                        from './ChangeBackgroundImage';
-import ChangeBio                                                    from './ChangeBio';
-import ChangeLocation                                               from './ChangeLocation';
-import ChangeWebsite                                                from './ChangeWebsite';
-import UserContext                                                  from '../Functions/UserContext';
-import Points                                                       from '../Functions/PointsAndValues';
-import firebase, { environment, auth }                              from '../Functions/Firebase';
-import GetNumberOfPosts                                             from '../Functions/GetNumberOfPosts';
-import GetNumberOfReplies                                           from '../Functions/GetNumberOfReplies';
-import GetNumberOfSpicy                                             from '../Functions/GetNumberOfSpicy';
-import GetPoints                                                    from '../Functions/GetPoints';
-import GetLevel                                                     from '../Functions/GetLevelAndPointsToNextLevel';
-import AnonymImg                                                    from '../Functions/AnonymImg';
-import AnonymName                                                   from '../Functions/AnonymName';
-import { premium, infinita }                                        from '../Functions/Stripe';
-import Accounts                                                     from '../Rules/Accounts';
-import '../Styles/Perfil.css';
-import '../Styles/UserAvatar.css';
-import '../Styles/ToggleButton.css';
+import React, { useContext, useState, useEffect }                   from 'react'
+import {  GraphIcon, StarIcon, InboxIcon, SignOutIcon }             from '@primer/octicons-react'
+import PaymentModal                                                 from './PaymentModal'
+import ConnectToStripe                                              from './ConnectToStripe'
+import Notifications                                                from './Notifications'
+import UserAvatar                                                   from './UserAvatar'
+import ToggleButton                                                 from './ToggleButton'
+import DeleteAccount                                                from './DeleteAccount'
+import DowngradeToFreePlan                                          from './DowngradeToFreePlan'
+import ChangeBackgroundImage                                        from './ChangeBackgroundImage'
+import ChangeBio                                                    from './ChangeBio'
+import ChangeLocation                                               from './ChangeLocation'
+import ChangeWebsite                                                from './ChangeWebsite'
+import UserContext                                                  from '../Functions/UserContext'
+import Points                                                       from '../Functions/PointsAndValues'
+import { auth, db, environment, onValue, ref, runTransaction }      from '../Functions/Firebase'
+import GetNumberOfPosts                                             from '../Functions/GetNumberOfPosts'
+import GetNumberOfReplies                                           from '../Functions/GetNumberOfReplies'
+import GetNumberOfSpicy                                             from '../Functions/GetNumberOfSpicy'
+import GetPoints                                                    from '../Functions/GetPoints'
+import GetLevel                                                     from '../Functions/GetLevelAndPointsToNextLevel'
+import AnonymImg                                                    from '../Functions/AnonymImg'
+import AnonymName                                                   from '../Functions/AnonymName'
+import { premium, infinita }                                        from '../Functions/Stripe'
+import Accounts                                                     from '../Rules/Accounts'
+import '../Styles/Perfil.css'
+import '../Styles/UserAvatar.css'
+import '../Styles/ToggleButton.css'
 
 const Profile = (props) => {
 
-    const [infoUser, setInfoUser]                = useState(null);
-    const [menu, setMenu]                        = useState(props.menu ? props.menu : 'Notif');
-    const [nextPayment, setNextPayment]          = useState('');
-    const [uid, setUid]                          = useState(null);
-    const posts                                  = GetNumberOfPosts(uid);
-    const replies                                = GetNumberOfReplies(uid);
-    const spicy                                  = GetNumberOfSpicy(uid);
-    const points                                 = GetPoints(uid);
-    const { valuePost, valueReply, valueSpicy }  = Points;
-    const [level, pointsToNextLevel, percentage] = GetLevel(points);
-    const { user }                               = useContext(UserContext);
+    const [infoUser, setInfoUser]                = useState(null)
+    const [menu, setMenu]                        = useState(props.menu ? props.menu : 'Notif')
+    const [nextPayment, setNextPayment]          = useState('')
+    const [uid, setUid]                          = useState(null)
+    const posts                                  = GetNumberOfPosts(uid)
+    const replies                                = GetNumberOfReplies(uid)
+    const spicy                                  = GetNumberOfSpicy(uid)
+    const points                                 = GetPoints(uid)
+    const { valuePost, valueReply, valueSpicy }  = Points
+    const [level, pointsToNextLevel, percentage] = GetLevel(points)
+    const { user }                               = useContext(UserContext)
     
     useEffect(() => {
         
-        document.title = 'Perfil – Nomoresheet'; 
-        document.querySelector('meta[name="description"]').content = 'Este es tu perfil en Nomoresheet...';   
+        document.title = 'Perfil – Nomoresheet' 
+        document.querySelector('meta[name="description"]').content = 'Este es tu perfil en Nomoresheet...'   
         
-    });
+    })
     
     useEffect(() => {
         
         if(user){
-
-            let ref = firebase.database().ref(`users/${user.uid}`);
             
-            let listener = ref.on('value', snapshot => {
+            let unsubscribe = onValue(ref(db,`users/${user.uid}`), snapshot => {
                 
                 if(snapshot.val()){
                     
-                    let {account, subscriptionId} = snapshot.val();
+                    let {account, subscriptionId} = snapshot.val()
                     
-                    if(account === 'premium')  getNextPaymentDate(subscriptionId);
-                    if(account === 'infinita') setNextPayment('∞');
+                    if(account === 'premium')  getNextPaymentDate(subscriptionId)
+                    if(account === 'infinita') setNextPayment('∞')
                     
-                    setInfoUser(snapshot.val());
+                    setInfoUser(snapshot.val())
                     
                 }
                 
-            });    
+            })    
             
-            setUid(user.uid);
+            setUid(user.uid)
 
-            return () => ref.off('value', listener);
+            return () => unsubscribe()
             
         }    
         
-    }, [user]);
+    }, [user])
     
     const getNextPaymentDate = async (subscriptionId) => {
         
-        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/nextPaymentNomoresheet';
+        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/nextPaymentNomoresheet'
         
         let response = await fetch(fetchURL, {
             
@@ -91,15 +88,15 @@ const Profile = (props) => {
                 subscriptionId: subscriptionId
             })
             
-        });
+        })
         
         if(response.ok){
             
-            let data = await response.json();
+            let data = await response.json()
             
-            let date = (new Date(data.nextPaymentDate * 1000)).toLocaleDateString();
+            let date = (new Date(data.nextPaymentDate * 1000)).toLocaleDateString()
             
-            setNextPayment(date);
+            setNextPayment(date)
             
         }
         
@@ -149,20 +146,20 @@ const Profile = (props) => {
             </div>
             <div className = 'Invisible' onClick = {props.hide}></div>
         </div>
-    );
+    )
 }
 
-export default Profile;
+export default Profile
 
 const Sidebar = ({menu, setMenu, hide, user}) => {
 
-    const selected = (item) => menu === item ? 'Item Selected' : 'Item';
+    const selected = (item) => menu === item ? 'Item Selected' : 'Item'
 
     const logout = () => {
 
-        hide();
+        hide()
 
-        auth.signOut();
+        auth.signOut()
 
     }
     
@@ -178,26 +175,26 @@ const Sidebar = ({menu, setMenu, hide, user}) => {
                     <div className = 'Item'                onClick = {logout}><SignOutIcon/>Cerrar sesión</div>
             </div>
         </div>
-    );
+    )
     
 }
 
 const Account = ({user, infoUser, nextPayment, uid}) => {
     
     const anonimizar = () => {
-        
-        firebase.database().ref(`users/${user.uid}/anonimo/`).transaction(anonimo => {
-            
+
+        runTransaction(ref(db, `users/${user.uid}/anonimo/`), anonimo => {
+
             if(!anonimo){
-                
-                firebase.database().ref(`users/${user.uid}/nickName/`).transaction(value => AnonymName());
-                firebase.database().ref(`users/${user.uid}/avatar/`).transaction(value => AnonymImg());
+
+                runTransaction(ref(db, `users/${user.uid}/nickName/`), _ => AnonymName())
+                runTransaction(ref(db, `users/${user.uid}/avatar/`), _ => AnonymImg())
                 
             }
-            
-            return !anonimo ? true : false; 
-            
-        });
+
+            return !anonimo
+
+        })
     }
     
     return(
@@ -284,7 +281,7 @@ const Account = ({user, infoUser, nextPayment, uid}) => {
                 <DeleteAccount></DeleteAccount>
             </div>
         </div> 
-    );
+    )
     
 }
 
@@ -327,8 +324,8 @@ const Data = ({posts, replies, spicy, level, pointsToNextLevel, valuePost, value
 
 const Premium = ({user, infoUser}) => {
     
-    const [confirmation, setConfirmation] = useState(false);
-    const [paymentModal, setPaymentModal] = useState(false);
+    const [confirmation, setConfirmation] = useState(false)
+    const [paymentModal, setPaymentModal] = useState(false)
     
     return(
         <div className = 'Datos'>
@@ -399,7 +396,7 @@ const Premium = ({user, infoUser}) => {
             <div className = 'Faq'>
                 <h3>Preguntas frecuentes</h3>
                 <p className = 'Question'>¿Por qué una cuenta <em>premium</em>?</p>
-                <p className = 'Answer'>Principalmente, porque gozarás de un uso ilimitado de Nomoresheet. Podrás enviar tantos mensajes como quieras; sin restricciones de tiempo ni de longitud. Además, podrás anonimizar mensajes, editarlos, añadir formato y eliminarlos (obtendrás un identificador como usuario PRO).</p>
+                <p className = 'Answer'>Principalmente, porque gozarás de un uso ilimitado de Nomoresheet. Podrás enviar tantos mensajes como quieras sin restricciones de tiempo ni de longitud. Además, podrás anonimizar mensajes, editarlos, añadir formato y eliminarlos (obtendrás un identificador como usuario PRO).</p>
                 <p className = 'Question'>¿Por qué cuesta dinero la cuenta <em>premium</em>? ¿Por qué son gratis otras plataformas?</p>
                 <p className = 'Answer'>El espacio en la nube es costoso. A medida que más usuarios publican en Nomoresheet, más espacio ocupan los datos y más aumentan los gastos de mantenimiento de la web. Las grandes plataformas reciben capital de inversores o tienen ingresos derivados de publicidad. Aquí no hay nada de eso.</p>  
                 <p className = 'Question'>¿Qué me ofrece Nomoresheet que no me ofrezcan otras plataformas?</p>
@@ -414,6 +411,6 @@ const Premium = ({user, infoUser}) => {
             ? <DowngradeToFreePlan subscriptionId = {infoUser.subscriptionId}/>
             : null}
         </div>
-    );
+    )
     
 }

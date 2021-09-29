@@ -1,40 +1,43 @@
-import React, { useState, useEffect }   from 'react';
-import moment                           from 'moment';
-import { Link }                         from 'react-router-dom';
-import ToggleButton                     from './ToggleButton';
-import Twemoji                          from './Twemoji';
-import firebase                         from '../Functions/Firebase';
-import '../Styles/Notifications.css';
+import React, { useState, useEffect }                           from 'react'
+import moment                                                   from 'moment'
+import { Link }                                                 from 'react-router-dom'
+import ToggleButton                                             from './ToggleButton'
+import Twemoji                                                  from './Twemoji'
+import { db, limitToLast, onValue, query, ref, runTransaction } from '../Functions/Firebase'
+import '../Styles/Notifications.css'
 
 const Notifications = ({hide, user}) => {  
     
-    const [displayNotifications, setDisplayNotifications] = useState(true);
-    const [maxNotifications, setMaxNotifications]         = useState(20);
-    const [notifications, setNotifications]               = useState('loading');
+    const [displayNotifications, setDisplayNotifications] = useState(true)
+    const [maxNotifications, setMaxNotifications]         = useState(20)
+    const [notifications, setNotifications]               = useState('loading')
     
-    useEffect( () => {
+    useEffect(() => {
         
         if(user.uid){
-            
-            firebase.database().ref(`notifications/${user.uid}`).limitToLast(maxNotifications).on('value', snapshot => { 
-                
-                if(snapshot.val()) 
-                    setNotifications(snapshot.val());
-                else               
-                    setNotifications('empty');
-                
-            }); 
-            
-            firebase.database().ref(`users/${user.uid}/displayNotifications`).on('value', snapshot => { 
-                
-                if(snapshot.exists())    
-                    setDisplayNotifications(snapshot.val());
-                
-            }); 
+
+            var unsubscribe_1 = onValue(query(ref(db, `notifications/${user.uid}`), limitToLast(maxNotifications)), snapshot => {
+
+                setNotifications(snapshot.val() || 'empty')
+
+            })
+
+            var unsubscribe_2 = onValue(ref(db, `users/${user.uid}/displayNotifications`), snapshot => {
+
+                setDisplayNotifications(snapshot.val() || true)
+
+            })
             
         }
+
+        return () => {
+
+            unsubscribe_1()
+            unsubscribe_2()
+
+        }
       
-    }, [user, maxNotifications]);
+    }, [user, maxNotifications])
     
     return (
         <div className = 'Notifications'>
@@ -62,64 +65,64 @@ const Notifications = ({hide, user}) => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default Notifications;
+export default Notifications
 
 const ToggleNotifications = ({displayNotifications, setDisplayNotifications, user}) => {
 
     const handleNotifications = () => {
+
+        runTransaction(ref(db, `users/${user.uid}/displayNotifications`), _ => !displayNotifications)
         
-        firebase.database().ref(`users/${user.uid}/displayNotifications`).transaction(value => !displayNotifications);
-        
-        setDisplayNotifications(!displayNotifications);
+        setDisplayNotifications(!displayNotifications)
     }
     
     return(
-        <div className = 'DisplayNotifications' onClick = {() => handleNotifications()}>
+        <div className = 'DisplayNotifications' onClick = {handleNotifications}>
             Notificaciones <ToggleButton status = {displayNotifications ? 'on' : 'off'}/>
         </div>
-    );
+    )
 }
 
 const ListNotifications = ({notifications, user, hide, maxNotifications, setMaxNotifications}) => {
     
-    const [notificationsList, setNotificationsList] = useState([]);
+    const [notificationsList, setNotificationsList] = useState([])
     
     useEffect( () => {
         
         Object.keys(notifications).forEach(key => {
+
+            runTransaction(ref(db, `notifications/${user.uid}/${key}/read`), _ => true)
             
-            firebase.database().ref(`notifications/${user.uid}/${key}/read`).transaction(value => true); 
-            
-        });
+        })
         
-    }, [user, notifications]);
+    }, [user, notifications])
     
     useEffect( () => {
        
-        let sortedNotificationsArray = Object.values(notifications).sort( (a,b) => a.timeStamp > b.timeStamp ? -1 : 1);
+        let sortedNotificationsArray = Object.values(notifications).sort((a,b) => a.timeStamp > b.timeStamp ? -1 : 1)
         
-        setNotificationsList(sortedNotificationsArray);
+        setNotificationsList(sortedNotificationsArray)
         
-    }, [notifications]);
+    }, [notifications])
     
     const notificationTitle = (index) => {
         
-        let now = moment();
+        let now = moment()
         
-        let currentTitle  = now.diff(moment(notificationsList[index    ]?.timeStamp), 'days') > 30 ? 'Más antiguo' : 'Últimos 30 días';
-        let previousTitle = now.diff(moment(notificationsList[index - 1]?.timeStamp), 'days') > 30 ? 'Más antiguo' : 'Últimos 30 días';
+        let currentTitle  = now.diff(moment(notificationsList[index    ]?.timeStamp), 'days') > 30 ? 'Más antiguo' : 'Últimos 30 días'
+        let previousTitle = now.diff(moment(notificationsList[index - 1]?.timeStamp), 'days') > 30 ? 'Más antiguo' : 'Últimos 30 días'
      
         if(index === 0) 
-            return currentTitle;
+            return currentTitle
          
         else if(currentTitle !== previousTitle)
-            return currentTitle;
+            return currentTitle
             
         else
-            return null;
+            return null
         
     }
     
@@ -154,7 +157,7 @@ const ListNotifications = ({notifications, user, hide, maxNotifications, setMaxN
                 }
             </div>
         </React.Fragment>
-    );
+    )
     
 }
 
@@ -165,7 +168,7 @@ const LoadingNotifications = () => {
             <div className = 'Big-Emoji'><Twemoji emoji = {'😼'}/></div>
             <div className = 'Empty-Message'>Cargando notificaciones...</div>
         </div>
-    );
+    )
     
 }
 
@@ -176,7 +179,7 @@ const EmptyNotifications = () => {
             <div className = 'Big-Emoji'><Twemoji emoji = {'😼'}/></div>
             <div className = 'Empty-Message'>¡Miaaaaau! Aún no tienes notificaciones.</div>
         </div>
-    );
+    )
     
 }
 
@@ -187,6 +190,6 @@ const NoDisplayNotifications = () => {
             <div className = 'Big-Emoji'><Twemoji emoji = {'😼'}/></div>
             <div className = 'Empty-Message'>¡Miaaaaau! Las notificaciones están desactivadas.</div>
         </div>
-    );
+    )
     
 }

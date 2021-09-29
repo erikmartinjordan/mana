@@ -1,49 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { Link }                       from 'react-router-dom';
-import moment                         from 'moment';
-import Loading                        from './Loading';
-import firebase                       from '../Functions/Firebase';
-import '../Styles/OneYearAgo.css';
+import React, { useEffect, useState }                     from 'react'
+import { Link }                                                         from 'react-router-dom'
+import moment                                                           from 'moment'
+import Loading                                                          from './Loading'
+import { db, limitToFirst, onValue, orderByChild, query, ref, startAt } from '../Functions/Firebase'
+import '../Styles/OneYearAgo.css'
 
 const OneYearAgo = () => {
     
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([])
     
     useEffect(() => {
         
-        let lastYearStartOfWeek = moment().subtract(1, 'year').startOf('week').valueOf();
+        let lastYearStartOfWeek = moment().subtract(1, 'year').startOf('week').valueOf()
         
-        let ref = firebase.database().ref('posts').orderByChild('timeStamp').startAt(lastYearStartOfWeek).limitToFirst(5);
-        
-        let listener = ref.on('value', snapshot => {
+        let unsubscribe = onValue(query(ref(db, 'posts'), orderByChild('timeStamp'), startAt(lastYearStartOfWeek), limitToFirst(5)), snapshot => {
            
-            if(snapshot.val()){
-                
-                let lastYearPosts = Object.entries(snapshot.val());
-                
-                setPosts(lastYearPosts);
-                
-            }
-            else{
-                
-                setPosts([]);
-                
-            }
+
+            setPosts(snapshot.val() || {})
             
-            
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
     }, [])
     
     return(
         <React.Fragment>
-            { posts.length > 0
+            { Object.entries(posts).length > 0
             ? <div className = 'OneYearAgo'>
                 <span className = 'Title'>Hace un año...</span>
                 <div className = 'Articles'>
-                {posts.map(([url, {title, replies = {}, votes, views}]) => (
+                { Object.entries(posts).map(([url, {title, replies = {}, votes, views}]) => (
                     <div className = 'Article' key = {url}>
                         <Link to = {`/comunidad/post/${url}`}>{title}</Link>    
                         <p>{Object.keys(replies).length} {Object.keys(replies).length === 1 ? 'comentario' : 'comentarios'}</p>
@@ -54,8 +41,8 @@ const OneYearAgo = () => {
             : <Loading type = 'OneYearAgo'/>    
             }
         </React.Fragment>
-    );
+    )
     
 }
 
-export default OneYearAgo;
+export default OneYearAgo

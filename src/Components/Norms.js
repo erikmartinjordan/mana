@@ -1,5 +1,5 @@
-import React from 'react';
-import '../Styles/Norms.css';
+import React from 'react'
+import '../Styles/Norms.css'
 
 const Norms = () => {
     
@@ -15,7 +15,8 @@ const Norms = () => {
                 <li className = 'Mal'>Evita títulos que empiecen con numerales. Por ejemplo, «5 mejores platos tailandeses» puede ser «Platos tailandeses que son una delicia».</li>
                 <li className = 'Mal'>Si introduces enlaces de afiliado, tu mensaje será borrado.</li>
             </ol>
-        </div>);
+        </div>
+    )
 }
 
-export default Norms;
+export default Norms

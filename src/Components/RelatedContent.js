@@ -1,61 +1,60 @@
-import React, { useState, useEffect } from 'react';
-import { Link }                       from 'react-router-dom';
-import Loading                        from './Loading';
-import firebase                       from '../Functions/Firebase';
-import '../Styles/RelatedContent.css';
+import React, { useState, useEffect }                                                            from 'react'
+import { Link }                                                                                  from 'react-router-dom'
+import Loading                                                                                   from './Loading'
+import { db, get, limitToFirst, limitToLast, orderByChild, ref, query, runTransaction, startAt } from '../Functions/Firebase'
+import '../Styles/RelatedContent.css'
 
 const RelatedContent = () => {
     
-    const [combo,   setCombo]   = useState([]); 
-    const [random,  setRandom]  = useState([]);
-    const [related, setRelated] = useState([]);
-    const [update, setUpdate]   = useState(0);
-    const url                   = window.location.pathname.split('/').pop();
+    const [combo,   setCombo]   = useState([]) 
+    const [random,  setRandom]  = useState([])
+    const [related, setRelated] = useState([])
+    const [update, setUpdate]   = useState(0)
+    const url                   = window.location.pathname.split('/').pop()
     
     useEffect(() => {
         
         const getRandomPosts = async (num) => {
+
+            let snapshot_1 = await get(query(ref(db, 'posts'), orderByChild('timeStamp'), limitToFirst(1)))
+            let snapshot_2 = await get(query(ref(db, 'posts'), orderByChild('timeStamp'), limitToLast(1)))
             
-            let ref = firebase.database().ref('posts');
+            let first = Object.values(snapshot_1.val())[0]
+            let last  = first
+
+            console.log(first)
+            console.log(last)
             
-            let snapshot_1 = await ref.orderByChild('timeStamp').limitToFirst(1).once('value');
-            let snapshot_2 = await ref.orderByChild('timeStamp').limitToLast(1).once('value');
+            let randomTimeStamp = Math.floor( Math.random() * (last.timeStamp - first.timeStamp + 1) + first.timeStamp )
             
-            let first = Object.values(snapshot_1.val())[0];
-            let last  = Object.values(snapshot_2.val())[0];
-            
-            let randomTimeStamp = Math.floor( Math.random() * (last.timeStamp - first.timeStamp + 1) + first.timeStamp );
-            
-            let snapshot_3 = await ref.orderByChild('timeStamp').startAt(randomTimeStamp).limitToFirst(num).once('value');
+            let snapshot_3 = await get(query(ref(db, 'posts'), orderByChild('timeStamp'), startAt(randomTimeStamp), limitToFirst(num)))
             
             if(snapshot_3.val()){
              
-                let posts = Object.entries(snapshot_3.val()).map(([url, {title, replies}]) => ({url, title, replies})).reverse();
+                let posts = Object.entries(snapshot_3.val()).map(([url, {title, replies}]) => ({url, title, replies})).reverse()
                 
-                setRandom(posts);
+                setRandom(posts)
                 
             }
             
         }
         
-        getRandomPosts(5);
+        getRandomPosts(5)
         
-    }, [update]);
+    }, [update])
     
     useEffect(() => {
         
         const getRelatedPosts = async (num) => {
-            
-            let ref = firebase.database().ref('posts');
-            
-            let related = (await ref.child(`${url}/related`).orderByChild('hits').limitToFirst(num).once('value')).val();
+
+            let related = (await get(query(ref(db, `posts/${url}/related`), orderByChild('hits'), limitToFirst(num)))).val()
             
             if(related){
                 
                 let posts = Object.keys(related).map(async url => {
 
-                    let title   = (await ref.child(`${url}/title`).once('value')).val();
-                    let replies = (await ref.child(`${url}/replies`).once('value')).val();
+                    let title =   (await get(ref(db, `posts/${url}/title`))).val()
+                    let replies = (await get(ref(db, `posts/${url}/replies`))).val()
                     
                     return {
 
@@ -65,51 +64,49 @@ const RelatedContent = () => {
 
                     }
 
-                });
+                })
 
-                posts = await Promise.all(posts);
+                posts = await Promise.all(posts)
                 
-                setRelated(posts);
+                setRelated(posts)
                 
             }
             
         }
         
-        getRelatedPosts(5);
+        getRelatedPosts(5)
         
-    }, [update, url]);
+    }, [update, url])
     
     useEffect(() => {    
         
-        let group = new Set();
+        let group = new Set()
         
-        let union = [...related, ...random];
+        let union = [...related, ...random]
         
         let unique = union.filter(post => {
             
-            let urlTitle = JSON.stringify(post);
+            let urlTitle = JSON.stringify(post)
             
-            let groupHasPost = group.has(urlTitle);
+            let groupHasPost = group.has(urlTitle)
             
             group.add(urlTitle)
             
-            return groupHasPost ? false : true;
+            return groupHasPost ? false : true
             
-        });
+        })
         
-        setCombo(unique);
+        setCombo(unique)
         
-    }, [random, related]);
+    }, [random, related])
     
-    const updateRelated = (title, relatedUrl) => {
+    const updateRelated = (relatedUrl) => {
+
+        runTransaction(ref(db, `posts/${url}/related/${relatedUrl}/hits`), value => value + 1)
         
-        let ref = firebase.database().ref('posts');
+        setUpdate(update + 1)
         
-        ref.child(`${url}/related/${relatedUrl}/hits`).transaction(value => value + 1);
-        
-        setUpdate(update + 1);
-        
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0)
         
     }
     
@@ -121,7 +118,7 @@ const RelatedContent = () => {
             <div className = 'Links'>
                 {combo.map(({url, title, replies = {}}, key) => 
                     (<div key = {key} >
-                        <Link onClick = {() => updateRelated(title, url)} to = {url} >{title}</Link>
+                        <Link onClick = {() => updateRelated(url)} to = {url} >{title}</Link>
                         <p>{Object.keys(replies).length} {Object.keys(replies).length === 1 ? 'comentario' : 'comentarios'}</p>
                     </div>)
                 )}
@@ -130,8 +127,8 @@ const RelatedContent = () => {
         : <Loading type = 'RelatedContent'/>
         }
         </React.Fragment>
-    );
+    )
     
 }
 
-export default RelatedContent;
+export default RelatedContent

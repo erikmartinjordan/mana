@@ -1,52 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import ReactMarkdown                  from 'react-markdown';
-import { Link }                       from 'react-router-dom';
-import moment                         from 'moment';
-import Verified                       from './Verified';
-import Loading                        from './Loading';
-import Likes                          from './Likes';
-import UserAvatar                     from './UserAvatar';
-import EditPost                       from './EditPost';
-import DeletePost                     from './DeletePost';
-import CopyLink                       from './CopyLink';
-import Highlight                      from './Highlight';
-import EditionTime                    from './EditionTime';
-import firebase                       from '../Functions/Firebase';
-import '../Styles/Question.css';
+import React, { useEffect, useState } from 'react'
+import ReactMarkdown                  from 'react-markdown'
+import { Link }                       from 'react-router-dom'
+import moment                         from 'moment'
+import Verified                       from './Verified'
+import Loading                        from './Loading'
+import Likes                          from './Likes'
+import UserAvatar                     from './UserAvatar'
+import EditPost                       from './EditPost'
+import DeletePost                     from './DeletePost'
+import CopyLink                       from './CopyLink'
+import Highlight                      from './Highlight'
+import EditionTime                    from './EditionTime'
+import { db, onValue, ref }           from '../Functions/Firebase'
+import '../Styles/Question.css'
 
 const Question = ({ admin, postId, setTitle, uid }) => {
 
-    const [question, setQuestion] = useState('');
+    const [question, setQuestion] = useState('')
     
-    useEffect ( () => {
+    useEffect(() => {
         
         if(question){
-            document.title = question.title + ' - Nomoresheet'; 
-            document.querySelector('meta[name="description"]').content = question.message; 
+            document.title = question.title + ' - Nomoresheet' 
+            document.querySelector('meta[name="description"]').content = question.message 
         }      
         
-    });
+    })
     
-    useEffect( () => {
+    useEffect(() => {
         
-        let ref = firebase.database().ref(`posts/${postId}`);
-        
-        let listener = ref.on('value', snapshot => { 
+        let unsubscribe = onValue(ref(db, `posts/${postId}`), snapshot => { 
             
-            let question = snapshot.val();
-            
-            if(question){
+            if(snapshot.val()){
                 
-                setQuestion(question)
-                setTitle(question.title);
+                setQuestion(snapshot.val())
+                setTitle(snapshot.val().title)
                 
             }
             
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
-    }, [postId, setTitle]);
+    }, [postId, setTitle])
     
     return(
         <React.Fragment>
@@ -76,10 +72,10 @@ const Question = ({ admin, postId, setTitle, uid }) => {
         : <Loading type = 'Question'/>
         }
         </React.Fragment>
-    );
+    )
 }
 
-export default Question;
+export default Question
 
 const QuestionContent = ({ message }) => {
     
@@ -96,6 +92,6 @@ const QuestionContent = ({ message }) => {
             source    = {message} 
             renderers = {renderers}
         />
-    );
+    )
     
 }
