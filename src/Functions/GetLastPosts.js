@@ -1,43 +1,44 @@
-import { useState, useEffect } from 'react';
-import firebase                from './Firebase';
+import { useState, useEffect }                       from 'react'
+import { db, get, onValue, query, ref, limitToLast } from './Firebase'
 
 const GetLastPosts = (userUid, nPosts) => {
     
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([])
     
     useEffect(() => { 
         
         if(userUid && nPosts){
-           
-            firebase.database().ref(`users/${userUid}/lastPosts`).limitToLast(nPosts).on('value', async (snapshot) => { 
+
+            let unsubscribe = onValue(query(ref(db, `users/${userUid}/lastPosts`), limitToLast(nPosts)), async snapshot => {
                 
-                let posts = snapshot.val();
+                let posts = snapshot.val()
                 
                 if(posts){
                     
-                    let postIds  = Object.keys(posts).reverse();
+                    let postIds  = Object.keys(posts).reverse()
                     
                     let postInfo = await Promise.all(postIds.map(async postId => {
+
+                        let title = (await get(ref(db, `posts/${postId}/title`))).val()
                         
-                        let snapshot = await firebase.database().ref(`posts/${postId}/title`).once('value');
-                        let title    = snapshot.val();
+                        return {url: postId, title: title}
                         
-                        return {url: postId, title: title};
-                        
-                    }));
+                    }))
                     
-                    setPosts(postInfo);
+                    setPosts(postInfo)
                     
                 }
                 
-            });
+            })
+
+            return () => unsubscribe()
             
         }
         
-    }, [userUid, nPosts]);
+    }, [userUid, nPosts])
     
-    return posts;
+    return posts
     
 }
 
-export default GetLastPosts;
+export default GetLastPosts

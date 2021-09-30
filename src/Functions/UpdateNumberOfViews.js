@@ -1,12 +1,12 @@
-import firebase from './Firebase';
+import { db, ref, runTransaction } from './Firebase'
 
 const updateNumberOfViews = (post, url) => {
 
-    let unique = {};
+    let unique = {}
 
-    unique[post.userUid] = true;
+    unique[post.userUid] = true
 
-    firebase.database().ref(`users/${post.userUid}/numViews`).transaction(value => value + 1);
+    runTransaction(ref(db, `users/${post.userUid}/numViews`), value => value + 1)
     
     if(post.replies){
 
@@ -14,18 +14,18 @@ const updateNumberOfViews = (post, url) => {
             
             if(!unique[reply.userUid]){
 
-                unique[reply.userUid] = true;
+                unique[reply.userUid] = true
 
-                firebase.database().ref(`users/${reply.userUid}/numViews`).transaction(value => value + 1);
+                runTransaction(ref(db, `users/${reply.userUid}/numViews`), value => value + 1)
                 
             }
         
-        });
+        })
     
     }
 
-    firebase.database().ref(`posts/${url}/views`).transaction(value => value + 1);
+    runTransaction(ref(db, `posts/${url}/views`), value => value + 1)
 
 }
 
-export default updateNumberOfViews;
+export default updateNumberOfViews

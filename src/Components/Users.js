@@ -1,34 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { Link }                       from 'react-router-dom';
-import UserAvatar                     from './UserAvatar';
-import firebase                       from '../Functions/Firebase';
-import '../Styles/Users.css';
+import React, { useState, useEffect }                         from 'react'
+import { Link }                                               from 'react-router-dom'
+import UserAvatar                                             from './UserAvatar'
+import { db, limitToLast, onValue, orderByChild, ref, query } from '../Functions/Firebase'
+import '../Styles/Users.css'
 
 const Users = ({numberOfUsers = 10}) => {
     
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState([])
     
     useEffect(() => {
-        
-        let ref = firebase.database().ref('users');
-        
-        let listener = ref.orderByChild('numPoints').limitToLast(10).on('value', snapshot => {
+
+        let unsubscribe = onValue(query(ref(db, 'users'), orderByChild('numPoints'), limitToLast(10)), snapshot => {
             
             if(snapshot.val()){
                 
-                let ranking = snapshot.val();
+                let ranking = snapshot.val()
                 
-                let sortedRanking = Object.entries(ranking).sort((a, b) => b[1].numPoints > a[1].numPoints ? 1 : b[1].numPoints < a[1].numPoints ? -1 : 0);
+                let sortedRanking = Object.entries(ranking).sort((a, b) => b[1].numPoints > a[1].numPoints ? 1 : b[1].numPoints < a[1].numPoints ? -1 : 0)
                 
-                setUsers(sortedRanking);
+                setUsers(sortedRanking)
                 
             }
             
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
-    }, [numberOfUsers]);
+    }, [numberOfUsers])
     
     return(
         <div className = 'Users'>
@@ -45,8 +43,8 @@ const Users = ({numberOfUsers = 10}) => {
                 </Link>
             )}
         </div>
-    );
+    )
     
 }
 
-export default Users;
+export default Users

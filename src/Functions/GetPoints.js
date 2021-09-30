@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import firebase                from './Firebase'
+import { db, onValue, ref }    from './Firebase'
 
 const GetPoints = (uid) => {
     
@@ -7,17 +7,13 @@ const GetPoints = (uid) => {
     
     useEffect(() => {
         
-        let ref = firebase.database().ref(`users/${uid}/numPoints`)
-        
-        let listener = ref.on('value', snapshot => { 
+        let unsubscribe = onValue(ref(db, `users/${uid}/numPoints`), snapshot => { 
             
-            let numPoints = snapshot.val() 
-
-            setPoints(numPoints || 0)
+            setPoints(snapshot.val() || 0)
     
-        });
+        })
         
-        return () => ref.off('value', listener)
+        return () => unsubscribe()
         
     }, [uid])
     

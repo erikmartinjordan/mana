@@ -1,22 +1,24 @@
-import { useState, useEffect } from 'react';
-import firebase                from './Firebase.js';
+import { useState, useEffect } from 'react'
+import { db, onValue, ref }    from './Firebase.js'
 
 const GetStripeUserId = (uid) => {
     
-    const [stripeUserId, setStripeUserId] = useState(null);
+    const [stripeUserId, setStripeUserId] = useState(null)
    
     useEffect( () => {
       
-        firebase.database().ref(`users/${uid}/stripeUserId`).on('value', snapshot => { 
+        let unsubscribe = onValue(ref(db, `users/${uid}/stripeUserId`), snapshot => { 
             
-            setStripeUserId(snapshot.val());
+            setStripeUserId(snapshot.val() || null)
             
-        });
+        })
+
+        return () => unsubscribe()
      
-    }, [uid]);
+    }, [uid])
     
-    return stripeUserId;
+    return stripeUserId
   
 }
 
-export default GetStripeUserId;
+export default GetStripeUserId

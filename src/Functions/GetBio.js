@@ -1,31 +1,27 @@
-import { useState, useEffect } from 'react';
-import firebase                from './Firebase';
+import { useState, useEffect } from 'react'
+import { db, onValue, ref }    from './Firebase'
 
 const GetBackgroundImg = (uid) => {
     
-    const [bio, setBio] = useState(null);
+    const [bio, setBio] = useState(null)
     
     useEffect( () => { 
         
         if(uid){
-
-            let ref = firebase.database().ref(`users/${uid}/bio`);
             
-            let listener = ref.on('value', snapshot => {
-               
-                let bio = snapshot.val();
+            let unsubscribe = onValue(ref(db, `users/${uid}/bio`), snapshot => {
+                               
+                setBio(snapshot.val() || null)
                 
-                setBio(bio);
-                
-            });
+            })
 
-            return () => ref.off('value', listener);
+            return () => unsubscribe()
             
         }
         
-    }, [uid]);
+    }, [uid])
     
-    return bio;
+    return bio
 }
 
-export default GetBackgroundImg;
+export default GetBackgroundImg

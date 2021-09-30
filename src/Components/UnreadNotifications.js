@@ -1,57 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import firebase                       from '../Functions/Firebase';
-import '../Styles/UnreadNotifications.css';
+import React, { useState, useEffect } from 'react'
+import { db, onValue, ref }           from '../Functions/Firebase'
+import '../Styles/UnreadNotifications.css'
 
 const UnreadNotifications = ({user}) => {
     
-    const [displayNotifications, setDisplayNotifications] = useState(true);
-    const [newPoints, setNewPoints]                       = useState(null);
-    const [unread, setUnread]                             = useState([1]);
+    const [displayNotifications, setDisplayNotifications] = useState(true)
+    const [newPoints, setNewPoints]                       = useState(null)
+    const [unread, setUnread]                             = useState([1])
     
     useEffect( () => {
         
         if(user){
             
-            var ref = firebase.database().ref(`notifications/${user.uid}`);
-            
-            var listener = ref.on('value', snapshot => { 
+            var unsubscribe = onValue(ref(db, `notifications/${user.uid}`), snapshot => { 
                 
                 if(snapshot.val()){
                     
-                    let notifications       = snapshot.val();
-                    let entries             = Object.entries(notifications);
-                    let unreadNotifications = entries.filter( ([key, notification]) => !notification.read);
-                    let newPoints           = unreadNotifications.reduce( (acc, value) => value[1].points + acc, 0);
+                    let notifications       = snapshot.val()
+                    let entries             = Object.entries(notifications)
+                    let unreadNotifications = entries.filter( ([key, notification]) => !notification.read)
+                    let newPoints           = unreadNotifications.reduce( (acc, value) => value[1].points + acc, 0)
                     
-                    setNewPoints(newPoints);
-                    setUnread(unreadNotifications);
+                    setNewPoints(newPoints)
+                    setUnread(unreadNotifications)
                     
                 }
                 
-            });
+            })
             
         }
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
-    }, [user]);
+    }, [user])
     
     useEffect(() => {
         
         if(user){
             
-            var ref = firebase.database().ref(`users/${user.uid}/displayNotifications`);
             
-            var listener = ref.on('value', snapshot => { 
+            var unsubscribe = onValue(ref(db, `users/${user.uid}/displayNotifications`), snapshot => { 
                 
-                if(snapshot.exists())    
-                    setDisplayNotifications(snapshot.val());
+                setDisplayNotifications(snapshot.val() || true)
                 
-            }); 
+            }) 
             
         }
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
     }, [user])
     
@@ -62,11 +58,11 @@ const UnreadNotifications = ({user}) => {
             : null
             }
         </React.Fragment>
-    );
+    )
     
 }
 
-export default UnreadNotifications;
+export default UnreadNotifications
 
 const NotificationsPoints = ({points}) => {
     
@@ -76,6 +72,6 @@ const NotificationsPoints = ({points}) => {
                 <span className = 'Green'>{points > 0 ? `+${points}` : points}</span>
             </span>
         </React.Fragment>
-    );
+    )
     
 }

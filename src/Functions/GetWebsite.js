@@ -1,31 +1,28 @@
-import { useState, useEffect } from 'react';
-import firebase                from './Firebase';
+import { useState, useEffect } from 'react'
+import { db, onValue, ref }    from './Firebase'
 
 const GetWebsite = (uid) => {
     
-    const [web, setWeb] = useState(null);
+    const [web, setWeb] = useState(null)
     
     useEffect( () => { 
         
         if(uid){
-
-            let ref = firebase.database().ref(`users/${uid}/web`);
             
-            let listener = ref.on('value', snapshot => {
+            let unsubscribe = onValue(ref(db, `users/${uid}/web`), snapshot => {
                
-                let web = snapshot.val();
                 
-                setWeb(web);
+                setWeb(snapshot.val() || null)
                 
-            });
+            })
 
-            return () => ref.off('value', listener);
+            return () => unsubscribe()
             
         }
         
-    }, [uid]);
+    }, [uid])
     
-    return web;
+    return web
 }
 
-export default GetWebsite;
+export default GetWebsite

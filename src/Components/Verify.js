@@ -1,7 +1,7 @@
-import React, { useEffect }                                                  from 'react';
-import firebase, { auth, signInWithCustomToken, updateEmail, updateProfile } from '../Functions/Firebase';
-import AnonymImg                                                             from '../Functions/AnonymImg';
-import AnonymName                                                            from '../Functions/AnonymName';
+import React, { useEffect }                                                                  from 'react'
+import { auth, db, ref, runTransaction, signInWithCustomToken, updateEmail, updateProfile }  from '../Functions/Firebase'
+import AnonymImg                                                                             from '../Functions/AnonymImg'
+import AnonymName                                                                            from '../Functions/AnonymName'
 
 const Verify = () => {    
     
@@ -34,9 +34,9 @@ const Verify = () => {
                 })
 
                 await updateEmail(user, email)
-        
-                firebase.database().ref(`users/${user.uid}/name`).transaction(_ => user.displayName)
-                firebase.database().ref(`users/${user.uid}/profilePic`).transaction(_ => user.photoURL)
+
+                runTransaction(ref(db, `users/${user.uid}/name`), _ => user.displayName)
+                runTransaction(ref(db, `users/${user.uid}/profilePic`), _ => user.photoURL)
 
             }
     
@@ -55,7 +55,7 @@ const Verify = () => {
         <div className = 'Verify'>
             Un momento, por favor...
         </div>
-    );
+    )
     
 }
 

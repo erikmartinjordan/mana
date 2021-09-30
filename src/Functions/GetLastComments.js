@@ -1,34 +1,32 @@
-import { useState, useEffect } from 'react';
-import firebase                from './Firebase';
+import { useState, useEffect }                              from 'react'
+import { db, limitToLast, onValue, orderByKey, query, ref } from './Firebase'
 
 const GetLastComments = (numberOfComments) => {
     
-    const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState([])
    
-    useEffect( () => {
+    useEffect(() => {
         
-        let ref = firebase.database().ref('replies');
-      
-        let listener = ref.orderByKey().limitToLast(numberOfComments).on('value', snapshot => { 
+        let unsubscribe = onValue(query(ref(db, 'replies'), orderByKey(), limitToLast(numberOfComments)), snapshot => { 
             
-            let replies = snapshot.val();
+            let replies = snapshot.val()
            
             if(replies){
                 
-                let sortedReplies = Object.entries(replies).reverse();
+                let sortedReplies = Object.entries(replies).reverse()
                 
-                setComments(sortedReplies);
+                setComments(sortedReplies)
                 
             } 
             
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
      
-    }, [numberOfComments]);
+    }, [numberOfComments])
     
-    return comments;
+    return comments
   
 }
 
-export default GetLastComments;
+export default GetLastComments

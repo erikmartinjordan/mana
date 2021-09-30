@@ -1,28 +1,28 @@
-import { useState, useEffect } from 'react';
-import firebase                from './Firebase';
+import { useState, useEffect } from 'react'
+import { db, get, onValue }    from './Firebase'
 
 const GetName = (uid) => {
     
-    const [userName, setUserName] = useState(null);
+    const [userName, setUserName] = useState(null)
 
     useEffect( () => { 
         
         if(uid){
             
-            firebase.database().ref(`users/${uid}/name`).once('value').then(snapshot => {
+            onValue(ref(db, `users/${uid}/name`), snapshot => {
                
-                let name = snapshot.val();
+                let name = snapshot.val()
                 
-                setUserName(name);
+                setUserName(snapshot.val() || null)
                 
-            });
+            }, { onlyOnce: true })
             
         }
         
-    }, [uid]);
+    }, [uid])
     
-    return userName;
+    return userName
     
 }
 
-export default GetName;
+export default GetName

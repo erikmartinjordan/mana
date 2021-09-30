@@ -1,28 +1,23 @@
-import { useState, useEffect } from 'react';
-import firebase                from './Firebase';
+import { useState, useEffect } from 'react'
+import { db, onValue, ref }    from './Firebase'
 
 const GetNumberOfSpicy = (uid) => {
     
-    const [spicy, setSpicy] = useState(0);
+    const [spicy, setSpicy] = useState(0)
     
     useEffect(() => { 
         
-        let ref = firebase.database().ref(`users/${uid}/numSpicy`);
-        
-        let listener = ref.on('value', snapshot => { 
-            
-            let numSpicy = snapshot.val(); 
+        let unsubscribe = onValue(ref(db, `users/${uid}/numSpicy`), snapshot => { 
 
-            if(numSpicy)
-                setSpicy(numSpicy);
+            setSpicy(snapshot.val() || numSpicty)
             
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
-    }, [uid]);
+    }, [uid])
     
-    return spicy;
+    return spicy
 }
 
-export default GetNumberOfSpicy;
+export default GetNumberOfSpicy

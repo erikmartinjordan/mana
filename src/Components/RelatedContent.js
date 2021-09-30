@@ -1,7 +1,7 @@
-import React, { useState, useEffect }                                                            from 'react'
-import { Link }                                                                                  from 'react-router-dom'
-import Loading                                                                                   from './Loading'
-import { db, get, limitToFirst, limitToLast, orderByChild, ref, query, runTransaction, startAt } from '../Functions/Firebase'
+import React, { useState, useEffect }                                                                    from 'react'
+import { Link }                                                                                          from 'react-router-dom'
+import Loading                                                                                           from './Loading'
+import { db,  endAt, get, limitToFirst, limitToLast, orderByChild, onValue, ref, query, runTransaction } from '../Functions/Firebase'
 import '../Styles/RelatedContent.css'
 
 const RelatedContent = () => {
@@ -16,26 +16,29 @@ const RelatedContent = () => {
         
         const getRandomPosts = async (num) => {
 
-            let snapshot_1 = await get(query(ref(db, 'posts'), orderByChild('timeStamp'), limitToFirst(1)))
-            let snapshot_2 = await get(query(ref(db, 'posts'), orderByChild('timeStamp'), limitToLast(1)))
-            
-            let first = Object.values(snapshot_1.val())[0]
-            let last  = first
+            // This is an ugly and provisional solution implemented because get function doesn't work properly so far
+            // See https://stackoverflow.com/questions/69376211/combining-limittofirst-and-limittolast-leads-to-an-unexpected-behavior
+            // Let's wait for an update
+            onValue(query(ref(db, 'posts'), orderByChild('timeStamp'), limitToFirst(1)), snapshot_1 => {
 
-            console.log(first)
-            console.log(last)
-            
-            let randomTimeStamp = Math.floor( Math.random() * (last.timeStamp - first.timeStamp + 1) + first.timeStamp )
-            
-            let snapshot_3 = await get(query(ref(db, 'posts'), orderByChild('timeStamp'), startAt(randomTimeStamp), limitToFirst(num)))
-            
-            if(snapshot_3.val()){
+                onValue(query(ref(db, 'posts'), orderByChild('timeStamp'), limitToLast(1)), snapshot_2 => {
+
+                    let { timeStamp: ini } = Object.values(snapshot_1.val())[0]
+                    let { timeStamp: end } = Object.values(snapshot_2.val())[0]
+
+                    let ran = Math.floor(Math.random() * (end - ini + 1) + ini)
+
+                    onValue(query(ref(db, 'posts'), orderByChild('timeStamp'), endAt(ran), limitToLast(num)), snapshot_3 => {
              
-                let posts = Object.entries(snapshot_3.val()).map(([url, {title, replies}]) => ({url, title, replies})).reverse()
-                
-                setRandom(posts)
-                
-            }
+                        let posts = Object.entries(snapshot_3.val() || {}).map(([url, {title, replies}]) => ({url, title, replies})).reverse()
+                            
+                        setRandom(posts)
+
+                    }, { onlyOnce: true })
+
+                }, { onlyOnce: true })
+
+            }, { onlyOnce: true })
             
         }
         

@@ -1,11 +1,11 @@
-import firebase from './Firebase'
-import Points   from './PointsAndValues'
+import { db, push, ref, runTransaction } from './Firebase'
+import Points                            from './PointsAndValues'
 
 const insertNotificationAndReputation = (uid, type, operator, points, url, message, postId, replyId) => {
     
     if(operator === 'add'){
         
-        firebase.database().ref('notifications/' + uid).push({  
+        push(ref(db, 'notifications/' + uid), {  
             
             points: Points[type],
             message: message,
@@ -17,14 +17,14 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
             
         })
         
-        firebase.database().ref('users/' + uid + '/reputationData/' + Date.now()).transaction(value => points + Points[type])
-        firebase.database().ref('users/' + uid + '/numPoints'                   ).transaction(value => points + Points[type])
+        runTransaction(ref(db, 'users/' + uid + '/reputationData/' + Date.now()), _ => points + Points[type])
+        runTransaction(ref(db, 'users/' + uid + '/numPoints'                   ), _ => points + Points[type])
         
     }
     
     if(operator === 'sub'){
         
-        firebase.database().ref('notifications/' + uid).push({  
+        push(ref(db, 'notifications/' + uid), {  
             
             points: -1 * Points[type],
             message: message,
@@ -36,8 +36,8 @@ const insertNotificationAndReputation = (uid, type, operator, points, url, messa
             
         })
         
-        firebase.database().ref('users/' + uid + '/reputationData/' + Date.now()).transaction(value => points - Points[type])
-        firebase.database().ref('users/' + uid + '/numPoints'                   ).transaction(value => points - Points[type])
+        runTransaction(ref(db, 'users/' + uid + '/reputationData/' + Date.now()), _ => points - Points[type])
+        runTransaction(ref(db, 'users/' + uid + '/numPoints'                   ), _ => points - Points[type])
         
     }
     

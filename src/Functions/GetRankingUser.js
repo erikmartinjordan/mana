@@ -1,28 +1,26 @@
-import { useState, useEffect }   from 'react';
-import firebase                  from './Firebase';
+import { useState, useEffect } from 'react'
+import { db, onValue, ref }    from './Firebase'
 
 const GetRankingUser = (uid) => {
     
-    const [ranking, setRanking] = useState(null);
+    const [ranking, setRanking] = useState(null)
     
     useEffect(() => { 
         
-        let ref = firebase.database().ref(`users/${uid}/numRanking`);
-        
-        let listener = ref.on('value', snapshot => { 
+        let unsubscribe = onValue(ref(db, `users/${uid}/numRanking`), snapshot => { 
             
-            let numRanking = snapshot.val(); 
+            let numRanking = snapshot.val() 
 
             if(numRanking)
-                setRanking(`Top ${numRanking}%`);
+                setRanking(`Top ${numRanking}%`)
             
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
-    }, [uid]);
+    }, [uid])
  
-    return ranking;
+    return ranking
 }
 
-export default GetRankingUser;
+export default GetRankingUser

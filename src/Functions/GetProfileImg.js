@@ -1,27 +1,25 @@
-import { useState, useEffect } from 'react';
-import firebase                       from './Firebase';
+import { useState, useEffect } from 'react'
+import { db, onValue, ref }    from './Firebase'
 
 const GetProfileImg = (uid) => {
     
-    const [imgUrl, setImgUrl] = useState(null);
+    const [imgUrl, setImgUrl] = useState(null)
     
     useEffect( () => { 
         
         if(uid){
             
-            firebase.database().ref(`users/${uid}/profilePic`).once('value').then(snapshot => {
-               
-                let name = snapshot.val();
+            onValue(ref(db, `users/${uid}/profilePic`), snapshot => {
                 
-                setImgUrl(name);
+                setImgUrl(snapshot.val() || null)
                 
-            });
+            }, { onlyOnce: true })
             
         }
         
-    }, [uid]);
+    }, [uid])
     
-    return imgUrl;
+    return imgUrl
 }
 
-export default GetProfileImg;
+export default GetProfileImg

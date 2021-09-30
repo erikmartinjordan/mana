@@ -1,29 +1,24 @@
-import { useState, useEffect } from 'react';
-import firebase                from './Firebase';
+import { useState, useEffect } from 'react'
+import { db, onValue, ref }    from './Firebase'
 
 const GetNumberOfApplauses = (uid) => {
     
-    const [applauses, setApplauses] = useState(0);
+    const [applauses, setApplauses] = useState(0)
     
     useEffect(() => { 
-        
-        let ref = firebase.database().ref(`users/${uid}/numApplauses`);
-        
-        let listener = ref.on('value', snapshot => { 
-            
-            let numApplauses = snapshot.val(); 
+                
+        let unsubscribe = onValue(ref(db, `users/${uid}/numApplauses`), snapshot => { 
 
-            if(numApplauses)
-                setApplauses(numApplauses);
+            setApplauses(snapshot.val() || 0)
             
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
-    }, [uid]);
+    }, [uid])
     
-    return applauses;
+    return applauses
     
 }
 
-export default GetNumberOfApplauses;
+export default GetNumberOfApplauses

@@ -1,29 +1,24 @@
-import { useState, useEffect } from 'react';
-import firebase                from './Firebase.js';
+import { useState, useEffect } from 'react'
+import { db, onValue, ref }    from './Firebase.js'
 
 const GetNumberOfViews = (uid) => {
     
-    const [views, setViews] = useState([]);
+    const [views, setViews] = useState([])
     
     useEffect(() => { 
         
-        let ref = firebase.database().ref(`users/${uid}/numViews`);
-        
-        let listener = ref.on('value', snapshot => { 
+        let unsubscribe = onValue(ref(db, `users/${uid}/numViews`), snapshot => { 
             
-            let numViews = snapshot.val(); 
-
-            if(numViews)
-                setViews(numViews);
+            setViews(numViews || [])
             
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
-    }, [uid]);
+    }, [uid])
     
-    return views;
+    return views
     
 }
 
-export default GetNumberOfViews;
+export default GetNumberOfViews

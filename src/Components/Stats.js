@@ -1,19 +1,19 @@
-import React, { useState, useEffect }                                                                                                from 'react';
-import { Link }                                                                                                                      from 'react-router-dom';
-import moment                                                                                                                        from 'moment';
-import Chart                                                                                                                         from 'chart.js/auto';
-import firebase                                                                                                                      from '../Functions/Firebase';
-import { getUsers, getSessions, getPageviews, getSessionDuration, getRealTimeUsers, getPageviewsSession, getBounceRate, getRanking } from '../Functions/Analytics';
-import '../Styles/Stats.css';
+import React, { useState, useEffect }                                                                                                from 'react'
+import { Link }                                                                                                                      from 'react-router-dom'
+import moment                                                                                                                        from 'moment'
+import Chart                                                                                                                         from 'chart.js/auto'
+import { db, endAt, limitToLast, onValue, orderByKey, startAt, query, ref }                                                                          from '../Functions/Firebase'
+import { getUsers, getSessions, getPageviews, getSessionDuration, getRealTimeUsers, getPageviewsSession, getBounceRate, getRanking } from '../Functions/Analytics'
+import '../Styles/Stats.css'
 
 const Stats = () => {
     
-    const [bounceRate, setBounceRate]             = useState('0%');
-    const [duration, setDuration]                 = useState(0);
-    const [interval, setInterval]                 = useState(7);
-    const [pageviewsSession, setPageviewsSession] = useState(0);
-    const [ranking, setRanking]                   = useState([]);
-    const [realTimeUsers, setRealTimeUsers]       = useState(0);
+    const [bounceRate, setBounceRate]             = useState('0%')
+    const [duration, setDuration]                 = useState(0)
+    const [interval, setInterval]                 = useState(7)
+    const [pageviewsSession, setPageviewsSession] = useState(0)
+    const [ranking, setRanking]                   = useState([])
+    const [realTimeUsers, setRealTimeUsers]       = useState(0)
     
     let graph1 = {
       type: 'line',
@@ -72,7 +72,7 @@ const Stats = () => {
                 rotation: 0,
                 callback: function(value, index, values){ 
                         
-                    return values.length > 7 && index % 2 !== 0 ? null : this.getLabelForValue(value);
+                    return values.length > 7 && index % 2 !== 0 ? null : this.getLabelForValue(value)
 
                 }
             }  
@@ -89,7 +89,7 @@ const Stats = () => {
                 rotation: 0,
                 callback: function(value, index, values){ 
                     
-                    return index % 2 === 0 ? value : null;
+                    return index % 2 === 0 ? value : null
 
                 }
             }
@@ -129,7 +129,7 @@ const Stats = () => {
                     rotation: 0,
                     callback: function(value, index, values){ 
                         
-                        return index % 2 === 0 ? this.getLabelForValue(value) : null;
+                        return index % 2 === 0 ? this.getLabelForValue(value) : null
 
                     }
                 } 
@@ -143,7 +143,7 @@ const Stats = () => {
                     rotation: 0,
                     callback: function(value, index, values){ 
                         
-                        return index % 2 === 0 ? value : null;
+                        return index % 2 === 0 ? value : null
 
                     }
                 }  
@@ -154,125 +154,123 @@ const Stats = () => {
     
     useEffect(() => {
         
-        document.title = 'Estadísticas - Nomoresheet'; 
-        document.querySelector('meta[name="description"]').content = 'Algunas estadísticas sobre Nomoresheet'; 
+        document.title = 'Estadísticas - Nomoresheet' 
+        document.querySelector('meta[name="description"]').content = 'Algunas estadísticas sobre Nomoresheet' 
         
-    });
+    })
 
     useEffect(() => {
 
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0)
 
-    }, []);
+    }, [])
 
     useEffect(() => {
 
-        let today = moment().format('YYYYMMDD');
+        let today = moment().format('YYYYMMDD')
 
-        let listener = firebase.database().ref(`analytics/${today}`).on('value', snapshot => {
+        let unsubscribe = onValue(ref(db, `analytics/${today}`), snapshot => {
 
             if(snapshot){
 
-                let data = snapshot.val();
+                let data = snapshot.val()
                 
-                let realTime = getRealTimeUsers(data);
-                setRealTimeUsers(realTime);
+                let realTime = getRealTimeUsers(data)
+                setRealTimeUsers(realTime)
 
             }
 
-        });
+        })
 
-        return () => firebase.database().ref(`analytics/${today}`).off('value', listener);
+        return () => unsubscribe()
 
-    }, []);
+    }, [])
     
     useEffect(() => {
         
-        let canvas = document.getElementById('graph-1');
-        let ctx = canvas.getContext('2d');
-        let chart = new Chart(ctx, graph1);
+        let canvas = document.getElementById('graph-1')
+        let ctx = canvas.getContext('2d')
+        let chart = new Chart(ctx, graph1)
 
-        let iniDate = moment().subtract(interval - 1, 'days').format('YYYYMMDD');
-        let endDate = moment().subtract(0,            'days').format('YYYYMMDD');
+        let iniDate = moment().subtract(interval - 1, 'days').format('YYYYMMDD')
+        let endDate = moment().subtract(0,            'days').format('YYYYMMDD')
         
-        firebase.database().ref(`analytics/`).orderByKey().startAt(iniDate).endAt(endDate).once('value').then(snapshot => {
+        onValue(query(ref(db, `analytics`), orderByKey(), startAt(iniDate), endAt(endDate)), snapshot => {
             
             if(snapshot){
                 
-                let data = snapshot.val();
+                let data = snapshot.val()
                 
-                let days = Object.keys(data).map(date => moment(date).format('DD MMM'));
+                let days = Object.keys(data).map(date => moment(date).format('DD MMM'))
                 
-                let users = getUsers(data);
-                let sessions = getSessions(data);
-                let pageviews = getPageviews(data);
-                let pageviewsSession = getPageviewsSession(pageviews, sessions);
-                let avg = getSessionDuration(data);
-                let bounceRate = getBounceRate(data);
-                let ranking = getRanking(data);
+                let users = getUsers(data)
+                let sessions = getSessions(data)
+                let pageviews = getPageviews(data)
+                let pageviewsSession = getPageviewsSession(pageviews, sessions)
+                let avg = getSessionDuration(data)
+                let bounceRate = getBounceRate(data)
+                let ranking = getRanking(data)
 
-                setDuration(avg);
-                setPageviewsSession(pageviewsSession);
-                setBounceRate(bounceRate);
-                setRanking(ranking);
+                setDuration(avg)
+                setPageviewsSession(pageviewsSession)
+                setBounceRate(bounceRate)
+                setRanking(ranking)
 
-                graph1.data.labels = days;
-                graph1.data.datasets['0'].data = users;
-                graph1.data.datasets['1'].data = sessions;
-                graph1.data.datasets['2'].data = pageviews;
+                graph1.data.labels = days
+                graph1.data.datasets['0'].data = users
+                graph1.data.datasets['1'].data = sessions
+                graph1.data.datasets['2'].data = pageviews
 
-                graph1.type = interval === 1 ? 'bar' : 'line';
+                graph1.type = interval === 1 ? 'bar' : 'line'
                 
-                chart.update();
+                chart.update()
                 
             }
             
-        });
+        }, { onlyOnce: true })
         
         return () => {
             
-            chart.destroy();
+            chart.destroy()
             
         }
         
-    }, [interval]);
+    }, [interval])
     
     useEffect(() => {
         
-        let canvas = document.getElementById('graph-2');
-        let ctx = canvas.getContext('2d');
-        let chart = new Chart(ctx, graph2);
+        let canvas = document.getElementById('graph-2')
+        let ctx = canvas.getContext('2d')
+        let chart = new Chart(ctx, graph2)
         
-        let ref = firebase.database().ref(`stats`);
-        
-        let listener = ref.orderByKey().limitToLast(12).on('value', snapshot => {
+        let unsubscribe = onValue(query(ref(db, `stats`), orderByKey(), limitToLast(12)), snapshot => {
             
             if(snapshot.val()){
                 
-                let stats = snapshot.val();
+                let stats = snapshot.val()
                 
-                let months = Object.keys(stats).map(e => moment(e).format('MMM YYYY'));
-                let posts  = Object.values(stats).map(e => e.posts);
+                let months = Object.keys(stats).map(e => moment(e).format('MMM YYYY'))
+                let posts  = Object.values(stats).map(e => e.posts)
                 
-                graph2.data.labels = months;
-                graph2.data.datasets['0'].data = posts;
+                graph2.data.labels = months
+                graph2.data.datasets['0'].data = posts
                 
-                chart.update();
+                chart.update()
                 
             }
             
-        });
+        })
         
         return () => {
             
-            ref.off('value', listener);
+            unsubscribe()
 
-            chart.destroy();
+            chart.destroy()
 
         }
         
         
-    }, []);
+    }, [])
 
     return (
         <div className = 'Estadisticas'>
@@ -337,7 +335,7 @@ const Stats = () => {
             </div>
             
         </div>
-    );
+    )
 }
 
-export default Stats;
+export default Stats

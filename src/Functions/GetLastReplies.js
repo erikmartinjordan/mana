@@ -1,44 +1,43 @@
-import { useState, useEffect } from 'react';
-import firebase                from './Firebase';
+import { useState, useEffect }                       from 'react'
+import { db, get, limitToLast, onValue, query, ref } from './Firebase'
 
 const GetLastReplies = (userUid, nReplies) => {
     
-    const [replies, setReplies] = useState([]);
+    const [replies, setReplies] = useState([])
     
     useEffect(() => { 
         
         if(userUid && nReplies){
            
-            firebase.database().ref(`users/${userUid}/lastReplies`).limitToLast(nReplies).on('value', async (snapshot) => { 
+            onValue(query(ref(db, `users/${userUid}/lastReplies`), limitToLast(nReplies)), async snapshot => {
                 
-                let replies = snapshot.val();
+                let replies = snapshot.val()
                 
                 if(replies){
                     
-                    let replyIds  = Object.keys(replies).reverse();
+                    let replyIds  = Object.keys(replies).reverse()
                     
                     let replyInfo = await Promise.all(replyIds.map(async replyId => {
                         
-                        let postId   = replies[replyId];
-                        let snapshot = await firebase.database().ref(`posts/${postId}/title`).once('value');
-                        let title    = snapshot.val();
+                        let postId   = replies[replyId]
+                        let title = (await get(ref(db, `posts/${postId}/title`))).val()
                         
-                        return {url: `${postId}/#${replyId}`, title: title};
+                        return {url: `${postId}/#${replyId}`, title: title}
                         
-                    }));
+                    }))
                     
-                    setReplies(replyInfo);
+                    setReplies(replyInfo)
                     
                 }
                 
-            });
+            })
             
         }
         
-    }, [userUid, nReplies]);
+    }, [userUid, nReplies])
     
-    return replies;
+    return replies
     
 }
 
-export default GetLastReplies;
+export default GetLastReplies

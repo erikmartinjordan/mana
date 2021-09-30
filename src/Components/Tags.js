@@ -1,38 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { Link }                       from 'react-router-dom';
-import Twemoji                        from './Twemoji';
-import firebase                       from '../Functions/Firebase';
-import { ReactComponent as ThaiFlag } from '../Assets/thailand.svg';
-import '../Styles/Tags.css';
+import React, { useEffect, useState }                        from 'react'
+import { Link }                                              from 'react-router-dom'
+import Twemoji                                               from './Twemoji'
+import { db, limitToLast, onValue, query, ref, orderByChild} from '../Functions/Firebase'
+import { ReactComponent as ThaiFlag }                        from '../Assets/thailand.svg'
+import '../Styles/Tags.css'
 
 const Tags = ({numberOfTags = 10}) => {
     
-    const [tags, setTags] = useState([]);
+    const [tags, setTags] = useState([])
     
     useEffect(() => {
         
-        let ref = firebase.database().ref('tags').orderByChild('counter').limitToLast(numberOfTags);
-        
-        let listener = ref.on('value', snapshot => {
+        let unsubscribe = onValue(query(ref(db, 'tags'), orderByChild('counter'), limitToLast(numberOfTags)), snapshot => {
             
             if(snapshot.val()){
                 
-                let sorted = Object.entries(snapshot.val()).sort((a, b) => b[1].counter  - a[1].counter);
+                let sorted = Object.entries(snapshot.val()).sort((a, b) => b[1].counter  - a[1].counter)
                 
-                setTags(sorted);
+                setTags(sorted)
                 
             }
             else{
                 
-                setTags([]);
+                setTags([])
                 
             }
             
-        });
+        })
         
-        return () => ref.off('value', listener);
+        return () => unsubscribe()
         
-    }, [numberOfTags]);
+    }, [numberOfTags])
     
     return(
         <div className = 'Tags'>
@@ -59,8 +57,8 @@ const Tags = ({numberOfTags = 10}) => {
                 </Link>
             ))}
         </div>
-    );
+    )
     
 }
 
-export default Tags;
+export default Tags
