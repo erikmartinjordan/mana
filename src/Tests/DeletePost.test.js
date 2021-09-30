@@ -1,65 +1,34 @@
-import React                                  from 'react';
-import { BrowserRouter }                      from 'react-router-dom';
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
-import DeletePost                             from '../Components/DeletePost';
-import firebase                               from '../Functions/Firebase';
+import React                          from 'react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
+import { firebaseMockUp  }            from './_firebaseMock'
+import DeletePost                     from '../Components/DeletePost'
 
 test('Shows confirmation box to delete post/reply', async () => {
-    
-    const userInfo = { 
-        
-        message: 'whatever'
-        
-    };
-    
-    const snapshot = { val: () => userInfo }; 
-        
-    jest.spyOn(firebase, 'database').mockImplementation(() => ({
-        
-        ref:  jest.fn().mockReturnThis(),
-        on:   jest.fn((event, callback) => callback(snapshot)),
-        once: jest.fn(() => Promise.resolve({val: () => 0})),
-        off:  jest.fn()
-         
-    }));
+
+    firebaseMockUp({ message: 'whatever' })
     
     render(
         <DeletePost admin = {true}/>
-    );
+    )
     
-    fireEvent.click(document.querySelector('button.Delete'));
+    fireEvent.click(document.querySelector('button.Delete'))
     
-    await waitFor(() => expect(document.querySelector('.Confirmation').textContent).toBeTruthy());
+    await waitFor(() => expect(document.querySelector('.Confirmation').textContent).toBeTruthy())
     
-});
+})
 
 test('Cancels deletion', async () => {
    
-    const userInfo = { 
-        
-        message: 'whatever'
-        
-    };
-    
-    const snapshot = { val: () => userInfo }; 
-        
-    jest.spyOn(firebase, 'database').mockImplementation(() => ({
-        
-        ref:  jest.fn().mockReturnThis(),
-        on:   jest.fn((event, callback) => callback(snapshot)),
-        once: jest.fn(() => Promise.resolve({val: () => 0})),
-        off:  jest.fn()
-         
-    }));
+    firebaseMockUp({ message: 'whatever' })
     
     render(
         <DeletePost admin = {true}/>
-    );
+    )
     
-    fireEvent.click(document.querySelector('button.Delete'));
+    fireEvent.click(document.querySelector('button.Delete'))
     
-    fireEvent.click(document.querySelector('button.No-Delete'));
+    fireEvent.click(document.querySelector('button.No-Delete'))
     
-    await waitFor(() => expect(document.querySelector('.Confirmation')).toBeFalsy());
+    await waitFor(() => expect(document.querySelector('.Confirmation')).toBeFalsy())
     
-});
+})

@@ -1,34 +1,32 @@
-import React                              from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { BrowserRouter }                  from 'react-router-dom';
-import { act, Simulate }                  from 'react-dom/test-utils';
-import UserContext                        from '../Functions/UserContext';
-import firebase                           from '../Functions/Firebase';
-import { Content }                        from '../Components/Post';
+import React                              from 'react'
+import { render, unmountComponentAtNode } from 'react-dom'
+import { BrowserRouter }                  from 'react-router-dom'
+import { act, Simulate }                  from 'react-dom/test-utils'
+import { Content }                        from '../Components/Post'
 
-let container = null;
-let description = document.createElement('meta');
+let container = null
+let description = document.createElement('meta')
 
 beforeEach(() => {
     
-    container = document.createElement("div");
-    document.title = 'Test';
-    description.setAttribute('name', 'description');
-    description.content = 'Test';
+    container = document.createElement("div")
+    document.title = 'Test'
+    description.setAttribute('name', 'description')
+    description.content = 'Test'
     
-    document.head.appendChild(description);
-    document.body.appendChild(container);
+    document.head.appendChild(description)
+    document.body.appendChild(container)
     
-});
+})
 
 afterEach(() => {
     
-    unmountComponentAtNode(container);
-    container.remove();
-    container = null;
-    jest.clearAllMocks();
+    unmountComponentAtNode(container)
+    container.remove()
+    container = null
+    jest.clearAllMocks()
     
-});
+})
 
 it('Post -> Content restricted for private articles & not logged users', () => {
 
@@ -41,13 +39,13 @@ it('Post -> Content restricted for private articles & not logged users', () => {
                 user           = {null}
             />
             </BrowserRouter>
-        , container);
+        , container)
         
-    });
+    })
     
-    expect(container.querySelector('button.login').textContent).toBe('Acceder');
+    expect(container.querySelector('button.login').textContent).toBe('Acceder')
     
-});
+})
 
 it('Post -> Content restricted for private articles & users with level < levelLimit', () => {
 
@@ -63,13 +61,13 @@ it('Post -> Content restricted for private articles & users with level < levelLi
                 premium        = {false}
             />
             </BrowserRouter>
-        , container);
+        , container)
         
-    });
+    })
     
-    expect(container.querySelector('button.more').textContent).toBe('Saber más');
+    expect(container.querySelector('button.more').textContent).toBe('Saber más')
     
-});
+})
 
 it('Post -> Content accessible for private articles & users with level >= levelLimit', () => {
 
@@ -86,13 +84,13 @@ it('Post -> Content accessible for private articles & users with level >= levelL
                 premium        = {false}
             />
             </BrowserRouter>
-        , container);
+        , container)
         
-    });
+    })
     
-    expect(container.querySelector('.Content p').textContent).toBe('Holaaaaaaaaaa');
+    expect(container.querySelector('.Content p').textContent).toBe('Holaaaaaaaaaa')
     
-});
+})
 
 it('Post -> Content accessible for private articles & premium users', () => {
 
@@ -109,13 +107,13 @@ it('Post -> Content accessible for private articles & premium users', () => {
                 premium        = {true}
             />
             </BrowserRouter>
-        , container);
+        , container)
         
-    });
+    })
     
-    expect(container.querySelector('.Content p').textContent).toBe('Holaaaaaaaaaa');
+    expect(container.querySelector('.Content p').textContent).toBe('Holaaaaaaaaaa')
     
-});
+})
 
 it('Post -> Displays Login modal on click to access', () => {
 
@@ -128,12 +126,12 @@ it('Post -> Displays Login modal on click to access', () => {
                 user           = {null}
             />
             </BrowserRouter>
-        , container);
+        , container)
         
-        Simulate.click(container.querySelector('button.login'));
+        Simulate.click(container.querySelector('button.login'))
         
-    });
+    })
     
-    expect(container.querySelector('.Login')).toBeTruthy();
+    expect(container.querySelector('.Login')).toBeTruthy()
     
-});
+})

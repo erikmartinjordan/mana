@@ -1,40 +1,12 @@
 import React                              from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act }                            from 'react-dom/test-utils'
+import { firebaseMockUp }                 from './_firebaseMock'
 import Acerca                             from '../Components/Acerca'
 import UserContext                        from '../Functions/UserContext'
-import { onValue }                        from '../Functions/Firebase'
-jest.mock("../Functions/Firebase")
 
 let container = null
 let description = document.createElement('meta')
-
-const firebaseMockUp = () => {
-
-    const data = { 
-        
-        feature: {
-            
-            title: "New feature",
-            date: [25, 12, 2020],
-            description: "Nomoresheet new cool feature",
-            pic: "https://nomoresheet.es/feature.jpg"
-            
-        }
-        
-    }
-    
-    const snapshot = { val: () => data }
-
-    onValue.mockImplementation((ref, callback) => {
-
-        callback(snapshot)
-    
-        return jest.fn()
-    
-    })
-
-}
 
 beforeEach(() => {
     
@@ -46,7 +18,18 @@ beforeEach(() => {
     document.head.appendChild(description)
     document.body.appendChild(container)
 
-    firebaseMockUp()
+    firebaseMockUp({ 
+        
+        feature: {
+            
+            title: "New feature",
+            date: [25, 12, 2020],
+            description: "Nomoresheet new cool feature",
+            pic: "https://nomoresheet.es/feature.jpg"
+            
+        }
+        
+    })
     
 })
 

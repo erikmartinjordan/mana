@@ -1,30 +1,15 @@
 import React                                  from 'react'
 import { render, fireEvent, screen, waitFor } from '@testing-library/react'
+import { firebaseMockUp }                     from './_firebaseMock'
 import NewPost                                from '../Components/NewPost'
 import UserContext                            from '../Functions/UserContext'
 import * as GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel'
-import { onValue }                            from '../Functions/Firebase'
-jest.mock("../Functions/Firebase")
 
 test('NewPost -> Prevent users with level < 15 (free) from publishing new posts', async () => {
    
     jest.spyOn(GetLevel, 'default').mockImplementation(() => [14, '_', '_'])
 
-    const userInfo = { 
-        
-        account: 'free'
-        
-    }
-    
-    const snapshot = { val: () => data }
-
-    onValue.mockImplementation((ref, callback) => {
-
-        callback(snapshot)
-    
-        return jest.fn()
-    
-    })
+    firebaseMockUp({ account: 'free' })
     
     render(
         <UserContext.Provider value = {{user: true}}>
@@ -44,22 +29,8 @@ test('NewPost -> Prevent users with level < 15 (free) from publishing new posts'
 test('NewPost -> Users with level < 15 (premium) are allowed to publish new posts', async () => {
    
     jest.spyOn(GetLevel, 'default').mockImplementation(() => [14, '_', '_'])
-    
-    const userInfo = { 
-        
-        account: 'premium'
-        
-    }
-    
-    const snapshot = { val: () => data }
 
-    onValue.mockImplementation((ref, callback) => {
-
-        callback(snapshot)
-    
-        return jest.fn()
-    
-    })
+    firebaseMockUp({ account: 'premium' })
     
     render(
         <UserContext.Provider value = {{user: true}}>
@@ -80,21 +51,7 @@ test('NewPost -> Users with level >= 15 (free) are allowed to publish new posts'
    
     jest.spyOn(GetLevel, 'default').mockImplementation(() => [15, '_', '_'])
 
-    const userInfo = { 
-        
-        account: 'free'
-        
-    }
-    
-    const snapshot = { val: () => data }
-
-    onValue.mockImplementation((ref, callback) => {
-
-        callback(snapshot)
-    
-        return jest.fn()
-    
-    })
+    firebaseMockUp({ account: 'free' })
     
     render(
         <UserContext.Provider value = {{user: true}}>
