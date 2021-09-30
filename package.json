@@ -1,6 +1,6 @@
 {
   "name": "nomoresheet",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@primer/octicons-react": "^13.0.0",
