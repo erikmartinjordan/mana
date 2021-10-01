@@ -91,8 +91,6 @@ const RelatedContent = ({ postId }) => {
             return groupHasPost ? false : true
             
         })
-
-        console.log(unique)
         
         setCombo(unique)
         
@@ -100,7 +98,7 @@ const RelatedContent = ({ postId }) => {
     
     const updateRelated = (relatedUrl) => {
 
-        runTransaction(ref(db, `posts/${url}/related/${relatedUrl}/hits`), value => value + 1)
+        runTransaction(ref(db, `posts/${postId}/related/${relatedUrl}/hits`), value => value + 1)
         
         setUpdate(update + 1)
         
