@@ -9,7 +9,7 @@ const GetNumberOfSpicy = (uid) => {
         
         let unsubscribe = onValue(ref(db, `users/${uid}/numSpicy`), snapshot => { 
 
-            setSpicy(snapshot.val() || numSpicty)
+            setSpicy(snapshot.val() || 0)
             
         })
         

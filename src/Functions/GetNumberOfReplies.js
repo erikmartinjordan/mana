@@ -9,7 +9,7 @@ const GetNumberOfReplies = (uid) => {
         
         let unsubscribe = onValue(ref(db, `users/${uid}/numReplies`), snapshot => { 
 
-            setReplies(numReplies || 0)
+            setReplies(snapshot.val() || 0)
             
         })
         

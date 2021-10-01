@@ -9,7 +9,7 @@ const GetNumberOfViews = (uid) => {
         
         let unsubscribe = onValue(ref(db, `users/${uid}/numViews`), snapshot => { 
             
-            setViews(numViews || [])
+            setViews(snapshot.val() || [])
             
         })
         
