@@ -66,7 +66,7 @@ const Detail = (props) => {
                         <Norms/>
                         <Participants/>
                         <Privileges/>
-                        <RelatedContent/>
+                        <RelatedContent postId = {url}/>
                     </div>
                 </div>
               </div>   

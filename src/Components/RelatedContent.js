@@ -4,14 +4,13 @@ import Loading                                                                  
 import { db,  endAt, get, limitToFirst, limitToLast, orderByChild, onValue, ref, query, runTransaction } from '../Functions/Firebase'
 import '../Styles/RelatedContent.css'
 
-const RelatedContent = () => {
+const RelatedContent = ({ postId }) => {
     
     const [combo,   setCombo]   = useState([]) 
     const [random,  setRandom]  = useState([])
     const [related, setRelated] = useState([])
     const [update, setUpdate]   = useState(0)
-    const url                   = window.location.pathname.split('/').pop()
-    
+
     useEffect(() => {
         
         const getRandomPosts = async (num) => {
@@ -50,7 +49,7 @@ const RelatedContent = () => {
         
         const getRelatedPosts = async (num) => {
 
-            let related = (await get(query(ref(db, `posts/${url}/related`), orderByChild('hits'), limitToFirst(num)))).val()
+            let related = (await get(query(ref(db, `posts/${postId}/related`), orderByChild('hits'), limitToFirst(num)))).val()
             
             if(related){
                 
@@ -59,13 +58,7 @@ const RelatedContent = () => {
                     let title =   (await get(ref(db, `posts/${url}/title`))).val()
                     let replies = (await get(ref(db, `posts/${url}/replies`))).val()
                     
-                    return {
-
-                        url: url,
-                        title: title,
-                        replies: replies
-
-                    }
+                    return { url, title, replies }
 
                 })
 
@@ -79,7 +72,7 @@ const RelatedContent = () => {
         
         getRelatedPosts(5)
         
-    }, [update, url])
+    }, [update])
     
     useEffect(() => {    
         
@@ -98,6 +91,8 @@ const RelatedContent = () => {
             return groupHasPost ? false : true
             
         })
+
+        console.log(unique)
         
         setCombo(unique)
         
@@ -121,7 +116,7 @@ const RelatedContent = () => {
             <div className = 'Links'>
                 {combo.map(({url, title, replies = {}}, key) => 
                     (<div key = {key} >
-                        <Link onClick = {() => updateRelated(url)} to = {url} >{title}</Link>
+                        <Link onClick = {() => updateRelated(url)} to = {`/comunidad/post/${url}`} >{title}</Link>
                         <p>{Object.keys(replies).length} {Object.keys(replies).length === 1 ? 'comentario' : 'comentarios'}</p>
                     </div>)
                 )}
