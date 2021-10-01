@@ -431,3 +431,22 @@ exports.sendMagicLink = functions.https.onRequest(async (request, response) => {
     });
     
 });
+
+exports.deleteRelatedContent = functions.https.onRequest(async (request, response) => {
+    
+    return cors(request, response, async () => {
+        
+        let snapshot = await admin.database().ref('posts').once('value');
+        let posts    = snapshot.val();
+        
+        Object.keys(posts).forEach(postId => {
+
+            admin.database().ref(`posts/${postId}/related`).remove()
+            
+        });
+        
+        response.send(200);
+        
+    });
+    
+}); 
