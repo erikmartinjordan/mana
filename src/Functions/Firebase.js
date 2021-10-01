@@ -1,5 +1,4 @@
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/database'
+import { initializeApp } from 'firebase/app'
 import {
     endAt,
     equalTo,
@@ -61,7 +60,7 @@ let config = {
 
 }
 
-firebase.initializeApp(config[environment])
+initializeApp(config[environment])
 
 const googleProvider      = new GoogleAuthProvider()
 const auth                = getAuth()
@@ -101,4 +100,3 @@ export {
     updateProfile,
     uploadBytesResumable
 }
-export default firebase
