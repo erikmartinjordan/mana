@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { db, get, onValue }    from './Firebase'
+import { db, onValue, ref }    from './Firebase'
 
 const GetName = (uid) => {
     
@@ -10,9 +10,7 @@ const GetName = (uid) => {
         if(uid){
             
             onValue(ref(db, `users/${uid}/name`), snapshot => {
-               
-                let name = snapshot.val()
-                
+                               
                 setUserName(snapshot.val() || null)
                 
             }, { onlyOnce: true })
