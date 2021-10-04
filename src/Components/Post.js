@@ -92,6 +92,8 @@ const Post = () => {
     }, [])
 
     useEffect( () => { 
+
+        var unsubscribe = Function()
         
         const fetchData = async () => {
          
@@ -121,7 +123,7 @@ const Post = () => {
                 setDescription(description)
                 setText(text)
 
-                let unsubscribe = onValue(ref(db, `articles/${url}`), snapshot => {
+                unsubscribe = onValue(ref(db, `articles/${url}`), snapshot => {
 
                     if(snapshot.val()){
                         
@@ -136,8 +138,6 @@ const Post = () => {
                 })
 
                 runTransaction(ref(db, `articles/${url}/views/`), value => value + 1)
-
-                return unsubscribe
                 
             }
             catch(e){
@@ -148,7 +148,7 @@ const Post = () => {
             
         }
         
-        let unsubscribe = fetchData() || Function()
+        fetchData()
 
         return () => unsubscribe()
         
@@ -222,7 +222,7 @@ export const Header = ({title, date, user, views, likes, superlikes, handleLikes
                 </p>
             </div>
             {now.diff(articleDate, 'years') >= 1
-            ? <div className = 'OldArticle'>👋 Este artículo lo escribí hace 1 año (o más) y la información podría estar desactualizada. Utiliza la información con sentido común si tienes dudas, pregunta en la <Link to = '/'>comunidad</Link>.</div>
+            ? <div className = 'OldArticle'>👋 Este artículo lo escribí hace 1 año (o más) y la información podría estar desactualizada. Utiliza la información con sentido común, y si tienes dudas, pregunta en la <Link to = '/'>comunidad</Link>.</div>
             : null
             }
         </div>
