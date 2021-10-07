@@ -38,6 +38,9 @@
     text-transform: uppercase;
     margin: 5px;
 }
+.DiscreteFooter{
+    display: none;
+}
 @media (max-width: 600px){
     .Footer{
         padding-bottom: calc(48px + env(safe-area-inset-bottom));

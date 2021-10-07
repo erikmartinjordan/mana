@@ -8,11 +8,9 @@ code{
     font-family: Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
 }
 kbd{
-    background: var(--bgColor);
+    background: var(--bgBox);
     border-radius: 5px;
     color: var(--primaryFontColor);
-    font-family: monospace;
-    font-weight: 700;
     padding: 2px 5px;
 }
 body {
@@ -58,6 +56,12 @@ ul{
 a{
     color: var(--blue);
     text-decoration: none;
+}
+key{
+    background: var(--bgBox);
+    border-radius: 6px;
+    margin: 1px;
+    padding: 5px;
 }
 button{
     background: none;
