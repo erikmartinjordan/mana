@@ -1,15 +1,15 @@
-import React, { useState }            from 'react';
-import OrderBy                        from './OrderBy';
-import LastQuestions                  from './LastQuestions';
-import Comments                       from './Comments';
-import OneYearAgo                     from './OneYearAgo';
-import '../Styles/Forum.css';
+import React, { useState }            from 'react'
+import OrderBy                        from './OrderBy'
+import LastQuestions                  from './LastQuestions'
+import Comments                       from './Comments'
+import OneYearAgo                     from './OneYearAgo'
+import '../Styles/Forum.css'
 
 const Front = () => {
     
-    const [filter, setFilter] = useState('nuevo');
-    const [from , setFrom]    = useState(null);
-    const [to, setTo]         = useState(null);
+    const [filter, setFilter] = useState('nuevo')
+    const [from , setFrom]    = useState(null)
+    const [to, setTo]         = useState(null)
  
     return (
         <div className = 'Forum'>
@@ -34,7 +34,7 @@ const Front = () => {
                 </div>
             </div>
       </div> 
-    );
+    )
 }
 
-export default Front;
+export default Front
