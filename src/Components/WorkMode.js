@@ -30,7 +30,7 @@ const WorkMode = ({ theme, setTheme }) => {
 
     return(
         <p style = {{ fontSize: '12px', color: 'var(--secondaryFontColor)' }}>
-            Activa el modo discreto <kbd>{navigator.userAgentData.platform.includes('mac') ? '⌘' : 'ctrl'}</kbd> + <kbd>D</kbd>
+            Activa el modo discreto <kbd>{(navigator.userAgentData.platform || navigator.platform).toLowerCase().includes('mac') ? '⌘' : 'ctrl'}</kbd> + <kbd>D</kbd>
         </p>
     )
 
