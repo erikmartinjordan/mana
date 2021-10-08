@@ -41,7 +41,7 @@ const Footer = () => {
                         <a href = 'https://github.com/erikmartinjordan/nomoresheet' target = '_blank' rel = 'nofollow nooreferrer noopener'>Contribuye</a>
                     </div>
                     <div className = 'Info'>El modo discreto te muestra la información sin distracciones.</div>
-                    <div className = 'Info'> Pulsa <kbd>{(navigator.userAgentData.platform || navigator.platform).toLowerCase().includes('mac') ? '⌘' : 'ctrl'}</kbd> + <kbd>D</kbd> para volver al modo normal.</div>
+                    <div className = 'Info'> Pulsa <kbd>{(navigator.userAgentData?.platform || navigator.platform).toLowerCase().includes('mac') ? '⌘' : 'ctrl'}</kbd> + <kbd>D</kbd> para volver al modo normal.</div>
                 </div>
                 { post  ? <NewPost hide = {() => setPost(false)}/>  : null }
                 { login ? <Login   hide = {() => setLogin(false)}/> : null }
