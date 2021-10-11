@@ -1,0 +1,22 @@
+.SortReplies{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.SortReplies .NumReplies{
+    font-size: 20px;
+}
+.SortReplies .Sort{
+    align-items: center;
+    display: flex;
+}
+.SortReplies .Sort div{
+    border-bottom: 3px solid var(--bgColor);
+    cursor: pointer;
+    margin: 5px;
+}
+.SortReplies .Sort .Selected{
+    border-bottom: 3px solid var(--primaryFontColor);
+    transition: 0.5s ease-in-out;
+}

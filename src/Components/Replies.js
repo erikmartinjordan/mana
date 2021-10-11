@@ -11,7 +11,7 @@ import DeletePost                      from './DeletePost'
 import CopyLink                        from './CopyLink'
 import Highlight                       from './Highlight'
 import EditionTime                     from './EditionTime'
-import { db, onValue, ref }            from '../Functions/Firebase'
+import SortReplies                     from './SortReplies'
 import '../Styles/Replies.css'
 
 const Replies = ({ admin, postId, uid }) => {
@@ -19,18 +19,6 @@ const Replies = ({ admin, postId, uid }) => {
     const [replies, setReplies] = useState([])
     const replyRef              = useRef()
     const scrollToReplyId       = window.location.href.split('#').pop()
-    
-    useEffect(() => {
-        
-        let unsubscribe = onValue(ref(db, `posts/${postId}/replies`), snapshot => { 
-
-            setReplies(snapshot.val() || [])
-            
-        })
-        
-        return () => unsubscribe()
-        
-    }, [postId])
     
     useEffect( () => {
         
@@ -41,7 +29,12 @@ const Replies = ({ admin, postId, uid }) => {
     
     return(
         <div className = 'Replies'>
-            {Object.entries(replies).map( ([key, reply], index) => (
+            <SortReplies 
+                postId     = {postId}
+                replies    = {replies} 
+                setReplies = {setReplies}
+            />
+            {replies.map(([key, reply]) => (
                 <div className = {key === scrollToReplyId ? 'Reply Flash' : 'Reply'}  key = {key} ref = {key === scrollToReplyId ? replyRef : null}>
                     <div className = 'Header'>
                         <UserAvatar user = {{uid: reply.userUid, photoURL: reply.userPhoto}}/>
