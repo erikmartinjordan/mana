@@ -1,3 +1,9 @@
+/**
+ * 
+ * @param {array} entries Replies to sort in a [key, value] format
+ * @param {string} value Parameter to sort the array from oldest to newest
+ * @returns sorted array
+ */
 const sortByValue = (entries, value) => {
 
     return [...entries].sort((a, b) => {
@@ -11,6 +17,12 @@ const sortByValue = (entries, value) => {
 
 }
 
+/**
+ * 
+ * @param {array} entries Replies to sort in a [key, value] format
+ * @param {object} object Parameter to sort the array from highest to lowest (is an object to a single value) 
+ * @returns sorted array in descending order
+ */
 const sortByObject = (entries, object) => {
     
     return [...entries].sort((a, b) => {
