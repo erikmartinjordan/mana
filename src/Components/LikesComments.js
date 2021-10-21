@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState }   from 'react'
-import Login                                        from './Login'
-import Alert                                        from './Alert'
-import Twemoji                                      from './Twemoji'
-import { db, get, onValue, ref, runTransaction }                    from '../Functions/Firebase'
-import GetPoints                                    from '../Functions/GetPoints'
-import insertNotificationAndReputation              from '../Functions/InsertNotificationAndReputationIntoDatabase'
-import UserContext                                  from '../Functions/UserContext'
+import React, { useContext, useEffect, useState } from 'react'
+import { TriangleUpIcon }                         from '@primer/octicons-react'
+import Login                                      from './Login'
+import Alert                                      from './Alert'
+import Twemoji                                    from './Twemoji'
+import { db, get, onValue, ref, runTransaction }  from '../Functions/Firebase'
+import GetPoints                                  from '../Functions/GetPoints'
+import insertNotificationAndReputation            from '../Functions/InsertNotificationAndReputationIntoDatabase'
+import UserContext                                from '../Functions/UserContext'
 import '../Styles/LikesComments.css'
 
 const LikesComments = ({ authorId, postId, replyId }) => {  
@@ -78,7 +79,7 @@ const LikesComments = ({ authorId, postId, replyId }) => {
         <React.Fragment>
             <div className = 'Likes-Comments' onClick = {user ? handleVote : displayLoginModal}>
                 <div className = {Object.keys(votes).some(voteId => voteId === user?.uid) ? `Votes Voted` : `Votes`}>
-                    <span><Twemoji emoji = {'👏'}/> {Object.keys(votes).length}</span>
+                    <span><TriangleUpIcon/> {Object.keys(votes).length}</span>
                 </div>
                 <Alert 
                     title      = {alertTitle} 
