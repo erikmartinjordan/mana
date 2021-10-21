@@ -37,21 +37,23 @@ const Replies = ({ admin, postId, uid }) => {
             {replies.map(([key, reply]) => (
                 <div className = {key === scrollToReplyId ? 'Reply Flash' : 'Reply'}  key = {key} ref = {key === scrollToReplyId ? replyRef : null}>
                     <div className = 'Header'>
-                        <UserAvatar user = {{uid: reply.userUid, photoURL: reply.userPhoto}}/>
                         <div className = 'Author-Name-Date'> 
-                            <span className = 'Author-Info'>
-                                <Link to = {'/@' + reply.userUid}>{reply.userName}</Link>
-                                <Verified   uid = {reply.userUid}/>
+                            <UserAvatar user = {{uid: reply.userUid, photoURL: reply.userPhoto}}/>
+                            <span className = 'Author-Date'>
+                                <span className = 'Author-Info'>
+                                    <Link to = {'/@' + reply.userUid}>{reply.userName}</Link>
+                                    <Verified   uid = {reply.userUid}/>
+                                </span>
+                                <time>{moment(reply.timeStamp).fromNow()}</time>
                             </span>
-                            <time>{moment(reply.timeStamp).fromNow()}</time>
                         </div>
+                        <LikesComments postId = {postId} replyId = {key} authorId = {reply.userUid}/>
                     </div> 
                     <div className = 'Content'>
                         <Reply message = {reply.message}/>
                         <div className = 'Meta'>
                             <EditionTime               date = {reply.edited}/>
                             <CopyLink                  postId = {postId} replyId = {key} authorId = {reply.userUid}/>
-                            <LikesComments             postId = {postId} replyId = {key} authorId = {reply.userUid}/>
                             <EditPost   type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
                             <DeletePost type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
                         </div>

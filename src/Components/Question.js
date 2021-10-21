@@ -49,21 +49,23 @@ const Question = ({ admin, postId, setTitle, uid }) => {
         { question !== ''
         ? <div className = 'Question'>
             <div className = 'Header'>
-                <UserAvatar user = {{uid: question.userUid, photoURL: question.userPhoto}}/>
                 <div className = 'Author-Name-Date'> 
-                    <span className = 'Author-Info'>
-                        <Link to = {'/@' + question.userUid}>{question.userName}</Link> 
-                        <Verified   uid = {question.userUid}/>
+                    <UserAvatar user = {{uid: question.userUid, photoURL: question.userPhoto}}/>
+                    <span className = 'Author-Date'>
+                        <span className = 'Author-Info'>
+                            <Link to = {'/@' + question.userUid}>{question.userName}</Link> 
+                            <Verified   uid = {question.userUid}/>
+                        </span>
+                        <time>{moment(question.timeStamp).fromNow()}</time>
                     </span>
-                    <time>{moment(question.timeStamp).fromNow()}</time>
                 </div>
+                <Likes postId = {postId} authorId = {question.userUid}/>
             </div>
             <div className = 'Content'>
                     <QuestionContent  message = {question.message}/>
                     <div className = 'Meta'>
                         <EditionTime              date = {question.edited}/>
                         <CopyLink                 postId = {postId} authorId = {question.userUid}/>
-                        <Likes                    postId = {postId} authorId = {question.userUid}/>
                         <EditPost   type = 'post' postId = {postId} authorId = {question.userUid} admin = {admin} uid = {uid}/>
                         <DeletePost type = 'post' postId = {postId} authorId = {question.userUid} admin = {admin} uid = {uid}/>
                     </div>
