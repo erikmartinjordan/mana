@@ -26,7 +26,10 @@ const SortReplies = ({ postId, replies, setReplies }) => {
 
     return(
         <div className = 'SortReplies'>
-            <div className = 'NumReplies'>{replies.length} respuesta{replies.length === 1 ? '' : 's'}</div>
+            { replies. length > 0 
+            ? <div className = 'NumReplies'>{replies.length} respuesta{replies.length === 1 ? '' : 's'}</div>
+            : null
+            }
             { replies.length > 10
             ? <div className = 'Sort'>
                 <div className = {selection === 'Newest' ? 'Selected' : null} onClick = {() => setSelection('Newest')}>Cronológico</div>
