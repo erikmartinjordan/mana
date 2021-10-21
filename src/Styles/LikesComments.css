@@ -1,25 +1,30 @@
 .Votes{
-    border: 1px solid var(--lightBlue);
-    border-radius: 50px;
+    align-items: center;
+    box-shadow: var(--shadow-color);
+    border-radius: 12px;
     cursor: pointer;
     display: flex;
+    height: 50px;
     font-size: small;
     justify-content: center;
     width: 50px;
 }
+.Votes span{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
 .Votes.Voted{
-    animation: fillLightBlue .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+    animation: fillVotes .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
 }
 .Likes-Comments img.emoji{
     margin: 0;
 }
-@keyframes fillLightBlue{
-  100% {
-    box-shadow: inset 0px 0px 0px 50px var(--lightBlue);
-  }
+@keyframes fillVotes{
+  100% {box-shadow: inset 0px 0px 0px 50px rgb(22 24 27 / 5%);}
 }
 @media (hover: hover) {
     .Votes:hover{
-        background: var(--lightBlue);
+        background: rgb(22 24 27 / 5%);
     }
 }

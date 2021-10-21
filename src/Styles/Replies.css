@@ -10,17 +10,16 @@
     animation: backgroundSwap 2s;
 }
 .Reply .Header{
-    align-items: center;
+    align-items: flex-start;
     display: flex;
+    justify-content: space-between;
     margin-bottom: 5px;
-    width: max-content;
 }
 .Reply .Header .Public-Info{
     display: none;
 }
 .Reply .Header .Author-Name-Date{
     display: flex;
-    flex-direction: column;
     font-size: small;
     line-height: 1;
 }
