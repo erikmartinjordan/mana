@@ -54,10 +54,14 @@
     padding: 5px;
     width: 100%;
 }
-.Public-Info .Datos .Progress{
+.Public-Info .Datos .UserAvatar{
     height: 100px;
     margin: auto;
     width: 100px;
+}
+.Public-Info .Datos .UserAvatar img{
+    height: 100%;
+    width: 100%;
 }
 .Public-Info .Bar{
     background: var(--bgColor);

@@ -28,12 +28,12 @@
     color: var(--primaryFontColor);
     display: flex;
     font-size: small;
-    font-weight: 600;
+    font-weight: 500;
 }
 .LastQuestions .Question .Author-Date{
     display: flex;
     flex-direction: column;
-    line-height: 1.3;
+    line-height: 1;
 }
 .LastQuestions .Question .Author-Date time,
 .LastQuestions .Question .Author-Date div{
