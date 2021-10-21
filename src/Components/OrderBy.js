@@ -1,39 +1,39 @@
-import React, { useEffect, useState }  from 'react';
-import moment                          from 'moment';
-import { TriangleDownIcon }            from '@primer/octicons-react';
-import '../Styles/OrderBy.css';
+import React, { useEffect, useState }  from 'react'
+import moment                          from 'moment'
+import { TriangleDownIcon }            from '@primer/octicons-react'
+import '../Styles/OrderBy.css'
 
 const OrderBy = ({filter, setFilter, setFrom, setTo}) => {
 
-    const [date, setDate] = useState('M');
+    const [date, setDate] = useState('M')
 
     useEffect(() => {
 
-        if(date === 'D') var [from, to] = [moment().subtract(1, 'day' ).valueOf(),  moment().valueOf()];
-        if(date === 'W') var [from, to] = [moment().subtract(1, 'week').valueOf(),  moment().valueOf()];
-        if(date === 'M') var [from, to] = [moment().subtract(1, 'month').valueOf(), moment().valueOf()];
+        if(date === 'D') var [from, to] = [moment().subtract(1, 'day' ).valueOf(),  moment().valueOf()]
+        if(date === 'W') var [from, to] = [moment().subtract(1, 'week').valueOf(),  moment().valueOf()]
+        if(date === 'M') var [from, to] = [moment().subtract(1, 'month').valueOf(), moment().valueOf()]
 
         if(filter === 'nuevo'){
 
-            setFrom(null);
-            setTo(null);
+            setFrom(null)
+            setTo(null)
 
         }
         else{
 
-            setFrom(from);
-            setTo(to);
+            setFrom(from)
+            setTo(to)
 
         }
 
-    }, [filter, date]);
+    }, [filter, date])
 
     return (
         <div className = 'OrderBy'>
-            <div onClick = {() => setFilter('nuevo')}       className = {filter === 'nuevo'       ? 'Selected' : null}>Nuevo</div>
-            <div onClick = {() => setFilter('picante')}     className = {filter === 'picante'     ? 'Selected' : null}>Picante</div>
-            <div onClick = {() => setFilter('comentarios')} className = {filter === 'comentarios' ? 'Selected' : null}>Comentarios </div>
-            { filter === 'picante' || filter === 'comentarios'
+            <div onClick = {() => setFilter('nuevo')}       className = {filter === 'nuevo'      ? 'Selected' : null}>Nuevo</div>
+            <div onClick = {() => setFilter('puntos')}      className = {filter === 'puntos'     ? 'Selected' : null}>Puntuación</div>
+            <div onClick = {() => setFilter('respuestas')}  className = {filter === 'respuestas' ? 'Selected' : null}>Respuestas </div>
+            { filter === 'puntos' || filter === 'respuestas'
             ? <form>
                 <label>
                     <div className = 'Selector'>
@@ -49,8 +49,8 @@ const OrderBy = ({filter, setFilter, setFrom, setTo}) => {
             : null
             }
         </div>
-    );
+    )
     
 }
 
-export default OrderBy;
+export default OrderBy
