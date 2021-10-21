@@ -4,18 +4,11 @@ import GetPoints                      from '../Functions/GetPoints'
 import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel'
 import AnonymImg                      from '../Functions/AnonymImg'
 import Loading                        from '../Components/Loading'
-import Accounts                       from '../Rules/Accounts'
-import { ReactComponent as ProBadge } from '../Assets/pro.svg'
 import '../Styles/UserAvatar.css'
 
 const UserAvatar = ({allowAnonymousUser, user}) => {  
     
     const [picture, setPicture] = useState(null)
-    const [badge, setBadge]     = useState(null)
-    
-    const points     = GetPoints(user.uid)
-    const level      = GetLevel(points)[0]
-    const percentage = GetLevel(points)[2]
     const randomImg  = AnonymImg()
     
     useEffect( () => {
@@ -38,21 +31,6 @@ const UserAvatar = ({allowAnonymousUser, user}) => {
                     setPicture(user.photoURL)
                 }
                 
-                if(capture.account){
-                    
-                    setBadge(true)
-                    
-                }
-                else{
-                    
-                    let rangeOfLevels = Object.keys(Accounts['free'])
-                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level))
-                    let proBadge      = Accounts['free'][closestLevel].badge ? true : false
-                    
-                    setBadge(proBadge)
-                    
-                }
-                
             }
             else{
                 
@@ -63,14 +41,13 @@ const UserAvatar = ({allowAnonymousUser, user}) => {
         
         return () => unsubscribe()
         
-    }, [allowAnonymousUser, user, level, randomImg])
+    }, [allowAnonymousUser, user, randomImg])
         
     return (
         <React.Fragment>
             { picture
-            ? <div className = {`Progress ProgressBar-${percentage}`}>
-                <img loading = 'lazy' src = {picture} alt = {'Avatar'}></img>
-                {badge ? <ProBadge/> : null}
+            ? <div className = 'UserAvatar'>
+                <img  loading = 'lazy' src = {picture} alt = {'Avatar'}/>
               </div>
             : <Loading type = 'Avatar'/> 
             }
