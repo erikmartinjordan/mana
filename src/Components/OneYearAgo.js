@@ -33,7 +33,7 @@ const OneYearAgo = () => {
                 { Object.entries(posts).map(([url, {title, replies = {}, votes, views}]) => (
                     <div className = 'Article' key = {url}>
                         <Link to = {`/comunidad/post/${url}`}>{title}</Link>    
-                        <p>{Object.keys(replies).length} {Object.keys(replies).length === 1 ? 'comentario' : 'comentarios'}</p>
+                        <p>{Object.keys(replies).length} {Object.keys(replies).length === 1 ? 'respuesta' : 'respuestas'}</p>
                     </div>
                 ))}
                 </div>

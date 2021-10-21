@@ -115,7 +115,7 @@ const RelatedContent = ({ postId }) => {
                 {combo.map(({url, title, replies = {}}, key) => 
                     (<div key = {key} >
                         <Link onClick = {() => updateRelated(url)} to = {`/comunidad/post/${url}`} >{title}</Link>
-                        <p>{Object.keys(replies).length} {Object.keys(replies).length === 1 ? 'comentario' : 'comentarios'}</p>
+                        <p>{Object.keys(replies).length} {Object.keys(replies).length === 1 ? 'respuesta' : 'respuestas'}</p>
                     </div>)
                 )}
             </div>

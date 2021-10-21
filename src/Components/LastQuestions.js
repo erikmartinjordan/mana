@@ -69,9 +69,9 @@ const LastQuestions = ({ number, from, to, filter }) => {
         
         let sorted = Object.values(questions).sort( (a, b) => {
             
-            if(orderBy === 'nuevo')        return b.timeStamp - a.timeStamp
-            if(orderBy === 'comentarios')  return Object.keys(b.replies).length   - Object.keys(a.replies).length
-            if(orderBy === 'picante')      return Object.keys(b.voteUsers).length - Object.keys(a.voteUsers).length
+            if(orderBy === 'nuevo')      return b.timeStamp - a.timeStamp
+            if(orderBy === 'respuestas') return Object.keys(b.replies).length   - Object.keys(a.replies).length
+            if(orderBy === 'puntos')     return Object.keys(b.voteUsers).length - Object.keys(a.voteUsers).length
             
             return null
             
@@ -103,7 +103,7 @@ const LastQuestions = ({ number, from, to, filter }) => {
                                 </span>
                             </div>
                             <div className = 'Num-Comments'>
-                                {Object.keys(question.replies).length} {Object.keys(question.replies).length === 1 ? 'comentario' : 'comentarios'}
+                                {Object.keys(question.replies).length} {Object.keys(question.replies).length === 1 ? 'respuesta' : 'respuestas'}
                             </div>
                         </div>
                     </Link>
