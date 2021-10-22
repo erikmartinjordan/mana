@@ -20,7 +20,7 @@ test('NewPost -> Prevent users with level < 15 (free) from publishing new posts'
     fireEvent.change(screen.getByPlaceholderText('Título...'),  { target: { value: 'Some random title' } })
     fireEvent.change(screen.getByPlaceholderText('Mensaje...'), { target: { value: 'Some random message' } })
     
-    fireEvent.click(document.querySelector('button.bottom'))
+    fireEvent.click(document.querySelector('button'))
     
     await waitFor(() => expect(document.querySelector('.Alert .Message').textContent).toBe('Necesitas subir hasta el nivel 15 para poder publicar'))
     
@@ -41,7 +41,7 @@ test('NewPost -> Users with level < 15 (premium) are allowed to publish new post
     fireEvent.change(screen.getByPlaceholderText('Título...'),  { target: { value: 'Some random title' } })
     fireEvent.change(screen.getByPlaceholderText('Mensaje...'), { target: { value: 'Some random message' } })
     
-    fireEvent.click(document.querySelector('button.bottom'))
+    fireEvent.click(document.querySelector('button'))
     
     await waitFor(() => expect(document.querySelector('.Alert .Message').textContent).toBe('¡Mensaje enviado!'))
     
@@ -62,7 +62,7 @@ test('NewPost -> Users with level >= 15 (free) are allowed to publish new posts'
     fireEvent.change(screen.getByPlaceholderText('Título...'),  { target: { value: 'Some random title' } })
     fireEvent.change(screen.getByPlaceholderText('Mensaje...'), { target: { value: 'Some random message' } })
     
-    fireEvent.click(document.querySelector('button.bottom'))
+    fireEvent.click(document.querySelector('button'))
     
     await waitFor(() => expect(document.querySelector('.Alert .Message').textContent).toBe('¡Mensaje enviado!'))
     
