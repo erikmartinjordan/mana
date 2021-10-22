@@ -2,9 +2,7 @@ import React, { useEffect, useState }     from 'react';
 import { Switch, Route, withRouter }      from 'react-router-dom';
 import Forum                              from './Forum';
 import Detail                             from './Detail';
-import Post                               from './Post';
 import Default                            from './Default';
-import Blog                               from './Blog';
 import Nav                                from './Nav';
 import Footer                             from './Footer';
 import Acerca                             from './Acerca';
@@ -74,7 +72,6 @@ const App  = () => {
                  </Switch>
                 <Switch  key = 'B'>
                     <Route exact path = '/'                    component = {Forum}/>
-                    <Route exact path = '/blog'                component = {Blog}/>
                     <Route exact path = '/acerca'              component = {Acerca}/>
                     <Route exact path = '/estadisticas'        component = {Stats}/>
                     <Route exact path = '/privacidad'          component = {Privacy}/>
@@ -87,7 +84,6 @@ const App  = () => {
                     <Route path = '/comunidad/post/:string'    component = {Detail}/>
                     <Route path = '/tag/:string'               component = {Forum}/>
                     <Route path = '/@:string'                  component = {PublicInfo}/>
-                    <Route path = '/:string'                   component = {Post}/>
                     <Route                                     component = {Default}/>
                 </Switch>
             </div>
