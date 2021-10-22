@@ -16,7 +16,6 @@ import Points                                                       from '../Fun
 import { auth, db, environment, onValue, ref, runTransaction }      from '../Functions/Firebase'
 import GetNumberOfPosts                                             from '../Functions/GetNumberOfPosts'
 import GetNumberOfReplies                                           from '../Functions/GetNumberOfReplies'
-import GetNumberOfSpicy                                             from '../Functions/GetNumberOfSpicy'
 import GetPoints                                                    from '../Functions/GetPoints'
 import GetLevel                                                     from '../Functions/GetLevelAndPointsToNextLevel'
 import AnonymImg                                                    from '../Functions/AnonymImg'
@@ -35,9 +34,8 @@ const Profile = (props) => {
     const [uid, setUid]                          = useState(null)
     const posts                                  = GetNumberOfPosts(uid)
     const replies                                = GetNumberOfReplies(uid)
-    const spicy                                  = GetNumberOfSpicy(uid)
     const points                                 = GetPoints(uid)
-    const { valuePost, valueReply, valueSpicy }  = Points
+    const { valuePost, valueReply }              = Points
     const [level, pointsToNextLevel, percentage] = GetLevel(points)
     const { user }                               = useContext(UserContext)
     
@@ -127,14 +125,12 @@ const Profile = (props) => {
                 ? <Data 
                     posts = {posts} 
                     replies = {replies} 
-                    spicy = {spicy} 
                     level = {level} 
                     percentage = {percentage}
                     points = {points}
                     pointsToNextLevel = {pointsToNextLevel} 
                     valuePost = {valuePost}
                     valueReply = {valueReply}
-                    valueSpicy = {valueSpicy}
                   />
                 : menu === 'Premium'
                 ? <Premium
@@ -285,24 +281,19 @@ const Account = ({user, infoUser, nextPayment, uid}) => {
     
 }
 
-const Data = ({posts, replies, spicy, level, pointsToNextLevel, valuePost, valueReply, valueSpicy, percentage, points}) => {
+const Data = ({posts, replies, level, pointsToNextLevel, valuePost, valueReply, percentage, points}) => {
     
     return(
         <div className = 'Datos'>
             <div className = 'Bloque'>
-                <div className = 'Title'>Artículos</div>
+                <div className = 'Title'>Publicaciones</div>
                 <div className = 'Num'>{posts}</div>
-                <div className = 'Comment'>Se muestran el número de artículos totales publicados. Publicando un artículo, sumas {valuePost} puntos.</div>
+                <div className = 'Comment'>Se muestran el número de publicaciones. Publicando un artículo, sumas {valuePost} puntos.</div>
             </div>
             <div className = 'Bloque'>
                 <div className = 'Title'>Respuestas</div>
                 <div className = 'Num'>{replies}</div>
                 <div className = 'Comment'>Se muestran el número de respuestas que has publicado. Por cada respuesta, sumas {valueReply} puntos.</div>
-            </div>
-            <div className = 'Bloque'>
-                <div className = 'Title'>Picante</div>
-                <div className = 'Num'>{spicy}</div>
-                <div className = 'Comment'>Se muestran el número de veces que te han dado picante. Por cada voto de picante, sumas {valueSpicy} puntos.</div>
             </div>
             <div className = 'Bloque'>
                 <div className = 'Title'>Puntos</div>
