@@ -14,3 +14,12 @@
     height: 24px;
     width: 24px;
 }
+.UserAvatar::after{
+    background: rgba(0, 0, 0, .04);
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
