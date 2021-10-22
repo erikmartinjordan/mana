@@ -8,11 +8,11 @@
     padding: 10px;
 }
 .Participants img{
-    border: 2px solid white;
+    border: 1px solid var(--shadow-color);
     border-radius: 50%;
-    height: 30px;
+    height: 24px;
     margin-right: -10px;
-    width: 30px;
+    width: 24px;
 }
 .Participants .More{
     font-size: small;
