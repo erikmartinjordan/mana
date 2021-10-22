@@ -7,7 +7,7 @@
     padding: 20px;
 }
 .Question .Header{
-    align-items: flex-start;
+    align-items: center;
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;

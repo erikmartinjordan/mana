@@ -10,7 +10,7 @@
     animation: backgroundSwap 1.5s;
 }
 .Reply .Header{
-    align-items: flex-start;
+    align-items: center;
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
