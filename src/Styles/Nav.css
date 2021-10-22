@@ -27,6 +27,9 @@
     display: flex;
     justify-content: space-between;
 }
+.Nav .Decide button{
+    padding: 10px;
+}
 .Nav .Access{
     background: var(--bgBox);
     border-radius: 12px;
@@ -43,7 +46,6 @@
 .Nav .Access a {
     display: block;
     font-size: 14px;
-    margin-top: 20px;
 }
 .Nav .Menu .Img-Wrap{
     align-items: center;

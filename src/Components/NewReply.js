@@ -195,12 +195,12 @@ const NewReply = ({ postId }) => {
                             setMessage  = {setMessage}
                             maxLength   = {maxLengthReply}
                         />
-                        <button className = 'bottom' onClick = {reviewMessage} disabled = {sending}>{sending ? <Loading type = {'Reply'}/> : 'Enviar'}</button>
+                        <button className = 'send' onClick = {reviewMessage} disabled = {sending}>{sending ? <Loading type = {'Reply'}/> : 'Enviar'}</button>
                     </div>
                 </div>
                 <Hints mdFormat = {mdFormat}/>
             </React.Fragment>
-            : <button className = 'bottom' onClick = {() => setShowLogin(true)}>Responder</button>  
+            : <button style = {{display: 'block', margin: 'auto'}}onClick = {() => setShowLogin(true)}>Responder</button>  
             }
             {displayAlert && <Alert title = {alertTitle} message = {alertMessage}/>}
             {showLogin    && <Login hide = {() => setShowLogin(false)}/>}

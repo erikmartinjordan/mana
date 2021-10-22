@@ -1,5 +1,6 @@
 import React, { useEffect, useState }                                                  from 'react'
 import { Link }                                                                        from 'react-router-dom'
+import { ArrowDownIcon }                                                               from '@primer/octicons-react'
 import moment                                                                          from 'moment'
 import Loading                                                                         from './Loading'
 import Likes                                                                           from './Likes'
@@ -110,7 +111,7 @@ const LastQuestions = ({ number, from, to, filter }) => {
                 </div>
             ))}
             { lastQuestions.length === items
-            ? <button onClick = {() => setItems(prev => prev + 10)} className = 'bottom'>Mostrar más</button> 
+            ? <button onClick = {() => setItems(prev => prev + 10)} className = 'more'>Mostrar más<ArrowDownIcon/></button> 
             : null
             }
           </div>

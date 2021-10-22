@@ -65,7 +65,7 @@ const Nav = () => {
                     <span className = 'Title'>¡Únete a la comunidad!</span>
                     <p>Publica sin censura y consigue reputación compartiendo tu saber hacer con otros usuarios.</p>
                     <div className = 'Decide'>
-                        <Link to = '/' onClick = {() => setLogin(true)} className = 'login'>Acceder</Link>
+                        <button onClick = {() => setLogin(true)}>Acceder</button>
                         <Link to = '/acerca'>o saber más <ArrowRightIcon/></Link>
                     </div>
                 </div>
@@ -93,7 +93,7 @@ const Nav = () => {
                 <div className = 'Separator'></div>
                 <NightModeToggleButton></NightModeToggleButton>
                 <div className = 'Separator'></div>
-                <Link to = '/' onClick = {() => setPost(true)} className = 'New-Post'><PaperAirplaneIcon/>Publicar</Link>
+                <button to = '/' onClick = {() => setPost(true)}>Publicar</button>
             </div>
         )
 

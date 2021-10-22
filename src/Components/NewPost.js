@@ -224,7 +224,7 @@ const NewPost = ({ hide }) => {
                     setTags = {setTags}
                     hint    = {'Añade hasta 5 etiquetas separadas por coma'}
                 />
-                <button className = 'bottom' onClick = {reviewTitleAndMessage}>Enviar</button>
+                <button className = 'send' onClick = {reviewTitleAndMessage}>Enviar</button>
             </div>
             <div className = 'Invisible' onClick = {() => setConfirmation(true)}></div>
             { confirmation

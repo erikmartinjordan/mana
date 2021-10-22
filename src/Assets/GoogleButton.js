@@ -6,6 +6,7 @@ const GoogleButton = ({logIn}) => {
         
         alignItems: 'center',
         background: 'white',
+        border: '1px solid rgba(1, 1, 1, 0.2)',
         color: 'black',
         display: 'flex',
         justifyContent: 'center',

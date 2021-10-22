@@ -57,99 +57,34 @@ a{
     color: var(--blue);
     text-decoration: none;
 }
-key{
-    background: var(--bgBox);
-    border-radius: 6px;
-    margin: 1px;
-    padding: 5px;
-}
 button{
-    background: none;
-    border: 1px solid rgba(1, 1, 1, 0.2);
-    border-radius: 6px;
-    color: var(--primaryFontColor);
+    background-color: var(--primaryFontColor);
+    border: none;
+    border-radius: 50px;
+    color: var(--bgColor);
     cursor: pointer;
     display: block;
-    margin: auto;
-    padding: 10px 20px;
-}
-button.more{
-    background: var(--lightBlue);
-    border: none;
-    border-radius: 50px;
-    box-shadow: none;
-    color: var(--blue);
-    cursor: pointer;
-    font-size: 12px;
-    padding: 10px 20px;
-}
-button.bottom{
-    background-color: var(--greenMint);
-    border: none;
-    border-radius: 50px;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
-    color: white!important;
-    cursor: pointer;
-    font-size: 12px;
-    margin-top: 20px;
+    font-size: 14px;
     padding: 10px 20px;
     text-align: center; 
-    width: auto;
+    width: max-content;
+}
+button.secondary{
+    border: 1px solid var(--secondaryFontColor);
+    color: var(--primaryFontColor)
 }
 button.send{
-    background-color: var(--greenMint);
-    border: none;
-    border-radius: 50px;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
-    color: white!important;
-    cursor: pointer;
-    font-size: 12px;
-    height: 34px;
-    margin-right: 0;
     margin-left: auto;
-    padding: 10px 20px;
-    text-align: center; 
-    width: auto;
 }
-button.delete{
-    background: var(--blue);
+button.more{
+    background: none;
     border: none;
-    border-radius: 50px;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
-    color: white;
-    font-size: 12px;
-    margin: inherit;
-    padding: 3px 10px;
-    width: auto;
-}
-button.delete{
+    color: var(--primaryFontColor);
     margin: auto;
-    margin-bottom: 50px;
-    margin-top: 20px;
+    padding: 3px 0px;
 }
 button:disabled{
     opacity: 0.5;
-}
-a.login,
-button.login,
-a.New-Post{
-    animation: gradientBG 15s ease infinite;
-    background: linear-gradient(-45deg, var(--greenMint), var(--greenMint), var(--pastelPurple), var(--red));
-    background-size: 400% 400%;
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
-    border: none;
-    border-radius: 50px;
-    color: white!important;
-    cursor: pointer;
-    font-size: medium;
-    line-height: 2;
-    padding: 5px 10px;
-    text-align: center;
-    width: max-content;
-}
-a.login:hover{
-    transition: 0.2s ease-in-out;
-    transform: scale(1.01);   
 }
 img.emoji {
    border-radius: 0!important;
@@ -189,23 +124,12 @@ img.emoji {
 [data-theme = 'dark']{
     --bgColor: #262b2f;
     --bgColorRGB: 38, 43, 47;
-    --primaryFontColor: white;  
+    --primaryFontColor: #eef0f1;  
     --bgBox: #30363b;
 }
 ::selection{
     background: var(--primaryFontColor);
     color: var(--bgColor);
-}
-@keyframes gradientBG {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
 }
 @keyframes bounce{
     0% {

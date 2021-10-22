@@ -60,7 +60,7 @@ const Helper = () => {
                     <h2>{user.displayName}</h2>
                     <p>Ahora eres PRO. Como tal, esta es tu nueva configuración:</p>
                     {accounts.premium.privileges.map(privilege => <li>{privilege}</li>)}
-                    <button className = 'bottom' onClick = {() => closeWelcome()}>Vale</button>
+                    <button onClick = {() => closeWelcome()}>Vale</button>
                 </div>
               </div>
             : null  
