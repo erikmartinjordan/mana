@@ -7,12 +7,8 @@
     display: flex;
     padding: 10px;
 }
-.Participants img{
-    border-radius: 50%;
-    box-shadow: rgb(48 54 59 / 10%) 0px 0px 0px 1px;
-    height: 24px;
+.Participants .UserAvatar{
     margin-right: -10px;
-    width: 24px;
 }
 .Participants .More{
     font-size: small;

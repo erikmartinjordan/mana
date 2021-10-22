@@ -52,11 +52,11 @@ const Participants = () => {
                 <span className = 'Title'> {participants.length} Participante{participants.length === 1 ? null : 's'}</span>
                 <div className = 'Participants-Wrap'>
                     {participants.slice(0, 7).map(([uid, participant]) => 
-                        <div className = 'Participant' key = {uid}>   
-                            <Link to = {`/@${uid}`}>
-                                <img src = {participant.pic}></img>
+                            <Link to = {`/@${uid}`} key = {uid}>
+                                <div className = 'UserAvatar'>
+                                    <img src = {participant.pic}></img>
+                                </div>
                             </Link>
-                        </div>
                     )}
                     <span className = 'More'>{participants.length > 7 ? `y ${participants.length - 7} más` : null}</span>
                 </div>
