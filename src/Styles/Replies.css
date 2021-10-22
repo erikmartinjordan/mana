@@ -7,7 +7,7 @@
     padding: 20px;
 }
 .Reply.Flash{
-    animation: backgroundSwap 2s;
+    animation: backgroundSwap 1.5s;
 }
 .Reply .Header{
     align-items: flex-start;
@@ -31,7 +31,6 @@
     color: var(--thirdFontColor);
 }
 .Reply .Content{
-    background: var(--bgBox);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -125,6 +124,6 @@
     font-size: small;
 }
 @keyframes backgroundSwap {
-  from {background: var(--greenMint);}
-  to   {background: var(--bgBox);}
+    0%   {box-shadow: 0 0 0 1px  rgba(72 172 152 / 50%);}
+    100% {box-shadow: 0 0 0 10px rgba(72 172 152 / 50%);}
 }
