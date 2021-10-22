@@ -10,7 +10,7 @@
 }
 .UserAvatar img{
     border-radius: 50%;
-    box-shadow: var(--shadow-color);
+    box-shadow: rgb(48 54 59 / 10%) 0px 0px 0px 1px;
     height: 24px;
     width: 24px;
 }
