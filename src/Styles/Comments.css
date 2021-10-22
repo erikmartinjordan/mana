@@ -19,6 +19,7 @@
     margin-bottom: 20px;
 }
 .LastComments .Info-Wrap{
+    align-items: center;
     display: flex;
 }
 .LastComments .Info-Wrap time{
@@ -27,6 +28,7 @@
 .LastComments .Author-Date{
     display: flex;
     flex-direction: column;
+    line-height: 1;
 }
 .LastComments .Claps{
     color: var(--primaryFontColor);
