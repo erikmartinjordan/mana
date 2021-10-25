@@ -18,7 +18,7 @@ const Acerca = () => {
     
     useEffect(() => {
         
-        document.title = 'Acerca - Nomoresheet' 
+        document.title = 'Acerca — Nomoresheet' 
         document.querySelector('meta[name="description"]').content = 'De cómo nació el sitio web y los diferentes hitos hasta la fecha.'
         
     })

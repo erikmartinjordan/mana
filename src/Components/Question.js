@@ -21,7 +21,7 @@ const Question = ({ admin, postId, setTitle, uid }) => {
     useEffect(() => {
         
         if(question){
-            document.title = question.title + ' - Nomoresheet' 
+            document.title = question.title + ' — Nomoresheet' 
             document.querySelector('meta[name="description"]').content = question.message 
         }      
         

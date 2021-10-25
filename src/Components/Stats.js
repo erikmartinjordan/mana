@@ -154,7 +154,7 @@ const Stats = () => {
     
     useEffect(() => {
         
-        document.title = 'Estadísticas - Nomoresheet' 
+        document.title = 'Estadísticas — Nomoresheet' 
         document.querySelector('meta[name="description"]').content = 'Algunas estadísticas sobre Nomoresheet' 
         
     })
