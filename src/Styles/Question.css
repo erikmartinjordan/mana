@@ -12,6 +12,7 @@
     display: none;
 }
 .Question .Header .Author-Name-Date{
+    align-items: center;
     display: flex;
     font-size: small;
     line-height: 1;
@@ -31,7 +32,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100%;
     word-wrap: break-word;
 }
@@ -58,7 +59,7 @@
     max-width: none;
 }
 .Question .Content p{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .Question .Content .TableWrap{
     max-width: 620px;
