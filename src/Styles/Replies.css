@@ -27,6 +27,10 @@
     display: block;
     position: absolute;
 }
+.Reply .Header .Author-Info a{
+    color: var(--primaryFontColor);
+    font-weight: 500;
+}
 .Reply .Header .Author-Name-Date time{
     color: var(--thirdFontColor);
 }

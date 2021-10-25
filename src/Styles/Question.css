@@ -24,6 +24,10 @@
     display: block;
     position: absolute;
 }
+.Question .Header .Author-Info a{
+    color: var(--primaryFontColor);
+    font-weight: 500;
+}
 .Question .Header .Author-Name-Date time{
     color: var(--thirdFontColor);
 }
