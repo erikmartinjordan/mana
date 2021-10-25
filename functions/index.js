@@ -1,5 +1,4 @@
 const {getNumberOfPosts, getNumberOfReplies, getNumberOfSpicy, getNumberOfApplauses, getNumberOfViews} = require('./getUserStats');
-const data                 = require('./hosting/_data.js'); 
 const fs                   = require('fs');
 const admin                = require('firebase-admin');
 const functions            = require('firebase-functions');
@@ -88,17 +87,12 @@ exports.preRender = functions.https.onRequest(async (request, response) => {
         return capture ? true : false;
     }
     
-    const postExists = async (postName) => {
-        
-        return data[postName] ? true : false;
-    }
     
     if(!path[1])                             error404 = false;
     else if(path[1].startsWith('blog'))      error404 = false; 
     else if(path[1].startsWith('comunidad')) error404 = false; 
     else if(path[1].startsWith('acerca'))    error404 = false;
     else if(path[1].startsWith('@'))         error404 = !(await userExists(path[1]));
-    else if(path[1])                         error404 = !(await postExists(path[1]));
     
     error404
     ? response.status(404).send(index)
