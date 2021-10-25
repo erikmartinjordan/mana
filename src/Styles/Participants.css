@@ -2,6 +2,7 @@
     background: var(--bgBox);
     border-radius: 12px;
     margin-bottom: 20px;
+    padding: 20px;
 }
 .Participants-Wrap{
     display: flex;

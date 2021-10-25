@@ -29,8 +29,7 @@
 .Forum .Forum-TwoCol .Sidebar .Title{
     color: var(--secondaryFontColor);
     font-size: small;
-    margin: 0;
-    padding: 10px;
+    margin-bottom: 10px;
     text-transform: uppercase;
 }
 @media(max-width: 768px){

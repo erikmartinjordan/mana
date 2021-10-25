@@ -7,16 +7,19 @@
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 20px;
-}
-.LastComments{
-    padding: 10px;
+    padding: 20px;
 }
 .LastComments a{
     align-items: center;
+    color: var(--primaryFontColor);
     display: flex;
+    font-weight: 500;
     justify-content: space-between;
     line-height: 1.3;
     margin-bottom: 20px;
+}
+.LastComments a:last-of-type{
+    margin-bottom: 0px;
 }
 .LastComments .Info-Wrap{
     align-items: center;
@@ -24,6 +27,7 @@
 }
 .LastComments .Info-Wrap time{
     color: var(--thirdFontColor);
+    font-weight: 400;
 }
 .LastComments .Author-Date{
     display: flex;

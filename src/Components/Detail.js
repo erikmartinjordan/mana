@@ -63,7 +63,6 @@ const Detail = (props) => {
                         <NewReply postId = {url}/>
                     </div>
                     <div className = 'Sidebar'>
-                        <Norms/>
                         <Participants/>
                         <Privileges/>
                         <RelatedContent postId = {url}/>
