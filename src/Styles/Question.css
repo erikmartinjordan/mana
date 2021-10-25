@@ -1,16 +1,12 @@
 .Question{
-    background: var(--bgBox);
-    border-radius: 12px;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
-    padding: 20px;
 }
 .Question .Header{
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
 }
 .Question .Header .Public-Info{
     display: none;

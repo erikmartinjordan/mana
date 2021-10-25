@@ -88,26 +88,21 @@ const LastQuestions = ({ number, from, to, filter }) => {
         ? <Loading type = 'Responses'/> 
         : lastQuestions.length > 0 
         ? <div className = 'LastQuestions'>
-            {lastQuestions.map(question => (
+            { lastQuestions.map(question => (
                 <div className = 'Question' key = {question.key}>
-                    <Link to = {`/comunidad/post/${question.key}`}>
-                        <div className = 'Top-Card'>
-                            <h3>{question.title}</h3>
-                            <Likes authorId = {question.userUid} postId = {question.key}/>
-                        </div>
-                        <div className = 'Bottom-Card'>
-                            <div className = 'Author-Name-Date'> 
-                                <UserAvatar user = {{uid: question.userUid, photoURL: question.userPhoto}}/>
-                                <span className = 'Author-Date'>
-                                    {question.userName}
-                                    <time>{moment(question.timeStamp).fromNow()}</time>
-                                </span>
-                            </div>
-                            <div className = 'Num-Comments'>
-                                {Object.keys(question.replies).length} {Object.keys(question.replies).length === 1 ? 'respuesta' : 'respuestas'}
+                    <Likes authorId = {question.userUid} postId = {question.key}/>
+                    <div className = 'Title-Author'> 
+                        <Link to = {`/comunidad/post/${question.key}`} className = 'Title'>{question.title}</Link>
+                        <div className = 'Author-Date-Responses'>
+                            <UserAvatar user = {{uid: question.userUid, photoURL: question.userPhoto}}/>
+                            <div className = 'Author-Date'>
+                                <Link to = {`/@${question.userUid}`}  className = 'Author'>{question.userName}</Link>
+                                <div className = 'Date-Responses'>
+                                    <time>{moment(question.timeStamp).fromNow()}</time>, {Object.keys(question.replies).length} {Object.keys(question.replies).length === 1 ? 'respuesta' : 'respuestas'}
+                                </div>
                             </div>
                         </div>
-                    </Link>
+                    </div>
                 </div>
             ))}
             { lastQuestions.length === items

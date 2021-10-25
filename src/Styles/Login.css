@@ -11,7 +11,7 @@
     z-index: 2;
 }
 .Login .Login-wrap{
-    background: var(--bgBox);
+    background: var(--bgColor);
     border-radius: 12px;
     box-shadow: var(--boxShadow);
     padding: 20px;

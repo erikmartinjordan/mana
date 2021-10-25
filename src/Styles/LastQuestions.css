@@ -1,59 +1,44 @@
 .LastQuestions .Question{
-    background: var(--bgBox);
-    border-radius: 12px;
-    padding: 20px;
-}
-.LastQuestions .Question > a{
+    align-items: center;
     display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 25px;
 }
-.LastQuestions .Top-Card{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-.LastQuestions .Question h3{
-    font-size: large;
+.LastQuestions .Question a.Title{
+    color: var(--primaryFontColor);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
     margin: 0;
+    margin-bottom: 10px;
     text-align: left;
+}
+.LastQuestions .Question a.Author{
+    color: var(--primaryFontColor);
 }
 .LastQuestions .Question p{
     color: var(--secondaryFontColor);
-    line-height: 1.5;
 }
-.LastQuestions .Question .Author-Name-Date{
-    align-items: center;
+.LastQuestions .Title-Author{
     color: var(--primaryFontColor);
     display: flex;
+    flex-direction: column;
     font-size: small;
     font-weight: 500;
 }
-.LastQuestions .Question .Author-Date{
+.LastQuestions .Author-Date-Responses{
+    align-items: center;
+    display: flex;
+}
+.LastQuestions .Author-Date{
     display: flex;
     flex-direction: column;
     line-height: 1;
 }
-.LastQuestions .Question .Author-Date time,
-.LastQuestions .Question .Author-Date div{
+.LastQuestions .Date-Responses{
     color: var(--thirdFontColor);
     font-size: small;
     font-weight: 400;
-}
-.LastQuestions .Question .Num-Comments{
-    align-items: center;
-    color: var(--thirdFontColor);
-    display: flex;
-    font-size: small;
-    justify-content: center;
-    line-height: 1;
-    margin-right: 5px;
-}
-.LastQuestions .Question .Bottom-Card{
-    align-items: flex-end;
-    display: flex;
-    justify-content: space-between;
 }
 .LastQuestions .Votes{
     border-radius: 12px;
@@ -61,32 +46,19 @@
     display: flex;
     font-size: 14px;
     flex-direction: column;
-    height: 50px;
+    height: 60px;
     justify-content: center;
+    margin-right: 10px;
     right: 0;
-    top: 0x;
-    width: 50px;
+    top: 0;
+    width: 60px;
 }
 .LastQuestions .Votes span{
     align-items: center;
     display: flex;
     flex-direction: column;
 }
-.LastQuestions .Votes span img.emoji{
-    animation-name: shake;
-    animation-delay: 5s;
-    animation-duration: 1s;
-}
-@keyframes shake{
-  0%  { transform: translate(2px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-2deg); }
-  20% { transform: translate(-3px, 0px) rotate(3deg); }
-  30% { transform: translate(0px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(2px, 1px) rotate(-2deg); }
-  80% { transform: translate(-1px, -1px) rotate(4deg); }
-  90% { transform: translate(2px, 2px) rotate(0deg); }
-  100%{ transform: translate(1px, -2px) rotate(-1deg); }
+.LastQuestions button.more{
+    margin-bottom: 0px;
+    margin-top: 50px;
 }

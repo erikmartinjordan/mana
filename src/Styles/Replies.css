@@ -1,10 +1,7 @@
 .Reply{
-    background: var(--bgBox);
-    border-radius: 12px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
-    padding: 20px;
+    margin-bottom: 40px;
 }
 .Reply.Flash{
     animation: backgroundSwap 1.5s;
@@ -13,7 +10,6 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
 }
 .Reply .Header .Public-Info{
     display: none;
@@ -39,7 +35,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100%;
     word-wrap: break-word;
 }
@@ -66,7 +62,7 @@
     max-width: none;
 }
 .Reply .Content p{
-    margin-bottom:20px;
+    margin-bottom: 10px;
 }
 .Reply .Content .TableWrap{
     max-width: 620px;

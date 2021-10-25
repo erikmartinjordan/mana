@@ -102,7 +102,7 @@ img.emoji {
 }
 :root{
     --nmsLogo: #30363b;
-    --bgColor: #f4f8fb;
+    --bgColor: white;
     --bgColorRGB: 244, 248, 251;
     --boxShadow: rgb(15 15 15 / 10%) 0px 0px 0px 1px, rgb(15 15 15 / 20%) 0px 5px 10px, rgb(15 15 15 / 40%) 0px 15px 40px;
     --shadow-color: rgb(22 24 27 / 22%) 0px 0px 0px 1px inset, rgb(0 0 0 / 25%) 0px 4px 4px -5px;
@@ -110,7 +110,7 @@ img.emoji {
     --secondaryFontColor: #555; 
     --thirdFontColor: #828c99;
     --linkColor: #1e99e6;
-    --bgBox: white;
+    --bgBox: #f4f8fb;
     --lightBlue: #d2eafa;
     --blue: #1e99e6;
     --red: #eb5757;
