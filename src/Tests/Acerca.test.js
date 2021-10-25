@@ -55,7 +55,7 @@ it("Acerca -> title and description", () => {
     })
     
     expect(container.querySelector('h1').textContent).toBe('Acerca')
-    expect(document.querySelector('title').textContent).toBe('Acerca - Nomoresheet')
+    expect(document.querySelector('title').textContent).toBe('Acerca — Nomoresheet')
     
 })
 it("Acerca -> displays admin box to write updates if admin connected", () => {
