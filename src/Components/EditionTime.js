@@ -10,9 +10,9 @@ const EditionTime = ({ date }) => {
     }
 
     return(
-        <div className = 'EditionTime' style = { style }>
-            {date ? `Editado el ${moment(date).format('DD/MM/YYYY [a las] hh:mm')}` : null}
-        </div>
+        <span className = 'EditionTime' style = { style }>
+            {date ? ` (editado el ${moment(date).format('DD/MM/YYYY')})` : null}
+        </span>
     )
 
 }

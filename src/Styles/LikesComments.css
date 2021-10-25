@@ -1,18 +1,19 @@
 .Votes{
     align-items: center;
     box-shadow: var(--shadow-color);
-    border-radius: 12px;
+    border-radius: 8px;
+    color: var(--secondaryFontColor);
     cursor: pointer;
     display: flex;
-    height: 50px;
-    font-size: small;
+    flex-direction: column;
+    height: 32px;
+    font-size: 12px;
     justify-content: center;
-    width: 50px;
+    line-height: 1;
+    padding: 0 12px;
 }
 .Votes span{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+    height: 16px;
 }
 .Votes.Voted{
     animation: fillVotes .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;

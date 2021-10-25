@@ -104,14 +104,11 @@
     align-items: center;
     display: flex;
 }
-
 .Question .Meta{
     display: flex;
     align-items: center;
-    justify-content: flex-end;
 }
 .Question .Meta > .CopyLink,
-.Question .Meta > .Likes,
 .Question .Meta > .Edit,
 .Question .Meta > .Delete{
     margin-left: 5px;

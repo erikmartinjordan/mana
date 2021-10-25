@@ -44,15 +44,14 @@ const Replies = ({ admin, postId, uid }) => {
                                     <Link to = {'/@' + reply.userUid}>{reply.userName}</Link>
                                     <Verified   uid = {reply.userUid}/>
                                 </span>
-                                <time>{moment(reply.timeStamp).fromNow()}</time>
+                                <time>{moment(reply.timeStamp).fromNow()} <EditionTime date = {reply.edited}/></time>
                             </span>
                         </div>
-                        <LikesComments postId = {postId} replyId = {key} authorId = {reply.userUid}/>
                     </div> 
                     <div className = 'Content'>
                         <Reply message = {reply.message}/>
                         <div className = 'Meta'>
-                            <EditionTime               date = {reply.edited}/>
+                            <LikesComments postId = {postId} replyId = {key} authorId = {reply.userUid}/>
                             <CopyLink                  postId = {postId} replyId = {key} authorId = {reply.userUid}/>
                             <EditPost   type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
                             <DeletePost type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>

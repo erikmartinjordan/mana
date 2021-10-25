@@ -111,10 +111,8 @@
 .Reply .Meta{
     display: flex;
     align-items: center;
-    justify-content: flex-end;
 }
 .Reply .Meta > .CopyLink,
-.Reply .Meta > .Likes-Comments,
 .Reply .Meta > .Edit,
 .Reply .Meta > .Delete{
     margin-left: 5px;

@@ -18,8 +18,8 @@ const CopyLink = ({postId, replyId, authorId}) => {
     }
 
     return(
-        <div className = 'CopyLink'>
-            <span onClick = {copy}><ShareAndroidIcon/></span>
+        <div className = 'CopyLink' onClick = {copy}>
+            <ShareAndroidIcon/>
             <Alert 
                 title      = {title} 
                 message    = {message} 

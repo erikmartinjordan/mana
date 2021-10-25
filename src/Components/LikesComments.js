@@ -79,7 +79,8 @@ const LikesComments = ({ authorId, postId, replyId }) => {
         <React.Fragment>
             <div className = 'Likes-Comments' onClick = {user ? handleVote : displayLoginModal}>
                 <div className = {Object.keys(votes).some(voteId => voteId === user?.uid) ? `Votes Voted` : `Votes`}>
-                    <span><TriangleUpIcon/> {Object.keys(votes).length}</span>
+                    <TriangleUpIcon/> 
+                    <span>{Object.keys(votes).length}</span>
                 </div>
                 <Alert 
                     title      = {alertTitle} 
