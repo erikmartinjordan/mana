@@ -3,6 +3,7 @@ import { Link }                                  from 'react-router-dom';
 import { LocationIcon, LinkIcon, ArrowDownIcon } from '@primer/octicons-react';
 import Donate                                    from './Donate';
 import UserAvatar                                from './UserAvatar';
+import ProBadge                                  from './ProBadge';
 import GetName                                   from '../Functions/GetName';
 import GetBio                                    from '../Functions/GetBio';
 import GetCity                                   from '../Functions/GetCity';
@@ -48,7 +49,9 @@ const PublicInfo = (props) => {
                 <div className = 'Header'>
                     {stripeUserId ? <Donate name = {name} stripeUserId = {stripeUserId}/> : null}
                     <UserAvatar user = {user}/>
-                    <h2>{name}</h2>
+                    <div className = 'Name'>
+                        <h2>{name}</h2> <ProBadge user = {user}/>
+                    </div>
                     <div className = 'Bio'>{bio}</div>
                     <div className = 'City'>{city ? <><LocationIcon/> {city}</> : null}</div>
                     <div className = 'Web'>{web ? <><LinkIcon/> <a rel = "nofollow me" href = {`https://${web}`}>{web}</a></> : null}</div>

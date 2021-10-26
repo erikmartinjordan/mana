@@ -1,0 +1,11 @@
+.ProBadge{
+    border-radius: 4px;
+    color: white;
+    font-size: 9px;
+    background-color: var(--greenMint);
+    font-weight: 700;
+    line-height: 0.8;
+    padding: 8px;
+    text-transform: uppercase;
+    width: max-content;
+}
