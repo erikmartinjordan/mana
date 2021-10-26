@@ -7,8 +7,8 @@
 }
 .Tags .Tag{
     align-items: center;
-    background: var(--bgBox);
     border-radius: 12px;
+    box-shadow: var(--shadow-color);
     display: flex;
     margin-bottom: 10px;
     padding: 12px;
@@ -20,7 +20,7 @@
     align-items: center;
     background: var(--nmsLogo);
     border: none;
-    border-radius: 50%;
+    border-radius: 6px;
     color: white;
     display: flex;
     height: 30px;
@@ -50,9 +50,9 @@
     text-overflow: ellipsis; 
 }
 .Tags .Tag .Counter{
-    background: var(--lightBlue);
     border-radius: 50px;
     color: var(--blue);
-    font-size: x-small;
+    font-size: 12px;
+    font-weight: 500;
     padding: 5px;
 }

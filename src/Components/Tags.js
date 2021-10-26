@@ -35,21 +35,10 @@ const Tags = ({numberOfTags = 10}) => {
     return(
         <div className = 'Tags'>
             <h2>¿De qué se habla aquí?</h2>
-            <p>Los temas más comentados en la comunidad:</p>
+            <p>Los diez <em>tags</em> más utilizados:</p>
             {tags.map(([tag, {counter}], key) => (
                 <Link to = {`/tag/${tag}`} className = 'Tag' key = {key}>
-                    <div className = 'Icon'>
-                        { 
-                            {
-                                'tailandia':  <ThaiFlag/>,
-                                'actualidad': <Twemoji emoji = '📰'/>,
-                                'tecnologia': <Twemoji emoji = '🕹️'/>,
-                                'relaciones': <Twemoji emoji = '💖'/>,
-                                'viajar':     <Twemoji emoji = '🧭'/>
-                                
-                            }[tag] || '#'
-                        }
-                    </div>
+                    <div className = 'Icon'>#</div>
                     <div className = 'NameCounter'>
                         <div className = 'Name'>{tag}</div>
                         <div className = 'Counter'>{counter} {counter > 1 ? 'posts' : 'post'}</div>

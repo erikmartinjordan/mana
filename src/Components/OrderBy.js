@@ -5,7 +5,7 @@ import '../Styles/OrderBy.css'
 
 const OrderBy = ({filter, setFilter, setFrom, setTo}) => {
 
-    const [date, setDate] = useState('M')
+    const [date, setDate] = useState('W')
 
     useEffect(() => {
 
@@ -39,8 +39,8 @@ const OrderBy = ({filter, setFilter, setFrom, setTo}) => {
                     <div className = 'Selector'>
                         <select value = {date} onChange = {(e) => setDate(e.target.value)}>
                             <option value = 'D'>Hoy</option>
-                            <option value = 'W'>Esta semana</option>
-                            <option value = 'M'>Este mes</option>
+                            <option value = 'W'>Semana</option>
+                            <option value = 'M'>Mes</option>
                         </select>
                         <TriangleDownIcon/>
                     </div>

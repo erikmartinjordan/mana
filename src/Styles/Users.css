@@ -10,10 +10,10 @@
 }
 .Users .User{
     align-items: center;
-    background: var(--bgBox);
     border-radius: 12px;
+    box-shadow: var(--shadow-color);
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 20px;
     position: relative;
 }
@@ -22,22 +22,28 @@
     font-size: x-large;
     font-weight: 900;
     height: 50px;
-    right: 0px;
+    right: 5px;
     padding: 2px;
     position: absolute;
-    top: 0px;
+    top: 5px;
     width: 50px;
 }
-.Users .User .Progress{
-    height: 70px;
-    margin-right: 20px;
-    width: 70px;
+.Users .User .UserAvatar,
+.Users .User .UserAvatar img{
+    height: 30px;
+    width: 30px;
+}
+.Users .User .UserAvatar{
+    margin-right: 10px;
 }
 .Users .User .Points{
-    font-weight: bold;
+    color: var(--thirdFontColor);
+    font-size: 9px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
 }
 .Users .NamePoints{
-    line-height: 1.7;
+    line-height: 1.5;
 }
 @media (hover: hover){
     

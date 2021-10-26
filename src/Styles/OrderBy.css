@@ -14,7 +14,7 @@
     padding-bottom: 8px;
 }
 .OrderBy .Selected{
-    border-bottom: 1px solid var(--primaryFontColor);
+    border-bottom: 2px solid var(--primaryFontColor);
     color: var(--primaryFontColor);
     margin-bottom: -1px;
 }
@@ -22,6 +22,7 @@
     align-items: center;
     border-radius: 6px;
     display: flex;
+    min-width: 75px;
     position: relative;
 }
 .OrderBy select{
@@ -40,14 +41,13 @@
     z-index: -1;
 }
 @media(max-width: 768px){
-    
-    .OrderBy div{
-        align-items: center;
-        display: flex;
-    }
     .OrderBy{
         overflow-x: auto;
         overflow-y: hidden;
+    }
+    .OrderBy div{
+        align-items: center;
+        display: flex;
     }
     
 }

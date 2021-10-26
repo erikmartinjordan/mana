@@ -31,14 +31,14 @@ const Users = ({numberOfUsers = 10}) => {
     return(
         <div className = 'Users'>
             <h2>Ranking</h2>
-            <p>Los usuarios con más reputación:</p>
+            <p>Los diez usuarios con más reputación:</p>
             {users.map(([id, user], index) => 
                 <Link to = {'/@' + id} className = 'User' key = {index}>
                     <div className = 'Rank'>#{index + 1}</div>
                     <UserAvatar user = {{uid: id, photoURL: user.profilePic}}/>
                     <div className = 'NamePoints'>
                         <div>{user.name}</div>
-                        <div><span className = 'Points'>{user.numPoints}</span> puntos</div>
+                        <div className = 'Points'>{user.numPoints} puntos</div>
                     </div>
                 </Link>
             )}
