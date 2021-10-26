@@ -7,7 +7,6 @@ import UserAvatar                                                   from './User
 import ToggleButton                                                 from './ToggleButton'
 import DeleteAccount                                                from './DeleteAccount'
 import DowngradeToFreePlan                                          from './DowngradeToFreePlan'
-import ChangeBackgroundImage                                        from './ChangeBackgroundImage'
 import ChangeBio                                                    from './ChangeBio'
 import ChangeLocation                                               from './ChangeLocation'
 import ChangeWebsite                                                from './ChangeWebsite'
@@ -229,11 +228,6 @@ const Account = ({user, infoUser, nextPayment, uid}) => {
                 <div className = 'Title'>Correo</div>
                 <div className = 'Num'>{user?.email}</div>
                 <div className = 'Comment'>Tu correo no se muestra públicamente ni se utiliza en ningún momento.</div>
-            </div>
-            <div className = 'Bloque'>
-                <div className = 'Title'>Fondo</div>
-                {infoUser?.backgroundPic ? <img className = 'Background' src = {infoUser.backgroundPic}/> : null}
-                <ChangeBackgroundImage user = {user}/>
             </div>
             <div className = 'Bloque'>
                 <div className = 'Title'>Tipo de cuenta</div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { db, onValue, ref }    from './Firebase'
 
-const GetBackgroundImg = (uid) => {
+const GetBio = (uid) => {
     
     const [bio, setBio] = useState(null)
     
@@ -24,4 +24,4 @@ const GetBackgroundImg = (uid) => {
     return bio
 }
 
-export default GetBackgroundImg
+export default GetBio

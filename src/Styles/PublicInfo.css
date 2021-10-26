@@ -2,40 +2,33 @@
     padding: 20px;
     width: 100%;
 }
-.Public-Info .Header::before{
-    border-radius: 12px 12px 0px 0px;
-    content: "";
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background-color: rgba(0, 0, 0, 0.25);
-}
-.Public-Info .Header{
-    margin: -20px -20px 0px -20px;
-    border-radius: 12px 12px 0px 0px;
-    padding: 50px;
-    background-size: cover;
-    position: relative;
-}
 .Public-Info .Header h2{
-    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    margin-top: 24px;
     position: relative;
+    text-align: left;
+}
+.Public-Info .Header .Bio,
+.Public-Info .Header .City,
+.Public-Info .Header .Web{
+    color: var(--thirdFontColor);
+    font-size: 14px;
+}
+.Public-Info .Stats{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 .Public-Info .Datos{
-    background: var(--bgBox);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 500px;
     margin: auto;
-    padding: 20px;
     width: 100%;
-}
-.Public-Info .Datos .Bloque {
-    margin-bottom: 20px;
 }
 .Public-Info .Datos .Title{
     font-size: small;
@@ -43,21 +36,22 @@
 }
 .Public-Info .Datos .Comment{
     color: var(--thirdFontColor);
-    font-size: small;
-    line-height: 1.5;
+    font-size: 12px;
+    line-height: 1;
+    text-align: center;
 }
 .Public-Info .Datos .Num{
-    background: var(--bgColor);
-    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 500;
     margin-bottom: 5px;
     margin-top: 5px;
-    padding: 5px;
+    text-align: center;
     width: 100%;
 }
 .Public-Info .Datos .UserAvatar{
-    height: 100px;
-    margin: auto;
-    width: 100px;
+    height: 80px;
+    margin-top: 15px;
+    width: 80px;
 }
 .Public-Info .Datos .UserAvatar img{
     height: 100%;
@@ -80,26 +74,32 @@
     margin-top: 20px;
 }
 .Public-Info .Activity .Menu{
-    border-bottom: 3px solid var(--bgColor);
+    border-bottom: 1px solid rgba(1, 1, 1, 0.1);
+    color: var(--thirdFontColor);
     display: flex;
     font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 15px;
 }
 .Public-Info .Activity .Menu div{
     cursor: pointer;
-    font-weight: 600;
     margin-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 .Public-Info .Activity .Menu .Selected{
-    border-bottom: 4px solid var(--blue);
+    border-bottom: 1px solid var(--primaryFontColor);
+    color: var(--primaryFontColor);
+    margin-bottom: -1px;
 }
 .Public-Info .Activity a{
     font-size: 12px;
+    font-weight: 500;
     margin-top: 5px;
 }
 .Public-Info .Activity button{
-    color: var(--blue);
     margin: 0;
-    margin-top: 10px;
+    margin-top: 15px;
     width: max-content;
 }
 .Public-Info .Ranking{
