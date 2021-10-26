@@ -1,26 +1,26 @@
-import React, { useEffect, useState }     from 'react';
-import { Switch, Route, withRouter }      from 'react-router-dom';
-import Forum                              from './Forum';
-import Detail                             from './Detail';
-import Default                            from './Default';
-import Nav                                from './Nav';
-import Footer                             from './Footer';
-import Acerca                             from './Acerca';
-import PublicInfo                         from './PublicInfo';
-import Stats                              from './Stats';
-import Privacy                            from './Privacy';
-import Guidelines                         from './Guidelines';
-import Helper                             from './Helper';
-import DonateSuccess                      from './DonateSuccess';
-import DonateFail                         from './DonateFail';
-import TrafficStats                       from './TrafficStats';
-import Tags                               from './Tags';
-import Users                              from './Users';
-import Verify                             from './Verify';
-import UserContext                        from '../Functions/UserContext';
-import { onAuthStateChanged, auth }       from '../Functions/Firebase';
-import FetchAdmin                         from '../Functions/FetchAdmin';
-import '../Styles/App.css';
+import React, { useEffect, useState }     from 'react'
+import { Switch, Route, withRouter }      from 'react-router-dom'
+import Forum                              from './Forum'
+import Detail                             from './Detail'
+import Default                            from './Default'
+import Nav                                from './Nav'
+import Footer                             from './Footer'
+import Acerca                             from './Acerca'
+import PublicInfo                         from './PublicInfo'
+import Stats                              from './Stats'
+import Privacy                            from './Privacy'
+import Guidelines                         from './Guidelines'
+import Helper                             from './Helper'
+import DonateSuccess                      from './DonateSuccess'
+import DonateFail                         from './DonateFail'
+import TrafficStats                       from './TrafficStats'
+import Tags                               from './Tags'
+import Users                              from './Users'
+import Verify                             from './Verify'
+import UserContext                        from '../Functions/UserContext'
+import { onAuthStateChanged, auth }       from '../Functions/Firebase'
+import FetchAdmin                         from '../Functions/FetchAdmin'
+import '../Styles/App.css'
 
 console.log(`
 
@@ -34,12 +34,12 @@ console.log(`
 Creado desde Barcelona.
 © 2015 – ${(new Date().getFullYear())}, Erik Martín Jordán. 
 
-`);
+`)
 
 const App  = () => {
     
-    const [user, setUser]   = useState(null);
-    const [admin, setAdmin] = useState(null);
+    const [user, setUser]   = useState(null)
+    const [admin, setAdmin] = useState(null)
     
     useEffect(() => {
         
@@ -47,20 +47,20 @@ const App  = () => {
             
             if(user){
                 
-                setUser(user);    
-                setAdmin(await FetchAdmin(user));
+                setUser(user)    
+                setAdmin(await FetchAdmin(user))
                 
             }
             else{
                 
-                setUser(false);
-                setAdmin(false);
+                setUser(false)
+                setAdmin(false)
                 
             }
             
-        });
+        })
         
-    }, []);
+    }, [])
    
     return (
         <UserContext.Provider value = {{admin, user}}>
@@ -91,8 +91,8 @@ const App  = () => {
                 <Route                                         component = {Footer}/>
             </Switch>
         </UserContext.Provider>
-    );
+    )
     
 }
 
-export default withRouter(App);
+export default withRouter(App)

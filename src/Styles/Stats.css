@@ -12,8 +12,8 @@
     width: 100%;
 }
 .Estadisticas .Parrilla .Datos{
-    background: var(--bgBox);
     border-radius: 12px;
+    box-shadow: var(--shadow-color);
     padding: 10px;
     margin: 5px;
     width: 100%;
@@ -50,8 +50,8 @@
     width: 600px;
 }
 .Estadisticas .Ranking{
-    background: var(--bgBox);
     border-radius: 12px;
+    box-shadow: var(--shadow-color);
     padding: 20px;
 }
 .Estadisticas .Ranking .Row{
@@ -63,9 +63,9 @@
     background: rgb(62,153,237);
     border-radius: 50%;
     display: inline-block;
-    height: 10px;
+    height: 7px;
     margin-left: 10px;
-    width: 10px;
+    width: 7px;
 }
 .Estadisticas .Url{
     overflow: hidden;
@@ -74,8 +74,8 @@
 }
 .Estadisticas .Publicaciones,
 .Estadisticas .Graficos{
-    background: var(--bgBox);
     border-radius: 12px;
+    box-shadow: var(--shadow-color);
     padding: 20px;
     width: 100%;
 }
@@ -86,10 +86,11 @@
     }
     .Estadisticas .Parrilla{
         flex-direction: column;
+        margin-bottom: 5px;
     }
 }
 @keyframes pulse {
     0%   {box-shadow: 0 0 0 0    rgba(62,153,237, 0.4);}
-    70%  {box-shadow: 0 0 0 20px rgba(62,153,237, 0);}
+    70%  {box-shadow: 0 0 0 10px rgba(62,153,237, 0);}
     100% {box-shadow: 0 0 0 0    rgba(62,153,237, 0);}
 }

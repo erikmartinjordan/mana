@@ -2,7 +2,7 @@ import React, { useState, useEffect }                                           
 import { Link }                                                                                                                      from 'react-router-dom'
 import moment                                                                                                                        from 'moment'
 import Chart                                                                                                                         from 'chart.js/auto'
-import { db, endAt, limitToLast, onValue, orderByKey, startAt, query, ref }                                                                          from '../Functions/Firebase'
+import { db, endAt, limitToLast, onValue, orderByKey, startAt, query, ref }                                                          from '../Functions/Firebase'
 import { getUsers, getSessions, getPageviews, getSessionDuration, getRealTimeUsers, getPageviewsSession, getBounceRate, getRanking } from '../Functions/Analytics'
 import '../Styles/Stats.css'
 
@@ -20,9 +20,9 @@ const Stats = () => {
       data: {
         labels: [],
         datasets: [{
-          label: 'Usuarios',
+          label: 'Visitas',
           borderColor: '#48ac98',
-          borderWidth: 4,
+          borderWidth: 3,
           backgroundColor: 'rgba(72, 172, 152, 1)',
           borderRadius: 10,
           pointRadius: 0,
@@ -30,15 +30,15 @@ const Stats = () => {
         },{
           label: 'Sesiones',
           borderColor: '#778dff',
-          borderWidth: 4,
+          borderWidth: 3,
           backgroundColor: 'rgba(119, 141, 255, 1)',
           borderRadius: 10,
           pointRadius: 0,
           data: []  
         },{
-          label: 'Visitas',
+          label: 'Usuarios',
           borderColor: '#1e99e6',
-          borderWidth: 4,
+          borderWidth: 3,
           backgroundColor: 'rgba(30, 153, 230, 1)',
           borderRadius: 10,
           pointRadius: 0,
@@ -53,6 +53,23 @@ const Stats = () => {
           },
           legend: {
             display: false
+          },
+          tooltip: {
+            bodyFont: {
+                weight: 500
+            },
+            boxHeight: 2,
+            boxWidth: 2, 
+            caretSize: 0,
+            displayColors: false,
+            titleAlign: 'center',
+            titleColor: 'gray',
+            callbacks: {
+                label: function(context) {
+ 
+                    return context.parsed.y + ' ' + context.dataset.label.toLowerCase()
+                }
+            }
           }
         },
         interaction: {
@@ -117,6 +134,23 @@ const Stats = () => {
         plugins:{
             legend:{
                 display: false
+            },
+            tooltip: {
+                bodyFont: {
+                    weight: 500
+                },
+                boxHeight: 2,
+                boxWidth: 2, 
+                caretSize: 0,
+                displayColors: false,
+                titleAlign: 'center',
+                titleColor: 'gray',
+                callbacks: {
+                    label: function(context) {
+     
+                        return context.parsed.y + ' ' + context.dataset.label.toLowerCase()
+                    }
+                }
             }
         },
         scales: {
@@ -167,15 +201,14 @@ const Stats = () => {
 
     useEffect(() => {
 
-        let today = moment().format('YYYYMMDD')
-
-        let unsubscribe = onValue(ref(db, `analytics/${today}`), snapshot => {
+        let unsubscribe = onValue(ref(db, `concurrent`), snapshot => {
 
             if(snapshot){
 
                 let data = snapshot.val()
                 
                 let realTime = getRealTimeUsers(data)
+
                 setRealTimeUsers(realTime)
 
             }
@@ -217,9 +250,9 @@ const Stats = () => {
                 setRanking(ranking)
 
                 graph1.data.labels = days
-                graph1.data.datasets['0'].data = users
+                graph1.data.datasets['0'].data = pageviews
                 graph1.data.datasets['1'].data = sessions
-                graph1.data.datasets['2'].data = pageviews
+                graph1.data.datasets['2'].data = users
 
                 graph1.type = interval === 1 ? 'bar' : 'line'
                 
@@ -283,7 +316,6 @@ const Stats = () => {
                 <button onClick = {() => setInterval(1)}   className = {interval === 1   ? 'Selected' : null}>Día</button>
                 <button onClick = {() => setInterval(7)}   className = {interval === 7   ? 'Selected' : null}>Semana</button>
                 <button onClick = {() => setInterval(30)}  className = {interval === 30  ? 'Selected' : null}>Mes</button>
-                <button onClick = {() => setInterval(365)} className = {interval === 365 ? 'Selected' : null}>Año</button>
             </div>
             
             <div className = 'Parrilla'>

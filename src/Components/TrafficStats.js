@@ -1,8 +1,8 @@
-import { useEffect, useState }                   from 'react'
-import { useHistory }                            from 'react-router-dom'
-import Fingerprint                               from 'fingerprintjs'
-import moment                                    from 'moment'
-import { db, ref, push, runTransaction, update } from '../Functions/Firebase'
+import { useEffect, useState }                                          from 'react'
+import { useHistory }                                                   from 'react-router-dom'
+import Fingerprint                                                      from 'fingerprintjs'
+import moment                                                           from 'moment'
+import { db, onDisconnect, onValue, ref, push, runTransaction, update } from '../Functions/Firebase'
 
 let fingerprint = new Fingerprint().get()
 let date  = moment()
@@ -53,6 +53,22 @@ const TrafficStats = () => {
         return () => window.removeEventListener('scroll', scrollListener) 
         
     }, [sessionId, history.location.pathname])
+
+
+    useEffect(() => {
+
+        onValue(ref(db, '.info/connected'), snapshot => {
+            
+            if (snapshot.val()) {
+
+                let con = push(ref(db, 'concurrent'), {connected: true})
+
+                onDisconnect(con).remove()
+
+            }
+        })          
+        
+    }, [])
     
     return null
     

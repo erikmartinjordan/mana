@@ -88,30 +88,8 @@ export const getSessionDuration = (data) => {
 }
 
 export const getRealTimeUsers = (data) => {
-    
-    let realTimeUsers = 0;
-    
-    let now = (new Date()).getTime();
-        
-    Object.keys(data).forEach(uid => {
-        
-        let realTimeSession = false;
-        
-        Object.keys(data[uid]).forEach(session => {
-            
-            if(now - data[uid][session].timeStampEnd <= 5 * 60 * 1000){
-                
-                realTimeSession = true;
-                
-            }
-            
-        });
-        
-        if(realTimeSession) realTimeUsers ++;
-        
-    });
-    
-    return realTimeUsers;
+
+    return (Object.keys(data || {}).length) 
     
 }
 
