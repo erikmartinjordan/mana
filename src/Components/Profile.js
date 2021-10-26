@@ -331,7 +331,7 @@ const Premium = ({user, infoUser}) => {
                     ? <div className = 'current'>Plan actual</div>
                     : infoUser?.account === 'premium'
                     ? <button onClick = {() => {setConfirmation(true)}} className = 'send'>Apuntarse</button>
-                    : <button disabled = {true} className = 'send'>Tienes tarifa infinita</button>
+                    : <button disabled = {true}>Tienes tarifa infinita</button>
                     }
                     <ul className = 'Features'>
                         <li>Vota artículos</li>
@@ -350,7 +350,7 @@ const Premium = ({user, infoUser}) => {
                     ? <button onClick = {() => setPaymentModal('premium')} className = 'send' disabled = {user?.isAnonymous}>Apuntarse</button>
                     : infoUser?.account === 'premium'
                     ? <div className = 'current'>Plan actual</div>
-                    : <button disabled = {true} className = 'send'>Tienes tarifa infinita</button>
+                    : <button disabled = {true}>Tienes tarifa infinita</button>
                     }
                     <ul className = 'Features'>
                         <li>Vota artículos</li>

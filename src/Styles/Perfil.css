@@ -11,7 +11,7 @@
     z-index: 3;
 }
 .Perfil-Wrap{
-    background: var(--bgBox);
+    background: var(--bgColor);
     border-radius: 12px;
     box-shadow: 0px 2px 6px rgba(0,0,0,.1);
     cursor: default;
@@ -34,7 +34,7 @@
     width: 100px;
 }
 .Perfil .Sidebar{
-    background: var(--bgColor);
+    background: var(--bgBox);
     border-radius: 12px 0px 0px 5px;
     padding: 20px;
     width: 300px;
@@ -112,7 +112,7 @@
     line-height: 1.5;
 }
 .Perfil .Datos .Num{
-    background: var(--bgColor);
+    background: var(--bgBox);
     border-radius: 12px;
     margin-bottom: 5px;
     margin-top: 5px;
@@ -136,7 +136,7 @@
     width: 30%;
 }
 .Perfil .Premium .Account-Block ul.Features{
-    background: var(--bgColor);
+    background: var(--bgBox);
     border-radius: 12px;
     color: var(--thirdFontColor);
     font-size: small;
@@ -182,9 +182,15 @@
     margin-top: 10px;
     width: max-content!important;
 }
+.Perfil button:disabled{
+    background: none;
+    color: var(--primaryFontColor);
+    font-size: small;
+    opacity: 0.5;
+}
 .Perfil .current{
     align-items: center;
-    background-color: var(--bgColor);
+    background-color: var(--bgBox);
     border: none;
     border-radius: 50px;
     color: var(--primaryFontColor);
@@ -199,6 +205,11 @@
 }
 .Perfil .BackButtonmobile{
     display: none;
+}
+.Perfil .UserAvatar,
+.Perfil .UserAvatar img{
+    height: 50px;
+    width: 50px;
 }
 @media (max-width: 768px){
     .Perfil{

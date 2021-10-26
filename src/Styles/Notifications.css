@@ -1,6 +1,6 @@
 .Notifications{
     align-items: center;
-    background: var(--bgBox);
+    background: var(--bgColor);
     border-radius: 0px 5px 5px 0px;
     justify-content: center;
     overflow-y: scroll;
@@ -11,7 +11,7 @@
     width: 100%;
 }
 .Notifications .Notifications-Menu{
-    background: var(--bgBox);
+    background: var(--bgColor);
     border-radius: 0px 5px 5px 0px;
     box-sizing: border-box;
     color: var(--darkGray);

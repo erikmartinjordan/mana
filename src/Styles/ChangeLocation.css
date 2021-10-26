@@ -1,5 +1,5 @@
 .ChangeLocation input{
-    background: var(--bgColor);
+    background: var(--bgBox);
     border: none;
     border-radius: 6px;
     color: var(--primaryFontColor);
