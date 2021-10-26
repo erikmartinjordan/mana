@@ -91,7 +91,7 @@ const Nav = () => {
                 <Link to = '/tags'><NumberIcon/>Temas</Link>
                 <Link to = '/usuarios'><TelescopeIcon/>Descubre</Link>
                 <div className = 'Separator'></div>
-                <NightModeToggleButton></NightModeToggleButton>
+                <NightModeToggleButton/>
                 <div className = 'Separator'></div>
                 <button to = '/' onClick = {() => setPost(true)}>Publicar</button>
             </div>

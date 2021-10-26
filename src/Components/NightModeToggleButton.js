@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import ToggleButton                   from './ToggleButton'
-import WorkMode                       from './WorkMode'
 import { SunIcon, MoonIcon }          from '@primer/octicons-react'
 
 const NightModeToggleButton = () => {
@@ -40,7 +39,6 @@ const NightModeToggleButton = () => {
     return  (
         <div className = 'Toggle-Button' onClick = {changeTheme} style = {{width: 'max-content'}}>
             <ToggleButton status = {theme === 'dark' ? 'on' : 'off'}  icon = {theme === 'dark' ? <MoonIcon/> : <SunIcon/>}/> 
-            <WorkMode theme = {theme} setTheme = {setTheme}/>
         </div>
     )
     
