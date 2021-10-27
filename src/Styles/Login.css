@@ -10,6 +10,9 @@
     width: 100vw;
     z-index: 2;
 }
+.Login.Unmount{
+    animation: bounce-back 0.2s ease-in-out;
+}
 .Login .Login-wrap{
     background: var(--bgColor);
     border-radius: 12px;

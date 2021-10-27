@@ -158,6 +158,10 @@ img.emoji {
     50%   {opacity: 0.5; transform: scale(1.1, 1.1);}
     100%  {opacity: 1;   transform: scale(1,1);}
 }
+@keyframes bounce-back{
+    0%    {opacity: 1;   transform: scale(1);}
+    100%  {opacity: 0;   transform: scale(0.8);}
+}
 @keyframes tilt{
     50%  {transform: rotate(20deg);}
     100% {transform: rotate(0deg);}
