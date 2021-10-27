@@ -116,8 +116,8 @@ const Login = ({ hide }) => {
                 <div style = {{display: 'flex', justifyContent: 'center'}}><NomoresheetLogo/></div>
                 <h3>Log in</h3>
                 <div className = 'Auth'>
-                    <GoogleButton  logIn = {logInGoogle}/>
-                    <AnonymButton  logIn = {logInAnonymous}/>
+                    <GoogleButton logIn = {logInGoogle}/>
+                    <AnonymButton logIn = {logInAnonymous}/>
                     <hr></hr>
                     <form onSubmit = {logInMagic}>
                         <input placeholder = 'jeff.bezos@amazon.com' onChange = {(e) => setEmail(e.target.value)}></input>
@@ -126,7 +126,7 @@ const Login = ({ hide }) => {
                 </div>
                 <div className = 'info'>El acceso vía Google previene el uso de cuentas falsas y <em>spam</em>. Nomoresheet no publicará en tu nombre, ni te enviará <em>mails</em>, ni utilizará tus datos.</div>
             </div>
-            <div className = 'Invisible' onClick = {() => unmount(100)}></div>
+            <div className = 'Invisible' onClick = {() => unmount(150)}></div>
         </div>  
     )
   
