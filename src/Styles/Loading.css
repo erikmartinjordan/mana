@@ -1,14 +1,14 @@
 .Loading{
+    align-items: center;
     animation: shimmer 0.75s infinite;
     background-image: linear-gradient(to right, var(--bgBox) 10%, var(--bgColor) 18%, var(--bgBox) 33%);
     background-size: 200% 100%;
     border-radius: 12px;
     display: flex;
-    flex: 1;
     height: 100%;
-    width: 100%;
     justify-content: center;
-    align-items: center;
+    margin-right: 20px;
+    width: 100%;
 }
 .Loading-Wrap{
     display: flex;
