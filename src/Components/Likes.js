@@ -64,15 +64,17 @@ const Likes = ({ authorId, postId }) => {
         
     }
     
-    const displayLoginModal = () => {
+    const displayLoginModal = (e) => {
         
+        e.preventDefault()
         
         setModal(true)
         
     }
     
-    const hideLoginModal = () => {
+    const hideLoginModal = (e) => {
         
+        e.preventDefault()
         
         setModal(false)
         
@@ -82,7 +84,8 @@ const Likes = ({ authorId, postId }) => {
         <React.Fragment>
             <div className = 'Likes' onClick = {user ? handleVote : displayLoginModal}>
                 <div className = {Object.keys(votes).some(voteId => voteId === user?.uid) ? `Votes Voted` : `Votes`}>
-                    <span><TriangleUpIcon/> {Object.keys(votes).length}</span>
+                    <TriangleUpIcon/> 
+                    <span>{Object.keys(votes).length}</span>
                 </div>
                 <Alert 
                     title      = {alertTitle} 
