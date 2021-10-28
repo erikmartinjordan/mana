@@ -2,10 +2,11 @@
     background: var(--bgBox);
     border-radius: 12px;
     margin-bottom: 20px;
+    padding: 20px;
 }
 .Privileges .Next{
     font-size: small;
-    padding: 20px;
+    margin-top: 10px;
 }
 .Privileges .Bar{
     background: var(--bgColor);

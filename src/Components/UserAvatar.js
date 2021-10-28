@@ -9,7 +9,7 @@ import '../Styles/UserAvatar.css'
 const UserAvatar = ({allowAnonymousUser, user}) => {  
     
     const [picture, setPicture] = useState(null)
-    const randomImg  = AnonymImg()
+    const randomImg = AnonymImg()
     
     useEffect( () => {
         

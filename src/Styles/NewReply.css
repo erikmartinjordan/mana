@@ -1,7 +1,7 @@
 .NewReply{
     align-items: center;
-    background: var(--bgBox);
     border-radius: 12px;
+    box-shadow: var(--shadow-color);
     display: flex;
     flex-direction: column;
     left: 0;
@@ -31,7 +31,7 @@
     width: 100%;
 }
 .NewReply textarea{
-    background: var(--bgBox);
+    background: transparent;
     border: none;
     border-radius: 12px;
     box-sizing: border-box;

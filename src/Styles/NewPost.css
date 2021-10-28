@@ -13,7 +13,7 @@
     z-index: 2;
 }
 .NewPost-Wrap{
-    background: var(--bgColor);
+    background: var(--bgBox);
     border-radius: 12px;
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
                 rgba(15, 15, 15, 0.2) 0px 5px 10px, 
@@ -27,7 +27,7 @@
     display: flex;
 }
 .NewPost input{
-    background: var(--bgBox)!important;
+    background: var(--bgColor)!important;
     border: none;
     border-radius: 12px;
     box-sizing: border-box;
@@ -40,7 +40,7 @@
     width: 100%;
 }
 .NewPost textarea{
-    background: var(--bgBox);
+    background: var(--bgColor);
     border: none;
     border-radius: 12px;
     box-sizing: border-box;
