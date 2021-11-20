@@ -76,11 +76,11 @@
         animation: slide_up 0.5s ease-in-out;
         background: transparent;
         justify-content: flex-end;
-        padding-bottom: env(safe-area-inset-bottom);
         z-index: 999999999999;
     }
     .NewPost-Wrap{
         border-radius: 12px 12px 0px 0px;
+        padding-bottom: env(safe-area-inset-bottom);
         position: relative;
     }
 }
