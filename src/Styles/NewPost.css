@@ -6,7 +6,6 @@
     height: 100vh;
     justify-content: center;
     left: 0;
-    padding: 5px;
     position: fixed;
     top: 0;
     width: 100vw;
@@ -25,6 +24,7 @@
 }
 .NewPost-Wrap .User{
     display: flex;
+    margin-bottom: 10px;
 }
 .NewPost input{
     background: var(--bgColor)!important;
@@ -70,4 +70,17 @@
     width: 100vw;
     height: 100vh;
     z-index: 1;
+}
+@media(max-width: 768px){
+    .NewPost{
+        animation: slide_up 0.5s ease-in-out;
+        background: transparent;
+        justify-content: flex-end;
+        padding-bottom: env(safe-area-inset-bottom);
+        z-index: 999999999999;
+    }
+    .NewPost-Wrap{
+        border-radius: 12px 12px 0px 0px;
+        position: relative;
+    }
 }
