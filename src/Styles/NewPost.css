@@ -1,6 +1,5 @@
 .NewPost{
     align-items: center;
-    background: rgba(15, 15, 15, 0.6);
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -21,6 +20,9 @@
     max-width: 600px;
     width: 100%;
     z-index: 2;
+}
+.NewPost-Wrap.Unmount{
+    animation: bounce-back 0.2s ease-in-out;
 }
 .NewPost-Wrap .User{
     display: flex;
@@ -81,6 +83,9 @@
         bottom: 0;
         padding-bottom: calc(20px + env(safe-area-inset-bottom));
         position: fixed;
+    }
+    .NewPost-Wrap.Unmount{
+        animation: slide_down 0.2s ease-in-out;
     }
     .NewPost-Wrap button{
         position: absolute;

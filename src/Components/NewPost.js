@@ -17,6 +17,7 @@ const NewPost = ({ hide }) => {
     
     const [alertTitle, setAlertTitle]       = useState(null)
     const [alertMessage, setAlertMessage]   = useState(null)
+    const [animation, setAnimation]         = useState('')
     const [avatar, setAvatar]               = useState(null)
     const [confirmation, setConfirmation]   = useState(false)
     const [displayAlert, setDisplayAlert]   = useState(false)
@@ -199,10 +200,24 @@ const NewPost = ({ hide }) => {
             reviewTimeLimits()
         
     }
+
+    const unmount = async (ms) => {
+
+        setConfirmation(false)
+
+        await new Promise(r => setTimeout(r, ms))
+
+        setAnimation('Unmount')
+
+        await new Promise(r => setTimeout(r, ms))
+
+        hide()
+
+    }
     
     return(
         <div className = 'NewPost'>
-            <div className = 'NewPost-Wrap'>
+            <div className = {`NewPost-Wrap ${animation}`}>
                 <div className = 'User'>
                     <UserAvatar user = {user} allowAnonymousUser = {true}/>
                     <span>{nickName ? nickName : user.displayName}</span>
@@ -232,7 +247,7 @@ const NewPost = ({ hide }) => {
                     <div className = 'Confirmation-Wrap'>
                         <p><b>¿Estás seguro de que quieres salir?</b></p>
                         <p>Si te marchas, se eliminará tu publicación y perderás lo escrito.</p>
-                        <button onClick = {hide}                         className = 'Yes-Delete'>Sí, salir y eliminar publicación</button>
+                        <button onClick = {() => unmount(150)}           className = 'Yes-Delete'>Sí, salir y eliminar publicación</button>
                         <button onClick = {() => setConfirmation(false)} className = 'No-Delete'>Cancelar</button>
                     </div>
                   </div>
