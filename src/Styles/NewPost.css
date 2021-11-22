@@ -1,7 +1,6 @@
 .NewPost{
     align-items: center;
     display: flex;
-    flex-direction: column;
     height: 100%;
     justify-content: center;
     left: 0;
@@ -80,15 +79,15 @@
     z-index: 1;
 }
 @media(max-width: 768px){
+    .NewPost{
+        align-items: flex-end;
+    }
     .NewPost-Wrap{
         animation: slide_up 0.5s ease-in-out;
         border-radius: 12px 12px 0px 0px;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        margin: inherit;
         padding-bottom: calc(20px + env(safe-area-inset-bottom));
-        position: fixed;
-        transform: translate3d(0, 0, 0);
+        position: relative;
     }
     .NewPost-Wrap.Unmount{
         animation: slide_down 0.2s ease-in-out;
