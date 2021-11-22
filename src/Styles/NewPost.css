@@ -74,13 +74,17 @@
 @media(max-width: 768px){
     .NewPost{
         animation: slide_up 0.5s ease-in-out;
-        background: transparent;
-        justify-content: flex-end;
         z-index: 999999999999;
     }
     .NewPost-Wrap{
         border-radius: 12px 12px 0px 0px;
-        padding-bottom: env(safe-area-inset-bottom);
-        position: relative;
+        bottom: 0;
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
+        position: fixed;
+    }
+    .NewPost-Wrap button{
+        position: absolute;
+        right: 20px;
+        top: calc(20px + 12px - 18.5px);
     }
 }
