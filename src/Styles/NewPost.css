@@ -88,6 +88,7 @@
         right: 0;
         padding-bottom: calc(20px + env(safe-area-inset-bottom));
         position: fixed;
+        transform: translate3d(0, 0, 0);
     }
     .NewPost-Wrap.Unmount{
         animation: slide_down 0.2s ease-in-out;
