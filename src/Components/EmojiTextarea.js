@@ -48,7 +48,6 @@ const EmojiTextarea = ({message, setMessage, maxLength}) => {
                 id          = 'textarea'
                 maxLength   = {maxLength}
                 onChange    = {handleMessage}
-                onKeyDown   = {(e) => {e.target.style.height = `${e.target.scrollHeight}px`}}
                 placeholder = 'Mensaje...'
                 value       = {message}
             />

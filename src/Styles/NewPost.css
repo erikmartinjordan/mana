@@ -16,7 +16,7 @@
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.2) 0px 5px 10px, rgba(15, 15, 15, 0.4) 0px 15px 40px;
     display: flex;
     flex-direction: column;
-    height: 600px;
+    height: min(calc(600px + env(safe-area-inset-bottom)), 80vh);
     margin: auto;
     max-width: 600px;
     overflow-y: auto;
