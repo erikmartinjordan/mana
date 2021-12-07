@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef }         from 'react'
-import TagInput                                       from 'react-easy-tag-input'
+import TagInput                                       from './TagInput'
 import Alert                                          from './Alert'
 import { db, get, onValue, ref, runTransaction, set } from '../Functions/Firebase'
 import GetPoints                                      from '../Functions/GetPoints'

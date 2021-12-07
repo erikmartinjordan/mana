@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState }                    from 'react'
-import TagInput                                                      from 'react-easy-tag-input'
+import TagInput                                                      from './TagInput'
 import Alert                                                         from './Alert'
 import UserAvatar                                                    from './UserAvatar'
 import Hints                                                         from './Hints'
