@@ -194,6 +194,7 @@ const NewReply = ({ postId }) => {
                             message     = {message}
                             setMessage  = {setMessage}
                             maxLength   = {maxLengthReply}
+                            type        = {'reply'}
                         />
                         <button className = 'send' onClick = {reviewMessage} disabled = {sending}>{sending ? <Loading type = {'Reply'}/> : 'Enviar'}</button>
                     </div>

@@ -231,6 +231,7 @@ const NewPost = ({ hide }) => {
                     message     = {message}
                     setMessage  = {setMessage}
                     maxLength   = {maxLengthPost}
+                    type        = {'post'}
                 />
                 <Hints mdFormat = {mdFormat}/>
                 <TagInput

@@ -40,9 +40,6 @@ const Hints = ({mdFormat}) => {
                 <div style = {{fontStyle:  'italic'}}>*Texto en cursiva*</div>
                 <div style = {{fontWeight: 'bold'}}>**Texto en negrita**</div>
                 <hr></hr>
-                <div className = 'Title'>Emojis</div>
-                <div>Teclea <kbd>:</kbd> y verás un listado de emojis</div>
-                <hr></hr>
                 <div className = 'Title'>Citas</div>
                 <div>> Ser o no ser, esa es la cuestión.</div>
                 <hr></hr>
