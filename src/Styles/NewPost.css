@@ -95,7 +95,7 @@
     .NewPost-Wrap.Unmount{
         animation: slide_down 0.2s ease-in-out;
     }
-    .NewPost-Wrap button{
+    .NewPost-Wrap button.send{
         position: absolute;
         right: 20px;
         top: calc(20px + 12px - 18.5px);

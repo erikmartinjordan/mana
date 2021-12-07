@@ -13,18 +13,16 @@
     z-index: 2;
 }
 .Edit .Edit-Message-Wrap{
-    background: var(--bgColor);
+    background: var(--bgBox);
     border-radius: 12px;
-    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
-                rgba(15, 15, 15, 0.2) 0px 5px 10px, 
-                rgba(15, 15, 15, 0.4) 0px 15px 40px;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.2) 0px 5px 10px, rgba(15, 15, 15, 0.4) 0px 15px 40px;
     padding: 20px;
     max-width: 600px;
     width: 100%;
     z-index: 2;
 }
 .Edit .Edit-Message-Wrap textarea{
-    background: var(--bgBox);
+    background: var(--bgColor);
     border: none;
     border-radius: 12px;
     box-sizing: border-box;
@@ -53,4 +51,10 @@
 }
 .Edit button.Edit:hover{
     background: var(--thirdFontColor);
+}
+.Edit button.bottom{
+    margin-top: 20px;
+}
+.Edit .Tags{
+    border: none;
 }
