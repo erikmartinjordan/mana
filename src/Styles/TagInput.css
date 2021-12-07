@@ -1,0 +1,52 @@
+.TagInput{
+    width: 100%;
+}
+.TagInput .Tags{
+    align-items: center;
+    background: var(--bgColor);
+    border: 1px solid gray;
+    border-radius: 5px;
+    display: flex;
+    padding: 5px!important;
+}
+.TagInput .Tag{
+    align-items: center;
+    background: rgba(1, 1, 1, 0.2);
+    border-radius: 10px!important;
+    display: flex;
+    margin: 0px 5px 0px 0px!important;
+    padding: 6px 12px!important;
+}
+.TagInput .Tag span{
+    white-space: nowrap;
+}
+.TagInput input{
+    background: transparent;
+    border: none;
+    outline: none;
+    margin: 0!important;
+    width: 100%;
+}
+.TagInput button.Delete{
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    color: var(--primaryFontColor);
+    display: flex;
+    font-weight: 600;
+    height: 20px;
+    justify-content: center;
+    margin-left: 10px;
+    outline: none;
+    width: 20px;
+}
+.TagInput .Hint{
+    font-size: small;
+}
+@media(hover:hover){
+    .TagInput button.Delete:hover{
+        background: transparent;
+        animation: swirl_in 0.5s ease-in-out;
+        font-weight: 900;
+    }
+}
