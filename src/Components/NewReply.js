@@ -201,7 +201,7 @@ const NewReply = ({ postId }) => {
                 </div>
                 <Hints mdFormat = {mdFormat}/>
             </React.Fragment>
-            : <button style = {{display: 'block', margin: 'auto'}}onClick = {() => setShowLogin(true)}>Responder</button>  
+            : <button id = 'reply' onClick = {() => setShowLogin(true)}>Responder</button>  
             }
             {displayAlert && <Alert title = {alertTitle} message = {alertMessage}/>}
             {showLogin    && <Login hide = {() => setShowLogin(false)}/>}

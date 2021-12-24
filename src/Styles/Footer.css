@@ -41,6 +41,7 @@
 @media (max-width: 600px){
     .Footer{
         padding-bottom: calc(48px + env(safe-area-inset-bottom));
+        z-index: 1;
     }
     .Footer .Wrap{
         align-items: center;

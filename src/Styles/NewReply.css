@@ -43,8 +43,19 @@
     resize: none;
     width: 100%;
 }
+button#reply{
+    display: block;
+    margin: auto;
+}
 @media (max-width: 768px){
     .NewReply textarea{
         font-size: 14px;
+    }
+    button#reply{
+        bottom: calc(20px + env(safe-area-inset-bottom));
+        left: 0;
+        position: fixed;
+        right: 0;
+        z-index: 0;
     }
 }
