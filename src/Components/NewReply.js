@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState }    from 'react'
+import { Link }                                      from 'react-router-dom'
 import Login                                         from './Login'
 import Alert                                         from './Alert'
 import UserAvatar                                    from './UserAvatar'
@@ -9,6 +10,7 @@ import UserContext                                   from '../Functions/UserCont
 import { db, increment, onValue, push, ref, update } from '../Functions/Firebase'
 import GetPoints                                     from '../Functions/GetPoints'
 import GetLevel                                      from '../Functions/GetLevelAndPointsToNextLevel'
+import GetNumberOfReplies                            from '../Functions/GetNumberOfReplies'
 import insertNotificationAndReputation               from '../Functions/InsertNotificationAndReputationIntoDatabase'
 import Accounts                                      from '../Rules/Accounts'
 import '../Styles/NewReply.css'
@@ -29,6 +31,7 @@ const NewReply = ({ postId }) => {
     const { user }                                = useContext(UserContext)
     const points                                  = GetPoints(nickName ? nickName : user ? user.uid : null)
     const level                                   = GetLevel(points)[0]
+    const numReplies                              = GetNumberOfReplies(user?.uid)
     
     useEffect( () => {
         
@@ -48,7 +51,7 @@ const NewReply = ({ postId }) => {
                     let timeSpanReplies
                     let maxLengthReply
                     
-                    if(userInfo.account){
+                    if(userInfo.account === 'premium' || userInfo.account === 'infinita'){
                         
                         timeSpanReplies = Accounts[userInfo.account].messages.timeSpanReplies
                         maxLengthReply  = Accounts[userInfo.account].messages.maxLength
@@ -197,6 +200,12 @@ const NewReply = ({ postId }) => {
                             type        = {'reply'}
                         />
                         <button className = 'send' onClick = {reviewMessage} disabled = {sending}>{sending ? <Loading type = {'Reply'}/> : 'Enviar'}</button>
+                        { numReplies === 0 
+                        ? <div className = 'NewUser'>
+                            👋 Hola, antes de publicar, échale un vistazo a las <Link to = '/guias'>guías de publicación</Link>.
+                          </div>
+                        : null
+                        }
                     </div>
                 </div>
                 <Hints mdFormat = {mdFormat}/>
