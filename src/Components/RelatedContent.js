@@ -29,7 +29,10 @@ const RelatedContent = ({ postId }) => {
 
                     onValue(query(ref(db, 'posts'), orderByChild('timeStamp'), endAt(ran), limitToLast(num)), snapshot_3 => {
              
-                        let posts = Object.entries(snapshot_3.val() || {}).map(([url, {title, replies}]) => ({url, title, replies})).reverse()
+                        let posts = Object.entries(snapshot_3.val() || {})
+                            .map(([url, {title, replies}]) => ({url, title, replies}))
+                            .filter(post => post.url !== postId )
+                            .reverse()
                             
                         setRandom(posts)
 
@@ -52,8 +55,10 @@ const RelatedContent = ({ postId }) => {
             let related = (await get(query(ref(db, `posts/${postId}/related`), orderByChild('hits'), limitToFirst(num)))).val()
             
             if(related){
+
+                let relatedMaxMin = Object.entries(related).sort((a, b) => a[1].hits < b[1].hits ? 1 : a[1].hits > b[1].hits ? -1 : 0)
                 
-                let posts = Object.keys(related).map(async url => {
+                let posts = relatedMaxMin.map(async ([url, _]) => {
 
                     let title =   (await get(ref(db, `posts/${url}/title`))).val()
                     let replies = (await get(ref(db, `posts/${url}/replies`))).val()
