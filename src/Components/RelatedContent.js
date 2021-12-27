@@ -81,21 +81,7 @@ const RelatedContent = ({ postId }) => {
     
     useEffect(() => {    
         
-        let group = new Set()
-        
-        let union = [...related, ...random]
-        
-        let unique = union.filter(post => {
-            
-            let urlTitle = JSON.stringify(post)
-            
-            let groupHasPost = group.has(urlTitle)
-            
-            group.add(urlTitle)
-            
-            return groupHasPost ? false : true
-            
-        })
+        let unique = Array.from(new Set([...related, ...random].map(JSON.stringify))).map(JSON.parse)
         
         setCombo(unique)
         
