@@ -41,4 +41,4 @@ También se pueden desbloquear las opciones y límites de publicación mediante 
 
 ## Copyright y licencia
 
-Copyright (c) 2015 — 2021 Nomoresheet — Licencia [MIT](https://github.com/erikmartinjordan/nomoresheet/blob/master/LICENSE).
+Copyright (c) 2015 — 2022 Nomoresheet — Licencia [MIT](https://github.com/erikmartinjordan/nomoresheet/blob/master/LICENSE).
