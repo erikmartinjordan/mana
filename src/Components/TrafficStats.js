@@ -57,13 +57,38 @@ const TrafficStats = () => {
 
     useEffect(() => {
 
+        const onIdleTabGoOffline = (ms) => {
+
+            let timer
+
+            document.addEventListener('visibilitychange', () => {
+    
+                if(document.hidden){
+        
+                    timer = setTimeout(() => goOffline(db), ms)
+        
+                }
+                else{
+        
+                    clearTimeout(timer)
+    
+                    goOnline(db)
+        
+                }
+        
+            })
+
+        }
+
         onValue(ref(db, '.info/connected'), snapshot => {
             
             if (snapshot.val()) {
 
-                let con = push(ref(db, 'concurrent'), {connected: true})
+                let con = push(ref(db, 'concurrent'), { connected: 'a__' + moment().format('DD/MM/YYYY HH:mm') })
 
                 onDisconnect(con).remove()
+
+                onIdleTabGoOffline(10 * 60 * 1000)
 
             }
         })          
