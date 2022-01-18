@@ -1,8 +1,8 @@
-import { useEffect, useState }                                          from 'react'
-import { useHistory }                                                   from 'react-router-dom'
-import Fingerprint                                                      from 'fingerprintjs'
-import moment                                                           from 'moment'
-import { db, onDisconnect, onValue, ref, push, runTransaction, update } from '../Functions/Firebase'
+import { useEffect, useState }                                                               from 'react'
+import { useHistory }                                                                        from 'react-router-dom'
+import Fingerprint                                                                           from 'fingerprintjs'
+import moment                                                                                from 'moment'
+import { db, goOnline, goOffline, onDisconnect, onValue, ref, push, runTransaction, update } from '../Functions/Firebase'
 
 let fingerprint = new Fingerprint().get()
 let date  = moment()
