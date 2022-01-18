@@ -96,7 +96,6 @@ const NewReply = ({ postId }) => {
         setDisplayAlert(true)
         setAlertTitle(title)
         setAlertMessage(message)
-        setTimeout(() => setDisplayAlert(false), 2000)
         
     }
     
@@ -159,7 +158,7 @@ const NewReply = ({ postId }) => {
             let lastUserMessage = snapshot.val()
         
             if(Date.now() - lastUserMessage < timeSpanReplies) 
-                alert('Ups...', `Se permite un mensaje cada ${timeSpanReplies/(1000 * 60)} minutos para una cuenta gratuita. Sube a Premium.`)
+                alert('Ups...', `Se permite un mensaje cada ${timeSpanReplies/(1000 * 60)} minutos para una cuenta gratuita`)
             else
                 setTimeout(() => sendPost(), 50)
 
@@ -173,10 +172,10 @@ const NewReply = ({ postId }) => {
         setSending(true)
         
         if(message === '')                 
-            alert('Ups...', 'El mensaje no puede estar vacío.')
+            alert('Ups...', 'El mensaje no puede estar vacío')
                 
         else if(message.length > maxLengthReply) 
-            alert('Ups...', `El mensaje no puede superar los ${maxLengthReply} caracteres para una cuenta gratuita. Sube a Premium.`)
+            alert('Ups...', `El mensaje no puede superar los ${maxLengthReply} caracteres para una cuenta gratuita`)
         
         else
             reviewTimeLimits()
@@ -212,8 +211,20 @@ const NewReply = ({ postId }) => {
             </React.Fragment>
             : <button id = 'reply' onClick = {() => setShowLogin(true)}>Responder</button>  
             }
-            {displayAlert && <Alert title = {alertTitle} message = {alertMessage}/>}
-            {showLogin    && <Login hide = {() => setShowLogin(false)}/>}
+            { displayAlert 
+            ? <Alert 
+                message    = {alertMessage}
+                title      = {alertTitle} 
+                setMessage = {setAlertMessage}
+                setTitle   = {setAlertTitle}
+                seconds    = {3}
+              />
+            : null
+            }
+            {showLogin 
+            ? <Login hide = {() => setShowLogin(false)}/>
+            : null 
+            }
         </React.Fragment>
     )
     

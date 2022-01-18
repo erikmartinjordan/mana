@@ -97,7 +97,6 @@ const NewPost = ({ hide }) => {
         setDisplayAlert(true)
         setAlertTitle(title)
         setAlertMessage(message)
-        setTimeout( () => setDisplayAlert(false), 2000)
         
     }
     
@@ -174,7 +173,7 @@ const NewPost = ({ hide }) => {
             if(timeSpanPosts === Infinity)
                 alert('Ups...', `Necesitas subir hasta el nivel ${levelToPublish} para poder publicar`)
             else if(Date.now() - lastUserMessage < timeSpanPosts) 
-                alert('Ups...', `Se permite un mensaje cada ${timeSpanPosts/(1000 * 60 *60)} para una cuenta gratuita. Sube a Premium.`)
+                alert('Ups...', `Se permite un mensaje cada ${timeSpanPosts/(1000 * 60 *60)} para una cuenta gratuita`)
             else
                 sendPost()
 
@@ -185,16 +184,16 @@ const NewPost = ({ hide }) => {
     const reviewTitleAndMessage = () => {
         
         if(title === '')                        
-            alert('Ups...', 'El título no puede estar vacío.')
+            alert('Ups...', 'El título no puede estar vacío')
         
         else if(message === '')                 
-            alert('Ups...', 'El mensaje no puede estar vacío.')
+            alert('Ups...', 'El mensaje no puede estar vacío')
         
         else if(title.length > 140)             
-            alert('Ups...', 'El título no puede superar los 140 caracteres.')
+            alert('Ups...', 'El título no puede superar los 140 caracteres')
         
         else if(message.length > maxLengthPost) 
-            alert('Ups...', `El mensaje no puede superar los ${maxLengthPost} caracteres para una cuenta gratuita. Sube a Premium.`)
+            alert('Ups...', `El mensaje no puede superar los ${maxLengthPost} caracteres para una cuenta gratuita`)
         
         else
             reviewTimeLimits()
@@ -254,7 +253,16 @@ const NewPost = ({ hide }) => {
                   </div>
             : null
             }
-            {displayAlert && <Alert title = {alertTitle} message = {alertMessage}/>}
+            { displayAlert
+            ? <Alert 
+                message    = {alertMessage}
+                title      = {alertTitle} 
+                setMessage = {setAlertMessage}
+                setTitle   = {setAlertTitle}
+                seconds    = {3}
+              />
+            : null
+            }
         </div>
     )
     
