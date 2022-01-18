@@ -56,7 +56,6 @@ const Helper = () => {
             ? <div className = 'Welcome'>
                 <Confetti/>
                 <div className = 'Welcome-wrap'>
-                    <UserAvatar user = {user} allowAnonymousUser = {true}/>
                     <h2>{user.displayName}</h2>
                     <p>Ahora eres PRO. Como tal, esta es tu nueva configuración:</p>
                     {accounts.premium.privileges.map(privilege => <li>{privilege}</li>)}
