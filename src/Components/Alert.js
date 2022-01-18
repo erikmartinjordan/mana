@@ -1,28 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import Twemoji                        from './Twemoji';
+import React, { useEffect, useState } from 'react'
+import Twemoji                        from './Twemoji'
 import '../Styles/Alert.css';
 
-const Alert = ({title, message, seconds, setTitle, setMessage}) => {
+const Alert = ({ title, message, seconds, setTitle, setMessage }) => {
     
-    const [display, setDisplay] = useState(false);
+    const [display, setDisplay] = useState(false)
     
     useEffect(() => {
         
         if(title && message){
             
-            setDisplay(true);
+            setDisplay(true)
             
             if(seconds){
                 
-                setTimeout(() => setDisplay(false), seconds * 1000);
-                setTimeout(() => setTitle(null),    seconds * 1000);
-                setTimeout(() => setMessage(null),  seconds * 1000);
+                setTimeout(() => {
+
+                    setDisplay(false)
+                    setMessage(null)
+                    setTitle(null)
+
+                }, seconds * 1000)
                 
             }
             
         }
         
-    }, [title, message, seconds, setMessage, setTitle]);
+    }, [title, message, seconds, setMessage, setTitle])
     
     return(
         <React.Fragment>
@@ -30,7 +34,7 @@ const Alert = ({title, message, seconds, setTitle, setMessage}) => {
             ? <div className = 'Alert'>
                 <div className = 'Alert-Emoji'><Twemoji emoji = {'📮'}/></div>
                 <div>
-                    <div className = 'Title'>{title ? title : 'Ups...'}</div>
+                    <div className = 'Title'>{title || 'Ups...'}</div>
                     <div className = 'Message'>{message}</div>  
                 </div>
               </div>
@@ -41,4 +45,4 @@ const Alert = ({title, message, seconds, setTitle, setMessage}) => {
     
 }
 
-export default Alert;
+export default Alert
