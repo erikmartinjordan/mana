@@ -2,6 +2,8 @@ import React, { useEffect, useState }  from 'react'
 import { useRef }                      from 'react'
 import ReactMarkdown                   from 'react-markdown'
 import moment                          from 'moment'
+import remarkMath                      from 'remark-math'
+import rehypeKatex                     from 'rehype-katex'
 import { Link }                        from 'react-router-dom'
 import Verified                        from './Verified'
 import LikesComments                   from './LikesComments'
@@ -12,6 +14,7 @@ import CopyLink                        from './CopyLink'
 import Highlight                       from './Highlight'
 import EditionTime                     from './EditionTime'
 import SortReplies                     from './SortReplies'
+import 'katex/dist/katex.min.css'
 import '../Styles/Replies.css'
 
 const Replies = ({ admin, postId, uid }) => {
@@ -67,18 +70,20 @@ export default Replies
 
 const Reply = ({ message }) => {
     
-    const renderers = {
+    const components = {
         
-        paragraph: props => <Highlight text = {props.children}></Highlight>,
-        image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Nomoresheet imagen'}></img>,
-        table:     props => <div className = 'TableWrap'><table>{props.children}</table></div>
+        p:     props => <Highlight text = {props.children}></Highlight>,
+        img:   props => <img src = {props.children} onError = {(e) => e.target.style.display = 'none'} alt = {'Nomoresheet imagen'}></img>,
+        table: props => <div className = 'TableWrap'><table>{props.children}</table></div>
         
     }
     
     return (
-        <ReactMarkdown 
-            source    = {message} 
-            renderers = {renderers}
+        <ReactMarkdown
+            children      = {message} 
+            components    = {components}
+            remarkPlugins = {[remarkMath]}
+            rehypePlugins = {[rehypeKatex]}
         />
     )
     

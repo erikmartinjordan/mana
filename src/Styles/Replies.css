@@ -121,6 +121,9 @@
     color: var(--thirdFontColor);
     font-size: small;
 }
+.Reply .katex *{
+    font-family: KaTeX_Main, Times New Roman, serif;
+}
 @keyframes backgroundSwap {
     0%   {box-shadow: 0 0 0 1px  rgba(72 172 152 / 50%);}
     100% {box-shadow: 0 0 0 10px rgba(72 172 152 / 50%);}

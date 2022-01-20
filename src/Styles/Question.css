@@ -118,3 +118,6 @@
     color: var(--thirdFontColor);
     font-size: small;
 }
+.Question .katex *{
+    font-family: KaTeX_Main, Times New Roman, serif;
+}

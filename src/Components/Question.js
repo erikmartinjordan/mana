@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import ReactMarkdown                  from 'react-markdown'
 import { Link }                       from 'react-router-dom'
 import moment                         from 'moment'
+import remarkMath                     from 'remark-math'
+import rehypeKatex                    from 'rehype-katex'
 import Verified                       from './Verified'
 import Loading                        from './Loading'
 import Likes                          from './Likes'
@@ -12,6 +14,7 @@ import CopyLink                       from './CopyLink'
 import Highlight                      from './Highlight'
 import EditionTime                    from './EditionTime'
 import { db, onValue, ref }           from '../Functions/Firebase'
+import 'katex/dist/katex.min.css'
 import '../Styles/Question.css'
 
 const Question = ({ admin, postId, setTitle, uid }) => {
@@ -80,18 +83,20 @@ export default Question
 
 const QuestionContent = ({ message }) => {
     
-    const renderers = {
+    const components = {
         
-        paragraph: props => <Highlight text = {props.children}></Highlight>,
-        image:     props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Imagen de artículo'}></img>,
-        table:     props => <div className = 'TableWrap'><table>{props.children}</table></div>
+        p:     props => <Highlight text = {props.children}></Highlight>,
+        image: props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Imagen de artículo'}></img>,
+        table: props => <div className = 'TableWrap'><table>{props.children}</table></div>
         
     }
     
     return (
         <ReactMarkdown
-            source    = {message} 
-            renderers = {renderers}
+            children      = {message} 
+            components    = {components}
+            remarkPlugins = {[remarkMath]}
+            rehypePlugins = {[rehypeKatex]}
         />
     )
     
