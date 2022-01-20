@@ -41,7 +41,7 @@ const Alert = ({ title, message, seconds, setTitle, setMessage }) => {
             : null
             }
         </React.Fragment>
-    );
+    )
     
 }
 
