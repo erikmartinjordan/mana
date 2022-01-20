@@ -2,6 +2,7 @@ import React, { useEffect, useState }  from 'react'
 import { useRef }                      from 'react'
 import ReactMarkdown                   from 'react-markdown'
 import moment                          from 'moment'
+import remarkGfm                       from 'remark-gfm'
 import remarkMath                      from 'remark-math'
 import rehypeKatex                     from 'rehype-katex'
 import { Link }                        from 'react-router-dom'
@@ -73,16 +74,16 @@ const Reply = ({ message }) => {
     const components = {
         
         p:     props => <Highlight text = {props.children}></Highlight>,
-        img:   props => <img src = {props.children} onError = {(e) => e.target.style.display = 'none'} alt = {'Nomoresheet imagen'}></img>,
+        img:   props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Nomoresheet imagen'}></img>,  
         table: props => <div className = 'TableWrap'><table>{props.children}</table></div>
-        
+
     }
     
     return (
         <ReactMarkdown
             children      = {message} 
             components    = {components}
-            remarkPlugins = {[remarkMath]}
+            remarkPlugins = {[remarkMath, remarkGfm]}
             rehypePlugins = {[rehypeKatex]}
         />
     )

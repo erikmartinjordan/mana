@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ReactMarkdown                  from 'react-markdown'
 import { Link }                       from 'react-router-dom'
 import moment                         from 'moment'
+import remarkGfm                      from 'remark-gfm'
 import remarkMath                     from 'remark-math'
 import rehypeKatex                    from 'rehype-katex'
 import Verified                       from './Verified'
@@ -95,7 +96,7 @@ const QuestionContent = ({ message }) => {
         <ReactMarkdown
             children      = {message} 
             components    = {components}
-            remarkPlugins = {[remarkMath]}
+            remarkPlugins = {[remarkMath, remarkGfm]}
             rehypePlugins = {[rehypeKatex]}
         />
     )
