@@ -5,6 +5,8 @@ import { firebaseMockUp }                 from './_firebaseMock'
 import Acerca                             from '../Components/Acerca'
 import UserContext                        from '../Functions/UserContext'
 
+jest.mock("react-markdown", () => (props) =>  <>{props.children}</>)
+
 let container = null
 let description = document.createElement('meta')
 
