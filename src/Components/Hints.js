@@ -63,6 +63,10 @@ const Hints = ({mdFormat}) => {
                     | Bangkok   | AC2014    |   600   |<br/>
                     | Phuket    | PH2585    |   452   |<br/>
                 </code>
+                <hr></hr>
+                <div className = 'Title'>Fórmulas matemáticas</div>
+                <div>{`$h_{\\theta}(x) = \\theta_0 x + \\theta_1 x$`}</div>
+                <div>h<sub>&theta;</sub>(x) = &theta;<sub>o</sub> x + &theta;<sub>1</sub>x</div>
               </div>
             : null
             }
