@@ -115,7 +115,6 @@ img.emoji {
     right: auto;
     transform: translate(0%, -25px);
     transition: 0.2s ease-in-out;
-    visibility: hidden;
     width: max-content;
 }
 :root{
@@ -190,6 +189,5 @@ img.emoji {
     .Tooltip:hover::before {
         opacity: 1;
         transform: translate(0%, -35px);
-        visibility: visible;
     }
 }
