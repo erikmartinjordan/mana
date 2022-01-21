@@ -78,7 +78,7 @@ const LikesComments = ({ authorId, postId, replyId }) => {
     return (
         <React.Fragment>
             <div className = 'Likes-Comments' onClick = {user ? handleVote : displayLoginModal}>
-                <div className = {Object.keys(votes).some(voteId => voteId === user?.uid) ? `Votes Voted` : `Votes`}>
+                <div className = {Object.keys(votes).some(voteId => voteId === user?.uid) ? `Votes Voted Tooltip` : `Votes Tooltip`} data-tip = 'Vota'>
                     <TriangleUpIcon/> 
                     <span>{Object.keys(votes).length}</span>
                 </div>

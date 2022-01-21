@@ -18,7 +18,7 @@ const CopyLink = ({postId, replyId, authorId}) => {
     }
 
     return(
-        <div className = 'CopyLink' onClick = {copy}>
+        <div className = 'CopyLink Tooltip' onClick = {copy} data-tip = 'Comparte la publicación'>
             <ShareAndroidIcon/>
             <Alert 
                 title      = {title} 

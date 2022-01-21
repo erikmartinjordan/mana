@@ -99,6 +99,25 @@ img.emoji {
     width: 100vw;
     height: 100vh;
 }
+.Tooltip::before {
+    background: var(--bgBox);
+    box-shadow: var(--shadow-color);
+    border-radius: 6px;
+    color: var(--primaryFontColor);
+    content: attr(data-tip);
+    font-size: 12px;
+    left: auto;
+    line-height: 1.2;
+    opacity: 0;
+    padding: 6px;
+    pointer-events: none;
+    position: absolute;
+    right: auto;
+    transform: translate(0%, -25px);
+    transition: 0.2s ease-in-out;
+    visibility: hidden;
+    width: max-content;
+}
 :root{
     --nmsLogo: #30363b;
     --bgColor: white;
@@ -165,5 +184,12 @@ img.emoji {
     body{
         font-size: 14px;
         line-height: 1.75;
+    }
+}
+@media (hover: hover) {
+    .Tooltip:hover::before {
+        opacity: 1;
+        transform: translate(0%, -35px);
+        visibility: visible;
     }
 }
