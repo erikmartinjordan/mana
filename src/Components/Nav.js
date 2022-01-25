@@ -1,9 +1,6 @@
-import React, { useContext, useState, useEffect }                                 from 'react'
+import React, { lazy, Suspense, useContext, useState, useEffect }                 from 'react'
 import { Link }                                                                   from 'react-router-dom'
 import { ArrowRightIcon, HomeIcon, NumberIcon, TelescopeIcon, PaperAirplaneIcon } from '@primer/octicons-react'
-import Login                                                                      from './Login'
-import Profile                                                                    from './Profile'
-import NewPost                                                                    from './NewPost'
 import UserAvatar                                                                 from './UserAvatar'
 import NightModeToggleButton                                                      from './NightModeToggleButton'
 import NomoresheetLogo                                                            from './NomoresheetLogo'
@@ -12,6 +9,9 @@ import { db, onValue, ref }                                                     
 import GetPoints                                                                  from '../Functions/GetPoints'
 import GetLevel                                                                   from '../Functions/GetLevelAndPointsToNextLevel'
 import UserContext                                                                from '../Functions/UserContext'
+const Login   = lazy(() => import('./Login'))
+const Profile = lazy(() => import('./Profile'))
+const NewPost = lazy(() => import('./NewPost'))
 import '../Styles/Nav.css'
 
 const Nav = () => {
@@ -123,9 +123,24 @@ const Nav = () => {
         <div className = 'Nav'>
             <NomoresheetLogo/>
             {user   ? [menuUser(), menuMobile()] : [loginButton(), menuNotUser()]}
-            {perfil && <Profile  hide = {() => setPerfil(false)}/>}
-            {login  && <Login    hide = {() => setLogin(false)}/>}
-            {post   && <NewPost  hide = {() => setPost(false)}/>}
+            { login
+            ? <Suspense fallback = {<div></div>}>
+                <Login hide = {() => setLogin(false)}/>
+              </Suspense>
+            : null
+            }
+            { perfil
+            ? <Suspense fallback = {<div></div>}>
+                <Profile hide = {() => setPerfil(false)}/>
+              </Suspense>
+            : null
+            }
+            { post
+            ? <Suspense fallback = {<div></div>}>
+                <NewPost hide = {() => setPost(false)}/>
+              </Suspense>
+            : null
+            }
         </div>
     )
 }
