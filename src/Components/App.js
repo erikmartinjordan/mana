@@ -1,25 +1,25 @@
-import React, { useEffect, useState }     from 'react'
-import { Switch, Route, withRouter }      from 'react-router-dom'
-import Forum                              from './Forum'
-import Detail                             from './Detail'
-import Default                            from './Default'
-import Nav                                from './Nav'
-import Footer                             from './Footer'
-import Acerca                             from './Acerca'
-import PublicInfo                         from './PublicInfo'
-import Stats                              from './Stats'
-import Privacy                            from './Privacy'
-import Guidelines                         from './Guidelines'
-import Helper                             from './Helper'
-import DonateSuccess                      from './DonateSuccess'
-import DonateFail                         from './DonateFail'
-import TrafficStats                       from './TrafficStats'
-import Tags                               from './Tags'
-import Users                              from './Users'
-import Verify                             from './Verify'
-import UserContext                        from '../Functions/UserContext'
-import { onAuthStateChanged, auth }       from '../Functions/Firebase'
-import FetchAdmin                         from '../Functions/FetchAdmin'
+import React, { lazy, Suspense, useEffect, useState } from 'react'
+import { Switch, Route, withRouter }                  from 'react-router-dom'
+import UserContext                                    from '../Functions/UserContext'
+import { onAuthStateChanged, auth }                   from '../Functions/Firebase'
+import FetchAdmin                                     from '../Functions/FetchAdmin'
+const Forum         = lazy(() => import('./Forum'))
+const Detail        = lazy(() => import('./Detail'))
+const Default       = lazy(() => import('./Default'))
+const Nav           = lazy(() => import('./Nav'))
+const Footer        = lazy(() => import('./Footer'))
+const Acerca        = lazy(() => import('./Acerca'))
+const PublicInfo    = lazy(() => import('./PublicInfo'))
+const Stats         = lazy(() => import('./Stats'))
+const Privacy       = lazy(() => import('./Privacy'))
+const Guidelines    = lazy(() => import('./Guidelines'))
+const Helper        = lazy(() => import('./Helper'))
+const DonateSuccess = lazy(() => import('./DonateSuccess'))
+const DonateFail    = lazy(() => import('./DonateFail'))
+const TrafficStats  = lazy(() => import('./TrafficStats'))
+const Tags          = lazy(() => import('./Tags'))
+const Users         = lazy(() => import('./Users'))
+const Verify        = lazy(() => import('./Verify'))
 import '../Styles/App.css'
 
 console.log(`
@@ -64,32 +64,40 @@ const App  = () => {
    
     return (
         <UserContext.Provider value = {{admin, user}}>
-            <TrafficStats/>
-            <Helper/>
+            <Suspense fallback = {<div></div>}>
+                <TrafficStats/>
+                <Helper/>
+            </Suspense>
             <div className = 'Title-Menu'>
-                <Switch key = 'A'>
-                    <Route                                     component = {Nav}/>
-                 </Switch>
-                <Switch  key = 'B'>
-                    <Route exact path = '/'                    component = {Forum}/>
-                    <Route exact path = '/acerca'              component = {Acerca}/>
-                    <Route exact path = '/estadisticas'        component = {Stats}/>
-                    <Route exact path = '/privacidad'          component = {Privacy}/>
-                    <Route exact path = '/guias'               component = {Guidelines}/>
-                    <Route exact path = '/donateSuccess'       component = {DonateSuccess}/>
-                    <Route exact path = '/donationFail'        component = {DonateFail}/>
-                    <Route exact path = '/tags'                component = {Tags}/>
-                    <Route exact path = '/usuarios'            component = {Users}/>
-                    <Route path = '/v/:string'                 component = {Verify}/>
-                    <Route path = '/comunidad/post/:string'    component = {Detail}/>
-                    <Route path = '/tag/:string'               component = {Forum}/>
-                    <Route path = '/@:string'                  component = {PublicInfo}/>
-                    <Route                                     component = {Default}/>
-                </Switch>
+                <Suspense fallback = {<div></div>}>
+                    <Switch key = 'A'>
+                        <Route                                     component = {Nav}/>
+                    </Switch>
+                </Suspense>
+                <Suspense fallback = {<div></div>}>
+                    <Switch  key = 'B'>
+                        <Route exact path = '/'                    component = {Forum}/>
+                        <Route exact path = '/acerca'              component = {Acerca}/>
+                        <Route exact path = '/estadisticas'        component = {Stats}/>
+                        <Route exact path = '/privacidad'          component = {Privacy}/>
+                        <Route exact path = '/guias'               component = {Guidelines}/>
+                        <Route exact path = '/donateSuccess'       component = {DonateSuccess}/>
+                        <Route exact path = '/donationFail'        component = {DonateFail}/>
+                        <Route exact path = '/tags'                component = {Tags}/>
+                        <Route exact path = '/usuarios'            component = {Users}/>
+                        <Route path = '/v/:string'                 component = {Verify}/>
+                        <Route path = '/comunidad/post/:string'    component = {Detail}/>
+                        <Route path = '/tag/:string'               component = {Forum}/>
+                        <Route path = '/@:string'                  component = {PublicInfo}/>
+                        <Route                                     component = {Default}/>
+                    </Switch>
+                </Suspense>
             </div>
-            <Switch key = 'C'>
-                <Route                                         component = {Footer}/>
-            </Switch>
+            <Suspense fallback = {<div></div>}>
+                <Switch key = 'C'>
+                    <Route                                         component = {Footer}/>
+                </Switch>
+            </Suspense>
         </UserContext.Provider>
     )
     
