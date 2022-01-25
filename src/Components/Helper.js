@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Confetti                                   from 'react-confetti'
 import moment                                     from 'moment'
-import UserAvatar                                 from './UserAvatar'
 import { db, onValue, ref, runTransaction }       from '../Functions/Firebase'
 import UserContext                                from '../Functions/UserContext'
 import accounts                                   from '../Rules/Accounts'
