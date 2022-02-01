@@ -17,6 +17,9 @@ import EditionTime                     from './EditionTime'
 import SortReplies                     from './SortReplies'
 import 'katex/dist/katex.min.css'
 import '../Styles/Replies.css'
+import 'moment/locale/es'
+
+moment.locale('es')
 
 const Replies = ({ admin, postId, uid }) => {
     

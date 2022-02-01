@@ -7,6 +7,9 @@ import Likes                                                                    
 import UserAvatar                                                                      from './UserAvatar'
 import { db, endAt, equalTo, limitToLast, onValue, orderByChild, query, ref, startAt } from '../Functions/Firebase'
 import '../Styles/LastQuestions.css'
+import 'moment/locale/es'
+
+moment.locale('es')
 
 const LastQuestions = ({ number, from, to, filter }) => {
     

@@ -17,6 +17,9 @@ import EditionTime                    from './EditionTime'
 import { db, onValue, ref }           from '../Functions/Firebase'
 import 'katex/dist/katex.min.css'
 import '../Styles/Question.css'
+import 'moment/locale/es'
+
+moment.locale('es')
 
 const Question = ({ admin, postId, setTitle, uid }) => {
 

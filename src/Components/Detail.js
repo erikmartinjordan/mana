@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Question                                   from './Question'
 import Replies                                    from './Replies'
-import Norms                                      from './Norms'
 import RelatedContent                             from './RelatedContent'
 import NewReply                                   from './NewReply'
 import Default                                    from './Default'
@@ -11,7 +10,7 @@ import { db, ref, get }                           from '../Functions/Firebase'
 import UserContext                                from '../Functions/UserContext'
 import updateNumberOfViews                        from '../Functions/UpdateNumberOfViews'
 import addRichResultSchema                        from '../Functions/AddRichResultSchema'
-import '../Styles/Forum.css';
+import '../Styles/Forum.css'
 
 const Detail = (props) => {
     
