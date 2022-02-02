@@ -22,7 +22,6 @@ const NewReply = ({ postId }) => {
     const [avatar, setAvatar]                     = useState(null)
     const [displayAlert, setDisplayAlert]         = useState(false)
     const [maxLengthReply, setMaxLengthReply]     = useState(null)
-    const [mdFormat, setMdFormat]                 = useState(false)
     const [message, setMessage]                   = useState('')
     const [nickName, setNickName]                 = useState(null)
     const [sending, setSending]                   = useState(false)
@@ -33,7 +32,7 @@ const NewReply = ({ postId }) => {
     const level                                   = GetLevel(points)[0]
     const numReplies                              = GetNumberOfReplies(user?.uid)
     
-    useEffect( () => {
+    useEffect(() => {
         
         if(user){
 
@@ -47,7 +46,6 @@ const NewReply = ({ postId }) => {
                     
                     let nickName
                     let avatar
-                    let canWriteInMd
                     let timeSpanReplies
                     let maxLengthReply
                     
@@ -55,7 +53,6 @@ const NewReply = ({ postId }) => {
                         
                         timeSpanReplies = Accounts[userInfo.account].messages.timeSpanReplies
                         maxLengthReply  = Accounts[userInfo.account].messages.maxLength
-                        canWriteInMd    = Accounts[userInfo.account].mdformat ? true : false
                         
                     }
                     else{
@@ -65,7 +62,6 @@ const NewReply = ({ postId }) => {
                         
                         timeSpanReplies = Accounts['free'][closestLevel].messages.timeSpanReplies
                         maxLengthReply  = Accounts['free'][closestLevel].messages.maxLength
-                        canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false
                         
                     }
                     
@@ -76,7 +72,6 @@ const NewReply = ({ postId }) => {
                         
                     }
                     
-                    setMdFormat(canWriteInMd)
                     setTimeSpanReplies(timeSpanReplies)
                     setMaxLengthReply(maxLengthReply)
                     setNickName(nickName)
@@ -207,7 +202,7 @@ const NewReply = ({ postId }) => {
                         }
                     </div>
                 </div>
-                <Hints mdFormat = {mdFormat}/>
+                <Hints/>
             </React.Fragment>
             : <button id = 'reply' onClick = {() => setShowLogin(true)}>Responder</button>  
             }

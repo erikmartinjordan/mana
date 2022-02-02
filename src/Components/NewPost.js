@@ -22,22 +22,18 @@ const NewPost = ({ hide }) => {
     const [confirmation, setConfirmation]   = useState(false)
     const [displayAlert, setDisplayAlert]   = useState(false)
     const [maxLengthPost, setMaxLengthPost] = useState(null)
-    const [mdFormat, setMdFormat]           = useState(false)
     const [message, setMessage]             = useState('')
     const [nickName, setNickName]           = useState(null)
     const [tags, setTags]                   = useState([])
     const [timeSpanPosts, setTimeSpanPosts] = useState(null)
     const [title, setTitle]                 = useState('')
-    const [uid, setUid]                     = useState(null)
     const { user }                          = useContext(UserContext)
-    const points                            = GetPoints(nickName ? nickName : uid)
+    const points                            = GetPoints(nickName ? nickName : user ? user.uid : null)
     const level                             = GetLevel(points)[0]
     
-    useEffect( () => {
+    useEffect(() => {
         
         if(user){
-            
-            setUid(user.uid)
 
             let usersRef = ref(db, `users/${user.uid}`)
             
@@ -49,7 +45,6 @@ const NewPost = ({ hide }) => {
                     
                     let nickName
                     let avatar
-                    let canWriteInMd
                     let timeSpanPosts
                     let maxLengthPost
                     
@@ -57,7 +52,6 @@ const NewPost = ({ hide }) => {
                         
                         timeSpanPosts = Accounts[userInfo.account].messages.timeSpanPosts
                         maxLengthPost = Accounts[userInfo.account].messages.maxLength
-                        canWriteInMd  = Accounts[userInfo.account].mdformat ? true : false
                         
                     }
                     else{
@@ -67,7 +61,6 @@ const NewPost = ({ hide }) => {
                         
                         timeSpanPosts = Accounts['free'][closestLevel].messages.timeSpanPosts
                         maxLengthPost = Accounts['free'][closestLevel].messages.maxLength
-                        canWriteInMd  = Accounts['free'][closestLevel].mdformat ? true : false
                         
                     }
                     
@@ -78,7 +71,6 @@ const NewPost = ({ hide }) => {
                         
                     } 
                     
-                    setMdFormat(canWriteInMd)
                     setTimeSpanPosts(timeSpanPosts)
                     setMaxLengthPost(maxLengthPost)
                     setNickName(nickName)
@@ -232,7 +224,7 @@ const NewPost = ({ hide }) => {
                     maxLength   = {maxLengthPost}
                     type        = {'post'}
                 />
-                <Hints mdFormat = {mdFormat}/>
+                <Hints/>
                 <TagInput
                     limit   = {5}
                     tags    = {tags}
