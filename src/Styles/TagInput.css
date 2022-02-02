@@ -28,6 +28,7 @@
     width: 100%;
 }
 .TagInput button.Delete{
+    background: transparent;
     align-items: center;
     border: none;
     border-radius: 50%;
