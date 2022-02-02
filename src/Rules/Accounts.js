@@ -123,7 +123,6 @@ var accounts = {
             'levels': true,
             'deleteMessages': true,
             'edit': true,
-            'mdformat': true,
             'badge': true,
             'privilege': 'Badge de usuario pro'
         }
@@ -144,7 +143,6 @@ var accounts = {
         'badge': true,
         'nightMode': true,
         'edit': true,
-        'mdformat': true,
         'privileges': ['Sin anuncios', 'Publicaciones de 1100 caracteres', 'Publicaciones de 2200 caracteres', 'Publicaciones de 4400 caracteres', 'Publicaciones de longitud ∞', 'Tiempo ilimitado entre respuestas', 'Tiempo ilimitado entre publicaciones', 'Borrado de mensajes', 'Edición de mensajes', `Badge de usuario 'Pro'`, 'Mensajes anónimos']
     },
     'infinita': {
@@ -163,7 +161,6 @@ var accounts = {
         'badge': true,
         'nightMode': true,
         'edit': true,
-        'mdformat': true,
         'privileges': ['Sin anuncios', 'Publicaciones de 1100 caracteres', 'Publicaciones de 2200 caracteres', 'Publicaciones de 4400 caracteres', 'Publicaciones de longitud ∞', 'Tiempo ilimitado entre respuestas', 'Tiempo ilimitado entre publicaciones', 'Borrado de mensajes', 'Edición de mensajes', `Badge de usuario 'Pro'`, 'Mensajes anónimos']
     }
 }
