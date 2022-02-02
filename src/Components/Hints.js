@@ -1,34 +1,30 @@
-import React, { useEffect, useState }  from 'react';
-import { QuestionIcon }                from '@primer/octicons-react';
-import '../Styles/Hints.css';
+import React, { useEffect, useState } from 'react'
+import { QuestionIcon } from '@primer/octicons-react'
+import '../Styles/Hints.css'
 
-const Hints = ({mdFormat}) => {
+const Hints = () => {
     
-    const [display, setDisplay] = useState(false);
+    const [display, setDisplay] = useState(false)
     
     useEffect(() => {
         
         const handleClick = (e) => {
             
             if(e.target.parentNode.className !== 'Hints' && e.target.parentNode.className !== 'Cheatsheet')
-                setDisplay(false);
+                setDisplay(false)
             
         }
         
         if(display)
-            window.addEventListener('click', handleClick);
+            window.addEventListener('click', handleClick)
         
-        return () => window.removeEventListener('click', handleClick);
+        return () => window.removeEventListener('click', handleClick)
         
-    }, [display]);
+    }, [display])
     
     return(
-        
         <div className = 'Hints' style = {{fontSize: 'small'}}>
-            { mdFormat
-            ? <span onClick = {() => setDisplay(true)}><QuestionIcon/>Ver opciones de formato</span> 
-            : null
-            }
+            <span onClick = {() => setDisplay(true)}><QuestionIcon/>Ver opciones de formato</span> 
             { display
             ? <div className = 'Cheatsheet'>
                 <div className = 'Title'>Títulos</div>
@@ -72,8 +68,8 @@ const Hints = ({mdFormat}) => {
             }
         </div>
         
-    );
+    )
     
 }
 
-export default Hints;
+export default Hints
