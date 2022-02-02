@@ -80,13 +80,16 @@
     width: 100%;
 }
 @media (max-width: 768px){
-    
     .Estadisticas{
         width: 100%;
     }
     .Estadisticas .Parrilla{
         flex-direction: column;
-        margin-bottom: 5px;
+        margin-bottom: 0;
+    }
+    .Estadisticas .Parrilla .Datos{
+        margin: 0;
+        margin-bottom: 10px;
     }
 }
 @keyframes pulse {
