@@ -12,6 +12,7 @@ import normalize                                                     from '../Fu
 import UserContext                                                   from '../Functions/UserContext'
 import Accounts                                                      from '../Rules/Accounts'
 import '../Styles/NewPost.css'
+import '../Styles/DeletePost.css';
 
 const NewPost = ({ hide }) => {
     
@@ -238,7 +239,7 @@ const NewPost = ({ hide }) => {
             ? <div className = 'Confirmation'>
                     <div className = 'Confirmation-Wrap'>
                         <p><b>¿Estás seguro de que quieres salir?</b></p>
-                        <p>Si te marchas, se eliminará tu publicación y perderás lo escrito.</p>
+                        <span>Si te marchas, se eliminará tu publicación y perderás lo escrito.</span>
                         <button onClick = {() => unmount(150)}           className = 'Yes-Delete'>Sí, salir y eliminar publicación</button>
                         <button onClick = {() => setConfirmation(false)} className = 'No-Delete'>Cancelar</button>
                     </div>

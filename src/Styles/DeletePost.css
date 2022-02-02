@@ -13,9 +13,7 @@
 .Confirmation .Confirmation-Wrap{
     background: var(--bgBox);
     border-radius: 12px;
-    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, 
-                rgba(15, 15, 15, 0.2) 0px 5px 10px, 
-                rgba(15, 15, 15, 0.4) 0px 15px 40px;
+    box-shadow: var(--boxShadow);
     display: flex;
     flex-direction: column;
     line-height: 1.5;
@@ -28,40 +26,15 @@
     margin: 0;
     margin-bottom: 30px;
 }
-.Confirmation .Yes-Delete,
-.Confirmation .No-Delete{
-    background: none;
-    border: 1px solid var(--red);
-    border-radius: 12px;
-    color: var(--red);
-    cursor: pointer;
-    font-size: small;
-    margin-bottom: 5px;
-    padding: 10px;
-    transition: all 0.2s ease-in-out;
+.Confirmation .Confirmation-Wrap span{
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+.Confirmation .Confirmation-Wrap button{
+    border-radius: 6px;
+    margin-bottom: 10px;
     width: 100%;
 }
-.Confirmation .No-Delete{
-    border: 1px solid var(--secondaryFontColor);
-    color: var(--primaryFontColor);
-}
-.Confirmation .Yes-Delete:hover{
-    background: var(--pastelRed);
-}
-.Confirmation .No-Delete:hover{
-    background: var(--thirdFontColor);
-}
-button.Delete{
-    background: none;
-    border: 1px solid var(--red);
-    border-radius: 50px;
-    color: var(--red);
-    cursor: pointer;
-    font-size: small;
-    margin: 0px;
-    padding: 5px;
-    transition: all 0.2s ease-in-out;
-}
-button.Delete:hover{
-    background: var(--pastelRed);
+.Confirmation .Confirmation-Wrap button.No-Delete{
+    background: rgba(15, 15, 15, 0.3);
 }
