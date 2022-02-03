@@ -38,3 +38,13 @@
 .Confirmation .Confirmation-Wrap button.No-Delete{
     background: rgba(15, 15, 15, 0.3);
 }
+.Delete button.Delete{
+    background: none;
+    border: 1px solid var(--red);
+    border-radius: 50px;
+    color: var(--red);
+    cursor: pointer;
+    font-size: small;
+    padding: 5px;
+    transition: all 0.2s ease-in-out;
+}
