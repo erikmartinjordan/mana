@@ -1,17 +1,18 @@
 .Alert{
     align-items: center;
     animation: bounce 0.2s;
-    background: var(--bgColor);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
     border-radius: 12px;
-    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.2) 0px 5px 10px, rgba(15, 15, 15, 0.4) 0px 15px 40px;
     color: var(--primaryFontColor);
     display: flex;
     line-height: 1.5;
     min-width: 250px;
     padding: 10px;
     position: fixed;
-    right: 100px;
-    top: 100px;
+    right: 50px;
+    top: 50px;
     z-index: 999999999999999999;
 }
 .Alert .Alert-Emoji{
@@ -26,9 +27,12 @@
 @media (max-width: 768px){
    .Alert{
         animation: appear_down 0.2s;
-        left: auto; 
-        right: auto;
+        left: 0; 
+        margin-left: auto;
+        margin-right: auto;
+        right: 0;
         top: 20px;
+        width: max-content;
     } 
 }
 @keyframes appear_down {
