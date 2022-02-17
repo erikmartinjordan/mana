@@ -6,6 +6,7 @@ import AnonymImg                                                                
 import AnonymName                                                                                                        from '../Functions/AnonymName'
 import GoogleButton                                                                                                      from '../Assets/GoogleButton'
 import AnonymButton                                                                                                      from '../Assets/AnonymButton'
+import unmount                                                                                                           from '../Functions/Unmount'
 import '../Styles/Login.css'
 
 const Login = ({ hide }) => {  
@@ -100,15 +101,6 @@ const Login = ({ hide }) => {
        
     }
 
-    const unmount = async (ms) => {
-
-        setAnimation('Unmount')
-
-        await new Promise(r => setTimeout(r, ms))
-
-        hide()
-
-    }
     
     return (
         <div className = {`Login ${animation}`}>
@@ -126,7 +118,7 @@ const Login = ({ hide }) => {
                 </div>
                 <div className = 'info'>El acceso vía Google previene el uso de cuentas falsas y <em>spam</em>. Nomoresheet no publicará en tu nombre, ni te enviará <em>mails</em>, ni utilizará tus datos.</div>
             </div>
-            <div className = 'Invisible' onClick = {() => unmount(150)}></div>
+            <div className = 'Invisible' onClick = {() => unmount(setAnimation, hide)}></div>
         </div>  
     )
   

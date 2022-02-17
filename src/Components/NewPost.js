@@ -10,6 +10,7 @@ import GetLevel                                                      from '../Fu
 import insertNotificationAndReputation                               from '../Functions/InsertNotificationAndReputationIntoDatabase'
 import normalize                                                     from '../Functions/NormalizeWord'
 import UserContext                                                   from '../Functions/UserContext'
+import unmount                                                       from '../Functions/Unmount'
 import Accounts                                                      from '../Rules/Accounts'
 import '../Styles/NewPost.css'
 import '../Styles/DeletePost.css';
@@ -95,7 +96,7 @@ const NewPost = ({ hide }) => {
     
     const closeNewPost = (secondsToClose) => {
         
-        setTimeout(hide, secondsToClose * 1000)
+        setTimeout(() => unmount(setAnimation, hide), secondsToClose * 1000)
         
     }
     
@@ -192,21 +193,6 @@ const NewPost = ({ hide }) => {
             reviewTimeLimits()
         
     }
-
-    const unmount = async (ms) => {
-
-        setConfirmation(false)
-
-        await new Promise(r => setTimeout(r, ms))
-
-        setAnimation('Unmount')
-
-        await new Promise(r => setTimeout(r, ms))
-
-        hide()
-
-    }
-    
     return(
         <div className = 'NewPost'>
             <div className = {`NewPost-Wrap ${animation}`}>
@@ -240,22 +226,18 @@ const NewPost = ({ hide }) => {
                     <div className = 'Confirmation-Wrap'>
                         <p><b>¿Estás seguro de que quieres salir?</b></p>
                         <span>Si te marchas, se eliminará tu publicación y perderás lo escrito.</span>
-                        <button onClick = {() => unmount(150)}           className = 'Yes-Delete'>Sí, salir y eliminar publicación</button>
+                        <button onClick = {() => unmount(setAnimation, hide, () => setConfirmation(false))} className = 'Yes-Delete'>Sí, salir y eliminar publicación</button>
                         <button onClick = {() => setConfirmation(false)} className = 'No-Delete'>Cancelar</button>
                     </div>
                   </div>
             : null
             }
-            { displayAlert
-            ? <Alert 
+            <Alert 
                 message    = {alertMessage}
                 title      = {alertTitle} 
                 setMessage = {setAlertMessage}
                 setTitle   = {setAlertTitle}
-                seconds    = {3}
-              />
-            : null
-            }
+            />
         </div>
     )
     

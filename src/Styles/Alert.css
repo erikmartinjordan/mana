@@ -1,6 +1,6 @@
 .Alert{
     align-items: center;
-    animation: bounce 0.2s;
+    animation: appear_right 0.2s forwards;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(4px);
     box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
@@ -11,9 +11,11 @@
     min-width: 250px;
     padding: 10px;
     position: fixed;
-    right: 50px;
     top: 50px;
     z-index: 999999999999999999;
+}
+.Alert.Unmount{
+    animation: disappear_right 0.2s forwards;
 }
 .Alert .Alert-Emoji{
     margin-right: 15px;
@@ -26,17 +28,32 @@
 }
 @media (max-width: 768px){
    .Alert{
-        animation: appear_down 0.2s;
+        animation: appear_top 0.2s forwards;
         left: 0; 
         margin-left: auto;
         margin-right: auto;
         right: 0;
-        top: 20px;
         width: max-content;
     } 
+    .Alert.Unmount{
+        animation: disappear_top 0.2s forwards;
+    }
 }
-@keyframes appear_down {
+@keyframes appear_top {
     0%    {top: -1000px;}
     50%   {top: -100px;}
-    100%  {top: 0;}
+    100%  {top: 20px;}
+}
+@keyframes disappear_top {
+    0%    {top: 20px;}
+    100%  {top: -1000px;}
+}
+@keyframes appear_right{
+    0%    {right: -1000px;}
+    50%   {right: -100px;}
+    100%  {right: 30px;}
+}
+@keyframes disappear_right{
+    0%    {right: 30px;}
+    100%  {right: -1000px;}
 }

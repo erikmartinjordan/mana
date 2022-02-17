@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Twemoji                        from './Twemoji'
+import unmount                        from '../Functions/Unmount'
 import '../Styles/Alert.css';
 
-const Alert = ({ title, message, seconds, setTitle, setMessage }) => {
+const Alert = ({ title, message, seconds = 3, setTitle, setMessage }) => {
     
+    const [animation, setAnimation] = useState('')
     const [display, setDisplay] = useState(false)
     
     useEffect(() => {
@@ -11,18 +13,18 @@ const Alert = ({ title, message, seconds, setTitle, setMessage }) => {
         if(title && message){
             
             setDisplay(true)
-            
-            if(seconds){
-                
-                setTimeout(() => {
+
+            setTimeout(() => {
+
+                unmount(setAnimation, () => {
 
                     setDisplay(false)
                     setMessage(null)
                     setTitle(null)
 
-                }, seconds * 1000)
-                
-            }
+                })
+
+            }, seconds * 1000)
             
         }
         
@@ -31,7 +33,7 @@ const Alert = ({ title, message, seconds, setTitle, setMessage }) => {
     return(
         <React.Fragment>
             { display
-            ? <div className = 'Alert'>
+            ? <div className = {`Alert ${animation}`}>
                 <div className = 'Alert-Emoji'><Twemoji emoji = {'📮'}/></div>
                 <div>
                     <div className = 'Title'>{title || 'Ups...'}</div>

@@ -206,16 +206,12 @@ const NewReply = ({ postId }) => {
             </React.Fragment>
             : <button id = 'reply' onClick = {() => setShowLogin(true)}>Responder</button>  
             }
-            { displayAlert 
-            ? <Alert 
+            <Alert 
                 message    = {alertMessage}
                 title      = {alertTitle} 
                 setMessage = {setAlertMessage}
                 setTitle   = {setAlertTitle}
-                seconds    = {3}
-              />
-            : null
-            }
+            />
             {showLogin 
             ? <Login hide = {() => setShowLogin(false)}/>
             : null 
