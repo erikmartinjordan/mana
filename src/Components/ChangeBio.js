@@ -15,19 +15,8 @@ const ChangeBio = ({ user }) => {
 
             let unsubscribe = onValue(bioRef, snapshot => {
 
-                let bio = snapshot.val()
-
-                if(bio){
-                    
-                    setBio(bio)
-                    setChars(250 - bio.length)
-
-                }
-                else{
-
-                    setBio('')
-                    setChars(250)
-                }
+                setBio(snapshot.val() || '')
+                setChars(250 - (snapshot.val() || '').length)
 
             })
 

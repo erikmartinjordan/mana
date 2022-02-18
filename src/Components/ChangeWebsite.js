@@ -14,18 +14,7 @@ const ChangeWebsite = ({ user }) => {
 
             let unsubscribe = onValue(refWeb, snapshot => {
 
-                let web = snapshot.val()
-
-                if(web){
-                    
-                    setWeb(web)
-
-                }
-                else{
-
-                    setWeb('')
-
-                }
+                setWeb(snapshot.val() || '')
 
             })
 

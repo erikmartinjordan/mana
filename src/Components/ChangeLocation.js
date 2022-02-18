@@ -14,18 +14,7 @@ const ChangeLocation = ({ user }) => {
 
             let unsubscribe = onValue(cityRef, snapshot => {
 
-                let city = snapshot.val()
-
-                if(city){
-                    
-                    setCity(city)
-
-                }
-                else{
-
-                    setCity('')
-
-                }
+                setCity(snapshot.val() || '')
 
             })
 
