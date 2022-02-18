@@ -1,14 +1,14 @@
-import React                    from 'react';
-import { Link }                 from 'react-router-dom';
-import moment                   from 'moment';
-import Loading                  from './Loading';
-import UserAvatar               from './UserAvatar';
-import GetLastComments          from '../Functions/GetLastComments';
-import '../Styles/Comments.css';
+import React                    from 'react'
+import { Link }                 from 'react-router-dom'
+import moment                   from 'moment'
+import Loading                  from './Loading'
+import UserAvatar               from './UserAvatar'
+import GetLastComments          from '../Functions/GetLastComments'
+import '../Styles/Comments.css'
 
 const Comments = () => {
     
-    const comments = GetLastComments(10);
+    const comments = GetLastComments(10)
     
     return(
         <React.Fragment>
@@ -32,7 +32,7 @@ const Comments = () => {
         : <Loading type = 'Comments'/>
         }
         </React.Fragment>
-    );
+    )
 }
 
-export default Comments;
+export default Comments

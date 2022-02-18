@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Link }             from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { Link }             from 'react-router-dom'
 import '../Styles/Default.css';
 
 const Default = () => {
@@ -11,7 +11,7 @@ const Default = () => {
         meta.content = 'noindex, nofollow';
         document.querySelector('meta[name="description"]').after(meta);
         
-    }, []);
+    }, [])
     
     return (
         <div className = 'Default'>
@@ -24,7 +24,7 @@ const Default = () => {
                 <li>O puedes quedarte viendo esta página.</li>
             </ul>
         </div>
-    );
+    )
 }
 
-export default Default;
+export default Default

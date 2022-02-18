@@ -7,7 +7,6 @@ const DeleteFeature = (props) => {
     const [confirmation, setConfirmation] = useState(false)
     const [id, setId]                     = useState(null)
     
-    
     const handleConfirmation = (e) => {
         
         setId(e.target.getAttribute('id'))
