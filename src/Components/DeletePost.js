@@ -3,51 +3,29 @@ import { useHistory }                               from 'react-router-dom'
 import Points                                       from '../Functions/PointsAndValues'
 import { db, ref, onValue, remove, runTransaction } from '../Functions/Firebase'
 import GetPoints                                    from '../Functions/GetPoints'
-import GetLevel                                     from '../Functions/GetLevelAndPointsToNextLevel'
+import { GetClosestLevel }                          from '../Functions/GetLevelAndPointsToNextLevel'
 import Accounts                                     from '../Rules/Accounts'
 import '../Styles/DeletePost.css';
 
-const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
+const DeletePost = ({ admin: isAdmin, postId, replyId, type, authorId, uid }) => {
     
     const [canDelete, setCanDelete]       = useState(false)
     const [confirmation, setConfirmation] = useState(false)
     const history                         = useHistory()
     const points                          = GetPoints(authorId)
-    const level                           = GetLevel(points)[0]
-    
-    useEffect( () => {
+    const closestLevel                    = GetClosestLevel(points)
 
-        let usersRef = ref(db, `users/${uid}`)
+    useEffect(() => {
 
-        onValue(usersRef, snapshot => {
+        let unsubscribe = onValue(ref(db, `users/${uid}`), snapshot => {
             
-            let userInfo = snapshot.val()
-            
-            if(userInfo){
+            if(snapshot.val()){
                 
-                let isAdmin   = admin
-                let isAuthor  = authorId === uid
-                let isPremium = false
-                let canDeleteMessages = false
-                
-                if(userInfo.account){
-                    
-                    isPremium = true
-                    
-                }
-                else{
-                    
-                    let rangeOfLevels = Object.keys(Accounts['free'])
-                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level))
-                    
-                    canDeleteMessages = Accounts['free'][closestLevel].deleteMessages ? true : false
-                    
-                }
-                
-                if(isAdmin)                      setCanDelete(true)
-                else if(isPremium && isAuthor)   setCanDelete(true)
-                else if(canDeleteMessages)       setCanDelete(true)
-                else                             setCanDelete(false)
+                let isAuthor = authorId === uid
+                let isPremium = snapshot.val().account === 'premium' || snapshot.val().account === 'infinita'
+                let canDeleteMessages = Accounts['free'][closestLevel].deleteMessages
+
+                setCanDelete(isAdmin || (isPremium && isAuthor) || canDeleteMessages)
                 
             }
             else{
@@ -56,9 +34,11 @@ const DeletePost = ({ admin, postId, replyId, type, authorId, uid }) => {
                 
             }
             
-        });
+        })
+
+        return () => unsubscribe()
         
-    }, [level, uid, admin, authorId]);
+    }, [closestLevel, uid, isAdmin, authorId]);
     
     const handleConfirmation = () => {
         
