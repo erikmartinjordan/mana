@@ -389,12 +389,18 @@ const Premium = ({user, infoUser}) => {
                 <p className = 'Question'>¿Puedo cancelar la suscripción en cualquier momento?</p>
                 <p className = 'Answer'>Sí, siempre que tú quieras.</p>
             </div>
-            {paymentModal
-            ? <PaymentModal hide = {() => setPaymentModal(false)} plan = {paymentModal}/>
+            { paymentModal 
+            ? <PaymentModal 
+                hide = {() => setPaymentModal(false)} 
+                plan = {paymentModal}/> 
             : null}
-            {confirmation 
-            ? <DowngradeToFreePlan subscriptionId = {infoUser.subscriptionId}/>
-            : null}
+            { confirmation 
+            ? <DowngradeToFreePlan 
+                subscriptionId = {infoUser.subscriptionId} 
+                confirmation = {confirmation} 
+                setConfirmation = {setConfirmation}/> 
+            : null 
+            }
         </div>
     )
     

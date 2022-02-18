@@ -4,11 +4,10 @@ import { db, ref, remove, environment } from '../Functions/Firebase'
 import UserContext                      from '../Functions/UserContext'
 import '../Styles/DeletePost.css'
 
-const DownGradeToFreePlan = (props) => {
+const DownGradeToFreePlan = ({ confirmation, setConfirmation, subscriptionId }) => {
     
-    const [confirmation, setConfirmation] = useState(true)
-    const [downgrade, setDowngrade]       = useState(false)
-    const { user }                        = useContext(UserContext)
+    const [downgrade, setDowngrade] = useState(false)
+    const { user } = useContext(UserContext)
     
     const handleDowngrade = async () => {
         
@@ -21,7 +20,7 @@ const DownGradeToFreePlan = (props) => {
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({
                 environment: environment,
-                subscriptionId: props.subscriptionId
+                subscriptionId: subscriptionId
             })
         })
         
@@ -49,7 +48,7 @@ const DownGradeToFreePlan = (props) => {
                             : 'Sí, cambiar'
                             }
                         </button>
-                        <button onClick = {() => setConfirmation(false) } className = 'No-Delete'>Cancelar</button>
+                        <button onClick = {() => setConfirmation(false)} className = 'No-Delete'>Cancelar</button>
                     </div>
              </div>
             : null
