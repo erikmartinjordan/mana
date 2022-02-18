@@ -93,7 +93,7 @@ const Login = ({ hide }) => {
         
         let user = auth.currentUser
         
-        await user.updateProfile({'photoURL': photoURL})
+        await updateProfile(user, {'photoURL': photoURL})
 
         runTransaction(ref(db, `users/${user.uid}/profilePic`), _ => user.photoURL)
         
