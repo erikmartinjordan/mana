@@ -20,7 +20,6 @@ const NewReply = ({ postId }) => {
     const [alertTitle, setAlertTitle]             = useState(null)
     const [alertMessage, setAlertMessage]         = useState(null)
     const [avatar, setAvatar]                     = useState(null)
-    const [displayAlert, setDisplayAlert]         = useState(false)
     const [maxLengthReply, setMaxLengthReply]     = useState(null)
     const [message, setMessage]                   = useState('')
     const [nickName, setNickName]                 = useState(null)
@@ -88,7 +87,6 @@ const NewReply = ({ postId }) => {
     const alert = (title, message) => {
         
         setSending(false)
-        setDisplayAlert(true)
         setAlertTitle(title)
         setAlertMessage(message)
         

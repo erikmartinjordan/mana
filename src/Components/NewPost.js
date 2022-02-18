@@ -22,7 +22,6 @@ const NewPost = ({ hide }) => {
     const [animation, setAnimation]         = useState('')
     const [avatar, setAvatar]               = useState(null)
     const [confirmation, setConfirmation]   = useState(false)
-    const [displayAlert, setDisplayAlert]   = useState(false)
     const [maxLengthPost, setMaxLengthPost] = useState(null)
     const [message, setMessage]             = useState('')
     const [nickName, setNickName]           = useState(null)
@@ -88,7 +87,6 @@ const NewPost = ({ hide }) => {
     
     const alert = (title, message) => {
         
-        setDisplayAlert(true)
         setAlertTitle(title)
         setAlertMessage(message)
         
