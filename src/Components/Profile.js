@@ -187,7 +187,7 @@ const Account = ({user, infoUser, nextPayment, uid}) => {
         <div className = 'Datos Cuenta'>
             <div className = 'Bloque'>
                 <div className = 'Title'>Imagen</div>
-                <UserAvatar user = {user} allowAnonymousUser = {true}/>
+                <UserAvatar user = {user}/>
             </div>
             <div className = 'Bloque'>
                 <div className = 'Title'>Nombre</div>
