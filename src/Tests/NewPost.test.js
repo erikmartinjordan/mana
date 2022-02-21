@@ -3,11 +3,11 @@ import { render, fireEvent, screen, waitFor } from '@testing-library/react'
 import { firebaseMockUp }                     from './_firebaseMock'
 import NewPost                                from '../Components/NewPost'
 import UserContext                            from '../Functions/UserContext'
-import * as GetLevel                          from '../Functions/GetLevelAndPointsToNextLevel'
+import * as GetLevelAndPointsToNextLevel      from '../Functions/GetLevelAndPointsToNextLevel'
 
 test('NewPost -> Prevent users with level < 15 (free) from publishing new posts', async () => {
    
-    jest.spyOn(GetLevel, 'default').mockImplementation(() => [14, '_', '_'])
+    jest.spyOn(GetLevelAndPointsToNextLevel, 'GetClosestLevel').mockImplementation(() => 10)
 
     firebaseMockUp({ account: 'free' })
     
@@ -28,7 +28,7 @@ test('NewPost -> Prevent users with level < 15 (free) from publishing new posts'
 
 test('NewPost -> Users with level < 15 (premium) are allowed to publish new posts', async () => {
    
-    jest.spyOn(GetLevel, 'default').mockImplementation(() => [14, '_', '_'])
+    jest.spyOn(GetLevelAndPointsToNextLevel, 'GetClosestLevel').mockImplementation(() => 10)
 
     firebaseMockUp({ account: 'premium' })
     
@@ -49,7 +49,7 @@ test('NewPost -> Users with level < 15 (premium) are allowed to publish new post
 
 test('NewPost -> Users with level >= 15 (free) are allowed to publish new posts', async () => {
    
-    jest.spyOn(GetLevel, 'default').mockImplementation(() => [15, '_', '_'])
+    jest.spyOn(GetLevelAndPointsToNextLevel, 'GetClosestLevel').mockImplementation(() => 15)
 
     firebaseMockUp({ account: 'free' })
     
