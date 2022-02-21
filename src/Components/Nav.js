@@ -28,10 +28,8 @@ const Nav = () => {
     useEffect (() => {
       
         if(user){
-
-            let uidRef = ref(db, `users/${user.uid}`)
             
-            let unsubscribe = onValue(uidRef, snapshot => {
+            let unsubscribe = onValue(ref(db, `users/${user.uid}`), snapshot => {
 
                 setUserInfo(snapshot.val() || null)
                 setUid(user.uid)
@@ -81,7 +79,7 @@ const Nav = () => {
                     <UserAvatar user = {user} allowAnonymousUser = {true}/>
                     <div className = 'Name-Points'>
                         <span className = 'Name'>
-                            {userInfo?.anonimo ? userInfo.nickName : user.displayName}
+                            {userInfo?.nickName || user?.displayName}
                         </span>
                         <span className = 'Points'>Nivel {level} <UnreadNotifications user = {user}/></span>
                     </div>

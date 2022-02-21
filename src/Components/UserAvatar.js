@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { db, onValue, ref }           from '../Functions/Firebase'
-import GetPoints                      from '../Functions/GetPoints'
-import GetLevel                       from '../Functions/GetLevelAndPointsToNextLevel'
 import AnonymImg                      from '../Functions/AnonymImg'
 import Loading                        from '../Components/Loading'
 import '../Styles/UserAvatar.css'
@@ -19,11 +17,9 @@ const UserAvatar = ({allowAnonymousUser, user}) => {
             
             if(userInfo){
                 
-                let capture = snapshot.val()
-                
-                if(capture.anonimo && allowAnonymousUser){
+                if(userInfo.avatar && allowAnonymousUser){
                     
-                    setPicture(capture.avatar)
+                    setPicture(userInfo.avatar)
                     
                 }
                 else{

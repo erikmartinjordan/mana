@@ -6,11 +6,11 @@ import Hints                                                         from './Hin
 import EmojiTextarea                                                 from './EmojiTextarea'
 import { db, increment, onValue, push, ref, runTransaction, update } from '../Functions/Firebase'
 import GetPoints                                                     from '../Functions/GetPoints'
-import GetLevel                                                      from '../Functions/GetLevelAndPointsToNextLevel'
 import insertNotificationAndReputation                               from '../Functions/InsertNotificationAndReputationIntoDatabase'
 import normalize                                                     from '../Functions/NormalizeWord'
 import UserContext                                                   from '../Functions/UserContext'
 import unmount                                                       from '../Functions/Unmount'
+import { GetClosestLevel }                                           from '../Functions/GetLevelAndPointsToNextLevel'
 import Accounts                                                      from '../Rules/Accounts'
 import '../Styles/NewPost.css'
 import '../Styles/DeletePost.css';
@@ -29,61 +29,36 @@ const NewPost = ({ hide }) => {
     const [timeSpanPosts, setTimeSpanPosts] = useState(null)
     const [title, setTitle]                 = useState('')
     const { user }                          = useContext(UserContext)
-    const points                            = GetPoints(nickName ? nickName : user ? user.uid : null)
-    const level                             = GetLevel(points)[0]
-    
+    const points                            = GetPoints(user?.uid || nickName)
+    const closestLevel                      = GetClosestLevel(points)
+
     useEffect(() => {
         
         if(user){
-
-            let usersRef = ref(db, `users/${user.uid}`)
             
-            onValue(usersRef, snapshot => {
-                
+            let unsubscribe = onValue(ref(db, `users/${user.uid}`), snapshot => {
+
                 let userInfo = snapshot.val()
                 
                 if(userInfo){
-                    
-                    let nickName
-                    let avatar
-                    let timeSpanPosts
-                    let maxLengthPost
-                    
-                    if(userInfo.account === 'premium' || userInfo.account === 'infinita'){
-                        
-                        timeSpanPosts = Accounts[userInfo.account].messages.timeSpanPosts
-                        maxLengthPost = Accounts[userInfo.account].messages.maxLength
-                        
-                    }
-                    else{
-                        
-                        let rangeOfLevels = Object.keys(Accounts['free'])
-                        let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level))
-                        
-                        timeSpanPosts = Accounts['free'][closestLevel].messages.timeSpanPosts
-                        maxLengthPost = Accounts['free'][closestLevel].messages.maxLength
-                        
-                    }
-                    
-                    if(userInfo.anonimo){
-                        
-                        nickName = userInfo.nickName
-                        avatar   = userInfo.avatar  
-                        
-                    } 
-                    
+
+                    let timeSpanPosts = Accounts[userInfo.account]?.messages.timeSpanPosts || Accounts['free'][closestLevel].messages.timeSpanPosts
+                    let maxLengthPost = Accounts[userInfo.account]?.messages.maxLength     || Accounts['free'][closestLevel].messages.maxLength
+
                     setTimeSpanPosts(timeSpanPosts)
                     setMaxLengthPost(maxLengthPost)
-                    setNickName(nickName)
-                    setAvatar(avatar)
+                    setNickName(userInfo.nickName)
+                    setAvatar(userInfo.avatar)
                     
                 }
                 
             })
+
+            return () => unsubscribe()
             
         } 
         
-    }, [user, level])
+    }, [user, closestLevel])
     
     const alert = (title, message) => {
         

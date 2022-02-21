@@ -178,18 +178,9 @@ const Account = ({user, infoUser, nextPayment, uid}) => {
     
     const anonimizar = () => {
 
-        runTransaction(ref(db, `users/${user.uid}/anonimo/`), anonimo => {
+        runTransaction(ref(db, `users/${user.uid}/nickName`), nickName => nickName ? null : AnonymName())
+        runTransaction(ref(db, `users/${user.uid}/avatar`), avatar => avatar ? null : AnonymImg())
 
-            if(!anonimo){
-
-                runTransaction(ref(db, `users/${user.uid}/nickName/`), _ => AnonymName())
-                runTransaction(ref(db, `users/${user.uid}/avatar/`), _ => AnonymImg())
-                
-            }
-
-            return !anonimo
-
-        })
     }
     
     return(
@@ -201,7 +192,7 @@ const Account = ({user, infoUser, nextPayment, uid}) => {
             <div className = 'Bloque'>
                 <div className = 'Title'>Nombre</div>
                 <div className = 'Num'>
-                    {infoUser?.anonimo ? infoUser.nickName : user.displayName}
+                    {infoUser.nickName || user.displayName}
                 </div>
                 <div className = 'Comment'>Nombre que se muestra públicamente.</div>
             </div>
@@ -253,7 +244,7 @@ const Account = ({user, infoUser, nextPayment, uid}) => {
                     <div className = 'Title'>Anonimizar</div>
                     <div className = 'Toggle' onClick = {anonimizar}>
                         <div className = 'Tag'>Tu nombre real no se mostrará.</div>
-                        { infoUser?.anonimo 
+                        { infoUser?.nickName
                         ? <ToggleButton status = 'on' /> 
                         : <ToggleButton status = 'off' />
                         }

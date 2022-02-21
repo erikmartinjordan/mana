@@ -9,7 +9,7 @@ import Loading                                       from './Loading'
 import UserContext                                   from '../Functions/UserContext'
 import { db, increment, onValue, push, ref, update } from '../Functions/Firebase'
 import GetPoints                                     from '../Functions/GetPoints'
-import GetLevel                                      from '../Functions/GetLevelAndPointsToNextLevel'
+import { GetClosestLevel }                           from '../Functions/GetLevelAndPointsToNextLevel'
 import GetNumberOfReplies                            from '../Functions/GetNumberOfReplies'
 import insertNotificationAndReputation               from '../Functions/InsertNotificationAndReputationIntoDatabase'
 import Accounts                                      from '../Rules/Accounts'
@@ -27,62 +27,37 @@ const NewReply = ({ postId }) => {
     const [showLogin, setShowLogin]               = useState(false)
     const [timeSpanReplies, setTimeSpanReplies]   = useState(null)
     const { user }                                = useContext(UserContext)
-    const points                                  = GetPoints(nickName ? nickName : user ? user.uid : null)
-    const level                                   = GetLevel(points)[0]
+    const points                                  = GetPoints(user?.uid || nickName)
+    const closestLevel                            = GetClosestLevel(points)
     const numReplies                              = GetNumberOfReplies(user?.uid)
     
     useEffect(() => {
         
         if(user){
-
-            let usersRef = ref(db, `users/${user.uid}`)
             
-            onValue(usersRef, snapshot => {
+            let unsubscribe = onValue(ref(db, `users/${user.uid}`), snapshot => {
                 
                 let userInfo = snapshot.val()
                 
                 if(userInfo){
                     
-                    let nickName
-                    let avatar
-                    let timeSpanReplies
-                    let maxLengthReply
-                    
-                    if(userInfo.account === 'premium' || userInfo.account === 'infinita'){
-                        
-                        timeSpanReplies = Accounts[userInfo.account].messages.timeSpanReplies
-                        maxLengthReply  = Accounts[userInfo.account].messages.maxLength
-                        
-                    }
-                    else{
-                        
-                        let rangeOfLevels = Object.keys(Accounts['free'])
-                        let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level))
-                        
-                        timeSpanReplies = Accounts['free'][closestLevel].messages.timeSpanReplies
-                        maxLengthReply  = Accounts['free'][closestLevel].messages.maxLength
-                        
-                    }
-                    
-                    if(userInfo.anonimo){
-                        
-                        nickName = userInfo.nickName
-                        avatar   = userInfo.avatar  
-                        
-                    }
+                    let timeSpanReplies = Accounts[userInfo.account]?.messages.timeSpanReplies || Accounts['free'][closestLevel].messages.timeSpanReplies
+                    let maxLengthReply  = Accounts[userInfo.account]?.messages.maxLength       || Accounts['free'][closestLevel].messages.maxLength
                     
                     setTimeSpanReplies(timeSpanReplies)
                     setMaxLengthReply(maxLengthReply)
-                    setNickName(nickName)
-                    setAvatar(avatar)
+                    setNickName(userInfo.nickName)
+                    setAvatar(userInfo.avatar)
                     
                 }
                 
             })
+
+            return () => unsubscribe()
             
         }
         
-    }, [level, user])
+    }, [user, closestLevel])
     
     const alert = (title, message) => {
         
