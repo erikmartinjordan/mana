@@ -41,8 +41,8 @@ const NewReply = ({ postId }) => {
                 
                 if(userInfo){
                     
-                    setTimeSpanReplies(Accounts[userInfo.account]?.messages.timeSpanReplies ?? Accounts['free'][closestLevel].messages.timeSpanReplies)
-                    setMaxLengthReply(Accounts[userInfo.account]?.messages.maxLength        ?? Accounts['free'][closestLevel].messages.maxLength)
+                    setTimeSpanReplies(Accounts[userInfo.account]?.messages?.timeSpanReplies ?? Accounts['free'][closestLevel]?.messages?.timeSpanReplies)
+                    setMaxLengthReply(Accounts[userInfo.account]?.messages?.maxLength        ?? Accounts['free'][closestLevel]?.messages?.maxLength)
                     setNickName(userInfo.nickName)
                     setAvatar(userInfo.avatar)
                     

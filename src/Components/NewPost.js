@@ -42,8 +42,8 @@ const NewPost = ({ hide }) => {
                 
                 if(userInfo){
 
-                    setTimeSpanPosts(Accounts[userInfo.account]?.messages.timeSpanPosts ?? Accounts['free'][closestLevel].messages.timeSpanPosts)
-                    setMaxLengthPost(Accounts[userInfo.account]?.messages.maxLength     ?? Accounts['free'][closestLevel].messages.maxLength)
+                    setTimeSpanPosts(Accounts[userInfo.account]?.messages?.timeSpanPosts ?? Accounts['free'][closestLevel]?.messages?.timeSpanPosts)
+                    setMaxLengthPost(Accounts[userInfo.account]?.messages?.maxLength     ?? Accounts['free'][closestLevel]?.messages?.maxLength)
                     setNickName(userInfo.nickName)
                     setAvatar(userInfo.avatar)
                     
