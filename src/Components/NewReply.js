@@ -154,7 +154,7 @@ const NewReply = ({ postId }) => {
                 <div className = 'NewReply'>
                     <div className = 'NewReply-Wrap'>
                         <div className = 'User'>
-                            <UserAvatar user = {user}/>
+                            <UserAvatar user = {user} allowAnonymousUser = {true}/>
                             <span>{nickName ? nickName : user.displayName}</span>
                         </div>
                         <EmojiTextarea   

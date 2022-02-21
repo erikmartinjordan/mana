@@ -4,7 +4,7 @@ import AnonymImg                      from '../Functions/AnonymImg'
 import Loading                        from '../Components/Loading'
 import '../Styles/UserAvatar.css'
 
-const UserAvatar = ({ user }) => {  
+const UserAvatar = ({ user, allowAnonymousUser }) => {  
     
     const [picture, setPicture] = useState(null)
     const randomImg = AnonymImg()
@@ -15,7 +15,13 @@ const UserAvatar = ({ user }) => {
             
             let userInfo = snapshot.val()
 
-            setPicture(userInfo.avatar || user.photoURL || randomImg)
+            // Don't delete this variable
+            // allowsAnonymousUser = true allows avatar change to anonymous in new post or reply
+            if(allowAnonymousUser)
+                setPicture(userInfo.avatar || user.photoURL || randomImg)
+            // allowsAnonymousUser = false prevents avatars from the main forum to change when the user is anonymous
+            else
+                setPicture(user.photoURL || randomImg)
             
         })
         
