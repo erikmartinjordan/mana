@@ -76,7 +76,7 @@ const Nav = () => {
         return(      
             <div className = 'Menu' key = 'a'>
                 <div onClick = {() => setPerfil(true)} className = 'Img-Wrap'>
-                    <UserAvatar user = {user} allowAnonymousUser = {true}/>
+                    <UserAvatar user = {user}/>
                     <div className = 'Name-Points'>
                         <span className = 'Name'>
                             {userInfo?.nickName || user?.displayName}
@@ -107,7 +107,7 @@ const Nav = () => {
                 <Link to = '/usuarios'><TelescopeIcon/>Descubre</Link>
                 <Link to = '/' onClick = {() => setPost(true)}><PaperAirplaneIcon/>Publicar</Link>
                 <div onClick = {() => setPerfil(true)} className = 'Img-Wrap'>
-                    <UserAvatar user = {user} allowAnonymousUser = {true}/>
+                    <UserAvatar user = {user}/>
                     <UnreadNotifications user = {user}/>
                 </div>
             </div>
