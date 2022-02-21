@@ -29,7 +29,7 @@ const NewPost = ({ hide }) => {
     const [timeSpanPosts, setTimeSpanPosts] = useState(null)
     const [title, setTitle]                 = useState('')
     const { user }                          = useContext(UserContext)
-    const points                            = GetPoints(user?.uid || nickName)
+    const points                            = GetPoints(nickName || user?.uid)
     const closestLevel                      = GetClosestLevel(points)
 
     useEffect(() => {
@@ -42,11 +42,8 @@ const NewPost = ({ hide }) => {
                 
                 if(userInfo){
 
-                    let timeSpanPosts = Accounts[userInfo.account]?.messages.timeSpanPosts || Accounts['free'][closestLevel].messages.timeSpanPosts
-                    let maxLengthPost = Accounts[userInfo.account]?.messages.maxLength     || Accounts['free'][closestLevel].messages.maxLength
-
-                    setTimeSpanPosts(timeSpanPosts)
-                    setMaxLengthPost(maxLengthPost)
+                    setTimeSpanPosts(Accounts[userInfo.account]?.messages.timeSpanPosts ?? Accounts['free'][closestLevel].messages.timeSpanPosts)
+                    setMaxLengthPost(Accounts[userInfo.account]?.messages.maxLength     ?? Accounts['free'][closestLevel].messages.maxLength)
                     setNickName(userInfo.nickName)
                     setAvatar(userInfo.avatar)
                     
@@ -81,9 +78,9 @@ const NewPost = ({ hide }) => {
         let normalizedTags = tags.map(tag => normalize(tag)) 
         let tagsObject     = normalizedTags.reduce((acc, tag) => ((acc[tag] = true, acc)), {})
         
-        let userName  = nickName ? nickName : user.displayName
-        let userUid   = nickName ? nickName : user.uid
-        let userPhoto = nickName ? avatar   : user.photoURL
+        let userName  = nickName || user.displayName
+        let userUid   = nickName || user.uid
+        let userPhoto = avatar   || user.photoURL
         
         let postId = push(ref(db)).key
         
@@ -170,7 +167,7 @@ const NewPost = ({ hide }) => {
         <div className = 'NewPost'>
             <div className = {`NewPost-Wrap ${animation}`}>
                 <div className = 'User'>
-                    <UserAvatar user = {user} allowAnonymousUser = {true}/>
+                    <UserAvatar user = {user}/>
                     <span>{nickName ? nickName : user.displayName}</span>
                 </div>
                 <input  

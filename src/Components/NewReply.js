@@ -27,7 +27,7 @@ const NewReply = ({ postId }) => {
     const [showLogin, setShowLogin]               = useState(false)
     const [timeSpanReplies, setTimeSpanReplies]   = useState(null)
     const { user }                                = useContext(UserContext)
-    const points                                  = GetPoints(user?.uid || nickName)
+    const points                                  = GetPoints(nickName || user?.uid)
     const closestLevel                            = GetClosestLevel(points)
     const numReplies                              = GetNumberOfReplies(user?.uid)
     
@@ -41,11 +41,8 @@ const NewReply = ({ postId }) => {
                 
                 if(userInfo){
                     
-                    let timeSpanReplies = Accounts[userInfo.account]?.messages.timeSpanReplies || Accounts['free'][closestLevel].messages.timeSpanReplies
-                    let maxLengthReply  = Accounts[userInfo.account]?.messages.maxLength       || Accounts['free'][closestLevel].messages.maxLength
-                    
-                    setTimeSpanReplies(timeSpanReplies)
-                    setMaxLengthReply(maxLengthReply)
+                    setTimeSpanReplies(Accounts[userInfo.account]?.messages.timeSpanReplies ?? Accounts['free'][closestLevel].messages.timeSpanReplies)
+                    setMaxLengthReply(Accounts[userInfo.account]?.messages.maxLength        ?? Accounts['free'][closestLevel].messages.maxLength)
                     setNickName(userInfo.nickName)
                     setAvatar(userInfo.avatar)
                     
@@ -79,9 +76,9 @@ const NewReply = ({ postId }) => {
         let now = Date.now()
         let slicedReply = message.slice(0, 50) + '...'
         
-        let userName  = nickName ? nickName : user.displayName
-        let userUid   = nickName ? nickName : user.uid
-        let userPhoto = nickName ? avatar   : user.photoURL
+        let userName  = nickName || user.displayName
+        let userUid   = nickName || user.uid
+        let userPhoto = avatar   || user.photoURL
         
         let url     = postId
         let replyId = push(ref(db)).key
@@ -157,7 +154,7 @@ const NewReply = ({ postId }) => {
                 <div className = 'NewReply'>
                     <div className = 'NewReply-Wrap'>
                         <div className = 'User'>
-                            <UserAvatar user = {user} allowAnonymousUser = {true}/>
+                            <UserAvatar user = {user}/>
                             <span>{nickName ? nickName : user.displayName}</span>
                         </div>
                         <EmojiTextarea   
