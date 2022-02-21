@@ -4,40 +4,24 @@ import AnonymImg                      from '../Functions/AnonymImg'
 import Loading                        from '../Components/Loading'
 import '../Styles/UserAvatar.css'
 
-const UserAvatar = ({allowAnonymousUser, user}) => {  
+const UserAvatar = ({ user }) => {  
     
     const [picture, setPicture] = useState(null)
     const randomImg = AnonymImg()
     
-    useEffect( () => {
+    useEffect(() => {
         
         let unsubscribe = onValue(ref(db, `users/${user.uid}`), snapshot => {
             
             let userInfo = snapshot.val()
-            
-            if(userInfo){
-                
-                if(userInfo.avatar && allowAnonymousUser){
-                    
-                    setPicture(userInfo.avatar)
-                    
-                }
-                else{
-                    
-                    setPicture(user.photoURL)
-                }
-                
-            }
-            else{
-                
-                setPicture(randomImg)
-            }
+
+            setPicture(userInfo.avatar || user.photoURL || randomImg)
             
         })
         
         return () => unsubscribe()
         
-    }, [allowAnonymousUser, user, randomImg])
+    }, [user, randomImg])
         
     return (
         <React.Fragment>
