@@ -97,7 +97,7 @@ const LastQuestions = ({ number, from, to, filter }) => {
                     <div className = 'Title-Author'> 
                         <Link to = {`/comunidad/post/${question.key}`} className = 'Title'>{question.title}</Link>
                         <div className = 'Author-Date-Responses'>
-                            <UserAvatar user = {{uid: question.userUid, photoURL: question.userPhoto}}/>
+                            <UserAvatar user = {{uid: question.userUid}}/>
                             <div className = 'Author-Date'>
                                 <Link to = {`/@${question.userUid}`}  className = 'Author'>{question.userName}</Link>
                                 <div className = 'Date-Responses'>

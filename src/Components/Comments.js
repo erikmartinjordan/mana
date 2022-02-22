@@ -19,7 +19,7 @@ const Comments = () => {
                 {comments.map(([replyId, comment], key) =>
                 <Link to = {`/comunidad/post/${comment.postId}/#${replyId}`} key = {key} className = 'Info'>
                     <div className = 'Info-Wrap'>
-                        <UserAvatar user = {{uid: comment.userUid, photoURL: comment.userPhoto}}/>
+                        <UserAvatar user = {{uid: comment.userUid}}/>
                         <div className = 'Author-Date'>
                             <span>{comment.userName}</span>
                             <time>{moment(comment.timeStamp).fromNow()}</time>

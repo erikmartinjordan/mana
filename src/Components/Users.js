@@ -35,7 +35,7 @@ const Users = ({numberOfUsers = 10}) => {
             {users.map(([id, user], index) => 
                 <Link to = {'/@' + id} className = 'User' key = {index}>
                     <div className = 'Rank'>#{index + 1}</div>
-                    <UserAvatar user = {{uid: id, photoURL: user.profilePic}}/>
+                    <UserAvatar user = {{uid: id}}/>
                     <div className = 'NamePoints'>
                         <div>{user.name}</div>
                         <div className = 'Points'>{user.numPoints} puntos</div>

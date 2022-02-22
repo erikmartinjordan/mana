@@ -57,7 +57,7 @@ const Question = ({ admin, postId, setTitle, uid }) => {
         ? <div className = 'Question'>
             <div className = 'Header'>
                 <div className = 'Author-Name-Date'> 
-                    <UserAvatar user = {{uid: question.userUid, photoURL: question.userPhoto}}/>
+                    <UserAvatar user = {{uid: question.userUid}}/>
                     <span className = 'Author-Date'>
                         <span className = 'Author-Info'>
                             <Link to = {'/@' + question.userUid}>{question.userName}</Link> 

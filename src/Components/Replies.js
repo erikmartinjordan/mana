@@ -45,7 +45,7 @@ const Replies = ({ admin, postId, uid }) => {
                 <div className = {key === scrollToReplyId ? 'Reply Flash' : 'Reply'}  key = {key} ref = {key === scrollToReplyId ? replyRef : null}>
                     <div className = 'Header'>
                         <div className = 'Author-Name-Date'> 
-                            <UserAvatar user = {{uid: reply.userUid, photoURL: reply.userPhoto}}/>
+                            <UserAvatar user = {{uid: reply.userUid}}/>
                             <span className = 'Author-Date'>
                                 <span className = 'Author-Info'>
                                     <Link to = {'/@' + reply.userUid}>{reply.userName}</Link>
