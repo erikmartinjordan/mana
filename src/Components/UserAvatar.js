@@ -18,10 +18,10 @@ const UserAvatar = ({ user, allowAnonymousUser }) => {
             // Don't delete this variable
             // allowsAnonymousUser = true allows avatar change to anonymous in new post or reply
             if(allowAnonymousUser)
-                setPicture(userInfo.avatar || user.photoURL || randomImg)
+                setPicture(userInfo.avatar || userInfo.profilePic || randomImg)
             // allowsAnonymousUser = false prevents avatars from the main forum to change when the user is anonymous
             else
-                setPicture(user.photoURL || randomImg)
+                setPicture(userInfo.profilePic || randomImg)
             
         })
         
