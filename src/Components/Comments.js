@@ -10,29 +10,24 @@ const Comments = () => {
     
     const comments = GetLastComments(10)
     
-    return(
-        <React.Fragment>
-        { comments.length !== 0
-        ? <div className = 'Comments'>
-            <span className = 'Title'>Últimos comentarios</span>
-            <div className = 'LastComments'>
-                {comments.map(([replyId, comment], key) =>
-                <Link to = {`/comunidad/post/${comment.postId}/#${replyId}`} key = {key} className = 'Info'>
-                    <div className = 'Info-Wrap'>
-                        <UserAvatar user = {{uid: comment.userUid}}/>
-                        <div className = 'Author-Date'>
-                            <span>{comment.userName}</span>
-                            <time>{moment(comment.timeStamp).fromNow()}</time>
-                        </div>
+    return comments.length !== 0
+    ? <div className = 'Comments'>
+        <span className = 'Title'>Últimos comentarios</span>
+        <div className = 'LastComments'>
+            {comments.map(([replyId, comment], key) =>
+            <Link to = {`/comunidad/post/${comment.postId}/#${replyId}`} key = {key} className = 'Info'>
+                <div className = 'Info-Wrap'>
+                    <UserAvatar user = {{uid: comment.userUid}}/>
+                    <div className = 'Author-Date'>
+                        <span>{comment.userName}</span>
+                        <time>{moment(comment.timeStamp).fromNow()}</time>
                     </div>
-                </Link>
-                )}
-            </div>
+                </div>
+            </Link>
+            )}
         </div>
-        : <Loading type = 'Comments'/>
-        }
-        </React.Fragment>
-    )
+    </div>
+    : <Loading type = 'Comments'/>
 }
 
 export default Comments
