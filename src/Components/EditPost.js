@@ -3,20 +3,24 @@ import TagInput                                       from './TagInput'
 import Alert                                          from './Alert'
 import { db, get, onValue, ref, runTransaction, set } from '../Functions/Firebase'
 import GetPoints                                      from '../Functions/GetPoints'
-import GetLevel                                       from '../Functions/GetLevelAndPointsToNextLevel'
+import { GetClosestLevel }                            from '../Functions/GetLevelAndPointsToNextLevel'
 import normalize                                      from '../Functions/NormalizeWord'
+import unmount                                        from '../Functions/Unmount'
 import Accounts                                       from '../Rules/Accounts'
 import '../Styles/EditPost.css'
 
-const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
+const EditPost = ({ admin: isAdmin, postId, replyId, type, authorId, uid }) => {
     
-    const refTextarea           = useRef(null)
-    const [alert, setAlert]     = useState(null)
-    const [message, setMessage] = useState(null)
-    const [canEdit, setCanEdit] = useState(false)
-    const [tags, setTags]       = useState([])
-    const points                = GetPoints(authorId)
-    const level                 = GetLevel(points)[0]
+    const refTextarea                     = useRef(null)
+    const [animation, setAnimation]       = useState('')
+    const [alertTitle, setAlertTitle]     = useState('')
+    const [alertMessage, setAlertMessage] = useState('')
+    const [message, setMessage]           = useState('')
+    const [canEdit, setCanEdit]           = useState(false)
+    const [tags, setTags]                 = useState([])
+    const [title, setTitle]               = useState('')
+    const points                          = GetPoints(authorId)
+    const closestLevel                    = GetClosestLevel(points)
     
     useEffect(() => {
         
@@ -26,58 +30,39 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
     }, [message])
     
     useEffect(() => {
-
-        let refUid = ref(db, `users/${uid}`)
         
-        onValue(refUid, snapshot => {
+        let unsubscribe = onValue(ref(db, `users/${uid}`), snapshot => {
             
-            let userInfo = snapshot.val()
-            
-            if(userInfo){
+            if(snapshot.val()){
                 
-                let isAdmin   = admin
                 let isAuthor  = authorId === uid 
-                let isPremium = false
-                let canEditMessages = false
+                let isPremium = snapshot.val().account === 'premium' || snapshot.val().account === 'infinita'
+                let canEditMessages = Accounts['free'][closestLevel].edit
                 
-                if(userInfo.account){
-                    
-                    isPremium = true
-                }
-                else{
-                    
-                    let rangeOfLevels = Object.keys(Accounts['free'])
-                    let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level))
-                    
-                    canEditMessages = Accounts['free'][closestLevel].edit ? true : false
-                    
-                }
-                
-                if(isAdmin)                      setCanEdit(true)
-                else if(isPremium && isAuthor)   setCanEdit(true)
-                else if(canEditMessages)         setCanEdit(true)
-                else                             setCanEdit(false)
+                setCanEdit(isAdmin || (isPremium && isAuthor) || canEditMessages)
                 
             }
             else{
                 
                 setCanEdit(false)
+
             }
             
         })
+
+        return () => unsubscribe()
         
-    }, [level, uid, admin, authorId])
+    }, [closestLevel, uid, isAdmin, authorId])
     
     const editMessage = async () => {
         
         if(type === 'post'){
 
-            let { message, tags } = (await get(ref(db, `posts/${postId}`))).val()
+            let { title, message, tags } = (await get(ref(db, `posts/${postId}`))).val()
             
+            setTitle(title)
             setMessage(message)
-            
-            if(tags)
-                setTags(Object.keys(tags))
+            setTags(Object.keys(tags || {}))
             
         }
         else{
@@ -89,6 +74,12 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
         }
         
     }
+
+    const handleTitle = (e) => {
+
+        setTitle(e.target.value)
+
+    }
     
     const handleMessage = (e) => {
         
@@ -96,6 +87,19 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
         e.target.style.height = `${e.target.scrollHeight}px` 
         
         setMessage(e.target.value)
+        
+    }
+
+    const alert = (title, message) => {
+        
+        setAlertTitle(title)
+        setAlertMessage(message)
+        
+    }
+    
+    const closeNewPost = (secondsToClose) => {
+        
+        setTimeout(() => unmount(setAnimation, () => setMessage(null)), secondsToClose * 1000)
         
     }
     
@@ -106,6 +110,7 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
             let normalizedTags = tags.map(tag => normalize(tag)) 
             let tagsObject     = normalizedTags.reduce((acc, tag) => ((acc[tag] = true, acc)), {})
 
+            set(ref(db, `posts/${postId}/title`), title)
             set(ref(db, `posts/${postId}/message`), message)
             set(ref(db, `posts/${postId}/tags`), tagsObject)
             runTransaction(ref(db, `posts/${postId}/edited`), _ => Date.now())
@@ -120,18 +125,25 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
             
         }
         
-        setAlert(true)
+        alert('Bien', '¡Mensaje editado!')
         
-        setTimeout( () => setAlert(false), 1500)
-        setTimeout( () => setMessage(null), 1500)
-        
+        closeNewPost(2)     
+
     }
     
     return (
         <div className = 'Edit'>
             { message 
             ? <div className = 'Edit-Message'>
-                <div className = 'Edit-Message-Wrap'>
+                <div className = {`Edit-Message-Wrap ${animation}`}>
+                    { type === 'post'
+                    ? <input  
+                        maxLength   = {140}
+                        value       = {title} 
+                        onChange    = {handleTitle}
+                      />
+                    : null
+                    }
                     <textarea 
                         ref      = {refTextarea} 
                         value    = {message} 
@@ -152,14 +164,13 @@ const EditPost = ({ admin, postId, replyId, type, authorId, uid }) => {
               </div>
             :  null
             }
-            { canEdit
-            ? <button onClick = {editMessage} className = 'Edit'>Editar</button>
-            : null
-            }
-            { alert
-            ? <Alert title = 'Genial' message = 'Mensaje editado'></Alert>
-            : null
-            }
+            { canEdit ? <button onClick = {editMessage} className = 'Edit'>Editar</button> : null }
+            <Alert 
+                message    = {alertMessage}
+                title      = {alertTitle} 
+                setMessage = {setAlertMessage}
+                setTitle   = {setAlertTitle}
+            />
         </div>
     )
     

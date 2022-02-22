@@ -13,6 +13,7 @@
     z-index: 2;
 }
 .Edit .Edit-Message-Wrap{
+    animation: bounce 0.1s forwards;
     background: var(--bgBox);
     border-radius: 12px;
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.2) 0px 5px 10px, rgba(15, 15, 15, 0.4) 0px 15px 40px;
@@ -20,6 +21,22 @@
     max-width: 600px;
     width: 100%;
     z-index: 2;
+}
+.Edit .Edit-Message-Wrap.Unmount{
+    animation: bounce-back 0.2s forwards;
+}
+.Edit-Message-Wrap input{
+    background: var(--bgColor)!important;
+    border: none;
+    border-radius: 12px;
+    box-sizing: border-box;
+    color: var(--primaryFontColor);
+    font-size: medium;
+    line-height: 2;
+    margin-top: 10px;
+    padding: 5px;
+    resize: none;
+    width: 100%;
 }
 .Edit .Edit-Message-Wrap textarea{
     background: var(--bgColor);
