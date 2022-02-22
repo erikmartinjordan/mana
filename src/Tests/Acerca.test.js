@@ -6,6 +6,7 @@ import Acerca                             from '../Components/Acerca'
 import UserContext                        from '../Functions/UserContext'
 
 jest.mock("react-markdown", () => (props) =>  <>{props.children}</>)
+jest.mock("remark-gfm", () => (props) =>  <>{props.children}</>)
 
 let container = null
 let description = document.createElement('meta')
