@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect }                                            from 'react'
 import moment                                                                                from 'moment'
 import ReactMarkdown                                                                         from 'react-markdown'
+import remarkGfm                                                                             from 'remark-gfm'
 import Twemoji                                                                               from './Twemoji'
 import DeleteFeature                                                                         from './DeleteFeature'
 import { db, onValue, getDownloadURL, push, ref, storage, storageRef, uploadBytesResumable } from '../Functions/Firebase'
@@ -74,6 +75,13 @@ const Acerca = () => {
         setContent(e.target.value)
     }
 
+    const components = {
+        
+        image: props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Imagen de artículo'}></img>,
+        table: props => <div className = 'TableWrap'><table>{props.children}</table></div>
+        
+    }
+
     return (
         <div className = 'Acerca'>
             <h1>Acerca</h1>
@@ -130,7 +138,12 @@ const Acerca = () => {
                             <div className = 'Date'>{data[key].date[0] + ' de ' + data[key].date[1] + ' del '  + data[key].date[2]}</div>
                             <div className = 'Content'>
                                 <div className = 'Text'>
-                                    { <ReactMarkdown children = {data[key].description}></ReactMarkdown>}
+                                    { <ReactMarkdown 
+                                        children = {data[key].description}
+                                        components = {components}
+                                        remarkPlugins = {[remarkGfm]}
+                                      /> 
+                                    }
                                     { data[key].pic 
                                     ? <img src = {data[key].pic} alt = {'Imagen de actualización'}/> 
                                     : null}
