@@ -15,6 +15,7 @@ import CopyLink                        from './CopyLink'
 import Highlight                       from './Highlight'
 import EditionTime                     from './EditionTime'
 import SortReplies                     from './SortReplies'
+import Ad                              from './Ad'
 import 'katex/dist/katex.min.css'
 import '../Styles/Replies.css'
 import 'moment/locale/es'
@@ -41,7 +42,7 @@ const Replies = ({ admin, postId, uid }) => {
                 replies    = {replies} 
                 setReplies = {setReplies}
             />
-            {replies.map(([key, reply]) => (
+            {replies.map(([key, reply], index) => (
                 <div className = {key === scrollToReplyId ? 'Reply Flash' : 'Reply'}  key = {key} ref = {key === scrollToReplyId ? replyRef : null}>
                     <div className = 'Header'>
                         <div className = 'Author-Name-Date'> 
@@ -64,6 +65,7 @@ const Replies = ({ admin, postId, uid }) => {
                             <DeletePost type = 'reply' postId = {postId} replyId = {key} authorId = {reply.userUid} admin = {admin} uid = {uid}/>
                         </div>
                     </div>
+                    { index === 5 ? <Ad/> : null }
                 </div>
             ))}
         </div> 

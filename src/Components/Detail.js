@@ -6,6 +6,7 @@ import NewReply                                   from './NewReply'
 import Default                                    from './Default'
 import Privileges                                 from './Privileges'
 import Participants                               from './Participants'
+import Ad                                         from './Ad'
 import { db, ref, get }                           from '../Functions/Firebase'
 import UserContext                                from '../Functions/UserContext'
 import updateNumberOfViews                        from '../Functions/UpdateNumberOfViews'
@@ -65,6 +66,7 @@ const Detail = (props) => {
                         <Participants/>
                         <Privileges/>
                         <RelatedContent postId = {url}/>
+                        <Ad/>
                     </div>
                 </div>
               </div>   
