@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import '../Styles/Default.css';
+import React, { useEffect } from 'react'
+import '../Styles/Default.css'
 
 const DonateSuccess = () => {
     
@@ -18,7 +18,7 @@ const DonateSuccess = () => {
             <img src = 'https://media2.giphy.com/media/3oFzlVRupsRi40wfOE/giphy.gif' alt = {'Donate Success'}></img>
             <p>Gracias por tu aportación; el usuario ya ha recibido tu donación.</p>
         </div>
-    );
+    )
 }
 
-export default DonateSuccess;
+export default DonateSuccess
