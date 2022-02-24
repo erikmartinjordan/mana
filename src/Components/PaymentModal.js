@@ -99,46 +99,46 @@ const CheckoutForm = ({ hide, plan }) => {
     }
     
     return (
-      <div className = 'Checkout'>
-        {payment !== 'success'
-        ? <div className = 'Modal-Wrap'>
-                <h2>{user?.displayName}</h2>
-                <p>Tendrás una tarifa <em>{plan}</em> hasta el
-                { plan === 'premium'
-                ? ` ${moment().locale('es').add(1, 'year').format('LL')}.`
-                : ' ∞.'
-                }
-                </p>
-                <CardElement options = {{hidePostalCode: true}}/>
-                <div className = 'Total'>
-                    <div className = 'Price'>
-                        { plan === 'premium' 
-                        ? <div>{premium.value} €  <span className = 'info'>anuales</span></div>
-                        : <div>{infinita.value} € </div>
-                        }
-                    </div>
-                    <button onClick = {hide} className = 'Cancel'>Cancelar</button>
-                    <button onClick = {submit}>
-                        { payment === 'processing'
-                        ? <Loading/>
-                        : 'Pagar'
-                        }
-                    </button>   
-                </div>
-                <span className = 'Info-Payment'>
-                    { plan === 'premium' 
-                    ? 'Pago seguro vía Stripe. Podrás cancelar tu suscripción en cualquier momento.' 
-                    : 'Pago seguro vía Stripe.'
+        <div className = 'Checkout'>
+            { payment !== 'success'
+            ? <div className = 'Modal-Wrap'>
+                    <h2>{user?.displayName}</h2>
+                    <p>Tendrás una tarifa <em>{plan}</em> hasta el
+                    { plan === 'premium'
+                    ? ` ${moment().locale('es').add(1, 'year').format('LL')}.`
+                    : ' ∞.'
                     }
-                </span>
-          </div>
-        : <div className = 'Modal-Wrap Succeed'>
-                <h2>¡Gracias!</h2>
-                <Checkmark/>
-                <p>El pago se ha realizado de forma correcta.</p>
-                <button onClick = {hide}>Aceptar</button>
-          </div> 
-        }
-      </div>
+                    </p>
+                    <CardElement options = {{hidePostalCode: true}}/>
+                    <div className = 'Total'>
+                        <div className = 'Price'>
+                            { plan === 'premium' 
+                            ? <div>{premium.value} €  <span className = 'info'>anuales</span></div>
+                            : <div>{infinita.value} € </div>
+                            }
+                        </div>
+                        <button onClick = {hide} className = 'Cancel'>Cancelar</button>
+                        <button onClick = {submit}>
+                            { payment === 'processing'
+                            ? <Loading/>
+                            : 'Pagar'
+                            }
+                        </button>   
+                    </div>
+                    <span className = 'Info-Payment'>
+                        { plan === 'premium' 
+                        ? 'Pago seguro vía Stripe. Podrás cancelar tu suscripción en cualquier momento.' 
+                        : 'Pago seguro vía Stripe.'
+                        }
+                    </span>
+              </div>
+            : <div className = 'Modal-Wrap Succeed'>
+                    <h2>¡Gracias!</h2>
+                    <Checkmark/>
+                    <p>El pago se ha realizado de forma correcta.</p>
+                    <button onClick = {hide}>Aceptar</button>
+            </div> 
+            }
+        </div>
     )
 }
