@@ -24,24 +24,19 @@ const OneYearAgo = () => {
         
     }, [])
     
-    return(
-        <React.Fragment>
-            { Object.entries(posts).length > 0
-            ? <div className = 'OneYearAgo'>
-                <span className = 'Title'>Hace un año...</span>
-                <div className = 'Articles'>
+    return Object.entries(posts).length > 0
+    ? <div className = 'OneYearAgo'>
+            <span className = 'Title'>Hace un año...</span>
+            <div className = 'Articles'>
                 { Object.entries(posts).map(([url, {title, replies = {}, votes, views}]) => (
                     <div className = 'Article' key = {url}>
                         <Link to = {`/comunidad/post/${url}`}>{title}</Link>    
                         <p>{Object.keys(replies).length} {Object.keys(replies).length === 1 ? 'respuesta' : 'respuestas'}</p>
                     </div>
                 ))}
-                </div>
-             </div>
-            : <Loading type = 'OneYearAgo'/>    
-            }
-        </React.Fragment>
-    )
+            </div>
+        </div>
+    : <Loading type = 'OneYearAgo'/>    
     
 }
 
