@@ -1,22 +1,22 @@
-import React, { useState }          from 'react';
-import { GiftIcon }                 from '@primer/octicons-react';
-import { loadStripe }               from '@stripe/stripe-js';
-import Loading                      from './Loading';
-import { environment }              from '../Functions/Firebase';
-import { apiKey }                   from '../Functions/Stripe';
-import '../Styles/Donate.css';
+import React, { useState }          from 'react'
+import { GiftIcon }                 from '@primer/octicons-react'
+import { loadStripe }               from '@stripe/stripe-js'
+import Loading                      from './Loading'
+import { environment }              from '../Functions/Firebase'
+import { apiKey }                   from '../Functions/Stripe'
+import '../Styles/Donate.css'
 
-const stripePromise = loadStripe(apiKey);
+const stripePromise = loadStripe(apiKey)
 
 const Donate = ({ name, stripeUserId }) => {
     
-    const [showDonation, setShowDonation] = useState(false);
-    const [payment, setPayment]           = useState(false);
-    const [quantity, setQuantity]         = useState(1);
+    const [showDonation, setShowDonation] = useState(false)
+    const [payment, setPayment]           = useState(false)
+    const [quantity, setQuantity]         = useState(1)
     
     const pay = async () => {
         
-        setPayment('processing');
+        setPayment('processing')
         
         let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/stripeCreateSession';
         
@@ -31,29 +31,28 @@ const Donate = ({ name, stripeUserId }) => {
                 name: name
             })
             
-        });
+        })
         
         if(response.ok){
             
-            let stripe    = await stripePromise;
-            let data      = await response.json();
-            let sessionId = data.sessionId; 
+            let stripe    = await stripePromise
+            let data      = await response.json()
+            let sessionId = data.sessionId
             
-            const { error } = await stripe.redirectToCheckout({ sessionId: sessionId });
+            const { error } = await stripe.redirectToCheckout({ sessionId: sessionId })
             
             if(!error)
-                setPayment('done');
+                setPayment('done')
             
         }
         
     }
     
-    const handleLess = () => setQuantity(quantity - 1 > 0 ? quantity - 1 : 1);
+    const handleLess = () => setQuantity(quantity - 1 > 0 ? quantity - 1 : 1)
     
-    const handleMore = () => setQuantity(quantity + 1);
+    const handleMore = () => setQuantity(quantity + 1)
     
     return(
-        
         <div className = 'Donate'>
             <button onClick = {() => setShowDonation(true)}>Hacer una aportación <GiftIcon size = {14}/></button> 
             { showDonation
@@ -75,9 +74,8 @@ const Donate = ({ name, stripeUserId }) => {
             : null  
             }
         </div>
-        
-    );
+    )
     
 }
 
-export default Donate;
+export default Donate
