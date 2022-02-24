@@ -16,7 +16,7 @@ const Detail = (props) => {
     
     const [uid, setUid]             = useState(null)
     const [validPost, setValidPost] = useState(true)
-    const [title, setTitle]         = useState(null)
+    const [title, setTitle]         = useState('')
     const url                       = props.match.params.string
     const { user, admin }           = useContext(UserContext)
     

@@ -37,13 +37,9 @@ const Question = ({ admin, postId, setTitle, uid }) => {
     useEffect(() => {
         
         let unsubscribe = onValue(ref(db, `posts/${postId}`), snapshot => { 
-            
-            if(snapshot.val()){
-                
-                setQuestion(snapshot.val())
-                setTitle(snapshot.val().title)
-                
-            }
+
+            setQuestion(snapshot.val() || '')
+            setTitle(snapshot.val()?.title || '')
             
         })
         
