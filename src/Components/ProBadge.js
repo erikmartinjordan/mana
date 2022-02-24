@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { db, onValue, ref }    from '../Functions/Firebase'
+import { db, onValue, ref } from '../Functions/Firebase'
 import '../Styles/ProBadge.css'
 
-const ProBadge = ({user}) => {
+const ProBadge = ({ user }) => {
 
     const [type, setType] = useState('free')
 
@@ -31,14 +31,7 @@ const ProBadge = ({user}) => {
 
     }, [user])
 
-    return(
-        <>
-            { type === 'pro'
-            ? <div className = 'ProBadge'>premium</div>
-            : null
-            }
-        </>
-    )
+    return type === 'pro' ? <div className = 'ProBadge'>premium</div> : null
 
 }
 
