@@ -6,10 +6,10 @@ const Default = () => {
     
     useEffect(() => {
         
-        let meta = document.createElement('meta'); 
-        meta.name = 'robots'; 
-        meta.content = 'noindex, nofollow';
-        document.querySelector('meta[name="description"]').after(meta);
+        let meta = document.createElement('meta') 
+        meta.name = 'robots'
+        meta.content = 'noindex, nofollow'
+        document.querySelector('meta[name="description"]').after(meta)
         
     }, [])
     
