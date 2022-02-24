@@ -19,9 +19,7 @@ const Likes = ({ authorId, postId }) => {
     
     useEffect(() => {
 
-        let votesRef = ref(db,`posts/${postId}/voteUsers`)
-
-        let unsubscribe = onValue(votesRef, snapshot => {
+        let unsubscribe = onValue(ref(db,`posts/${postId}/voteUsers`), snapshot => {
 
             setVotes(snapshot.val() || {})
 
