@@ -1,6 +1,8 @@
 import { auth, environment } from '../Functions/Firebase'
 
 const FetchAdmin  = async (user) => {
+
+    if(!user) return null
     
     let idToken = await user.getIdToken(true)
     

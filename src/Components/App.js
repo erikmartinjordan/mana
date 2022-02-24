@@ -40,23 +40,13 @@ const App  = () => {
     
     const [user, setUser]   = useState(null)
     const [admin, setAdmin] = useState(null)
-    
+
     useEffect(() => {
         
         onAuthStateChanged(auth, async user => {
-            
-            if(user){
-                
-                setUser(user)    
-                setAdmin(await FetchAdmin(user))
-                
-            }
-            else{
-                
-                setUser(false)
-                setAdmin(false)
-                
-            }
+
+            setUser(user)
+            setAdmin(await FetchAdmin(user))
             
         })
         
