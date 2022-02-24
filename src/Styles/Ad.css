@@ -8,7 +8,6 @@
     font-size: small;
     justify-content: space-between;
     line-height: 1.5;
-    margin-top: 40px;
     position: relative;
     width: 100%;
 }
@@ -26,6 +25,9 @@
     .Reply .Ad{
         display: none;
     }
+    .Sidebar .Ad{
+        margin-top: 10px;
+    }
     .Sidebar .Ad img{
         border-radius: 12px;
         max-width: 100%;
@@ -34,6 +36,9 @@
 @media(max-width: 768px){
     .Sidebar .Ad{
         display: none;
+    }
+    .Reply .Ad{
+        margin-top: 40px;
     }
     .Reply .Ad img{
         border-radius: 12px;
