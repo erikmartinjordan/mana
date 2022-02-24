@@ -10,9 +10,7 @@ const ChangeLocation = ({ user }) => {
 
         if(user){
 
-            let cityRef = ref(db, `users/${user.uid}/city`)
-
-            let unsubscribe = onValue(cityRef, snapshot => {
+            let unsubscribe = onValue(ref(db, `users/${user.uid}/city`), snapshot => {
 
                 setCity(snapshot.val() || '')
 
@@ -30,9 +28,7 @@ const ChangeLocation = ({ user }) => {
 
         if(text.length <= 50){
 
-            let cityRef = ref(db, `users/${user.uid}/city`)
-
-            runTransaction(cityRef, _ => text)
+            runTransaction(ref(db, `users/${user.uid}/city`), _ => text)
 
         }
 

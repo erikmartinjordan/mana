@@ -11,9 +11,7 @@ const ChangeBio = ({ user }) => {
 
         if(user){
 
-            let bioRef = ref(db, `users/${user.uid}/bio`)
-
-            let unsubscribe = onValue(bioRef, snapshot => {
+            let unsubscribe = onValue(ref(db, `users/${user.uid}/bio`), snapshot => {
 
                 setBio(snapshot.val() || '')
                 setChars(250 - (snapshot.val() || '').length)
@@ -32,9 +30,7 @@ const ChangeBio = ({ user }) => {
 
         if(text.length <= 250){
 
-            let bioRef = ref(db, `users/${user.uid}/bio`)
-
-            runTransaction(bioRef, _ => text)
+            runTransaction(ref(db, `users/${user.uid}/bio`), _ => text)
 
             setChars(250 - text.length)
 
