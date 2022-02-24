@@ -10,9 +10,7 @@ const ChangeWebsite = ({ user }) => {
 
         if(user){
 
-            let refWeb = ref(db,`users/${user.uid}/web` )
-
-            let unsubscribe = onValue(refWeb, snapshot => {
+            let unsubscribe = onValue(ref(db,`users/${user.uid}/web` ), snapshot => {
 
                 setWeb(snapshot.val() || '')
 
@@ -30,9 +28,7 @@ const ChangeWebsite = ({ user }) => {
 
         if(text.length <= 50){
 
-            let refWeb = ref(db, `users/${user.uid}/web`)
-
-            runTransaction(refWeb, _ => text)
+            runTransaction(ref(db, `users/${user.uid}/web`), _ => text)
 
         }
 
