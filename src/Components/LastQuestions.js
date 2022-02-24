@@ -38,20 +38,11 @@ const LastQuestions = ({ number, from, to, filter }) => {
         
         let unsubscribe = onValue(_query, snapshot => {
             
-            if(snapshot.val()){
+            let lastQuestions = snapshot.val() || {}
                 
-                let lastQuestions = snapshot.val()
+            let sortedQuestions = sortQuestions(lastQuestions, filter)
                 
-                let sortedQuestions = sortQuestions(lastQuestions, filter)
-                
-                setLastQuestions(sortedQuestions)
-                
-            }
-            else{
-                
-                setLastQuestions([])
-                
-            }
+            setLastQuestions(sortedQuestions)
             
             setLoading(false)
             
@@ -71,7 +62,7 @@ const LastQuestions = ({ number, from, to, filter }) => {
         
         })
         
-        let sorted = Object.values(questions).sort( (a, b) => {
+        let sorted = Object.values(questions).sort((a, b) => {
             
             if(orderBy === 'nuevo')      return b.timeStamp - a.timeStamp
             if(orderBy === 'respuestas') return Object.keys(b.replies).length   - Object.keys(a.replies).length
