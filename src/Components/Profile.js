@@ -35,7 +35,7 @@ const Profile = (props) => {
     const replies                                = GetNumberOfReplies(uid)
     const points                                 = GetPoints(uid)
     const { valuePost, valueReply }              = Points
-    const [level, pointsToNextLevel, percentage] = GetLevel(points)
+    const [level, pointsToNextLevel, percentage] = GetLevel(uid)
     const { user }                               = useContext(UserContext)
     
     useEffect(() => {

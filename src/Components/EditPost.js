@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef }         from 'react'
 import TagInput                                       from './TagInput'
 import Alert                                          from './Alert'
 import { db, get, onValue, ref, runTransaction, set } from '../Functions/Firebase'
-import GetPoints                                      from '../Functions/GetPoints'
 import { GetClosestLevel }                            from '../Functions/GetLevelAndPointsToNextLevel'
 import normalize                                      from '../Functions/NormalizeWord'
 import unmount                                        from '../Functions/Unmount'
@@ -19,8 +18,7 @@ const EditPost = ({ admin: isAdmin, postId, replyId, type, authorId, uid }) => {
     const [canEdit, setCanEdit]           = useState(false)
     const [tags, setTags]                 = useState([])
     const [title, setTitle]               = useState('')
-    const points                          = GetPoints(authorId)
-    const closestLevel                    = GetClosestLevel(points)
+    const closestLevel                    = GetClosestLevel(authorId)
     
     useEffect(() => {
         

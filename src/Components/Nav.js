@@ -6,7 +6,6 @@ import NightModeToggleButton                                                    
 import NomoresheetLogo                                                            from './NomoresheetLogo'
 import UnreadNotifications                                                        from './UnreadNotifications'
 import { db, onValue, ref }                                                       from '../Functions/Firebase'
-import GetPoints                                                                  from '../Functions/GetPoints'
 import GetLevel                                                                   from '../Functions/GetLevelAndPointsToNextLevel'
 import UserContext                                                                from '../Functions/UserContext'
 const Login   = lazy(() => import('./Login'))
@@ -22,8 +21,7 @@ const Nav = () => {
     const [uid, setUid]               = useState(null)
     const [userInfo, setUserInfo]     = useState(null)
     const { user }                    = useContext(UserContext)
-    const points                      = GetPoints(uid)
-    const level                       = GetLevel(points)[0]                     
+    const level                       = GetLevel(uid)[0]                    
 
     useEffect (() => {
       

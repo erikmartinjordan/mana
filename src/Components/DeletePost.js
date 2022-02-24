@@ -2,18 +2,16 @@ import React, { useState, useEffect }               from 'react'
 import { useHistory }                               from 'react-router-dom'
 import Points                                       from '../Functions/PointsAndValues'
 import { db, ref, onValue, remove, runTransaction } from '../Functions/Firebase'
-import GetPoints                                    from '../Functions/GetPoints'
 import { GetClosestLevel }                          from '../Functions/GetLevelAndPointsToNextLevel'
 import Accounts                                     from '../Rules/Accounts'
 import '../Styles/DeletePost.css';
 
 const DeletePost = ({ admin: isAdmin, postId, replyId, type, authorId, uid }) => {
     
-    const [canDelete, setCanDelete]       = useState(false)
+    const [canDelete, setCanDelete] = useState(false)
     const [confirmation, setConfirmation] = useState(false)
-    const history                         = useHistory()
-    const points                          = GetPoints(authorId)
-    const closestLevel                    = GetClosestLevel(points)
+    const history = useHistory()
+    const closestLevel = GetClosestLevel(authorId)
 
     useEffect(() => {
 

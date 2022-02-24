@@ -1,27 +1,46 @@
+import { useEffect, useState } from 'react'
+import { db, onValue, ref } from '../Functions/Firebase'
 import Accounts from '../Rules/Accounts'
 
-const GetLevel = (points) => {
+const GetLevel = (uid) => {
     
-    // numb = log1.5(points + 1)
-    // level = floor(log1.5(points + 1))
-    const numb  = Math.log(points + 1) / Math.log(1.5)
-    const level = Math.floor(numb)
+    const [level, setLevel] = useState([0, 0, 0])
     
-    const nextLevel  = level + 1
-    const pointsLevelDown = Math.pow(1.5, level) - 1
-    const pointsLevelUp = Math.pow(1.5, nextLevel) - 1
-    const pointsToNextLevel = Math.ceil(pointsLevelUp - points)
+    useEffect(() => {
+        
+        let unsubscribe = onValue(ref(db, `users/${uid}/numPoints`), snapshot => { 
+            
+            let points = snapshot.val() || 0
+
+            // numb = log1.5(points + 1)
+            // level = floor(log1.5(points + 1))
+            let numb  = Math.log(points + 1) / Math.log(1.5)
+            let level = Math.floor(numb)
+            
+            let nextLevel  = level + 1
+            let pointsLevelDown = Math.pow(1.5, level) - 1
+            let pointsLevelUp = Math.pow(1.5, nextLevel) - 1
+            let pointsToNextLevel = Math.ceil(pointsLevelUp - points)
+            
+            let percentage = Math.floor(100 * (points - pointsLevelDown) / (pointsLevelUp - pointsLevelDown))
+
+            setLevel(isNaN(level) ? [0, 0, 0] : [level, pointsToNextLevel, percentage])
     
-    const percentage = Math.floor(100 * (points - pointsLevelDown) / (pointsLevelUp - pointsLevelDown))
+        })
+        
+        return () => unsubscribe()
+        
+    }, [uid])
     
-    return isNaN(level) ? [0, 0, 0] : [level, pointsToNextLevel, percentage]
+    return level
+    
 }
 
 export default GetLevel
 
-export const GetClosestLevel = (points) => {
+export const GetClosestLevel = (uid) => {
 
-    let level = GetLevel(points)[0]
+    let level = GetLevel(uid)[0]
     
     let rangeOfLevels = Object.keys(Accounts['free'])
     let closestLevel  = Math.max(...rangeOfLevels.filter(num => num <= level))

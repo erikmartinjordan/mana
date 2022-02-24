@@ -16,7 +16,7 @@ const Privileges = () => {
     const [uid, setUid]                                 = useState(null)
     const { user }                                      = useContext(UserContext)
     const points                                        = GetPoints(uid)
-    const level                                         = GetLevel(points)[0]
+    const level                                         = GetLevel(uid)[0]
 
     useEffect( () => {
         

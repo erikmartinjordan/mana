@@ -30,7 +30,7 @@ const NewPost = ({ hide }) => {
     const [title, setTitle]                 = useState('')
     const { user }                          = useContext(UserContext)
     const points                            = GetPoints(nickName || user?.uid)
-    const closestLevel                      = GetClosestLevel(points)
+    const closestLevel                      = GetClosestLevel(nickName || user?.uid)
 
     useEffect(() => {
         

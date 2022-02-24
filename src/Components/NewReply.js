@@ -28,7 +28,7 @@ const NewReply = ({ postId }) => {
     const [timeSpanReplies, setTimeSpanReplies]   = useState(null)
     const { user }                                = useContext(UserContext)
     const points                                  = GetPoints(nickName || user?.uid)
-    const closestLevel                            = GetClosestLevel(points)
+    const closestLevel                            = GetClosestLevel(nickName || user?.uid)
     const numReplies                              = GetNumberOfReplies(user?.uid)
     
     useEffect(() => {
