@@ -1,8 +1,8 @@
-import React   from 'react';
-import Twemoji from './Twemoji';
-import '../Styles/ToggleButton.css';
+import React   from 'react'
+import Twemoji from './Twemoji'
+import '../Styles/ToggleButton.css'
 
-const ToggleButton = ({status, icon}) => {
+const ToggleButton = ({ status, icon }) => {
 
     return(
         <div className = {'button-' + status} > 
@@ -10,8 +10,8 @@ const ToggleButton = ({status, icon}) => {
                 <Twemoji emoji = {icon}/>
             </div>
         </div>
-    );
+    )
     
 }
 
-export default ToggleButton; 
+export default ToggleButton
