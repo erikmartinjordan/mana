@@ -47,21 +47,19 @@ const Participants = () => {
     }, [postId])
 
     return(
-        <React.Fragment>
-            <div className = 'Participants'>
-                <span className = 'Title'> {participants.length} Participante{participants.length === 1 ? null : 's'}</span>
-                <div className = 'Participants-Wrap'>
-                    {participants.slice(0, 7).map(([uid, participant]) => 
-                            <Link to = {`/@${uid}`} key = {uid}>
-                                <div className = 'UserAvatar'>
-                                    <img src = {participant.pic}></img>
-                                </div>
-                            </Link>
-                    )}
-                    <span className = 'More'>{participants.length > 7 ? `y ${participants.length - 7} más` : null}</span>
-                </div>
+        <div className = 'Participants'>
+            <span className = 'Title'> {participants.length} Participante{participants.length === 1 ? null : 's'}</span>
+            <div className = 'Participants-Wrap'>
+                { participants.slice(0, 7).map(([uid, participant]) => 
+                    <Link to = {`/@${uid}`} key = {uid}>
+                        <div className = 'UserAvatar'>
+                            <img src = {participant.pic}/>
+                        </div>
+                    </Link>
+                )}
+                <span className = 'More'>{participants.length > 7 ? `y ${participants.length - 7} más` : null}</span>
             </div>
-        </React.Fragment>
+        </div>
     )
 
 }
