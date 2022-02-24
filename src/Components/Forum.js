@@ -33,7 +33,7 @@ const Front = () => {
                     <OneYearAgo/>
                 </div>
             </div>
-      </div> 
+        </div> 
     )
 }
 
