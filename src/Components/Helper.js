@@ -16,23 +16,10 @@ const Helper = () => {
         if(user){
             
             onValue(ref(db, `users/${user.uid}`), snapshot => {
-                
-                if(snapshot.val()){
                  
-                    let {welcomePremium, account} = snapshot.val()
-                    
-                    if(account && !welcomePremium){
+                let { welcomePremium, account } = snapshot.val() || {}
                         
-                        setWelcome(true)
-                        
-                    }
-                    else{
-                        
-                        setWelcome(false)
-                        
-                    }
-                    
-                }
+                setWelcome(account && !welcomePremium)
                 
             })
 
@@ -48,24 +35,17 @@ const Helper = () => {
         
     }
     
-    return(
-        
-        <React.Fragment>
-            {user && welcome
-            ? <div className = 'Welcome'>
-                <Confetti/>
-                <div className = 'Welcome-wrap'>
-                    <h2>{user.displayName}</h2>
-                    <p>Ahora eres PRO. Como tal, esta es tu nueva configuración:</p>
-                    {accounts.premium.privileges.map(privilege => <li>{privilege}</li>)}
-                    <button onClick = {() => closeWelcome()}>Vale</button>
-                </div>
-              </div>
-            : null  
-            }
-        </React.Fragment>
-        
-    )
+    return user && welcome
+    ? <div className = 'Welcome'>
+        <Confetti/>
+        <div className = 'Welcome-wrap'>
+            <h2>{user.displayName}</h2>
+            <p>Ahora eres PRO. Como tal, esta es tu nueva configuración:</p>
+            {accounts.premium.privileges.map(privilege => <li>{privilege}</li>)}
+            <button onClick = {() => closeWelcome()}>Vale</button>
+        </div>
+        </div>
+    : null  
     
 }
 
