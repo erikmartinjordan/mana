@@ -6,6 +6,7 @@ import UserAvatar                                    from './UserAvatar'
 import Hints                                         from './Hints'
 import EmojiTextarea                                 from './EmojiTextarea'
 import Loading                                       from './Loading'
+import Preview                                       from './Preview'
 import UserContext                                   from '../Functions/UserContext'
 import { db, increment, onValue, push, ref, update } from '../Functions/Firebase'
 import GetPoints                                     from '../Functions/GetPoints'
@@ -151,11 +152,16 @@ const NewReply = ({ postId }) => {
         <React.Fragment>
             { user
             ? <React.Fragment>
+                <Preview 
+                    user = {user} 
+                    message = {message} 
+                    nickName = {nickName}
+                />
                 <div className = 'NewReply'>
                     <div className = 'NewReply-Wrap'>
                         <div className = 'User'>
                             <UserAvatar user = {user} allowAnonymousUser = {true}/>
-                            <span>{nickName ? nickName : user.displayName}</span>
+                            <span>{nickName || user.displayName}</span>
                         </div>
                         <EmojiTextarea   
                             message     = {message}
