@@ -74,8 +74,8 @@ const Replies = ({ admin, postId, uid }) => {
 
 export default Replies
 
-const Reply = ({ message }) => {
-    
+export const Reply = ({ message }) => {
+
     const components = {
         
         p:     props => <Highlight text = {props.children}></Highlight>,
