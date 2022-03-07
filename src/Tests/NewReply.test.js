@@ -6,6 +6,11 @@ import NewReply                               from '../Components/NewReply'
 import UserContext                            from '../Functions/UserContext'
 import * as GetNumberOfReplies                from '../Functions/GetNumberOfReplies'
 
+jest.mock("react-markdown", () => (props) =>  <>{props.children}</>)
+jest.mock("remark-gfm", () => (props) =>  <>{props.children}</>)
+jest.mock("remark-math", () => (props) =>  <>{props.children}</>)
+jest.mock("rehype-katex", () => (props) =>  <>{props.children}</>)
+
 test('NewReply -> Users with no replies get a message suggesting to read guidelines', async () => {
    
     jest.spyOn(GetNumberOfReplies, 'default').mockImplementation(() => 0)
