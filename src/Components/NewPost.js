@@ -168,7 +168,7 @@ const NewPost = ({ hide }) => {
             <div className = {`NewPost-Wrap ${animation}`}>
                 <div className = 'User'>
                     <UserAvatar user = {user} allowAnonymousUser = {true}/>
-                    <span>{nickName ? nickName : user.displayName}</span>
+                    <span>{nickName || user.displayName}</span>
                 </div>
                 <input  
                     placeholder = 'Título...' 
