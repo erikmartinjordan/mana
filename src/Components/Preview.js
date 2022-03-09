@@ -11,7 +11,7 @@ const Preview = ({ message, nickName, user }) => {
     ?   <div className = 'Reply Question Preview'>
             <div className = 'Header'>
                 <div className = 'Author-Name-Date'> 
-                    <UserAvatar user = {user}/>
+                    <UserAvatar user = {user} allowAnonymousUser = {true}/>
                     <span className = 'Author-Date'>
                         <span className = 'Author-Info'>
                             {nickName || user.displayName}
