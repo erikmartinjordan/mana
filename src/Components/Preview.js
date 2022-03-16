@@ -17,7 +17,7 @@ const Preview = ({ message, nickName, user }) => {
                             {nickName || user.displayName}
                             <Verified uid = {nickName || user.uid}/>
                         </span>
-                        <time>{moment().fromNow()}</time>
+                        <time>(Borrador)</time>
                     </span>
                 </div>
             </div>
