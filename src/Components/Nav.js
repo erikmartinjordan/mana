@@ -117,6 +117,7 @@ const Nav = () => {
     
     return(
         <div className = 'Nav'>
+            <div className = 'Migration'>👋 En breve <a href = 'https://nomoresheet.es'>nomoresheet.es</a> se trasladará a <a href = 'https://maña.com' target = "_blank">maña.com ↗</a></div>
             <NomoresheetLogo/>
             {user   ? [menuUser(), menuMobile()] : [loginButton(), menuNotUser()]}
             { login
