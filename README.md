@@ -1,15 +1,15 @@
-![License](https://img.shields.io/github/license/erikmartinjordan/nomoresheet)
-![Test](https://img.shields.io/github/workflow/status/erikmartinjordan/nomoresheet/deployToFirebase)
+![License](https://img.shields.io/github/license/erikmartinjordan/mana)
+![Test](https://img.shields.io/github/workflow/status/erikmartinjordan/mana/deployToFirebase)
 
-# Nomoresheet
+# Maña
 
-![Nomoresheet logo](https://github.com/erikmartinjordan/Screenshots/blob/master/Captura_de_pantalla_2021-05-26_a_las_10.32.53-removebg-preview.png?raw=true)
+![Maña logo](https://github.com/erikmartinjordan/Screenshots/blob/master/Ma%C3%B1a_logo.png?raw=true)
 
-Nomoresheet es una comunidad abierta de preguntas y respuestas donde cualquier tema es bienvenido. Los usuarios pueden ganar reputación a medida que consiguen puntos en la comunidad.
+Maña es una comunidad abierta de preguntas y respuestas donde cualquier tema es bienvenido. Los usuarios pueden ganar reputación a medida que consiguen puntos en la comunidad.
 
-Nomoresheet es de código abierto, cualquier usuario puede crear una réplica de la comunidad y modificarla a su antojo.
+Maña es de código abierto, cualquier usuario puede crear una réplica de la comunidad y modificarla a su antojo.
 
-Nomoresheet es una comunidad sin ánimo de lucro; todos los beneficios que se recogen a través de Nomoresheet, se reinvierten de nuevo en la compañía.
+Maña es una comunidad sin ánimo de lucro; todos los beneficios que se recogen a través de Maña, se reinvierten de nuevo en la compañía.
 
 ## Puntuación
 
@@ -34,11 +34,11 @@ Por ejemplo, para llegar al nivel 25 hacen falta 25250,16829 puntos, mientras qu
 
 ## Privilegios
 
-Los privilegios se consiguen sumando puntos en Nomoresheet. A medida que aumenta el nivel de un usuario en la comunidad, se desbloquean opciones. 
+Los privilegios se consiguen sumando puntos en Maña. A medida que aumenta el nivel de un usuario en la comunidad, se desbloquean opciones. 
 
 También se pueden desbloquear las opciones y límites de publicación mediante una cuenta *premium*, pero no es estrictamente necesario.
 
 
 ## Copyright y licencia
 
-Copyright (c) 2015 — 2022 Nomoresheet — Licencia [MIT](https://github.com/erikmartinjordan/nomoresheet/blob/master/LICENSE).
+Copyright (c) 2015 — 2022 Maña — Licencia [MIT](https://github.com/erikmartinjordan/mana/blob/master/LICENSE).
