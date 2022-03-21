@@ -41,13 +41,13 @@ const CheckoutForm = ({ hide, plan }) => {
         
         if(plan === 'premium'){
             
-            fetchURL += 'subscriptionNomoresheet'
+            fetchURL += 'subscriptionMana'
             price     = premium.id
             
         }
         if(plan === 'infinita'){
             
-            fetchURL += 'oneTimePaymentNomoresheet'
+            fetchURL += 'oneTimePaymentMana'
             price     = infinita.id
             
         }

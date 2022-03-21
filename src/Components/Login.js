@@ -1,5 +1,5 @@
 import React, { useState }                                                                                               from 'react'
-import NomoresheetLogo                                                                                                   from './NomoresheetLogo'
+import MañaLogo                                                                                                          from './MañaLogo'
 import Loading                                                                                                           from './Loading'
 import { auth, db, environment, googleProvider, ref, runTransaction, signInWithPopup, signInAnonymously, updateProfile } from '../Functions/Firebase'
 import AnonymImg                                                                                                         from '../Functions/AnonymImg'
@@ -39,10 +39,10 @@ const Login = ({ hide }) => {
         e.preventDefault()
 
         setStatus('processing')
-        
-        let url = environment === 'PRE' 
-        ? 'https://us-central1-nomoresheet-pre.cloudfunctions.net/sendMagicLink' 
-        : 'https://us-central1-nomoresheet-forum.cloudfunctions.net/sendMagicLink'
+
+        let url = `https://us-central1-mana-${environment.toLowerCase()}.cloudfunctions.net/sendMagicLink`
+
+        console.log(url)
         
         let response = await fetch(url, {
             
@@ -105,7 +105,7 @@ const Login = ({ hide }) => {
     return (
         <div className = {`Login ${animation}`}>
             <div className = 'Login-wrap'>
-                <div style = {{display: 'flex', justifyContent: 'center'}}><NomoresheetLogo/></div>
+                <div style = {{display: 'flex', justifyContent: 'center'}}><MañaLogo/></div>
                 <h3>Log in</h3>
                 <div className = 'Auth'>
                     <GoogleButton  logIn = {logInGoogle}/>
@@ -116,7 +116,7 @@ const Login = ({ hide }) => {
                         <button disabled = {status === 'processing' || status === 'processed'}>{status === 'initial' ? 'Accede con tu correo' : status === 'processing' ? <Loading/> : '¡Correo enviado!'}</button>
                     </form>
                 </div>
-                <div className = 'info'>El acceso vía Google previene el uso de cuentas falsas y <em>spam</em>. Nomoresheet no publicará en tu nombre, ni te enviará <em>mails</em>, ni utilizará tus datos.</div>
+                <div className = 'info'>El acceso vía Google previene el uso de cuentas falsas y <em>spam</em>. Maña no publicará en tu nombre, ni te enviará <em>mails</em>, ni utilizará tus datos.</div>
             </div>
             <div className = 'Invisible' onClick = {() => unmount(setAnimation, hide)}></div>
         </div>  

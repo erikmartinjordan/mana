@@ -10,7 +10,7 @@ const CopyLink = ({ postId, replyId }) => {
 
     const copy = () => {
 
-        navigator.clipboard.writeText(`${window.location.host}/comunidad/post/${postId}${replyId ? `/#${replyId}` : ''}`)
+        navigator.clipboard.writeText(`${window.location.host}/p/${postId}${replyId ? `/#${replyId}` : ''}`)
 
         setTitle('¡Copiada!');
         setMessage('URL copiada en el portapapeles')

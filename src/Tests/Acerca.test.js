@@ -27,8 +27,8 @@ beforeEach(() => {
             
             title: "New feature",
             date: [25, 12, 2020],
-            description: "Nomoresheet new cool feature",
-            pic: "https://nomoresheet.es/feature.jpg"
+            description: "Maña new cool feature",
+            pic: "https://maña.com/feature.jpg"
             
         }
         
@@ -58,7 +58,7 @@ it("Acerca -> title and description", () => {
     })
     
     expect(container.querySelector('h1').textContent).toBe('Acerca')
-    expect(document.querySelector('title').textContent).toBe('Acerca — Nomoresheet')
+    expect(document.querySelector('title').textContent).toBe('Acerca — Maña')
     
 })
 it("Acerca -> displays admin box to write updates if admin connected", () => {

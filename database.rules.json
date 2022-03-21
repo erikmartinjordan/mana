@@ -1,139 +1,148 @@
 {
-  "rules": {
-    // Todos los usuarios pueden leer y escribir el número de visitas de los artículos
-    // No es un dato crítico
-    "articles":{
-        ".read": "true",
-        ".write": "true"
-    },
-    // Los usuarios registrados y no registrados pueden leer los datos del foro
-    "posts":{
-      	".read": "true",
-        ".write": "auth != null",  
-        ".indexOn": ["timeStamp"],
-        "$postsuid":{
-          "message":{
-            ".validate" : "newData.val().length <= 99999"
-          },
-          "title":{
-            ".validate": "newData.val().length <= 140"
-          },
-          "views":{
+    "rules": {
+        // Todos los usuarios pueden leer y escribir el número de visitas de los artículos
+        // No es un dato crítico
+        "articles":{
+            ".read": "true",
             ".write": "true"
-          },
-          "related":{
-            ".write": "true"  
-          }
-        }
-      },
-    // Los usuarios registrados y no registrados pueden leer los datos del foro
-    "replies":{
-      ".read": "true",
-      ".write": "auth != null"
-    },
-    // Los usuarios no pueden modificar las cuentas verificadas
-    "users":{
-        ".read": "true",
-        ".write": "auth != null",
-      	"$useruid":{
-          	"lastPosts":{
-              ".write": "auth != null"
-            },
-            "displayNotifications":{
-              ".write": "auth != null"
-            },
-            "points":{
-              ".write": "auth != null"
-            },
-          	"posts":{
-              ".write": "auth != null"
-            },
-            "postsViews":{
-              ".write": "true"
-            },
-            "replies":{
-              ".write": "auth != null"
-            },  
-          	"verified":{
-              ".write": "!data.exists()"
-            },
-          	"anonimo":{
-              ".write": "auth != null"
-            },
-          	"nickName":{
-              ".write": "auth != null"
-            },
-            "avatar":{
-              ".write": "auth != null"
-            },
-            "account":{
-              ".write": "auth != null"
-            },
-            "stripeUserId":{
-               ".write": "auth != null" 
-            },
-            "subscriptionId":{
-              ".write": "auth != null"
-            },
-            "profileViews":{
-              ".write": "true"
-            },
-            "profileLastSeen":{
-              ".write": "true"
-            },
-            "reputationData":{
-              ".write": "true"
-            },
-            "timeStampLastLogin":{
-              ".write": "true"              
+        },
+        // Usuarios concurrentes en cada momento
+        "concurrent":{
+            ".read": "true",
+            ".write": "true"
+        },
+        // Los usuarios registrados y no registrados pueden leer los datos del foro
+        "posts":{
+                ".read": "true",
+            ".write": "auth != null",  
+            ".indexOn": ["timeStamp"],
+            "$postsuid":{
+                "message":{
+                ".validate" : "newData.val().length <= 99999"
+                },
+                "title":{
+                ".validate": "newData.val().length <= 140"
+                },
+                "views":{
+                ".write": "true"
+                },
+                "related":{
+                ".indexOn": "hits",
+                ".write": "true"  
+                }
             }
-        }
-    },
-    // Los usuarios se crean notificaciones
-    // Deben haber iniciado sesión en Nomoresheet
-    "notifications":{
-        ".read": "true",
-        ".write": "auth != null",      
-    },
-    // Los usuarios pueden introducir estadísticas de visualizaciones
-    // No deben haber iniciado sesión en Nomoresheet
-    "analytics":{
-      ".read": "true",
-      ".write": "true",
-      "$date":{
-        "$session":{
-          "$fingerprint":{
-            "timeStampIni":{
-              ".validate": "newData.val() < now" 
-            },
-            "timeStampEnd":{
-              ".validate": "newData.val() < now" 
+        },
+        // Los usuarios registrados y no registrados pueden leer los datos del foro
+        "replies":{
+            ".read": "true",
+            ".write": "auth != null"
+        },
+        // Los usuarios no pueden modificar las cuentas verificadas
+        "users":{
+            ".read": "true",
+            ".write": "auth != null",
+                "$useruid":{
+                    "lastPosts":{
+                    ".write": "auth != null"
+                },
+                "displayNotifications":{
+                    ".write": "auth != null"
+                },
+                "points":{
+                    ".write": "auth != null"
+                },
+                    "posts":{
+                    ".write": "auth != null"
+                },
+                "postsViews":{
+                    ".write": "true"
+                },
+                "replies":{
+                    ".write": "auth != null"
+                },  
+                    "verified":{
+                    ".write": "!data.exists()"
+                },
+                    "anonimo":{
+                    ".write": "auth != null"
+                },
+                    "nickName":{
+                    ".write": "auth != null"
+                },
+                "numViews":{
+                    ".write": true
+                },
+                "avatar":{
+                    ".write": "auth != null"
+                },
+                "account":{
+                    ".write": "auth != null"
+                },
+                "stripeUserId":{
+                    ".write": "auth != null" 
+                },
+                "subscriptionId":{
+                    ".write": "auth != null"
+                },
+                "profileViews":{
+                    ".write": "true"
+                },
+                "profileLastSeen":{
+                    ".write": "true"
+                },
+                "reputationData":{
+                    ".write": "true"
+                },
+                "timeStampLastLogin":{
+                    ".write": "true"              
+                }
             }
-          }
+        },
+        // Los usuarios se crean notificaciones
+        // Deben haber iniciado sesión
+        "notifications":{
+            ".read": "true",
+            ".write": "auth != null",      
+        },
+        // Los usuarios pueden introducir estadísticas de visualizaciones
+        // No deben haber iniciado sesión
+        "analytics":{
+            ".read": "true",
+            ".write": "true",
+            "$date":{
+                "$session":{
+                    "$fingerprint":{
+                        "timeStampIni":{
+                            ".validate": "newData.val() < now" 
+                        },
+                        "timeStampEnd":{
+                            ".validate": "newData.val() < now" 
+                        }
+                    }
+                }
+            }
+        },
+        // Los usuarios pueden leer estadísticas
+        // No deben haber iniciado sesión
+        "stats":{
+            ".read": "true",
+            ".write": "false"
+        },
+        // Los usuarios pueden introducir datos cuando hacen clic en un anuncio
+        // No deben haber iniciado sesión
+        "ads":{
+            ".read": "true",
+            ".write": "true" 
+        },
+        // Los usuarios pueden leer las modificaciones
+        // No deben haber iniciado sesión
+        "features":{
+            ".read":  "true",
+            ".write": "auth != null"
+        },
+        "tags":{
+            ".read":  "true",
+            ".write": "auth != null"
         }
-      }
-    },
-    // Los usuarios pueden leer estadísticas
-    // No deben haber iniciado sesión en Nomoresheet
-    "stats":{
-      ".read": "true",
-      ".write": "false"
-    },
-    // Los usuarios pueden introducir datos cuando hacen clic en un anuncio
-    // No deben haber iniciado sesión en Nomoresheet
-    "ads":{
-      	".read": "true",
-        ".write": "true" 
-    },
-    // Los usuarios pueden leer las modificaciones en Nomoresheet
-    // No deben haber iniciado sesión en Nomoresheet
-    "features":{
-      	".read":  "true",
-        ".write": "auth != null"
-    },
-    "tags":{
-        ".read":  "true",
-        ".write": "auth != null"
     }
-  }
 }

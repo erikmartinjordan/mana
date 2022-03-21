@@ -1,13 +1,13 @@
-import React                from 'react';
-import { Link }             from 'react-router-dom';
-import '../Styles/Privacy.css';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import '../Styles/Privacy.css'
 
 const Privacy = () => {
   
     return (
         <div className = 'Privacy'>
             <h2>Datos generados</h2>
-            <p>Las estadísticas de tráfico de la web se pueden consultar en <Link to = '/estadisticas'>este enlace</Link>. Nomoresheet no utiliza aplicaciones de terceros ni <em>cookies</em> para guardar información de los usuarios ni  para mejorar su experiencia. No hay rastreadores ni se venden datos a terceros.</p>
+            <p>Las estadísticas de tráfico de la web se pueden consultar en <Link to = '/estadisticas'>este enlace</Link>. Maña no utiliza aplicaciones de terceros ni <em>cookies</em> para guardar información de los usuarios ni  para mejorar su experiencia. No hay rastreadores ni se venden datos a terceros.</p>
             
             <h2>Anuncios</h2>
             <p>Actualmente, no hay publicidad en la web. Si detectas algún otro enlace sospechoso de contenter publicidad, por favor, ponte en contacto vía <a href = 'mailto:hola@erikmartinjordan.com'>hola@erikmartinjordan.com</a>.</p>
@@ -19,12 +19,12 @@ const Privacy = () => {
             <p>A partir del 2021, los usuarios pueden acceder con todo tipo de direcciones de correo, o de forma anónima.</p>
             
             <h2>Pagos</h2>
-            <p>Una cuenta <em>premium</em> permite obtener todos los privilegios de Nomoresheet de forma inmediata. </p>
+            <p>Una cuenta <em>premium</em> permite obtener todos los privilegios de Maña de forma inmediata. </p>
             <p>En cualquier momento los usuarios pueden volver a una cuenta gratuita. Además, no es necesario tener una cuenta de pago para obtener todos los privilegios de una cuenta <em>premium</em>, también se pueden obtener sumando puntos y aumentando de nivel en la comunidad.</p>
             <p>Los pagos se realizan de forma segura vía <a href = 'https://stripe.com/es' target = '_blank' rel = 'nofollow noopener noreferrer'>Stripe</a>.</p>
         </div>
-    );
+    )
     
 }
 
-export default Privacy;
+export default Privacy

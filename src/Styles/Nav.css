@@ -74,19 +74,6 @@
 .Nav button.login{
     display: none;
 }
-.Nav .Migration{
-    background: var(--bgBox);
-    font-size: small;
-    left: 0;
-    padding: 5px;
-    position: absolute;
-    text-align: center;
-    top: 0;
-    width: 100vw;
-}
-.Nav .Migration a{
-    color: var(--linkColor);
-}
 @media (max-width: 768px){
     .Nav{
         align-items: center;
@@ -94,7 +81,7 @@
         max-width: 100%;
         padding: 20px 20px 0 20px;
     }
-    .Nav .NomoresheetLogo{
+    .Nav .MañaLogo{
         margin-bottom: 0!important;
         margin-top: 0!important;
     }

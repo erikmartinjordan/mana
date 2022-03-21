@@ -40,8 +40,8 @@ const Profile = (props) => {
     
     useEffect(() => {
         
-        document.title = 'Perfil – Nomoresheet' 
-        document.querySelector('meta[name="description"]').content = 'Este es tu perfil en Nomoresheet...'   
+        document.title = 'Perfil – Maña' 
+        document.querySelector('meta[name="description"]').content = 'Este es tu perfil en Maña...'   
         
     })
     
@@ -74,7 +74,7 @@ const Profile = (props) => {
     
     const getNextPaymentDate = async (subscriptionId) => {
         
-        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/nextPaymentNomoresheet'
+        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/nextPaymentMana'
         
         let response = await fetch(fetchURL, {
             
@@ -235,7 +235,7 @@ const Account = ({user, infoUser, nextPayment, uid}) => {
                 <div className = 'Comment'>
                     { infoUser?.account === 'premium' || infoUser?.account === 'infinita'
                     ? `Cuenta válida hasta el ${nextPayment}.`
-                    : 'Sube a Premium para disfrutar de Nomoresheet sin limitaciones.'
+                    : 'Sube a Premium para disfrutar de Maña sin limitaciones.'
                     }
                 </div>
             </div>
@@ -365,18 +365,18 @@ const Premium = ({user, infoUser}) => {
                         <li>Mensajes anónimos</li>
                         <li>Edita y elimina mensajes</li>
                         <li><em>Badge</em> identificativo</li>
-                        <li>Paga una única vez y disfruta de Nomoresheet para siempre</li>
+                        <li>Paga una única vez y disfruta de Maña para siempre</li>
                     </ul>
                 </div>
             </div>
             <div className = 'Faq'>
                 <h3>Preguntas frecuentes</h3>
                 <p className = 'Question'>¿Por qué una cuenta <em>premium</em>?</p>
-                <p className = 'Answer'>Principalmente, porque gozarás de un uso ilimitado de Nomoresheet. Podrás enviar tantos mensajes como quieras sin restricciones de tiempo ni de longitud. Además, podrás anonimizar mensajes, editarlos, añadir formato y eliminarlos (obtendrás un identificador como usuario PRO).</p>
+                <p className = 'Answer'>Principalmente, porque gozarás de un uso ilimitado de Maña. Podrás enviar tantos mensajes como quieras sin restricciones de tiempo ni de longitud. Además, podrás anonimizar mensajes, editarlos, añadir formato y eliminarlos (obtendrás un identificador como usuario PRO).</p>
                 <p className = 'Question'>¿Por qué cuesta dinero la cuenta <em>premium</em>? ¿Por qué son gratis otras plataformas?</p>
-                <p className = 'Answer'>El espacio en la nube es costoso. A medida que más usuarios publican en Nomoresheet, más espacio ocupan los datos y más aumentan los gastos de mantenimiento de la web. Las grandes plataformas reciben capital de inversores o tienen ingresos derivados de publicidad. Aquí no hay nada de eso.</p>  
-                <p className = 'Question'>¿Qué me ofrece Nomoresheet que no me ofrezcan otras plataformas?</p>
-                <p className = 'Answer'>En otras plataformas no tienes libertad para publicar lo que te apetezca. Tus datos son explotados y vendidos a terceras partes, o hay un uso excesivo de publicidad, etc. Nomoresheet intenta ser lo más transparente posible. Puedes leer las políticas de privacidad, son breves y están escritas para que todo el mundo las entienda.</p>
+                <p className = 'Answer'>El espacio en la nube es costoso. A medida que más usuarios publican en Maña, más espacio ocupan los datos y más aumentan los gastos de mantenimiento de la web. Las grandes plataformas reciben capital de inversores o tienen ingresos derivados de publicidad. Aquí no hay nada de eso.</p>  
+                <p className = 'Question'>¿Qué me ofrece Maña que no me ofrezcan otras plataformas?</p>
+                <p className = 'Answer'>En otras plataformas no tienes libertad para publicar lo que te apetezca. Tus datos son explotados y vendidos a terceras partes, o hay un uso excesivo de publicidad, etc. Maña intenta ser lo más transparente posible. Puedes leer las políticas de privacidad, son breves y están escritas para que todo el mundo las entienda.</p>
                 <p className = 'Question'>¿Puedo cancelar la suscripción en cualquier momento?</p>
                 <p className = 'Answer'>Sí, siempre que tú quieras.</p>
             </div>

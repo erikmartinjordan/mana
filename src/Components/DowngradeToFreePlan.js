@@ -13,7 +13,7 @@ const DownGradeToFreePlan = ({ confirmation, setConfirmation, subscriptionId }) 
         
         setDowngrade('processing')
         
-        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/downgradeNomoresheet'
+        let fetchURL = 'https://us-central1-payment-hub-6543e.cloudfunctions.net/downgradeMana'
         
         let response = await fetch(fetchURL, {
             method: 'POST',

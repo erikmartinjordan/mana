@@ -22,7 +22,7 @@ const addRichResultSchema = (post, url) => {
                     "text": post.replies[key].message.split(/\.|\n/)[0],
                     "dateCreated": moment(post.replies[key].timeStamp).format(),
                     "upvoteCount": Object.keys(post.replies[key].voteUsers || {}).length,
-                    "url": `https://nomoresheet.es/${url}/#${key}`,
+                    "url": `https://maña.com/p/${url}/#${key}`,
                     "author": {
                         "@type": "Person",
                         "name": post.replies[key].userName

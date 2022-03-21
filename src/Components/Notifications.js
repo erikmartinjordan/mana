@@ -145,7 +145,7 @@ const ListNotifications = ({notifications, user, hide, maxNotifications, setMaxN
                             }
                         </span>
                         <span className = 'Notifications-Message'>
-                            {url ? <Link onClick = {hide} to = {`/comunidad/post/${url}/#${replyId}`}>{message}</Link> : message}
+                            {url ? <Link onClick = {hide} to = {`/p/${url}/#${replyId}`}>{message}</Link> : message}
                         </span>
                     </div>
                 </div>

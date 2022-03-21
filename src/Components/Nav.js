@@ -3,7 +3,7 @@ import { Link }                                                                 
 import { ArrowRightIcon, HomeIcon, NumberIcon, TelescopeIcon, PaperAirplaneIcon } from '@primer/octicons-react'
 import UserAvatar                                                                 from './UserAvatar'
 import NightModeToggleButton                                                      from './NightModeToggleButton'
-import NomoresheetLogo                                                            from './NomoresheetLogo'
+import MañaLogo                                                                   from './MañaLogo'
 import UnreadNotifications                                                        from './UnreadNotifications'
 import { db, onValue, ref }                                                       from '../Functions/Firebase'
 import GetLevel                                                                   from '../Functions/GetLevelAndPointsToNextLevel'
@@ -54,8 +54,8 @@ const Nav = () => {
         return(
             <div className = 'Menu' key = 'b'>
                 <Link to = '/'><HomeIcon/>Inicio</Link>
-                <Link to = '/tags'><NumberIcon/>Temas</Link>
-                <Link to = '/usuarios'><TelescopeIcon/>Descubre</Link>
+                <Link to = '/t'><NumberIcon/>Temas</Link>
+                <Link to = '/u'><TelescopeIcon/>Descubre</Link>
                 <NightModeToggleButton/>
                 <div className = 'Access'>
                     <span className = 'Title'>¡Únete a la comunidad!</span>
@@ -84,8 +84,8 @@ const Nav = () => {
                 </div>
                 <div className = 'Separator'></div>
                 <Link to = '/'><HomeIcon/>Inicio</Link>
-                <Link to = '/tags'><NumberIcon/>Temas</Link>
-                <Link to = '/usuarios'><TelescopeIcon/>Descubre</Link>
+                <Link to = '/t'><NumberIcon/>Temas</Link>
+                <Link to = '/u'><TelescopeIcon/>Descubre</Link>
                 <div className = 'Separator'></div>
                 <NightModeToggleButton/>
                 <div className = 'Separator'></div>
@@ -101,8 +101,8 @@ const Nav = () => {
         return(      
             <div className = 'Mobile' key = 'c'>
                 <Link to = '/'><HomeIcon/>Inicio</Link>
-                <Link to = '/tags'><NumberIcon/>Temas</Link>
-                <Link to = '/usuarios'><TelescopeIcon/>Descubre</Link>
+                <Link to = '/t'><NumberIcon/>Temas</Link>
+                <Link to = '/u'><TelescopeIcon/>Descubre</Link>
                 <Link to = '/' onClick = {() => setPost(true)}><PaperAirplaneIcon/>Publicar</Link>
                 <div onClick = {() => setPerfil(true)} className = 'Img-Wrap'>
                     <UserAvatar user = {user} allowAnonymousUser = {true}/>
@@ -117,8 +117,7 @@ const Nav = () => {
     
     return(
         <div className = 'Nav'>
-            <div className = 'Migration'>👋 En breve <a href = 'https://nomoresheet.es'>nomoresheet.es</a> se trasladará a <a href = 'https://maña.com' target = "_blank">maña.com ↗</a></div>
-            <NomoresheetLogo/>
+            <MañaLogo/>
             {user   ? [menuUser(), menuMobile()] : [loginButton(), menuNotUser()]}
             { login
             ? <Suspense fallback = {<div></div>}>

@@ -17,11 +17,11 @@ const adminIds             = functions.config().admin.ids;
 admin.initializeApp();
 
 const mailTransport = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: user,
-    pass: pass,
-  },
+    service: 'gmail',
+    auth: {
+        user: user,
+        pass: pass,
+    },
 });
 
 exports.sendEmailNewPost = functions.database.ref('/posts/{postId}').onCreate(async (snapshot, context) => {
@@ -74,9 +74,6 @@ exports.preRender = functions.https.onRequest(async (request, response) => {
     let error404 = true;
     
     const path = request.path ? request.path.split('/') : request.path;
-    // path[0] = nomoresheet.es path[1] = blog
-    // path[0] = nomoresheet.es path[1] = comunidad
-    // ...
     
     let index = fs.readFileSync('./hosting/index.html').toString();
     
@@ -87,12 +84,18 @@ exports.preRender = functions.https.onRequest(async (request, response) => {
         return capture ? true : false;
     }
     
-    
-    if(!path[1])                             error404 = false;
-    else if(path[1].startsWith('blog'))      error404 = false; 
-    else if(path[1].startsWith('comunidad')) error404 = false; 
-    else if(path[1].startsWith('acerca'))    error404 = false;
-    else if(path[1].startsWith('@'))         error404 = !(await userExists(path[1]));
+    if(!path[1])                                 error404 = false;
+    else if(path[1].startsWith('acerca'))        error404 = false; 
+    else if(path[1].startsWith('estadisticas'))  error404 = false; 
+    else if(path[1].startsWith('privacidad'))    error404 = false;
+    else if(path[1].startsWith('guias'))         error404 = false;
+    else if(path[1].startsWith('donateSuccess')) error404 = false;
+    else if(path[1].startsWith('donateFail'))    error404 = false;
+    else if(path[1].startsWith('p'))             error404 = false;
+    else if(path[1].startsWith('t'))             error404 = false;
+    else if(path[1].startsWith('u'))             error404 = false;
+    else if(path[1].startsWith('v'))             error404 = false;
+    else if(path[1].startsWith('@'))             error404 = !(await userExists(path[1]));
     
     error404
     ? response.status(404).send(index)
@@ -409,11 +412,11 @@ exports.sendMagicLink = functions.https.onRequest(async (request, response) => {
         });
         
         const mailOptions = {
-            from: 'erik@nomoresheet.es',
+            from: 'hola@erikmartinjordan.com',
             to: email,
-            subject: '👋 Nomoresheet',
+            subject: '👋 Accede a Maña — Enlace de acceso a tu cuenta',
             html: `<p>Hola:</p>
-                   <p>Haz clic en <a href = '${magicLink}'>este enlace</a> para verificar tu cuenta.</p>
+                   <p>Haz clic en <a href = '${magicLink}'>este enlace</a> para acceder tu cuenta.</p>
                    <p>Gracias,</p>
                    <p>~Erik</p>`
         };

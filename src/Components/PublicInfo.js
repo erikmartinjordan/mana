@@ -77,8 +77,8 @@ const PublicInfo = (props) => {
                         <div onClick = {() => setActivity('respuestas')}    className = {activity === 'respuestas'    ? 'Selected' : null}>Respuestas ({totalReplies})</div>
                     </div>
                     { activity === 'publicaciones'
-                    ? posts.map((article, key) => <Link key = {key} to = {`/comunidad/post/${article.url}`}>{article.title}</Link>)
-                    : replies.map((reply, key) => <Link key = {key} to = {`/comunidad/post/${reply.url}`}>{reply.title}</Link>)
+                    ? posts.map((article, key) => <Link key = {key} to = {`/p/${article.url}`}>{article.title}</Link>)
+                    : replies.map((reply, key) => <Link key = {key} to = {`/p/${reply.url}`}>{reply.title}</Link>)
                     }
                     { activity === 'publicaciones' && numPosts < totalPosts     ? <button className = 'more' onClick = {() => setNumPosts(numPosts + 10)}>Ver más <ArrowDownIcon/></button> : null}
                     { activity === 'respuestas'    && numReplies < totalReplies ? <button className = 'more' onClick = {() => setNumReplies(numReplies + 10)}>Ver más <ArrowDownIcon/></button> : null}

@@ -24,7 +24,7 @@ const Tags = ({ numberOfTags = 10 }) => {
             <h2>¿De qué se habla aquí?</h2>
             <p>Los diez <em>tags</em> más utilizados:</p>
             {tags.map(([tag, {counter}], key) => (
-                <Link to = {`/tag/${tag}`} className = 'Tag' key = {key}>
+                <Link to = {`/t/${tag}`} className = 'Tag' key = {key}>
                     <div className = 'Icon'>#</div>
                     <div className = 'NameCounter'>
                         <div className = 'Name'>{tag}</div>

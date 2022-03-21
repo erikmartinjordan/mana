@@ -44,13 +44,13 @@ let environment = location.hostname === 'localhost' ? 'PRE' : 'PRO'
 let config = {
 
     'PRE': {
-        apiKey: "AIzaSyCUBpYspYtPSoNKjFx86Y5xHJkXp3dPcO0",
-        authDomain: "nomoresheet.es",
-        databaseURL: "https://nomoresheet-pre.firebaseio.com",
-        projectId: "nomoresheet-pre",
-        storageBucket: "nomoresheet-pre.appspot.com",
-        messagingSenderId: "809572059318",
-        appId: "1:809572059318:web:dcbab69066a1dddc"
+        apiKey: "AIzaSyAU_xn3LkpnKQn_A4TXLfzrygvbrYc9Go4",
+        authDomain: "mana-pre.firebaseapp.com",
+        databaseURL: "https://mana-pre-default-rtdb.firebaseio.com",
+        projectId: "mana-pre",
+        storageBucket: "mana-pre.appspot.com",
+        messagingSenderId: "55595433033",
+        appId: "1:55595433033:web:12f857f9d0289254179398"
     },
     'PRO': {
         apiKey: "AIzaSyCI6dpu54CeFd1NOH5s7B-sHeK3KdEH5KU",

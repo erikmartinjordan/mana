@@ -8,7 +8,7 @@ const Footer = () => {
         <div className = 'Footer'>
             <div className = 'Wrap'>
                 <div className = 'Column'>
-                    <p>© {(new Date()).getFullYear()} Nomoresheet</p>
+                    <p>© {(new Date()).getFullYear()} Maña</p>
                 </div>
                 <div className = 'Column'>
                     <Link to = {'/'}>Inicio</Link>
@@ -16,7 +16,7 @@ const Footer = () => {
                     <Link to = {'/estadisticas'}>Estadísticas</Link>
                     <Link to = {'/guias'}>Guías</Link>
                     <Link to = {'/privacidad'}>Privacidad</Link>
-                    <a href = 'https://github.com/erikmartinjordan/nomoresheet' target = '_blank' rel = 'nofollow nooreferrer noopener'>Contribuye</a>
+                    <a href = 'https://github.com/erikmartinjordan/mana' target = '_blank' rel = 'nofollow nooreferrer noopener'>Contribuye</a>
                 </div>
             </div>
         </div>

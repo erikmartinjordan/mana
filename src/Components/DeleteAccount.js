@@ -111,7 +111,7 @@ const DeleteAccount = () => {
                     <div className = 'Delete Account Confirmation-Wrap'>
                     <h2>Hasta pronto <Twemoji emoji = {'😺'}/></h2>
                         <p>Tus mensajes han sido anonimizados y tu cuenta ha sido borrada.</p>
-                        <p>Gracias por el tiempo que has dedicado a Nomoresheet. El tiempo es lo más valioso que tenemos.</p> 
+                        <p>Gracias por el tiempo que has dedicado a Maña. El tiempo es lo más valioso que tenemos.</p> 
                         <p>Cuídate, mucho. </p>
                         <a href = '/'>Volver a la página principal</a>
                     </div>

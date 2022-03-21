@@ -15,7 +15,7 @@ const Comments = () => {
         <span className = 'Title'>Últimos comentarios</span>
         <div className = 'LastComments'>
             {comments.map(([replyId, comment], key) =>
-            <Link to = {`/comunidad/post/${comment.postId}/#${replyId}`} key = {key} className = 'Info'>
+            <Link to = {`/p/${comment.postId}/#${replyId}`} key = {key} className = 'Info'>
                 <div className = 'Info-Wrap'>
                     <UserAvatar user = {{uid: comment.userUid}}/>
                     <div className = 'Author-Date'>

@@ -22,14 +22,16 @@ const Users         = lazy(() => import('./Users'))
 const Verify        = lazy(() => import('./Verify'))
 import '../Styles/App.css'
 
-console.log(`
+console.log(`   
 
-███╗   ██╗███╗   ███╗███████╗
-████╗  ██║████╗ ████║██╔════╝
-██╔██╗ ██║██╔████╔██║███████╗
-██║╚██╗██║██║╚██╔╝██║╚════██║
-██║ ╚████║██║ ╚═╝ ██║███████║
-╚═╝  ╚═══╝╚═╝     ╚═╝╚══════╝ 
+██████████╗
+
+███╗   ███╗
+████╗ ████║
+██╔████╔██║
+██║╚██╔╝██║
+██║ ╚═╝ ██║
+╚═╝     ╚═╝      
 
 Creado desde Barcelona.
 © 2015 – ${(new Date().getFullYear())}, Erik Martín Jordán. 
@@ -73,11 +75,11 @@ const App  = () => {
                         <Route exact path = '/guias'               component = {Guidelines}/>
                         <Route exact path = '/donateSuccess'       component = {DonateSuccess}/>
                         <Route exact path = '/donationFail'        component = {DonateFail}/>
-                        <Route exact path = '/tags'                component = {Tags}/>
-                        <Route exact path = '/usuarios'            component = {Users}/>
+                        <Route exact path = '/t'                   component = {Tags}/>
+                        <Route exact path = '/u'                   component = {Users}/>
                         <Route path = '/v/:string'                 component = {Verify}/>
-                        <Route path = '/comunidad/post/:string'    component = {Detail}/>
-                        <Route path = '/tag/:string'               component = {Forum}/>
+                        <Route path = '/p/:string'                 component = {Detail}/>
+                        <Route path = '/t/:string'                 component = {Forum}/>
                         <Route path = '/@:string'                  component = {PublicInfo}/>
                         <Route                                     component = {Default}/>
                     </Switch>

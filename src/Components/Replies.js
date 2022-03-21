@@ -79,7 +79,7 @@ export const Reply = ({ message }) => {
     const components = {
         
         p:     props => <Highlight text = {props.children}></Highlight>,
-        img:   props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Nomoresheet imagen'}></img>,  
+        img:   props => <img src = {props.src} onError = {(e) => e.target.style.display = 'none'} alt = {'Maña imagen'}></img>,  
         table: props => <div className = 'TableWrap'><table>{props.children}</table></div>
 
     }

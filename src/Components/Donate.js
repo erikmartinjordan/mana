@@ -67,7 +67,7 @@ const Donate = ({ name, stripeUserId }) => {
                         <button className = 'Pay' onClick = {pay}>
                             {payment === 'processing' ? <Loading tag = {'Procesando...'}/> : 'Pagar'}
                         </button>
-                        <span>El usuario recibirá tu aportación al instante. Nomoresheet no recibe ninguna comisión por la transacción.</span>
+                        <span>El usuario recibirá tu aportación al instante. Maña no recibe ninguna comisión por la transacción.</span>
                     </div>
                     <div className = 'Invisible' onClick = {() => setShowDonation(false)}></div>
               </div>
