@@ -53,12 +53,13 @@ let config = {
         appId: "1:55595433033:web:12f857f9d0289254179398"
     },
     'PRO': {
-        apiKey: "AIzaSyCI6dpu54CeFd1NOH5s7B-sHeK3KdEH5KU",
-        authDomain: "nomoresheet.es",
+        apiKey: "AIzaSyCm26Z1yejwnxzj12I-N4dB8HZmua2mkBA",
+        authDomain: "xn--maa-8ma.com",
         databaseURL: "https://nomoresheet-forum.firebaseio.com",
         projectId: "nomoresheet-forum",
         storageBucket: "nomoresheet-forum.appspot.com",
-        messagingSenderId: "878815391785"
+        messagingSenderId: "935565965192",
+        appId: "1:935565965192:web:0570987d8979336e516c3d"
     }
 
 }
