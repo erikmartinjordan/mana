@@ -61,7 +61,6 @@ let config = {
         messagingSenderId: "935565965192",
         appId: "1:935565965192:web:0570987d8979336e516c3d"
     }
-
 }
 
 initializeApp(config[environment])
