@@ -55,9 +55,9 @@ let config = {
     'PRO': {
         apiKey: "AIzaSyCm26Z1yejwnxzj12I-N4dB8HZmua2mkBA",
         authDomain: "xn--maa-8ma.com",
-        databaseURL: "https://nomoresheet-forum.firebaseio.com",
-        projectId: "nomoresheet-forum",
-        storageBucket: "nomoresheet-forum.appspot.com",
+        databaseURL: "https://mana-pro-default-rtdb.firebaseio.com",
+        projectId: "mana-pro",
+        storageBucket: "mana-pro.appspot.com",
         messagingSenderId: "935565965192",
         appId: "1:935565965192:web:0570987d8979336e516c3d"
     }
