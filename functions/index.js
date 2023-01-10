@@ -161,12 +161,10 @@ exports.incrementPosts = functions.database.ref('/posts/{postId}').onCreate(asyn
     }
     else{
         
-        let previous = moment().subtract(1, 'months').format('YYYYMM');
+        let lastMonth = (await admin.database().ref(`/stats`).orderByKey().limitToLast(1).once('value')).val();
+        let lastMonthPosts = Object.values(lastMonth)[0].posts;
         
-        snap  = await admin.database().ref(`/stats/${previous}/posts`).once('value');
-        posts = snap.val();
-        
-        admin.database().ref(`/stats/${date}/posts`).set(posts + 1);
+        admin.database().ref(`/stats/${date}/posts`).set(lastMonthPosts + 1);
         
     }
     
@@ -194,12 +192,11 @@ exports.incrementUsers = functions.database.ref('/users/{userId}').onCreate(asyn
     }
     else{
         
-        let previous = moment().subtract(1, 'months').format('YYYYMM');
+        let lastMonth = (await admin.database().ref(`/stats`).orderByKey().limitToLast(1).once('value')).val();
+
+        let lastMonthUsers = Object.values(lastMonth)[0].users;
         
-        snap  = await admin.database().ref(`/stats/${previous}/users`).once('value');
-        users = snap.val();
-        
-        admin.database().ref(`/stats/${date}/users`).set(users + 1);
+        admin.database().ref(`/stats/${date}/users`).set(lastMonthUsers + 1);
         
     }
     
